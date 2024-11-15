@@ -17,7 +17,7 @@ public class DummyContainer
         EntityType = Associator.GetEntityType(htmlContainer);
 
         Declaration = htmlContainer.Declaration ?? string.Empty;
-        Declaration = RegexAnalyzer.FixPlainText(Declaration); // Fix json Format
+        Declaration = RegexAnalyzer.Fix.PlainText(Declaration); // Fix json Format
 
         var parameters = htmlContainer.ParamsBox?.SelectNodes(".//dt");
         if (parameters != null)
@@ -27,8 +27,8 @@ public class DummyContainer
                 var strong = p.SelectSingleNode(".//strong")?.InnerText;
                 var span = p.SelectSingleNode(".//span")?.InnerText;
 
-                if (strong == null && span == null) Parameters.Add(RegexAnalyzer.FixPlainText(p.InnerText));
-                else Parameters.Add(RegexAnalyzer.FixPlainText($"{strong}:{span}"));
+                if (strong == null && span == null) Parameters.Add(RegexAnalyzer.Fix.PlainText(p.InnerText));
+                else Parameters.Add(RegexAnalyzer.Fix.PlainText($"{strong}:{span}"));
             }
         }
 
@@ -40,8 +40,8 @@ public class DummyContainer
                 var strong = r.SelectSingleNode(".//strong")?.InnerText;
                 var span = r.SelectSingleNode(".//span")?.InnerText;
 
-                if (strong == null && span == null) Returns.Add(RegexAnalyzer.FixPlainText(r.InnerText));
-                else Returns.Add(RegexAnalyzer.FixPlainText($"{strong}:{span}"));
+                if (strong == null && span == null) Returns.Add(RegexAnalyzer.Fix.PlainText(r.InnerText));
+                else Returns.Add(RegexAnalyzer.Fix.PlainText($"{strong}:{span}"));
             }
         }
 
@@ -53,8 +53,8 @@ public class DummyContainer
                 var strong = a.SelectSingleNode(".//strong")?.InnerText;
                 var span = a.SelectSingleNode(".//span")?.InnerText;
 
-                if (strong == null && span == null) Attributes.Add(RegexAnalyzer.FixPlainText(a.InnerText));
-                else Attributes.Add(RegexAnalyzer.FixPlainText($"{strong}:{span}"));
+                if (strong == null && span == null) Attributes.Add(RegexAnalyzer.Fix.PlainText(a.InnerText));
+                else Attributes.Add(RegexAnalyzer.Fix.PlainText($"{strong}:{span}"));
             }
         }
 

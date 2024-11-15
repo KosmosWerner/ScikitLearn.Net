@@ -9,33 +9,40 @@ namespace CodeGenerator.Core.Manager;
 
 public static partial class RegexAnalyzer
 {
-    public static string FixPlainText(string toFix)
+    public static class Fix
     {
-        var sb = new StringBuilder(toFix);
+        public static string PlainText(string toFix)
+        {
+            var sb = new StringBuilder(toFix);
 
-        sb.Replace("\n", "")
-          .Replace("\u201C", "\"")
-          .Replace("\u201D", "\"")
-          .Replace("\u0027", "\"")
-          .Replace("\u2018", "\"")
-          .Replace("\u2019", "\"")
-          .Replace("\u0026lt;", "<")
-          .Replace("\u0026gt;", ">")
-          .Replace("\u0026quot;", "\"");
+            sb.Replace("\n", "")
+              .Replace("\u201C", "\"")
+              .Replace("\u201D", "\"")
+              .Replace("\u0027", "\"")
+              .Replace("\u2018", "\"")
+              .Replace("\u2019", "\"")
+              .Replace("\u0026lt;", "<")
+              .Replace("\u0026gt;", ">")
+              .Replace("\u0026quot;", "\"");
 
-        string result = sb.ToString();
-        result = ReplaceSpacing().Replace(result, " ");
+            string result = sb.ToString();
+            result = ReplaceSpacing().Replace(result, " ");
 
-        return result;
+            return result;
+        }
     }
 
-    public static (string identifier, string fullName, string fullParameters) FromDeclaration(string declaration)
+    public static class Divide
     {
-        Match declarationMatch = RegexDeclaration().Match(declaration);
-        return (declarationMatch.Groups[1].Value,
-            declarationMatch.Groups[2].Value,
-            declarationMatch.Groups[3].Value);
+        public static (string identifier, string plainName, string plainParameters) Declaration(string declaration)
+        {
+            Match declarationMatch = RegexDeclaration().Match(declaration);
+            return (declarationMatch.Groups[1].Value,
+                declarationMatch.Groups[2].Value,
+                declarationMatch.Groups[3].Value);
+        }
     }
+
 
     public static List<string> Parameters(string parameters)
     {

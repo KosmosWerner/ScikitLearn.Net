@@ -66,72 +66,14 @@ public static class Generator
 
             var sortedContainers = dummyContainers.OrderBy(dummy =>
             {
-                var (_, fullName, _) = RegexAnalyzer.FromDeclaration(dummy.Declaration);
+                var (_, fullName, _) = RegexAnalyzer.DivideDeclaration(dummy.Declaration);
                 var namespaceParts = fullName.Split('.');
                 return string.Join(".", namespaceParts[..^1]);
             });
 
-            var fileName = Path.GetFileName(preGeneratedFilePath);
+            var fileName = Path.GetFileNameWithoutExtension(preGeneratedFilePath);
             CodeBuilder.Build(generatedDirectory, fileName, sortedContainers);
         }
-    }
-
-
-    public static async Task GenerateFrom(Dictionary<string, List<Uri>> source)
-    {
-        foreach (var (current_namespace, urls) in source)
-        {
-            await GenerateFromNamespace(current_namespace, urls);
-        }
-    }
-
-    public static async Task GenerateFromNamespace(string current_namespace, List<Uri> urls)
-    {
-        string path = Path.Combine(Path.GetFullPath("."), "src", $"{current_namespace}.cs");
-
-        GeneratorWriter generatorWriter = new(new ConsoleWriter(), current_namespace, urls.Count);
-
-        generatorWriter.PrintStartStaticClass();
-
-        foreach (var url in urls)
-        {
-            using HttpClient client = new();
-
-            try
-            {
-                string pageContent = await client.GetStringAsync(url);
-
-                HtmlContainer page = new(pageContent);
-                ArgumentNullException.ThrowIfNull(page.ContentNode);
-
-                var declaration = page.Declaration;
-                if (declaration == null)
-                {
-                    // sklearn.experimental
-                    // https://scikit-learn.org/stable/modules/generated/sklearn.experimental.enable_halving_search_cv.html
-                    // https://scikit-learn.org/stable/modules/generated/sklearn.experimental.enable_iterative_imputer.html
-                    return;
-                }
-
-                EntityType expectedValue = Associator.GetEntityType(page);
-            }
-            catch (HttpRequestException e)
-            {
-                Console.WriteLine($"Error: {e.Message}");
-            }
-
-        }
-
-        generatorWriter.PrintEndStaticClass();
-    }
-
-    private static void GenerateMethod(GeneratorWriter generatorWriter, HtmlNode nodeContent, HtmlNode nodeDescription)
-    {
-        Trace.WriteLine("->Method");
-        var methodName = nodeDescription.SelectSingleNode(".//*[contains(@class, 'sig-name descname')]")?.InnerText;
-        ArgumentNullException.ThrowIfNull(methodName);
-
-
     }
 
     private static void GenerateClass(GeneratorWriter generatorWriter, HtmlNode nodeContent, HtmlNode nodeDescription)

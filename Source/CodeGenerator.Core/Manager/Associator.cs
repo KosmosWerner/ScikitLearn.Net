@@ -14,7 +14,7 @@ public static class Associator
     {
         if (entity.Declaration == null) return EntityType.None;
 
-        var (identifier, _, _) = RegexAnalyzer.FromDeclaration(entity.Declaration);
+        var (identifier, _, _) = RegexAnalyzer.Divide.Declaration(entity.Declaration);
 
         if (identifier.Contains("exception")) return EntityType.Exception;
         else

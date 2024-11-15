@@ -71,7 +71,7 @@ namespace CodeGeneratorTest
             #region OldMethod
 
             EntityType obtainedValue = EntityType.None;
-            var (identifier, _, _) = RegexAnalyzer.FromDeclaration(declaration);
+            var (identifier, _, _) = RegexAnalyzer.DivideDeclaration(declaration);
 
             var nodeIdentifier = page.ContentNode.SelectSingleNode(".//*[contains(@class, 'property')]");
             if (nodeIdentifier == null)

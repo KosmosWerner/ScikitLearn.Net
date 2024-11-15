@@ -7,18 +7,6 @@ namespace CodeGenerator.Core.Manager
 {
     public static class CodeBuilder
     {
-        public static ClassDeclarationSyntax PublicStaticClass(string name)
-        {
-            return SyntaxFactory.ClassDeclaration(name).AddModifiers(
-                SyntaxFactory.Token(SyntaxKind.PublicKeyword),
-                SyntaxFactory.Token(SyntaxKind.StaticKeyword));
-        }
-
-        public static NamespaceDeclarationSyntax Namespace(string name)
-        {
-            return SyntaxFactory.NamespaceDeclaration(SyntaxFactory.ParseName("ScikitLearn"));
-        }
-
         public static void Build(string outputDirectory, string fileName, IOrderedEnumerable<DummyContainer> sortedDummyContainers)
         {
             string filePath = Path.Combine(outputDirectory, $"{fileName}.cs");
@@ -26,7 +14,7 @@ namespace CodeGenerator.Core.Manager
             var uniqueStaticClasses = sortedDummyContainers
                 .Select(dummy =>
                 {
-                    var (_, fullName, _) = RegexAnalyzer.FromDeclaration(dummy.Declaration);
+                    var (_, fullName, _) = RegexAnalyzer.Divide.Declaration(dummy.Declaration);
                     var namespaceParts = fullName.Split('.');
                     return string.Join(".", namespaceParts[..^1]);
                 })
@@ -38,8 +26,12 @@ namespace CodeGenerator.Core.Manager
                 SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("Python.Runtime")),
             ];
 
-            var ScikitLearn = Namespace("ScikitLearn");
-            var sklearn = PublicStaticClass("sklearn");
+            var ScikitLearn = SyntaxFactory.NamespaceDeclaration(SyntaxFactory.ParseName("ScikitLearn"));
+
+            var sklearn = SyntaxFactory.ClassDeclaration("sklearn").AddModifiers(
+                SyntaxFactory.Token(SyntaxKind.PublicKeyword),
+                SyntaxFactory.Token(SyntaxKind.StaticKeyword),
+                SyntaxFactory.Token(SyntaxKind.PartialKeyword));
 
             foreach (DummyContainer dummyContainer in sortedDummyContainers)
             {
@@ -49,7 +41,7 @@ namespace CodeGenerator.Core.Manager
                         BuildClass(ref sklearn, dummyContainer);
                         break;
                     case EntityType.Method:
-                        BuildMethod(ref sklearn, dummyContainer);
+                        BuildStaticMethod(ref sklearn, dummyContainer);
                         break;
                     case EntityType.Exception:
                         BuildException(ref sklearn, dummyContainer);
@@ -59,6 +51,7 @@ namespace CodeGenerator.Core.Manager
                 }
             }
 
+            ScikitLearn = ScikitLearn.AddMembers(sklearn);
 
             var compilationUnit = SyntaxFactory.CompilationUnit()
                 .AddUsings(usings)
@@ -71,47 +64,67 @@ namespace CodeGenerator.Core.Manager
             File.WriteAllText(filePath, code);
         }
 
-        public static MethodDeclarationSyntax AddMethod(ref ClassDeclarationSyntax @class, string name)
-        {
-            var method = SyntaxFactory.MethodDeclaration(SyntaxFactory.PredefinedType(SyntaxFactory.Token(SyntaxKind.VoidKeyword)), name)
-                .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
-                .WithBody(SyntaxFactory.Block());
 
-            @class = @class.AddMembers(method);
-            return method;
-        }
-
-        //public static ClassDeclarationSyntax AddClass(ref ClassDeclarationSyntax @class, string name)
-        //{
-        //    var @class = SyntaxFactory.MethodDeclaration(SyntaxFactory.PredefinedType(SyntaxFactory.Token(SyntaxKind.VoidKeyword)), name)
-        //        .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
-        //        .WithBody(SyntaxFactory.Block());
-
-        //    @class = @class.AddMembers(@class);
-        //    return @class;
-        //}
 
         private static void BuildClass(ref ClassDeclarationSyntax currentStaticClass, DummyContainer dummy)
         {
-            var (_, fullName, fullParameters) = RegexAnalyzer.FromDeclaration(dummy.Declaration);
+            var (_, plainName, plainParameters) = RegexAnalyzer.Divide.Declaration(dummy.Declaration);
+            string className = plainName.Split('.')[^1];
 
+            var classNode = SyntaxFactory.ClassDeclaration(className).AddModifiers(
+                SyntaxFactory.Token(SyntaxKind.PublicKeyword));
 
+            BuildConstructor(ref classNode, dummy);
 
-
-            foreach (var method in dummy.Methods)
+            foreach (DummyMethodContainer method in dummy.Methods)
             {
-
+                BuildMethod(ref classNode, method);
             }
+
+            currentStaticClass = currentStaticClass.AddMembers(classNode);
         }
 
-        private static void BuildMethod(ref ClassDeclarationSyntax currentStaticClass, DummyContainer dummy)
+        public static void BuildConstructor(ref ClassDeclarationSyntax currentClass, DummyContainer dummy)
         {
+            var (_, plainName, plainParameters) = RegexAnalyzer.Divide.Declaration(dummy.Declaration);
+            string className = plainName.Split('.')[^1];
 
+            var constructorNode = SyntaxFactory.ConstructorDeclaration(className)
+                .AddParameterListParameters(SyntaxFactory.Parameter(SyntaxFactory.Identifier("myParameter"))
+                .WithType(SyntaxFactory.ParseTypeName("string")))
+                .WithBody(SyntaxFactory.Block(SyntaxFactory.ParseStatement($"_myField = myParameter;")))
+                .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword));
+
+            currentClass = currentClass.AddMembers(constructorNode);
+        }
+
+        private static void BuildMethod(ref ClassDeclarationSyntax currentClass, DummyMethodContainer dummy)
+        {
+            var (_, plainName, plainParameters) = RegexAnalyzer.Divide.Declaration(dummy.Declaration);
+            string methodName = plainName.Split('.')[^1];
+
+            var methodNode = SyntaxFactory.MethodDeclaration(SyntaxFactory.PredefinedType(SyntaxFactory.Token(SyntaxKind.VoidKeyword)), methodName)
+                .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
+                .WithBody(SyntaxFactory.Block());
+
+            currentClass = currentClass.AddMembers(methodNode);
+        }
+
+        private static void BuildStaticMethod(ref ClassDeclarationSyntax currentStaticClass, DummyContainer dummy)
+        {
+            var (_, plainName, plainParameters) = RegexAnalyzer.Divide.Declaration(dummy.Declaration);
+            string methodName = plainName.Split('.')[^1];
+
+            var methodNode = SyntaxFactory.MethodDeclaration(SyntaxFactory.PredefinedType(SyntaxFactory.Token(SyntaxKind.VoidKeyword)), methodName)
+                .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword), SyntaxFactory.Token(SyntaxKind.StaticKeyword))
+                .WithBody(SyntaxFactory.Block());
+
+            currentStaticClass = currentStaticClass.AddMembers(methodNode);
         }
 
         private static void BuildException(ref ClassDeclarationSyntax currentStaticClass, DummyContainer dummy)
         {
-
+            // Not Implemented yet...
         }
     }
 }

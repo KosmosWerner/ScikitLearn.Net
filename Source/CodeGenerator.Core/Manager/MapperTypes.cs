@@ -33,16 +33,92 @@ public static class MapperTypes
     // Value != null : default any
     public static List<(string Type, string Name, string? Value)> GetParameters(string[] declarationParameters, string[] documentedParameters)
     {
-        bool isArgument = true;
+        // bool is_arg = true;
         Dictionary<string, string> method_args = [];
-        Dictionary<string, string> method_kw = [];
+        Dictionary<string, string?> method_kw = [];
+        Dictionary<string, string> param_types = [];
 
         List<(string Type, string Name, string? Value)> result = [];
 
-        result.Add(("int", "x", string.Empty));
-        result.Add(("float", "y", string.Empty));
-        result.Add(("double?", "a", null));
-        result.Add(("Raw", "b", "\"text\""));
+        foreach (var declarationParameter in declarationParameters)
+        {
+            if (declarationParameter == "*") { continue; }
+            if (declarationParameter.StartsWith("**")) { method_kw["@params"] = null; continue; }
+
+            string[] parts = declarationParameter.Split('=', 2, StringSplitOptions.TrimEntries);
+
+            if (parts.Length == 1)
+            {
+                // Only args
+                string paramName = parts[0].Split(':', StringSplitOptions.TrimEntries)[0]; //sample_weight: bool | None | str = '$UNCHANGED$'
+                method_args[paramName] = string.Empty;
+            }
+            else if (parts.Length == 2)
+            {
+                // Only keywords
+                string paramName = parts[0].Split(':', StringSplitOptions.TrimEntries)[0]; //sample_weight: bool | None | str = '$UNCHANGED$'
+                string paramDefault = parts[1];
+
+                var (value, type) = TextAnalyzer.Fix.TryDeduceDefaultValue(paramDefault);
+                method_kw[paramName] = value;
+
+                // Save names with a deducible type
+                if (type != string.Empty) param_types[paramName] = type;
+            }
+            else
+            {
+                throw new ArgumentException($"Invalid format in parts '{declarationParameter}': expected at most one equal sign ('='). Number of tokens found: {declarationParameter.Length}");
+            }
+        }
+
+        foreach (var documentedParameter in documentedParameters)
+        {
+            string[] parts = documentedParameter.Split(':', 2, StringSplitOptions.TrimEntries);
+            string parameterName = parts[0];
+            if (parts.Length < 2) continue;
+            string parameterContent = parts[1];
+
+            if (parameterName.StartsWith("**")) { param_types["@params"] = "Dictionary<string, PyObject>?"; continue; }
+
+            if (parameterContent.Contains("Ignored"))
+            {
+                method_args.Remove(parameterName);
+                method_kw.Remove(parameterName);
+                continue;
+            }
+
+            if (param_types.TryGetValue(parameterName, out string? type))
+            {
+                if (documentedParameter.Contains("None")) param_types[parameterName] = type + "?";
+            }
+            else
+            {
+                if (method_args.TryGetValue(parameterName, out string? value_arg))
+                {
+                    param_types[parameterName] = TextAnalyzer.Fix.ParamTypeFromNonDeducible(parameterContent);
+                }
+                else if (method_kw.TryGetValue(parameterName, out string? value_kw))
+                {
+                    param_types[parameterName] = TextAnalyzer.Fix.ParamTypeFromNonDeducible(parameterContent);
+                }
+            }
+        }
+
+        foreach (var item in method_args)
+        {
+            if (param_types.TryGetValue(item.Key, out string? type))
+            {
+                result.Add((type, item.Key, item.Value));
+            }
+        }
+
+        foreach (var item in method_kw)
+        {
+            if (param_types.TryGetValue(item.Key, out string? type))
+            {
+                result.Add((type, item.Key, item.Value));
+            }
+        }
 
         return result;
     }
@@ -52,7 +128,7 @@ public static class MapperTypes
         List<(string Type, string Name)> result = [];
 
         result.Add(("(int,string)", "get_tuple"));
-        result.Add(("ndarray", "get_array"));
+        result.Add(("NDarray", "get_array"));
         result.Add(("PyObject", "get_ob"));
         result.Add(("PyTuple", "get_t"));
         result.Add(("string", "get_name"));
@@ -60,60 +136,13 @@ public static class MapperTypes
         return result;
     }
 
-    public static string GetReturn(List<string> returns)
+    public static string GetReturn(List<string> plainReturns)
     {
-        return "string";
+
+
+        return "(int,NDarray)";
     }
 
-    //public static void AssignDefaultValues(
-    //       string? param_text,
-    //       ref bool is_arg,
-    //       Dictionary<string, string> method_args,
-    //       Dictionary<string, string> method_kw)
-    //{
-    //    ArgumentNullException.ThrowIfNull(param_text);
 
-    //    if (param_text == "*")
-    //    {
-    //        is_arg = false;
-    //        return;
-    //    }
-
-    //    if (param_text.StartsWith("**"))
-    //    {
-    //        method_kw["@params"] = PythonDefaultValueToCSharp("None");
-    //        is_arg = false;
-    //        return;
-    //    }
-
-    //    //string[] parameters = param_text.Split('=');
-    //    // a = 'b' -> 2
-    //    // a = 'b=c' -> 2
-    //    // a = 'b' = c -> 3
-    //    string[] parameters = param_text.Split('=', 2);
-
-    //    if (parameters.Length == 1)
-    //    {
-    //        string param_name = parameters[0].Trim();
-
-    //        method_args[param_name] = string.Empty;
-    //    }
-    //    else if (parameters.Length == 2)
-    //    {
-    //        //for this case ->  sample_weight: bool | None | str = '$UNCHANGED$'
-    //        string param_name = parameters[0].Split(':')[0].Trim();
-    //        string param_value = parameters[1].Trim();
-
-    //        method_kw[param_name] = PythonDefaultValueToCSharp(param_value);
-
-    //        // ????
-    //        // if (is_arg) method_args[param_name] = PythonDefaultValueToCSharp(param_value);
-    //        // else method_kw[param_name] = PythonDefaultValueToCSharp(param_value);
-    //    }
-    //    else
-    //    {
-    //        throw new ArgumentException($"Invalid format in parameter '{param_text}': expected at most one equal sign ('='). Number of tokens found: {parameters.Length}");
-    //    }
-    //    }
 }
 

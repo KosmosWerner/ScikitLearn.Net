@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CodeGenerator.Core.Manager;
 
-public enum EntityType
+public enum NodeType
 {
     None,
     Class,

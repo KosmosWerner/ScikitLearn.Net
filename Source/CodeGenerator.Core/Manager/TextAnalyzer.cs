@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CodeGenerator.Core.Manager;
 
-public static partial class RegexAnalyzer
+public static partial class TextAnalyzer
 {
     public static class Fix
     {
@@ -41,12 +41,26 @@ public static partial class RegexAnalyzer
                 declarationMatch.Groups[2].Value,
                 declarationMatch.Groups[3].Value);
         }
-    }
 
+        public static (string name, string callableStaticClass) PlainName(string plainName)
+        {
+            string[] segments = plainName.Split('.', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+            string containerName = segments[^1];
+            string callableStaticClass = string.Join('.', segments[..^1]);
+            return (containerName, callableStaticClass);
+        }
 
-    public static List<string> Parameters(string parameters)
-    {
-        return [];///////////////////////
+        public static string[] PlainParameters(string plainParameters)
+        {
+            return plainParameters.Split(", ",
+                StringSplitOptions.RemoveEmptyEntries |
+                StringSplitOptions.TrimEntries);
+        }
+
+        public static string[] Tuple(string plainTuple)
+        {
+            return plainTuple.TrimStart('(').TrimEnd(')').Split(',', StringSplitOptions.TrimEntries);
+        }
     }
 
     [GeneratedRegex(@"(\w+\s+)?([\w\.]+)(\((.*)\))?")]

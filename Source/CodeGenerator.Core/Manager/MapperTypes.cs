@@ -43,7 +43,7 @@ public static class MapperTypes
         foreach (var declarationParameter in declarationParameters)
         {
             if (declarationParameter == "*") { continue; }
-            if (declarationParameter.StartsWith("**")) { method_kw["@params"] = null; continue; }
+            if (declarationParameter.StartsWith("**")) { method_kw["params"] = null; continue; }
 
             string[] parts = declarationParameter.Split('=', 2, StringSplitOptions.TrimEntries);
 
@@ -62,7 +62,7 @@ public static class MapperTypes
                 var (value, type) = TextAnalyzer.Fix.TryDeduceDefaultValue(paramDefault);
                 method_kw[paramName] = value;
 
-                // Save names with a deducible type
+                // Save reservedNames with a deducible type
                 if (type != string.Empty) param_types[paramName] = type;
             }
             else
@@ -78,7 +78,7 @@ public static class MapperTypes
             if (parts.Length < 2) continue;
             string parameterContent = parts[1];
 
-            if (parameterName.StartsWith("**")) { param_types["@params"] = "Dictionary<string, PyObject>?"; continue; }
+            if (parameterName.StartsWith("**")) { param_types["params"] = "Dictionary<string, PyObject>?"; continue; }
 
             if (parameterContent.Contains("Ignored"))
             {
@@ -95,11 +95,11 @@ public static class MapperTypes
             {
                 if (method_args.TryGetValue(parameterName, out string? value_arg))
                 {
-                    param_types[parameterName] = TextAnalyzer.Fix.ParamTypeFromNonDeducible(parameterContent);
+                    param_types[parameterName] = TextAnalyzer.Fix.ParamTypeFromNonDeducible(parameterContent, value_arg == null);
                 }
                 else if (method_kw.TryGetValue(parameterName, out string? value_kw))
                 {
-                    param_types[parameterName] = TextAnalyzer.Fix.ParamTypeFromNonDeducible(parameterContent);
+                    param_types[parameterName] = TextAnalyzer.Fix.ParamTypeFromNonDeducible(parameterContent, value_arg == null);
                 }
             }
         }

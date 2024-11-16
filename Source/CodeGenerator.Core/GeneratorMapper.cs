@@ -48,10 +48,6 @@ internal class GeneratorMapper
 
     private static string[] FixReturnType(string raw_type)
     {
-
-
-
-
         bool nullable = raw_type.Contains("None", StringComparison.OrdinalIgnoreCase) ||
                         raw_type.Contains("Ignored", StringComparison.OrdinalIgnoreCase);
 

@@ -373,7 +373,7 @@ public static class CodeBuilder
             List<StatementSyntax> result = [];
             var args = parameters
                 .Where(x => x.Value == string.Empty)
-                .Select(x => x.Name);
+                .Select(x => TextAnalyzer.Fix.Reserved(x.Name));
 
             if (args.Any())
                 result.Add(SyntaxFactory.ParseStatement($"PyTuple args = ToTuple(new object[] {{{string.Join(", ", args)}}});"));
@@ -387,9 +387,9 @@ public static class CodeBuilder
             foreach (var k in kw)
             {
                 if (k.Type.EndsWith('?'))
-                    result.Add(SyntaxFactory.ParseStatement($"if ({k.Name} != null) pyDict[\"{k.Name}\"] = ToPython({k.Name});"));
+                    result.Add(SyntaxFactory.ParseStatement($"if ({TextAnalyzer.Fix.Reserved(k.Name)} != null) pyDict[\"{k.Name}\"] = ToPython({TextAnalyzer.Fix.Reserved(k.Name)});"));
                 else
-                    result.Add(SyntaxFactory.ParseStatement($"pyDict[\"{k.Name}\"] = ToPython({k.Name});"));
+                    result.Add(SyntaxFactory.ParseStatement($"pyDict[\"{k.Name}\"] = ToPython({TextAnalyzer.Fix.Reserved(k.Name)});"));
             }
 
             if (callableStaticClass == null)
@@ -465,19 +465,19 @@ public static class CodeBuilder
             {
                 if (x.Value == string.Empty)
                 {
-                    result.Add(SyntaxFactory.Parameter(SyntaxFactory.Identifier(x.Name))
+                    result.Add(SyntaxFactory.Parameter(SyntaxFactory.Identifier(TextAnalyzer.Fix.Reserved(x.Name)))
                         .WithType(SyntaxFactory.ParseTypeName(x.Type)));
                 }
                 else if (x.Value == null)
                 {
-                    result.Add(SyntaxFactory.Parameter(SyntaxFactory.Identifier(x.Name))
+                    result.Add(SyntaxFactory.Parameter(SyntaxFactory.Identifier(TextAnalyzer.Fix.Reserved(x.Name)))
                         .WithType(SyntaxFactory.ParseTypeName(x.Type))
                         .WithDefault(SyntaxFactory.EqualsValueClause(
                             SyntaxFactory.LiteralExpression(SyntaxKind.NullLiteralExpression))));
                 }
                 else
                 {
-                    result.Add(SyntaxFactory.Parameter(SyntaxFactory.Identifier(x.Name))
+                    result.Add(SyntaxFactory.Parameter(SyntaxFactory.Identifier(TextAnalyzer.Fix.Reserved(x.Name)))
                         .WithType(SyntaxFactory.ParseTypeName(x.Type))
                         .WithDefault(SyntaxFactory.EqualsValueClause(
                             SyntaxFactory.ParseExpression(x.Value))));

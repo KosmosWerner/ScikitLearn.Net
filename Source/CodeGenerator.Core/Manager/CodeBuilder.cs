@@ -32,7 +32,7 @@ public static class CodeBuilder
         return SyntaxFactory.NamespaceDeclaration(SyntaxFactory.ParseName(name));
     }
 
-    public static ClassDeclarationSyntax CreatePublicStaticClass(string name)
+    public static ClassDeclarationSyntax CreatePublicStaticPartialClass(string name)
     {
         return SyntaxFactory.ClassDeclaration(name).AddModifiers(
             SyntaxFactory.Token(SyntaxKind.PublicKeyword),
@@ -40,11 +40,19 @@ public static class CodeBuilder
             SyntaxFactory.Token(SyntaxKind.PartialKeyword));
     }
 
-    public static ClassDeclarationSyntax CreatePublicClass(string name)
+    public static ClassDeclarationSyntax CreatePublicStaticClass(string name)
     {
         return SyntaxFactory.ClassDeclaration(name).AddModifiers(
             SyntaxFactory.Token(SyntaxKind.PublicKeyword),
-            SyntaxFactory.Token(SyntaxKind.PartialKeyword));
+            SyntaxFactory.Token(SyntaxKind.StaticKeyword));
+    }
+
+    public static ClassDeclarationSyntax CreatePublicClass(string name)
+    {
+        return SyntaxFactory.ClassDeclaration(name)
+            .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
+            .AddBaseListTypes(SyntaxFactory.SimpleBaseType(SyntaxFactory.IdentifierName("PythonObject"))
+    );
     }
 
     public static ConstructorDeclarationSyntax CreatePublicConstructor(string name, ParameterSyntax[] parameterList, StatementSyntax[] statements)
@@ -86,22 +94,33 @@ public static class CodeBuilder
             .WithBody(SyntaxFactory.Block(statements));
     }
 
+    public static MethodDeclarationSyntax CreatePublicStaticMethod(string name, string returnType, ParameterSyntax[] parameterList, StatementSyntax[] statements)
+    {
+        return SyntaxFactory.MethodDeclaration(SyntaxFactory.ParseTypeName(returnType), name)
+            .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword), SyntaxFactory.Token(SyntaxKind.StaticKeyword))
+            .AddParameterListParameters(parameterList)
+            .WithBody(SyntaxFactory.Block(statements));
+    }
+
+
     public static void Build(string outputDirectoryPath, string fileName, IOrderedEnumerable<NodeContainer> sortedNodeContainers)
     {
-        //var uniqueStaticClasses = sortedNodeContainers
-        //    .Select(container =>
-        //    {
-        //        var (_, fullName, _) = TextAnalyzer.Divide.Declaration(container.Declaration);
-        //        var namespaceParts = fullName.Split('.');
-        //        return string.Join(".", namespaceParts[..^1]);
-        //    })
-        //    .Distinct()
-        //    .ToList();
+        var uniqueStaticClasses = sortedNodeContainers
+            .Select(container =>
+            {
+                var (_, fullName, _) = TextAnalyzer.Divide.Declaration(container.Declaration);
+                var namespaceParts = fullName.Split('.');
+                return string.Join(".", namespaceParts[..^1]);
+            })
+            .Distinct()
+            .ToList();
 
         var usings = CreateUsings();
         var ScikitLearn = CreateNamespace("ScikitLearn");
 
-        var sklearn = CreatePublicStaticClass("sklearn");
+        var sklearn = CreatePublicStaticPartialClass("sklearn");
+
+        BuildImports(ref sklearn, "sklearn");
 
         foreach (var container in sortedNodeContainers)
         {
@@ -126,6 +145,60 @@ public static class CodeBuilder
         File.WriteAllText(outputFile, code);
     }
 
+    private static void BuildImports(ref ClassDeclarationSyntax currentStaticClass, string staticCallable)
+    {
+        var staticClassName = staticCallable.Split('.')[^1];
+
+        // Hardcode but it works
+        var lazySelfField = SyntaxFactory.ParseMemberDeclaration(@"private static Lazy<PyObject> _lazy_self;");
+
+        var selfProperty = SyntaxFactory.ParseMemberDeclaration(@"
+        public static PyObject self
+        {
+            get => _lazy_self.Value;
+        }");
+
+        var reInitializeLazySelfMethod = SyntaxFactory.ParseMemberDeclaration(@"
+        private static void ReInitializeLazySelf()
+        {
+            _lazy_self = new Lazy<PyObject>(() =>
+            {
+                try
+                {
+                    return InstallAndImport();
+                }
+                catch (Exception)
+                {
+                    return InstallAndImport(true);
+                }
+            });
+        }");
+
+        var installAndImportMethod = SyntaxFactory.ParseMemberDeclaration($@"
+        private static PyObject InstallAndImport(bool force = false)
+        {{
+            PythonEngine.AddShutdownHandler(ReInitializeLazySelf);
+            PythonEngine.Initialize();
+            return Py.Import(""{staticCallable}"");
+        }}");
+
+        var staticConstructor = SyntaxFactory.ParseMemberDeclaration($@"
+        static {staticClassName}()
+        {{
+            ReInitializeLazySelf();
+        }}");
+
+        // Agregar miembros a la clase estática
+        currentStaticClass = currentStaticClass.AddMembers(
+            lazySelfField,
+            selfProperty,
+            reInitializeLazySelfMethod,
+            installAndImportMethod,
+            staticConstructor
+        );
+    }
+
+
     private static void BuildClass(ref ClassDeclarationSyntax currentStaticClass, NodeContainer container)
     {
         var (_, plainName, _) = TextAnalyzer.Divide.Declaration(container.Declaration);
@@ -137,9 +210,7 @@ public static class CodeBuilder
         BuildAttributes(ref classNode, container);
 
         foreach (NodeMethodContainer methodContainer in container.Methods)
-        {
-            BuildMethod(ref classNode, methodContainer);
-        }
+            BuildMethod(ref classNode, methodContainer, name);
 
         currentStaticClass = currentStaticClass.AddMembers(classNode);
     }
@@ -195,7 +266,7 @@ public static class CodeBuilder
         }
     }
 
-    private static void BuildMethod(ref ClassDeclarationSyntax currentClass, NodeMethodContainer container)
+    private static void BuildMethod(ref ClassDeclarationSyntax currentClass, NodeMethodContainer container, string className)
     {
         var (_, name, plainParameters) = TextAnalyzer.Divide.Declaration(container.Declaration);
 
@@ -207,7 +278,11 @@ public static class CodeBuilder
 
         var parameterList = Helpers.CreateListParameters(mappedParameters);
         var statements = Helpers.CreateMethodStatements(mappedParameters, name, returnType);
-        MethodDeclarationSyntax methodNode = CreatePublicMethod(name, returnType, parameterList, statements);
+        MethodDeclarationSyntax? methodNode;
+
+        if (returnType == "this") methodNode = CreatePublicMethod(name, className, parameterList, statements);
+        else if (returnType == string.Empty) methodNode = CreatePublicMethod(name, "void", parameterList, statements);
+        else methodNode = CreatePublicMethod(name, returnType, parameterList, statements);
 
         currentClass = currentClass.AddMembers(methodNode);
     }
@@ -227,7 +302,10 @@ public static class CodeBuilder
 
         var parameterList = Helpers.CreateListParameters(mappedParameters);
         var statements = Helpers.CreateMethodStatements(mappedParameters, name, returnType, callableStaticClass);
-        MethodDeclarationSyntax methodNode = CreatePublicMethod(name, returnType, parameterList, statements);
+
+        MethodDeclarationSyntax? methodNode;
+        if (returnType == string.Empty) methodNode = CreatePublicStaticMethod(name, "void", parameterList, statements);
+        else methodNode = CreatePublicStaticMethod(name, returnType, parameterList, statements);
 
         currentStaticClass = currentStaticClass.AddMembers(methodNode);
     }
@@ -320,20 +398,60 @@ public static class CodeBuilder
                 {
                     result.Add(SyntaxFactory.ParseStatement($"self.InvokeMethod(\"{methodName}\", args, pyDict);"));
                 }
+                else if (returnType == "this")
+                {
+                    result.Add(SyntaxFactory.ParseStatement($"self.InvokeMethod(\"{methodName}\", args, pyDict);"));
+                    result.Add(SyntaxFactory.ParseStatement($"return this;"));
+                }
                 else
                 {
-                    result.Add(SyntaxFactory.ParseStatement($"PyObject result = self.InvokeMethod(\"{methodName}\", args, pyDict);"));
+                    if (returnType.StartsWith('(') && returnType.EndsWith(')'))
+                    {
+                        int count = 0;
+                        string[] types = TextAnalyzer.Divide.Tuple(returnType);
+                        result.Add(SyntaxFactory.ParseStatement($"PyTuple result = new PyTuple(self.InvokeMethod(\"{methodName}\", args, pyDict));"));
+                        var x = types.Select(x => $"ToCsharp<{x}>(result[{count++}])").ToArray();
+
+                        result.Add(SyntaxFactory.ParseStatement($"return ({string.Join(',', x)});"));
+                    }
+                    else
+                    {
+                        string? expression;
+                        if (returnType.StartsWith("PyObject")) expression = $"return self.InvokeMethod(\"{methodName}\", args, pyDict);";
+                        else
+                        {
+                            if (returnType.StartsWith("Py")) expression = $"return new {returnType}(self.InvokeMethod(\"{methodName}\", args, pyDict))";
+                            else expression = $"return ToCsharp<{returnType}>(self.InvokeMethod(\"{methodName}\", args, pyDict)))";
+                        }
+                    }
                 }
             }
             else
             {
                 if (returnType == string.Empty)
-                {
                     result.Add(SyntaxFactory.ParseStatement($"{callableStaticClass}.self.InvokeMethod(\"{methodName}\", args, pyDict);"));
-                }
+
                 else
                 {
-                    result.Add(SyntaxFactory.ParseStatement($"PyObject result = {callableStaticClass}.self.InvokeMethod(\"{methodName}\", args, pyDict);"));
+                    if (returnType.StartsWith('(') && returnType.EndsWith(')'))
+                    {
+                        int count = 0;
+                        string[] types = TextAnalyzer.Divide.Tuple(returnType);
+                        result.Add(SyntaxFactory.ParseStatement($"PyTuple result = new PyTuple({callableStaticClass}.self.InvokeMethod(\"{methodName}\", args, pyDict));"));
+                        var x = types.Select(x => $"ToCsharp<{x}>(result[{count++}])").ToArray();
+
+                        result.Add(SyntaxFactory.ParseStatement($"return ({string.Join(',', x)});"));
+                    }
+                    else
+                    {
+                        string? expression;
+                        if (returnType.StartsWith("PyObject")) expression = $"return {callableStaticClass}.self.InvokeMethod(\"{methodName}\", args, pyDict);";
+                        else
+                        {
+                            if (returnType.StartsWith("Py")) expression = $"return new {returnType}({callableStaticClass}.self.InvokeMethod(\"{methodName}\", args, pyDict))";
+                            else expression = $"return ToCsharp<{returnType}>({callableStaticClass}.self.InvokeMethod(\"{methodName}\", args, pyDict)))";
+                        }
+                    }
                 }
             }
             return result.ToArray();

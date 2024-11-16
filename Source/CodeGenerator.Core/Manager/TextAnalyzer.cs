@@ -20,6 +20,87 @@ public static partial class TextAnalyzer
             ["None"] = "null",
         };
 
+        private static readonly HashSet<string> reservedNames = new(
+       [
+           "abstract",
+            "as",
+            "base",
+            "bool",
+            "break",
+            "byte",
+            "case",
+            "catch",
+            "char",
+            "checked",
+            "class",
+            "const",
+            "continue",
+            "decimal",
+            "default",
+            "delegate",
+            "do",
+            "double",
+            "else",
+            "enum",
+            "event",
+            "explicit",
+            "extern",
+            "false",
+            "finally",
+            "fixed",
+            "float",
+            "for",
+            "foreach",
+            "goto",
+            "if",
+            "implicit",
+            "in",
+            "int",
+            "interface",
+            "internal",
+            "is",
+            "lock",
+            "long",
+            "namespace",
+            "new",
+            "null",
+            "object",
+            "operator",
+            "out",
+            "override",
+            "params",
+            "private",
+            "protected",
+            "public",
+            "readonly",
+            "ref",
+            "return",
+            "sbyte",
+            "sealed",
+            "short",
+            "sizeof",
+            "stackalloc",
+            "static",
+            "string",
+            "struct",
+            "switch",
+            "this",
+            "throw",
+            "true",
+            "try",
+            "typeof",
+            "uint",
+            "ulong",
+            "unchecked",
+            "unsafe",
+            "ushort",
+            "using",
+            "virtual",
+            "void",
+            "volatile",
+            "while",
+        ]);
+
         public static string PlainText(string toFix)
         {
             var sb = new StringBuilder(toFix);
@@ -72,10 +153,10 @@ public static partial class TextAnalyzer
         }
 
 
-        public static string ParamTypeFromNonDeducible(string textFromDocumentation)
+        public static string ParamTypeFromNonDeducible(string textFromDocumentation, bool storesIsNull)
         {
             bool nullable = textFromDocumentation.Contains("None", StringComparison.OrdinalIgnoreCase);
-
+            nullable = storesIsNull;
             string content = textFromDocumentation.Split("default=", 2, StringSplitOptions.TrimEntries)[0];
 
             string clear_raw_type = Regex.Replace(content, @"[\(\{]([^()\{\}]*)[\)\}]", m => //delete commas in {,,} or (,,)
@@ -119,10 +200,16 @@ public static partial class TextAnalyzer
             string? output;
 
             if (result.Count == 0) output = "PyObject";
-            else if (result.Count == 1) output = result[0] += "?";
-            else output = result[0] += "?";
+            else if (result.Count == 1) output = nullable ? result[0] += "?" : result[0];
+            else output = nullable ? result[0] += "?" : result[0];
 
             return output;
+        }
+
+        public static string Reserved(string name)
+        {
+            if (reservedNames.Contains(name)) return $"@{name}";
+            return name;
         }
     }
 

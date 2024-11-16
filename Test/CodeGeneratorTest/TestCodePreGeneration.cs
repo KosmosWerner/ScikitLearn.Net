@@ -65,18 +65,18 @@ namespace CodeGeneratorTest
             }
 
             #region NewMethod
-            EntityType expectedValue = Associator.GetEntityType(page);
+            NodeType expectedValue = MapperTypes.GetEntityType(page);
             #endregion
 
             #region OldMethod
 
-            EntityType obtainedValue = EntityType.None;
-            var (identifier, _, _) = RegexAnalyzer.FromDeclaration(declaration);
+            NodeType obtainedValue = NodeType.None;
+            var (identifier, _, _) = TextAnalyzer.Divide.Declaration(declaration);
 
             var nodeIdentifier = page.ContentNode.SelectSingleNode(".//*[contains(@class, 'property')]");
             if (nodeIdentifier == null)
             {
-                obtainedValue = EntityType.Method;
+                obtainedValue = NodeType.Method;
             }
             else
             {
@@ -88,14 +88,14 @@ namespace CodeGeneratorTest
                 {
                     // https://scikit-learn.org/stable/modules/generated/sklearn.compose.make_column_selector.html
                     // https://scikit-learn.org/stable/modules/generated/sklearn.compose.make_column_transformer.html
-                    obtainedValue = EntityType.Method;
+                    obtainedValue = NodeType.Method;
                 }
                 else
                 {
                     if (identifier.Contains("exception"))
-                        obtainedValue = EntityType.Exception;
+                        obtainedValue = NodeType.Exception;
                     else
-                        obtainedValue = EntityType.Class;
+                        obtainedValue = NodeType.Class;
                 }
             }
 

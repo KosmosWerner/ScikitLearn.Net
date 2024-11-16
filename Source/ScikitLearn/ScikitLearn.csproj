@@ -14,8 +14,8 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 
 		<PackageTags>Machine Learning, Sklearn, ScikitLearn, AI, Clustering</PackageTags>
-		<Version>0.0.1</Version>
-		<AssemblyVersion>0.0.1</AssemblyVersion>
+		<Version>1.0.0</Version>
+		<AssemblyVersion>1.0.0</AssemblyVersion>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>

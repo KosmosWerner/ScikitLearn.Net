@@ -1,11 +1,7 @@
 ﻿using HtmlAgilityPack;
-using CodeGenerator.Core.Utils;
 using System.Diagnostics;
-using System.Text.RegularExpressions;
 using CodeGenerator.Core.Manager;
 using System.Text.Json;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using Microsoft.CodeAnalysis.CSharp;
 
 namespace CodeGenerator.Core;
 
@@ -13,26 +9,27 @@ public static class Generator
 {
     public static async Task CreatePreGenerated(Dictionary<string, List<Uri>> source, string baseDirectory = ".")
     {
-        var serializerOptions = new JsonSerializerOptions { WriteIndented = true };
+        JsonSerializerOptions serializerOptions = new() { WriteIndented = true };
 
-        foreach (var (namespaceName, urls) in source)
+        foreach (var (fileName, urls) in source)
         {
-            var dummyContainers = new List<DummyContainer>();
+            List<NodeContainer> nodeContainers = [];
+
             foreach (var url in urls)
             {
-                using var httpClient = new HttpClient();
+                using HttpClient httpClient = new();
 
                 try
                 {
-                    var pageContent = await httpClient.GetStringAsync(url);
-                    var htmlContainer = new HtmlContainer(pageContent);
+                    string pageContent = await httpClient.GetStringAsync(url);
+
+                    HtmlContainer htmlContainer = new(pageContent);
                     ArgumentNullException.ThrowIfNull(htmlContainer.ContentNode);
 
-                    var declaration = htmlContainer.Declaration;
-                    if (declaration == null)
-                        continue;
+                    string? declaration = htmlContainer.Declaration;
+                    if (declaration == null) continue;
 
-                    dummyContainers.Add(new DummyContainer(htmlContainer));
+                    nodeContainers.Add(new NodeContainer(htmlContainer));
                 }
                 catch (HttpRequestException exception)
                 {
@@ -40,39 +37,39 @@ public static class Generator
                 }
             }
 
-            var serializedData = JsonSerializer.Serialize(dummyContainers, serializerOptions);
-            var preGeneratedDirectory = Path.Combine(Path.GetFullPath(baseDirectory), "PreGenerated");
-            var outputFilePath = Path.Combine(preGeneratedDirectory, $"{namespaceName}.json");
+            string serialized = JsonSerializer.Serialize(nodeContainers, serializerOptions);
 
-            Directory.CreateDirectory(preGeneratedDirectory);
-            File.WriteAllText(outputFilePath, serializedData);
+            string outputDirectoryPath = Path.Combine(Path.GetFullPath(baseDirectory), "PreGenerated");
+            Directory.CreateDirectory(outputDirectoryPath);
+
+            string outputFilePath = Path.Combine(outputDirectoryPath, $"{fileName}.json");
+            File.WriteAllText(outputFilePath, serialized);
         }
     }
 
     public static void CreateGenerated(string baseDirectory = ".")
     {
-        var preGeneratedDirectory = Path.Combine(Path.GetFullPath(baseDirectory), "PreGenerated");
-        var generatedDirectory = Path.Combine(Path.GetFullPath(baseDirectory), "Generated");
+        string inputDirectoryPath = Path.Combine(Path.GetFullPath(baseDirectory), "PreGenerated");
+        string outpuDirectoryPath = Path.Combine(Path.GetFullPath(baseDirectory), "Generated");
 
-        var preGeneratedFilePaths = Directory.GetFiles(preGeneratedDirectory, "*.json");
+        string[] preGeneratedFiles = Directory.GetFiles(inputDirectoryPath, "*.json");
 
-        foreach (var preGeneratedFilePath in preGeneratedFilePaths)
+        foreach (var preGeneratedFile in preGeneratedFiles)
         {
-            var serializedData = File.ReadAllText(preGeneratedFilePath);
+            string serialized = File.ReadAllText(preGeneratedFile);
 
-            var dummyContainers = JsonSerializer.Deserialize<List<DummyContainer>>(serializedData);
-            if (dummyContainers == null)
-                continue;
+            var nodeContainers = JsonSerializer.Deserialize<List<NodeContainer>>(serialized);
+            if (nodeContainers == null) continue;
 
-            var sortedContainers = dummyContainers.OrderBy(dummy =>
+            var sortedContainers = nodeContainers.OrderBy(container =>
             {
-                var (_, fullName, _) = RegexAnalyzer.DivideDeclaration(dummy.Declaration);
+                var (_, fullName, _) = TextAnalyzer.Divide.Declaration(container.Declaration);
                 var namespaceParts = fullName.Split('.');
                 return string.Join(".", namespaceParts[..^1]);
             });
 
-            var fileName = Path.GetFileNameWithoutExtension(preGeneratedFilePath);
-            CodeBuilder.Build(generatedDirectory, fileName, sortedContainers);
+            string fileName = Path.GetFileNameWithoutExtension(preGeneratedFile);
+            CodeBuilder.Build(outpuDirectoryPath, fileName, sortedContainers);
         }
     }
 

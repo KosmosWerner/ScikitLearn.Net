@@ -87,6 +87,17 @@ long[] labels = my_model.labels_.GetData<long>();
 ### PythonEngine.Shutdown()
 For desktop applications, be sure to call `PythonEngine.Shutdown()` when closing the application to prevent it from continuing in the background.
 
+### Can't Find the Methods or Constructors You Need
+Each static class has a `self` field of type `PyObject`, from which you can create class instances or call omitted methods.  
+When creating objects, you will receive an instance of `PyObject`. If you are sure of the type, each class has a static method `Encapsulate(PyObject pyObject)`, which allows you to access the class's attributes and methods.
+
+```csharp
+PyObject obj = sklearn.cluster.self.InvokeMethod("DBSCAN", your_custom_args);
+
+var model = sklearn.cluster.DBSCAN.Encapsule(obj);
+model.fit(...);
+```
+
 ## Desktop Applications
 
 This project originated from the need to use classification algorithms within the UI benefits offered by C#, such as WinForms and WPF, for developing complex applications. Here’s a small example of an application that interactively compares different clustering types: DBSCAN, OPTICS, and Mean Shift using the [ScottPlot](https://github.com/ScottPlot/ScottPlot) graphics library.

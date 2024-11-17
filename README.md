@@ -1,11 +1,13 @@
 # Sklearn.NET
-### (Work In Progress)
+[![](https://img.shields.io/nuget/dt/ScikitLearn?color=4cbb3b&label=Downloads&logo=NuGet&style=flat-square)](https://www.nuget.org/packages/ScikitLearn)
+[![](https://img.shields.io/nuget/v/ScikitLearn?color=0078D4&logo=NuGet&style=flat-square)](https://www.nuget.org/packages/ScikitLearn)
 
-A C# binding for Scikit-Learn, focused on bringing Machine Learning to the C# environment. This library provides easy access to machine learning models, results, parameters and datasets.
+
+C# bindings for Scikit-Learn, focused on bringing Machine Learning to the C# environment. This library provides easy access to machine learning models, results, parameters and datasets.
 
 Powered by [Numpy.Bare](https://github.com/SciSharp/Numpy.NET) and generated based on [Scikit-Learn’s documentation](https://scikit-learn.org/stable/index.html), implementing most of the classes and methods.
 
-## Installation
+## 🔧 Installation
 
 ### If Python is Already Installed
 
@@ -56,7 +58,7 @@ internal class Program
 }
 ```
 
-## Usage
+## ⚙ Usage
 
 Replicating the [DBSCAN](https://scikit-learn.org/stable/modules/generated/sklearn.cluster.DBSCAN.html) example:
 
@@ -72,9 +74,9 @@ Output
 ```
 [ 0  0  0  1  1 -1]
 ```
-[Full code here](https://github.com/KosmosWerner/ScikitLearn.Net/blob/main/Examples/ConsoleExample)
+💻 [Full code here](https://github.com/KosmosWerner/ScikitLearn.Net/blob/main/Examples/ConsoleExample)
 
-## Notes
+## ⚠ Notes
 ### Getting an Array from `my_model.labels_`
 ScikitLearn typically uses `ndarray(int64)`, which is equivalent to `long[]` in C# rather than `int[]`. To convert `labels_` to a C# array format, use:
 
@@ -91,7 +93,7 @@ This project originated from the need to use classification algorithms within th
 
 https://github.com/user-attachments/assets/196507a2-50a7-4c69-b459-9eb8d5fd7d1b
 
-[Full code here](https://github.com/KosmosWerner/ScikitLearn.Net/tree/main/Examples/ClusterExample)
+💻 [Full code here](https://github.com/KosmosWerner/ScikitLearn.Net/tree/main/Examples/ClusterExample)
 
 ## Final Notes
 This project is just starting, so some parts may still lack full implementation or proper error handling. However, I’ll be adding tests to verify return types and improve typing accuracy.

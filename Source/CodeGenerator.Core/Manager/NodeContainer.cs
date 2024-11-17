@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-
-namespace CodeGenerator.Core.Manager;
+﻿namespace CodeGenerator.Core.Manager;
 
 public class NodeContainer
 {
@@ -17,7 +9,7 @@ public class NodeContainer
         NodeType = MapperTypes.GetEntityType(htmlContainer);
 
         Declaration = htmlContainer.Declaration ?? string.Empty;
-        Declaration = TextAnalyzer.Fix.PlainText(Declaration); // Fix json Format
+        Declaration = TextAnalyzer.Fix.RawText(Declaration); // Fix json Format
 
         var parameters = htmlContainer.ParamsBox?.SelectNodes(".//dt");
         if (parameters != null)
@@ -27,8 +19,8 @@ public class NodeContainer
                 var strong = p.SelectSingleNode("./strong")?.InnerText;
                 var span = p.SelectSingleNode("./span")?.InnerText;
 
-                if (strong == null && span == null) Parameters.Add(TextAnalyzer.Fix.PlainText(p.InnerText));
-                else Parameters.Add(TextAnalyzer.Fix.PlainText($"{strong}:{span}"));
+                if (strong == null && span == null) Parameters.Add(TextAnalyzer.Fix.RawText(p.InnerText));
+                else Parameters.Add(TextAnalyzer.Fix.RawText($"{strong}:{span}"));
             }
         }
 
@@ -40,8 +32,8 @@ public class NodeContainer
                 var strong = r.SelectSingleNode("./strong")?.InnerText;
                 var span = r.SelectSingleNode("./span")?.InnerText;
 
-                if (strong == null && span == null) Returns.Add(TextAnalyzer.Fix.PlainText(r.InnerText));
-                else Returns.Add(TextAnalyzer.Fix.PlainText($"{strong}:{span}"));
+                if (strong == null && span == null) Returns.Add(TextAnalyzer.Fix.RawText(r.InnerText));
+                else Returns.Add(TextAnalyzer.Fix.RawText($"{strong}:{span}"));
             }
         }
 
@@ -53,8 +45,8 @@ public class NodeContainer
                 var strong = a.SelectSingleNode("./strong|./a")?.InnerText;
                 var span = a.SelectSingleNode("./span")?.InnerText;
 
-                if (strong == null && span == null) Attributes.Add(TextAnalyzer.Fix.PlainText(a.InnerText));
-                else Attributes.Add(TextAnalyzer.Fix.PlainText($"{strong}:{span}"));
+                if (strong == null && span == null) Attributes.Add(TextAnalyzer.Fix.RawText(a.InnerText));
+                else Attributes.Add(TextAnalyzer.Fix.RawText($"{strong}:{span}"));
             }
         }
 

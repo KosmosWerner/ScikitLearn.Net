@@ -1,9 +1,4 @@
-﻿using HtmlAgilityPack;
-using System.Text;
-using System.Text.RegularExpressions;
-
-
-namespace CodeGenerator.Core.Manager;
+﻿namespace CodeGenerator.Core.Manager;
 
 public class NodeMethodContainer
 {
@@ -12,7 +7,7 @@ public class NodeMethodContainer
     public NodeMethodContainer(HtmlContainer htmlContainer)
     {
         Declaration = htmlContainer.Declaration ?? string.Empty;
-        Declaration = TextAnalyzer.Fix.PlainText(Declaration); // Fix json Format
+        Declaration = TextAnalyzer.Fix.RawText(Declaration); // Fix json Format
 
         var parameters = htmlContainer.ParamsBox?.SelectNodes(".//dt");
         if (parameters != null)
@@ -22,8 +17,8 @@ public class NodeMethodContainer
                 var strong = p.SelectSingleNode("./strong")?.InnerText;
                 var span = p.SelectSingleNode("./span")?.InnerText;
 
-                if (strong == null && span == null) Parameters.Add(TextAnalyzer.Fix.PlainText(p.InnerText));
-                else Parameters.Add(TextAnalyzer.Fix.PlainText($"{strong}:{span}"));
+                if (strong == null && span == null) Parameters.Add(TextAnalyzer.Fix.RawText(p.InnerText));
+                else Parameters.Add(TextAnalyzer.Fix.RawText($"{strong}:{span}"));
             }
         }
 
@@ -35,8 +30,8 @@ public class NodeMethodContainer
                 var strong = r.SelectSingleNode("./strong")?.InnerText;
                 var span = r.SelectSingleNode("./span")?.InnerText;
 
-                if (strong == null && span == null) Returns.Add(TextAnalyzer.Fix.PlainText(r.InnerText));
-                else Returns.Add(TextAnalyzer.Fix.PlainText($"{strong}:{span}"));
+                if (strong == null && span == null) Returns.Add(TextAnalyzer.Fix.RawText(r.InnerText));
+                else Returns.Add(TextAnalyzer.Fix.RawText($"{strong}:{span}"));
             }
         }
     }

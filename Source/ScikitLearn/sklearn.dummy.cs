@@ -1,294 +1,277 @@
 using Numpy;
 using Python.Runtime;
 
-namespace ScikitLearn;
-
-public static partial class sklearn
+namespace ScikitLearn
 {
-	public static class dummy
-	{
-		private static Lazy<PyObject> _lazy_self;
+    public static partial class sklearn
+    {
+        public static class dummy
+        {
+            private static Lazy<PyObject> _lazy_self;
+            public static PyObject self { get => _lazy_self.Value; }
 
-		public static PyObject self => _lazy_self.Value;
+            private static void ReInitializeLazySelf()
+            {
+                _lazy_self = new Lazy<PyObject>(() =>
+                {
+                    try
+                    {
+                        return InstallAndImport();
+                    }
+                    catch (Exception)
+                    {
+                        return InstallAndImport(true);
+                    }
+                });
+            }
 
-		static dummy() => ReInitializeLazySelf();
+            private static PyObject InstallAndImport(bool force = false)
+            {
+                PythonEngine.AddShutdownHandler(ReInitializeLazySelf);
+                PythonEngine.Initialize();
+                return Py.Import("sklearn.dummy");
+            }
 
-		private static void ReInitializeLazySelf()
-		{
-			_lazy_self = new Lazy<PyObject>(delegate
-			{
-				try { return InstallAndImport(); }
-				catch (Exception) { return InstallAndImport(force: true); }
-			});
-		}
+            static dummy()
+            {
+                ReInitializeLazySelf();
+            }
 
-		private static PyObject InstallAndImport(bool force = false)
-		{
-			PythonEngine.AddShutdownHandler(ReInitializeLazySelf);
-			PythonEngine.Initialize();
-			return Py.Import("sklearn.dummy");
-		}
+            public class DummyClassifier : PythonObject
+            {
+                public DummyClassifier(string strategy = "prior", int? random_state = null, NDarray? constant = null)
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    if (strategy != "prior")
+                        pyDict["strategy"] = ToPython(strategy);
+                    if (random_state != null)
+                        pyDict["random_state"] = ToPython(random_state);
+                    if (constant != null)
+                        pyDict["constant"] = ToPython(constant);
+                    self = sklearn.dummy.self.InvokeMethod("DummyClassifier", args, pyDict);
+                }
 
-		public class DummyClassifier : PythonObject
-		{
-			public DummyClassifier(string strategy = "prior", int? random_state = null, int? constant = null)
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				pyDict["strategy"] = ToPython(strategy);
-				if (random_state != null)
-				{
-					pyDict["random_state"] = ToPython(random_state);
-				}
-				if (constant != null)
-				{
-					pyDict["constant"] = ToPython(constant);
-				}
-				self = sklearn.dummy.self.InvokeMethod("DummyClassifier", args, pyDict);
-			}
+                internal DummyClassifier(PyObject pyObject)
+                {
+                    self = pyObject;
+                }
 
-			public NDarray classes_ => ToCsharp<NDarray>(self.GetAttr("classes_"));
+                public static DummyClassifier Encapsule(PyObject pyObject)
+                {
+                    return new DummyClassifier(pyObject);
+                }
 
-			public int n_classes_ => ToCsharp<int>(self.GetAttr("n_classes_"));
+                public NDarray classes_ => ToCsharp<NDarray>(self.GetAttr("classes_"));
+                public PyTuple n_classes_ => new PyTuple(self.GetAttr("n_classes_"));
+                public NDarray class_prior_ => ToCsharp<NDarray>(self.GetAttr("class_prior_"));
+                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
+                public int n_outputs_ => ToCsharp<int>(self.GetAttr("n_outputs_"));
+                public bool sparse_output_ => ToCsharp<bool>(self.GetAttr("sparse_output_"));
 
-			public NDarray class_prior_ => ToCsharp<NDarray>(self.GetAttr("class_prior_"));
+                public DummyClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null)
+                {
+                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyDict pyDict = new PyDict();
+                    if (sample_weight != null)
+                        pyDict["sample_weight"] = ToPython(sample_weight);
+                    self.InvokeMethod("fit", args, pyDict);
+                    return this;
+                }
 
-			public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
+                public PyObject get_metadata_routing()
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    return self.InvokeMethod("get_metadata_routing", args, pyDict);
+                }
 
-			public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
+                public PyDict get_params(bool deep = true)
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    if (deep != true)
+                        pyDict["deep"] = ToPython(deep);
+                    return new PyDict(self.InvokeMethod("get_params", args, pyDict));
+                }
 
-			public int n_outputs_ => ToCsharp<int>(self.GetAttr("n_outputs_"));
+                public NDarray predict(NDarray X)
+                {
+                    PyTuple args = ToTuple(new object[] { X });
+                    PyDict pyDict = new PyDict();
+                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                }
 
-			public bool sparse_output_ => ToCsharp<bool>(self.GetAttr("sparse_output_"));
+                public NDarray predict_log_proba(PyObject X)
+                {
+                    PyTuple args = ToTuple(new object[] { X });
+                    PyDict pyDict = new PyDict();
+                    return ToCsharp<NDarray>(self.InvokeMethod("predict_log_proba", args, pyDict));
+                }
 
-			public DummyClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null)
-			{
-				PyTuple args = ToTuple(new object[] {X, y});
-				PyDict pyDict = new PyDict();
-				if (sample_weight != null)
-				{
-					pyDict["sample_weight"] = ToPython(sample_weight);
-				}
-				self.InvokeMethod("fit", args, pyDict);
-				return this;
-			}
+                public NDarray predict_proba(NDarray X)
+                {
+                    PyTuple args = ToTuple(new object[] { X });
+                    PyDict pyDict = new PyDict();
+                    return ToCsharp<NDarray>(self.InvokeMethod("predict_proba", args, pyDict));
+                }
 
-			public PyObject get_metadata_routing()
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				PyObject result = self.InvokeMethod("get_metadata_routing", args, pyDict);
-				return result;
-			}
+                public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
+                {
+                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyDict pyDict = new PyDict();
+                    if (sample_weight != null)
+                        pyDict["sample_weight"] = ToPython(sample_weight);
+                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                }
 
-			public PyObject get_params(bool deep = true)
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				pyDict["deep"] = ToPython(deep);
-				PyObject result = self.InvokeMethod("get_params", args, pyDict);
-				return result;
-			}
+                public DummyClassifier set_fit_request(string? sample_weight = "$UNCHANGED$")
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    if (sample_weight != "$UNCHANGED$")
+                        pyDict["sample_weight"] = ToPython(sample_weight);
+                    self.InvokeMethod("set_fit_request", args, pyDict);
+                    return this;
+                }
 
-			public NDarray predict(NDarray X)
-			{
-				PyTuple args = ToTuple(new object[] {X});
-				PyDict pyDict = new PyDict();
-				PyObject result = self.InvokeMethod("predict", args, pyDict);
-				return ToCsharp<NDarray>(result);
-			}
+                public DummyClassifier set_params(Dictionary<string, PyObject>? @params = null)
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    if (@params != null)
+                        pyDict["params"] = ToPython(@params);
+                    self.InvokeMethod("set_params", args, pyDict);
+                    return this;
+                }
 
-			public NDarray predict_log_proba(NDarray X)
-			{
-				PyTuple args = ToTuple(new object[] {X});
-				PyDict pyDict = new PyDict();
-				PyObject result = self.InvokeMethod("predict_log_proba", args, pyDict);
-				return ToCsharp<NDarray>(result);
-			}
+                public DummyClassifier set_score_request(string? sample_weight = "$UNCHANGED$")
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    if (sample_weight != "$UNCHANGED$")
+                        pyDict["sample_weight"] = ToPython(sample_weight);
+                    self.InvokeMethod("set_score_request", args, pyDict);
+                    return this;
+                }
+            }
 
-			public NDarray predict_proba(NDarray X)
-			{
-				PyTuple args = ToTuple(new object[] {X});
-				PyDict pyDict = new PyDict();
-				PyObject result = self.InvokeMethod("predict_proba", args, pyDict);
-				return ToCsharp<NDarray>(result);
-			}
+            public class DummyRegressor : PythonObject
+            {
+                public DummyRegressor(string strategy = "mean", NDarray? constant = null, float? quantile = null)
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    if (strategy != "mean")
+                        pyDict["strategy"] = ToPython(strategy);
+                    if (constant != null)
+                        pyDict["constant"] = ToPython(constant);
+                    if (quantile != null)
+                        pyDict["quantile"] = ToPython(quantile);
+                    self = sklearn.dummy.self.InvokeMethod("DummyRegressor", args, pyDict);
+                }
 
-			public float score(NDarray? X, NDarray y, NDarray? sample_weight = null)
-			{
-				PyTuple args = ToTuple(new object[] {X, y});
-				PyDict pyDict = new PyDict();
-				if (sample_weight != null)
-				{
-					pyDict["sample_weight"] = ToPython(sample_weight);
-				}
-				PyObject result = self.InvokeMethod("score", args, pyDict);
-				return ToCsharp<float>(result);
-			}
+                internal DummyRegressor(PyObject pyObject)
+                {
+                    self = pyObject;
+                }
 
-			public DummyClassifier set_fit_request(string? sample_weight = "$UNCHANGED$")
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				if (sample_weight != null)
-				{
-					pyDict["sample_weight"] = ToPython(sample_weight);
-				}
-				self.InvokeMethod("set_fit_request", args, pyDict);
-				return this;
-			}
+                public static DummyRegressor Encapsule(PyObject pyObject)
+                {
+                    return new DummyRegressor(pyObject);
+                }
 
-			public DummyClassifier set_params(PyDict? @params = null)
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				if (@params != null)
-				{
-					pyDict["@params"] = ToPython(@params);
-				}
-				self.InvokeMethod("set_params", args, pyDict);
-				return this;
-			}
+                public NDarray constant_ => ToCsharp<NDarray>(self.GetAttr("constant_"));
+                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
+                public int n_outputs_ => ToCsharp<int>(self.GetAttr("n_outputs_"));
 
-			public DummyClassifier set_score_request(string? sample_weight = "$UNCHANGED$")
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				if (sample_weight != null)
-				{
-					pyDict["sample_weight"] = ToPython(sample_weight);
-				}
-				self.InvokeMethod("set_score_request", args, pyDict);
-				return this;
-			}
+                public DummyRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null)
+                {
+                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyDict pyDict = new PyDict();
+                    if (sample_weight != null)
+                        pyDict["sample_weight"] = ToPython(sample_weight);
+                    self.InvokeMethod("fit", args, pyDict);
+                    return this;
+                }
 
-		}
+                public PyObject get_metadata_routing()
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    return self.InvokeMethod("get_metadata_routing", args, pyDict);
+                }
 
-		public class DummyRegressor : PythonObject
-		{
-			public DummyRegressor(string strategy = "mean", int? constant = null, float? quantile = null)
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				pyDict["strategy"] = ToPython(strategy);
-				if (constant != null)
-				{
-					pyDict["constant"] = ToPython(constant);
-				}
-				if (quantile != null)
-				{
-					pyDict["quantile"] = ToPython(quantile);
-				}
-				self = sklearn.dummy.self.InvokeMethod("DummyRegressor", args, pyDict);
-			}
+                public PyDict get_params(bool deep = true)
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    if (deep != true)
+                        pyDict["deep"] = ToPython(deep);
+                    return new PyDict(self.InvokeMethod("get_params", args, pyDict));
+                }
 
-			public NDarray constant_ => ToCsharp<NDarray>(self.GetAttr("constant_"));
+                public (NDarray, NDarray) predict(NDarray X, bool return_std = false)
+                {
+                    PyTuple args = ToTuple(new object[] { X });
+                    PyDict pyDict = new PyDict();
+                    if (return_std != false)
+                        pyDict["return_std"] = ToPython(return_std);
+                    PyTuple result = new PyTuple(self.InvokeMethod("predict", args, pyDict));
+                    return (ToCsharp<NDarray>(result[0]), ToCsharp<NDarray>(result[1]));
+                }
 
-			public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
+                public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
+                {
+                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyDict pyDict = new PyDict();
+                    if (sample_weight != null)
+                        pyDict["sample_weight"] = ToPython(sample_weight);
+                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                }
 
-			public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
+                public DummyRegressor set_fit_request(string? sample_weight = "$UNCHANGED$")
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    if (sample_weight != "$UNCHANGED$")
+                        pyDict["sample_weight"] = ToPython(sample_weight);
+                    self.InvokeMethod("set_fit_request", args, pyDict);
+                    return this;
+                }
 
-			public int n_outputs_ => ToCsharp<int>(self.GetAttr("n_outputs_"));
+                public DummyRegressor set_params(Dictionary<string, PyObject>? @params = null)
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    if (@params != null)
+                        pyDict["params"] = ToPython(@params);
+                    self.InvokeMethod("set_params", args, pyDict);
+                    return this;
+                }
 
-			public DummyRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null)
-			{
-				PyTuple args = ToTuple(new object[] {X, y});
-				PyDict pyDict = new PyDict();
-				if (sample_weight != null)
-				{
-					pyDict["sample_weight"] = ToPython(sample_weight);
-				}
-				self.InvokeMethod("fit", args, pyDict);
-				return this;
-			}
+                public DummyRegressor set_predict_request(string? return_std = "$UNCHANGED$")
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    if (return_std != "$UNCHANGED$")
+                        pyDict["return_std"] = ToPython(return_std);
+                    self.InvokeMethod("set_predict_request", args, pyDict);
+                    return this;
+                }
 
-			public PyObject get_metadata_routing()
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				PyObject result = self.InvokeMethod("get_metadata_routing", args, pyDict);
-				return result;
-			}
-
-			public PyObject get_params(bool deep = true)
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				pyDict["deep"] = ToPython(deep);
-				PyObject result = self.InvokeMethod("get_params", args, pyDict);
-				return result;
-			}
-
-			public NDarray predict(NDarray X, bool return_std = false)
-			{
-				PyTuple args = ToTuple(new object[] {X});
-				PyDict pyDict = new PyDict();
-				pyDict["return_std"] = ToPython(return_std);
-				PyObject result = self.InvokeMethod("predict", args, pyDict);
-				return ToCsharp<NDarray>(result);
-			}
-
-			public float score(NDarray? X, NDarray y, NDarray? sample_weight = null)
-			{
-				PyTuple args = ToTuple(new object[] {X, y});
-				PyDict pyDict = new PyDict();
-				if (sample_weight != null)
-				{
-					pyDict["sample_weight"] = ToPython(sample_weight);
-				}
-				PyObject result = self.InvokeMethod("score", args, pyDict);
-				return ToCsharp<float>(result);
-			}
-
-			public DummyRegressor set_fit_request(string? sample_weight = "$UNCHANGED$")
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				if (sample_weight != null)
-				{
-					pyDict["sample_weight"] = ToPython(sample_weight);
-				}
-				self.InvokeMethod("set_fit_request", args, pyDict);
-				return this;
-			}
-
-			public DummyRegressor set_params(PyDict? @params = null)
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				if (@params != null)
-				{
-					pyDict["@params"] = ToPython(@params);
-				}
-				self.InvokeMethod("set_params", args, pyDict);
-				return this;
-			}
-
-			public DummyRegressor set_predict_request(string? return_std = "$UNCHANGED$")
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				if (return_std != null)
-				{
-					pyDict["return_std"] = ToPython(return_std);
-				}
-				self.InvokeMethod("set_predict_request", args, pyDict);
-				return this;
-			}
-
-			public DummyRegressor set_score_request(string? sample_weight = "$UNCHANGED$")
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				if (sample_weight != null)
-				{
-					pyDict["sample_weight"] = ToPython(sample_weight);
-				}
-				self.InvokeMethod("set_score_request", args, pyDict);
-				return this;
-			}
-
-		}
-
-	}
+                public DummyRegressor set_score_request(string? sample_weight = "$UNCHANGED$")
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    if (sample_weight != "$UNCHANGED$")
+                        pyDict["sample_weight"] = ToPython(sample_weight);
+                    self.InvokeMethod("set_score_request", args, pyDict);
+                    return this;
+                }
+            }
+        }
+    }
 }

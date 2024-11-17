@@ -1,142 +1,97 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System;
-using System.ComponentModel;
-using System.Xml.Linq;
 
 namespace CodeGenerator.Core.Manager;
 
-public static class CodeBuilder
+public static partial class CodeBuilder
 {
-    public static CompilationUnitSyntax CreateCompilationUnit(UsingDirectiveSyntax[] usings, NamespaceDeclarationSyntax root)
-    {
-        return SyntaxFactory
-            .CompilationUnit()
-            .AddUsings(usings)
-            .AddMembers(root)
-            .NormalizeWhitespace();
-    }
-
-    public static UsingDirectiveSyntax[] CreateUsings()
-    {
-        return
-        [
-            SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("Numpy")),
-            SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("Python.Runtime")),
-        ];
-    }
-
-    public static NamespaceDeclarationSyntax CreateNamespace(string name)
-    {
-        return SyntaxFactory.NamespaceDeclaration(SyntaxFactory.ParseName(name));
-    }
-
-    public static ClassDeclarationSyntax CreatePublicStaticPartialClass(string name)
-    {
-        return SyntaxFactory.ClassDeclaration(name).AddModifiers(
-            SyntaxFactory.Token(SyntaxKind.PublicKeyword),
-            SyntaxFactory.Token(SyntaxKind.StaticKeyword),
-            SyntaxFactory.Token(SyntaxKind.PartialKeyword));
-    }
-
-    public static ClassDeclarationSyntax CreatePublicStaticClass(string name)
-    {
-        return SyntaxFactory.ClassDeclaration(name).AddModifiers(
-            SyntaxFactory.Token(SyntaxKind.PublicKeyword),
-            SyntaxFactory.Token(SyntaxKind.StaticKeyword));
-    }
-
-    public static ClassDeclarationSyntax CreatePublicClass(string name)
-    {
-        return SyntaxFactory.ClassDeclaration(name)
-            .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
-            .AddBaseListTypes(SyntaxFactory.SimpleBaseType(SyntaxFactory.IdentifierName("PythonObject"))
-    );
-    }
-
-    public static ConstructorDeclarationSyntax CreatePublicConstructor(string name, ParameterSyntax[] parameterList, StatementSyntax[] statements)
-    {
-        return SyntaxFactory.ConstructorDeclaration(name)
-            .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
-            .AddParameterListParameters(parameterList)
-            .WithBody(SyntaxFactory.Block(statements));
-    }
-
-    public static PropertyDeclarationSyntax CreateArrowProperty(string type, string name, string expression)
-    {
-        var arrowExpression = SyntaxFactory.ArrowExpressionClause(
-                            SyntaxFactory.ParseExpression(expression));
-
-        var propertyNode = SyntaxFactory.PropertyDeclaration(SyntaxFactory.ParseTypeName(type), name)
-            .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
-            .WithExpressionBody(arrowExpression)
-            .WithSemicolonToken(SyntaxFactory.Token(SyntaxKind.SemicolonToken));
-        return propertyNode;
-    }
-
-    public static PropertyDeclarationSyntax CreateGetProperty(string type, string name, StatementSyntax[] statements)
-    {
-        var getAccessor = SyntaxFactory.AccessorDeclaration(SyntaxKind.GetAccessorDeclaration)
-                            .WithBody(SyntaxFactory.Block(statements));
-
-        var propertyNode = SyntaxFactory.PropertyDeclaration(SyntaxFactory.ParseTypeName(type), name)
-            .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
-            .AddAccessorListAccessors(getAccessor);
-        return propertyNode;
-    }
-
-    public static MethodDeclarationSyntax CreatePublicMethod(string name, string returnType, ParameterSyntax[] parameterList, StatementSyntax[] statements)
-    {
-        return SyntaxFactory.MethodDeclaration(SyntaxFactory.ParseTypeName(returnType), name)
-            .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword))
-            .AddParameterListParameters(parameterList)
-            .WithBody(SyntaxFactory.Block(statements));
-    }
-
-    public static MethodDeclarationSyntax CreatePublicStaticMethod(string name, string returnType, ParameterSyntax[] parameterList, StatementSyntax[] statements)
-    {
-        return SyntaxFactory.MethodDeclaration(SyntaxFactory.ParseTypeName(returnType), name)
-            .AddModifiers(SyntaxFactory.Token(SyntaxKind.PublicKeyword), SyntaxFactory.Token(SyntaxKind.StaticKeyword))
-            .AddParameterListParameters(parameterList)
-            .WithBody(SyntaxFactory.Block(statements));
-    }
-
-
     public static void Build(string outputDirectoryPath, string fileName, IOrderedEnumerable<NodeContainer> sortedNodeContainers)
     {
-        var uniqueStaticClasses = sortedNodeContainers
-            .Select(container =>
-            {
-                var (_, fullName, _) = TextAnalyzer.Divide.Declaration(container.Declaration);
-                var namespaceParts = fullName.Split('.');
-                return string.Join(".", namespaceParts[..^1]);
-            })
-            .Distinct()
-            .ToList();
+        Dictionary<string, ClassDeclarationSyntax> repository = [];
 
-        var usings = CreateUsings();
-        var ScikitLearn = CreateNamespace("ScikitLearn");
+        var usings = Create.Usings();
+        var ScikitLearn = Create.Namespace("ScikitLearn");
 
-        var sklearn = CreatePublicStaticPartialClass("sklearn");
-
-        BuildImports(ref sklearn, "sklearn");
+        repository["sklearn"] = Create.PublicStaticPartialClass("sklearn");
 
         foreach (var container in sortedNodeContainers)
         {
-            switch (container.NodeType)
+            //      sklearn.cluster.Class1
+            var (_, fullName, _) = TextAnalyzer.Divide.Declaration(container.Declaration);
+            //   Class1       | sklearn.cluster
+            var (containerName, parentStaticClasses) = TextAnalyzer.Divide.FullName(fullName);
+
+            if (repository.TryGetValue(parentStaticClasses, out ClassDeclarationSyntax? aux))
             {
-                case NodeType.Class: BuildClass(ref sklearn, container); break;
-                case NodeType.Method: BuildStaticMethod(ref sklearn, container); break;
-                case NodeType.Exception: BuildException(ref sklearn, container); break;
-                case NodeType.None:
-                default: break;
+                // recuperamos el objeto
+                var current = aux;
+
+                switch (container.NodeType)
+                {
+                    case NodeType.Class: BuildClass(ref current, container); break;
+                    case NodeType.Method: BuildStaticMethod(ref current, container); break;
+                    case NodeType.Exception: BuildException(ref current, container); break;
+                    case NodeType.None:
+                    default: break;
+                }
+
+                // reasignamos el objeto
+                repository[parentStaticClasses] = current;
+            }
+            else
+            {
+                //   cluster                                       sklearn.cluster
+                var (className, _) = TextAnalyzer.Divide.FullName(parentStaticClasses);
+
+                var current = Create.PublicStaticClass(className);
+                BuildImports(ref current, parentStaticClasses); // solo por una vez
+
+                switch (container.NodeType)
+                {
+                    case NodeType.Class: BuildClass(ref current, container); break;
+                    case NodeType.Method: BuildStaticMethod(ref current, container); break;
+                    case NodeType.Exception: BuildException(ref current, container); break;
+                    case NodeType.None:
+                    default: break;
+                }
+
+                // reasignamos el objeto
+                repository[parentStaticClasses] = current;
             }
         }
 
-        ScikitLearn = ScikitLearn.AddMembers(sklearn);
+        var maxDeep = repository
+            .Select(x => x.Key)
+            .Select(x => x.Split('.').Length)
+            .Max(); // max 3 
 
-        var compilationUnit = CreateCompilationUnit(usings, ScikitLearn);
+        List<List<ClassDeclarationSyntax>> list = [];
+        for (int i = 0; i < maxDeep; i++) list.Add([]);
+
+        foreach (var item in repository)
+        {
+            int level = item.Key.Split('.').Length - 1;
+            list[level].Add(item.Value);
+        }
+
+        for (int i = maxDeep - 1; i > 0; i--)
+        {
+            foreach (var item in list[i]) // id= 2
+            {
+                // obtener el primero de la lista de menor nivel
+                var current = list[i - 1][0];
+
+                current = current.AddMembers(item);
+
+                // reasignar
+                list[i - 1][0] = current;
+            }
+        }
+
+        ScikitLearn = ScikitLearn.AddMembers(list[0][0]);
+
+        var compilationUnit = Create.CompilationUnit(usings, ScikitLearn);
         var code = compilationUnit.ToFullString();
 
         Directory.CreateDirectory(outputDirectoryPath);
@@ -149,7 +104,7 @@ public static class CodeBuilder
     {
         var staticClassName = staticCallable.Split('.')[^1];
 
-        // Hardcode but it works
+        // Hardcode, but it works
         var lazySelfField = SyntaxFactory.ParseMemberDeclaration(@"private static Lazy<PyObject> _lazy_self;");
 
         var selfProperty = SyntaxFactory.ParseMemberDeclaration(@"
@@ -183,7 +138,7 @@ public static class CodeBuilder
         }}");
 
         var staticConstructor = SyntaxFactory.ParseMemberDeclaration($@"
-        static {staticClassName}()
+        static {TextAnalyzer.Fix.Reserved(staticClassName)}()
         {{
             ReInitializeLazySelf();
         }}");
@@ -202,9 +157,9 @@ public static class CodeBuilder
     private static void BuildClass(ref ClassDeclarationSyntax currentStaticClass, NodeContainer container)
     {
         var (_, plainName, _) = TextAnalyzer.Divide.Declaration(container.Declaration);
-        var (name, _) = TextAnalyzer.Divide.PlainName(plainName);
+        var (name, _) = TextAnalyzer.Divide.FullName(plainName);
 
-        var classNode = CreatePublicClass(name);
+        var classNode = Create.PublicClass(name);
 
         BuildConstructor(ref classNode, container);
         BuildAttributes(ref classNode, container);
@@ -219,7 +174,7 @@ public static class CodeBuilder
     public static void BuildConstructor(ref ClassDeclarationSyntax currentClass, NodeContainer container)
     {
         var (_, plainName, plainParameters) = TextAnalyzer.Divide.Declaration(container.Declaration);
-        var (name, callableStaticClass) = TextAnalyzer.Divide.PlainName(plainName);
+        var (name, callableStaticClass) = TextAnalyzer.Divide.FullName(plainName);
 
         string[] constructorParameters = TextAnalyzer.Divide.PlainParameters(plainParameters);
         string[] documentedParameters = [.. container.Parameters];
@@ -229,9 +184,19 @@ public static class CodeBuilder
         var parameterList = Helpers.CreateListParameters(mappedParameters);
         var statements = Helpers.CreateConstructorStatements(mappedParameters, name, callableStaticClass);
 
-        var constructorNode = CreatePublicConstructor(name, parameterList, statements);
+        var constructorNode = Create.PublicConstructor(name, parameterList, statements);
 
         currentClass = currentClass.AddMembers(constructorNode);
+
+        // Auxiliar constructor
+        var pyobjParam = Helpers.CreateListParameters();
+
+        var defaultNode = Create.InternalConstructor(name, [pyobjParam], [Helpers.CreateConstructorStatements()]);
+        currentClass = currentClass.AddMembers(defaultNode);
+
+        // Encapsulation
+        var method = Create.PublicStaticMethod("Encapsule", name, [pyobjParam], [Helpers.CreateMethodStatements(name)]);
+        currentClass = currentClass.AddMembers(method);
     }
 
     private static void BuildAttributes(ref ClassDeclarationSyntax classNode, NodeContainer container)
@@ -242,10 +207,10 @@ public static class CodeBuilder
         {
             if (attribute.Type.StartsWith('(') && attribute.Type.EndsWith(')'))
             {
-                string[] types = TextAnalyzer.Divide.Tuple(attribute.Type);
+                string[] types = TextAnalyzer.Divide.PlainTuple(attribute.Type);
 
                 var statements = Helpers.TupleGetStatements(attribute.Name, types);
-                PropertyDeclarationSyntax propertyNode = CreateGetProperty(attribute.Type, attribute.Name, statements);
+                PropertyDeclarationSyntax propertyNode = Create.GetProperty(attribute.Type, attribute.Name, statements);
 
                 classNode = classNode.AddMembers(propertyNode);
             }
@@ -259,7 +224,7 @@ public static class CodeBuilder
                     else expression = $"ToCsharp<{attribute.Type}>(self.GetAttr(\"{attribute.Name}\"))";
                 }
 
-                var propertyNode = CreateArrowProperty(attribute.Type, attribute.Name, expression);
+                var propertyNode = Create.ArrowProperty(attribute.Type, attribute.Name, expression);
 
                 classNode = classNode.AddMembers(propertyNode);
             }
@@ -269,6 +234,8 @@ public static class CodeBuilder
     private static void BuildMethod(ref ClassDeclarationSyntax currentClass, NodeMethodContainer container, string className)
     {
         var (_, name, plainParameters) = TextAnalyzer.Divide.Declaration(container.Declaration);
+        // skip callables
+        if (name.StartsWith("__")) return;
 
         string[] methodParameters = TextAnalyzer.Divide.PlainParameters(plainParameters);
         string[] documentedParameters = [.. container.Parameters];
@@ -280,9 +247,9 @@ public static class CodeBuilder
         var statements = Helpers.CreateMethodStatements(mappedParameters, name, returnType);
         MethodDeclarationSyntax? methodNode;
 
-        if (returnType == "this") methodNode = CreatePublicMethod(name, className, parameterList, statements);
-        else if (returnType == string.Empty) methodNode = CreatePublicMethod(name, "void", parameterList, statements);
-        else methodNode = CreatePublicMethod(name, returnType, parameterList, statements);
+        if (returnType == "this") methodNode = Create.PublicMethod(name, className, parameterList, statements);
+        else if (returnType == string.Empty) methodNode = Create.PublicMethod(name, "void", parameterList, statements);
+        else methodNode = Create.PublicMethod(name, returnType, parameterList, statements);
 
         currentClass = currentClass.AddMembers(methodNode);
     }
@@ -292,7 +259,7 @@ public static class CodeBuilder
     private static void BuildStaticMethod(ref ClassDeclarationSyntax currentStaticClass, NodeContainer container)
     {
         var (_, plainName, plainParameters) = TextAnalyzer.Divide.Declaration(container.Declaration);
-        var (name, callableStaticClass) = TextAnalyzer.Divide.PlainName(plainName);
+        var (name, callableStaticClass) = TextAnalyzer.Divide.FullName(plainName);
 
         string[] methodParameters = TextAnalyzer.Divide.PlainParameters(plainParameters);
         string[] documentedParameters = [.. container.Parameters];
@@ -304,8 +271,8 @@ public static class CodeBuilder
         var statements = Helpers.CreateMethodStatements(mappedParameters, name, returnType, callableStaticClass);
 
         MethodDeclarationSyntax? methodNode;
-        if (returnType == string.Empty) methodNode = CreatePublicStaticMethod(name, "void", parameterList, statements);
-        else methodNode = CreatePublicStaticMethod(name, returnType, parameterList, statements);
+        if (returnType == string.Empty) methodNode = Create.PublicStaticMethod(name, "void", parameterList, statements);
+        else methodNode = Create.PublicStaticMethod(name, returnType, parameterList, statements);
 
         currentStaticClass = currentStaticClass.AddMembers(methodNode);
     }
@@ -354,13 +321,10 @@ public static class CodeBuilder
 
             foreach (var k in kw)
             {
-                if (k.Type.EndsWith('?'))
-                    result.Add(SyntaxFactory.ParseStatement($"if ({k.Name} != null) pyDict[\"{k.Name}\"] = ToPython({k.Name});"));
-                else
-                    result.Add(SyntaxFactory.ParseStatement($"pyDict[\"{k.Name}\"] = ToPython({k.Name});"));
+                result.Add(SyntaxFactory.ParseStatement($"if ({TextAnalyzer.Fix.Reserved(k.Name)} != {(k.Value ?? "null")}) pyDict[\"{k.Name}\"] = ToPython({TextAnalyzer.Fix.Reserved(k.Name)});"));
             }
 
-            result.Add(SyntaxFactory.ParseStatement($"self = {callableStaticClass}.self.InvokeMethod(\"{className}\", args, pyDict);"));
+            result.Add(SyntaxFactory.ParseStatement($"self = {TextAnalyzer.Fix.Reserved(callableStaticClass)}.self.InvokeMethod(\"{className}\", args, pyDict);"));
             return result.ToArray();
         }
 
@@ -373,7 +337,7 @@ public static class CodeBuilder
             List<StatementSyntax> result = [];
             var args = parameters
                 .Where(x => x.Value == string.Empty)
-                .Select(x => x.Name);
+                .Select(x => TextAnalyzer.Fix.Reserved(x.Name));
 
             if (args.Any())
                 result.Add(SyntaxFactory.ParseStatement($"PyTuple args = ToTuple(new object[] {{{string.Join(", ", args)}}});"));
@@ -386,10 +350,7 @@ public static class CodeBuilder
 
             foreach (var k in kw)
             {
-                if (k.Type.EndsWith('?'))
-                    result.Add(SyntaxFactory.ParseStatement($"if ({k.Name} != null) pyDict[\"{k.Name}\"] = ToPython({k.Name});"));
-                else
-                    result.Add(SyntaxFactory.ParseStatement($"pyDict[\"{k.Name}\"] = ToPython({k.Name});"));
+                result.Add(SyntaxFactory.ParseStatement($"if ({TextAnalyzer.Fix.Reserved(k.Name)} != {(k.Value ?? "null")}) pyDict[\"{k.Name}\"] = ToPython({TextAnalyzer.Fix.Reserved(k.Name)});"));
             }
 
             if (callableStaticClass == null)
@@ -408,7 +369,7 @@ public static class CodeBuilder
                     if (returnType.StartsWith('(') && returnType.EndsWith(')'))
                     {
                         int count = 0;
-                        string[] types = TextAnalyzer.Divide.Tuple(returnType);
+                        string[] types = TextAnalyzer.Divide.PlainTuple(returnType);
                         result.Add(SyntaxFactory.ParseStatement($"PyTuple result = new PyTuple(self.InvokeMethod(\"{methodName}\", args, pyDict));"));
                         var x = types.Select(x => $"ToCsharp<{x}>(result[{count++}])").ToArray();
 
@@ -420,24 +381,26 @@ public static class CodeBuilder
                         if (returnType.StartsWith("PyObject")) expression = $"return self.InvokeMethod(\"{methodName}\", args, pyDict);";
                         else
                         {
-                            if (returnType.StartsWith("Py")) expression = $"return new {returnType}(self.InvokeMethod(\"{methodName}\", args, pyDict))";
-                            else expression = $"return ToCsharp<{returnType}>(self.InvokeMethod(\"{methodName}\", args, pyDict)))";
+                            if (returnType.StartsWith("Py")) expression = $"return new {returnType}(self.InvokeMethod(\"{methodName}\", args, pyDict));";
+                            else expression = $"return ToCsharp<{returnType}>(self.InvokeMethod(\"{methodName}\", args, pyDict));";
                         }
+
+                        result.Add(SyntaxFactory.ParseStatement(expression));
                     }
                 }
             }
             else
             {
                 if (returnType == string.Empty)
-                    result.Add(SyntaxFactory.ParseStatement($"{callableStaticClass}.self.InvokeMethod(\"{methodName}\", args, pyDict);"));
+                    result.Add(SyntaxFactory.ParseStatement($"{TextAnalyzer.Fix.Reserved(callableStaticClass)}.self.InvokeMethod(\"{methodName}\", args, pyDict);"));
 
                 else
                 {
                     if (returnType.StartsWith('(') && returnType.EndsWith(')'))
                     {
                         int count = 0;
-                        string[] types = TextAnalyzer.Divide.Tuple(returnType);
-                        result.Add(SyntaxFactory.ParseStatement($"PyTuple result = new PyTuple({callableStaticClass}.self.InvokeMethod(\"{methodName}\", args, pyDict));"));
+                        string[] types = TextAnalyzer.Divide.PlainTuple(returnType);
+                        result.Add(SyntaxFactory.ParseStatement($"PyTuple result = new PyTuple({TextAnalyzer.Fix.Reserved(callableStaticClass)}.self.InvokeMethod(\"{methodName}\", args, pyDict));"));
                         var x = types.Select(x => $"ToCsharp<{x}>(result[{count++}])").ToArray();
 
                         result.Add(SyntaxFactory.ParseStatement($"return ({string.Join(',', x)});"));
@@ -445,12 +408,14 @@ public static class CodeBuilder
                     else
                     {
                         string? expression;
-                        if (returnType.StartsWith("PyObject")) expression = $"return {callableStaticClass}.self.InvokeMethod(\"{methodName}\", args, pyDict);";
+                        if (returnType.StartsWith("PyObject")) expression = $"return {TextAnalyzer.Fix.Reserved(callableStaticClass)}.self.InvokeMethod(\"{methodName}\", args, pyDict);";
                         else
                         {
-                            if (returnType.StartsWith("Py")) expression = $"return new {returnType}({callableStaticClass}.self.InvokeMethod(\"{methodName}\", args, pyDict))";
-                            else expression = $"return ToCsharp<{returnType}>({callableStaticClass}.self.InvokeMethod(\"{methodName}\", args, pyDict)))";
+                            if (returnType.StartsWith("Py")) expression = $"return new {returnType}({TextAnalyzer.Fix.Reserved(callableStaticClass)}.self.InvokeMethod(\"{methodName}\", args, pyDict));";
+                            else expression = $"return ToCsharp<{returnType}>({TextAnalyzer.Fix.Reserved(callableStaticClass)}.self.InvokeMethod(\"{methodName}\", args, pyDict));";
+
                         }
+                        result.Add(SyntaxFactory.ParseStatement(expression));
                     }
                 }
             }
@@ -465,25 +430,42 @@ public static class CodeBuilder
             {
                 if (x.Value == string.Empty)
                 {
-                    result.Add(SyntaxFactory.Parameter(SyntaxFactory.Identifier(x.Name))
+                    result.Add(SyntaxFactory.Parameter(SyntaxFactory.Identifier(TextAnalyzer.Fix.Reserved(x.Name)))
                         .WithType(SyntaxFactory.ParseTypeName(x.Type)));
                 }
                 else if (x.Value == null)
                 {
-                    result.Add(SyntaxFactory.Parameter(SyntaxFactory.Identifier(x.Name))
+                    result.Add(SyntaxFactory.Parameter(SyntaxFactory.Identifier(TextAnalyzer.Fix.Reserved(x.Name)))
                         .WithType(SyntaxFactory.ParseTypeName(x.Type))
                         .WithDefault(SyntaxFactory.EqualsValueClause(
                             SyntaxFactory.LiteralExpression(SyntaxKind.NullLiteralExpression))));
                 }
                 else
                 {
-                    result.Add(SyntaxFactory.Parameter(SyntaxFactory.Identifier(x.Name))
+                    result.Add(SyntaxFactory.Parameter(SyntaxFactory.Identifier(TextAnalyzer.Fix.Reserved(x.Name)))
                         .WithType(SyntaxFactory.ParseTypeName(x.Type))
                         .WithDefault(SyntaxFactory.EqualsValueClause(
                             SyntaxFactory.ParseExpression(x.Value))));
                 }
             }
             return result.ToArray();
+        }
+
+
+        public static ParameterSyntax CreateListParameters()
+        {
+            return SyntaxFactory.Parameter(SyntaxFactory.Identifier(TextAnalyzer.Fix.Reserved("pyObject")))
+                        .WithType(SyntaxFactory.ParseTypeName("PyObject"));
+        }
+
+        public static StatementSyntax CreateConstructorStatements()
+        {
+            return SyntaxFactory.ParseStatement($"self = pyObject;");
+        }
+
+        public static StatementSyntax CreateMethodStatements(string className)
+        {
+            return SyntaxFactory.ParseStatement($"return new {className}(pyObject);");
         }
     }
 }

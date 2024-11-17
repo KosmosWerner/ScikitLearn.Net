@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml.Linq;
-
-namespace CodeGenerator.Core.Manager;
+﻿namespace CodeGenerator.Core.Manager;
 
 public static class MapperTypes
 {
@@ -43,7 +35,12 @@ public static class MapperTypes
         foreach (var declarationParameter in declarationParameters)
         {
             if (declarationParameter == "*") { continue; }
-            if (declarationParameter.StartsWith("**")) { method_kw["@params"] = null; continue; }
+            if (declarationParameter.StartsWith("**")) { method_kw["params"] = null; continue; }
+            if (declarationParameter.StartsWith("*ys")) { method_args["ys"] = string.Empty; continue; }
+            if (declarationParameter.StartsWith("*arrays")) { method_args["arrays"] = string.Empty; continue; }
+            if (declarationParameter.StartsWith("*steps")) { method_args["steps"] = string.Empty; continue; }
+            if (declarationParameter.StartsWith("*iterables")) { method_args["iterables"] = string.Empty; continue; }
+            if (declarationParameter.StartsWith("*transformers")) { method_args["transformers"] = string.Empty; continue; }
 
             string[] parts = declarationParameter.Split('=', 2, StringSplitOptions.TrimEntries);
 
@@ -59,10 +56,10 @@ public static class MapperTypes
                 string paramName = parts[0].Split(':', StringSplitOptions.TrimEntries)[0]; //sample_weight: bool | None | str = '$UNCHANGED$'
                 string paramDefault = parts[1];
 
-                var (value, type) = TextAnalyzer.Fix.TryDeduceDefaultValue(paramDefault);
+                var (value, type) = TextAnalyzer.Fix.TryGetDefaultValue(paramDefault);
                 method_kw[paramName] = value;
 
-                // Save names with a deducible type
+                // Save reservedNames with nullableType deducible type
                 if (type != string.Empty) param_types[paramName] = type;
             }
             else
@@ -78,7 +75,12 @@ public static class MapperTypes
             if (parts.Length < 2) continue;
             string parameterContent = parts[1];
 
-            if (parameterName.StartsWith("**")) { param_types["@params"] = "Dictionary<string, PyObject>?"; continue; }
+            if (parameterName.StartsWith("**")) { param_types["params"] = "Dictionary<string, PyObject>?"; continue; }
+            if (parameterName.StartsWith("*ys")) { param_types["ys"] = "NDarray[]"; continue; }
+            if (parameterName.StartsWith("*arrays")) { param_types["arrays"] = "NDarray[]"; continue; }
+            if (parameterName.StartsWith("*iterables")) { param_types["iterables"] = "PyObject[]"; continue; }
+            if (parameterName.StartsWith("*steps")) { param_types["steps"] = "PyObject[]"; continue; }
+            if (parameterName.StartsWith("*transformers")) { param_types["transformers"] = "PyObject[]"; continue; }
 
             if (parameterContent.Contains("Ignored"))
             {
@@ -95,11 +97,11 @@ public static class MapperTypes
             {
                 if (method_args.TryGetValue(parameterName, out string? value_arg))
                 {
-                    param_types[parameterName] = TextAnalyzer.Fix.ParamTypeFromNonDeducible(parameterContent);
+                    param_types[parameterName] = TextAnalyzer.Fix.ParamTypeFromNonDeducible(parameterContent, value_arg == null);
                 }
                 else if (method_kw.TryGetValue(parameterName, out string? value_kw))
                 {
-                    param_types[parameterName] = TextAnalyzer.Fix.ParamTypeFromNonDeducible(parameterContent);
+                    param_types[parameterName] = TextAnalyzer.Fix.ParamTypeFromNonDeducible(parameterContent, value_arg == null);
                 }
             }
         }
@@ -127,22 +129,51 @@ public static class MapperTypes
     {
         List<(string Type, string Name)> result = [];
 
-        result.Add(("(int,string)", "get_tuple"));
-        result.Add(("NDarray", "get_array"));
-        result.Add(("PyObject", "get_ob"));
-        result.Add(("PyTuple", "get_t"));
-        result.Add(("string", "get_name"));
+        plainAttributes = plainAttributes.Where(x => !x.StartsWith(':')).ToList();
+        foreach (var item in plainAttributes)
+        {
+            var (name, rawType, _) = TextAnalyzer.Divide.Definition(item);
+
+            if (TextAnalyzer.Fix.TryGetReturnType(rawType, out string? type))
+            {
+                result.Add((type, name));
+            }
+            else
+            {
+                result.Add(("PyObject", name));
+            }
+        }
 
         return result;
     }
 
+    // string.empty = void
     public static string GetReturn(List<string> plainReturns)
     {
+        plainReturns = plainReturns.Where(x => !x.StartsWith(':')).ToList();
 
-
-        return "(int,NDarray)";
+        if (plainReturns.Count == 0) return string.Empty;
+        if (plainReturns.Count == 1) return GetType(plainReturns[0]);
+        else
+        {
+            var items = plainReturns.Select(GetType).ToArray();
+            return $"({string.Join(',', items)})";
+        }
     }
 
+    private static string GetType(string plainReturn)
+    {
+        if (plainReturn.Contains("self", StringComparison.OrdinalIgnoreCase)) return "this";
+        if (plainReturn.Contains("None", StringComparison.OrdinalIgnoreCase))
+        {
+            if (TextAnalyzer.Fix.TryGetReturnType(plainReturn, out string? nullableType))
+                return nullableType + "?";
+            else return string.Empty;
+        }
 
+        if (TextAnalyzer.Fix.TryGetReturnType(plainReturn, out string? type))
+            return type;
+        else return "PyObject";
+    }
 }
 

@@ -1,315 +1,415 @@
 using Numpy;
 using Python.Runtime;
 
-namespace ScikitLearn;
-
-public static partial class sklearn
+namespace ScikitLearn
 {
-	public static class @base
-	{
-		private static Lazy<PyObject> _lazy_self;
+    public static partial class sklearn
+    {
+        public static class @base
+        {
+            private static Lazy<PyObject> _lazy_self;
+            public static PyObject self { get => _lazy_self.Value; }
 
-		public static PyObject self => _lazy_self.Value;
+            private static void ReInitializeLazySelf()
+            {
+                _lazy_self = new Lazy<PyObject>(() =>
+                {
+                    try
+                    {
+                        return InstallAndImport();
+                    }
+                    catch (Exception)
+                    {
+                        return InstallAndImport(true);
+                    }
+                });
+            }
 
-		static @base() => ReInitializeLazySelf();
+            private static PyObject InstallAndImport(bool force = false)
+            {
+                PythonEngine.AddShutdownHandler(ReInitializeLazySelf);
+                PythonEngine.Initialize();
+                return Py.Import("sklearn.base");
+            }
 
-		private static void ReInitializeLazySelf()
-		{
-			_lazy_self = new Lazy<PyObject>(delegate
-			{
-				try { return InstallAndImport(); }
-				catch (Exception) { return InstallAndImport(force: true); }
-			});
-		}
+            static @base()
+            {
+                ReInitializeLazySelf();
+            }
 
-		private static PyObject InstallAndImport(bool force = false)
-		{
-			PythonEngine.AddShutdownHandler(ReInitializeLazySelf);
-			PythonEngine.Initialize();
-			return Py.Import("sklearn.base");
-		}
+            public class BaseEstimator : PythonObject
+            {
+                public BaseEstimator()
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    self = sklearn.@base.self.InvokeMethod("BaseEstimator", args, pyDict);
+                }
 
-		public class BaseEstimator : PythonObject
-		{
-			public BaseEstimator()
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				self = sklearn.@base.self.InvokeMethod("BaseEstimator", args, pyDict);
-			}
+                internal BaseEstimator(PyObject pyObject)
+                {
+                    self = pyObject;
+                }
 
-			public PyObject get_metadata_routing()
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				PyObject result = self.InvokeMethod("get_metadata_routing", args, pyDict);
-				return result;
-			}
+                public static BaseEstimator Encapsule(PyObject pyObject)
+                {
+                    return new BaseEstimator(pyObject);
+                }
 
-			public PyObject get_params(bool deep = true)
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				pyDict["deep"] = ToPython(deep);
-				PyObject result = self.InvokeMethod("get_params", args, pyDict);
-				return result;
-			}
+                public PyObject get_metadata_routing()
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    return self.InvokeMethod("get_metadata_routing", args, pyDict);
+                }
 
-			public BaseEstimator set_params(PyDict? @params = null)
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				if (@params != null)
-				{
-					pyDict["@params"] = ToPython(@params);
-				}
-				self.InvokeMethod("set_params", args, pyDict);
-				return this;
-			}
+                public PyDict get_params(bool deep = true)
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    if (deep != true)
+                        pyDict["deep"] = ToPython(deep);
+                    return new PyDict(self.InvokeMethod("get_params", args, pyDict));
+                }
 
-		}
+                public BaseEstimator set_params(Dictionary<string, PyObject>? @params = null)
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    if (@params != null)
+                        pyDict["params"] = ToPython(@params);
+                    self.InvokeMethod("set_params", args, pyDict);
+                    return this;
+                }
+            }
 
-		public class BiclusterMixin : PythonObject
-		{
-			public BiclusterMixin()
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				self = sklearn.@base.self.InvokeMethod("BiclusterMixin", args, pyDict);
-			}
+            public class BiclusterMixin : PythonObject
+            {
+                public BiclusterMixin()
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    self = sklearn.@base.self.InvokeMethod("BiclusterMixin", args, pyDict);
+                }
 
-			public NDarray get_indices(int i)
-			{
-				PyTuple args = ToTuple(new object[] {i});
-				PyDict pyDict = new PyDict();
-				PyObject result = self.InvokeMethod("get_indices", args, pyDict);
-				return ToCsharp<NDarray>(result);
-			}
+                internal BiclusterMixin(PyObject pyObject)
+                {
+                    self = pyObject;
+                }
 
-			public int get_shape(int i)
-			{
-				PyTuple args = ToTuple(new object[] {i});
-				PyDict pyDict = new PyDict();
-				PyObject result = self.InvokeMethod("get_shape", args, pyDict);
-				return ToCsharp<int>(result);
-			}
+                public static BiclusterMixin Encapsule(PyObject pyObject)
+                {
+                    return new BiclusterMixin(pyObject);
+                }
 
-			public NDarray get_submatrix(int i, NDarray data)
-			{
-				PyTuple args = ToTuple(new object[] {i, data});
-				PyDict pyDict = new PyDict();
-				PyObject result = self.InvokeMethod("get_submatrix", args, pyDict);
-				return ToCsharp<NDarray>(result);
-			}
+                public (NDarray<long>, NDarray<long>) get_indices(int i)
+                {
+                    PyTuple args = ToTuple(new object[] { i });
+                    PyDict pyDict = new PyDict();
+                    PyTuple result = new PyTuple(self.InvokeMethod("get_indices", args, pyDict));
+                    return (ToCsharp<NDarray<long>>(result[0]), ToCsharp<NDarray<long>>(result[1]));
+                }
 
-		}
+                public (int, int) get_shape(int i)
+                {
+                    PyTuple args = ToTuple(new object[] { i });
+                    PyDict pyDict = new PyDict();
+                    PyTuple result = new PyTuple(self.InvokeMethod("get_shape", args, pyDict));
+                    return (ToCsharp<int>(result[0]), ToCsharp<int>(result[1]));
+                }
 
-		public class ClassNamePrefixFeaturesOutMixin : PythonObject
-		{
-			public ClassNamePrefixFeaturesOutMixin()
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				self = sklearn.@base.self.InvokeMethod("ClassNamePrefixFeaturesOutMixin", args, pyDict);
-			}
+                public NDarray get_submatrix(int i, NDarray data)
+                {
+                    PyTuple args = ToTuple(new object[] { i, data });
+                    PyDict pyDict = new PyDict();
+                    return ToCsharp<NDarray>(self.InvokeMethod("get_submatrix", args, pyDict));
+                }
+            }
 
-			public NDarray get_feature_names_out(string? input_features = null)
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				if (input_features != null)
-				{
-					pyDict["input_features"] = ToPython(input_features);
-				}
-				PyObject result = self.InvokeMethod("get_feature_names_out", args, pyDict);
-				return ToCsharp<NDarray>(result);
-			}
+            public class ClassNamePrefixFeaturesOutMixin : PythonObject
+            {
+                public ClassNamePrefixFeaturesOutMixin()
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    self = sklearn.@base.self.InvokeMethod("ClassNamePrefixFeaturesOutMixin", args, pyDict);
+                }
 
-		}
+                internal ClassNamePrefixFeaturesOutMixin(PyObject pyObject)
+                {
+                    self = pyObject;
+                }
 
-		public class ClassifierMixin : PythonObject
-		{
-			public ClassifierMixin()
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				self = sklearn.@base.self.InvokeMethod("ClassifierMixin", args, pyDict);
-			}
+                public static ClassNamePrefixFeaturesOutMixin Encapsule(PyObject pyObject)
+                {
+                    return new ClassNamePrefixFeaturesOutMixin(pyObject);
+                }
 
-			public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
-			{
-				PyTuple args = ToTuple(new object[] {X, y});
-				PyDict pyDict = new PyDict();
-				if (sample_weight != null)
-				{
-					pyDict["sample_weight"] = ToPython(sample_weight);
-				}
-				PyObject result = self.InvokeMethod("score", args, pyDict);
-				return ToCsharp<float>(result);
-			}
+                public PyObject get_feature_names_out(NDarray? input_features = null)
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    if (input_features != null)
+                        pyDict["input_features"] = ToPython(input_features);
+                    return self.InvokeMethod("get_feature_names_out", args, pyDict);
+                }
+            }
 
-		}
+            public class ClassifierMixin : PythonObject
+            {
+                public ClassifierMixin()
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    self = sklearn.@base.self.InvokeMethod("ClassifierMixin", args, pyDict);
+                }
 
-		public class ClusterMixin : PythonObject
-		{
-			public ClusterMixin()
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				self = sklearn.@base.self.InvokeMethod("ClusterMixin", args, pyDict);
-			}
+                internal ClassifierMixin(PyObject pyObject)
+                {
+                    self = pyObject;
+                }
 
-			public NDarray fit_predict(NDarray X, PyDict? @params = null)
-			{
-				PyTuple args = ToTuple(new object[] {X});
-				PyDict pyDict = new PyDict();
-				if (@params != null)
-				{
-					pyDict["@params"] = ToPython(@params);
-				}
-				PyObject result = self.InvokeMethod("fit_predict", args, pyDict);
-				return ToCsharp<NDarray>(result);
-			}
+                public static ClassifierMixin Encapsule(PyObject pyObject)
+                {
+                    return new ClassifierMixin(pyObject);
+                }
 
-		}
+                public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
+                {
+                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyDict pyDict = new PyDict();
+                    if (sample_weight != null)
+                        pyDict["sample_weight"] = ToPython(sample_weight);
+                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                }
+            }
 
-		public class DensityMixin : PythonObject
-		{
-			public DensityMixin()
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				self = sklearn.@base.self.InvokeMethod("DensityMixin", args, pyDict);
-			}
+            public class ClusterMixin : PythonObject
+            {
+                public ClusterMixin()
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    self = sklearn.@base.self.InvokeMethod("ClusterMixin", args, pyDict);
+                }
 
-			public float score(NDarray X)
-			{
-				PyTuple args = ToTuple(new object[] {X});
-				PyDict pyDict = new PyDict();
-				PyObject result = self.InvokeMethod("score", args, pyDict);
-				return ToCsharp<float>(result);
-			}
+                internal ClusterMixin(PyObject pyObject)
+                {
+                    self = pyObject;
+                }
 
-		}
+                public static ClusterMixin Encapsule(PyObject pyObject)
+                {
+                    return new ClusterMixin(pyObject);
+                }
 
-		public class MetaEstimatorMixin : PythonObject
-		{
-			public MetaEstimatorMixin()
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				self = sklearn.@base.self.InvokeMethod("MetaEstimatorMixin", args, pyDict);
-			}
+                public NDarray<long> fit_predict(NDarray X, Dictionary<string, PyObject>? @params = null)
+                {
+                    PyTuple args = ToTuple(new object[] { X });
+                    PyDict pyDict = new PyDict();
+                    if (@params != null)
+                        pyDict["params"] = ToPython(@params);
+                    return ToCsharp<NDarray<long>>(self.InvokeMethod("fit_predict", args, pyDict));
+                }
+            }
 
-		}
+            public class DensityMixin : PythonObject
+            {
+                public DensityMixin()
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    self = sklearn.@base.self.InvokeMethod("DensityMixin", args, pyDict);
+                }
 
-		public class OneToOneFeatureMixin : PythonObject
-		{
-			public OneToOneFeatureMixin()
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				self = sklearn.@base.self.InvokeMethod("OneToOneFeatureMixin", args, pyDict);
-			}
+                internal DensityMixin(PyObject pyObject)
+                {
+                    self = pyObject;
+                }
 
-			public NDarray get_feature_names_out(string? input_features = null)
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				if (input_features != null)
-				{
-					pyDict["input_features"] = ToPython(input_features);
-				}
-				PyObject result = self.InvokeMethod("get_feature_names_out", args, pyDict);
-				return ToCsharp<NDarray>(result);
-			}
+                public static DensityMixin Encapsule(PyObject pyObject)
+                {
+                    return new DensityMixin(pyObject);
+                }
 
-		}
+                public float score(NDarray X)
+                {
+                    PyTuple args = ToTuple(new object[] { X });
+                    PyDict pyDict = new PyDict();
+                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                }
+            }
 
-		public class OutlierMixin : PythonObject
-		{
-			public OutlierMixin()
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				self = sklearn.@base.self.InvokeMethod("OutlierMixin", args, pyDict);
-			}
+            public class MetaEstimatorMixin : PythonObject
+            {
+                public MetaEstimatorMixin()
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    self = sklearn.@base.self.InvokeMethod("MetaEstimatorMixin", args, pyDict);
+                }
 
-			public NDarray fit_predict(NDarray X, PyDict? @params = null)
-			{
-				PyTuple args = ToTuple(new object[] {X});
-				PyDict pyDict = new PyDict();
-				if (@params != null)
-				{
-					pyDict["@params"] = ToPython(@params);
-				}
-				PyObject result = self.InvokeMethod("fit_predict", args, pyDict);
-				return ToCsharp<NDarray>(result);
-			}
+                internal MetaEstimatorMixin(PyObject pyObject)
+                {
+                    self = pyObject;
+                }
 
-		}
+                public static MetaEstimatorMixin Encapsule(PyObject pyObject)
+                {
+                    return new MetaEstimatorMixin(pyObject);
+                }
+            }
 
-		public class RegressorMixin : PythonObject
-		{
-			public RegressorMixin()
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				self = sklearn.@base.self.InvokeMethod("RegressorMixin", args, pyDict);
-			}
+            public class OneToOneFeatureMixin : PythonObject
+            {
+                public OneToOneFeatureMixin()
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    self = sklearn.@base.self.InvokeMethod("OneToOneFeatureMixin", args, pyDict);
+                }
 
-			public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
-			{
-				PyTuple args = ToTuple(new object[] {X, y});
-				PyDict pyDict = new PyDict();
-				if (sample_weight != null)
-				{
-					pyDict["sample_weight"] = ToPython(sample_weight);
-				}
-				PyObject result = self.InvokeMethod("score", args, pyDict);
-				return ToCsharp<float>(result);
-			}
+                internal OneToOneFeatureMixin(PyObject pyObject)
+                {
+                    self = pyObject;
+                }
 
-		}
+                public static OneToOneFeatureMixin Encapsule(PyObject pyObject)
+                {
+                    return new OneToOneFeatureMixin(pyObject);
+                }
 
-		public class TransformerMixin : PythonObject
-		{
-			public TransformerMixin()
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				self = sklearn.@base.self.InvokeMethod("TransformerMixin", args, pyDict);
-			}
+                public PyObject get_feature_names_out(NDarray? input_features = null)
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    if (input_features != null)
+                        pyDict["input_features"] = ToPython(input_features);
+                    return self.InvokeMethod("get_feature_names_out", args, pyDict);
+                }
+            }
 
-			public NDarray fit_transform(NDarray X, NDarray? y = null, PyDict? @params = null)
-			{
-				PyTuple args = ToTuple(new object[] {X});
-				PyDict pyDict = new PyDict();
-				if (y != null)
-				{
-					pyDict["y"] = ToPython(y);
-				}
-				if (@params != null)
-				{
-					pyDict["@params"] = ToPython(@params);
-				}
-				PyObject result = self.InvokeMethod("fit_transform", args, pyDict);
-				return ToCsharp<NDarray>(result);
-			}
+            public class OutlierMixin : PythonObject
+            {
+                public OutlierMixin()
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    self = sklearn.@base.self.InvokeMethod("OutlierMixin", args, pyDict);
+                }
 
-			public TransformerMixin set_output(string? transform = null)
-			{
-				PyTuple args = new PyTuple();
-				PyDict pyDict = new PyDict();
-				if (transform != null)
-				{
-					pyDict["transform"] = ToPython(transform);
-				}
-				self.InvokeMethod("set_output", args, pyDict);
-				return this;
-			}
+                internal OutlierMixin(PyObject pyObject)
+                {
+                    self = pyObject;
+                }
 
-		}
+                public static OutlierMixin Encapsule(PyObject pyObject)
+                {
+                    return new OutlierMixin(pyObject);
+                }
 
-	}
+                public NDarray fit_predict(NDarray X, Dictionary<string, PyObject>? @params = null)
+                {
+                    PyTuple args = ToTuple(new object[] { X });
+                    PyDict pyDict = new PyDict();
+                    if (@params != null)
+                        pyDict["params"] = ToPython(@params);
+                    return ToCsharp<NDarray>(self.InvokeMethod("fit_predict", args, pyDict));
+                }
+            }
+
+            public class RegressorMixin : PythonObject
+            {
+                public RegressorMixin()
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    self = sklearn.@base.self.InvokeMethod("RegressorMixin", args, pyDict);
+                }
+
+                internal RegressorMixin(PyObject pyObject)
+                {
+                    self = pyObject;
+                }
+
+                public static RegressorMixin Encapsule(PyObject pyObject)
+                {
+                    return new RegressorMixin(pyObject);
+                }
+
+                public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
+                {
+                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyDict pyDict = new PyDict();
+                    if (sample_weight != null)
+                        pyDict["sample_weight"] = ToPython(sample_weight);
+                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                }
+            }
+
+            public class TransformerMixin : PythonObject
+            {
+                public TransformerMixin()
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    self = sklearn.@base.self.InvokeMethod("TransformerMixin", args, pyDict);
+                }
+
+                internal TransformerMixin(PyObject pyObject)
+                {
+                    self = pyObject;
+                }
+
+                public static TransformerMixin Encapsule(PyObject pyObject)
+                {
+                    return new TransformerMixin(pyObject);
+                }
+
+                public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null)
+                {
+                    PyTuple args = ToTuple(new object[] { X });
+                    PyDict pyDict = new PyDict();
+                    if (y != null)
+                        pyDict["y"] = ToPython(y);
+                    if (@params != null)
+                        pyDict["params"] = ToPython(@params);
+                    return ToCsharp<NDarray>(self.InvokeMethod("fit_transform", args, pyDict));
+                }
+
+                public TransformerMixin set_output(PyObject? transform = null)
+                {
+                    PyTuple args = new PyTuple();
+                    PyDict pyDict = new PyDict();
+                    if (transform != null)
+                        pyDict["transform"] = ToPython(transform);
+                    self.InvokeMethod("set_output", args, pyDict);
+                    return this;
+                }
+            }
+
+            public static PyObject clone(PyTuple estimator, bool safe = true)
+            {
+                PyTuple args = ToTuple(new object[] { estimator });
+                PyDict pyDict = new PyDict();
+                if (safe != true)
+                    pyDict["safe"] = ToPython(safe);
+                return sklearn.@base.self.InvokeMethod("clone", args, pyDict);
+            }
+
+            public static bool is_classifier(PyObject estimator)
+            {
+                PyTuple args = ToTuple(new object[] { estimator });
+                PyDict pyDict = new PyDict();
+                return ToCsharp<bool>(sklearn.@base.self.InvokeMethod("is_classifier", args, pyDict));
+            }
+
+            public static bool is_regressor(PyObject estimator)
+            {
+                PyTuple args = ToTuple(new object[] { estimator });
+                PyDict pyDict = new PyDict();
+                return ToCsharp<bool>(sklearn.@base.self.InvokeMethod("is_regressor", args, pyDict));
+            }
+        }
+    }
 }

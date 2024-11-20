@@ -71,7 +71,7 @@ namespace CodeGeneratorTest
             #region OldMethod
 
             NodeType obtainedValue = NodeType.None;
-            var (identifier, _, _) = TextAnalyzer.Divide.Declaration(declaration);
+            var (identifier, _, _) = TextAnalyzer.Divide.FromDeclaration(declaration);
 
             var nodeIdentifier = page.ContentNode.SelectSingleNode(".//*[contains(@class, 'property')]");
             if (nodeIdentifier == null)

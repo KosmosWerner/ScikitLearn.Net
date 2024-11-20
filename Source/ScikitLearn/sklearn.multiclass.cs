@@ -41,10 +41,10 @@ namespace ScikitLearn
             {
                 public OneVsOneClassifier(PyObject estimator, int? n_jobs = null)
                 {
-                    PyTuple args = ToTuple(new object[] { estimator });
+                    PyTuple args = new PyTuple([Helpers.ToPython(estimator)]);
                     PyDict pyDict = new PyDict();
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = ToPython(n_jobs);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
                     self = sklearn.multiclass.self.InvokeMethod("OneVsOneClassifier", args, pyDict);
                 }
 
@@ -59,25 +59,25 @@ namespace ScikitLearn
                 }
 
                 public PyTuple estimators_ => new PyTuple(self.GetAttr("estimators_"));
-                public NDarray classes_ => ToCsharp<NDarray>(self.GetAttr("classes_"));
-                public int n_classes_ => ToCsharp<int>(self.GetAttr("n_classes_"));
+                public NDarray classes_ => Helpers.ToCSharpNDarray(self.GetAttr("classes_"));
+                public int n_classes_ => Helpers.ToCSharpInt(self.GetAttr("n_classes_"));
                 public PyObject pairwise_indices_ => self.GetAttr("pairwise_indices_");
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
 
                 public NDarray decision_function(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("decision_function", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("decision_function", args, pyDict));
                 }
 
                 public OneVsOneClassifier fit(NDarray X, NDarray y, Dictionary<string, PyObject>? @params = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
@@ -94,36 +94,36 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
                 public OneVsOneClassifier partial_fit(NDarray X, NDarray y, NDarray? classes = null, Dictionary<string, PyObject>? @params = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (classes != null)
-                        pyDict["classes"] = ToPython(classes);
+                        pyDict["classes"] = Helpers.ToPython(classes);
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("partial_fit", args, pyDict);
                     return this;
                 }
 
                 public NDarray predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("score", args, pyDict));
                 }
 
                 public OneVsOneClassifier set_params(Dictionary<string, PyObject>? @params = null)
@@ -131,7 +131,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -141,7 +141,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (classes != "$UNCHANGED$")
-                        pyDict["classes"] = ToPython(classes);
+                        pyDict["classes"] = Helpers.ToPython(classes);
                     self.InvokeMethod("set_partial_fit_request", args, pyDict);
                     return this;
                 }
@@ -151,7 +151,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_score_request", args, pyDict);
                     return this;
                 }
@@ -161,12 +161,12 @@ namespace ScikitLearn
             {
                 public OneVsRestClassifier(PyObject estimator, int? n_jobs = null, int verbose = 0)
                 {
-                    PyTuple args = ToTuple(new object[] { estimator });
+                    PyTuple args = new PyTuple([Helpers.ToPython(estimator)]);
                     PyDict pyDict = new PyDict();
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = ToPython(n_jobs);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
                     if (verbose != 0)
-                        pyDict["verbose"] = ToPython(verbose);
+                        pyDict["verbose"] = Helpers.ToPython(verbose);
                     self = sklearn.multiclass.self.InvokeMethod("OneVsRestClassifier", args, pyDict);
                 }
 
@@ -181,26 +181,26 @@ namespace ScikitLearn
                 }
 
                 public PyTuple estimators_ => new PyTuple(self.GetAttr("estimators_"));
-                public NDarray classes_ => ToCsharp<NDarray>(self.GetAttr("classes_"));
-                public int n_classes_ => ToCsharp<int>(self.GetAttr("n_classes_"));
+                public NDarray classes_ => Helpers.ToCSharpNDarray(self.GetAttr("classes_"));
+                public int n_classes_ => Helpers.ToCSharpInt(self.GetAttr("n_classes_"));
                 public PyObject label_binarizer_ => self.GetAttr("label_binarizer_");
-                public bool multilabel_ => ToCsharp<bool>(self.GetAttr("multilabel_"));
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
+                public bool multilabel_ => Helpers.ToCSharpBool(self.GetAttr("multilabel_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
 
                 public NDarray decision_function(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("decision_function", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("decision_function", args, pyDict));
                 }
 
                 public OneVsRestClassifier fit(NDarray X, NDarray y, Dictionary<string, PyObject>? @params = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
@@ -217,43 +217,43 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
                 public OneVsRestClassifier partial_fit(NDarray X, NDarray y, NDarray? classes = null, Dictionary<string, PyObject>? @params = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (classes != null)
-                        pyDict["classes"] = ToPython(classes);
+                        pyDict["classes"] = Helpers.ToPython(classes);
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("partial_fit", args, pyDict);
                     return this;
                 }
 
                 public NDarray predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
                 public NDarray predict_proba(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict_proba", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_proba", args, pyDict));
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("score", args, pyDict));
                 }
 
                 public OneVsRestClassifier set_params(Dictionary<string, PyObject>? @params = null)
@@ -261,7 +261,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -271,7 +271,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (classes != "$UNCHANGED$")
-                        pyDict["classes"] = ToPython(classes);
+                        pyDict["classes"] = Helpers.ToPython(classes);
                     self.InvokeMethod("set_partial_fit_request", args, pyDict);
                     return this;
                 }
@@ -281,7 +281,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_score_request", args, pyDict);
                     return this;
                 }
@@ -291,14 +291,14 @@ namespace ScikitLearn
             {
                 public OutputCodeClassifier(PyObject estimator, float code_size = 1.5f, int? random_state = null, int? n_jobs = null)
                 {
-                    PyTuple args = ToTuple(new object[] { estimator });
+                    PyTuple args = new PyTuple([Helpers.ToPython(estimator)]);
                     PyDict pyDict = new PyDict();
                     if (code_size != 1.5f)
-                        pyDict["code_size"] = ToPython(code_size);
+                        pyDict["code_size"] = Helpers.ToPython(code_size);
                     if (random_state != null)
-                        pyDict["random_state"] = ToPython(random_state);
+                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = ToPython(n_jobs);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
                     self = sklearn.multiclass.self.InvokeMethod("OutputCodeClassifier", args, pyDict);
                 }
 
@@ -313,17 +313,17 @@ namespace ScikitLearn
                 }
 
                 public PyTuple estimators_ => new PyTuple(self.GetAttr("estimators_"));
-                public NDarray classes_ => ToCsharp<NDarray>(self.GetAttr("classes_"));
-                public NDarray code_book_ => ToCsharp<NDarray>(self.GetAttr("code_book_"));
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
+                public NDarray classes_ => Helpers.ToCSharpNDarray(self.GetAttr("classes_"));
+                public NDarray code_book_ => Helpers.ToCSharpNDarray(self.GetAttr("code_book_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
 
                 public OutputCodeClassifier fit(NDarray X, NDarray y, Dictionary<string, PyObject>? @params = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
@@ -340,24 +340,24 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
                 public NDarray predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("score", args, pyDict));
                 }
 
                 public OutputCodeClassifier set_params(Dictionary<string, PyObject>? @params = null)
@@ -365,7 +365,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -375,7 +375,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_score_request", args, pyDict);
                     return this;
                 }

@@ -49,7 +49,7 @@ namespace CodeGeneratorTest
 
                 var sortedDummyContainers = dummyContainers.OrderBy(dummy =>
                 {
-                    var (_, fullName, _) = TextAnalyzer.Divide.Declaration(dummy.Declaration);
+                    var (_, fullName, _) = TextAnalyzer.Divide.FromDeclaration(dummy.Declaration);
                     var nameSegments = fullName.Split('.');
                     var namespaceOnly = string.Join(".", nameSegments[..^1]);
                     return namespaceOnly;
@@ -59,7 +59,7 @@ namespace CodeGeneratorTest
 
                 foreach (var dummy in sortedDummyContainers)
                 {
-                    var (_, fullName, _) = TextAnalyzer.Divide.Declaration(dummy.Declaration);
+                    var (_, fullName, _) = TextAnalyzer.Divide.FromDeclaration(dummy.Declaration);
 
                     var nameSegments = fullName.Split('.');
                     var namespaceOnly = string.Join(".", nameSegments[..^1]);
@@ -85,7 +85,7 @@ namespace CodeGeneratorTest
 
                 var sortedDummyContainers = dummyContainers.OrderBy(dummy =>
                 {
-                    var (_, fullName, _) = TextAnalyzer.Divide.Declaration(dummy.Declaration);
+                    var (_, fullName, _) = TextAnalyzer.Divide.FromDeclaration(dummy.Declaration);
                     var nameSegments = fullName.Split('.');
                     var namespaceOnly = string.Join(".", nameSegments[..^1]);
                     return namespaceOnly;
@@ -94,7 +94,7 @@ namespace CodeGeneratorTest
                 var uniqueStaticClasses = sortedDummyContainers
                     .Select(dummy =>
                     {
-                        var (_, fullName, _) = TextAnalyzer.Divide.Declaration(dummy.Declaration);
+                        var (_, fullName, _) = TextAnalyzer.Divide.FromDeclaration(dummy.Declaration);
                         var namespaceParts = fullName.Split('.');
                         return string.Join(".", namespaceParts[..^1]);
                     })

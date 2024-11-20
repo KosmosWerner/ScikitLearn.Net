@@ -130,9 +130,9 @@ public static partial class TextAnalyzer
             return output;
         }
 
-        public static string Reserved(string name)
+        public static string Reserved(string nameOrFullName)
         {
-            string[] parts = name.Split('.')
+            string[] parts = nameOrFullName.Split('.')
                 .Select(x => (reservedNames.Contains(x)) ? $"@{x}" : x)
                 .ToArray();
 
@@ -181,7 +181,7 @@ public static partial class TextAnalyzer
 
     public static partial class Divide
     {
-        public static (string identifier, string plainName, string plainParameters) Declaration(string declaration)
+        public static (string identifier, string fullName, string rawParameters) FromDeclaration(string declaration)
         {
             Match declarationMatch = RegexDeclarationParts().Match(declaration);
             return (declarationMatch.Groups[1].Value,
@@ -189,7 +189,7 @@ public static partial class TextAnalyzer
                 declarationMatch.Groups[3].Value);
         }
 
-        public static (string name, string callableStaticClass) FullName(string plainName)
+        public static (string name, string callableStaticClass) FromFullName(string plainName)
         {
             string[] segments = plainName.Split('.',
                 StringSplitOptions.RemoveEmptyEntries |
@@ -221,7 +221,7 @@ public static partial class TextAnalyzer
                 StringSplitOptions.TrimEntries);
         }
 
-        public static string[] PlainTuple(string plainTuple)
+        public static string[] FromRawTuple(string plainTuple)
         {
             plainTuple = plainTuple.TrimStart('(').TrimEnd(')');
 

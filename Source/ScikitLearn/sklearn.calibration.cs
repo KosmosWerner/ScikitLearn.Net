@@ -44,15 +44,15 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (estimator != null)
-                        pyDict["estimator"] = ToPython(estimator);
+                        pyDict["estimator"] = Helpers.ToPython(estimator);
                     if (method != "sigmoid")
-                        pyDict["method"] = ToPython(method);
+                        pyDict["method"] = Helpers.ToPython(method);
                     if (cv != null)
-                        pyDict["cv"] = ToPython(cv);
+                        pyDict["cv"] = Helpers.ToPython(cv.Value);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = ToPython(n_jobs);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
                     if (ensemble != true)
-                        pyDict["ensemble"] = ToPython(ensemble);
+                        pyDict["ensemble"] = Helpers.ToPython(ensemble);
                     self = sklearn.calibration.self.InvokeMethod("CalibratedClassifierCV", args, pyDict);
                 }
 
@@ -66,19 +66,19 @@ namespace ScikitLearn
                     return new CalibratedClassifierCV(pyObject);
                 }
 
-                public NDarray classes_ => ToCsharp<NDarray>(self.GetAttr("classes_"));
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
-                public bool calibrated_classifiers_ => ToCsharp<bool>(self.GetAttr("calibrated_classifiers_"));
+                public NDarray classes_ => Helpers.ToCSharpNDarray(self.GetAttr("classes_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
+                public bool calibrated_classifiers_ => Helpers.ToCSharpBool(self.GetAttr("calibrated_classifiers_"));
 
                 public CalibratedClassifierCV fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
@@ -95,31 +95,31 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
                 public NDarray predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
                 public NDarray predict_proba(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict_proba", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_proba", args, pyDict));
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("score", args, pyDict));
                 }
 
                 public CalibratedClassifierCV set_fit_request(string? sample_weight = "$UNCHANGED$")
@@ -127,7 +127,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_fit_request", args, pyDict);
                     return this;
                 }
@@ -137,7 +137,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -147,7 +147,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_score_request", args, pyDict);
                     return this;
                 }
@@ -155,28 +155,28 @@ namespace ScikitLearn
 
             public static (NDarray, NDarray) calibration_curve(NDarray y_true, NDarray y_prob, string? pos_label = null, int n_bins = 5, string strategy = "uniform")
             {
-                PyTuple args = ToTuple(new object[] { y_true, y_prob });
+                PyTuple args = new PyTuple([Helpers.ToPython(y_true), Helpers.ToPython(y_prob)]);
                 PyDict pyDict = new PyDict();
                 if (pos_label != null)
-                    pyDict["pos_label"] = ToPython(pos_label);
+                    pyDict["pos_label"] = Helpers.ToPython(pos_label);
                 if (n_bins != 5)
-                    pyDict["n_bins"] = ToPython(n_bins);
+                    pyDict["n_bins"] = Helpers.ToPython(n_bins);
                 if (strategy != "uniform")
-                    pyDict["strategy"] = ToPython(strategy);
+                    pyDict["strategy"] = Helpers.ToPython(strategy);
                 PyTuple result = new PyTuple(sklearn.calibration.self.InvokeMethod("calibration_curve", args, pyDict));
-                return (ToCsharp<NDarray>(result[0]), ToCsharp<NDarray>(result[1]));
+                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
             }
 
             public class CalibrationDisplay : PythonObject
             {
                 public CalibrationDisplay(NDarray prob_true, NDarray prob_pred, NDarray y_prob, string? estimator_name = null, string? pos_label = null)
                 {
-                    PyTuple args = ToTuple(new object[] { prob_true, prob_pred, y_prob });
+                    PyTuple args = new PyTuple([Helpers.ToPython(prob_true), Helpers.ToPython(prob_pred), Helpers.ToPython(y_prob)]);
                     PyDict pyDict = new PyDict();
                     if (estimator_name != null)
-                        pyDict["estimator_name"] = ToPython(estimator_name);
+                        pyDict["estimator_name"] = Helpers.ToPython(estimator_name);
                     if (pos_label != null)
-                        pyDict["pos_label"] = ToPython(pos_label);
+                        pyDict["pos_label"] = Helpers.ToPython(pos_label);
                     self = sklearn.calibration.self.InvokeMethod("CalibrationDisplay", args, pyDict);
                 }
 
@@ -196,43 +196,43 @@ namespace ScikitLearn
 
                 public PyObject from_estimator(PyObject estimator, NDarray X, NDarray y, int n_bins = 5, string strategy = "uniform", string? pos_label = null, string? name = null, bool ref_line = true, PyObject? ax = null, Dictionary<string, PyObject>? @params = null)
                 {
-                    PyTuple args = ToTuple(new object[] { estimator, X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(estimator), Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (n_bins != 5)
-                        pyDict["n_bins"] = ToPython(n_bins);
+                        pyDict["n_bins"] = Helpers.ToPython(n_bins);
                     if (strategy != "uniform")
-                        pyDict["strategy"] = ToPython(strategy);
+                        pyDict["strategy"] = Helpers.ToPython(strategy);
                     if (pos_label != null)
-                        pyDict["pos_label"] = ToPython(pos_label);
+                        pyDict["pos_label"] = Helpers.ToPython(pos_label);
                     if (name != null)
-                        pyDict["name"] = ToPython(name);
+                        pyDict["name"] = Helpers.ToPython(name);
                     if (ref_line != true)
-                        pyDict["ref_line"] = ToPython(ref_line);
+                        pyDict["ref_line"] = Helpers.ToPython(ref_line);
                     if (ax != null)
-                        pyDict["ax"] = ToPython(ax);
+                        pyDict["ax"] = Helpers.ToPython(ax);
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     return self.InvokeMethod("from_estimator", args, pyDict);
                 }
 
                 public PyObject from_predictions(NDarray y_true, NDarray y_prob, int n_bins = 5, string strategy = "uniform", string? pos_label = null, string? name = null, bool ref_line = true, PyObject? ax = null, Dictionary<string, PyObject>? @params = null)
                 {
-                    PyTuple args = ToTuple(new object[] { y_true, y_prob });
+                    PyTuple args = new PyTuple([Helpers.ToPython(y_true), Helpers.ToPython(y_prob)]);
                     PyDict pyDict = new PyDict();
                     if (n_bins != 5)
-                        pyDict["n_bins"] = ToPython(n_bins);
+                        pyDict["n_bins"] = Helpers.ToPython(n_bins);
                     if (strategy != "uniform")
-                        pyDict["strategy"] = ToPython(strategy);
+                        pyDict["strategy"] = Helpers.ToPython(strategy);
                     if (pos_label != null)
-                        pyDict["pos_label"] = ToPython(pos_label);
+                        pyDict["pos_label"] = Helpers.ToPython(pos_label);
                     if (name != null)
-                        pyDict["name"] = ToPython(name);
+                        pyDict["name"] = Helpers.ToPython(name);
                     if (ref_line != true)
-                        pyDict["ref_line"] = ToPython(ref_line);
+                        pyDict["ref_line"] = Helpers.ToPython(ref_line);
                     if (ax != null)
-                        pyDict["ax"] = ToPython(ax);
+                        pyDict["ax"] = Helpers.ToPython(ax);
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     return self.InvokeMethod("from_predictions", args, pyDict);
                 }
 
@@ -241,13 +241,13 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (ax != null)
-                        pyDict["ax"] = ToPython(ax);
+                        pyDict["ax"] = Helpers.ToPython(ax);
                     if (name != null)
-                        pyDict["name"] = ToPython(name);
+                        pyDict["name"] = Helpers.ToPython(name);
                     if (ref_line != true)
-                        pyDict["ref_line"] = ToPython(ref_line);
+                        pyDict["ref_line"] = Helpers.ToPython(ref_line);
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     return self.InvokeMethod("plot", args, pyDict);
                 }
             }

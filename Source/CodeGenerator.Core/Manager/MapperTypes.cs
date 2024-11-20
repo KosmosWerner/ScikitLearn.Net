@@ -6,7 +6,7 @@ public static class MapperTypes
     {
         if (entity.Declaration == null) return NodeType.None;
 
-        var (identifier, _, _) = TextAnalyzer.Divide.Declaration(entity.Declaration);
+        var (identifier, _, _) = TextAnalyzer.Divide.FromDeclaration(entity.Declaration);
 
         if (identifier.Contains("exception")) return NodeType.Exception;
         else

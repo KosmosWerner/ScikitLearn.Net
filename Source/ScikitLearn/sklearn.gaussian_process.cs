@@ -44,23 +44,23 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (kernel != null)
-                        pyDict["kernel"] = ToPython(kernel);
+                        pyDict["kernel"] = Helpers.ToPython(kernel);
                     if (optimizer != "fmin_l_bfgs_b")
-                        pyDict["optimizer"] = ToPython(optimizer);
+                        pyDict["optimizer"] = Helpers.ToPython(optimizer);
                     if (n_restarts_optimizer != 0)
-                        pyDict["n_restarts_optimizer"] = ToPython(n_restarts_optimizer);
+                        pyDict["n_restarts_optimizer"] = Helpers.ToPython(n_restarts_optimizer);
                     if (max_iter_predict != 100)
-                        pyDict["max_iter_predict"] = ToPython(max_iter_predict);
+                        pyDict["max_iter_predict"] = Helpers.ToPython(max_iter_predict);
                     if (warm_start != false)
-                        pyDict["warm_start"] = ToPython(warm_start);
+                        pyDict["warm_start"] = Helpers.ToPython(warm_start);
                     if (copy_X_train != true)
-                        pyDict["copy_X_train"] = ToPython(copy_X_train);
+                        pyDict["copy_X_train"] = Helpers.ToPython(copy_X_train);
                     if (random_state != null)
-                        pyDict["random_state"] = ToPython(random_state);
+                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                     if (multi_class != "one_vs_rest")
-                        pyDict["multi_class"] = ToPython(multi_class);
+                        pyDict["multi_class"] = Helpers.ToPython(multi_class);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = ToPython(n_jobs);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
                     self = sklearn.gaussian_process.self.InvokeMethod("GaussianProcessClassifier", args, pyDict);
                 }
 
@@ -76,15 +76,15 @@ namespace ScikitLearn
 
                 public PyObject base_estimator_ => self.GetAttr("base_estimator_");
                 public PyObject kernel_ => self.GetAttr("kernel_");
-                public float log_marginal_likelihood_value_ => ToCsharp<float>(self.GetAttr("log_marginal_likelihood_value_"));
-                public NDarray classes_ => ToCsharp<NDarray>(self.GetAttr("classes_"));
-                public int n_classes_ => ToCsharp<int>(self.GetAttr("n_classes_"));
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
+                public float log_marginal_likelihood_value_ => Helpers.ToCSharpFloat(self.GetAttr("log_marginal_likelihood_value_"));
+                public NDarray classes_ => Helpers.ToCSharpNDarray(self.GetAttr("classes_"));
+                public int n_classes_ => Helpers.ToCSharpInt(self.GetAttr("n_classes_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
 
                 public GaussianProcessClassifier fit(PyObject X, NDarray y)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
@@ -102,7 +102,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
@@ -111,36 +111,36 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (theta != null)
-                        pyDict["theta"] = ToPython(theta);
+                        pyDict["theta"] = Helpers.ToPython(theta);
                     if (eval_gradient != false)
-                        pyDict["eval_gradient"] = ToPython(eval_gradient);
+                        pyDict["eval_gradient"] = Helpers.ToPython(eval_gradient);
                     if (clone_kernel != true)
-                        pyDict["clone_kernel"] = ToPython(clone_kernel);
+                        pyDict["clone_kernel"] = Helpers.ToPython(clone_kernel);
                     PyTuple result = new PyTuple(self.InvokeMethod("log_marginal_likelihood", args, pyDict));
-                    return (ToCsharp<float>(result[0]), ToCsharp<NDarray>(result[1]));
+                    return (Helpers.ToCSharpFloat(result[0]), Helpers.ToCSharpNDarray(result[1]));
                 }
 
                 public NDarray predict(PyObject X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
                 public NDarray predict_proba(PyObject X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict_proba", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_proba", args, pyDict));
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("score", args, pyDict));
                 }
 
                 public GaussianProcessClassifier set_params(Dictionary<string, PyObject>? @params = null)
@@ -148,7 +148,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -158,7 +158,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_score_request", args, pyDict);
                     return this;
                 }
@@ -171,21 +171,21 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (kernel != null)
-                        pyDict["kernel"] = ToPython(kernel);
+                        pyDict["kernel"] = Helpers.ToPython(kernel);
                     if (alpha != 1e-10f)
-                        pyDict["alpha"] = ToPython(alpha);
+                        pyDict["alpha"] = Helpers.ToPython(alpha);
                     if (optimizer != "fmin_l_bfgs_b")
-                        pyDict["optimizer"] = ToPython(optimizer);
+                        pyDict["optimizer"] = Helpers.ToPython(optimizer);
                     if (n_restarts_optimizer != 0)
-                        pyDict["n_restarts_optimizer"] = ToPython(n_restarts_optimizer);
+                        pyDict["n_restarts_optimizer"] = Helpers.ToPython(n_restarts_optimizer);
                     if (normalize_y != false)
-                        pyDict["normalize_y"] = ToPython(normalize_y);
+                        pyDict["normalize_y"] = Helpers.ToPython(normalize_y);
                     if (copy_X_train != true)
-                        pyDict["copy_X_train"] = ToPython(copy_X_train);
+                        pyDict["copy_X_train"] = Helpers.ToPython(copy_X_train);
                     if (n_targets != null)
-                        pyDict["n_targets"] = ToPython(n_targets);
+                        pyDict["n_targets"] = Helpers.ToPython(n_targets.Value);
                     if (random_state != null)
-                        pyDict["random_state"] = ToPython(random_state);
+                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                     self = sklearn.gaussian_process.self.InvokeMethod("GaussianProcessRegressor", args, pyDict);
                 }
 
@@ -200,17 +200,17 @@ namespace ScikitLearn
                 }
 
                 public PyObject X_train_ => self.GetAttr("X_train_");
-                public NDarray y_train_ => ToCsharp<NDarray>(self.GetAttr("y_train_"));
+                public NDarray y_train_ => Helpers.ToCSharpNDarray(self.GetAttr("y_train_"));
                 public PyObject kernel_ => self.GetAttr("kernel_");
-                public NDarray L_ => ToCsharp<NDarray>(self.GetAttr("L_"));
-                public NDarray alpha_ => ToCsharp<NDarray>(self.GetAttr("alpha_"));
-                public float log_marginal_likelihood_value_ => ToCsharp<float>(self.GetAttr("log_marginal_likelihood_value_"));
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
+                public NDarray L_ => Helpers.ToCSharpNDarray(self.GetAttr("L_"));
+                public NDarray alpha_ => Helpers.ToCSharpNDarray(self.GetAttr("alpha_"));
+                public float log_marginal_likelihood_value_ => Helpers.ToCSharpFloat(self.GetAttr("log_marginal_likelihood_value_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
 
                 public GaussianProcessRegressor fit(PyObject X, NDarray y)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
@@ -228,7 +228,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
@@ -237,45 +237,45 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (theta != null)
-                        pyDict["theta"] = ToPython(theta);
+                        pyDict["theta"] = Helpers.ToPython(theta);
                     if (eval_gradient != false)
-                        pyDict["eval_gradient"] = ToPython(eval_gradient);
+                        pyDict["eval_gradient"] = Helpers.ToPython(eval_gradient);
                     if (clone_kernel != true)
-                        pyDict["clone_kernel"] = ToPython(clone_kernel);
+                        pyDict["clone_kernel"] = Helpers.ToPython(clone_kernel);
                     PyTuple result = new PyTuple(self.InvokeMethod("log_marginal_likelihood", args, pyDict));
-                    return (ToCsharp<float>(result[0]), ToCsharp<NDarray>(result[1]));
+                    return (Helpers.ToCSharpFloat(result[0]), Helpers.ToCSharpNDarray(result[1]));
                 }
 
                 public (NDarray, NDarray, NDarray) predict(PyObject X, bool return_std = false, bool return_cov = false)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     if (return_std != false)
-                        pyDict["return_std"] = ToPython(return_std);
+                        pyDict["return_std"] = Helpers.ToPython(return_std);
                     if (return_cov != false)
-                        pyDict["return_cov"] = ToPython(return_cov);
+                        pyDict["return_cov"] = Helpers.ToPython(return_cov);
                     PyTuple result = new PyTuple(self.InvokeMethod("predict", args, pyDict));
-                    return (ToCsharp<NDarray>(result[0]), ToCsharp<NDarray>(result[1]), ToCsharp<NDarray>(result[2]));
+                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]));
                 }
 
                 public NDarray sample_y(PyObject X, int n_samples = 1, int? random_state = 0)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     if (n_samples != 1)
-                        pyDict["n_samples"] = ToPython(n_samples);
+                        pyDict["n_samples"] = Helpers.ToPython(n_samples);
                     if (random_state != 0)
-                        pyDict["random_state"] = ToPython(random_state);
-                    return ToCsharp<NDarray>(self.InvokeMethod("sample_y", args, pyDict));
+                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("sample_y", args, pyDict));
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("score", args, pyDict));
                 }
 
                 public GaussianProcessRegressor set_params(Dictionary<string, PyObject>? @params = null)
@@ -283,7 +283,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -293,9 +293,9 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (return_cov != "$UNCHANGED$")
-                        pyDict["return_cov"] = ToPython(return_cov);
+                        pyDict["return_cov"] = Helpers.ToPython(return_cov);
                     if (return_std != "$UNCHANGED$")
-                        pyDict["return_std"] = ToPython(return_std);
+                        pyDict["return_std"] = Helpers.ToPython(return_std);
                     self.InvokeMethod("set_predict_request", args, pyDict);
                     return this;
                 }
@@ -305,7 +305,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_score_request", args, pyDict);
                     return this;
                 }
@@ -347,7 +347,7 @@ namespace ScikitLearn
                 {
                     public CompoundKernel(PyTuple kernels)
                     {
-                        PyTuple args = ToTuple(new object[] { kernels });
+                        PyTuple args = new PyTuple([Helpers.ToPython(kernels)]);
                         PyDict pyDict = new PyDict();
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("CompoundKernel", args, pyDict);
                     }
@@ -364,16 +364,16 @@ namespace ScikitLearn
 
                     public void clone_with_theta(NDarray theta)
                     {
-                        PyTuple args = ToTuple(new object[] { theta });
+                        PyTuple args = new PyTuple([Helpers.ToPython(theta)]);
                         PyDict pyDict = new PyDict();
                         self.InvokeMethod("clone_with_theta", args, pyDict);
                     }
 
                     public NDarray diag(PyObject X)
                     {
-                        PyTuple args = ToTuple(new object[] { X });
+                        PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                         PyDict pyDict = new PyDict();
-                        return ToCsharp<NDarray>(self.InvokeMethod("diag", args, pyDict));
+                        return Helpers.ToCSharpNDarray(self.InvokeMethod("diag", args, pyDict));
                     }
 
                     public PyDict get_params(bool deep = true)
@@ -381,7 +381,7 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (deep != true)
-                            pyDict["deep"] = ToPython(deep);
+                            pyDict["deep"] = Helpers.ToPython(deep);
                         return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                     }
 
@@ -408,9 +408,9 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (constant_value != 1.0f)
-                            pyDict["constant_value"] = ToPython(constant_value);
+                            pyDict["constant_value"] = Helpers.ToPython(constant_value);
                         if (constant_value_bounds != null)
-                            pyDict["constant_value_bounds"] = ToPython(constant_value_bounds);
+                            pyDict["constant_value_bounds"] = Helpers.ToPython(constant_value_bounds.Value);
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("ConstantKernel", args, pyDict);
                     }
 
@@ -426,16 +426,16 @@ namespace ScikitLearn
 
                     public void clone_with_theta(NDarray theta)
                     {
-                        PyTuple args = ToTuple(new object[] { theta });
+                        PyTuple args = new PyTuple([Helpers.ToPython(theta)]);
                         PyDict pyDict = new PyDict();
                         self.InvokeMethod("clone_with_theta", args, pyDict);
                     }
 
                     public NDarray diag(PyObject X)
                     {
-                        PyTuple args = ToTuple(new object[] { X });
+                        PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                         PyDict pyDict = new PyDict();
-                        return ToCsharp<NDarray>(self.InvokeMethod("diag", args, pyDict));
+                        return Helpers.ToCSharpNDarray(self.InvokeMethod("diag", args, pyDict));
                     }
 
                     public PyDict get_params(bool deep = true)
@@ -443,7 +443,7 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (deep != true)
-                            pyDict["deep"] = ToPython(deep);
+                            pyDict["deep"] = Helpers.ToPython(deep);
                         return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                     }
 
@@ -470,9 +470,9 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (sigma_0 != 1.0f)
-                            pyDict["sigma_0"] = ToPython(sigma_0);
+                            pyDict["sigma_0"] = Helpers.ToPython(sigma_0);
                         if (sigma_0_bounds != null)
-                            pyDict["sigma_0_bounds"] = ToPython(sigma_0_bounds);
+                            pyDict["sigma_0_bounds"] = Helpers.ToPython(sigma_0_bounds.Value);
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("DotProduct", args, pyDict);
                     }
 
@@ -488,16 +488,16 @@ namespace ScikitLearn
 
                     public void clone_with_theta(NDarray theta)
                     {
-                        PyTuple args = ToTuple(new object[] { theta });
+                        PyTuple args = new PyTuple([Helpers.ToPython(theta)]);
                         PyDict pyDict = new PyDict();
                         self.InvokeMethod("clone_with_theta", args, pyDict);
                     }
 
                     public NDarray diag(NDarray X)
                     {
-                        PyTuple args = ToTuple(new object[] { X });
+                        PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                         PyDict pyDict = new PyDict();
-                        return ToCsharp<NDarray>(self.InvokeMethod("diag", args, pyDict));
+                        return Helpers.ToCSharpNDarray(self.InvokeMethod("diag", args, pyDict));
                     }
 
                     public PyDict get_params(bool deep = true)
@@ -505,7 +505,7 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (deep != true)
-                            pyDict["deep"] = ToPython(deep);
+                            pyDict["deep"] = Helpers.ToPython(deep);
                         return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                     }
 
@@ -532,13 +532,13 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (length_scale != 1.0f)
-                            pyDict["length_scale"] = ToPython(length_scale);
+                            pyDict["length_scale"] = Helpers.ToPython(length_scale);
                         if (periodicity != 1.0f)
-                            pyDict["periodicity"] = ToPython(periodicity);
+                            pyDict["periodicity"] = Helpers.ToPython(periodicity);
                         if (length_scale_bounds != null)
-                            pyDict["length_scale_bounds"] = ToPython(length_scale_bounds);
+                            pyDict["length_scale_bounds"] = Helpers.ToPython(length_scale_bounds.Value);
                         if (periodicity_bounds != null)
-                            pyDict["periodicity_bounds"] = ToPython(periodicity_bounds);
+                            pyDict["periodicity_bounds"] = Helpers.ToPython(periodicity_bounds.Value);
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("ExpSineSquared", args, pyDict);
                     }
 
@@ -554,16 +554,16 @@ namespace ScikitLearn
 
                     public void clone_with_theta(NDarray theta)
                     {
-                        PyTuple args = ToTuple(new object[] { theta });
+                        PyTuple args = new PyTuple([Helpers.ToPython(theta)]);
                         PyDict pyDict = new PyDict();
                         self.InvokeMethod("clone_with_theta", args, pyDict);
                     }
 
                     public NDarray diag(NDarray X)
                     {
-                        PyTuple args = ToTuple(new object[] { X });
+                        PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                         PyDict pyDict = new PyDict();
-                        return ToCsharp<NDarray>(self.InvokeMethod("diag", args, pyDict));
+                        return Helpers.ToCSharpNDarray(self.InvokeMethod("diag", args, pyDict));
                     }
 
                     public PyDict get_params(bool deep = true)
@@ -571,7 +571,7 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (deep != true)
-                            pyDict["deep"] = ToPython(deep);
+                            pyDict["deep"] = Helpers.ToPython(deep);
                         return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                     }
 
@@ -595,7 +595,7 @@ namespace ScikitLearn
                 {
                     public Exponentiation(PyObject kernel, float exponent)
                     {
-                        PyTuple args = ToTuple(new object[] { kernel, exponent });
+                        PyTuple args = new PyTuple([Helpers.ToPython(kernel), Helpers.ToPython(exponent)]);
                         PyDict pyDict = new PyDict();
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("Exponentiation", args, pyDict);
                     }
@@ -612,16 +612,16 @@ namespace ScikitLearn
 
                     public void clone_with_theta(NDarray theta)
                     {
-                        PyTuple args = ToTuple(new object[] { theta });
+                        PyTuple args = new PyTuple([Helpers.ToPython(theta)]);
                         PyDict pyDict = new PyDict();
                         self.InvokeMethod("clone_with_theta", args, pyDict);
                     }
 
                     public NDarray diag(PyObject X)
                     {
-                        PyTuple args = ToTuple(new object[] { X });
+                        PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                         PyDict pyDict = new PyDict();
-                        return ToCsharp<NDarray>(self.InvokeMethod("diag", args, pyDict));
+                        return Helpers.ToCSharpNDarray(self.InvokeMethod("diag", args, pyDict));
                     }
 
                     public PyDict get_params(bool deep = true)
@@ -629,7 +629,7 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (deep != true)
-                            pyDict["deep"] = ToPython(deep);
+                            pyDict["deep"] = Helpers.ToPython(deep);
                         return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                     }
 
@@ -656,7 +656,7 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (n_elements != 1)
-                            pyDict["n_elements"] = ToPython(n_elements);
+                            pyDict["n_elements"] = Helpers.ToPython(n_elements);
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("Hyperparameter", args, pyDict);
                     }
 
@@ -670,11 +670,11 @@ namespace ScikitLearn
                         return new Hyperparameter(pyObject);
                     }
 
-                    public string name => ToCsharp<string>(self.GetAttr("name"));
-                    public string value_type => ToCsharp<string>(self.GetAttr("value_type"));
-                    public float bounds => ToCsharp<float>(self.GetAttr("bounds"));
-                    public int n_elements => ToCsharp<int>(self.GetAttr("n_elements"));
-                    public bool @fixed => ToCsharp<bool>(self.GetAttr("fixed"));
+                    public string name => Helpers.ToCSharpString(self.GetAttr("name"));
+                    public string value_type => Helpers.ToCSharpString(self.GetAttr("value_type"));
+                    public float bounds => Helpers.ToCSharpFloat(self.GetAttr("bounds"));
+                    public int n_elements => Helpers.ToCSharpInt(self.GetAttr("n_elements"));
+                    public bool @fixed => Helpers.ToCSharpBool(self.GetAttr("fixed"));
 
                     public void count()
                     {
@@ -688,7 +688,7 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (start != 0)
-                            pyDict["start"] = ToPython(start);
+                            pyDict["start"] = Helpers.ToPython(start);
                         self.InvokeMethod("index", args, pyDict);
                     }
                 }
@@ -714,16 +714,16 @@ namespace ScikitLearn
 
                     public void clone_with_theta(NDarray theta)
                     {
-                        PyTuple args = ToTuple(new object[] { theta });
+                        PyTuple args = new PyTuple([Helpers.ToPython(theta)]);
                         PyDict pyDict = new PyDict();
                         self.InvokeMethod("clone_with_theta", args, pyDict);
                     }
 
                     public NDarray diag(NDarray X)
                     {
-                        PyTuple args = ToTuple(new object[] { X });
+                        PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                         PyDict pyDict = new PyDict();
-                        return ToCsharp<NDarray>(self.InvokeMethod("diag", args, pyDict));
+                        return Helpers.ToCSharpNDarray(self.InvokeMethod("diag", args, pyDict));
                     }
 
                     public PyDict get_params(bool deep = true)
@@ -731,7 +731,7 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (deep != true)
-                            pyDict["deep"] = ToPython(deep);
+                            pyDict["deep"] = Helpers.ToPython(deep);
                         return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                     }
 
@@ -758,11 +758,11 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (length_scale != 1.0f)
-                            pyDict["length_scale"] = ToPython(length_scale);
+                            pyDict["length_scale"] = Helpers.ToPython(length_scale);
                         if (length_scale_bounds != null)
-                            pyDict["length_scale_bounds"] = ToPython(length_scale_bounds);
+                            pyDict["length_scale_bounds"] = Helpers.ToPython(length_scale_bounds.Value);
                         if (nu != 1.5f)
-                            pyDict["nu"] = ToPython(nu);
+                            pyDict["nu"] = Helpers.ToPython(nu);
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("Matern", args, pyDict);
                     }
 
@@ -778,16 +778,16 @@ namespace ScikitLearn
 
                     public void clone_with_theta(NDarray theta)
                     {
-                        PyTuple args = ToTuple(new object[] { theta });
+                        PyTuple args = new PyTuple([Helpers.ToPython(theta)]);
                         PyDict pyDict = new PyDict();
                         self.InvokeMethod("clone_with_theta", args, pyDict);
                     }
 
                     public NDarray diag(NDarray X)
                     {
-                        PyTuple args = ToTuple(new object[] { X });
+                        PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                         PyDict pyDict = new PyDict();
-                        return ToCsharp<NDarray>(self.InvokeMethod("diag", args, pyDict));
+                        return Helpers.ToCSharpNDarray(self.InvokeMethod("diag", args, pyDict));
                     }
 
                     public PyDict get_params(bool deep = true)
@@ -795,7 +795,7 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (deep != true)
-                            pyDict["deep"] = ToPython(deep);
+                            pyDict["deep"] = Helpers.ToPython(deep);
                         return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                     }
 
@@ -822,13 +822,13 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (gamma != 1.0f)
-                            pyDict["gamma"] = ToPython(gamma);
+                            pyDict["gamma"] = Helpers.ToPython(gamma);
                         if (gamma_bounds != null)
-                            pyDict["gamma_bounds"] = ToPython(gamma_bounds);
+                            pyDict["gamma_bounds"] = Helpers.ToPython(gamma_bounds.Value);
                         if (metric != "linear")
-                            pyDict["metric"] = ToPython(metric);
+                            pyDict["metric"] = Helpers.ToPython(metric);
                         if (pairwise_kernels_kwargs != null)
-                            pyDict["pairwise_kernels_kwargs"] = ToPython(pairwise_kernels_kwargs);
+                            pyDict["pairwise_kernels_kwargs"] = Helpers.ToPython(pairwise_kernels_kwargs);
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("PairwiseKernel", args, pyDict);
                     }
 
@@ -844,16 +844,16 @@ namespace ScikitLearn
 
                     public void clone_with_theta(NDarray theta)
                     {
-                        PyTuple args = ToTuple(new object[] { theta });
+                        PyTuple args = new PyTuple([Helpers.ToPython(theta)]);
                         PyDict pyDict = new PyDict();
                         self.InvokeMethod("clone_with_theta", args, pyDict);
                     }
 
                     public NDarray diag(NDarray X)
                     {
-                        PyTuple args = ToTuple(new object[] { X });
+                        PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                         PyDict pyDict = new PyDict();
-                        return ToCsharp<NDarray>(self.InvokeMethod("diag", args, pyDict));
+                        return Helpers.ToCSharpNDarray(self.InvokeMethod("diag", args, pyDict));
                     }
 
                     public PyDict get_params(bool deep = true)
@@ -861,7 +861,7 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (deep != true)
-                            pyDict["deep"] = ToPython(deep);
+                            pyDict["deep"] = Helpers.ToPython(deep);
                         return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                     }
 
@@ -885,7 +885,7 @@ namespace ScikitLearn
                 {
                     public Product(PyObject k1, PyObject k2)
                     {
-                        PyTuple args = ToTuple(new object[] { k1, k2 });
+                        PyTuple args = new PyTuple([Helpers.ToPython(k1), Helpers.ToPython(k2)]);
                         PyDict pyDict = new PyDict();
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("Product", args, pyDict);
                     }
@@ -902,16 +902,16 @@ namespace ScikitLearn
 
                     public void clone_with_theta(NDarray theta)
                     {
-                        PyTuple args = ToTuple(new object[] { theta });
+                        PyTuple args = new PyTuple([Helpers.ToPython(theta)]);
                         PyDict pyDict = new PyDict();
                         self.InvokeMethod("clone_with_theta", args, pyDict);
                     }
 
                     public NDarray diag(PyObject X)
                     {
-                        PyTuple args = ToTuple(new object[] { X });
+                        PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                         PyDict pyDict = new PyDict();
-                        return ToCsharp<NDarray>(self.InvokeMethod("diag", args, pyDict));
+                        return Helpers.ToCSharpNDarray(self.InvokeMethod("diag", args, pyDict));
                     }
 
                     public PyDict get_params(bool deep = true)
@@ -919,7 +919,7 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (deep != true)
-                            pyDict["deep"] = ToPython(deep);
+                            pyDict["deep"] = Helpers.ToPython(deep);
                         return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                     }
 
@@ -946,9 +946,9 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (length_scale != 1.0f)
-                            pyDict["length_scale"] = ToPython(length_scale);
+                            pyDict["length_scale"] = Helpers.ToPython(length_scale);
                         if (length_scale_bounds != null)
-                            pyDict["length_scale_bounds"] = ToPython(length_scale_bounds);
+                            pyDict["length_scale_bounds"] = Helpers.ToPython(length_scale_bounds.Value);
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("RBF", args, pyDict);
                     }
 
@@ -964,16 +964,16 @@ namespace ScikitLearn
 
                     public void clone_with_theta(NDarray theta)
                     {
-                        PyTuple args = ToTuple(new object[] { theta });
+                        PyTuple args = new PyTuple([Helpers.ToPython(theta)]);
                         PyDict pyDict = new PyDict();
                         self.InvokeMethod("clone_with_theta", args, pyDict);
                     }
 
                     public NDarray diag(NDarray X)
                     {
-                        PyTuple args = ToTuple(new object[] { X });
+                        PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                         PyDict pyDict = new PyDict();
-                        return ToCsharp<NDarray>(self.InvokeMethod("diag", args, pyDict));
+                        return Helpers.ToCSharpNDarray(self.InvokeMethod("diag", args, pyDict));
                     }
 
                     public PyDict get_params(bool deep = true)
@@ -981,7 +981,7 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (deep != true)
-                            pyDict["deep"] = ToPython(deep);
+                            pyDict["deep"] = Helpers.ToPython(deep);
                         return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                     }
 
@@ -1008,13 +1008,13 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (length_scale != 1.0f)
-                            pyDict["length_scale"] = ToPython(length_scale);
+                            pyDict["length_scale"] = Helpers.ToPython(length_scale);
                         if (alpha != 1.0f)
-                            pyDict["alpha"] = ToPython(alpha);
+                            pyDict["alpha"] = Helpers.ToPython(alpha);
                         if (length_scale_bounds != null)
-                            pyDict["length_scale_bounds"] = ToPython(length_scale_bounds);
+                            pyDict["length_scale_bounds"] = Helpers.ToPython(length_scale_bounds.Value);
                         if (alpha_bounds != null)
-                            pyDict["alpha_bounds"] = ToPython(alpha_bounds);
+                            pyDict["alpha_bounds"] = Helpers.ToPython(alpha_bounds.Value);
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("RationalQuadratic", args, pyDict);
                     }
 
@@ -1030,16 +1030,16 @@ namespace ScikitLearn
 
                     public void clone_with_theta(NDarray theta)
                     {
-                        PyTuple args = ToTuple(new object[] { theta });
+                        PyTuple args = new PyTuple([Helpers.ToPython(theta)]);
                         PyDict pyDict = new PyDict();
                         self.InvokeMethod("clone_with_theta", args, pyDict);
                     }
 
                     public NDarray diag(NDarray X)
                     {
-                        PyTuple args = ToTuple(new object[] { X });
+                        PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                         PyDict pyDict = new PyDict();
-                        return ToCsharp<NDarray>(self.InvokeMethod("diag", args, pyDict));
+                        return Helpers.ToCSharpNDarray(self.InvokeMethod("diag", args, pyDict));
                     }
 
                     public PyDict get_params(bool deep = true)
@@ -1047,7 +1047,7 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (deep != true)
-                            pyDict["deep"] = ToPython(deep);
+                            pyDict["deep"] = Helpers.ToPython(deep);
                         return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                     }
 
@@ -1071,7 +1071,7 @@ namespace ScikitLearn
                 {
                     public Sum(PyObject k1, PyObject k2)
                     {
-                        PyTuple args = ToTuple(new object[] { k1, k2 });
+                        PyTuple args = new PyTuple([Helpers.ToPython(k1), Helpers.ToPython(k2)]);
                         PyDict pyDict = new PyDict();
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("Sum", args, pyDict);
                     }
@@ -1088,16 +1088,16 @@ namespace ScikitLearn
 
                     public void clone_with_theta(NDarray theta)
                     {
-                        PyTuple args = ToTuple(new object[] { theta });
+                        PyTuple args = new PyTuple([Helpers.ToPython(theta)]);
                         PyDict pyDict = new PyDict();
                         self.InvokeMethod("clone_with_theta", args, pyDict);
                     }
 
                     public NDarray diag(PyObject X)
                     {
-                        PyTuple args = ToTuple(new object[] { X });
+                        PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                         PyDict pyDict = new PyDict();
-                        return ToCsharp<NDarray>(self.InvokeMethod("diag", args, pyDict));
+                        return Helpers.ToCSharpNDarray(self.InvokeMethod("diag", args, pyDict));
                     }
 
                     public PyDict get_params(bool deep = true)
@@ -1105,7 +1105,7 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (deep != true)
-                            pyDict["deep"] = ToPython(deep);
+                            pyDict["deep"] = Helpers.ToPython(deep);
                         return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                     }
 
@@ -1132,9 +1132,9 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (noise_level != 1.0f)
-                            pyDict["noise_level"] = ToPython(noise_level);
+                            pyDict["noise_level"] = Helpers.ToPython(noise_level);
                         if (noise_level_bounds != null)
-                            pyDict["noise_level_bounds"] = ToPython(noise_level_bounds);
+                            pyDict["noise_level_bounds"] = Helpers.ToPython(noise_level_bounds.Value);
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("WhiteKernel", args, pyDict);
                     }
 
@@ -1150,16 +1150,16 @@ namespace ScikitLearn
 
                     public void clone_with_theta(NDarray theta)
                     {
-                        PyTuple args = ToTuple(new object[] { theta });
+                        PyTuple args = new PyTuple([Helpers.ToPython(theta)]);
                         PyDict pyDict = new PyDict();
                         self.InvokeMethod("clone_with_theta", args, pyDict);
                     }
 
                     public NDarray diag(PyObject X)
                     {
-                        PyTuple args = ToTuple(new object[] { X });
+                        PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                         PyDict pyDict = new PyDict();
-                        return ToCsharp<NDarray>(self.InvokeMethod("diag", args, pyDict));
+                        return Helpers.ToCSharpNDarray(self.InvokeMethod("diag", args, pyDict));
                     }
 
                     public PyDict get_params(bool deep = true)
@@ -1167,7 +1167,7 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (deep != true)
-                            pyDict["deep"] = ToPython(deep);
+                            pyDict["deep"] = Helpers.ToPython(deep);
                         return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                     }
 

@@ -61,7 +61,7 @@ public static class Generator
 
             var sortedContainers = nodeContainers.OrderBy(container =>
             {
-                var (_, fullName, _) = TextAnalyzer.Divide.Declaration(container.Declaration);
+                var (_, fullName, _) = TextAnalyzer.Divide.FromDeclaration(container.Declaration);
                 var namespaceParts = fullName.Split('.');
                 return string.Join(".", namespaceParts[..^1]);
             });

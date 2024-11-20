@@ -44,15 +44,15 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (estimator != null)
-                        pyDict["estimator"] = ToPython(estimator);
+                        pyDict["estimator"] = Helpers.ToPython(estimator);
                     if (n_estimators != 50)
-                        pyDict["n_estimators"] = ToPython(n_estimators);
+                        pyDict["n_estimators"] = Helpers.ToPython(n_estimators);
                     if (learning_rate != 1.0f)
-                        pyDict["learning_rate"] = ToPython(learning_rate);
+                        pyDict["learning_rate"] = Helpers.ToPython(learning_rate);
                     if (algorithm != "SAMME.R")
-                        pyDict["algorithm"] = ToPython(algorithm);
+                        pyDict["algorithm"] = Helpers.ToPython(algorithm);
                     if (random_state != null)
-                        pyDict["random_state"] = ToPython(random_state);
+                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                     self = sklearn.ensemble.self.InvokeMethod("AdaBoostClassifier", args, pyDict);
                 }
 
@@ -68,27 +68,27 @@ namespace ScikitLearn
 
                 public PyObject estimator_ => self.GetAttr("estimator_");
                 public PyTuple estimators_ => new PyTuple(self.GetAttr("estimators_"));
-                public NDarray classes_ => ToCsharp<NDarray>(self.GetAttr("classes_"));
-                public int n_classes_ => ToCsharp<int>(self.GetAttr("n_classes_"));
-                public NDarray estimator_weights_ => ToCsharp<NDarray>(self.GetAttr("estimator_weights_"));
-                public NDarray estimator_errors_ => ToCsharp<NDarray>(self.GetAttr("estimator_errors_"));
-                public NDarray feature_importances_ => ToCsharp<NDarray>(self.GetAttr("feature_importances_"));
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
+                public NDarray classes_ => Helpers.ToCSharpNDarray(self.GetAttr("classes_"));
+                public int n_classes_ => Helpers.ToCSharpInt(self.GetAttr("n_classes_"));
+                public NDarray estimator_weights_ => Helpers.ToCSharpNDarray(self.GetAttr("estimator_weights_"));
+                public NDarray estimator_errors_ => Helpers.ToCSharpNDarray(self.GetAttr("estimator_errors_"));
+                public NDarray feature_importances_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_importances_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
 
                 public NDarray decision_function(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("decision_function", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("decision_function", args, pyDict));
                 }
 
                 public AdaBoostClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
@@ -105,38 +105,38 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
                 public NDarray predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
                 public NDarray predict_log_proba(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict_log_proba", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_log_proba", args, pyDict));
                 }
 
                 public NDarray predict_proba(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict_proba", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_proba", args, pyDict));
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("score", args, pyDict));
                 }
 
                 public AdaBoostClassifier set_fit_request(string? sample_weight = "$UNCHANGED$")
@@ -144,7 +144,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_fit_request", args, pyDict);
                     return this;
                 }
@@ -154,7 +154,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -164,39 +164,39 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_score_request", args, pyDict);
                     return this;
                 }
 
                 public NDarray staged_decision_function(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("staged_decision_function", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("staged_decision_function", args, pyDict));
                 }
 
                 public NDarray staged_predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("staged_predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("staged_predict", args, pyDict));
                 }
 
                 public NDarray staged_predict_proba(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("staged_predict_proba", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("staged_predict_proba", args, pyDict));
                 }
 
                 public float staged_score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("staged_score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("staged_score", args, pyDict));
                 }
             }
 
@@ -207,15 +207,15 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (estimator != null)
-                        pyDict["estimator"] = ToPython(estimator);
+                        pyDict["estimator"] = Helpers.ToPython(estimator);
                     if (n_estimators != 50)
-                        pyDict["n_estimators"] = ToPython(n_estimators);
+                        pyDict["n_estimators"] = Helpers.ToPython(n_estimators);
                     if (learning_rate != 1.0f)
-                        pyDict["learning_rate"] = ToPython(learning_rate);
+                        pyDict["learning_rate"] = Helpers.ToPython(learning_rate);
                     if (loss != "linear")
-                        pyDict["loss"] = ToPython(loss);
+                        pyDict["loss"] = Helpers.ToPython(loss);
                     if (random_state != null)
-                        pyDict["random_state"] = ToPython(random_state);
+                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                     self = sklearn.ensemble.self.InvokeMethod("AdaBoostRegressor", args, pyDict);
                 }
 
@@ -231,18 +231,18 @@ namespace ScikitLearn
 
                 public PyObject estimator_ => self.GetAttr("estimator_");
                 public PyTuple estimators_ => new PyTuple(self.GetAttr("estimators_"));
-                public NDarray estimator_weights_ => ToCsharp<NDarray>(self.GetAttr("estimator_weights_"));
-                public NDarray estimator_errors_ => ToCsharp<NDarray>(self.GetAttr("estimator_errors_"));
-                public NDarray feature_importances_ => ToCsharp<NDarray>(self.GetAttr("feature_importances_"));
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
+                public NDarray estimator_weights_ => Helpers.ToCSharpNDarray(self.GetAttr("estimator_weights_"));
+                public NDarray estimator_errors_ => Helpers.ToCSharpNDarray(self.GetAttr("estimator_errors_"));
+                public NDarray feature_importances_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_importances_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
 
                 public AdaBoostRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
@@ -259,24 +259,24 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
                 public NDarray predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("score", args, pyDict));
                 }
 
                 public AdaBoostRegressor set_fit_request(string? sample_weight = "$UNCHANGED$")
@@ -284,7 +284,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_fit_request", args, pyDict);
                     return this;
                 }
@@ -294,7 +294,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -304,25 +304,25 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_score_request", args, pyDict);
                     return this;
                 }
 
                 public NDarray staged_predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("staged_predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("staged_predict", args, pyDict));
                 }
 
                 public float staged_score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("staged_score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("staged_score", args, pyDict));
                 }
             }
 
@@ -333,27 +333,27 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (estimator != null)
-                        pyDict["estimator"] = ToPython(estimator);
+                        pyDict["estimator"] = Helpers.ToPython(estimator);
                     if (n_estimators != 10)
-                        pyDict["n_estimators"] = ToPython(n_estimators);
+                        pyDict["n_estimators"] = Helpers.ToPython(n_estimators);
                     if (max_samples != 1.0f)
-                        pyDict["max_samples"] = ToPython(max_samples);
+                        pyDict["max_samples"] = Helpers.ToPython(max_samples);
                     if (max_features != 1.0f)
-                        pyDict["max_features"] = ToPython(max_features);
+                        pyDict["max_features"] = Helpers.ToPython(max_features);
                     if (bootstrap != true)
-                        pyDict["bootstrap"] = ToPython(bootstrap);
+                        pyDict["bootstrap"] = Helpers.ToPython(bootstrap);
                     if (bootstrap_features != false)
-                        pyDict["bootstrap_features"] = ToPython(bootstrap_features);
+                        pyDict["bootstrap_features"] = Helpers.ToPython(bootstrap_features);
                     if (oob_score != false)
-                        pyDict["oob_score"] = ToPython(oob_score);
+                        pyDict["oob_score"] = Helpers.ToPython(oob_score);
                     if (warm_start != false)
-                        pyDict["warm_start"] = ToPython(warm_start);
+                        pyDict["warm_start"] = Helpers.ToPython(warm_start);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = ToPython(n_jobs);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
                     if (random_state != null)
-                        pyDict["random_state"] = ToPython(random_state);
+                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                     if (verbose != 0)
-                        pyDict["verbose"] = ToPython(verbose);
+                        pyDict["verbose"] = Helpers.ToPython(verbose);
                     self = sklearn.ensemble.self.InvokeMethod("BaggingClassifier", args, pyDict);
                 }
 
@@ -368,31 +368,31 @@ namespace ScikitLearn
                 }
 
                 public PyObject estimator_ => self.GetAttr("estimator_");
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
                 public PyTuple estimators_ => new PyTuple(self.GetAttr("estimators_"));
-                public NDarray estimators_samples_ => ToCsharp<NDarray>(self.GetAttr("estimators_samples_"));
-                public NDarray estimators_features_ => ToCsharp<NDarray>(self.GetAttr("estimators_features_"));
-                public NDarray classes_ => ToCsharp<NDarray>(self.GetAttr("classes_"));
-                public int n_classes_ => ToCsharp<int>(self.GetAttr("n_classes_"));
-                public float oob_score_ => ToCsharp<float>(self.GetAttr("oob_score_"));
-                public NDarray oob_decision_function_ => ToCsharp<NDarray>(self.GetAttr("oob_decision_function_"));
+                public NDarray estimators_samples_ => Helpers.ToCSharpNDarray(self.GetAttr("estimators_samples_"));
+                public NDarray estimators_features_ => Helpers.ToCSharpNDarray(self.GetAttr("estimators_features_"));
+                public NDarray classes_ => Helpers.ToCSharpNDarray(self.GetAttr("classes_"));
+                public int n_classes_ => Helpers.ToCSharpInt(self.GetAttr("n_classes_"));
+                public float oob_score_ => Helpers.ToCSharpFloat(self.GetAttr("oob_score_"));
+                public NDarray oob_decision_function_ => Helpers.ToCSharpNDarray(self.GetAttr("oob_decision_function_"));
 
                 public NDarray decision_function(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("decision_function", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("decision_function", args, pyDict));
                 }
 
                 public BaggingClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
@@ -409,38 +409,38 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
                 public NDarray predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
                 public NDarray predict_log_proba(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict_log_proba", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_log_proba", args, pyDict));
                 }
 
                 public NDarray predict_proba(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict_proba", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_proba", args, pyDict));
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("score", args, pyDict));
                 }
 
                 public BaggingClassifier set_fit_request(string? sample_weight = "$UNCHANGED$")
@@ -448,7 +448,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_fit_request", args, pyDict);
                     return this;
                 }
@@ -458,7 +458,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -468,7 +468,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_score_request", args, pyDict);
                     return this;
                 }
@@ -481,27 +481,27 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (estimator != null)
-                        pyDict["estimator"] = ToPython(estimator);
+                        pyDict["estimator"] = Helpers.ToPython(estimator);
                     if (n_estimators != 10)
-                        pyDict["n_estimators"] = ToPython(n_estimators);
+                        pyDict["n_estimators"] = Helpers.ToPython(n_estimators);
                     if (max_samples != 1.0f)
-                        pyDict["max_samples"] = ToPython(max_samples);
+                        pyDict["max_samples"] = Helpers.ToPython(max_samples);
                     if (max_features != 1.0f)
-                        pyDict["max_features"] = ToPython(max_features);
+                        pyDict["max_features"] = Helpers.ToPython(max_features);
                     if (bootstrap != true)
-                        pyDict["bootstrap"] = ToPython(bootstrap);
+                        pyDict["bootstrap"] = Helpers.ToPython(bootstrap);
                     if (bootstrap_features != false)
-                        pyDict["bootstrap_features"] = ToPython(bootstrap_features);
+                        pyDict["bootstrap_features"] = Helpers.ToPython(bootstrap_features);
                     if (oob_score != false)
-                        pyDict["oob_score"] = ToPython(oob_score);
+                        pyDict["oob_score"] = Helpers.ToPython(oob_score);
                     if (warm_start != false)
-                        pyDict["warm_start"] = ToPython(warm_start);
+                        pyDict["warm_start"] = Helpers.ToPython(warm_start);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = ToPython(n_jobs);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
                     if (random_state != null)
-                        pyDict["random_state"] = ToPython(random_state);
+                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                     if (verbose != 0)
-                        pyDict["verbose"] = ToPython(verbose);
+                        pyDict["verbose"] = Helpers.ToPython(verbose);
                     self = sklearn.ensemble.self.InvokeMethod("BaggingRegressor", args, pyDict);
                 }
 
@@ -516,22 +516,22 @@ namespace ScikitLearn
                 }
 
                 public PyObject estimator_ => self.GetAttr("estimator_");
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
                 public PyTuple estimators_ => new PyTuple(self.GetAttr("estimators_"));
-                public NDarray estimators_samples_ => ToCsharp<NDarray>(self.GetAttr("estimators_samples_"));
-                public NDarray estimators_features_ => ToCsharp<NDarray>(self.GetAttr("estimators_features_"));
-                public float oob_score_ => ToCsharp<float>(self.GetAttr("oob_score_"));
+                public NDarray estimators_samples_ => Helpers.ToCSharpNDarray(self.GetAttr("estimators_samples_"));
+                public NDarray estimators_features_ => Helpers.ToCSharpNDarray(self.GetAttr("estimators_features_"));
+                public float oob_score_ => Helpers.ToCSharpFloat(self.GetAttr("oob_score_"));
                 public PyDict oob_prediction_ => new PyDict(self.GetAttr("oob_prediction_"));
 
                 public BaggingRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
@@ -548,24 +548,24 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
                 public NDarray predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("score", args, pyDict));
                 }
 
                 public BaggingRegressor set_fit_request(string? sample_weight = "$UNCHANGED$")
@@ -573,7 +573,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_fit_request", args, pyDict);
                     return this;
                 }
@@ -583,7 +583,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -593,7 +593,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_score_request", args, pyDict);
                     return this;
                 }
@@ -606,43 +606,43 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_estimators != 100)
-                        pyDict["n_estimators"] = ToPython(n_estimators);
+                        pyDict["n_estimators"] = Helpers.ToPython(n_estimators);
                     if (criterion != "gini")
-                        pyDict["criterion"] = ToPython(criterion);
+                        pyDict["criterion"] = Helpers.ToPython(criterion);
                     if (max_depth != null)
-                        pyDict["max_depth"] = ToPython(max_depth);
+                        pyDict["max_depth"] = Helpers.ToPython(max_depth.Value);
                     if (min_samples_split != 2)
-                        pyDict["min_samples_split"] = ToPython(min_samples_split);
+                        pyDict["min_samples_split"] = Helpers.ToPython(min_samples_split);
                     if (min_samples_leaf != 1)
-                        pyDict["min_samples_leaf"] = ToPython(min_samples_leaf);
+                        pyDict["min_samples_leaf"] = Helpers.ToPython(min_samples_leaf);
                     if (min_weight_fraction_leaf != 0.0f)
-                        pyDict["min_weight_fraction_leaf"] = ToPython(min_weight_fraction_leaf);
+                        pyDict["min_weight_fraction_leaf"] = Helpers.ToPython(min_weight_fraction_leaf);
                     if (max_features != "sqrt")
-                        pyDict["max_features"] = ToPython(max_features);
+                        pyDict["max_features"] = Helpers.ToPython(max_features);
                     if (max_leaf_nodes != null)
-                        pyDict["max_leaf_nodes"] = ToPython(max_leaf_nodes);
+                        pyDict["max_leaf_nodes"] = Helpers.ToPython(max_leaf_nodes.Value);
                     if (min_impurity_decrease != 0.0f)
-                        pyDict["min_impurity_decrease"] = ToPython(min_impurity_decrease);
+                        pyDict["min_impurity_decrease"] = Helpers.ToPython(min_impurity_decrease);
                     if (bootstrap != false)
-                        pyDict["bootstrap"] = ToPython(bootstrap);
+                        pyDict["bootstrap"] = Helpers.ToPython(bootstrap);
                     if (oob_score != false)
-                        pyDict["oob_score"] = ToPython(oob_score);
+                        pyDict["oob_score"] = Helpers.ToPython(oob_score);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = ToPython(n_jobs);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
                     if (random_state != null)
-                        pyDict["random_state"] = ToPython(random_state);
+                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                     if (verbose != 0)
-                        pyDict["verbose"] = ToPython(verbose);
+                        pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (warm_start != false)
-                        pyDict["warm_start"] = ToPython(warm_start);
+                        pyDict["warm_start"] = Helpers.ToPython(warm_start);
                     if (class_weight != null)
-                        pyDict["class_weight"] = ToPython(class_weight);
+                        pyDict["class_weight"] = Helpers.ToPython(class_weight);
                     if (ccp_alpha != 0.0f)
-                        pyDict["ccp_alpha"] = ToPython(ccp_alpha);
+                        pyDict["ccp_alpha"] = Helpers.ToPython(ccp_alpha);
                     if (max_samples != null)
-                        pyDict["max_samples"] = ToPython(max_samples);
+                        pyDict["max_samples"] = Helpers.ToPython(max_samples.Value);
                     if (monotonic_cst != null)
-                        pyDict["monotonic_cst"] = ToPython(monotonic_cst);
+                        pyDict["monotonic_cst"] = Helpers.ToPython(monotonic_cst);
                     self = sklearn.ensemble.self.InvokeMethod("ExtraTreesClassifier", args, pyDict);
                 }
 
@@ -658,37 +658,37 @@ namespace ScikitLearn
 
                 public PyObject estimator_ => self.GetAttr("estimator_");
                 public PyTuple estimators_ => new PyTuple(self.GetAttr("estimators_"));
-                public NDarray classes_ => ToCsharp<NDarray>(self.GetAttr("classes_"));
-                public int n_classes_ => ToCsharp<int>(self.GetAttr("n_classes_"));
-                public NDarray feature_importances_ => ToCsharp<NDarray>(self.GetAttr("feature_importances_"));
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
-                public int n_outputs_ => ToCsharp<int>(self.GetAttr("n_outputs_"));
-                public float oob_score_ => ToCsharp<float>(self.GetAttr("oob_score_"));
-                public NDarray oob_decision_function_ => ToCsharp<NDarray>(self.GetAttr("oob_decision_function_"));
-                public NDarray estimators_samples_ => ToCsharp<NDarray>(self.GetAttr("estimators_samples_"));
+                public NDarray classes_ => Helpers.ToCSharpNDarray(self.GetAttr("classes_"));
+                public int n_classes_ => Helpers.ToCSharpInt(self.GetAttr("n_classes_"));
+                public NDarray feature_importances_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_importances_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
+                public int n_outputs_ => Helpers.ToCSharpInt(self.GetAttr("n_outputs_"));
+                public float oob_score_ => Helpers.ToCSharpFloat(self.GetAttr("oob_score_"));
+                public NDarray oob_decision_function_ => Helpers.ToCSharpNDarray(self.GetAttr("oob_decision_function_"));
+                public NDarray estimators_samples_ => Helpers.ToCSharpNDarray(self.GetAttr("estimators_samples_"));
 
                 public NDarray apply(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("apply", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("apply", args, pyDict));
                 }
 
                 public (NDarray, NDarray) decision_path(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     PyTuple result = new PyTuple(self.InvokeMethod("decision_path", args, pyDict));
-                    return (ToCsharp<NDarray>(result[0]), ToCsharp<NDarray>(result[1]));
+                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
                 }
 
                 public ExtraTreesClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
@@ -705,38 +705,38 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
                 public NDarray predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
                 public NDarray predict_log_proba(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict_log_proba", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_log_proba", args, pyDict));
                 }
 
                 public NDarray predict_proba(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict_proba", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_proba", args, pyDict));
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("score", args, pyDict));
                 }
 
                 public ExtraTreesClassifier set_fit_request(string? sample_weight = "$UNCHANGED$")
@@ -744,7 +744,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_fit_request", args, pyDict);
                     return this;
                 }
@@ -754,7 +754,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -764,7 +764,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_score_request", args, pyDict);
                     return this;
                 }
@@ -777,41 +777,41 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_estimators != 100)
-                        pyDict["n_estimators"] = ToPython(n_estimators);
+                        pyDict["n_estimators"] = Helpers.ToPython(n_estimators);
                     if (criterion != "squared_error")
-                        pyDict["criterion"] = ToPython(criterion);
+                        pyDict["criterion"] = Helpers.ToPython(criterion);
                     if (max_depth != null)
-                        pyDict["max_depth"] = ToPython(max_depth);
+                        pyDict["max_depth"] = Helpers.ToPython(max_depth.Value);
                     if (min_samples_split != 2)
-                        pyDict["min_samples_split"] = ToPython(min_samples_split);
+                        pyDict["min_samples_split"] = Helpers.ToPython(min_samples_split);
                     if (min_samples_leaf != 1)
-                        pyDict["min_samples_leaf"] = ToPython(min_samples_leaf);
+                        pyDict["min_samples_leaf"] = Helpers.ToPython(min_samples_leaf);
                     if (min_weight_fraction_leaf != 0.0f)
-                        pyDict["min_weight_fraction_leaf"] = ToPython(min_weight_fraction_leaf);
+                        pyDict["min_weight_fraction_leaf"] = Helpers.ToPython(min_weight_fraction_leaf);
                     if (max_features != 1.0f)
-                        pyDict["max_features"] = ToPython(max_features);
+                        pyDict["max_features"] = Helpers.ToPython(max_features.Value);
                     if (max_leaf_nodes != null)
-                        pyDict["max_leaf_nodes"] = ToPython(max_leaf_nodes);
+                        pyDict["max_leaf_nodes"] = Helpers.ToPython(max_leaf_nodes.Value);
                     if (min_impurity_decrease != 0.0f)
-                        pyDict["min_impurity_decrease"] = ToPython(min_impurity_decrease);
+                        pyDict["min_impurity_decrease"] = Helpers.ToPython(min_impurity_decrease);
                     if (bootstrap != false)
-                        pyDict["bootstrap"] = ToPython(bootstrap);
+                        pyDict["bootstrap"] = Helpers.ToPython(bootstrap);
                     if (oob_score != false)
-                        pyDict["oob_score"] = ToPython(oob_score);
+                        pyDict["oob_score"] = Helpers.ToPython(oob_score);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = ToPython(n_jobs);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
                     if (random_state != null)
-                        pyDict["random_state"] = ToPython(random_state);
+                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                     if (verbose != 0)
-                        pyDict["verbose"] = ToPython(verbose);
+                        pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (warm_start != false)
-                        pyDict["warm_start"] = ToPython(warm_start);
+                        pyDict["warm_start"] = Helpers.ToPython(warm_start);
                     if (ccp_alpha != 0.0f)
-                        pyDict["ccp_alpha"] = ToPython(ccp_alpha);
+                        pyDict["ccp_alpha"] = Helpers.ToPython(ccp_alpha);
                     if (max_samples != null)
-                        pyDict["max_samples"] = ToPython(max_samples);
+                        pyDict["max_samples"] = Helpers.ToPython(max_samples.Value);
                     if (monotonic_cst != null)
-                        pyDict["monotonic_cst"] = ToPython(monotonic_cst);
+                        pyDict["monotonic_cst"] = Helpers.ToPython(monotonic_cst);
                     self = sklearn.ensemble.self.InvokeMethod("ExtraTreesRegressor", args, pyDict);
                 }
 
@@ -827,35 +827,35 @@ namespace ScikitLearn
 
                 public PyObject estimator_ => self.GetAttr("estimator_");
                 public PyTuple estimators_ => new PyTuple(self.GetAttr("estimators_"));
-                public NDarray feature_importances_ => ToCsharp<NDarray>(self.GetAttr("feature_importances_"));
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
-                public int n_outputs_ => ToCsharp<int>(self.GetAttr("n_outputs_"));
-                public float oob_score_ => ToCsharp<float>(self.GetAttr("oob_score_"));
+                public NDarray feature_importances_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_importances_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
+                public int n_outputs_ => Helpers.ToCSharpInt(self.GetAttr("n_outputs_"));
+                public float oob_score_ => Helpers.ToCSharpFloat(self.GetAttr("oob_score_"));
                 public PyDict oob_prediction_ => new PyDict(self.GetAttr("oob_prediction_"));
-                public NDarray estimators_samples_ => ToCsharp<NDarray>(self.GetAttr("estimators_samples_"));
+                public NDarray estimators_samples_ => Helpers.ToCSharpNDarray(self.GetAttr("estimators_samples_"));
 
                 public NDarray apply(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("apply", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("apply", args, pyDict));
                 }
 
                 public (NDarray, NDarray) decision_path(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     PyTuple result = new PyTuple(self.InvokeMethod("decision_path", args, pyDict));
-                    return (ToCsharp<NDarray>(result[0]), ToCsharp<NDarray>(result[1]));
+                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
                 }
 
                 public ExtraTreesRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
@@ -872,24 +872,24 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
                 public NDarray predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("score", args, pyDict));
                 }
 
                 public ExtraTreesRegressor set_fit_request(string? sample_weight = "$UNCHANGED$")
@@ -897,7 +897,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_fit_request", args, pyDict);
                     return this;
                 }
@@ -907,7 +907,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -917,7 +917,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_score_request", args, pyDict);
                     return this;
                 }
@@ -930,45 +930,45 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (loss != "log_loss")
-                        pyDict["loss"] = ToPython(loss);
+                        pyDict["loss"] = Helpers.ToPython(loss);
                     if (learning_rate != 0.1f)
-                        pyDict["learning_rate"] = ToPython(learning_rate);
+                        pyDict["learning_rate"] = Helpers.ToPython(learning_rate);
                     if (n_estimators != 100)
-                        pyDict["n_estimators"] = ToPython(n_estimators);
+                        pyDict["n_estimators"] = Helpers.ToPython(n_estimators);
                     if (subsample != 1.0f)
-                        pyDict["subsample"] = ToPython(subsample);
+                        pyDict["subsample"] = Helpers.ToPython(subsample);
                     if (criterion != "friedman_mse")
-                        pyDict["criterion"] = ToPython(criterion);
+                        pyDict["criterion"] = Helpers.ToPython(criterion);
                     if (min_samples_split != 2)
-                        pyDict["min_samples_split"] = ToPython(min_samples_split);
+                        pyDict["min_samples_split"] = Helpers.ToPython(min_samples_split);
                     if (min_samples_leaf != 1)
-                        pyDict["min_samples_leaf"] = ToPython(min_samples_leaf);
+                        pyDict["min_samples_leaf"] = Helpers.ToPython(min_samples_leaf);
                     if (min_weight_fraction_leaf != 0.0f)
-                        pyDict["min_weight_fraction_leaf"] = ToPython(min_weight_fraction_leaf);
+                        pyDict["min_weight_fraction_leaf"] = Helpers.ToPython(min_weight_fraction_leaf);
                     if (max_depth != 3)
-                        pyDict["max_depth"] = ToPython(max_depth);
+                        pyDict["max_depth"] = Helpers.ToPython(max_depth.Value);
                     if (min_impurity_decrease != 0.0f)
-                        pyDict["min_impurity_decrease"] = ToPython(min_impurity_decrease);
+                        pyDict["min_impurity_decrease"] = Helpers.ToPython(min_impurity_decrease);
                     if (init != null)
-                        pyDict["init"] = ToPython(init);
+                        pyDict["init"] = Helpers.ToPython(init);
                     if (random_state != null)
-                        pyDict["random_state"] = ToPython(random_state);
+                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                     if (max_features != null)
-                        pyDict["max_features"] = ToPython(max_features);
+                        pyDict["max_features"] = Helpers.ToPython(max_features.Value);
                     if (verbose != 0)
-                        pyDict["verbose"] = ToPython(verbose);
+                        pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (max_leaf_nodes != null)
-                        pyDict["max_leaf_nodes"] = ToPython(max_leaf_nodes);
+                        pyDict["max_leaf_nodes"] = Helpers.ToPython(max_leaf_nodes.Value);
                     if (warm_start != false)
-                        pyDict["warm_start"] = ToPython(warm_start);
+                        pyDict["warm_start"] = Helpers.ToPython(warm_start);
                     if (validation_fraction != 0.1f)
-                        pyDict["validation_fraction"] = ToPython(validation_fraction);
+                        pyDict["validation_fraction"] = Helpers.ToPython(validation_fraction);
                     if (n_iter_no_change != null)
-                        pyDict["n_iter_no_change"] = ToPython(n_iter_no_change);
+                        pyDict["n_iter_no_change"] = Helpers.ToPython(n_iter_no_change.Value);
                     if (tol != 0.0001f)
-                        pyDict["tol"] = ToPython(tol);
+                        pyDict["tol"] = Helpers.ToPython(tol);
                     if (ccp_alpha != 0.0f)
-                        pyDict["ccp_alpha"] = ToPython(ccp_alpha);
+                        pyDict["ccp_alpha"] = Helpers.ToPython(ccp_alpha);
                     self = sklearn.ensemble.self.InvokeMethod("GradientBoostingClassifier", args, pyDict);
                 }
 
@@ -982,43 +982,43 @@ namespace ScikitLearn
                     return new GradientBoostingClassifier(pyObject);
                 }
 
-                public int n_estimators_ => ToCsharp<int>(self.GetAttr("n_estimators_"));
-                public int n_trees_per_iteration_ => ToCsharp<int>(self.GetAttr("n_trees_per_iteration_"));
-                public NDarray feature_importances_ => ToCsharp<NDarray>(self.GetAttr("feature_importances_"));
-                public NDarray oob_improvement_ => ToCsharp<NDarray>(self.GetAttr("oob_improvement_"));
-                public NDarray oob_scores_ => ToCsharp<NDarray>(self.GetAttr("oob_scores_"));
-                public float oob_score_ => ToCsharp<float>(self.GetAttr("oob_score_"));
-                public NDarray train_score_ => ToCsharp<NDarray>(self.GetAttr("train_score_"));
+                public int n_estimators_ => Helpers.ToCSharpInt(self.GetAttr("n_estimators_"));
+                public int n_trees_per_iteration_ => Helpers.ToCSharpInt(self.GetAttr("n_trees_per_iteration_"));
+                public NDarray feature_importances_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_importances_"));
+                public NDarray oob_improvement_ => Helpers.ToCSharpNDarray(self.GetAttr("oob_improvement_"));
+                public NDarray oob_scores_ => Helpers.ToCSharpNDarray(self.GetAttr("oob_scores_"));
+                public float oob_score_ => Helpers.ToCSharpFloat(self.GetAttr("oob_score_"));
+                public NDarray train_score_ => Helpers.ToCSharpNDarray(self.GetAttr("train_score_"));
                 public PyObject init_ => self.GetAttr("init_");
-                public NDarray estimators_ => ToCsharp<NDarray>(self.GetAttr("estimators_"));
-                public NDarray classes_ => ToCsharp<NDarray>(self.GetAttr("classes_"));
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
-                public int n_classes_ => ToCsharp<int>(self.GetAttr("n_classes_"));
-                public int max_features_ => ToCsharp<int>(self.GetAttr("max_features_"));
+                public NDarray estimators_ => Helpers.ToCSharpNDarray(self.GetAttr("estimators_"));
+                public NDarray classes_ => Helpers.ToCSharpNDarray(self.GetAttr("classes_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
+                public int n_classes_ => Helpers.ToCSharpInt(self.GetAttr("n_classes_"));
+                public int max_features_ => Helpers.ToCSharpInt(self.GetAttr("max_features_"));
 
                 public NDarray apply(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("apply", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("apply", args, pyDict));
                 }
 
                 public NDarray decision_function(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("decision_function", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("decision_function", args, pyDict));
                 }
 
                 public GradientBoostingClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null, PyObject? monitor = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     if (monitor != null)
-                        pyDict["monitor"] = ToPython(monitor);
+                        pyDict["monitor"] = Helpers.ToPython(monitor);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
@@ -1035,38 +1035,38 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
                 public NDarray predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
                 public NDarray predict_log_proba(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict_log_proba", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_log_proba", args, pyDict));
                 }
 
                 public NDarray predict_proba(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict_proba", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_proba", args, pyDict));
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("score", args, pyDict));
                 }
 
                 public GradientBoostingClassifier set_fit_request(string? monitor = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$")
@@ -1074,9 +1074,9 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (monitor != "$UNCHANGED$")
-                        pyDict["monitor"] = ToPython(monitor);
+                        pyDict["monitor"] = Helpers.ToPython(monitor);
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_fit_request", args, pyDict);
                     return this;
                 }
@@ -1086,7 +1086,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -1096,30 +1096,30 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_score_request", args, pyDict);
                     return this;
                 }
 
                 public NDarray staged_decision_function(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("staged_decision_function", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("staged_decision_function", args, pyDict));
                 }
 
                 public NDarray staged_predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("staged_predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("staged_predict", args, pyDict));
                 }
 
                 public NDarray staged_predict_proba(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("staged_predict_proba", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("staged_predict_proba", args, pyDict));
                 }
             }
 
@@ -1130,47 +1130,47 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (loss != "squared_error")
-                        pyDict["loss"] = ToPython(loss);
+                        pyDict["loss"] = Helpers.ToPython(loss);
                     if (learning_rate != 0.1f)
-                        pyDict["learning_rate"] = ToPython(learning_rate);
+                        pyDict["learning_rate"] = Helpers.ToPython(learning_rate);
                     if (n_estimators != 100)
-                        pyDict["n_estimators"] = ToPython(n_estimators);
+                        pyDict["n_estimators"] = Helpers.ToPython(n_estimators);
                     if (subsample != 1.0f)
-                        pyDict["subsample"] = ToPython(subsample);
+                        pyDict["subsample"] = Helpers.ToPython(subsample);
                     if (criterion != "friedman_mse")
-                        pyDict["criterion"] = ToPython(criterion);
+                        pyDict["criterion"] = Helpers.ToPython(criterion);
                     if (min_samples_split != 2)
-                        pyDict["min_samples_split"] = ToPython(min_samples_split);
+                        pyDict["min_samples_split"] = Helpers.ToPython(min_samples_split);
                     if (min_samples_leaf != 1)
-                        pyDict["min_samples_leaf"] = ToPython(min_samples_leaf);
+                        pyDict["min_samples_leaf"] = Helpers.ToPython(min_samples_leaf);
                     if (min_weight_fraction_leaf != 0.0f)
-                        pyDict["min_weight_fraction_leaf"] = ToPython(min_weight_fraction_leaf);
+                        pyDict["min_weight_fraction_leaf"] = Helpers.ToPython(min_weight_fraction_leaf);
                     if (max_depth != 3)
-                        pyDict["max_depth"] = ToPython(max_depth);
+                        pyDict["max_depth"] = Helpers.ToPython(max_depth.Value);
                     if (min_impurity_decrease != 0.0f)
-                        pyDict["min_impurity_decrease"] = ToPython(min_impurity_decrease);
+                        pyDict["min_impurity_decrease"] = Helpers.ToPython(min_impurity_decrease);
                     if (init != null)
-                        pyDict["init"] = ToPython(init);
+                        pyDict["init"] = Helpers.ToPython(init);
                     if (random_state != null)
-                        pyDict["random_state"] = ToPython(random_state);
+                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                     if (max_features != null)
-                        pyDict["max_features"] = ToPython(max_features);
+                        pyDict["max_features"] = Helpers.ToPython(max_features.Value);
                     if (alpha != 0.9f)
-                        pyDict["alpha"] = ToPython(alpha);
+                        pyDict["alpha"] = Helpers.ToPython(alpha);
                     if (verbose != 0)
-                        pyDict["verbose"] = ToPython(verbose);
+                        pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (max_leaf_nodes != null)
-                        pyDict["max_leaf_nodes"] = ToPython(max_leaf_nodes);
+                        pyDict["max_leaf_nodes"] = Helpers.ToPython(max_leaf_nodes.Value);
                     if (warm_start != false)
-                        pyDict["warm_start"] = ToPython(warm_start);
+                        pyDict["warm_start"] = Helpers.ToPython(warm_start);
                     if (validation_fraction != 0.1f)
-                        pyDict["validation_fraction"] = ToPython(validation_fraction);
+                        pyDict["validation_fraction"] = Helpers.ToPython(validation_fraction);
                     if (n_iter_no_change != null)
-                        pyDict["n_iter_no_change"] = ToPython(n_iter_no_change);
+                        pyDict["n_iter_no_change"] = Helpers.ToPython(n_iter_no_change.Value);
                     if (tol != 0.0001f)
-                        pyDict["tol"] = ToPython(tol);
+                        pyDict["tol"] = Helpers.ToPython(tol);
                     if (ccp_alpha != 0.0f)
-                        pyDict["ccp_alpha"] = ToPython(ccp_alpha);
+                        pyDict["ccp_alpha"] = Helpers.ToPython(ccp_alpha);
                     self = sklearn.ensemble.self.InvokeMethod("GradientBoostingRegressor", args, pyDict);
                 }
 
@@ -1184,34 +1184,34 @@ namespace ScikitLearn
                     return new GradientBoostingRegressor(pyObject);
                 }
 
-                public int n_estimators_ => ToCsharp<int>(self.GetAttr("n_estimators_"));
-                public int n_trees_per_iteration_ => ToCsharp<int>(self.GetAttr("n_trees_per_iteration_"));
-                public NDarray feature_importances_ => ToCsharp<NDarray>(self.GetAttr("feature_importances_"));
-                public NDarray oob_improvement_ => ToCsharp<NDarray>(self.GetAttr("oob_improvement_"));
-                public NDarray oob_scores_ => ToCsharp<NDarray>(self.GetAttr("oob_scores_"));
-                public float oob_score_ => ToCsharp<float>(self.GetAttr("oob_score_"));
-                public NDarray train_score_ => ToCsharp<NDarray>(self.GetAttr("train_score_"));
+                public int n_estimators_ => Helpers.ToCSharpInt(self.GetAttr("n_estimators_"));
+                public int n_trees_per_iteration_ => Helpers.ToCSharpInt(self.GetAttr("n_trees_per_iteration_"));
+                public NDarray feature_importances_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_importances_"));
+                public NDarray oob_improvement_ => Helpers.ToCSharpNDarray(self.GetAttr("oob_improvement_"));
+                public NDarray oob_scores_ => Helpers.ToCSharpNDarray(self.GetAttr("oob_scores_"));
+                public float oob_score_ => Helpers.ToCSharpFloat(self.GetAttr("oob_score_"));
+                public NDarray train_score_ => Helpers.ToCSharpNDarray(self.GetAttr("train_score_"));
                 public PyObject init_ => self.GetAttr("init_");
-                public NDarray estimators_ => ToCsharp<NDarray>(self.GetAttr("estimators_"));
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
-                public int max_features_ => ToCsharp<int>(self.GetAttr("max_features_"));
+                public NDarray estimators_ => Helpers.ToCSharpNDarray(self.GetAttr("estimators_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
+                public int max_features_ => Helpers.ToCSharpInt(self.GetAttr("max_features_"));
 
                 public NDarray apply(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("apply", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("apply", args, pyDict));
                 }
 
                 public GradientBoostingRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null, PyObject? monitor = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     if (monitor != null)
-                        pyDict["monitor"] = ToPython(monitor);
+                        pyDict["monitor"] = Helpers.ToPython(monitor);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
@@ -1228,24 +1228,24 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
                 public NDarray predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("score", args, pyDict));
                 }
 
                 public GradientBoostingRegressor set_fit_request(string? monitor = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$")
@@ -1253,9 +1253,9 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (monitor != "$UNCHANGED$")
-                        pyDict["monitor"] = ToPython(monitor);
+                        pyDict["monitor"] = Helpers.ToPython(monitor);
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_fit_request", args, pyDict);
                     return this;
                 }
@@ -1265,7 +1265,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -1275,16 +1275,16 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_score_request", args, pyDict);
                     return this;
                 }
 
                 public NDarray staged_predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("staged_predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("staged_predict", args, pyDict));
                 }
             }
 
@@ -1295,47 +1295,47 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (loss != "log_loss")
-                        pyDict["loss"] = ToPython(loss);
+                        pyDict["loss"] = Helpers.ToPython(loss);
                     if (learning_rate != 0.1f)
-                        pyDict["learning_rate"] = ToPython(learning_rate);
+                        pyDict["learning_rate"] = Helpers.ToPython(learning_rate);
                     if (max_iter != 100)
-                        pyDict["max_iter"] = ToPython(max_iter);
+                        pyDict["max_iter"] = Helpers.ToPython(max_iter);
                     if (max_leaf_nodes != 31)
-                        pyDict["max_leaf_nodes"] = ToPython(max_leaf_nodes);
+                        pyDict["max_leaf_nodes"] = Helpers.ToPython(max_leaf_nodes.Value);
                     if (max_depth != null)
-                        pyDict["max_depth"] = ToPython(max_depth);
+                        pyDict["max_depth"] = Helpers.ToPython(max_depth.Value);
                     if (min_samples_leaf != 20)
-                        pyDict["min_samples_leaf"] = ToPython(min_samples_leaf);
+                        pyDict["min_samples_leaf"] = Helpers.ToPython(min_samples_leaf);
                     if (l2_regularization != 0.0f)
-                        pyDict["l2_regularization"] = ToPython(l2_regularization);
+                        pyDict["l2_regularization"] = Helpers.ToPython(l2_regularization);
                     if (max_features != 1.0f)
-                        pyDict["max_features"] = ToPython(max_features);
+                        pyDict["max_features"] = Helpers.ToPython(max_features);
                     if (max_bins != 255)
-                        pyDict["max_bins"] = ToPython(max_bins);
+                        pyDict["max_bins"] = Helpers.ToPython(max_bins);
                     if (categorical_features != "warn")
-                        pyDict["categorical_features"] = ToPython(categorical_features);
+                        pyDict["categorical_features"] = Helpers.ToPython(categorical_features);
                     if (monotonic_cst != null)
-                        pyDict["monotonic_cst"] = ToPython(monotonic_cst);
+                        pyDict["monotonic_cst"] = Helpers.ToPython(monotonic_cst);
                     if (interaction_cst != null)
-                        pyDict["interaction_cst"] = ToPython(interaction_cst);
+                        pyDict["interaction_cst"] = Helpers.ToPython(interaction_cst.Value);
                     if (warm_start != false)
-                        pyDict["warm_start"] = ToPython(warm_start);
+                        pyDict["warm_start"] = Helpers.ToPython(warm_start);
                     if (early_stopping != "auto")
-                        pyDict["early_stopping"] = ToPython(early_stopping);
+                        pyDict["early_stopping"] = Helpers.ToPython(early_stopping);
                     if (scoring != "loss")
-                        pyDict["scoring"] = ToPython(scoring);
+                        pyDict["scoring"] = Helpers.ToPython(scoring);
                     if (validation_fraction != 0.1f)
-                        pyDict["validation_fraction"] = ToPython(validation_fraction);
+                        pyDict["validation_fraction"] = Helpers.ToPython(validation_fraction.Value);
                     if (n_iter_no_change != 10)
-                        pyDict["n_iter_no_change"] = ToPython(n_iter_no_change);
+                        pyDict["n_iter_no_change"] = Helpers.ToPython(n_iter_no_change);
                     if (tol != 1e-07f)
-                        pyDict["tol"] = ToPython(tol);
+                        pyDict["tol"] = Helpers.ToPython(tol);
                     if (verbose != 0)
-                        pyDict["verbose"] = ToPython(verbose);
+                        pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (random_state != null)
-                        pyDict["random_state"] = ToPython(random_state);
+                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                     if (class_weight != null)
-                        pyDict["class_weight"] = ToPython(class_weight);
+                        pyDict["class_weight"] = Helpers.ToPython(class_weight);
                     self = sklearn.ensemble.self.InvokeMethod("HistGradientBoostingClassifier", args, pyDict);
                 }
 
@@ -1349,29 +1349,29 @@ namespace ScikitLearn
                     return new HistGradientBoostingClassifier(pyObject);
                 }
 
-                public NDarray classes_ => ToCsharp<NDarray>(self.GetAttr("classes_"));
-                public bool do_early_stopping_ => ToCsharp<bool>(self.GetAttr("do_early_stopping_"));
-                public int n_iter_ => ToCsharp<int>(self.GetAttr("n_iter_"));
-                public int n_trees_per_iteration_ => ToCsharp<int>(self.GetAttr("n_trees_per_iteration_"));
-                public NDarray train_score_ => ToCsharp<NDarray>(self.GetAttr("train_score_"));
-                public NDarray validation_score_ => ToCsharp<NDarray>(self.GetAttr("validation_score_"));
-                public NDarray is_categorical_ => ToCsharp<NDarray>(self.GetAttr("is_categorical_"));
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
+                public NDarray classes_ => Helpers.ToCSharpNDarray(self.GetAttr("classes_"));
+                public bool do_early_stopping_ => Helpers.ToCSharpBool(self.GetAttr("do_early_stopping_"));
+                public int n_iter_ => Helpers.ToCSharpInt(self.GetAttr("n_iter_"));
+                public int n_trees_per_iteration_ => Helpers.ToCSharpInt(self.GetAttr("n_trees_per_iteration_"));
+                public NDarray train_score_ => Helpers.ToCSharpNDarray(self.GetAttr("train_score_"));
+                public NDarray validation_score_ => Helpers.ToCSharpNDarray(self.GetAttr("validation_score_"));
+                public NDarray is_categorical_ => Helpers.ToCSharpNDarray(self.GetAttr("is_categorical_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
 
                 public NDarray decision_function(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("decision_function", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("decision_function", args, pyDict));
                 }
 
                 public HistGradientBoostingClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
@@ -1388,31 +1388,31 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
                 public NDarray predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
                 public NDarray predict_proba(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict_proba", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_proba", args, pyDict));
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("score", args, pyDict));
                 }
 
                 public HistGradientBoostingClassifier set_fit_request(string? sample_weight = "$UNCHANGED$")
@@ -1420,7 +1420,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_fit_request", args, pyDict);
                     return this;
                 }
@@ -1430,7 +1430,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -1440,30 +1440,30 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_score_request", args, pyDict);
                     return this;
                 }
 
                 public NDarray staged_decision_function(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("staged_decision_function", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("staged_decision_function", args, pyDict));
                 }
 
                 public NDarray staged_predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("staged_predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("staged_predict", args, pyDict));
                 }
 
                 public NDarray staged_predict_proba(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("staged_predict_proba", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("staged_predict_proba", args, pyDict));
                 }
             }
 
@@ -1474,47 +1474,47 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (loss != "squared_error")
-                        pyDict["loss"] = ToPython(loss);
+                        pyDict["loss"] = Helpers.ToPython(loss);
                     if (quantile != null)
-                        pyDict["quantile"] = ToPython(quantile);
+                        pyDict["quantile"] = Helpers.ToPython(quantile.Value);
                     if (learning_rate != 0.1f)
-                        pyDict["learning_rate"] = ToPython(learning_rate);
+                        pyDict["learning_rate"] = Helpers.ToPython(learning_rate);
                     if (max_iter != 100)
-                        pyDict["max_iter"] = ToPython(max_iter);
+                        pyDict["max_iter"] = Helpers.ToPython(max_iter);
                     if (max_leaf_nodes != 31)
-                        pyDict["max_leaf_nodes"] = ToPython(max_leaf_nodes);
+                        pyDict["max_leaf_nodes"] = Helpers.ToPython(max_leaf_nodes.Value);
                     if (max_depth != null)
-                        pyDict["max_depth"] = ToPython(max_depth);
+                        pyDict["max_depth"] = Helpers.ToPython(max_depth.Value);
                     if (min_samples_leaf != 20)
-                        pyDict["min_samples_leaf"] = ToPython(min_samples_leaf);
+                        pyDict["min_samples_leaf"] = Helpers.ToPython(min_samples_leaf);
                     if (l2_regularization != 0.0f)
-                        pyDict["l2_regularization"] = ToPython(l2_regularization);
+                        pyDict["l2_regularization"] = Helpers.ToPython(l2_regularization);
                     if (max_features != 1.0f)
-                        pyDict["max_features"] = ToPython(max_features);
+                        pyDict["max_features"] = Helpers.ToPython(max_features);
                     if (max_bins != 255)
-                        pyDict["max_bins"] = ToPython(max_bins);
+                        pyDict["max_bins"] = Helpers.ToPython(max_bins);
                     if (categorical_features != "warn")
-                        pyDict["categorical_features"] = ToPython(categorical_features);
+                        pyDict["categorical_features"] = Helpers.ToPython(categorical_features);
                     if (monotonic_cst != null)
-                        pyDict["monotonic_cst"] = ToPython(monotonic_cst);
+                        pyDict["monotonic_cst"] = Helpers.ToPython(monotonic_cst);
                     if (interaction_cst != null)
-                        pyDict["interaction_cst"] = ToPython(interaction_cst);
+                        pyDict["interaction_cst"] = Helpers.ToPython(interaction_cst.Value);
                     if (warm_start != false)
-                        pyDict["warm_start"] = ToPython(warm_start);
+                        pyDict["warm_start"] = Helpers.ToPython(warm_start);
                     if (early_stopping != "auto")
-                        pyDict["early_stopping"] = ToPython(early_stopping);
+                        pyDict["early_stopping"] = Helpers.ToPython(early_stopping);
                     if (scoring != "loss")
-                        pyDict["scoring"] = ToPython(scoring);
+                        pyDict["scoring"] = Helpers.ToPython(scoring);
                     if (validation_fraction != 0.1f)
-                        pyDict["validation_fraction"] = ToPython(validation_fraction);
+                        pyDict["validation_fraction"] = Helpers.ToPython(validation_fraction.Value);
                     if (n_iter_no_change != 10)
-                        pyDict["n_iter_no_change"] = ToPython(n_iter_no_change);
+                        pyDict["n_iter_no_change"] = Helpers.ToPython(n_iter_no_change);
                     if (tol != 1e-07f)
-                        pyDict["tol"] = ToPython(tol);
+                        pyDict["tol"] = Helpers.ToPython(tol);
                     if (verbose != 0)
-                        pyDict["verbose"] = ToPython(verbose);
+                        pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (random_state != null)
-                        pyDict["random_state"] = ToPython(random_state);
+                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                     self = sklearn.ensemble.self.InvokeMethod("HistGradientBoostingRegressor", args, pyDict);
                 }
 
@@ -1528,21 +1528,21 @@ namespace ScikitLearn
                     return new HistGradientBoostingRegressor(pyObject);
                 }
 
-                public bool do_early_stopping_ => ToCsharp<bool>(self.GetAttr("do_early_stopping_"));
-                public int n_iter_ => ToCsharp<int>(self.GetAttr("n_iter_"));
-                public int n_trees_per_iteration_ => ToCsharp<int>(self.GetAttr("n_trees_per_iteration_"));
-                public NDarray train_score_ => ToCsharp<NDarray>(self.GetAttr("train_score_"));
-                public NDarray validation_score_ => ToCsharp<NDarray>(self.GetAttr("validation_score_"));
-                public NDarray is_categorical_ => ToCsharp<NDarray>(self.GetAttr("is_categorical_"));
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
+                public bool do_early_stopping_ => Helpers.ToCSharpBool(self.GetAttr("do_early_stopping_"));
+                public int n_iter_ => Helpers.ToCSharpInt(self.GetAttr("n_iter_"));
+                public int n_trees_per_iteration_ => Helpers.ToCSharpInt(self.GetAttr("n_trees_per_iteration_"));
+                public NDarray train_score_ => Helpers.ToCSharpNDarray(self.GetAttr("train_score_"));
+                public NDarray validation_score_ => Helpers.ToCSharpNDarray(self.GetAttr("validation_score_"));
+                public NDarray is_categorical_ => Helpers.ToCSharpNDarray(self.GetAttr("is_categorical_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
 
                 public HistGradientBoostingRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
@@ -1559,24 +1559,24 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
                 public NDarray predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("score", args, pyDict));
                 }
 
                 public HistGradientBoostingRegressor set_fit_request(string? sample_weight = "$UNCHANGED$")
@@ -1584,7 +1584,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_fit_request", args, pyDict);
                     return this;
                 }
@@ -1594,7 +1594,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -1604,16 +1604,16 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_score_request", args, pyDict);
                     return this;
                 }
 
                 public NDarray staged_predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("staged_predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("staged_predict", args, pyDict));
                 }
             }
 
@@ -1624,23 +1624,23 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_estimators != 100)
-                        pyDict["n_estimators"] = ToPython(n_estimators);
+                        pyDict["n_estimators"] = Helpers.ToPython(n_estimators);
                     if (max_samples != "auto")
-                        pyDict["max_samples"] = ToPython(max_samples);
+                        pyDict["max_samples"] = Helpers.ToPython(max_samples);
                     if (contamination != "auto")
-                        pyDict["contamination"] = ToPython(contamination);
+                        pyDict["contamination"] = Helpers.ToPython(contamination);
                     if (max_features != 1.0f)
-                        pyDict["max_features"] = ToPython(max_features);
+                        pyDict["max_features"] = Helpers.ToPython(max_features);
                     if (bootstrap != false)
-                        pyDict["bootstrap"] = ToPython(bootstrap);
+                        pyDict["bootstrap"] = Helpers.ToPython(bootstrap);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = ToPython(n_jobs);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
                     if (random_state != null)
-                        pyDict["random_state"] = ToPython(random_state);
+                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                     if (verbose != 0)
-                        pyDict["verbose"] = ToPython(verbose);
+                        pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (warm_start != false)
-                        pyDict["warm_start"] = ToPython(warm_start);
+                        pyDict["warm_start"] = Helpers.ToPython(warm_start);
                     self = sklearn.ensemble.self.InvokeMethod("IsolationForest", args, pyDict);
                 }
 
@@ -1656,37 +1656,37 @@ namespace ScikitLearn
 
                 public PyObject estimator_ => self.GetAttr("estimator_");
                 public PyTuple estimators_ => new PyTuple(self.GetAttr("estimators_"));
-                public NDarray estimators_features_ => ToCsharp<NDarray>(self.GetAttr("estimators_features_"));
-                public NDarray estimators_samples_ => ToCsharp<NDarray>(self.GetAttr("estimators_samples_"));
-                public int max_samples_ => ToCsharp<int>(self.GetAttr("max_samples_"));
-                public float offset_ => ToCsharp<float>(self.GetAttr("offset_"));
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
+                public NDarray estimators_features_ => Helpers.ToCSharpNDarray(self.GetAttr("estimators_features_"));
+                public NDarray estimators_samples_ => Helpers.ToCSharpNDarray(self.GetAttr("estimators_samples_"));
+                public int max_samples_ => Helpers.ToCSharpInt(self.GetAttr("max_samples_"));
+                public float offset_ => Helpers.ToCSharpFloat(self.GetAttr("offset_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
 
                 public NDarray decision_function(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("decision_function", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("decision_function", args, pyDict));
                 }
 
                 public IsolationForest fit(NDarray X, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
 
                 public NDarray fit_predict(NDarray X, Dictionary<string, PyObject>? @params = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
-                    return ToCsharp<NDarray>(self.InvokeMethod("fit_predict", args, pyDict));
+                        pyDict["params"] = Helpers.ToPython(@params);
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("fit_predict", args, pyDict));
                 }
 
                 public PyObject get_metadata_routing()
@@ -1701,22 +1701,22 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
                 public NDarray predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
                 public NDarray score_samples(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("score_samples", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("score_samples", args, pyDict));
                 }
 
                 public IsolationForest set_fit_request(string? sample_weight = "$UNCHANGED$")
@@ -1724,7 +1724,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_fit_request", args, pyDict);
                     return this;
                 }
@@ -1734,7 +1734,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -1747,43 +1747,43 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_estimators != 100)
-                        pyDict["n_estimators"] = ToPython(n_estimators);
+                        pyDict["n_estimators"] = Helpers.ToPython(n_estimators);
                     if (criterion != "gini")
-                        pyDict["criterion"] = ToPython(criterion);
+                        pyDict["criterion"] = Helpers.ToPython(criterion);
                     if (max_depth != null)
-                        pyDict["max_depth"] = ToPython(max_depth);
+                        pyDict["max_depth"] = Helpers.ToPython(max_depth.Value);
                     if (min_samples_split != 2)
-                        pyDict["min_samples_split"] = ToPython(min_samples_split);
+                        pyDict["min_samples_split"] = Helpers.ToPython(min_samples_split);
                     if (min_samples_leaf != 1)
-                        pyDict["min_samples_leaf"] = ToPython(min_samples_leaf);
+                        pyDict["min_samples_leaf"] = Helpers.ToPython(min_samples_leaf);
                     if (min_weight_fraction_leaf != 0.0f)
-                        pyDict["min_weight_fraction_leaf"] = ToPython(min_weight_fraction_leaf);
+                        pyDict["min_weight_fraction_leaf"] = Helpers.ToPython(min_weight_fraction_leaf);
                     if (max_features != "sqrt")
-                        pyDict["max_features"] = ToPython(max_features);
+                        pyDict["max_features"] = Helpers.ToPython(max_features);
                     if (max_leaf_nodes != null)
-                        pyDict["max_leaf_nodes"] = ToPython(max_leaf_nodes);
+                        pyDict["max_leaf_nodes"] = Helpers.ToPython(max_leaf_nodes.Value);
                     if (min_impurity_decrease != 0.0f)
-                        pyDict["min_impurity_decrease"] = ToPython(min_impurity_decrease);
+                        pyDict["min_impurity_decrease"] = Helpers.ToPython(min_impurity_decrease);
                     if (bootstrap != true)
-                        pyDict["bootstrap"] = ToPython(bootstrap);
+                        pyDict["bootstrap"] = Helpers.ToPython(bootstrap);
                     if (oob_score != false)
-                        pyDict["oob_score"] = ToPython(oob_score);
+                        pyDict["oob_score"] = Helpers.ToPython(oob_score);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = ToPython(n_jobs);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
                     if (random_state != null)
-                        pyDict["random_state"] = ToPython(random_state);
+                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                     if (verbose != 0)
-                        pyDict["verbose"] = ToPython(verbose);
+                        pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (warm_start != false)
-                        pyDict["warm_start"] = ToPython(warm_start);
+                        pyDict["warm_start"] = Helpers.ToPython(warm_start);
                     if (class_weight != null)
-                        pyDict["class_weight"] = ToPython(class_weight);
+                        pyDict["class_weight"] = Helpers.ToPython(class_weight);
                     if (ccp_alpha != 0.0f)
-                        pyDict["ccp_alpha"] = ToPython(ccp_alpha);
+                        pyDict["ccp_alpha"] = Helpers.ToPython(ccp_alpha);
                     if (max_samples != null)
-                        pyDict["max_samples"] = ToPython(max_samples);
+                        pyDict["max_samples"] = Helpers.ToPython(max_samples.Value);
                     if (monotonic_cst != null)
-                        pyDict["monotonic_cst"] = ToPython(monotonic_cst);
+                        pyDict["monotonic_cst"] = Helpers.ToPython(monotonic_cst);
                     self = sklearn.ensemble.self.InvokeMethod("RandomForestClassifier", args, pyDict);
                 }
 
@@ -1799,37 +1799,37 @@ namespace ScikitLearn
 
                 public PyObject estimator_ => self.GetAttr("estimator_");
                 public PyTuple estimators_ => new PyTuple(self.GetAttr("estimators_"));
-                public NDarray classes_ => ToCsharp<NDarray>(self.GetAttr("classes_"));
-                public int n_classes_ => ToCsharp<int>(self.GetAttr("n_classes_"));
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
-                public int n_outputs_ => ToCsharp<int>(self.GetAttr("n_outputs_"));
-                public NDarray feature_importances_ => ToCsharp<NDarray>(self.GetAttr("feature_importances_"));
-                public float oob_score_ => ToCsharp<float>(self.GetAttr("oob_score_"));
-                public NDarray oob_decision_function_ => ToCsharp<NDarray>(self.GetAttr("oob_decision_function_"));
-                public NDarray estimators_samples_ => ToCsharp<NDarray>(self.GetAttr("estimators_samples_"));
+                public NDarray classes_ => Helpers.ToCSharpNDarray(self.GetAttr("classes_"));
+                public int n_classes_ => Helpers.ToCSharpInt(self.GetAttr("n_classes_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
+                public int n_outputs_ => Helpers.ToCSharpInt(self.GetAttr("n_outputs_"));
+                public NDarray feature_importances_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_importances_"));
+                public float oob_score_ => Helpers.ToCSharpFloat(self.GetAttr("oob_score_"));
+                public NDarray oob_decision_function_ => Helpers.ToCSharpNDarray(self.GetAttr("oob_decision_function_"));
+                public NDarray estimators_samples_ => Helpers.ToCSharpNDarray(self.GetAttr("estimators_samples_"));
 
                 public NDarray apply(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("apply", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("apply", args, pyDict));
                 }
 
                 public (NDarray, NDarray) decision_path(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     PyTuple result = new PyTuple(self.InvokeMethod("decision_path", args, pyDict));
-                    return (ToCsharp<NDarray>(result[0]), ToCsharp<NDarray>(result[1]));
+                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
                 }
 
                 public RandomForestClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
@@ -1846,38 +1846,38 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
                 public NDarray predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
                 public NDarray predict_log_proba(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict_log_proba", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_log_proba", args, pyDict));
                 }
 
                 public NDarray predict_proba(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict_proba", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_proba", args, pyDict));
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("score", args, pyDict));
                 }
 
                 public RandomForestClassifier set_fit_request(string? sample_weight = "$UNCHANGED$")
@@ -1885,7 +1885,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_fit_request", args, pyDict);
                     return this;
                 }
@@ -1895,7 +1895,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -1905,7 +1905,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_score_request", args, pyDict);
                     return this;
                 }
@@ -1918,41 +1918,41 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_estimators != 100)
-                        pyDict["n_estimators"] = ToPython(n_estimators);
+                        pyDict["n_estimators"] = Helpers.ToPython(n_estimators);
                     if (criterion != "squared_error")
-                        pyDict["criterion"] = ToPython(criterion);
+                        pyDict["criterion"] = Helpers.ToPython(criterion);
                     if (max_depth != null)
-                        pyDict["max_depth"] = ToPython(max_depth);
+                        pyDict["max_depth"] = Helpers.ToPython(max_depth.Value);
                     if (min_samples_split != 2)
-                        pyDict["min_samples_split"] = ToPython(min_samples_split);
+                        pyDict["min_samples_split"] = Helpers.ToPython(min_samples_split);
                     if (min_samples_leaf != 1)
-                        pyDict["min_samples_leaf"] = ToPython(min_samples_leaf);
+                        pyDict["min_samples_leaf"] = Helpers.ToPython(min_samples_leaf);
                     if (min_weight_fraction_leaf != 0.0f)
-                        pyDict["min_weight_fraction_leaf"] = ToPython(min_weight_fraction_leaf);
+                        pyDict["min_weight_fraction_leaf"] = Helpers.ToPython(min_weight_fraction_leaf);
                     if (max_features != 1.0f)
-                        pyDict["max_features"] = ToPython(max_features);
+                        pyDict["max_features"] = Helpers.ToPython(max_features.Value);
                     if (max_leaf_nodes != null)
-                        pyDict["max_leaf_nodes"] = ToPython(max_leaf_nodes);
+                        pyDict["max_leaf_nodes"] = Helpers.ToPython(max_leaf_nodes.Value);
                     if (min_impurity_decrease != 0.0f)
-                        pyDict["min_impurity_decrease"] = ToPython(min_impurity_decrease);
+                        pyDict["min_impurity_decrease"] = Helpers.ToPython(min_impurity_decrease);
                     if (bootstrap != true)
-                        pyDict["bootstrap"] = ToPython(bootstrap);
+                        pyDict["bootstrap"] = Helpers.ToPython(bootstrap);
                     if (oob_score != false)
-                        pyDict["oob_score"] = ToPython(oob_score);
+                        pyDict["oob_score"] = Helpers.ToPython(oob_score);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = ToPython(n_jobs);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
                     if (random_state != null)
-                        pyDict["random_state"] = ToPython(random_state);
+                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                     if (verbose != 0)
-                        pyDict["verbose"] = ToPython(verbose);
+                        pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (warm_start != false)
-                        pyDict["warm_start"] = ToPython(warm_start);
+                        pyDict["warm_start"] = Helpers.ToPython(warm_start);
                     if (ccp_alpha != 0.0f)
-                        pyDict["ccp_alpha"] = ToPython(ccp_alpha);
+                        pyDict["ccp_alpha"] = Helpers.ToPython(ccp_alpha);
                     if (max_samples != null)
-                        pyDict["max_samples"] = ToPython(max_samples);
+                        pyDict["max_samples"] = Helpers.ToPython(max_samples.Value);
                     if (monotonic_cst != null)
-                        pyDict["monotonic_cst"] = ToPython(monotonic_cst);
+                        pyDict["monotonic_cst"] = Helpers.ToPython(monotonic_cst);
                     self = sklearn.ensemble.self.InvokeMethod("RandomForestRegressor", args, pyDict);
                 }
 
@@ -1968,35 +1968,35 @@ namespace ScikitLearn
 
                 public PyObject estimator_ => self.GetAttr("estimator_");
                 public PyTuple estimators_ => new PyTuple(self.GetAttr("estimators_"));
-                public NDarray feature_importances_ => ToCsharp<NDarray>(self.GetAttr("feature_importances_"));
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
-                public int n_outputs_ => ToCsharp<int>(self.GetAttr("n_outputs_"));
-                public float oob_score_ => ToCsharp<float>(self.GetAttr("oob_score_"));
+                public NDarray feature_importances_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_importances_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
+                public int n_outputs_ => Helpers.ToCSharpInt(self.GetAttr("n_outputs_"));
+                public float oob_score_ => Helpers.ToCSharpFloat(self.GetAttr("oob_score_"));
                 public PyDict oob_prediction_ => new PyDict(self.GetAttr("oob_prediction_"));
-                public NDarray estimators_samples_ => ToCsharp<NDarray>(self.GetAttr("estimators_samples_"));
+                public NDarray estimators_samples_ => Helpers.ToCSharpNDarray(self.GetAttr("estimators_samples_"));
 
                 public NDarray apply(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("apply", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("apply", args, pyDict));
                 }
 
                 public (NDarray, NDarray) decision_path(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     PyTuple result = new PyTuple(self.InvokeMethod("decision_path", args, pyDict));
-                    return (ToCsharp<NDarray>(result[0]), ToCsharp<NDarray>(result[1]));
+                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
                 }
 
                 public RandomForestRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
@@ -2013,24 +2013,24 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
                 public NDarray predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("score", args, pyDict));
                 }
 
                 public RandomForestRegressor set_fit_request(string? sample_weight = "$UNCHANGED$")
@@ -2038,7 +2038,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_fit_request", args, pyDict);
                     return this;
                 }
@@ -2048,7 +2048,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -2058,7 +2058,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_score_request", args, pyDict);
                     return this;
                 }
@@ -2071,29 +2071,29 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_estimators != 100)
-                        pyDict["n_estimators"] = ToPython(n_estimators);
+                        pyDict["n_estimators"] = Helpers.ToPython(n_estimators);
                     if (max_depth != 5)
-                        pyDict["max_depth"] = ToPython(max_depth);
+                        pyDict["max_depth"] = Helpers.ToPython(max_depth);
                     if (min_samples_split != 2)
-                        pyDict["min_samples_split"] = ToPython(min_samples_split);
+                        pyDict["min_samples_split"] = Helpers.ToPython(min_samples_split);
                     if (min_samples_leaf != 1)
-                        pyDict["min_samples_leaf"] = ToPython(min_samples_leaf);
+                        pyDict["min_samples_leaf"] = Helpers.ToPython(min_samples_leaf);
                     if (min_weight_fraction_leaf != 0.0f)
-                        pyDict["min_weight_fraction_leaf"] = ToPython(min_weight_fraction_leaf);
+                        pyDict["min_weight_fraction_leaf"] = Helpers.ToPython(min_weight_fraction_leaf);
                     if (max_leaf_nodes != null)
-                        pyDict["max_leaf_nodes"] = ToPython(max_leaf_nodes);
+                        pyDict["max_leaf_nodes"] = Helpers.ToPython(max_leaf_nodes.Value);
                     if (min_impurity_decrease != 0.0f)
-                        pyDict["min_impurity_decrease"] = ToPython(min_impurity_decrease);
+                        pyDict["min_impurity_decrease"] = Helpers.ToPython(min_impurity_decrease);
                     if (sparse_output != true)
-                        pyDict["sparse_output"] = ToPython(sparse_output);
+                        pyDict["sparse_output"] = Helpers.ToPython(sparse_output);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = ToPython(n_jobs);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
                     if (random_state != null)
-                        pyDict["random_state"] = ToPython(random_state);
+                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                     if (verbose != 0)
-                        pyDict["verbose"] = ToPython(verbose);
+                        pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (warm_start != false)
-                        pyDict["warm_start"] = ToPython(warm_start);
+                        pyDict["warm_start"] = Helpers.ToPython(warm_start);
                     self = sklearn.ensemble.self.InvokeMethod("RandomTreesEmbedding", args, pyDict);
                 }
 
@@ -2109,45 +2109,45 @@ namespace ScikitLearn
 
                 public PyObject estimator_ => self.GetAttr("estimator_");
                 public PyTuple estimators_ => new PyTuple(self.GetAttr("estimators_"));
-                public NDarray feature_importances_ => ToCsharp<NDarray>(self.GetAttr("feature_importances_"));
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
-                public int n_outputs_ => ToCsharp<int>(self.GetAttr("n_outputs_"));
+                public NDarray feature_importances_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_importances_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
+                public int n_outputs_ => Helpers.ToCSharpInt(self.GetAttr("n_outputs_"));
                 public PyObject one_hot_encoder_ => self.GetAttr("one_hot_encoder_");
-                public NDarray estimators_samples_ => ToCsharp<NDarray>(self.GetAttr("estimators_samples_"));
+                public NDarray estimators_samples_ => Helpers.ToCSharpNDarray(self.GetAttr("estimators_samples_"));
 
                 public NDarray apply(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("apply", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("apply", args, pyDict));
                 }
 
                 public (NDarray, NDarray) decision_path(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     PyTuple result = new PyTuple(self.InvokeMethod("decision_path", args, pyDict));
-                    return (ToCsharp<NDarray>(result[0]), ToCsharp<NDarray>(result[1]));
+                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
                 }
 
                 public RandomTreesEmbedding fit(NDarray X, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
 
                 public NDarray fit_transform(NDarray X, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<NDarray>(self.InvokeMethod("fit_transform", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("fit_transform", args, pyDict));
                 }
 
                 public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -2155,7 +2155,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (input_features != null)
-                        pyDict["input_features"] = ToPython(input_features);
+                        pyDict["input_features"] = Helpers.ToPython(input_features);
                     return self.InvokeMethod("get_feature_names_out", args, pyDict);
                 }
 
@@ -2171,7 +2171,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
@@ -2180,7 +2180,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_fit_request", args, pyDict);
                     return this;
                 }
@@ -2190,7 +2190,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (transform != null)
-                        pyDict["transform"] = ToPython(transform);
+                        pyDict["transform"] = Helpers.ToPython(transform);
                     self.InvokeMethod("set_output", args, pyDict);
                     return this;
                 }
@@ -2200,16 +2200,16 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
 
                 public NDarray transform(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("transform", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("transform", args, pyDict));
                 }
             }
 
@@ -2217,20 +2217,20 @@ namespace ScikitLearn
             {
                 public StackingClassifier(PyTuple estimators, PyObject? final_estimator = null, int? cv = null, string stack_method = "auto", int? n_jobs = null, bool passthrough = false, int verbose = 0)
                 {
-                    PyTuple args = ToTuple(new object[] { estimators });
+                    PyTuple args = new PyTuple([Helpers.ToPython(estimators)]);
                     PyDict pyDict = new PyDict();
                     if (final_estimator != null)
-                        pyDict["final_estimator"] = ToPython(final_estimator);
+                        pyDict["final_estimator"] = Helpers.ToPython(final_estimator);
                     if (cv != null)
-                        pyDict["cv"] = ToPython(cv);
+                        pyDict["cv"] = Helpers.ToPython(cv.Value);
                     if (stack_method != "auto")
-                        pyDict["stack_method"] = ToPython(stack_method);
+                        pyDict["stack_method"] = Helpers.ToPython(stack_method);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = ToPython(n_jobs);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
                     if (passthrough != false)
-                        pyDict["passthrough"] = ToPython(passthrough);
+                        pyDict["passthrough"] = Helpers.ToPython(passthrough);
                     if (verbose != 0)
-                        pyDict["verbose"] = ToPython(verbose);
+                        pyDict["verbose"] = Helpers.ToPython(verbose);
                     self = sklearn.ensemble.self.InvokeMethod("StackingClassifier", args, pyDict);
                 }
 
@@ -2244,40 +2244,40 @@ namespace ScikitLearn
                     return new StackingClassifier(pyObject);
                 }
 
-                public NDarray classes_ => ToCsharp<NDarray>(self.GetAttr("classes_"));
+                public NDarray classes_ => Helpers.ToCSharpNDarray(self.GetAttr("classes_"));
                 public PyTuple estimators_ => new PyTuple(self.GetAttr("estimators_"));
                 public PyDict named_estimators_ => new PyDict(self.GetAttr("named_estimators_"));
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
                 public PyObject final_estimator_ => self.GetAttr("final_estimator_");
                 public PyTuple stack_method_ => new PyTuple(self.GetAttr("stack_method_"));
 
                 public NDarray decision_function(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("decision_function", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("decision_function", args, pyDict));
                 }
 
                 public StackingClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
 
                 public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     if (y != null)
-                        pyDict["y"] = ToPython(y);
+                        pyDict["y"] = Helpers.ToPython(y);
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
-                    return ToCsharp<NDarray>(self.InvokeMethod("fit_transform", args, pyDict));
+                        pyDict["params"] = Helpers.ToPython(@params);
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("fit_transform", args, pyDict));
                 }
 
                 public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -2285,7 +2285,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (input_features != null)
-                        pyDict["input_features"] = ToPython(input_features);
+                        pyDict["input_features"] = Helpers.ToPython(input_features);
                     return self.InvokeMethod("get_feature_names_out", args, pyDict);
                 }
 
@@ -2301,33 +2301,33 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
                 public NDarray predict(NDarray X, Dictionary<string, PyObject>? @params = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                        pyDict["params"] = Helpers.ToPython(@params);
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
                 public NDarray predict_proba(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict_proba", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_proba", args, pyDict));
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("score", args, pyDict));
                 }
 
                 public StackingClassifier set_fit_request(string? sample_weight = "$UNCHANGED$")
@@ -2335,7 +2335,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_fit_request", args, pyDict);
                     return this;
                 }
@@ -2345,7 +2345,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (transform != null)
-                        pyDict["transform"] = ToPython(transform);
+                        pyDict["transform"] = Helpers.ToPython(transform);
                     self.InvokeMethod("set_output", args, pyDict);
                     return this;
                 }
@@ -2355,7 +2355,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -2365,16 +2365,16 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_score_request", args, pyDict);
                     return this;
                 }
 
                 public NDarray transform(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("transform", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("transform", args, pyDict));
                 }
             }
 
@@ -2382,18 +2382,18 @@ namespace ScikitLearn
             {
                 public StackingRegressor(PyTuple estimators, PyObject? final_estimator = null, int? cv = null, int? n_jobs = null, bool passthrough = false, int verbose = 0)
                 {
-                    PyTuple args = ToTuple(new object[] { estimators });
+                    PyTuple args = new PyTuple([Helpers.ToPython(estimators)]);
                     PyDict pyDict = new PyDict();
                     if (final_estimator != null)
-                        pyDict["final_estimator"] = ToPython(final_estimator);
+                        pyDict["final_estimator"] = Helpers.ToPython(final_estimator);
                     if (cv != null)
-                        pyDict["cv"] = ToPython(cv);
+                        pyDict["cv"] = Helpers.ToPython(cv.Value);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = ToPython(n_jobs);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
                     if (passthrough != false)
-                        pyDict["passthrough"] = ToPython(passthrough);
+                        pyDict["passthrough"] = Helpers.ToPython(passthrough);
                     if (verbose != 0)
-                        pyDict["verbose"] = ToPython(verbose);
+                        pyDict["verbose"] = Helpers.ToPython(verbose);
                     self = sklearn.ensemble.self.InvokeMethod("StackingRegressor", args, pyDict);
                 }
 
@@ -2409,28 +2409,28 @@ namespace ScikitLearn
 
                 public PyTuple estimators_ => new PyTuple(self.GetAttr("estimators_"));
                 public PyDict named_estimators_ => new PyDict(self.GetAttr("named_estimators_"));
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
                 public PyObject final_estimator_ => self.GetAttr("final_estimator_");
                 public PyTuple stack_method_ => new PyTuple(self.GetAttr("stack_method_"));
 
                 public StackingRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
 
                 public NDarray fit_transform(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<NDarray>(self.InvokeMethod("fit_transform", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("fit_transform", args, pyDict));
                 }
 
                 public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -2438,7 +2438,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (input_features != null)
-                        pyDict["input_features"] = ToPython(input_features);
+                        pyDict["input_features"] = Helpers.ToPython(input_features);
                     return self.InvokeMethod("get_feature_names_out", args, pyDict);
                 }
 
@@ -2454,26 +2454,26 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
                 public NDarray predict(NDarray X, Dictionary<string, PyObject>? @params = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                        pyDict["params"] = Helpers.ToPython(@params);
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("score", args, pyDict));
                 }
 
                 public StackingRegressor set_fit_request(string? sample_weight = "$UNCHANGED$")
@@ -2481,7 +2481,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_fit_request", args, pyDict);
                     return this;
                 }
@@ -2491,7 +2491,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (transform != null)
-                        pyDict["transform"] = ToPython(transform);
+                        pyDict["transform"] = Helpers.ToPython(transform);
                     self.InvokeMethod("set_output", args, pyDict);
                     return this;
                 }
@@ -2501,7 +2501,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -2511,16 +2511,16 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_score_request", args, pyDict);
                     return this;
                 }
 
                 public NDarray transform(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("transform", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("transform", args, pyDict));
                 }
             }
 
@@ -2528,18 +2528,18 @@ namespace ScikitLearn
             {
                 public VotingClassifier(PyTuple estimators, string voting = "hard", NDarray? weights = null, int? n_jobs = null, bool flatten_transform = true, bool verbose = false)
                 {
-                    PyTuple args = ToTuple(new object[] { estimators });
+                    PyTuple args = new PyTuple([Helpers.ToPython(estimators)]);
                     PyDict pyDict = new PyDict();
                     if (voting != "hard")
-                        pyDict["voting"] = ToPython(voting);
+                        pyDict["voting"] = Helpers.ToPython(voting);
                     if (weights != null)
-                        pyDict["weights"] = ToPython(weights);
+                        pyDict["weights"] = Helpers.ToPython(weights);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = ToPython(n_jobs);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
                     if (flatten_transform != true)
-                        pyDict["flatten_transform"] = ToPython(flatten_transform);
+                        pyDict["flatten_transform"] = Helpers.ToPython(flatten_transform);
                     if (verbose != false)
-                        pyDict["verbose"] = ToPython(verbose);
+                        pyDict["verbose"] = Helpers.ToPython(verbose);
                     self = sklearn.ensemble.self.InvokeMethod("VotingClassifier", args, pyDict);
                 }
 
@@ -2556,31 +2556,31 @@ namespace ScikitLearn
                 public PyTuple estimators_ => new PyTuple(self.GetAttr("estimators_"));
                 public PyDict named_estimators_ => new PyDict(self.GetAttr("named_estimators_"));
                 public PyObject le_ => self.GetAttr("le_");
-                public NDarray classes_ => ToCsharp<NDarray>(self.GetAttr("classes_"));
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
+                public NDarray classes_ => Helpers.ToCSharpNDarray(self.GetAttr("classes_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
 
                 public VotingClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
 
                 public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     if (y != null)
-                        pyDict["y"] = ToPython(y);
+                        pyDict["y"] = Helpers.ToPython(y);
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
-                    return ToCsharp<NDarray>(self.InvokeMethod("fit_transform", args, pyDict));
+                        pyDict["params"] = Helpers.ToPython(@params);
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("fit_transform", args, pyDict));
                 }
 
                 public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -2588,7 +2588,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (input_features != null)
-                        pyDict["input_features"] = ToPython(input_features);
+                        pyDict["input_features"] = Helpers.ToPython(input_features);
                     return self.InvokeMethod("get_feature_names_out", args, pyDict);
                 }
 
@@ -2604,31 +2604,31 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
                 public NDarray predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
                 public NDarray predict_proba(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict_proba", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_proba", args, pyDict));
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("score", args, pyDict));
                 }
 
                 public VotingClassifier set_fit_request(string? sample_weight = "$UNCHANGED$")
@@ -2636,7 +2636,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_fit_request", args, pyDict);
                     return this;
                 }
@@ -2646,7 +2646,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (transform != null)
-                        pyDict["transform"] = ToPython(transform);
+                        pyDict["transform"] = Helpers.ToPython(transform);
                     self.InvokeMethod("set_output", args, pyDict);
                     return this;
                 }
@@ -2656,7 +2656,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -2666,17 +2666,17 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_score_request", args, pyDict);
                     return this;
                 }
 
                 public (PyObject, bool, bool, PyObject) transform(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     PyTuple result = new PyTuple(self.InvokeMethod("transform", args, pyDict));
-                    return (ToCsharp<PyObject>(result[0]), ToCsharp<bool>(result[1]), ToCsharp<bool>(result[2]), ToCsharp<PyObject>(result[3]));
+                    return (Helpers.ToCSharpPyObject(result[0]), Helpers.ToCSharpBool(result[1]), Helpers.ToCSharpBool(result[2]), Helpers.ToCSharpPyObject(result[3]));
                 }
             }
 
@@ -2684,14 +2684,14 @@ namespace ScikitLearn
             {
                 public VotingRegressor(PyTuple estimators, NDarray? weights = null, int? n_jobs = null, bool verbose = false)
                 {
-                    PyTuple args = ToTuple(new object[] { estimators });
+                    PyTuple args = new PyTuple([Helpers.ToPython(estimators)]);
                     PyDict pyDict = new PyDict();
                     if (weights != null)
-                        pyDict["weights"] = ToPython(weights);
+                        pyDict["weights"] = Helpers.ToPython(weights);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = ToPython(n_jobs);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
                     if (verbose != false)
-                        pyDict["verbose"] = ToPython(verbose);
+                        pyDict["verbose"] = Helpers.ToPython(verbose);
                     self = sklearn.ensemble.self.InvokeMethod("VotingRegressor", args, pyDict);
                 }
 
@@ -2707,30 +2707,30 @@ namespace ScikitLearn
 
                 public PyTuple estimators_ => new PyTuple(self.GetAttr("estimators_"));
                 public PyDict named_estimators_ => new PyDict(self.GetAttr("named_estimators_"));
-                public int n_features_in_ => ToCsharp<int>(self.GetAttr("n_features_in_"));
-                public NDarray feature_names_in_ => ToCsharp<NDarray>(self.GetAttr("feature_names_in_"));
+                public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
+                public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
 
                 public VotingRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
 
                 public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     if (y != null)
-                        pyDict["y"] = ToPython(y);
+                        pyDict["y"] = Helpers.ToPython(y);
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
-                    return ToCsharp<NDarray>(self.InvokeMethod("fit_transform", args, pyDict));
+                        pyDict["params"] = Helpers.ToPython(@params);
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("fit_transform", args, pyDict));
                 }
 
                 public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -2738,7 +2738,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (input_features != null)
-                        pyDict["input_features"] = ToPython(input_features);
+                        pyDict["input_features"] = Helpers.ToPython(input_features);
                     return self.InvokeMethod("get_feature_names_out", args, pyDict);
                 }
 
@@ -2754,24 +2754,24 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (deep != true)
-                        pyDict["deep"] = ToPython(deep);
+                        pyDict["deep"] = Helpers.ToPython(deep);
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
                 public NDarray predict(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    return ToCsharp<NDarray>(self.InvokeMethod("predict", args, pyDict));
+                    return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
                 {
-                    PyTuple args = ToTuple(new object[] { X, y });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (sample_weight != null)
-                        pyDict["sample_weight"] = ToPython(sample_weight);
-                    return ToCsharp<float>(self.InvokeMethod("score", args, pyDict));
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
+                    return Helpers.ToCSharpFloat(self.InvokeMethod("score", args, pyDict));
                 }
 
                 public VotingRegressor set_fit_request(string? sample_weight = "$UNCHANGED$")
@@ -2779,7 +2779,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_fit_request", args, pyDict);
                     return this;
                 }
@@ -2789,7 +2789,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (transform != null)
-                        pyDict["transform"] = ToPython(transform);
+                        pyDict["transform"] = Helpers.ToPython(transform);
                     self.InvokeMethod("set_output", args, pyDict);
                     return this;
                 }
@@ -2799,7 +2799,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (@params != null)
-                        pyDict["params"] = ToPython(@params);
+                        pyDict["params"] = Helpers.ToPython(@params);
                     self.InvokeMethod("set_params", args, pyDict);
                     return this;
                 }
@@ -2809,14 +2809,14 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_weight != "$UNCHANGED$")
-                        pyDict["sample_weight"] = ToPython(sample_weight);
+                        pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                     self.InvokeMethod("set_score_request", args, pyDict);
                     return this;
                 }
 
                 public PyDict transform(NDarray X)
                 {
-                    PyTuple args = ToTuple(new object[] { X });
+                    PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     return new PyDict(self.InvokeMethod("transform", args, pyDict));
                 }

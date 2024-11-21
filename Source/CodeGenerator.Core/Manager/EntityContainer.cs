@@ -1,17 +1,17 @@
 ﻿namespace CodeGenerator.Core.Manager;
 
-public class NodeContainer
+public class EntityContainer
 {
-    public NodeContainer() { }
+    public EntityContainer() { }
 
-    public NodeContainer(HtmlContainer htmlContainer)
+    public EntityContainer(HtmlContainer htmlContainer)
     {
         NodeType = MapperTypes.GetEntityType(htmlContainer);
 
         Declaration = htmlContainer.Declaration ?? string.Empty;
         Declaration = TextAnalyzer.Fix.RawText(Declaration); // Fix json Format
 
-        var parameters = htmlContainer.ParamsBox?.SelectNodes(".//dt");
+        var parameters = htmlContainer.ParamsBox?.SelectNodes("./dt");
         if (parameters != null)
         {
             foreach (var p in parameters)
@@ -24,7 +24,7 @@ public class NodeContainer
             }
         }
 
-        var returns = htmlContainer.ReturnsBox?.SelectNodes(".//dt");
+        var returns = htmlContainer.ReturnsBox?.SelectNodes("./dt");
         if (returns != null)
         {
             foreach (var r in returns)
@@ -37,7 +37,7 @@ public class NodeContainer
             }
         }
 
-        var attributes = htmlContainer.AttributesBox?.SelectNodes(".//dt");
+        var attributes = htmlContainer.AttributesBox?.SelectNodes("./dt");
         if (attributes != null)
         {
             foreach (var a in attributes)
@@ -54,16 +54,16 @@ public class NodeContainer
         {
             foreach (var box in htmlContainer.MethodsBoxes)
             {
-                var methodContainer = new HtmlContainer(box);
-                Methods.Add(new NodeMethodContainer(methodContainer));
+                var methodContainer = HtmlContainer.FromPyMethod(box);
+                Methods.Add(new EntityMethodContainer(methodContainer));
             }
         }
     }
 
-    public NodeType NodeType { get; set; } = NodeType.None;
+    public EntityType NodeType { get; set; } = EntityType.None;
     public string Declaration { get; set; } = string.Empty;
     public List<string> Parameters { get; set; } = [];
     public List<string> Returns { get; set; } = [];
     public List<string> Attributes { get; set; } = [];
-    public List<NodeMethodContainer> Methods { get; set; } = [];
+    public List<EntityMethodContainer> Methods { get; set; } = [];
 }

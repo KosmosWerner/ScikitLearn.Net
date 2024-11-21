@@ -199,17 +199,19 @@ public static partial class TextAnalyzer
             return (containerName, callableStaticClass);
         }
 
-        public static (string name, string rawType, string rawDefault) Definition(string rawDefinition)
+        public static (string name, string rawType, string rawDefault) FromDefinition(string rawDefinition)
         {
             string[] segments = rawDefinition.Split(':', 2,
                 StringSplitOptions.RemoveEmptyEntries |
                 StringSplitOptions.TrimEntries);
 
-            string[] segmentsType = rawDefinition.Split(", default=", 2,
+            if (segments.Length < 2) return (segments[0], string.Empty, string.Empty);
+
+            string[] segmentsType = segments[1].Split(", default=", 2,
                 StringSplitOptions.RemoveEmptyEntries |
                 StringSplitOptions.TrimEntries);
 
-            return (segments[0], segmentsType[0], segmentsType.Length > 1 ? segmentsType[0] : string.Empty);
+            return (segments[0], segmentsType[0], segmentsType.Length > 1 ? segmentsType[1] : string.Empty);
         }
 
         public static string[] PlainParameters(string plainParameters)
@@ -231,7 +233,7 @@ public static partial class TextAnalyzer
 
 
 
-        [GeneratedRegex(@"(\w+\s+)?([\w\.]+)(\((.*)\))?", RegexOptions.Compiled)]
+        [GeneratedRegex(@"(?:(\w+)\s+)?([\w\.]+)(?:\((.*)\))?", RegexOptions.Compiled)]
         private static partial Regex RegexDeclarationParts();
     }
 }

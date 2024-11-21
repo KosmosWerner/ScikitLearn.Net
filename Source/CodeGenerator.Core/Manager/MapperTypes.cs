@@ -2,21 +2,21 @@
 
 public static class MapperTypes
 {
-    public static NodeType GetEntityType(HtmlContainer entity)
+    public static EntityType GetEntityType(HtmlContainer entity)
     {
-        if (entity.Declaration == null) return NodeType.None;
+        if (entity.Declaration == null) return EntityType.None;
 
         var (identifier, _, _) = TextAnalyzer.Divide.FromDeclaration(entity.Declaration);
 
-        if (identifier.Contains("exception")) return NodeType.Exception;
+        if (identifier.Contains("exception")) return EntityType.Exception;
         else
         {
             if (identifier.Contains("class"))
             {
-                if (entity.ReturnsBox != null) return NodeType.Method; // classes do not return in C#
-                else return NodeType.Class; // there are functions that do not return anything
+                if (entity.ReturnsBox != null) return EntityType.Method; // classes do not return in C#
+                else return EntityType.Class; // there are functions that do not return anything
             }
-            else return NodeType.Method;
+            else return EntityType.Method;
         }
     }
 

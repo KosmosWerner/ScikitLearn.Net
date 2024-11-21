@@ -61,7 +61,7 @@ namespace ScikitLearn
                 sklearn.datasets.self.InvokeMethod("dump_svmlight_file", args, pyDict);
             }
 
-            public static (PyDict, NDarray, NDarray, string, NDarray, bool) fetch_20newsgroups(string? data_home = null, string subset = "train", NDarray? categories = null, bool shuffle = true, int? random_state = 42, PyTuple? remove = null, bool download_if_missing = true, bool return_X_y = false, int n_retries = 3, float delay = 1.0f)
+            public static (PyDict, bool) fetch_20newsgroups(string? data_home = null, string subset = "train", NDarray? categories = null, bool shuffle = true, int? random_state = 42, PyTuple? remove = null, bool download_if_missing = true, bool return_X_y = false, int n_retries = 3, float delay = 1.0f)
             {
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
@@ -86,10 +86,10 @@ namespace ScikitLearn
                 if (delay != 1.0f)
                     pyDict["delay"] = Helpers.ToPython(delay);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("fetch_20newsgroups", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]), Helpers.ToCSharpString(result[3]), Helpers.ToCSharpNDarray(result[4]), Helpers.ToCSharpBool(result[5]));
+                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
             }
 
-            public static (PyDict, NDarray, NDarray, NDarray, string, NDarray, bool) fetch_20newsgroups_vectorized(string subset = "train", PyTuple? remove = null, string? data_home = null, bool download_if_missing = true, bool return_X_y = false, bool normalize = true, bool as_frame = false, int n_retries = 3, float delay = 1.0f)
+            public static (PyDict, bool) fetch_20newsgroups_vectorized(string subset = "train", PyTuple? remove = null, string? data_home = null, bool download_if_missing = true, bool return_X_y = false, bool normalize = true, bool as_frame = false, int n_retries = 3, float delay = 1.0f)
             {
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
@@ -112,7 +112,7 @@ namespace ScikitLearn
                 if (delay != 1.0f)
                     pyDict["delay"] = Helpers.ToPython(delay);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("fetch_20newsgroups_vectorized", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]), Helpers.ToCSharpNDarray(result[3]), Helpers.ToCSharpString(result[4]), Helpers.ToCSharpNDarray(result[5]), Helpers.ToCSharpBool(result[6]));
+                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
             }
 
             public static (PyDict, bool) fetch_california_housing(string? data_home = null, bool download_if_missing = true, bool return_X_y = false, bool as_frame = false, int n_retries = 3, float delay = 1.0f)
@@ -135,7 +135,7 @@ namespace ScikitLearn
                 return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
             }
 
-            public static (PyDict, PyObject, bool) fetch_covtype(string? data_home = null, bool download_if_missing = true, int? random_state = null, bool shuffle = false, bool return_X_y = false, bool as_frame = false, int n_retries = 3, float delay = 1.0f)
+            public static (PyDict, bool) fetch_covtype(string? data_home = null, bool download_if_missing = true, int? random_state = null, bool shuffle = false, bool return_X_y = false, bool as_frame = false, int n_retries = 3, float delay = 1.0f)
             {
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
@@ -156,10 +156,10 @@ namespace ScikitLearn
                 if (delay != 1.0f)
                     pyDict["delay"] = Helpers.ToPython(delay);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("fetch_covtype", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpPyObject(result[1]), Helpers.ToCSharpBool(result[2]));
+                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
             }
 
-            public static (PyDict, PyObject, bool) fetch_kddcup99(PyObject? subset = null, string? data_home = null, bool shuffle = false, int? random_state = null, bool percent10 = true, bool download_if_missing = true, bool return_X_y = false, bool as_frame = false, int n_retries = 3, float delay = 1.0f)
+            public static (PyDict, bool) fetch_kddcup99(PyObject? subset = null, string? data_home = null, bool shuffle = false, int? random_state = null, bool percent10 = true, bool download_if_missing = true, bool return_X_y = false, bool as_frame = false, int n_retries = 3, float delay = 1.0f)
             {
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
@@ -184,7 +184,7 @@ namespace ScikitLearn
                 if (delay != 1.0f)
                     pyDict["delay"] = Helpers.ToPython(delay);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("fetch_kddcup99", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpPyObject(result[1]), Helpers.ToCSharpBool(result[2]));
+                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
             }
 
             public static PyDict fetch_lfw_pairs(string subset = "train", string? data_home = null, bool funneled = true, float resize = 0.5f, bool color = false, PyTuple? slice_ = null, bool download_if_missing = true, int n_retries = 3, float delay = 1.0f)
@@ -240,7 +240,7 @@ namespace ScikitLearn
                 return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
             }
 
-            public static (PyDict, NDarray, bool) fetch_olivetti_faces(string? data_home = null, bool shuffle = false, int? random_state = 0, bool download_if_missing = true, bool return_X_y = false, int n_retries = 3, float delay = 1.0f)
+            public static (PyDict, bool) fetch_olivetti_faces(string? data_home = null, bool shuffle = false, int? random_state = 0, bool download_if_missing = true, bool return_X_y = false, int n_retries = 3, float delay = 1.0f)
             {
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
@@ -259,10 +259,10 @@ namespace ScikitLearn
                 if (delay != 1.0f)
                     pyDict["delay"] = Helpers.ToPython(delay);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("fetch_olivetti_faces", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpBool(result[2]));
+                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
             }
 
-            public static (PyDict, PyObject, bool) fetch_openml(string? name = null, string version = "active", int? data_id = null, string? data_home = null, string? target_column = "default-target", bool cache = true, bool return_X_y = false, string as_frame = "auto", int n_retries = 3, float delay = 1.0f, string parser = "auto", PyDict? read_csv_kwargs = null)
+            public static (PyDict, bool) fetch_openml(string? name = null, string version = "active", int? data_id = null, string? data_home = null, string? target_column = "default-target", bool cache = true, bool return_X_y = false, string as_frame = "auto", int n_retries = 3, float delay = 1.0f, string parser = "auto", PyDict? read_csv_kwargs = null)
             {
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
@@ -291,7 +291,7 @@ namespace ScikitLearn
                 if (read_csv_kwargs != null)
                     pyDict["read_csv_kwargs"] = Helpers.ToPython(read_csv_kwargs);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("fetch_openml", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpPyObject(result[1]), Helpers.ToCSharpBool(result[2]));
+                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
             }
 
             public static (PyDict, PyTuple) fetch_rcv1(string? data_home = null, string subset = "all", bool download_if_missing = true, int? random_state = null, bool shuffle = false, bool return_X_y = false, int n_retries = 3, float delay = 1.0f)
@@ -354,7 +354,7 @@ namespace ScikitLearn
                 return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
             }
 
-            public static (PyDict, NDarray, PyObject, NDarray, string, string, string, bool) load_diabetes(bool return_X_y = false, bool as_frame = false, bool scaled = true)
+            public static (PyDict, bool) load_diabetes(bool return_X_y = false, bool as_frame = false, bool scaled = true)
             {
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
@@ -365,10 +365,10 @@ namespace ScikitLearn
                 if (scaled != true)
                     pyDict["scaled"] = Helpers.ToPython(scaled);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("load_diabetes", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpPyObject(result[2]), Helpers.ToCSharpNDarray(result[3]), Helpers.ToCSharpString(result[4]), Helpers.ToCSharpString(result[5]), Helpers.ToCSharpString(result[6]), Helpers.ToCSharpBool(result[7]));
+                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
             }
 
-            public static (PyDict, NDarray, PyObject, PyObject, NDarray, NDarray, string, bool) load_digits(int n_class = 10, bool return_X_y = false, bool as_frame = false)
+            public static (PyDict, bool) load_digits(int n_class = 10, bool return_X_y = false, bool as_frame = false)
             {
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
@@ -379,10 +379,10 @@ namespace ScikitLearn
                 if (as_frame != false)
                     pyDict["as_frame"] = Helpers.ToPython(as_frame);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("load_digits", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpPyObject(result[2]), Helpers.ToCSharpPyObject(result[3]), Helpers.ToCSharpNDarray(result[4]), Helpers.ToCSharpNDarray(result[5]), Helpers.ToCSharpString(result[6]), Helpers.ToCSharpBool(result[7]));
+                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
             }
 
-            public static (PyDict, NDarray) load_files(string container_path, string? description = null, PyTuple? categories = null, bool load_content = true, bool shuffle = true, string? encoding = null, string decode_error = "strict", int? random_state = 0, PyTuple? allowed_extensions = null)
+            public static PyDict load_files(string container_path, string? description = null, PyTuple? categories = null, bool load_content = true, bool shuffle = true, string? encoding = null, string decode_error = "strict", int? random_state = 0, PyTuple? allowed_extensions = null)
             {
                 PyTuple args = new PyTuple([Helpers.ToPython(container_path)]);
                 PyDict pyDict = new PyDict();
@@ -402,11 +402,10 @@ namespace ScikitLearn
                     pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                 if (allowed_extensions != null)
                     pyDict["allowed_extensions"] = Helpers.ToPython(allowed_extensions);
-                PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("load_files", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                return new PyDict(sklearn.datasets.self.InvokeMethod("load_files", args, pyDict));
             }
 
-            public static (PyDict, NDarray, PyObject, PyObject, NDarray, string, string, bool) load_iris(bool return_X_y = false, bool as_frame = false)
+            public static (PyDict, bool) load_iris(bool return_X_y = false, bool as_frame = false)
             {
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
@@ -415,10 +414,10 @@ namespace ScikitLearn
                 if (as_frame != false)
                     pyDict["as_frame"] = Helpers.ToPython(as_frame);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("load_iris", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpPyObject(result[2]), Helpers.ToCSharpPyObject(result[3]), Helpers.ToCSharpNDarray(result[4]), Helpers.ToCSharpString(result[5]), Helpers.ToCSharpString(result[6]), Helpers.ToCSharpBool(result[7]));
+                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
             }
 
-            public static (PyDict, NDarray, PyObject, PyObject, NDarray, string, string, string, bool) load_linnerud(bool return_X_y = false, bool as_frame = false)
+            public static (PyDict, bool) load_linnerud(bool return_X_y = false, bool as_frame = false)
             {
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
@@ -427,7 +426,7 @@ namespace ScikitLearn
                 if (as_frame != false)
                     pyDict["as_frame"] = Helpers.ToPython(as_frame);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("load_linnerud", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpPyObject(result[2]), Helpers.ToCSharpPyObject(result[3]), Helpers.ToCSharpNDarray(result[4]), Helpers.ToCSharpString(result[5]), Helpers.ToCSharpString(result[6]), Helpers.ToCSharpString(result[7]), Helpers.ToCSharpBool(result[8]));
+                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
             }
 
             public static NDarray load_sample_image(PyObject image_name)
@@ -487,7 +486,7 @@ namespace ScikitLearn
                 return Helpers.ToCSharpNDarray(sklearn.datasets.self.InvokeMethod("load_svmlight_files", args, pyDict));
             }
 
-            public static (PyDict, NDarray, PyObject, PyObject, NDarray, string, bool) load_wine(bool return_X_y = false, bool as_frame = false)
+            public static (PyDict, bool) load_wine(bool return_X_y = false, bool as_frame = false)
             {
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
@@ -496,7 +495,7 @@ namespace ScikitLearn
                 if (as_frame != false)
                     pyDict["as_frame"] = Helpers.ToPython(as_frame);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("load_wine", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpPyObject(result[2]), Helpers.ToCSharpPyObject(result[3]), Helpers.ToCSharpNDarray(result[4]), Helpers.ToCSharpString(result[5]), Helpers.ToCSharpBool(result[6]));
+                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
             }
 
             public static (NDarray, NDarray, NDarray) make_biclusters(NDarray shape, int n_clusters, float noise = 0.0f, int minval = 10, int maxval = 100, bool shuffle = true, int? random_state = null)

@@ -2051,7 +2051,7 @@ namespace ScikitLearn
                 return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpPyDict(result[1]), Helpers.ToCSharpInt(result[2]));
             }
 
-            public static (NDarray? , NDarray, NDarray? , NDarray, int) fastica(NDarray X, int? n_components = null, string algorithm = "parallel", string whiten = "unit-variance", string fun = "logcosh", PyDict? fun_args = null, int max_iter = 200, float tol = 0.0001f, NDarray? w_init = null, string whiten_solver = "svd", int? random_state = null, bool return_X_mean = false, bool compute_sources = true, bool return_n_iter = false)
+            public static (NDarray?, NDarray, NDarray?, NDarray, int) fastica(NDarray X, int? n_components = null, string algorithm = "parallel", string whiten = "unit-variance", string fun = "logcosh", PyDict? fun_args = null, int max_iter = 200, float tol = 0.0001f, NDarray? w_init = null, string whiten_solver = "svd", int? random_state = null, bool return_X_mean = false, bool compute_sources = true, bool return_n_iter = false)
             {
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
@@ -2082,7 +2082,7 @@ namespace ScikitLearn
                 if (return_n_iter != false)
                     pyDict["return_n_iter"] = Helpers.ToPython(return_n_iter);
                 PyTuple result = new PyTuple(sklearn.decomposition.self.InvokeMethod("fastica", args, pyDict));
-                return (Helpers.ToCSharpNDarray (result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray  (result[2]), Helpers.ToCSharpNDarray(result[3]), Helpers.ToCSharpInt(result[4]));
+                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]), Helpers.ToCSharpNDarray(result[3]), Helpers.ToCSharpInt(result[4]));
             }
 
             public static (NDarray, NDarray, int) non_negative_factorization(NDarray X, NDarray? W = null, NDarray? H = null, string? n_components = "warn", PyObject? init = null, bool update_H = true, string solver = "cd", string beta_loss = "frobenius", float tol = 0.0001f, int max_iter = 200, float alpha_W = 0.0f, string alpha_H = "same", float l1_ratio = 0.0f, int? random_state = null, int verbose = 0, bool shuffle = false)

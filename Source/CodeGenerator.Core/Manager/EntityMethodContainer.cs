@@ -1,15 +1,15 @@
 ﻿namespace CodeGenerator.Core.Manager;
 
-public class NodeMethodContainer
+public class EntityMethodContainer
 {
-    public NodeMethodContainer() { }
+    public EntityMethodContainer() { }
 
-    public NodeMethodContainer(HtmlContainer htmlContainer)
+    public EntityMethodContainer(HtmlContainer htmlContainer)
     {
         Declaration = htmlContainer.Declaration ?? string.Empty;
         Declaration = TextAnalyzer.Fix.RawText(Declaration); // Fix json Format
 
-        var parameters = htmlContainer.ParamsBox?.SelectNodes(".//dt");
+        var parameters = htmlContainer.ParamsBox?.SelectNodes("./dt");
         if (parameters != null)
         {
             foreach (var p in parameters)
@@ -22,7 +22,7 @@ public class NodeMethodContainer
             }
         }
 
-        var returns = htmlContainer.ReturnsBox?.SelectNodes(".//dt");
+        var returns = htmlContainer.ReturnsBox?.SelectNodes("./dt");
         if (returns != null)
         {
             foreach (var r in returns)

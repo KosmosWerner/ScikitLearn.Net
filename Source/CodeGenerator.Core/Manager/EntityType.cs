@@ -1,6 +1,6 @@
 ﻿namespace CodeGenerator.Core.Manager;
 
-public enum NodeType
+public enum EntityType
 {
     None,
     Class,

@@ -1923,7 +1923,7 @@ namespace ScikitLearn
                 return Helpers.ToCSharpNDarray(sklearn.model_selection.self.InvokeMethod("cross_val_score", args, pyDict));
             }
 
-            public static (PyDict, PyObject, PyObject, PyObject, PyObject, PyObject, PyObject) cross_validate(PyObject estimator, NDarray X, NDarray? y = null, NDarray? groups = null, PyDict? scoring = null, int? cv = null, int? n_jobs = null, int verbose = 0, PyDict? fit_params = null, PyDict? @params = null, string pre_dispatch = "2*n_jobs", bool return_train_score = false, bool return_estimator = false, bool return_indices = false, PyObject? error_score = null)
+            public static PyDict cross_validate(PyObject estimator, NDarray X, NDarray? y = null, NDarray? groups = null, PyDict? scoring = null, int? cv = null, int? n_jobs = null, int verbose = 0, PyDict? fit_params = null, PyDict? @params = null, string pre_dispatch = "2*n_jobs", bool return_train_score = false, bool return_estimator = false, bool return_indices = false, PyObject? error_score = null)
             {
                 PyTuple args = new PyTuple([Helpers.ToPython(estimator), Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
@@ -1953,8 +1953,7 @@ namespace ScikitLearn
                     pyDict["return_indices"] = Helpers.ToPython(return_indices);
                 if (error_score != null)
                     pyDict["error_score"] = Helpers.ToPython(error_score);
-                PyTuple result = new PyTuple(sklearn.model_selection.self.InvokeMethod("cross_validate", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpPyObject(result[1]), Helpers.ToCSharpPyObject(result[2]), Helpers.ToCSharpPyObject(result[3]), Helpers.ToCSharpPyObject(result[4]), Helpers.ToCSharpPyObject(result[5]), Helpers.ToCSharpPyObject(result[6]));
+                return new PyDict(sklearn.model_selection.self.InvokeMethod("cross_validate", args, pyDict));
             }
 
             public static (NDarray, NDarray, NDarray, NDarray, NDarray) learning_curve(PyObject estimator, NDarray X, NDarray y, NDarray? groups = null, NDarray? train_sizes = null, int? cv = null, string? scoring = null, bool exploit_incremental_learning = false, int? n_jobs = null, string pre_dispatch = "all", int verbose = 0, bool shuffle = false, int? random_state = null, PyObject? error_score = null, bool return_times = false, PyDict? fit_params = null)

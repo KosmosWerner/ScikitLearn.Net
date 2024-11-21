@@ -5,47 +5,7 @@ namespace CodeGenerator.Core;
 
 public static class Generator
 {
-    public static async Task CreatePreGenerated(Dictionary<string, List<Uri>> source, string baseDirectory = ".")
-    {
-        JsonSerializerOptions serializerOptions = new() { WriteIndented = true };
-
-        foreach (var (fileName, urls) in source)
-        {
-            List<NodeContainer> nodeContainers = [];
-
-            foreach (var url in urls)
-            {
-                using HttpClient httpClient = new();
-
-                try
-                {
-                    string pageContent = await httpClient.GetStringAsync(url);
-
-                    HtmlContainer htmlContainer = new(pageContent);
-                    ArgumentNullException.ThrowIfNull(htmlContainer.ContentNode);
-
-                    string? declaration = htmlContainer.Declaration;
-                    if (declaration == null) continue;
-
-                    nodeContainers.Add(new NodeContainer(htmlContainer));
-                }
-                catch (HttpRequestException exception)
-                {
-                    Console.WriteLine($"Error fetching URL: {exception.Message}");
-                }
-            }
-
-            string serialized = JsonSerializer.Serialize(nodeContainers, serializerOptions);
-
-            string outputDirectoryPath = Path.Combine(Path.GetFullPath(baseDirectory), "PreGenerated");
-            Directory.CreateDirectory(outputDirectoryPath);
-
-            string outputFilePath = Path.Combine(outputDirectoryPath, $"{fileName}.json");
-            File.WriteAllText(outputFilePath, serialized);
-        }
-    }
-
-    public static void CreateGenerated(string baseDirectory = ".")
+    public static void Run(string baseDirectory = ".")
     {
         string inputDirectoryPath = Path.Combine(Path.GetFullPath(baseDirectory), "PreGenerated");
         string outpuDirectoryPath = Path.Combine(Path.GetFullPath(baseDirectory), "Generated");
@@ -56,7 +16,7 @@ public static class Generator
         {
             string serialized = File.ReadAllText(preGeneratedFile);
 
-            var nodeContainers = JsonSerializer.Deserialize<List<NodeContainer>>(serialized);
+            var nodeContainers = JsonSerializer.Deserialize<List<EntityContainer>>(serialized);
             if (nodeContainers == null) continue;
 
             var sortedContainers = nodeContainers.OrderBy(container =>

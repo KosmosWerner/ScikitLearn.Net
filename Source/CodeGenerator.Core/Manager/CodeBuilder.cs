@@ -7,7 +7,7 @@ namespace CodeGenerator.Core.Manager;
 
 public static partial class CodeBuilder
 {
-    public static void Build(string outputDirectoryPath, string fileName, IOrderedEnumerable<NodeContainer> sortedNodeContainers)
+    public static void Build(string outputDirectoryPath, string fileName, IOrderedEnumerable<EntityContainer> sortedNodeContainers)
     {
         Dictionary<string, ClassDeclarationSyntax> repository = [];
 
@@ -30,10 +30,10 @@ public static partial class CodeBuilder
 
                 switch (container.NodeType)
                 {
-                    case NodeType.Class: BuildClass(ref current, container); break;
-                    case NodeType.Method: BuildStaticMethod(ref current, container); break;
-                    case NodeType.Exception: BuildException(ref current, container); break;
-                    case NodeType.None:
+                    case EntityType.Class: BuildClass(ref current, container); break;
+                    case EntityType.Method: BuildStaticMethod(ref current, container); break;
+                    case EntityType.Exception: BuildException(ref current, container); break;
+                    case EntityType.None:
                     default: break;
                 }
 
@@ -50,10 +50,10 @@ public static partial class CodeBuilder
 
                 switch (container.NodeType)
                 {
-                    case NodeType.Class: BuildClass(ref current, container); break;
-                    case NodeType.Method: BuildStaticMethod(ref current, container); break;
-                    case NodeType.Exception: BuildException(ref current, container); break;
-                    case NodeType.None:
+                    case EntityType.Class: BuildClass(ref current, container); break;
+                    case EntityType.Method: BuildStaticMethod(ref current, container); break;
+                    case EntityType.Exception: BuildException(ref current, container); break;
+                    case EntityType.None:
                     default: break;
                 }
 
@@ -146,7 +146,7 @@ public static partial class CodeBuilder
         );
     }
 
-    private static void BuildClass(ref ClassDeclarationSyntax currentStaticClass, NodeContainer entity)
+    private static void BuildClass(ref ClassDeclarationSyntax currentStaticClass, EntityContainer entity)
     {
         var (_, fullName, _) = TextAnalyzer.Divide.FromDeclaration(entity.Declaration);
         var (className, _) = TextAnalyzer.Divide.FromFullName(fullName);
@@ -156,14 +156,14 @@ public static partial class CodeBuilder
         InsertConstructor(ref @class, entity);
         InsertProperties(ref @class, entity);
 
-        foreach (NodeMethodContainer methodContainer in entity.Methods)
+        foreach (EntityMethodContainer methodContainer in entity.Methods)
             InsertMethod(ref @class, methodContainer, className);
 
         currentStaticClass = currentStaticClass.AddMembers(@class);
     }
 
 
-    public static void InsertConstructor(ref ClassDeclarationSyntax @class, NodeContainer entity)
+    public static void InsertConstructor(ref ClassDeclarationSyntax @class, EntityContainer entity)
     {
         var (_, fullName, rawParameters) = TextAnalyzer.Divide.FromDeclaration(entity.Declaration);
         var (className, callableStaticClass) = TextAnalyzer.Divide.FromFullName(fullName);
@@ -205,7 +205,7 @@ public static partial class CodeBuilder
         }
     }
 
-    private static void InsertProperties(ref ClassDeclarationSyntax classNode, NodeContainer entity)
+    private static void InsertProperties(ref ClassDeclarationSyntax classNode, EntityContainer entity)
     {
         List<(string Type, string Name)> mappedAttributes = MapperTypes.GetAttributes(entity.Attributes);
 
@@ -243,7 +243,7 @@ public static partial class CodeBuilder
         return str.ToUpper();
     }
 
-    private static void InsertMethod(ref ClassDeclarationSyntax currentClass, NodeMethodContainer methodEntity, string className)
+    private static void InsertMethod(ref ClassDeclarationSyntax currentClass, EntityMethodContainer methodEntity, string className)
     {
         var (_, methodName, plainParameters) = TextAnalyzer.Divide.FromDeclaration(methodEntity.Declaration);
         if (methodName.StartsWith("__")) return; // Omitir __call__ o similares
@@ -294,7 +294,7 @@ public static partial class CodeBuilder
         Other
     }
 
-    private static void BuildStaticMethod(ref ClassDeclarationSyntax currentStaticClass, NodeContainer entity)
+    private static void BuildStaticMethod(ref ClassDeclarationSyntax currentStaticClass, EntityContainer entity)
     {
         var (_, fullName, rawParameters) = TextAnalyzer.Divide.FromDeclaration(entity.Declaration);
         var (methodName, callableStaticClass) = TextAnalyzer.Divide.FromFullName(fullName);
@@ -329,7 +329,7 @@ public static partial class CodeBuilder
         }
     }
 
-    private static void BuildException(ref ClassDeclarationSyntax currentStaticClass, NodeContainer dummy)
+    private static void BuildException(ref ClassDeclarationSyntax currentStaticClass, EntityContainer dummy)
     {
         // Not Implemented yet...
     }

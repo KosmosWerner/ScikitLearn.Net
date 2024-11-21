@@ -132,7 +132,7 @@ public static class MapperTypes
         plainAttributes = plainAttributes.Where(x => !x.StartsWith(':')).ToList();
         foreach (var item in plainAttributes)
         {
-            var (name, rawType, _) = TextAnalyzer.Divide.Definition(item);
+            var (name, rawType, _) = TextAnalyzer.Divide.FromDefinition(item);
 
             if (TextAnalyzer.Fix.TryGetReturnType(rawType, out string? type))
             {

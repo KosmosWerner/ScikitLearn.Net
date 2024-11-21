@@ -2671,12 +2671,11 @@ namespace ScikitLearn
                     return this;
                 }
 
-                public (PyObject, bool, bool, PyObject) transform(NDarray X)
+                public PyObject transform(NDarray X)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    PyTuple result = new PyTuple(self.InvokeMethod("transform", args, pyDict));
-                    return (Helpers.ToCSharpPyObject(result[0]), Helpers.ToCSharpBool(result[1]), Helpers.ToCSharpBool(result[2]), Helpers.ToCSharpPyObject(result[3]));
+                    return self.InvokeMethod("transform", args, pyDict);
                 }
             }
 

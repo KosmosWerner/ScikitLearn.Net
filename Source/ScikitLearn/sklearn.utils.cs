@@ -218,7 +218,7 @@ namespace ScikitLearn
             {
                 PyTuple args = new PyTuple([Helpers.ToPython(iterables)]);
                 PyDict pyDict = new PyDict();
-                return Helpers.ToCSharpNDarray  (sklearn.utils.self.InvokeMethod("indexable", args, pyDict));
+                return Helpers.ToCSharpNDarray(sklearn.utils.self.InvokeMethod("indexable", args, pyDict));
             }
 
             public static void murmurhash3_32(NDarray key, int seed = 0, bool positive = false)
@@ -402,12 +402,11 @@ namespace ScikitLearn
                     ReInitializeLazySelf();
                 }
 
-                public static (float, NDarray) min_pos(NDarray X)
+                public static float min_pos(NDarray X)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
-                    PyTuple result = new PyTuple(sklearn.utils.arrayfuncs.self.InvokeMethod("min_pos", args, pyDict));
-                    return (Helpers.ToCSharpFloat(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    return Helpers.ToCSharpFloat(sklearn.utils.arrayfuncs.self.InvokeMethod("min_pos", args, pyDict));
                 }
             }
 

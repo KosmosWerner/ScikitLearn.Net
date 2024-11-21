@@ -549,7 +549,6 @@ namespace ScikitLearn
                 public NDarray classes_ => Helpers.ToCSharpNDarray(self.GetAttr("classes_"));
                 public string y_type_ => Helpers.ToCSharpString(self.GetAttr("y_type_"));
                 public bool sparse_input_ => Helpers.ToCSharpBool(self.GetAttr("sparse_input_"));
-                //public bool True if the input data to transform is given as a sparse matrix, => Helpers.ToCSharpBool(self.GetAttr("True if the input data to transform is given as a sparse matrix,"));
 
                 public LabelBinarizer fit(NDarray y)
                 {

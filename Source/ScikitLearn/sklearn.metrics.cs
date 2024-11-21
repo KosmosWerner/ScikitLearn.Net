@@ -265,7 +265,7 @@ namespace ScikitLearn
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                 if (zero_division != "warn")
                     pyDict["zero_division"] = Helpers.ToPython(zero_division);
-                return Helpers.ToCSharpNDarray  (sklearn.metrics.self.InvokeMethod("fbeta_score", args, pyDict));
+                return Helpers.ToCSharpNDarray ? (sklearn.metrics.self.InvokeMethod("fbeta_score", args, pyDict));
             }
 
             public static float hamming_loss(NDarray y_true, NDarray y_pred, NDarray? sample_weight = null)
@@ -390,7 +390,7 @@ namespace ScikitLearn
                 if (zero_division != "warn")
                     pyDict["zero_division"] = Helpers.ToPython(zero_division);
                 PyTuple result = new PyTuple(sklearn.metrics.self.InvokeMethod("precision_recall_fscore_support", args, pyDict));
-                return (Helpers.ToCSharpNDarray  (result[0]), Helpers.ToCSharpNDarray  (result[1]), Helpers.ToCSharpNDarray  (result[2]), Helpers.ToCSharpNDarray  (result[3]));
+                return (Helpers.ToCSharpNDarray ? (result[0]), Helpers.ToCSharpNDarray ? (result[1]), Helpers.ToCSharpNDarray ? (result[2]), Helpers.ToCSharpNDarray ? (result[3]));
             }
 
             public static NDarray? precision_score(NDarray y_true, NDarray y_pred, NDarray? labels = null, int pos_label = 1, string? average = "binary", NDarray? sample_weight = null, string zero_division = "warn")
@@ -407,7 +407,7 @@ namespace ScikitLearn
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                 if (zero_division != "warn")
                     pyDict["zero_division"] = Helpers.ToPython(zero_division);
-                return Helpers.ToCSharpNDarray  (sklearn.metrics.self.InvokeMethod("precision_score", args, pyDict));
+                return Helpers.ToCSharpNDarray ? (sklearn.metrics.self.InvokeMethod("precision_score", args, pyDict));
             }
 
             public static NDarray? recall_score(NDarray y_true, NDarray y_pred, NDarray? labels = null, int pos_label = 1, string? average = "binary", NDarray? sample_weight = null, string zero_division = "warn")
@@ -424,7 +424,7 @@ namespace ScikitLearn
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                 if (zero_division != "warn")
                     pyDict["zero_division"] = Helpers.ToPython(zero_division);
-                return Helpers.ToCSharpNDarray  (sklearn.metrics.self.InvokeMethod("recall_score", args, pyDict));
+                return Helpers.ToCSharpNDarray ? (sklearn.metrics.self.InvokeMethod("recall_score", args, pyDict));
             }
 
             public static float roc_auc_score(NDarray y_true, NDarray y_score, string? average = "macro", NDarray? sample_weight = null, float? max_fpr = null, string multi_class = "raise", NDarray? labels = null)

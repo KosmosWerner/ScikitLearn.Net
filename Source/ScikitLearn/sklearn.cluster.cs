@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Numpy;
 using Python.Runtime;
 
@@ -1869,7 +1871,7 @@ namespace ScikitLearn
                 return Helpers.ToCSharpNDarray(sklearn.cluster.self.InvokeMethod("spectral_clustering", args, pyDict));
             }
 
-            public static (NDarray, int, int, NDarray? , NDarray) ward_tree(NDarray X, NDarray? connectivity = null, int? n_clusters = null, bool return_distance = false)
+            public static (NDarray, int, int, NDarray?, NDarray) ward_tree(NDarray X, NDarray? connectivity = null, int? n_clusters = null, bool return_distance = false)
             {
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
@@ -1880,7 +1882,7 @@ namespace ScikitLearn
                 if (return_distance != false)
                     pyDict["return_distance"] = Helpers.ToPython(return_distance);
                 PyTuple result = new PyTuple(sklearn.cluster.self.InvokeMethod("ward_tree", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpInt(result[1]), Helpers.ToCSharpInt(result[2]), Helpers.ToCSharpNDarray  (result[3]), Helpers.ToCSharpNDarray(result[4]));
+                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpInt(result[1]), Helpers.ToCSharpInt(result[2]), Helpers.ToCSharpNDarray(result[3]), Helpers.ToCSharpNDarray(result[4]));
             }
         }
     }

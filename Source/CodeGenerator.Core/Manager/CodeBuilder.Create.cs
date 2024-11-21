@@ -20,6 +20,8 @@ public static partial class CodeBuilder
         {
             return
             [
+                SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("System")),
+                SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("System.Collections.Generic")),
                 SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("Numpy")),
                 SyntaxFactory.UsingDirective(SyntaxFactory.ParseName("Python.Runtime")),
             ];

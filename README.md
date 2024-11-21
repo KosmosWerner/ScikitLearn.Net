@@ -1,5 +1,6 @@
 # Sklearn.NET
 ### (Work In Progress)
+
 [![](https://img.shields.io/nuget/dt/ScikitLearn?color=4cbb3b&label=Downloads&logo=NuGet&style=flat-square)](https://www.nuget.org/packages/ScikitLearn)
 [![](https://img.shields.io/nuget/v/ScikitLearn?color=0078D4&logo=NuGet&style=flat-square)](https://www.nuget.org/packages/ScikitLearn)
 
@@ -78,17 +79,17 @@ Output
 💻 [Full code here](https://github.com/KosmosWerner/ScikitLearn.Net/blob/main/Examples/ConsoleExample)
 
 ## ⚠ Notes
-### Getting an Array from `my_model.labels_`
+### 1. Getting an Array from `my_model.labels_`
 ScikitLearn typically uses `ndarray(int64)`, which is equivalent to `long[]` in C# rather than `int[]`. To convert `labels_` to a C# array format, use:
 
 ```csharp
 long[] labels = my_model.labels_.GetData<long>();
 ```
 
-### PythonEngine.Shutdown()
+### 2. PythonEngine.Shutdown()
 For desktop applications, be sure to call `PythonEngine.Shutdown()` when closing the application to prevent it from continuing in the background.
 
-### Can't Find the Methods or Constructors You Need
+### 3. Can't Find the Methods or Constructors You Need
 Each static class has a `self` field of type `PyObject`, from which you can create class instances or call omitted methods.  
 When creating objects, you will receive an instance of `PyObject`. If you are sure of the type, each class has a static method `Encapsulate(PyObject pyObject)`, which allows you to access the class's attributes and methods.
 

@@ -15,86 +15,60 @@ namespace CodeGeneratorTest
 {
     public class TestCodeGenerator
     {
-        [Fact]
+        [Fact(Skip = "Manually")]
         public void RunGenerator()
         {
             Generator.Run();
         }
 
-        [Fact]
-        public void ValidateNamespacesInPreGeneratedFiles()
+        [Theory]
+        [InlineData("base", "@base")]
+        [InlineData("static.base.out", "@static.@base.@out")]
+        public static void FixReservedName(string test, string expected)
         {
-            var preGeneratedPath = Path.Combine(Path.GetFullPath("."), "PreGenerated");
-            var preGeneratedFiles = Directory.GetFiles(preGeneratedPath, "*.json");
-
-            foreach (var filePath in preGeneratedFiles)
-            {
-                var jsonContent = File.ReadAllText(filePath);
-                var dummyContainers = JsonSerializer.Deserialize<List<EntityContainer>>(jsonContent);
-
-                if (dummyContainers == null)
-                    continue;
-
-                var sortedDummyContainers = dummyContainers.OrderBy(dummy =>
-                {
-                    var (_, fullName, _) = TextAnalyzer.Divide.FromDeclaration(dummy.Declaration);
-                    var nameSegments = fullName.Split('.');
-                    var namespaceOnly = string.Join(".", nameSegments[..^1]);
-                    return namespaceOnly;
-                });
-
-                Console.WriteLine($">> {filePath}");
-
-                foreach (var dummy in sortedDummyContainers)
-                {
-                    var (_, fullName, _) = TextAnalyzer.Divide.FromDeclaration(dummy.Declaration);
-
-                    var nameSegments = fullName.Split('.');
-                    var namespaceOnly = string.Join(".", nameSegments[..^1]);
-
-                    Console.WriteLine(namespaceOnly);
-                }
-            }
+            string obtained = TextAnalyzer.Fix.Reserved(test);
+            Assert.Equal(expected, obtained);
         }
 
-        [Fact]
-        public void ValidateUniqueNamespacesInPreGeneratedFiles()
+        [Theory]
+        [InlineData("class1.class3.MethodName",
+            "", "class1.class3.MethodName", "")]
+
+        [InlineData("class1.class3.ClassOrMethodName()",
+            "", "class1.class3.ClassOrMethodName", "")]
+
+        [InlineData("class class1.class3.ClassName(arg1, *, arg2 = 2, arg3 = (1.0, 5.0), arg4 = \"text\")",
+            "class", "class1.class3.ClassName", "arg1, *, arg2 = 2, arg3 = (1.0, 5.0), arg4 = \"text\"")]
+        public static void DivideFromDeclaration(string test, string expectedIdentifier, string expectedFullName, string expectedRawParameters)
         {
-            var preGeneratedPath = Path.Combine(Path.GetFullPath("."), "PreGenerated");
-            var preGeneratedFiles = Directory.GetFiles(preGeneratedPath, "*.json");
+            var (obtainedIdentifier, obtainedFullName, obtainedRawParameters) = TextAnalyzer.Divide.FromDeclaration(test);
+            Assert.Equal(expectedIdentifier, obtainedIdentifier);
+            Assert.Equal(expectedFullName, obtainedFullName);
+            Assert.Equal(expectedRawParameters, obtainedRawParameters);
+        }
 
-            foreach (var filePath in preGeneratedFiles)
-            {
-                var jsonContent = File.ReadAllText(filePath);
-                var dummyContainers = JsonSerializer.Deserialize<List<EntityContainer>>(jsonContent);
+        [Theory]
+        [InlineData("ClassOrMethodName", "ClassOrMethodName", "")]
+        [InlineData("class1.class2.class3.ClassOrMethodName", "ClassOrMethodName", "class1.class2.class3")]
+        public static void DivideFromFullName(string test, string expectedName, string expectedStaticClass)
+        {
+            (string obtainedName, string obtainedStaticClass) = TextAnalyzer.Divide.FromFullName(test);
+            Assert.Equal(expectedName, obtainedName);
+            Assert.Equal(expectedStaticClass, obtainedStaticClass);
+        }
 
-                if (dummyContainers == null)
-                    continue;
-
-                var sortedDummyContainers = dummyContainers.OrderBy(dummy =>
-                {
-                    var (_, fullName, _) = TextAnalyzer.Divide.FromDeclaration(dummy.Declaration);
-                    var nameSegments = fullName.Split('.');
-                    var namespaceOnly = string.Join(".", nameSegments[..^1]);
-                    return namespaceOnly;
-                });
-
-                var uniqueStaticClasses = sortedDummyContainers
-                    .Select(dummy =>
-                    {
-                        var (_, fullName, _) = TextAnalyzer.Divide.FromDeclaration(dummy.Declaration);
-                        var namespaceParts = fullName.Split('.');
-                        return string.Join(".", namespaceParts[..^1]);
-                    })
-                    .Distinct();
-
-                Console.WriteLine($">> {filePath}");
-
-                foreach (var uniqueNamespace in uniqueStaticClasses)
-                {
-                    Console.WriteLine(uniqueNamespace);
-                }
-            }
+        [Theory]
+        [InlineData("self", "self", "", "")]
+        [InlineData("self:object", "self", "object", "")]
+        [InlineData("self:object, default=40", "self", "object", "40")]
+        [InlineData("var:int, float or string, default=None", "var", "int, float or string", "None")]
+        [InlineData("var:int, float or string", "var", "int, float or string", "")]
+        public static void DivideFromDefinition(string test, string expectedName, string expectedRawType, string expectedRawDefault)
+        {
+            var (actualName, actualRawType, actualRawDefault) = TextAnalyzer.Divide.FromDefinition(test);
+            Assert.Equal(expectedName, actualName);
+            Assert.Equal(expectedRawType, actualRawType);
+            Assert.Equal(expectedRawDefault, actualRawDefault);
         }
     }
 }

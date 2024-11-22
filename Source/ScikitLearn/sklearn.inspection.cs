@@ -39,8 +39,9 @@ namespace ScikitLearn
                 ReInitializeLazySelf();
             }
 
-            public static PyDict partial_dependence(PyObject estimator, NDarray X, NDarray features, NDarray? sample_weight = null, NDarray? categorical_features = null, NDarray? feature_names = null, string response_method = "auto", float? percentiles = null, int grid_resolution = 100, string method = "auto", string kind = "average")
+            public static PyDict partial_dependence(PyObject estimator, NDarray X, NDarray features, NDarray? sample_weight = null, NDarray? categorical_features = null, NDarray? feature_names = null, string response_method = "auto", PyTuple? percentiles = null, int grid_resolution = 100, string method = "auto", string kind = "average")
             {
+                _ = sklearn.inspection.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(estimator), Helpers.ToPython(X), Helpers.ToPython(features)]);
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
@@ -52,7 +53,7 @@ namespace ScikitLearn
                 if (response_method != "auto")
                     pyDict["response_method"] = Helpers.ToPython(response_method);
                 if (percentiles != null)
-                    pyDict["percentiles"] = Helpers.ToPython(percentiles.Value);
+                    pyDict["percentiles"] = Helpers.ToPython(percentiles);
                 if (grid_resolution != 100)
                     pyDict["grid_resolution"] = Helpers.ToPython(grid_resolution);
                 if (method != "auto")
@@ -64,6 +65,7 @@ namespace ScikitLearn
 
             public static PyDict permutation_importance(PyObject estimator, NDarray X, NDarray y, PyDict? scoring = null, int n_repeats = 5, int? n_jobs = null, int? random_state = null, NDarray? sample_weight = null, float max_samples = 1.0f)
             {
+                _ = sklearn.inspection.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(estimator), Helpers.ToPython(X), Helpers.ToPython(y)]);
                 PyDict pyDict = new PyDict();
                 if (scoring != null)
@@ -85,6 +87,7 @@ namespace ScikitLearn
             {
                 public DecisionBoundaryDisplay(NDarray xx0, NDarray xx1, NDarray response, string? xlabel = null, string? ylabel = null)
                 {
+                    _ = sklearn.inspection.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(xx0), Helpers.ToPython(xx1), Helpers.ToPython(response)]);
                     PyDict pyDict = new PyDict();
                     if (xlabel != null)
@@ -96,6 +99,7 @@ namespace ScikitLearn
 
                 internal DecisionBoundaryDisplay(PyObject pyObject)
                 {
+                    _ = sklearn.inspection.self;
                     self = pyObject;
                 }
 
@@ -155,6 +159,7 @@ namespace ScikitLearn
             {
                 public PartialDependenceDisplay(PyDict pd_results, PyTuple features, PyTuple feature_names, int target_idx, PyDict deciles, string kind = "average", int? subsample = 1000, int? random_state = null, PyTuple? is_categorical = null)
                 {
+                    _ = sklearn.inspection.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(pd_results), Helpers.ToPython(features), Helpers.ToPython(feature_names), Helpers.ToPython(target_idx), Helpers.ToPython(deciles)]);
                     PyDict pyDict = new PyDict();
                     if (kind != "average")
@@ -170,6 +175,7 @@ namespace ScikitLearn
 
                 internal PartialDependenceDisplay(PyObject pyObject)
                 {
+                    _ = sklearn.inspection.self;
                     self = pyObject;
                 }
 
@@ -188,7 +194,7 @@ namespace ScikitLearn
                 public NDarray heatmaps_ => Helpers.ToCSharpNDarray(self.GetAttr("heatmaps_"));
                 public PyObject figure_ => self.GetAttr("figure_");
 
-                public PyObject from_estimator(PyObject estimator, NDarray X, PyTuple features, NDarray? sample_weight = null, NDarray? categorical_features = null, NDarray? feature_names = null, int? target = null, string response_method = "auto", int n_cols = 3, int grid_resolution = 100, float? percentiles = null, string method = "auto", int? n_jobs = null, int verbose = 0, PyDict? line_kw = null, PyDict? ice_lines_kw = null, PyDict? pd_line_kw = null, PyDict? contour_kw = null, NDarray? ax = null, string kind = "average", bool centered = false, int? subsample = 1000, int? random_state = null)
+                public PyObject from_estimator(PyObject estimator, NDarray X, PyTuple features, NDarray? sample_weight = null, NDarray? categorical_features = null, NDarray? feature_names = null, int? target = null, string response_method = "auto", int n_cols = 3, int grid_resolution = 100, PyTuple? percentiles = null, string method = "auto", int? n_jobs = null, int verbose = 0, PyDict? line_kw = null, PyDict? ice_lines_kw = null, PyDict? pd_line_kw = null, PyDict? contour_kw = null, NDarray? ax = null, string kind = "average", bool centered = false, int? subsample = 1000, int? random_state = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(estimator), Helpers.ToPython(X), Helpers.ToPython(features)]);
                     PyDict pyDict = new PyDict();
@@ -207,7 +213,7 @@ namespace ScikitLearn
                     if (grid_resolution != 100)
                         pyDict["grid_resolution"] = Helpers.ToPython(grid_resolution);
                     if (percentiles != null)
-                        pyDict["percentiles"] = Helpers.ToPython(percentiles.Value);
+                        pyDict["percentiles"] = Helpers.ToPython(percentiles);
                     if (method != "auto")
                         pyDict["method"] = Helpers.ToPython(method);
                     if (n_jobs != null)

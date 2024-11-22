@@ -43,6 +43,7 @@ namespace ScikitLearn
             {
                 public LinearSVC(string penalty = "l2", string loss = "squared_hinge", string dual = "auto", float tol = 0.0001f, float C = 1.0f, string multi_class = "ovr", bool fit_intercept = true, int intercept_scaling = 1, PyDict? class_weight = null, int verbose = 0, int? random_state = null, int max_iter = 1000)
                 {
+                    _ = sklearn.svm.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (penalty != "l2")
@@ -74,6 +75,7 @@ namespace ScikitLearn
 
                 internal LinearSVC(PyObject pyObject)
                 {
+                    _ = sklearn.svm.self;
                     self = pyObject;
                 }
 
@@ -189,6 +191,7 @@ namespace ScikitLearn
             {
                 public LinearSVR(float epsilon = 0.0f, float tol = 0.0001f, float C = 1.0f, string loss = "epsilon_insensitive", bool fit_intercept = true, float intercept_scaling = 1.0f, string dual = "auto", int verbose = 0, int? random_state = null, int max_iter = 1000)
                 {
+                    _ = sklearn.svm.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (epsilon != 0.0f)
@@ -216,6 +219,7 @@ namespace ScikitLearn
 
                 internal LinearSVR(PyObject pyObject)
                 {
+                    _ = sklearn.svm.self;
                     self = pyObject;
                 }
 
@@ -307,6 +311,7 @@ namespace ScikitLearn
             {
                 public NuSVC(float nu = 0.5f, string kernel = "rbf", int degree = 3, string gamma = "scale", float coef0 = 0.0f, bool shrinking = true, bool probability = false, float tol = 0.001f, int cache_size = 200, PyDict? class_weight = null, bool verbose = false, int max_iter = -1, string decision_function_shape = "ovr", bool break_ties = false, int? random_state = null)
                 {
+                    _ = sklearn.svm.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (nu != 0.5f)
@@ -344,6 +349,7 @@ namespace ScikitLearn
 
                 internal NuSVC(PyObject pyObject)
                 {
+                    _ = sklearn.svm.self;
                     self = pyObject;
                 }
 
@@ -466,6 +472,7 @@ namespace ScikitLearn
             {
                 public NuSVR(float nu = 0.5f, float C = 1.0f, string kernel = "rbf", int degree = 3, string gamma = "scale", float coef0 = 0.0f, bool shrinking = true, float tol = 0.001f, int cache_size = 200, bool verbose = false, int max_iter = -1)
                 {
+                    _ = sklearn.svm.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (nu != 0.5f)
@@ -495,6 +502,7 @@ namespace ScikitLearn
 
                 internal NuSVR(PyObject pyObject)
                 {
+                    _ = sklearn.svm.self;
                     self = pyObject;
                 }
 
@@ -592,6 +600,7 @@ namespace ScikitLearn
             {
                 public OneClassSVM(string kernel = "rbf", int degree = 3, string gamma = "scale", float coef0 = 0.0f, float tol = 0.001f, float nu = 0.5f, bool shrinking = true, int cache_size = 200, bool verbose = false, int max_iter = -1)
                 {
+                    _ = sklearn.svm.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (kernel != "rbf")
@@ -619,6 +628,7 @@ namespace ScikitLearn
 
                 internal OneClassSVM(PyObject pyObject)
                 {
+                    _ = sklearn.svm.self;
                     self = pyObject;
                 }
 
@@ -721,6 +731,7 @@ namespace ScikitLearn
             {
                 public SVC(float C = 1.0f, string kernel = "rbf", int degree = 3, string gamma = "scale", float coef0 = 0.0f, bool shrinking = true, bool probability = false, float tol = 0.001f, int cache_size = 200, PyDict? class_weight = null, bool verbose = false, int max_iter = -1, string decision_function_shape = "ovr", bool break_ties = false, int? random_state = null)
                 {
+                    _ = sklearn.svm.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (C != 1.0f)
@@ -758,6 +769,7 @@ namespace ScikitLearn
 
                 internal SVC(PyObject pyObject)
                 {
+                    _ = sklearn.svm.self;
                     self = pyObject;
                 }
 
@@ -880,6 +892,7 @@ namespace ScikitLearn
             {
                 public SVR(string kernel = "rbf", int degree = 3, string gamma = "scale", float coef0 = 0.0f, float tol = 0.001f, float C = 1.0f, float epsilon = 0.1f, bool shrinking = true, int cache_size = 200, bool verbose = false, int max_iter = -1)
                 {
+                    _ = sklearn.svm.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (kernel != "rbf")
@@ -909,6 +922,7 @@ namespace ScikitLearn
 
                 internal SVR(PyObject pyObject)
                 {
+                    _ = sklearn.svm.self;
                     self = pyObject;
                 }
 
@@ -1004,6 +1018,7 @@ namespace ScikitLearn
 
             public static float l1_min_c(NDarray X, NDarray y, string loss = "squared_hinge", bool fit_intercept = true, float intercept_scaling = 1.0f)
             {
+                _ = sklearn.svm.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                 PyDict pyDict = new PyDict();
                 if (loss != "squared_hinge")

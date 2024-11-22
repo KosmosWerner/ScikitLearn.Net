@@ -43,6 +43,7 @@ namespace ScikitLearn
             {
                 public GaussianProcessClassifier(PyObject? kernel = null, string? optimizer = "fmin_l_bfgs_b", int n_restarts_optimizer = 0, int max_iter_predict = 100, bool warm_start = false, bool copy_X_train = true, int? random_state = null, string multi_class = "one_vs_rest", int? n_jobs = null)
                 {
+                    _ = sklearn.gaussian_process.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (kernel != null)
@@ -68,6 +69,7 @@ namespace ScikitLearn
 
                 internal GaussianProcessClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.gaussian_process.self;
                     self = pyObject;
                 }
 
@@ -108,7 +110,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (float, NDarray) log_marginal_likelihood(NDarray? theta = null, bool eval_gradient = false, bool clone_kernel = true)
+                public (float? , NDarray? ) log_marginal_likelihood(NDarray? theta = null, bool eval_gradient = false, bool clone_kernel = true)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
@@ -119,7 +121,8 @@ namespace ScikitLearn
                     if (clone_kernel != true)
                         pyDict["clone_kernel"] = Helpers.ToPython(clone_kernel);
                     PyTuple result = new PyTuple(self.InvokeMethod("log_marginal_likelihood", args, pyDict));
-                    return (Helpers.ToCSharpFloat(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpFloat(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public NDarray predict(PyObject X)
@@ -170,6 +173,7 @@ namespace ScikitLearn
             {
                 public GaussianProcessRegressor(PyObject? kernel = null, float alpha = 1e-10f, string? optimizer = "fmin_l_bfgs_b", int n_restarts_optimizer = 0, bool normalize_y = false, bool copy_X_train = true, int? n_targets = null, int? random_state = null)
                 {
+                    _ = sklearn.gaussian_process.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (kernel != null)
@@ -193,6 +197,7 @@ namespace ScikitLearn
 
                 internal GaussianProcessRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.gaussian_process.self;
                     self = pyObject;
                 }
 
@@ -234,7 +239,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (float, NDarray) log_marginal_likelihood(NDarray? theta = null, bool eval_gradient = false, bool clone_kernel = true)
+                public (float? , NDarray? ) log_marginal_likelihood(NDarray? theta = null, bool eval_gradient = false, bool clone_kernel = true)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
@@ -245,10 +250,11 @@ namespace ScikitLearn
                     if (clone_kernel != true)
                         pyDict["clone_kernel"] = Helpers.ToPython(clone_kernel);
                     PyTuple result = new PyTuple(self.InvokeMethod("log_marginal_likelihood", args, pyDict));
-                    return (Helpers.ToCSharpFloat(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpFloat(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
-                public (NDarray, NDarray, NDarray) predict(PyObject X, bool return_std = false, bool return_cov = false)
+                public (NDarray? , NDarray? , NDarray? ) predict(PyObject X, bool return_std = false, bool return_cov = false)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -257,7 +263,8 @@ namespace ScikitLearn
                     if (return_cov != false)
                         pyDict["return_cov"] = Helpers.ToPython(return_cov);
                     PyTuple result = new PyTuple(self.InvokeMethod("predict", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
                 }
 
                 public NDarray sample_y(PyObject X, int n_samples = 1, int? random_state = 0)
@@ -349,6 +356,7 @@ namespace ScikitLearn
                 {
                     public CompoundKernel(PyTuple kernels)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         PyTuple args = new PyTuple([Helpers.ToPython(kernels)]);
                         PyDict pyDict = new PyDict();
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("CompoundKernel", args, pyDict);
@@ -356,6 +364,7 @@ namespace ScikitLearn
 
                     internal CompoundKernel(PyObject pyObject)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         self = pyObject;
                     }
 
@@ -405,19 +414,21 @@ namespace ScikitLearn
 
                 public class ConstantKernel : PythonObject
                 {
-                    public ConstantKernel(float constant_value = 1.0f, float? constant_value_bounds = null)
+                    public ConstantKernel(float constant_value = 1.0f, PyTuple? constant_value_bounds = null)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (constant_value != 1.0f)
                             pyDict["constant_value"] = Helpers.ToPython(constant_value);
                         if (constant_value_bounds != null)
-                            pyDict["constant_value_bounds"] = Helpers.ToPython(constant_value_bounds.Value);
+                            pyDict["constant_value_bounds"] = Helpers.ToPython(constant_value_bounds);
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("ConstantKernel", args, pyDict);
                     }
 
                     internal ConstantKernel(PyObject pyObject)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         self = pyObject;
                     }
 
@@ -467,19 +478,21 @@ namespace ScikitLearn
 
                 public class DotProduct : PythonObject
                 {
-                    public DotProduct(float sigma_0 = 1.0f, float? sigma_0_bounds = null)
+                    public DotProduct(float sigma_0 = 1.0f, PyTuple? sigma_0_bounds = null)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (sigma_0 != 1.0f)
                             pyDict["sigma_0"] = Helpers.ToPython(sigma_0);
                         if (sigma_0_bounds != null)
-                            pyDict["sigma_0_bounds"] = Helpers.ToPython(sigma_0_bounds.Value);
+                            pyDict["sigma_0_bounds"] = Helpers.ToPython(sigma_0_bounds);
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("DotProduct", args, pyDict);
                     }
 
                     internal DotProduct(PyObject pyObject)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         self = pyObject;
                     }
 
@@ -529,8 +542,9 @@ namespace ScikitLearn
 
                 public class ExpSineSquared : PythonObject
                 {
-                    public ExpSineSquared(float length_scale = 1.0f, float periodicity = 1.0f, float? length_scale_bounds = null, float? periodicity_bounds = null)
+                    public ExpSineSquared(float length_scale = 1.0f, float periodicity = 1.0f, PyTuple? length_scale_bounds = null, PyTuple? periodicity_bounds = null)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (length_scale != 1.0f)
@@ -538,14 +552,15 @@ namespace ScikitLearn
                         if (periodicity != 1.0f)
                             pyDict["periodicity"] = Helpers.ToPython(periodicity);
                         if (length_scale_bounds != null)
-                            pyDict["length_scale_bounds"] = Helpers.ToPython(length_scale_bounds.Value);
+                            pyDict["length_scale_bounds"] = Helpers.ToPython(length_scale_bounds);
                         if (periodicity_bounds != null)
-                            pyDict["periodicity_bounds"] = Helpers.ToPython(periodicity_bounds.Value);
+                            pyDict["periodicity_bounds"] = Helpers.ToPython(periodicity_bounds);
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("ExpSineSquared", args, pyDict);
                     }
 
                     internal ExpSineSquared(PyObject pyObject)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         self = pyObject;
                     }
 
@@ -597,6 +612,7 @@ namespace ScikitLearn
                 {
                     public Exponentiation(PyObject kernel, float exponent)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         PyTuple args = new PyTuple([Helpers.ToPython(kernel), Helpers.ToPython(exponent)]);
                         PyDict pyDict = new PyDict();
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("Exponentiation", args, pyDict);
@@ -604,6 +620,7 @@ namespace ScikitLearn
 
                     internal Exponentiation(PyObject pyObject)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         self = pyObject;
                     }
 
@@ -655,6 +672,7 @@ namespace ScikitLearn
                 {
                     public Hyperparameter(int n_elements = 1)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (n_elements != 1)
@@ -664,6 +682,7 @@ namespace ScikitLearn
 
                     internal Hyperparameter(PyObject pyObject)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         self = pyObject;
                     }
 
@@ -699,6 +718,7 @@ namespace ScikitLearn
                 {
                     public Kernel()
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("Kernel", args, pyDict);
@@ -706,6 +726,7 @@ namespace ScikitLearn
 
                     internal Kernel(PyObject pyObject)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         self = pyObject;
                     }
 
@@ -755,14 +776,15 @@ namespace ScikitLearn
 
                 public class Matern : PythonObject
                 {
-                    public Matern(float length_scale = 1.0f, float? length_scale_bounds = null, float nu = 1.5f)
+                    public Matern(float length_scale = 1.0f, PyTuple? length_scale_bounds = null, float nu = 1.5f)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (length_scale != 1.0f)
                             pyDict["length_scale"] = Helpers.ToPython(length_scale);
                         if (length_scale_bounds != null)
-                            pyDict["length_scale_bounds"] = Helpers.ToPython(length_scale_bounds.Value);
+                            pyDict["length_scale_bounds"] = Helpers.ToPython(length_scale_bounds);
                         if (nu != 1.5f)
                             pyDict["nu"] = Helpers.ToPython(nu);
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("Matern", args, pyDict);
@@ -770,6 +792,7 @@ namespace ScikitLearn
 
                     internal Matern(PyObject pyObject)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         self = pyObject;
                     }
 
@@ -819,14 +842,15 @@ namespace ScikitLearn
 
                 public class PairwiseKernel : PythonObject
                 {
-                    public PairwiseKernel(float gamma = 1.0f, float? gamma_bounds = null, string metric = "linear", PyDict? pairwise_kernels_kwargs = null)
+                    public PairwiseKernel(float gamma = 1.0f, PyTuple? gamma_bounds = null, string metric = "linear", PyDict? pairwise_kernels_kwargs = null)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (gamma != 1.0f)
                             pyDict["gamma"] = Helpers.ToPython(gamma);
                         if (gamma_bounds != null)
-                            pyDict["gamma_bounds"] = Helpers.ToPython(gamma_bounds.Value);
+                            pyDict["gamma_bounds"] = Helpers.ToPython(gamma_bounds);
                         if (metric != "linear")
                             pyDict["metric"] = Helpers.ToPython(metric);
                         if (pairwise_kernels_kwargs != null)
@@ -836,6 +860,7 @@ namespace ScikitLearn
 
                     internal PairwiseKernel(PyObject pyObject)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         self = pyObject;
                     }
 
@@ -887,6 +912,7 @@ namespace ScikitLearn
                 {
                     public Product(PyObject k1, PyObject k2)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         PyTuple args = new PyTuple([Helpers.ToPython(k1), Helpers.ToPython(k2)]);
                         PyDict pyDict = new PyDict();
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("Product", args, pyDict);
@@ -894,6 +920,7 @@ namespace ScikitLearn
 
                     internal Product(PyObject pyObject)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         self = pyObject;
                     }
 
@@ -943,19 +970,21 @@ namespace ScikitLearn
 
                 public class RBF : PythonObject
                 {
-                    public RBF(float length_scale = 1.0f, float? length_scale_bounds = null)
+                    public RBF(float length_scale = 1.0f, PyTuple? length_scale_bounds = null)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (length_scale != 1.0f)
                             pyDict["length_scale"] = Helpers.ToPython(length_scale);
                         if (length_scale_bounds != null)
-                            pyDict["length_scale_bounds"] = Helpers.ToPython(length_scale_bounds.Value);
+                            pyDict["length_scale_bounds"] = Helpers.ToPython(length_scale_bounds);
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("RBF", args, pyDict);
                     }
 
                     internal RBF(PyObject pyObject)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         self = pyObject;
                     }
 
@@ -1005,8 +1034,9 @@ namespace ScikitLearn
 
                 public class RationalQuadratic : PythonObject
                 {
-                    public RationalQuadratic(float length_scale = 1.0f, float alpha = 1.0f, float? length_scale_bounds = null, float? alpha_bounds = null)
+                    public RationalQuadratic(float length_scale = 1.0f, float alpha = 1.0f, PyTuple? length_scale_bounds = null, PyTuple? alpha_bounds = null)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (length_scale != 1.0f)
@@ -1014,14 +1044,15 @@ namespace ScikitLearn
                         if (alpha != 1.0f)
                             pyDict["alpha"] = Helpers.ToPython(alpha);
                         if (length_scale_bounds != null)
-                            pyDict["length_scale_bounds"] = Helpers.ToPython(length_scale_bounds.Value);
+                            pyDict["length_scale_bounds"] = Helpers.ToPython(length_scale_bounds);
                         if (alpha_bounds != null)
-                            pyDict["alpha_bounds"] = Helpers.ToPython(alpha_bounds.Value);
+                            pyDict["alpha_bounds"] = Helpers.ToPython(alpha_bounds);
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("RationalQuadratic", args, pyDict);
                     }
 
                     internal RationalQuadratic(PyObject pyObject)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         self = pyObject;
                     }
 
@@ -1073,6 +1104,7 @@ namespace ScikitLearn
                 {
                     public Sum(PyObject k1, PyObject k2)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         PyTuple args = new PyTuple([Helpers.ToPython(k1), Helpers.ToPython(k2)]);
                         PyDict pyDict = new PyDict();
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("Sum", args, pyDict);
@@ -1080,6 +1112,7 @@ namespace ScikitLearn
 
                     internal Sum(PyObject pyObject)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         self = pyObject;
                     }
 
@@ -1129,19 +1162,21 @@ namespace ScikitLearn
 
                 public class WhiteKernel : PythonObject
                 {
-                    public WhiteKernel(float noise_level = 1.0f, float? noise_level_bounds = null)
+                    public WhiteKernel(float noise_level = 1.0f, PyTuple? noise_level_bounds = null)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (noise_level != 1.0f)
                             pyDict["noise_level"] = Helpers.ToPython(noise_level);
                         if (noise_level_bounds != null)
-                            pyDict["noise_level_bounds"] = Helpers.ToPython(noise_level_bounds.Value);
+                            pyDict["noise_level_bounds"] = Helpers.ToPython(noise_level_bounds);
                         self = sklearn.gaussian_process.kernels.self.InvokeMethod("WhiteKernel", args, pyDict);
                     }
 
                     internal WhiteKernel(PyObject pyObject)
                     {
+                        _ = sklearn.gaussian_process.kernels.self;
                         self = pyObject;
                     }
 

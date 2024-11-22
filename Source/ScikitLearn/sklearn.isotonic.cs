@@ -43,6 +43,7 @@ namespace ScikitLearn
             {
                 public IsotonicRegression(float? y_min = null, float? y_max = null, bool increasing = true, string out_of_bounds = "nan")
                 {
+                    _ = sklearn.isotonic.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (y_min != null)
@@ -58,6 +59,7 @@ namespace ScikitLearn
 
                 internal IsotonicRegression(PyObject pyObject)
                 {
+                    _ = sklearn.isotonic.self;
                     self = pyObject;
                 }
 
@@ -205,6 +207,7 @@ namespace ScikitLearn
 
             public static bool check_increasing(NDarray x, NDarray y)
             {
+                _ = sklearn.isotonic.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(x), Helpers.ToPython(y)]);
                 PyDict pyDict = new PyDict();
                 return Helpers.ToCSharpBool(sklearn.isotonic.self.InvokeMethod("check_increasing", args, pyDict));
@@ -212,6 +215,7 @@ namespace ScikitLearn
 
             public static NDarray isotonic_regression(NDarray y, NDarray? sample_weight = null, float? y_min = null, float? y_max = null, bool increasing = true)
             {
+                _ = sklearn.isotonic.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(y)]);
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)

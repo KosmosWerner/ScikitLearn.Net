@@ -43,6 +43,7 @@ namespace ScikitLearn
             {
                 public CCA(int n_components = 2, bool scale = true, int max_iter = 500, float tol = 1e-06f, bool copy = true)
                 {
+                    _ = sklearn.cross_decomposition.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != 2)
@@ -60,6 +61,7 @@ namespace ScikitLearn
 
                 internal CCA(PyObject pyObject)
                 {
+                    _ = sklearn.cross_decomposition.self;
                     self = pyObject;
                 }
 
@@ -127,7 +129,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray, NDarray) inverse_transform(NDarray X, NDarray? y = null, NDarray? Y = null)
+                public (NDarray? , NDarray? ) inverse_transform(NDarray X, NDarray? y = null, NDarray? Y = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -136,7 +138,8 @@ namespace ScikitLearn
                     if (Y != null)
                         pyDict["Y"] = Helpers.ToPython(Y);
                     PyTuple result = new PyTuple(self.InvokeMethod("inverse_transform", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public NDarray predict(NDarray X, bool copy = true)
@@ -225,6 +228,7 @@ namespace ScikitLearn
             {
                 public PLSCanonical(int n_components = 2, bool scale = true, string algorithm = "nipals", int max_iter = 500, float tol = 1e-06f, bool copy = true)
                 {
+                    _ = sklearn.cross_decomposition.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != 2)
@@ -244,6 +248,7 @@ namespace ScikitLearn
 
                 internal PLSCanonical(PyObject pyObject)
                 {
+                    _ = sklearn.cross_decomposition.self;
                     self = pyObject;
                 }
 
@@ -311,7 +316,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray, NDarray) inverse_transform(NDarray X, NDarray? y = null, NDarray? Y = null)
+                public (NDarray? , NDarray? ) inverse_transform(NDarray X, NDarray? y = null, NDarray? Y = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -320,7 +325,8 @@ namespace ScikitLearn
                     if (Y != null)
                         pyDict["Y"] = Helpers.ToPython(Y);
                     PyTuple result = new PyTuple(self.InvokeMethod("inverse_transform", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public NDarray predict(NDarray X, bool copy = true)
@@ -409,6 +415,7 @@ namespace ScikitLearn
             {
                 public PLSRegression(int n_components = 2, bool scale = true, int max_iter = 500, float tol = 1e-06f, bool copy = true)
                 {
+                    _ = sklearn.cross_decomposition.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != 2)
@@ -426,6 +433,7 @@ namespace ScikitLearn
 
                 internal PLSRegression(PyObject pyObject)
                 {
+                    _ = sklearn.cross_decomposition.self;
                     self = pyObject;
                 }
 
@@ -495,7 +503,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray, NDarray) inverse_transform(NDarray X, NDarray? y = null, NDarray? Y = null)
+                public (NDarray? , NDarray? ) inverse_transform(NDarray X, NDarray? y = null, NDarray? Y = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -504,7 +512,8 @@ namespace ScikitLearn
                     if (Y != null)
                         pyDict["Y"] = Helpers.ToPython(Y);
                     PyTuple result = new PyTuple(self.InvokeMethod("inverse_transform", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public NDarray predict(NDarray X, bool copy = true)
@@ -593,6 +602,7 @@ namespace ScikitLearn
             {
                 public PLSSVD(int n_components = 2, bool scale = true, bool copy = true)
                 {
+                    _ = sklearn.cross_decomposition.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != 2)
@@ -606,6 +616,7 @@ namespace ScikitLearn
 
                 internal PLSSVD(PyObject pyObject)
                 {
+                    _ = sklearn.cross_decomposition.self;
                     self = pyObject;
                 }
 

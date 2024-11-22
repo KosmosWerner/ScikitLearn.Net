@@ -43,6 +43,7 @@ namespace ScikitLearn
             {
                 public BaseEstimator()
                 {
+                    _ = sklearn.@base.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     self = sklearn.@base.self.InvokeMethod("BaseEstimator", args, pyDict);
@@ -50,6 +51,7 @@ namespace ScikitLearn
 
                 internal BaseEstimator(PyObject pyObject)
                 {
+                    _ = sklearn.@base.self;
                     self = pyObject;
                 }
 
@@ -89,6 +91,7 @@ namespace ScikitLearn
             {
                 public BiclusterMixin()
                 {
+                    _ = sklearn.@base.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     self = sklearn.@base.self.InvokeMethod("BiclusterMixin", args, pyDict);
@@ -96,6 +99,7 @@ namespace ScikitLearn
 
                 internal BiclusterMixin(PyObject pyObject)
                 {
+                    _ = sklearn.@base.self;
                     self = pyObject;
                 }
 
@@ -104,20 +108,22 @@ namespace ScikitLearn
                     return new BiclusterMixin(pyObject);
                 }
 
-                public (NDarray<long>, NDarray<long>) get_indices(int i)
+                public (NDarray<long>? , NDarray<long>? ) get_indices(int i)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(i)]);
                     PyDict pyDict = new PyDict();
                     PyTuple result = new PyTuple(self.InvokeMethod("get_indices", args, pyDict));
-                    return (Helpers.ToCSharpNDarray<long>(result[0]), Helpers.ToCSharpNDarray<long>(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray<long>(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray<long>(result[1]) : null);
                 }
 
-                public (int, int) get_shape(int i)
+                public (int? , int? ) get_shape(int i)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(i)]);
                     PyDict pyDict = new PyDict();
                     PyTuple result = new PyTuple(self.InvokeMethod("get_shape", args, pyDict));
-                    return (Helpers.ToCSharpInt(result[0]), Helpers.ToCSharpInt(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpInt(result[0]) : null, length > 1 ? Helpers.ToCSharpInt(result[1]) : null);
                 }
 
                 public NDarray get_submatrix(int i, NDarray data)
@@ -132,6 +138,7 @@ namespace ScikitLearn
             {
                 public ClassNamePrefixFeaturesOutMixin()
                 {
+                    _ = sklearn.@base.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     self = sklearn.@base.self.InvokeMethod("ClassNamePrefixFeaturesOutMixin", args, pyDict);
@@ -139,6 +146,7 @@ namespace ScikitLearn
 
                 internal ClassNamePrefixFeaturesOutMixin(PyObject pyObject)
                 {
+                    _ = sklearn.@base.self;
                     self = pyObject;
                 }
 
@@ -161,6 +169,7 @@ namespace ScikitLearn
             {
                 public ClassifierMixin()
                 {
+                    _ = sklearn.@base.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     self = sklearn.@base.self.InvokeMethod("ClassifierMixin", args, pyDict);
@@ -168,6 +177,7 @@ namespace ScikitLearn
 
                 internal ClassifierMixin(PyObject pyObject)
                 {
+                    _ = sklearn.@base.self;
                     self = pyObject;
                 }
 
@@ -190,6 +200,7 @@ namespace ScikitLearn
             {
                 public ClusterMixin()
                 {
+                    _ = sklearn.@base.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     self = sklearn.@base.self.InvokeMethod("ClusterMixin", args, pyDict);
@@ -197,6 +208,7 @@ namespace ScikitLearn
 
                 internal ClusterMixin(PyObject pyObject)
                 {
+                    _ = sklearn.@base.self;
                     self = pyObject;
                 }
 
@@ -219,6 +231,7 @@ namespace ScikitLearn
             {
                 public DensityMixin()
                 {
+                    _ = sklearn.@base.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     self = sklearn.@base.self.InvokeMethod("DensityMixin", args, pyDict);
@@ -226,6 +239,7 @@ namespace ScikitLearn
 
                 internal DensityMixin(PyObject pyObject)
                 {
+                    _ = sklearn.@base.self;
                     self = pyObject;
                 }
 
@@ -246,6 +260,7 @@ namespace ScikitLearn
             {
                 public MetaEstimatorMixin()
                 {
+                    _ = sklearn.@base.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     self = sklearn.@base.self.InvokeMethod("MetaEstimatorMixin", args, pyDict);
@@ -253,6 +268,7 @@ namespace ScikitLearn
 
                 internal MetaEstimatorMixin(PyObject pyObject)
                 {
+                    _ = sklearn.@base.self;
                     self = pyObject;
                 }
 
@@ -266,6 +282,7 @@ namespace ScikitLearn
             {
                 public OneToOneFeatureMixin()
                 {
+                    _ = sklearn.@base.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     self = sklearn.@base.self.InvokeMethod("OneToOneFeatureMixin", args, pyDict);
@@ -273,6 +290,7 @@ namespace ScikitLearn
 
                 internal OneToOneFeatureMixin(PyObject pyObject)
                 {
+                    _ = sklearn.@base.self;
                     self = pyObject;
                 }
 
@@ -295,6 +313,7 @@ namespace ScikitLearn
             {
                 public OutlierMixin()
                 {
+                    _ = sklearn.@base.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     self = sklearn.@base.self.InvokeMethod("OutlierMixin", args, pyDict);
@@ -302,6 +321,7 @@ namespace ScikitLearn
 
                 internal OutlierMixin(PyObject pyObject)
                 {
+                    _ = sklearn.@base.self;
                     self = pyObject;
                 }
 
@@ -324,6 +344,7 @@ namespace ScikitLearn
             {
                 public RegressorMixin()
                 {
+                    _ = sklearn.@base.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     self = sklearn.@base.self.InvokeMethod("RegressorMixin", args, pyDict);
@@ -331,6 +352,7 @@ namespace ScikitLearn
 
                 internal RegressorMixin(PyObject pyObject)
                 {
+                    _ = sklearn.@base.self;
                     self = pyObject;
                 }
 
@@ -353,6 +375,7 @@ namespace ScikitLearn
             {
                 public TransformerMixin()
                 {
+                    _ = sklearn.@base.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     self = sklearn.@base.self.InvokeMethod("TransformerMixin", args, pyDict);
@@ -360,6 +383,7 @@ namespace ScikitLearn
 
                 internal TransformerMixin(PyObject pyObject)
                 {
+                    _ = sklearn.@base.self;
                     self = pyObject;
                 }
 
@@ -392,6 +416,7 @@ namespace ScikitLearn
 
             public static PyObject clone(PyTuple estimator, bool safe = true)
             {
+                _ = sklearn.@base.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(estimator)]);
                 PyDict pyDict = new PyDict();
                 if (safe != true)
@@ -401,6 +426,7 @@ namespace ScikitLearn
 
             public static bool is_classifier(PyObject estimator)
             {
+                _ = sklearn.@base.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(estimator)]);
                 PyDict pyDict = new PyDict();
                 return Helpers.ToCSharpBool(sklearn.@base.self.InvokeMethod("is_classifier", args, pyDict));
@@ -408,6 +434,7 @@ namespace ScikitLearn
 
             public static bool is_regressor(PyObject estimator)
             {
+                _ = sklearn.@base.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(estimator)]);
                 PyDict pyDict = new PyDict();
                 return Helpers.ToCSharpBool(sklearn.@base.self.InvokeMethod("is_regressor", args, pyDict));

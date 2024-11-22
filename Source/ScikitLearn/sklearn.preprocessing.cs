@@ -43,6 +43,7 @@ namespace ScikitLearn
             {
                 public Binarizer(float threshold = 0.0f, bool copy = true)
                 {
+                    _ = sklearn.preprocessing.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (threshold != 0.0f)
@@ -54,6 +55,7 @@ namespace ScikitLearn
 
                 internal Binarizer(PyObject pyObject)
                 {
+                    _ = sklearn.preprocessing.self;
                     self = pyObject;
                 }
 
@@ -155,6 +157,7 @@ namespace ScikitLearn
             {
                 public FunctionTransformer(PyObject? func = null, PyObject? inverse_func = null, bool validate = false, bool accept_sparse = false, bool check_inverse = true, PyObject? feature_names_out = null, PyDict? kw_args = null, PyDict? inv_kw_args = null)
                 {
+                    _ = sklearn.preprocessing.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (func != null)
@@ -178,6 +181,7 @@ namespace ScikitLearn
 
                 internal FunctionTransformer(PyObject pyObject)
                 {
+                    _ = sklearn.preprocessing.self;
                     self = pyObject;
                 }
 
@@ -272,6 +276,7 @@ namespace ScikitLearn
             {
                 public KBinsDiscretizer(int n_bins = 5, string encode = "onehot", string strategy = "quantile", float? dtype = null, int? subsample = 200000, int? random_state = null)
                 {
+                    _ = sklearn.preprocessing.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_bins != 5)
@@ -291,6 +296,7 @@ namespace ScikitLearn
 
                 internal KBinsDiscretizer(PyObject pyObject)
                 {
+                    _ = sklearn.preprocessing.self;
                     self = pyObject;
                 }
 
@@ -405,6 +411,7 @@ namespace ScikitLearn
             {
                 public KernelCenterer()
                 {
+                    _ = sklearn.preprocessing.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     self = sklearn.preprocessing.self.InvokeMethod("KernelCenterer", args, pyDict);
@@ -412,6 +419,7 @@ namespace ScikitLearn
 
                 internal KernelCenterer(PyObject pyObject)
                 {
+                    _ = sklearn.preprocessing.self;
                     self = pyObject;
                 }
 
@@ -527,6 +535,7 @@ namespace ScikitLearn
             {
                 public LabelBinarizer(int neg_label = 0, int pos_label = 1, bool sparse_output = false)
                 {
+                    _ = sklearn.preprocessing.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (neg_label != 0)
@@ -540,6 +549,7 @@ namespace ScikitLearn
 
                 internal LabelBinarizer(PyObject pyObject)
                 {
+                    _ = sklearn.preprocessing.self;
                     self = pyObject;
                 }
 
@@ -634,6 +644,7 @@ namespace ScikitLearn
             {
                 public LabelEncoder()
                 {
+                    _ = sklearn.preprocessing.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     self = sklearn.preprocessing.self.InvokeMethod("LabelEncoder", args, pyDict);
@@ -641,6 +652,7 @@ namespace ScikitLearn
 
                 internal LabelEncoder(PyObject pyObject)
                 {
+                    _ = sklearn.preprocessing.self;
                     self = pyObject;
                 }
 
@@ -721,6 +733,7 @@ namespace ScikitLearn
             {
                 public MaxAbsScaler(bool copy = true)
                 {
+                    _ = sklearn.preprocessing.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (copy != true)
@@ -730,6 +743,7 @@ namespace ScikitLearn
 
                 internal MaxAbsScaler(PyObject pyObject)
                 {
+                    _ = sklearn.preprocessing.self;
                     self = pyObject;
                 }
 
@@ -839,6 +853,7 @@ namespace ScikitLearn
             {
                 public MinMaxScaler(PyTuple? feature_range = null, bool copy = true, bool clip = false)
                 {
+                    _ = sklearn.preprocessing.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (feature_range != null)
@@ -852,6 +867,7 @@ namespace ScikitLearn
 
                 internal MinMaxScaler(PyObject pyObject)
                 {
+                    _ = sklearn.preprocessing.self;
                     self = pyObject;
                 }
 
@@ -964,6 +980,7 @@ namespace ScikitLearn
             {
                 public MultiLabelBinarizer(NDarray? classes = null, bool sparse_output = false)
                 {
+                    _ = sklearn.preprocessing.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (classes != null)
@@ -975,6 +992,7 @@ namespace ScikitLearn
 
                 internal MultiLabelBinarizer(PyObject pyObject)
                 {
+                    _ = sklearn.preprocessing.self;
                     self = pyObject;
                 }
 
@@ -1055,6 +1073,7 @@ namespace ScikitLearn
             {
                 public Normalizer(string norm = "l2", bool copy = true)
                 {
+                    _ = sklearn.preprocessing.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (norm != "l2")
@@ -1066,6 +1085,7 @@ namespace ScikitLearn
 
                 internal Normalizer(PyObject pyObject)
                 {
+                    _ = sklearn.preprocessing.self;
                     self = pyObject;
                 }
 
@@ -1165,6 +1185,7 @@ namespace ScikitLearn
             {
                 public OneHotEncoder(string categories = "auto", NDarray? drop = null, bool sparse_output = true, float? dtype = null, string handle_unknown = "error", float? min_frequency = null, int? max_categories = null, string feature_name_combiner = "concat")
                 {
+                    _ = sklearn.preprocessing.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (categories != "auto")
@@ -1188,6 +1209,7 @@ namespace ScikitLearn
 
                 internal OneHotEncoder(PyObject pyObject)
                 {
+                    _ = sklearn.preprocessing.self;
                     self = pyObject;
                 }
 
@@ -1288,6 +1310,7 @@ namespace ScikitLearn
             {
                 public OrdinalEncoder(string categories = "auto", float? dtype = null, string handle_unknown = "error", int? unknown_value = null, int? encoded_missing_value = null, float? min_frequency = null, int? max_categories = null)
                 {
+                    _ = sklearn.preprocessing.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (categories != "auto")
@@ -1309,6 +1332,7 @@ namespace ScikitLearn
 
                 internal OrdinalEncoder(PyObject pyObject)
                 {
+                    _ = sklearn.preprocessing.self;
                     self = pyObject;
                 }
 
@@ -1407,6 +1431,7 @@ namespace ScikitLearn
             {
                 public PolynomialFeatures(int degree = 2, bool interaction_only = false, bool include_bias = true, string order = "C")
                 {
+                    _ = sklearn.preprocessing.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (degree != 2)
@@ -1422,6 +1447,7 @@ namespace ScikitLearn
 
                 internal PolynomialFeatures(PyObject pyObject)
                 {
+                    _ = sklearn.preprocessing.self;
                     self = pyObject;
                 }
 
@@ -1511,6 +1537,7 @@ namespace ScikitLearn
             {
                 public PowerTransformer(string method = "yeo-johnson", bool standardize = true, bool copy = true)
                 {
+                    _ = sklearn.preprocessing.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (method != "yeo-johnson")
@@ -1524,6 +1551,7 @@ namespace ScikitLearn
 
                 internal PowerTransformer(PyObject pyObject)
                 {
+                    _ = sklearn.preprocessing.self;
                     self = pyObject;
                 }
 
@@ -1617,6 +1645,7 @@ namespace ScikitLearn
             {
                 public QuantileTransformer(int n_quantiles = 1000, string output_distribution = "uniform", bool ignore_implicit_zeros = false, int? subsample = 10000, int? random_state = null, bool copy = true)
                 {
+                    _ = sklearn.preprocessing.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_quantiles != 1000)
@@ -1636,6 +1665,7 @@ namespace ScikitLearn
 
                 internal QuantileTransformer(PyObject pyObject)
                 {
+                    _ = sklearn.preprocessing.self;
                     self = pyObject;
                 }
 
@@ -1735,6 +1765,7 @@ namespace ScikitLearn
             {
                 public RobustScaler(bool with_centering = true, bool with_scaling = true, PyTuple? quantile_range = null, bool copy = true, bool unit_variance = false)
                 {
+                    _ = sklearn.preprocessing.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (with_centering != true)
@@ -1752,6 +1783,7 @@ namespace ScikitLearn
 
                 internal RobustScaler(PyObject pyObject)
                 {
+                    _ = sklearn.preprocessing.self;
                     self = pyObject;
                 }
 
@@ -1848,6 +1880,7 @@ namespace ScikitLearn
             {
                 public SplineTransformer(int n_knots = 5, int degree = 3, string knots = "uniform", string extrapolation = "constant", bool include_bias = true, string order = "C", bool sparse_output = false)
                 {
+                    _ = sklearn.preprocessing.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_knots != 5)
@@ -1869,6 +1902,7 @@ namespace ScikitLearn
 
                 internal SplineTransformer(PyObject pyObject)
                 {
+                    _ = sklearn.preprocessing.self;
                     self = pyObject;
                 }
 
@@ -1972,6 +2006,7 @@ namespace ScikitLearn
             {
                 public StandardScaler(bool copy = true, bool with_mean = true, bool with_std = true)
                 {
+                    _ = sklearn.preprocessing.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (copy != true)
@@ -1985,6 +2020,7 @@ namespace ScikitLearn
 
                 internal StandardScaler(PyObject pyObject)
                 {
+                    _ = sklearn.preprocessing.self;
                     self = pyObject;
                 }
 
@@ -2143,6 +2179,7 @@ namespace ScikitLearn
             {
                 public TargetEncoder(string categories = "auto", string target_type = "auto", string smooth = "auto", int cv = 5, bool shuffle = true, int? random_state = null)
                 {
+                    _ = sklearn.preprocessing.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (categories != "auto")
@@ -2162,6 +2199,7 @@ namespace ScikitLearn
 
                 internal TargetEncoder(PyObject pyObject)
                 {
+                    _ = sklearn.preprocessing.self;
                     self = pyObject;
                 }
 
@@ -2248,6 +2286,7 @@ namespace ScikitLearn
 
             public static NDarray add_dummy_feature(NDarray X, float value = 1.0f)
             {
+                _ = sklearn.preprocessing.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
                 if (value != 1.0f)
@@ -2257,6 +2296,7 @@ namespace ScikitLearn
 
             public static NDarray binarize(NDarray X, float threshold = 0.0f, bool copy = true)
             {
+                _ = sklearn.preprocessing.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
                 if (threshold != 0.0f)
@@ -2268,6 +2308,7 @@ namespace ScikitLearn
 
             public static NDarray label_binarize(NDarray y, NDarray classes, int neg_label = 0, int pos_label = 1, bool sparse_output = false)
             {
+                _ = sklearn.preprocessing.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(y), Helpers.ToPython(classes)]);
                 PyDict pyDict = new PyDict();
                 if (neg_label != 0)
@@ -2281,6 +2322,7 @@ namespace ScikitLearn
 
             public static NDarray maxabs_scale(NDarray X, int axis = 0, bool copy = true)
             {
+                _ = sklearn.preprocessing.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
                 if (axis != 0)
@@ -2292,6 +2334,7 @@ namespace ScikitLearn
 
             public static NDarray minmax_scale(NDarray X, PyTuple? feature_range = null, int axis = 0, bool copy = true)
             {
+                _ = sklearn.preprocessing.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
                 if (feature_range != null)
@@ -2303,8 +2346,9 @@ namespace ScikitLearn
                 return Helpers.ToCSharpNDarray(sklearn.preprocessing.self.InvokeMethod("minmax_scale", args, pyDict));
             }
 
-            public static (NDarray, NDarray) normalize(NDarray X, string norm = "l2", int axis = 1, bool copy = true, bool return_norm = false)
+            public static (NDarray? , NDarray? ) normalize(NDarray X, string norm = "l2", int axis = 1, bool copy = true, bool return_norm = false)
             {
+                _ = sklearn.preprocessing.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
                 if (norm != "l2")
@@ -2316,11 +2360,13 @@ namespace ScikitLearn
                 if (return_norm != false)
                     pyDict["return_norm"] = Helpers.ToPython(return_norm);
                 PyTuple result = new PyTuple(sklearn.preprocessing.self.InvokeMethod("normalize", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                var length = result.Length();
+                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
             public static NDarray power_transform(NDarray X, string method = "yeo-johnson", bool standardize = true, bool copy = true)
             {
+                _ = sklearn.preprocessing.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
                 if (method != "yeo-johnson")
@@ -2334,6 +2380,7 @@ namespace ScikitLearn
 
             public static NDarray quantile_transform(NDarray X, int axis = 0, int n_quantiles = 1000, string output_distribution = "uniform", bool ignore_implicit_zeros = false, int? subsample = 100000, int? random_state = null, bool copy = true)
             {
+                _ = sklearn.preprocessing.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
                 if (axis != 0)
@@ -2355,6 +2402,7 @@ namespace ScikitLearn
 
             public static NDarray robust_scale(NDarray X, int axis = 0, bool with_centering = true, bool with_scaling = true, PyTuple? quantile_range = null, bool copy = true, bool unit_variance = false)
             {
+                _ = sklearn.preprocessing.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
                 if (axis != 0)
@@ -2374,6 +2422,7 @@ namespace ScikitLearn
 
             public static NDarray scale(NDarray X, int axis = 0, bool with_mean = true, bool with_std = true, bool copy = true)
             {
+                _ = sklearn.preprocessing.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
                 if (axis != 0)

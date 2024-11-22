@@ -43,6 +43,7 @@ namespace ScikitLearn
             {
                 public GaussianRandomProjection(string n_components = "auto", float eps = 0.1f, bool compute_inverse_components = false, int? random_state = null)
                 {
+                    _ = sklearn.random_projection.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != "auto")
@@ -58,6 +59,7 @@ namespace ScikitLearn
 
                 internal GaussianRandomProjection(PyObject pyObject)
                 {
+                    _ = sklearn.random_projection.self;
                     self = pyObject;
                 }
 
@@ -155,6 +157,7 @@ namespace ScikitLearn
             {
                 public SparseRandomProjection(string n_components = "auto", string density = "auto", float eps = 0.1f, bool dense_output = false, bool compute_inverse_components = false, int? random_state = null)
                 {
+                    _ = sklearn.random_projection.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != "auto")
@@ -174,6 +177,7 @@ namespace ScikitLearn
 
                 internal SparseRandomProjection(PyObject pyObject)
                 {
+                    _ = sklearn.random_projection.self;
                     self = pyObject;
                 }
 
@@ -270,6 +274,7 @@ namespace ScikitLearn
 
             public static NDarray johnson_lindenstrauss_min_dim(NDarray n_samples, float eps = 0.1f)
             {
+                _ = sklearn.random_projection.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(n_samples)]);
                 PyDict pyDict = new PyDict();
                 if (eps != 0.1f)

@@ -43,6 +43,7 @@ namespace ScikitLearn
             {
                 public DictionaryLearning(int? n_components = null, int alpha = 1, int max_iter = 1000, float tol = 1e-08f, string fit_algorithm = "lars", string transform_algorithm = "omp", int? transform_n_nonzero_coefs = null, float? transform_alpha = null, int? n_jobs = null, NDarray? code_init = null, NDarray? dict_init = null, PyObject? callback = null, bool verbose = false, bool split_sign = false, int? random_state = null, bool positive_code = false, bool positive_dict = false, int transform_max_iter = 1000)
                 {
+                    _ = sklearn.decomposition.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != null)
@@ -86,6 +87,7 @@ namespace ScikitLearn
 
                 internal DictionaryLearning(PyObject pyObject)
                 {
+                    _ = sklearn.decomposition.self;
                     self = pyObject;
                 }
 
@@ -172,6 +174,7 @@ namespace ScikitLearn
             {
                 public FactorAnalysis(int? n_components = null, float tol = 0.01f, bool copy = true, int max_iter = 1000, NDarray? noise_variance_init = null, string svd_method = "randomized", int iterated_power = 3, PyObject? rotation = null, int random_state = 0)
                 {
+                    _ = sklearn.decomposition.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != null)
@@ -197,6 +200,7 @@ namespace ScikitLearn
 
                 internal FactorAnalysis(PyObject pyObject)
                 {
+                    _ = sklearn.decomposition.self;
                     self = pyObject;
                 }
 
@@ -317,6 +321,7 @@ namespace ScikitLearn
             {
                 public FastICA(int? n_components = null, string algorithm = "parallel", string whiten = "unit-variance", string fun = "logcosh", PyDict? fun_args = null, int max_iter = 200, float tol = 0.0001f, NDarray? w_init = null, string whiten_solver = "svd", int? random_state = null)
                 {
+                    _ = sklearn.decomposition.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != null)
@@ -344,6 +349,7 @@ namespace ScikitLearn
 
                 internal FastICA(PyObject pyObject)
                 {
+                    _ = sklearn.decomposition.self;
                     self = pyObject;
                 }
 
@@ -463,6 +469,7 @@ namespace ScikitLearn
             {
                 public IncrementalPCA(int? n_components = null, bool whiten = false, bool copy = true, int? batch_size = null)
                 {
+                    _ = sklearn.decomposition.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != null)
@@ -478,6 +485,7 @@ namespace ScikitLearn
 
                 internal IncrementalPCA(PyObject pyObject)
                 {
+                    _ = sklearn.decomposition.self;
                     self = pyObject;
                 }
 
@@ -616,6 +624,7 @@ namespace ScikitLearn
             {
                 public KernelPCA(int? n_components = null, string kernel = "linear", float? gamma = null, int degree = 3, int coef0 = 1, PyDict? kernel_params = null, float alpha = 1.0f, bool fit_inverse_transform = false, string eigen_solver = "auto", int tol = 0, int? max_iter = null, string iterated_power = "auto", bool remove_zero_eig = false, int? random_state = null, bool copy_X = true, int? n_jobs = null)
                 {
+                    _ = sklearn.decomposition.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != null)
@@ -655,6 +664,7 @@ namespace ScikitLearn
 
                 internal KernelPCA(PyObject pyObject)
                 {
+                    _ = sklearn.decomposition.self;
                     self = pyObject;
                 }
 
@@ -753,6 +763,7 @@ namespace ScikitLearn
             {
                 public LatentDirichletAllocation(int n_components = 10, float? doc_topic_prior = null, float? topic_word_prior = null, string learning_method = "batch", float learning_decay = 0.7f, float learning_offset = 10.0f, int max_iter = 10, int batch_size = 128, int evaluate_every = -1, float total_samples = 1000000.0f, float perp_tol = 0.1f, float mean_change_tol = 0.001f, int max_doc_update_iter = 100, int? n_jobs = null, int verbose = 0, int? random_state = null)
                 {
+                    _ = sklearn.decomposition.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != 10)
@@ -792,6 +803,7 @@ namespace ScikitLearn
 
                 internal LatentDirichletAllocation(PyObject pyObject)
                 {
+                    _ = sklearn.decomposition.self;
                     self = pyObject;
                 }
 
@@ -911,6 +923,7 @@ namespace ScikitLearn
             {
                 public MiniBatchDictionaryLearning(int? n_components = null, int alpha = 1, int max_iter = 1000, string fit_algorithm = "lars", int? n_jobs = null, int batch_size = 256, bool shuffle = true, NDarray? dict_init = null, string transform_algorithm = "omp", int? transform_n_nonzero_coefs = null, float? transform_alpha = null, bool verbose = false, bool split_sign = false, int? random_state = null, bool positive_code = false, bool positive_dict = false, int transform_max_iter = 1000, PyObject? callback = null, float tol = 0.001f, int max_no_improvement = 10)
                 {
+                    _ = sklearn.decomposition.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != null)
@@ -958,6 +971,7 @@ namespace ScikitLearn
 
                 internal MiniBatchDictionaryLearning(PyObject pyObject)
                 {
+                    _ = sklearn.decomposition.self;
                     self = pyObject;
                 }
 
@@ -1056,6 +1070,7 @@ namespace ScikitLearn
             {
                 public MiniBatchNMF(string? n_components = "warn", PyObject? init = null, int batch_size = 1024, string beta_loss = "frobenius", float tol = 0.0001f, int max_no_improvement = 10, int max_iter = 200, float alpha_W = 0.0f, string alpha_H = "same", float l1_ratio = 0.0f, float forget_factor = 0.7f, bool fresh_restarts = false, int fresh_restarts_max_iter = 30, int? transform_max_iter = null, int? random_state = null, int verbose = 0)
                 {
+                    _ = sklearn.decomposition.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != "warn")
@@ -1095,6 +1110,7 @@ namespace ScikitLearn
 
                 internal MiniBatchNMF(PyObject pyObject)
                 {
+                    _ = sklearn.decomposition.self;
                     self = pyObject;
                 }
 
@@ -1105,7 +1121,7 @@ namespace ScikitLearn
 
                 public NDarray components_ => Helpers.ToCSharpNDarray(self.GetAttr("components_"));
                 public int n_components_ => Helpers.ToCSharpInt(self.GetAttr("n_components_"));
-                public string reconstruction_err_ => Helpers.ToCSharpString(self.GetAttr("reconstruction_err_"));
+                public float reconstruction_err_ => Helpers.ToCSharpFloat(self.GetAttr("reconstruction_err_"));
                 public int n_iter_ => Helpers.ToCSharpInt(self.GetAttr("n_iter_"));
                 public int n_steps_ => Helpers.ToCSharpInt(self.GetAttr("n_steps_"));
                 public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
@@ -1212,6 +1228,7 @@ namespace ScikitLearn
             {
                 public MiniBatchSparsePCA(int? n_components = null, int alpha = 1, float ridge_alpha = 0.01f, int max_iter = 1000, PyObject? callback = null, int batch_size = 3, bool verbose = false, bool shuffle = true, int? n_jobs = null, string method = "lars", int? random_state = null, float tol = 0.001f, int? max_no_improvement = 10)
                 {
+                    _ = sklearn.decomposition.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != null)
@@ -1245,6 +1262,7 @@ namespace ScikitLearn
 
                 internal MiniBatchSparsePCA(PyObject pyObject)
                 {
+                    _ = sklearn.decomposition.self;
                     self = pyObject;
                 }
 
@@ -1343,6 +1361,7 @@ namespace ScikitLearn
             {
                 public NMF(string? n_components = "warn", PyObject? init = null, string solver = "cd", string beta_loss = "frobenius", float tol = 0.0001f, int max_iter = 200, int? random_state = null, float alpha_W = 0.0f, string alpha_H = "same", float l1_ratio = 0.0f, int verbose = 0, bool shuffle = false)
                 {
+                    _ = sklearn.decomposition.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != "warn")
@@ -1374,6 +1393,7 @@ namespace ScikitLearn
 
                 internal NMF(PyObject pyObject)
                 {
+                    _ = sklearn.decomposition.self;
                     self = pyObject;
                 }
 
@@ -1384,7 +1404,7 @@ namespace ScikitLearn
 
                 public NDarray components_ => Helpers.ToCSharpNDarray(self.GetAttr("components_"));
                 public int n_components_ => Helpers.ToCSharpInt(self.GetAttr("n_components_"));
-                public string reconstruction_err_ => Helpers.ToCSharpString(self.GetAttr("reconstruction_err_"));
+                public float reconstruction_err_ => Helpers.ToCSharpFloat(self.GetAttr("reconstruction_err_"));
                 public int n_iter_ => Helpers.ToCSharpInt(self.GetAttr("n_iter_"));
                 public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
                 public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
@@ -1478,6 +1498,7 @@ namespace ScikitLearn
             {
                 public PCA(float? n_components = null, bool copy = true, bool whiten = false, string svd_solver = "auto", float tol = 0.0f, string iterated_power = "auto", int n_oversamples = 10, string power_iteration_normalizer = "auto", int? random_state = null)
                 {
+                    _ = sklearn.decomposition.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != null)
@@ -1503,6 +1524,7 @@ namespace ScikitLearn
 
                 internal PCA(PyObject pyObject)
                 {
+                    _ = sklearn.decomposition.self;
                     self = pyObject;
                 }
 
@@ -1629,6 +1651,7 @@ namespace ScikitLearn
             {
                 public SparseCoder(NDarray dictionary, string transform_algorithm = "omp", int? transform_n_nonzero_coefs = null, float? transform_alpha = null, bool split_sign = false, int? n_jobs = null, bool positive_code = false, int transform_max_iter = 1000)
                 {
+                    _ = sklearn.decomposition.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(dictionary)]);
                     PyDict pyDict = new PyDict();
                     if (transform_algorithm != "omp")
@@ -1650,6 +1673,7 @@ namespace ScikitLearn
 
                 internal SparseCoder(PyObject pyObject)
                 {
+                    _ = sklearn.decomposition.self;
                     self = pyObject;
                 }
 
@@ -1738,6 +1762,7 @@ namespace ScikitLearn
             {
                 public SparsePCA(int? n_components = null, int alpha = 1, float ridge_alpha = 0.01f, int max_iter = 1000, float tol = 1e-08f, string method = "lars", int? n_jobs = null, NDarray? U_init = null, NDarray? V_init = null, bool verbose = false, int? random_state = null)
                 {
+                    _ = sklearn.decomposition.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != null)
@@ -1767,6 +1792,7 @@ namespace ScikitLearn
 
                 internal SparsePCA(PyObject pyObject)
                 {
+                    _ = sklearn.decomposition.self;
                     self = pyObject;
                 }
 
@@ -1866,6 +1892,7 @@ namespace ScikitLearn
             {
                 public TruncatedSVD(int n_components = 2, string algorithm = "randomized", int n_iter = 5, int n_oversamples = 10, string power_iteration_normalizer = "auto", int? random_state = null, float tol = 0.0f)
                 {
+                    _ = sklearn.decomposition.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != 2)
@@ -1887,6 +1914,7 @@ namespace ScikitLearn
 
                 internal TruncatedSVD(PyObject pyObject)
                 {
+                    _ = sklearn.decomposition.self;
                     self = pyObject;
                 }
 
@@ -1977,8 +2005,9 @@ namespace ScikitLearn
                 }
             }
 
-            public static (NDarray, PyDict, NDarray, int) dict_learning(NDarray X, int n_components, float alpha, int max_iter = 100, float tol = 1e-08f, string method = "lars", int? n_jobs = null, NDarray? dict_init = null, NDarray? code_init = null, PyObject? callback = null, bool verbose = false, int? random_state = null, bool return_n_iter = false, bool positive_dict = false, bool positive_code = false, int method_max_iter = 1000)
+            public static (NDarray? , PyDict? , NDarray? , int? ) dict_learning(NDarray X, int n_components, float alpha, int max_iter = 100, float tol = 1e-08f, string method = "lars", int? n_jobs = null, NDarray? dict_init = null, NDarray? code_init = null, PyObject? callback = null, bool verbose = false, int? random_state = null, bool return_n_iter = false, bool positive_dict = false, bool positive_code = false, int method_max_iter = 1000)
             {
+                _ = sklearn.decomposition.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(n_components), Helpers.ToPython(alpha)]);
                 PyDict pyDict = new PyDict();
                 if (max_iter != 100)
@@ -2008,11 +2037,13 @@ namespace ScikitLearn
                 if (method_max_iter != 1000)
                     pyDict["method_max_iter"] = Helpers.ToPython(method_max_iter);
                 PyTuple result = new PyTuple(sklearn.decomposition.self.InvokeMethod("dict_learning", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpPyDict(result[1]), Helpers.ToCSharpNDarray(result[2]), Helpers.ToCSharpInt(result[3]));
+                var length = result.Length();
+                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpPyDict(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, length > 3 ? Helpers.ToCSharpInt(result[3]) : null);
             }
 
-            public static (NDarray, PyDict, int) dict_learning_online(NDarray X, int? n_components = 2, int alpha = 1, int max_iter = 100, bool return_code = true, NDarray? dict_init = null, PyObject? callback = null, int batch_size = 256, bool verbose = false, bool shuffle = true, int? n_jobs = null, string method = "lars", int? random_state = null, bool positive_dict = false, bool positive_code = false, int method_max_iter = 1000, float tol = 0.001f, int max_no_improvement = 10)
+            public static (NDarray? , PyDict? , int? ) dict_learning_online(NDarray X, int? n_components = 2, int alpha = 1, int max_iter = 100, bool return_code = true, NDarray? dict_init = null, PyObject? callback = null, int batch_size = 256, bool verbose = false, bool shuffle = true, int? n_jobs = null, string method = "lars", int? random_state = null, bool positive_dict = false, bool positive_code = false, int method_max_iter = 1000, float tol = 0.001f, int max_no_improvement = 10)
             {
+                _ = sklearn.decomposition.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
                 if (n_components != 2)
@@ -2050,11 +2081,13 @@ namespace ScikitLearn
                 if (max_no_improvement != 10)
                     pyDict["max_no_improvement"] = Helpers.ToPython(max_no_improvement);
                 PyTuple result = new PyTuple(sklearn.decomposition.self.InvokeMethod("dict_learning_online", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpPyDict(result[1]), Helpers.ToCSharpInt(result[2]));
+                var length = result.Length();
+                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpPyDict(result[1]) : null, length > 2 ? Helpers.ToCSharpInt(result[2]) : null);
             }
 
-            public static (NDarray?, NDarray, NDarray?, NDarray, int) fastica(NDarray X, int? n_components = null, string algorithm = "parallel", string whiten = "unit-variance", string fun = "logcosh", PyDict? fun_args = null, int max_iter = 200, float tol = 0.0001f, NDarray? w_init = null, string whiten_solver = "svd", int? random_state = null, bool return_X_mean = false, bool compute_sources = true, bool return_n_iter = false)
+            public static (NDarray ? ,  NDarray ? ,  NDarray ? ,  NDarray ? ,  int ? )fastica(NDarray X, int? n_components = null, string algorithm = "parallel", string whiten = "unit-variance", string fun = "logcosh", PyDict? fun_args = null, int max_iter = 200, float tol = 0.0001f, NDarray? w_init = null, string whiten_solver = "svd", int? random_state = null, bool return_X_mean = false, bool compute_sources = true, bool return_n_iter = false)
             {
+                _ = sklearn.decomposition.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
                 if (n_components != null)
@@ -2084,11 +2117,13 @@ namespace ScikitLearn
                 if (return_n_iter != false)
                     pyDict["return_n_iter"] = Helpers.ToPython(return_n_iter);
                 PyTuple result = new PyTuple(sklearn.decomposition.self.InvokeMethod("fastica", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]), Helpers.ToCSharpNDarray(result[3]), Helpers.ToCSharpInt(result[4]));
+                var length = result.Length();
+                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, length > 3 ? Helpers.ToCSharpNDarray(result[3]) : null, length > 4 ? Helpers.ToCSharpInt(result[4]) : null);
             }
 
-            public static (NDarray, NDarray, int) non_negative_factorization(NDarray X, NDarray? W = null, NDarray? H = null, string? n_components = "warn", PyObject? init = null, bool update_H = true, string solver = "cd", string beta_loss = "frobenius", float tol = 0.0001f, int max_iter = 200, float alpha_W = 0.0f, string alpha_H = "same", float l1_ratio = 0.0f, int? random_state = null, int verbose = 0, bool shuffle = false)
+            public static (NDarray? , NDarray? , int? ) non_negative_factorization(NDarray X, NDarray? W = null, NDarray? H = null, string? n_components = "warn", PyObject? init = null, bool update_H = true, string solver = "cd", string beta_loss = "frobenius", float tol = 0.0001f, int max_iter = 200, float alpha_W = 0.0f, string alpha_H = "same", float l1_ratio = 0.0f, int? random_state = null, int verbose = 0, bool shuffle = false)
             {
+                _ = sklearn.decomposition.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
                 if (W != null)
@@ -2122,11 +2157,13 @@ namespace ScikitLearn
                 if (shuffle != false)
                     pyDict["shuffle"] = Helpers.ToPython(shuffle);
                 PyTuple result = new PyTuple(sklearn.decomposition.self.InvokeMethod("non_negative_factorization", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpInt(result[2]));
+                var length = result.Length();
+                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpInt(result[2]) : null);
             }
 
             public static NDarray sparse_encode(NDarray X, NDarray dictionary, NDarray? gram = null, NDarray? cov = null, string algorithm = "lasso_lars", int? n_nonzero_coefs = null, float? alpha = null, bool copy_cov = true, NDarray? init = null, int max_iter = 1000, int? n_jobs = null, bool check_input = true, int verbose = 0, bool positive = false)
             {
+                _ = sklearn.decomposition.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(dictionary)]);
                 PyDict pyDict = new PyDict();
                 if (gram != null)

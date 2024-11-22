@@ -43,6 +43,7 @@ namespace ScikitLearn
             {
                 public AdditiveChi2Sampler(int sample_steps = 2, float? sample_interval = null)
                 {
+                    _ = sklearn.kernel_approximation.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (sample_steps != 2)
@@ -54,6 +55,7 @@ namespace ScikitLearn
 
                 internal AdditiveChi2Sampler(PyObject pyObject)
                 {
+                    _ = sklearn.kernel_approximation.self;
                     self = pyObject;
                 }
 
@@ -143,6 +145,7 @@ namespace ScikitLearn
             {
                 public Nystroem(string kernel = "rbf", float? gamma = null, float? coef0 = null, float? degree = null, PyDict? kernel_params = null, int n_components = 100, int? random_state = null, int? n_jobs = null)
                 {
+                    _ = sklearn.kernel_approximation.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (kernel != "rbf")
@@ -166,6 +169,7 @@ namespace ScikitLearn
 
                 internal Nystroem(PyObject pyObject)
                 {
+                    _ = sklearn.kernel_approximation.self;
                     self = pyObject;
                 }
 
@@ -258,6 +262,7 @@ namespace ScikitLearn
             {
                 public PolynomialCountSketch(float gamma = 1.0f, int degree = 2, int coef0 = 0, int n_components = 100, int? random_state = null)
                 {
+                    _ = sklearn.kernel_approximation.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (gamma != 1.0f)
@@ -275,6 +280,7 @@ namespace ScikitLearn
 
                 internal PolynomialCountSketch(PyObject pyObject)
                 {
+                    _ = sklearn.kernel_approximation.self;
                     self = pyObject;
                 }
 
@@ -366,6 +372,7 @@ namespace ScikitLearn
             {
                 public RBFSampler(float gamma = 1.0f, int n_components = 100, int? random_state = null)
                 {
+                    _ = sklearn.kernel_approximation.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (gamma != 1.0f)
@@ -379,6 +386,7 @@ namespace ScikitLearn
 
                 internal RBFSampler(PyObject pyObject)
                 {
+                    _ = sklearn.kernel_approximation.self;
                     self = pyObject;
                 }
 
@@ -470,6 +478,7 @@ namespace ScikitLearn
             {
                 public SkewedChi2Sampler(float skewedness = 1.0f, int n_components = 100, int? random_state = null)
                 {
+                    _ = sklearn.kernel_approximation.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (skewedness != 1.0f)
@@ -483,6 +492,7 @@ namespace ScikitLearn
 
                 internal SkewedChi2Sampler(PyObject pyObject)
                 {
+                    _ = sklearn.kernel_approximation.self;
                     self = pyObject;
                 }
 

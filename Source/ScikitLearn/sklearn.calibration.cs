@@ -43,6 +43,7 @@ namespace ScikitLearn
             {
                 public CalibratedClassifierCV(PyObject? estimator = null, string method = "sigmoid", int? cv = null, int? n_jobs = null, bool ensemble = true)
                 {
+                    _ = sklearn.calibration.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (estimator != null)
@@ -60,6 +61,7 @@ namespace ScikitLearn
 
                 internal CalibratedClassifierCV(PyObject pyObject)
                 {
+                    _ = sklearn.calibration.self;
                     self = pyObject;
                 }
 
@@ -155,8 +157,9 @@ namespace ScikitLearn
                 }
             }
 
-            public static (NDarray, NDarray) calibration_curve(NDarray y_true, NDarray y_prob, string? pos_label = null, int n_bins = 5, string strategy = "uniform")
+            public static (NDarray? , NDarray? ) calibration_curve(NDarray y_true, NDarray y_prob, string? pos_label = null, int n_bins = 5, string strategy = "uniform")
             {
+                _ = sklearn.calibration.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(y_true), Helpers.ToPython(y_prob)]);
                 PyDict pyDict = new PyDict();
                 if (pos_label != null)
@@ -166,13 +169,15 @@ namespace ScikitLearn
                 if (strategy != "uniform")
                     pyDict["strategy"] = Helpers.ToPython(strategy);
                 PyTuple result = new PyTuple(sklearn.calibration.self.InvokeMethod("calibration_curve", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                var length = result.Length();
+                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
             public class CalibrationDisplay : PythonObject
             {
                 public CalibrationDisplay(NDarray prob_true, NDarray prob_pred, NDarray y_prob, string? estimator_name = null, string? pos_label = null)
                 {
+                    _ = sklearn.calibration.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(prob_true), Helpers.ToPython(prob_pred), Helpers.ToPython(y_prob)]);
                     PyDict pyDict = new PyDict();
                     if (estimator_name != null)
@@ -184,6 +189,7 @@ namespace ScikitLearn
 
                 internal CalibrationDisplay(PyObject pyObject)
                 {
+                    _ = sklearn.calibration.self;
                     self = pyObject;
                 }
 

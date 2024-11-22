@@ -43,6 +43,7 @@ namespace ScikitLearn
             {
                 public GenericUnivariateSelect(PyObject? score_func = null, string mode = "percentile", float param = 1e-05f)
                 {
+                    _ = sklearn.feature_selection.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (score_func != null)
@@ -56,6 +57,7 @@ namespace ScikitLearn
 
                 internal GenericUnivariateSelect(PyObject pyObject)
                 {
+                    _ = sklearn.feature_selection.self;
                     self = pyObject;
                 }
 
@@ -163,6 +165,7 @@ namespace ScikitLearn
             {
                 public RFE(PyObject estimator, float? n_features_to_select = null, int step = 1, int verbose = 0, string importance_getter = "auto")
                 {
+                    _ = sklearn.feature_selection.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(estimator)]);
                     PyDict pyDict = new PyDict();
                     if (n_features_to_select != null)
@@ -178,6 +181,7 @@ namespace ScikitLearn
 
                 internal RFE(PyObject pyObject)
                 {
+                    _ = sklearn.feature_selection.self;
                     self = pyObject;
                 }
 
@@ -325,6 +329,7 @@ namespace ScikitLearn
             {
                 public RFECV(PyObject estimator, int step = 1, int min_features_to_select = 1, int? cv = null, string? scoring = null, int verbose = 0, int? n_jobs = null, string importance_getter = "auto")
                 {
+                    _ = sklearn.feature_selection.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(estimator)]);
                     PyDict pyDict = new PyDict();
                     if (step != 1)
@@ -346,6 +351,7 @@ namespace ScikitLearn
 
                 internal RFECV(PyObject pyObject)
                 {
+                    _ = sklearn.feature_selection.self;
                     self = pyObject;
                 }
 
@@ -504,6 +510,7 @@ namespace ScikitLearn
             {
                 public SelectFdr(PyObject? score_func = null, float alpha = 0.05f)
                 {
+                    _ = sklearn.feature_selection.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (score_func != null)
@@ -515,6 +522,7 @@ namespace ScikitLearn
 
                 internal SelectFdr(PyObject pyObject)
                 {
+                    _ = sklearn.feature_selection.self;
                     self = pyObject;
                 }
 
@@ -622,6 +630,7 @@ namespace ScikitLearn
             {
                 public SelectFpr(PyObject? score_func = null, float alpha = 0.05f)
                 {
+                    _ = sklearn.feature_selection.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (score_func != null)
@@ -633,6 +642,7 @@ namespace ScikitLearn
 
                 internal SelectFpr(PyObject pyObject)
                 {
+                    _ = sklearn.feature_selection.self;
                     self = pyObject;
                 }
 
@@ -740,6 +750,7 @@ namespace ScikitLearn
             {
                 public SelectFromModel(PyObject estimator, string? threshold = null, bool prefit = false, int norm_order = 1, int? max_features = null, string importance_getter = "auto")
                 {
+                    _ = sklearn.feature_selection.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(estimator)]);
                     PyDict pyDict = new PyDict();
                     if (threshold != null)
@@ -757,6 +768,7 @@ namespace ScikitLearn
 
                 internal SelectFromModel(PyObject pyObject)
                 {
+                    _ = sklearn.feature_selection.self;
                     self = pyObject;
                 }
 
@@ -879,6 +891,7 @@ namespace ScikitLearn
             {
                 public SelectFwe(PyObject? score_func = null, float alpha = 0.05f)
                 {
+                    _ = sklearn.feature_selection.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (score_func != null)
@@ -890,6 +903,7 @@ namespace ScikitLearn
 
                 internal SelectFwe(PyObject pyObject)
                 {
+                    _ = sklearn.feature_selection.self;
                     self = pyObject;
                 }
 
@@ -997,6 +1011,7 @@ namespace ScikitLearn
             {
                 public SelectKBest(PyObject? score_func = null, int k = 10)
                 {
+                    _ = sklearn.feature_selection.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (score_func != null)
@@ -1008,6 +1023,7 @@ namespace ScikitLearn
 
                 internal SelectKBest(PyObject pyObject)
                 {
+                    _ = sklearn.feature_selection.self;
                     self = pyObject;
                 }
 
@@ -1115,6 +1131,7 @@ namespace ScikitLearn
             {
                 public SelectPercentile(PyObject? score_func = null, int percentile = 10)
                 {
+                    _ = sklearn.feature_selection.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (score_func != null)
@@ -1126,6 +1143,7 @@ namespace ScikitLearn
 
                 internal SelectPercentile(PyObject pyObject)
                 {
+                    _ = sklearn.feature_selection.self;
                     self = pyObject;
                 }
 
@@ -1233,6 +1251,7 @@ namespace ScikitLearn
             {
                 public SelectorMixin()
                 {
+                    _ = sklearn.feature_selection.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     self = sklearn.feature_selection.self.InvokeMethod("SelectorMixin", args, pyDict);
@@ -1240,6 +1259,7 @@ namespace ScikitLearn
 
                 internal SelectorMixin(PyObject pyObject)
                 {
+                    _ = sklearn.feature_selection.self;
                     self = pyObject;
                 }
 
@@ -1306,6 +1326,7 @@ namespace ScikitLearn
             {
                 public SequentialFeatureSelector(PyObject estimator, string n_features_to_select = "auto", float? tol = null, string direction = "forward", string? scoring = null, int? cv = 5, int? n_jobs = null)
                 {
+                    _ = sklearn.feature_selection.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(estimator)]);
                     PyDict pyDict = new PyDict();
                     if (n_features_to_select != "auto")
@@ -1325,6 +1346,7 @@ namespace ScikitLearn
 
                 internal SequentialFeatureSelector(PyObject pyObject)
                 {
+                    _ = sklearn.feature_selection.self;
                     self = pyObject;
                 }
 
@@ -1432,6 +1454,7 @@ namespace ScikitLearn
             {
                 public VarianceThreshold(float threshold = 0.0f)
                 {
+                    _ = sklearn.feature_selection.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (threshold != 0.0f)
@@ -1441,6 +1464,7 @@ namespace ScikitLearn
 
                 internal VarianceThreshold(PyObject pyObject)
                 {
+                    _ = sklearn.feature_selection.self;
                     self = pyObject;
                 }
 
@@ -1543,24 +1567,29 @@ namespace ScikitLearn
                 }
             }
 
-            public static (NDarray, NDarray) chi2(NDarray X, NDarray y)
+            public static (NDarray? , NDarray? ) chi2(NDarray X, NDarray y)
             {
+                _ = sklearn.feature_selection.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                 PyDict pyDict = new PyDict();
                 PyTuple result = new PyTuple(sklearn.feature_selection.self.InvokeMethod("chi2", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                var length = result.Length();
+                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
-            public static (NDarray, NDarray) f_classif(NDarray X, NDarray y)
+            public static (NDarray? , NDarray? ) f_classif(NDarray X, NDarray y)
             {
+                _ = sklearn.feature_selection.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                 PyDict pyDict = new PyDict();
                 PyTuple result = new PyTuple(sklearn.feature_selection.self.InvokeMethod("f_classif", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                var length = result.Length();
+                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
-            public static (NDarray, NDarray) f_regression(NDarray X, NDarray y, bool center = true, bool force_finite = true)
+            public static (NDarray? , NDarray? ) f_regression(NDarray X, NDarray y, bool center = true, bool force_finite = true)
             {
+                _ = sklearn.feature_selection.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                 PyDict pyDict = new PyDict();
                 if (center != true)
@@ -1568,11 +1597,13 @@ namespace ScikitLearn
                 if (force_finite != true)
                     pyDict["force_finite"] = Helpers.ToPython(force_finite);
                 PyTuple result = new PyTuple(sklearn.feature_selection.self.InvokeMethod("f_regression", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                var length = result.Length();
+                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
             public static NDarray mutual_info_classif(NDarray X, NDarray y, string discrete_features = "auto", int n_neighbors = 3, bool copy = true, int? random_state = null, int? n_jobs = null)
             {
+                _ = sklearn.feature_selection.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                 PyDict pyDict = new PyDict();
                 if (discrete_features != "auto")
@@ -1590,6 +1621,7 @@ namespace ScikitLearn
 
             public static NDarray mutual_info_regression(NDarray X, NDarray y, string discrete_features = "auto", int n_neighbors = 3, bool copy = true, int? random_state = null, int? n_jobs = null)
             {
+                _ = sklearn.feature_selection.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                 PyDict pyDict = new PyDict();
                 if (discrete_features != "auto")
@@ -1607,6 +1639,7 @@ namespace ScikitLearn
 
             public static NDarray r_regression(NDarray X, NDarray y, bool center = true, bool force_finite = true)
             {
+                _ = sklearn.feature_selection.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                 PyDict pyDict = new PyDict();
                 if (center != true)

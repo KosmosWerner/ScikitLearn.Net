@@ -43,6 +43,7 @@ namespace ScikitLearn
             {
                 public AdaBoostClassifier(PyObject? estimator = null, int n_estimators = 50, float learning_rate = 1.0f, string algorithm = "SAMME.R", int? random_state = null)
                 {
+                    _ = sklearn.ensemble.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (estimator != null)
@@ -60,6 +61,7 @@ namespace ScikitLearn
 
                 internal AdaBoostClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.ensemble.self;
                     self = pyObject;
                 }
 
@@ -206,6 +208,7 @@ namespace ScikitLearn
             {
                 public AdaBoostRegressor(PyObject? estimator = null, int n_estimators = 50, float learning_rate = 1.0f, string loss = "linear", int? random_state = null)
                 {
+                    _ = sklearn.ensemble.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (estimator != null)
@@ -223,6 +226,7 @@ namespace ScikitLearn
 
                 internal AdaBoostRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.ensemble.self;
                     self = pyObject;
                 }
 
@@ -332,6 +336,7 @@ namespace ScikitLearn
             {
                 public BaggingClassifier(PyObject? estimator = null, int n_estimators = 10, float max_samples = 1.0f, float max_features = 1.0f, bool bootstrap = true, bool bootstrap_features = false, bool oob_score = false, bool warm_start = false, int? n_jobs = null, int? random_state = null, int verbose = 0)
                 {
+                    _ = sklearn.ensemble.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (estimator != null)
@@ -361,6 +366,7 @@ namespace ScikitLearn
 
                 internal BaggingClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.ensemble.self;
                     self = pyObject;
                 }
 
@@ -480,6 +486,7 @@ namespace ScikitLearn
             {
                 public BaggingRegressor(PyObject? estimator = null, int n_estimators = 10, float max_samples = 1.0f, float max_features = 1.0f, bool bootstrap = true, bool bootstrap_features = false, bool oob_score = false, bool warm_start = false, int? n_jobs = null, int? random_state = null, int verbose = 0)
                 {
+                    _ = sklearn.ensemble.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (estimator != null)
@@ -509,6 +516,7 @@ namespace ScikitLearn
 
                 internal BaggingRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.ensemble.self;
                     self = pyObject;
                 }
 
@@ -524,7 +532,7 @@ namespace ScikitLearn
                 public NDarray estimators_samples_ => Helpers.ToCSharpNDarray(self.GetAttr("estimators_samples_"));
                 public NDarray estimators_features_ => Helpers.ToCSharpNDarray(self.GetAttr("estimators_features_"));
                 public float oob_score_ => Helpers.ToCSharpFloat(self.GetAttr("oob_score_"));
-                public PyDict oob_prediction_ => new PyDict(self.GetAttr("oob_prediction_"));
+                public NDarray oob_prediction_ => Helpers.ToCSharpNDarray(self.GetAttr("oob_prediction_"));
 
                 public BaggingRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null)
                 {
@@ -605,6 +613,7 @@ namespace ScikitLearn
             {
                 public ExtraTreesClassifier(int n_estimators = 100, string criterion = "gini", int? max_depth = null, int min_samples_split = 2, int min_samples_leaf = 1, float min_weight_fraction_leaf = 0.0f, string? max_features = "sqrt", int? max_leaf_nodes = null, float min_impurity_decrease = 0.0f, bool bootstrap = false, bool oob_score = false, int? n_jobs = null, int? random_state = null, int verbose = 0, bool warm_start = false, PyDict? class_weight = null, float ccp_alpha = 0.0f, float? max_samples = null, NDarray? monotonic_cst = null)
                 {
+                    _ = sklearn.ensemble.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_estimators != 100)
@@ -650,6 +659,7 @@ namespace ScikitLearn
 
                 internal ExtraTreesClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.ensemble.self;
                     self = pyObject;
                 }
 
@@ -677,12 +687,13 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("apply", args, pyDict));
                 }
 
-                public (NDarray, NDarray) decision_path(NDarray X)
+                public (NDarray? , NDarray? ) decision_path(NDarray X)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     PyTuple result = new PyTuple(self.InvokeMethod("decision_path", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public ExtraTreesClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -776,6 +787,7 @@ namespace ScikitLearn
             {
                 public ExtraTreesRegressor(int n_estimators = 100, string criterion = "squared_error", int? max_depth = null, int min_samples_split = 2, int min_samples_leaf = 1, float min_weight_fraction_leaf = 0.0f, float? max_features = 1.0f, int? max_leaf_nodes = null, float min_impurity_decrease = 0.0f, bool bootstrap = false, bool oob_score = false, int? n_jobs = null, int? random_state = null, int verbose = 0, bool warm_start = false, float ccp_alpha = 0.0f, float? max_samples = null, NDarray? monotonic_cst = null)
                 {
+                    _ = sklearn.ensemble.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_estimators != 100)
@@ -819,6 +831,7 @@ namespace ScikitLearn
 
                 internal ExtraTreesRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.ensemble.self;
                     self = pyObject;
                 }
 
@@ -834,7 +847,7 @@ namespace ScikitLearn
                 public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
                 public int n_outputs_ => Helpers.ToCSharpInt(self.GetAttr("n_outputs_"));
                 public float oob_score_ => Helpers.ToCSharpFloat(self.GetAttr("oob_score_"));
-                public PyDict oob_prediction_ => new PyDict(self.GetAttr("oob_prediction_"));
+                public NDarray oob_prediction_ => Helpers.ToCSharpNDarray(self.GetAttr("oob_prediction_"));
                 public NDarray estimators_samples_ => Helpers.ToCSharpNDarray(self.GetAttr("estimators_samples_"));
 
                 public NDarray apply(NDarray X)
@@ -844,12 +857,13 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("apply", args, pyDict));
                 }
 
-                public (NDarray, NDarray) decision_path(NDarray X)
+                public (NDarray? , NDarray? ) decision_path(NDarray X)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     PyTuple result = new PyTuple(self.InvokeMethod("decision_path", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public ExtraTreesRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -929,6 +943,7 @@ namespace ScikitLearn
             {
                 public GradientBoostingClassifier(string loss = "log_loss", float learning_rate = 0.1f, int n_estimators = 100, float subsample = 1.0f, string criterion = "friedman_mse", int min_samples_split = 2, int min_samples_leaf = 1, float min_weight_fraction_leaf = 0.0f, int? max_depth = 3, float min_impurity_decrease = 0.0f, PyObject? init = null, int? random_state = null, float? max_features = null, int verbose = 0, int? max_leaf_nodes = null, bool warm_start = false, float validation_fraction = 0.1f, int? n_iter_no_change = null, float tol = 0.0001f, float ccp_alpha = 0.0f)
                 {
+                    _ = sklearn.ensemble.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (loss != "log_loss")
@@ -976,6 +991,7 @@ namespace ScikitLearn
 
                 internal GradientBoostingClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.ensemble.self;
                     self = pyObject;
                 }
 
@@ -1129,6 +1145,7 @@ namespace ScikitLearn
             {
                 public GradientBoostingRegressor(string loss = "squared_error", float learning_rate = 0.1f, int n_estimators = 100, float subsample = 1.0f, string criterion = "friedman_mse", int min_samples_split = 2, int min_samples_leaf = 1, float min_weight_fraction_leaf = 0.0f, int? max_depth = 3, float min_impurity_decrease = 0.0f, PyObject? init = null, int? random_state = null, float? max_features = null, float alpha = 0.9f, int verbose = 0, int? max_leaf_nodes = null, bool warm_start = false, float validation_fraction = 0.1f, int? n_iter_no_change = null, float tol = 0.0001f, float ccp_alpha = 0.0f)
                 {
+                    _ = sklearn.ensemble.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (loss != "squared_error")
@@ -1178,6 +1195,7 @@ namespace ScikitLearn
 
                 internal GradientBoostingRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.ensemble.self;
                     self = pyObject;
                 }
 
@@ -1294,6 +1312,7 @@ namespace ScikitLearn
             {
                 public HistGradientBoostingClassifier(string loss = "log_loss", float learning_rate = 0.1f, int max_iter = 100, int? max_leaf_nodes = 31, int? max_depth = null, int min_samples_leaf = 20, float l2_regularization = 0.0f, float max_features = 1.0f, int max_bins = 255, string? categorical_features = "warn", PyDict? monotonic_cst = null, int? interaction_cst = null, bool warm_start = false, string early_stopping = "auto", string? scoring = "loss", float? validation_fraction = 0.1f, int n_iter_no_change = 10, float tol = 1e-07f, int verbose = 0, int? random_state = null, PyDict? class_weight = null)
                 {
+                    _ = sklearn.ensemble.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (loss != "log_loss")
@@ -1343,6 +1362,7 @@ namespace ScikitLearn
 
                 internal HistGradientBoostingClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.ensemble.self;
                     self = pyObject;
                 }
 
@@ -1473,6 +1493,7 @@ namespace ScikitLearn
             {
                 public HistGradientBoostingRegressor(string loss = "squared_error", float? quantile = null, float learning_rate = 0.1f, int max_iter = 100, int? max_leaf_nodes = 31, int? max_depth = null, int min_samples_leaf = 20, float l2_regularization = 0.0f, float max_features = 1.0f, int max_bins = 255, string? categorical_features = "warn", PyDict? monotonic_cst = null, int? interaction_cst = null, bool warm_start = false, string early_stopping = "auto", string? scoring = "loss", float? validation_fraction = 0.1f, int n_iter_no_change = 10, float tol = 1e-07f, int verbose = 0, int? random_state = null)
                 {
+                    _ = sklearn.ensemble.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (loss != "squared_error")
@@ -1522,6 +1543,7 @@ namespace ScikitLearn
 
                 internal HistGradientBoostingRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.ensemble.self;
                     self = pyObject;
                 }
 
@@ -1623,6 +1645,7 @@ namespace ScikitLearn
             {
                 public IsolationForest(int n_estimators = 100, string max_samples = "auto", string contamination = "auto", float max_features = 1.0f, bool bootstrap = false, int? n_jobs = null, int? random_state = null, int verbose = 0, bool warm_start = false)
                 {
+                    _ = sklearn.ensemble.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_estimators != 100)
@@ -1648,6 +1671,7 @@ namespace ScikitLearn
 
                 internal IsolationForest(PyObject pyObject)
                 {
+                    _ = sklearn.ensemble.self;
                     self = pyObject;
                 }
 
@@ -1746,6 +1770,7 @@ namespace ScikitLearn
             {
                 public RandomForestClassifier(int n_estimators = 100, string criterion = "gini", int? max_depth = null, int min_samples_split = 2, int min_samples_leaf = 1, float min_weight_fraction_leaf = 0.0f, string? max_features = "sqrt", int? max_leaf_nodes = null, float min_impurity_decrease = 0.0f, bool bootstrap = true, bool oob_score = false, int? n_jobs = null, int? random_state = null, int verbose = 0, bool warm_start = false, PyDict? class_weight = null, float ccp_alpha = 0.0f, float? max_samples = null, NDarray? monotonic_cst = null)
                 {
+                    _ = sklearn.ensemble.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_estimators != 100)
@@ -1791,6 +1816,7 @@ namespace ScikitLearn
 
                 internal RandomForestClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.ensemble.self;
                     self = pyObject;
                 }
 
@@ -1818,12 +1844,13 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("apply", args, pyDict));
                 }
 
-                public (NDarray, NDarray) decision_path(NDarray X)
+                public (NDarray? , NDarray? ) decision_path(NDarray X)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     PyTuple result = new PyTuple(self.InvokeMethod("decision_path", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public RandomForestClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -1917,6 +1944,7 @@ namespace ScikitLearn
             {
                 public RandomForestRegressor(int n_estimators = 100, string criterion = "squared_error", int? max_depth = null, int min_samples_split = 2, int min_samples_leaf = 1, float min_weight_fraction_leaf = 0.0f, float? max_features = 1.0f, int? max_leaf_nodes = null, float min_impurity_decrease = 0.0f, bool bootstrap = true, bool oob_score = false, int? n_jobs = null, int? random_state = null, int verbose = 0, bool warm_start = false, float ccp_alpha = 0.0f, float? max_samples = null, NDarray? monotonic_cst = null)
                 {
+                    _ = sklearn.ensemble.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_estimators != 100)
@@ -1960,6 +1988,7 @@ namespace ScikitLearn
 
                 internal RandomForestRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.ensemble.self;
                     self = pyObject;
                 }
 
@@ -1975,7 +2004,7 @@ namespace ScikitLearn
                 public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
                 public int n_outputs_ => Helpers.ToCSharpInt(self.GetAttr("n_outputs_"));
                 public float oob_score_ => Helpers.ToCSharpFloat(self.GetAttr("oob_score_"));
-                public PyDict oob_prediction_ => new PyDict(self.GetAttr("oob_prediction_"));
+                public NDarray oob_prediction_ => Helpers.ToCSharpNDarray(self.GetAttr("oob_prediction_"));
                 public NDarray estimators_samples_ => Helpers.ToCSharpNDarray(self.GetAttr("estimators_samples_"));
 
                 public NDarray apply(NDarray X)
@@ -1985,12 +2014,13 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("apply", args, pyDict));
                 }
 
-                public (NDarray, NDarray) decision_path(NDarray X)
+                public (NDarray? , NDarray? ) decision_path(NDarray X)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     PyTuple result = new PyTuple(self.InvokeMethod("decision_path", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public RandomForestRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -2070,6 +2100,7 @@ namespace ScikitLearn
             {
                 public RandomTreesEmbedding(int n_estimators = 100, int max_depth = 5, int min_samples_split = 2, int min_samples_leaf = 1, float min_weight_fraction_leaf = 0.0f, int? max_leaf_nodes = null, float min_impurity_decrease = 0.0f, bool sparse_output = true, int? n_jobs = null, int? random_state = null, int verbose = 0, bool warm_start = false)
                 {
+                    _ = sklearn.ensemble.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_estimators != 100)
@@ -2101,6 +2132,7 @@ namespace ScikitLearn
 
                 internal RandomTreesEmbedding(PyObject pyObject)
                 {
+                    _ = sklearn.ensemble.self;
                     self = pyObject;
                 }
 
@@ -2125,12 +2157,13 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("apply", args, pyDict));
                 }
 
-                public (NDarray, NDarray) decision_path(NDarray X)
+                public (NDarray? , NDarray? ) decision_path(NDarray X)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     PyTuple result = new PyTuple(self.InvokeMethod("decision_path", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public RandomTreesEmbedding fit(NDarray X, NDarray? sample_weight = null)
@@ -2219,6 +2252,7 @@ namespace ScikitLearn
             {
                 public StackingClassifier(PyTuple estimators, PyObject? final_estimator = null, int? cv = null, string stack_method = "auto", int? n_jobs = null, bool passthrough = false, int verbose = 0)
                 {
+                    _ = sklearn.ensemble.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(estimators)]);
                     PyDict pyDict = new PyDict();
                     if (final_estimator != null)
@@ -2238,6 +2272,7 @@ namespace ScikitLearn
 
                 internal StackingClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.ensemble.self;
                     self = pyObject;
                 }
 
@@ -2384,6 +2419,7 @@ namespace ScikitLearn
             {
                 public StackingRegressor(PyTuple estimators, PyObject? final_estimator = null, int? cv = null, int? n_jobs = null, bool passthrough = false, int verbose = 0)
                 {
+                    _ = sklearn.ensemble.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(estimators)]);
                     PyDict pyDict = new PyDict();
                     if (final_estimator != null)
@@ -2401,6 +2437,7 @@ namespace ScikitLearn
 
                 internal StackingRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.ensemble.self;
                     self = pyObject;
                 }
 
@@ -2530,6 +2567,7 @@ namespace ScikitLearn
             {
                 public VotingClassifier(PyTuple estimators, string voting = "hard", NDarray? weights = null, int? n_jobs = null, bool flatten_transform = true, bool verbose = false)
                 {
+                    _ = sklearn.ensemble.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(estimators)]);
                     PyDict pyDict = new PyDict();
                     if (voting != "hard")
@@ -2547,6 +2585,7 @@ namespace ScikitLearn
 
                 internal VotingClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.ensemble.self;
                     self = pyObject;
                 }
 
@@ -2685,6 +2724,7 @@ namespace ScikitLearn
             {
                 public VotingRegressor(PyTuple estimators, NDarray? weights = null, int? n_jobs = null, bool verbose = false)
                 {
+                    _ = sklearn.ensemble.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(estimators)]);
                     PyDict pyDict = new PyDict();
                     if (weights != null)
@@ -2698,6 +2738,7 @@ namespace ScikitLearn
 
                 internal VotingRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.ensemble.self;
                     self = pyObject;
                 }
 

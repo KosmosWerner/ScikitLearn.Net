@@ -43,6 +43,7 @@ namespace ScikitLearn
             {
                 public DictVectorizer(float? dtype = null, string separator = "=", bool sparse = true, bool sort = true)
                 {
+                    _ = sklearn.feature_extraction.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (dtype != null)
@@ -58,6 +59,7 @@ namespace ScikitLearn
 
                 internal DictVectorizer(PyObject pyObject)
                 {
+                    _ = sklearn.feature_extraction.self;
                     self = pyObject;
                 }
 
@@ -174,6 +176,7 @@ namespace ScikitLearn
             {
                 public FeatureHasher(int n_features = 1048576, string input_type = "dict", float? dtype = null, bool alternate_sign = true)
                 {
+                    _ = sklearn.feature_extraction.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_features != 1048576)
@@ -189,6 +192,7 @@ namespace ScikitLearn
 
                 internal FeatureHasher(PyObject pyObject)
                 {
+                    _ = sklearn.feature_extraction.self;
                     self = pyObject;
                 }
 
@@ -306,6 +310,7 @@ namespace ScikitLearn
                 {
                     public PatchExtractor(int? patch_size = null, float? max_patches = null, int? random_state = null)
                     {
+                        _ = sklearn.feature_extraction.image.self;
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (patch_size != null)
@@ -319,6 +324,7 @@ namespace ScikitLearn
 
                     internal PatchExtractor(PyObject pyObject)
                     {
+                        _ = sklearn.feature_extraction.image.self;
                         self = pyObject;
                     }
 
@@ -392,6 +398,7 @@ namespace ScikitLearn
 
                 public static NDarray extract_patches_2d(NDarray image, int patch_size, float? max_patches = null, int? random_state = null)
                 {
+                    _ = sklearn.feature_extraction.image.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(image), Helpers.ToPython(patch_size)]);
                     PyDict pyDict = new PyDict();
                     if (max_patches != null)
@@ -403,6 +410,7 @@ namespace ScikitLearn
 
                 public static NDarray grid_to_graph(int n_x, int n_y, int n_z = 1, NDarray? mask = null, NDarray? return_as = null, int? dtype = null)
                 {
+                    _ = sklearn.feature_extraction.image.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(n_x), Helpers.ToPython(n_y)]);
                     PyDict pyDict = new PyDict();
                     if (n_z != 1)
@@ -418,6 +426,7 @@ namespace ScikitLearn
 
                 public static NDarray img_to_graph(NDarray img, NDarray? mask = null, NDarray? return_as = null, PyObject? dtype = null)
                 {
+                    _ = sklearn.feature_extraction.image.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(img)]);
                     PyDict pyDict = new PyDict();
                     if (mask != null)
@@ -431,6 +440,7 @@ namespace ScikitLearn
 
                 public static NDarray reconstruct_from_patches_2d(NDarray patches, int image_size)
                 {
+                    _ = sklearn.feature_extraction.image.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(patches), Helpers.ToPython(image_size)]);
                     PyDict pyDict = new PyDict();
                     return Helpers.ToCSharpNDarray(sklearn.feature_extraction.image.self.InvokeMethod("reconstruct_from_patches_2d", args, pyDict));
@@ -473,6 +483,7 @@ namespace ScikitLearn
                 {
                     public CountVectorizer(string input = "content", string encoding = "utf-8", string decode_error = "strict", PyObject? strip_accents = null, bool lowercase = true, PyObject? preprocessor = null, PyObject? tokenizer = null, PyObject? stop_words = null, string? token_pattern = "(?u)\\b\\w\\w+\\b", PyTuple? ngram_range = null, string analyzer = "word", float max_df = 1.0f, int min_df = 1, int? max_features = null, PyObject? vocabulary = null, bool binary = false, int? dtype = null)
                     {
+                        _ = sklearn.feature_extraction.text.self;
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (input != "content")
@@ -514,6 +525,7 @@ namespace ScikitLearn
 
                     internal CountVectorizer(PyObject pyObject)
                     {
+                        _ = sklearn.feature_extraction.text.self;
                         self = pyObject;
                     }
 
@@ -653,6 +665,7 @@ namespace ScikitLearn
                 {
                     public HashingVectorizer(string input = "content", string encoding = "utf-8", string decode_error = "strict", PyObject? strip_accents = null, bool lowercase = true, PyObject? preprocessor = null, PyObject? tokenizer = null, PyObject? stop_words = null, string? token_pattern = "(?u)\\b\\w\\w+\\b", PyTuple? ngram_range = null, string analyzer = "word", int n_features = 1048576, bool binary = false, string norm = "l2", bool alternate_sign = true, float? dtype = null)
                     {
+                        _ = sklearn.feature_extraction.text.self;
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (input != "content")
@@ -692,6 +705,7 @@ namespace ScikitLearn
 
                     internal HashingVectorizer(PyObject pyObject)
                     {
+                        _ = sklearn.feature_extraction.text.self;
                         self = pyObject;
                     }
 
@@ -808,6 +822,7 @@ namespace ScikitLearn
                 {
                     public TfidfTransformer(string? norm = "l2", bool use_idf = true, bool smooth_idf = true, bool sublinear_tf = false)
                     {
+                        _ = sklearn.feature_extraction.text.self;
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (norm != "l2")
@@ -823,6 +838,7 @@ namespace ScikitLearn
 
                     internal TfidfTransformer(PyObject pyObject)
                     {
+                        _ = sklearn.feature_extraction.text.self;
                         self = pyObject;
                     }
 
@@ -925,6 +941,7 @@ namespace ScikitLearn
                 {
                     public TfidfVectorizer(string input = "content", string encoding = "utf-8", string decode_error = "strict", PyObject? strip_accents = null, bool lowercase = true, PyObject? preprocessor = null, PyObject? tokenizer = null, string analyzer = "word", PyObject? stop_words = null, string token_pattern = "(?u)\\b\\w\\w+\\b", PyTuple? ngram_range = null, float max_df = 1.0f, int min_df = 1, int? max_features = null, PyObject? vocabulary = null, bool binary = false, float? dtype = null, string? norm = "l2", bool use_idf = true, bool smooth_idf = true, bool sublinear_tf = false)
                     {
+                        _ = sklearn.feature_extraction.text.self;
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (input != "content")
@@ -974,6 +991,7 @@ namespace ScikitLearn
 
                     internal TfidfVectorizer(PyObject pyObject)
                     {
+                        _ = sklearn.feature_extraction.text.self;
                         self = pyObject;
                     }
 

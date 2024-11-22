@@ -43,6 +43,7 @@ namespace ScikitLearn
             {
                 public FeatureUnion(PyTuple transformer_list, int? n_jobs = null, PyDict? transformer_weights = null, bool verbose = false, bool verbose_feature_names_out = true)
                 {
+                    _ = sklearn.pipeline.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(transformer_list)]);
                     PyDict pyDict = new PyDict();
                     if (n_jobs != null)
@@ -58,6 +59,7 @@ namespace ScikitLearn
 
                 internal FeatureUnion(PyObject pyObject)
                 {
+                    _ = sklearn.pipeline.self;
                     self = pyObject;
                 }
 
@@ -152,6 +154,7 @@ namespace ScikitLearn
             {
                 public Pipeline(PyTuple steps, PyObject? memory = null, bool verbose = false)
                 {
+                    _ = sklearn.pipeline.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(steps)]);
                     PyDict pyDict = new PyDict();
                     if (memory != null)
@@ -163,6 +166,7 @@ namespace ScikitLearn
 
                 internal Pipeline(PyObject pyObject)
                 {
+                    _ = sklearn.pipeline.self;
                     self = pyObject;
                 }
 
@@ -346,6 +350,7 @@ namespace ScikitLearn
 
             public static PyObject make_pipeline(PyObject[] steps, PyObject? memory = null, bool verbose = false)
             {
+                _ = sklearn.pipeline.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(steps)]);
                 PyDict pyDict = new PyDict();
                 if (memory != null)
@@ -357,6 +362,7 @@ namespace ScikitLearn
 
             public static PyObject make_union(PyObject[] transformers, int? n_jobs = null, bool verbose = false)
             {
+                _ = sklearn.pipeline.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(transformers)]);
                 PyDict pyDict = new PyDict();
                 if (n_jobs != null)

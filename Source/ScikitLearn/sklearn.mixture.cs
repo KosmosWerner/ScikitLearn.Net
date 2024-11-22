@@ -43,6 +43,7 @@ namespace ScikitLearn
             {
                 public BayesianGaussianMixture(int n_components = 1, string covariance_type = "full", float tol = 0.001f, float reg_covar = 1e-06f, int max_iter = 100, int n_init = 1, string init_params = "kmeans", string weight_concentration_prior_type = "dirichlet_process", float? weight_concentration_prior = null, float? mean_precision_prior = null, NDarray? mean_prior = null, float? degrees_of_freedom_prior = null, NDarray? covariance_prior = null, int? random_state = null, bool warm_start = false, int verbose = 0, int verbose_interval = 10)
                 {
+                    _ = sklearn.mixture.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != 1)
@@ -84,6 +85,7 @@ namespace ScikitLearn
 
                 internal BayesianGaussianMixture(PyObject pyObject)
                 {
+                    _ = sklearn.mixture.self;
                     self = pyObject;
                 }
 
@@ -156,14 +158,15 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_proba", args, pyDict));
                 }
 
-                public (NDarray, NDarray) sample(int n_samples = 1)
+                public (NDarray? , NDarray? ) sample(int n_samples = 1)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_samples != 1)
                         pyDict["n_samples"] = Helpers.ToPython(n_samples);
                     PyTuple result = new PyTuple(self.InvokeMethod("sample", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public float score(NDarray X)
@@ -195,6 +198,7 @@ namespace ScikitLearn
             {
                 public GaussianMixture(int n_components = 1, string covariance_type = "full", float tol = 0.001f, float reg_covar = 1e-06f, int max_iter = 100, int n_init = 1, string init_params = "kmeans", NDarray? weights_init = null, NDarray? means_init = null, NDarray? precisions_init = null, int? random_state = null, bool warm_start = false, int verbose = 0, int verbose_interval = 10)
                 {
+                    _ = sklearn.mixture.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != 1)
@@ -230,6 +234,7 @@ namespace ScikitLearn
 
                 internal GaussianMixture(PyObject pyObject)
                 {
+                    _ = sklearn.mixture.self;
                     self = pyObject;
                 }
 
@@ -308,14 +313,15 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_proba", args, pyDict));
                 }
 
-                public (NDarray, NDarray) sample(int n_samples = 1)
+                public (NDarray? , NDarray? ) sample(int n_samples = 1)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_samples != 1)
                         pyDict["n_samples"] = Helpers.ToPython(n_samples);
                     PyTuple result = new PyTuple(self.InvokeMethod("sample", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public float score(NDarray X)

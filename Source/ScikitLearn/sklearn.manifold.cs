@@ -43,6 +43,7 @@ namespace ScikitLearn
             {
                 public Isomap(int? n_neighbors = 5, float? radius = null, int n_components = 2, string eigen_solver = "auto", int tol = 0, int? max_iter = null, string path_method = "auto", string neighbors_algorithm = "auto", int? n_jobs = null, string metric = "minkowski", int p = 2, PyDict? metric_params = null)
                 {
+                    _ = sklearn.manifold.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_neighbors != 5)
@@ -74,6 +75,7 @@ namespace ScikitLearn
 
                 internal Isomap(PyObject pyObject)
                 {
+                    _ = sklearn.manifold.self;
                     self = pyObject;
                 }
 
@@ -168,6 +170,7 @@ namespace ScikitLearn
             {
                 public LocallyLinearEmbedding(int n_neighbors = 5, int n_components = 2, float reg = 0.001f, string eigen_solver = "auto", float tol = 1e-06f, int max_iter = 100, string method = "standard", float hessian_tol = 0.0001f, float modified_tol = 1e-12f, string neighbors_algorithm = "auto", int? random_state = null, int? n_jobs = null)
                 {
+                    _ = sklearn.manifold.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_neighbors != 5)
@@ -199,6 +202,7 @@ namespace ScikitLearn
 
                 internal LocallyLinearEmbedding(PyObject pyObject)
                 {
+                    _ = sklearn.manifold.self;
                     self = pyObject;
                 }
 
@@ -208,7 +212,7 @@ namespace ScikitLearn
                 }
 
                 public NDarray embedding_ => Helpers.ToCSharpNDarray(self.GetAttr("embedding_"));
-                public string reconstruction_error_ => Helpers.ToCSharpString(self.GetAttr("reconstruction_error_"));
+                public float reconstruction_error_ => Helpers.ToCSharpFloat(self.GetAttr("reconstruction_error_"));
                 public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
                 public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
                 public PyObject nbrs_ => self.GetAttr("nbrs_");
@@ -285,6 +289,7 @@ namespace ScikitLearn
             {
                 public MDS(int n_components = 2, bool metric = true, int n_init = 4, int max_iter = 300, int verbose = 0, float eps = 0.001f, int? n_jobs = null, int? random_state = null, string dissimilarity = "euclidean", string normalized_stress = "auto")
                 {
+                    _ = sklearn.manifold.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != 2)
@@ -312,6 +317,7 @@ namespace ScikitLearn
 
                 internal MDS(PyObject pyObject)
                 {
+                    _ = sklearn.manifold.self;
                     self = pyObject;
                 }
 
@@ -321,7 +327,7 @@ namespace ScikitLearn
                 }
 
                 public NDarray embedding_ => Helpers.ToCSharpNDarray(self.GetAttr("embedding_"));
-                public string stress_ => Helpers.ToCSharpString(self.GetAttr("stress_"));
+                public float stress_ => Helpers.ToCSharpFloat(self.GetAttr("stress_"));
                 public NDarray dissimilarity_matrix_ => Helpers.ToCSharpNDarray(self.GetAttr("dissimilarity_matrix_"));
                 public int n_features_in_ => Helpers.ToCSharpInt(self.GetAttr("n_features_in_"));
                 public NDarray feature_names_in_ => Helpers.ToCSharpNDarray(self.GetAttr("feature_names_in_"));
@@ -387,6 +393,7 @@ namespace ScikitLearn
             {
                 public SpectralEmbedding(int n_components = 2, string affinity = "nearest_neighbors", float? gamma = null, int? random_state = null, PyObject? eigen_solver = null, string eigen_tol = "auto", int? n_neighbors = null, int? n_jobs = null)
                 {
+                    _ = sklearn.manifold.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != 2)
@@ -410,6 +417,7 @@ namespace ScikitLearn
 
                 internal SpectralEmbedding(PyObject pyObject)
                 {
+                    _ = sklearn.manifold.self;
                     self = pyObject;
                 }
 
@@ -470,6 +478,7 @@ namespace ScikitLearn
             {
                 public TSNE(int n_components = 2, float perplexity = 30.0f, float early_exaggeration = 12.0f, string learning_rate = "auto", int? max_iter = null, int n_iter_without_progress = 300, float min_grad_norm = 1e-07f, string metric = "euclidean", PyDict? metric_params = null, string init = "pca", int verbose = 0, int? random_state = null, string method = "barnes_hut", float angle = 0.5f, int? n_jobs = null, string n_iter = "deprecated")
                 {
+                    _ = sklearn.manifold.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != 2)
@@ -509,6 +518,7 @@ namespace ScikitLearn
 
                 internal TSNE(PyObject pyObject)
                 {
+                    _ = sklearn.manifold.self;
                     self = pyObject;
                 }
 
@@ -589,8 +599,9 @@ namespace ScikitLearn
                 }
             }
 
-            public static (NDarray, float) locally_linear_embedding(NDarray X, int n_neighbors, int n_components, float reg = 0.001f, string eigen_solver = "auto", float tol = 1e-06f, int max_iter = 100, string method = "standard", float hessian_tol = 0.0001f, float modified_tol = 1e-12f, int? random_state = null, int? n_jobs = null)
+            public static (NDarray? , float? ) locally_linear_embedding(NDarray X, int n_neighbors, int n_components, float reg = 0.001f, string eigen_solver = "auto", float tol = 1e-06f, int max_iter = 100, string method = "standard", float hessian_tol = 0.0001f, float modified_tol = 1e-12f, int? random_state = null, int? n_jobs = null)
             {
+                _ = sklearn.manifold.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(n_neighbors), Helpers.ToPython(n_components)]);
                 PyDict pyDict = new PyDict();
                 if (reg != 0.001f)
@@ -612,11 +623,13 @@ namespace ScikitLearn
                 if (n_jobs != null)
                     pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
                 PyTuple result = new PyTuple(sklearn.manifold.self.InvokeMethod("locally_linear_embedding", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpFloat(result[1]));
+                var length = result.Length();
+                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpFloat(result[1]) : null);
             }
 
-            public static (NDarray, string, int) smacof(NDarray dissimilarities, bool metric = true, int n_components = 2, NDarray? init = null, int n_init = 8, int? n_jobs = null, int max_iter = 300, int verbose = 0, float eps = 0.001f, int? random_state = null, bool return_n_iter = false, string normalized_stress = "auto")
+            public static (NDarray? , string? , int? ) smacof(NDarray dissimilarities, bool metric = true, int n_components = 2, NDarray? init = null, int n_init = 8, int? n_jobs = null, int max_iter = 300, int verbose = 0, float eps = 0.001f, int? random_state = null, bool return_n_iter = false, string normalized_stress = "auto")
             {
+                _ = sklearn.manifold.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(dissimilarities)]);
                 PyDict pyDict = new PyDict();
                 if (metric != true)
@@ -642,11 +655,13 @@ namespace ScikitLearn
                 if (normalized_stress != "auto")
                     pyDict["normalized_stress"] = Helpers.ToPython(normalized_stress);
                 PyTuple result = new PyTuple(sklearn.manifold.self.InvokeMethod("smacof", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpString(result[1]), Helpers.ToCSharpInt(result[2]));
+                var length = result.Length();
+                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpString(result[1]) : null, length > 2 ? Helpers.ToCSharpInt(result[2]) : null);
             }
 
             public static NDarray spectral_embedding(NDarray adjacency, int n_components = 8, PyObject? eigen_solver = null, int? random_state = null, string eigen_tol = "auto", bool norm_laplacian = true, bool drop_first = true)
             {
+                _ = sklearn.manifold.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(adjacency)]);
                 PyDict pyDict = new PyDict();
                 if (n_components != 8)
@@ -666,6 +681,7 @@ namespace ScikitLearn
 
             public static float trustworthiness(NDarray X, NDarray X_embedded, int n_neighbors = 5, string metric = "euclidean")
             {
+                _ = sklearn.manifold.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(X_embedded)]);
                 PyDict pyDict = new PyDict();
                 if (n_neighbors != 5)

@@ -43,6 +43,7 @@ namespace ScikitLearn
             {
                 public OneVsOneClassifier(PyObject estimator, int? n_jobs = null)
                 {
+                    _ = sklearn.multiclass.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(estimator)]);
                     PyDict pyDict = new PyDict();
                     if (n_jobs != null)
@@ -52,6 +53,7 @@ namespace ScikitLearn
 
                 internal OneVsOneClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.multiclass.self;
                     self = pyObject;
                 }
 
@@ -163,6 +165,7 @@ namespace ScikitLearn
             {
                 public OneVsRestClassifier(PyObject estimator, int? n_jobs = null, int verbose = 0)
                 {
+                    _ = sklearn.multiclass.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(estimator)]);
                     PyDict pyDict = new PyDict();
                     if (n_jobs != null)
@@ -174,6 +177,7 @@ namespace ScikitLearn
 
                 internal OneVsRestClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.multiclass.self;
                     self = pyObject;
                 }
 
@@ -293,6 +297,7 @@ namespace ScikitLearn
             {
                 public OutputCodeClassifier(PyObject estimator, float code_size = 1.5f, int? random_state = null, int? n_jobs = null)
                 {
+                    _ = sklearn.multiclass.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(estimator)]);
                     PyDict pyDict = new PyDict();
                     if (code_size != 1.5f)
@@ -306,6 +311,7 @@ namespace ScikitLearn
 
                 internal OutputCodeClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.multiclass.self;
                     self = pyObject;
                 }
 

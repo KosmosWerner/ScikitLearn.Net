@@ -43,6 +43,7 @@ namespace ScikitLearn
             {
                 public IterativeImputer(PyObject? estimator = null, int? missing_values = null, bool sample_posterior = false, int max_iter = 10, float tol = 0.001f, int? n_nearest_features = null, string initial_strategy = "mean", string? fill_value = null, string imputation_order = "ascending", bool skip_complete = false, NDarray? min_value = null, float max_value = float.PositiveInfinity, int verbose = 0, int? random_state = null, bool add_indicator = false, bool keep_empty_features = false)
                 {
+                    _ = sklearn.impute.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (estimator != null)
@@ -82,6 +83,7 @@ namespace ScikitLearn
 
                 internal IterativeImputer(PyObject pyObject)
                 {
+                    _ = sklearn.impute.self;
                     self = pyObject;
                 }
 
@@ -175,6 +177,7 @@ namespace ScikitLearn
             {
                 public KNNImputer(string? missing_values = null, int n_neighbors = 5, string weights = "uniform", string metric = "nan_euclidean", bool copy = true, bool add_indicator = false, bool keep_empty_features = false)
                 {
+                    _ = sklearn.impute.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (missing_values != null)
@@ -196,6 +199,7 @@ namespace ScikitLearn
 
                 internal KNNImputer(PyObject pyObject)
                 {
+                    _ = sklearn.impute.self;
                     self = pyObject;
                 }
 
@@ -284,6 +288,7 @@ namespace ScikitLearn
             {
                 public MissingIndicator(string? missing_values = null, string features = "missing-only", string sparse = "auto", bool error_on_new = true)
                 {
+                    _ = sklearn.impute.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (missing_values != null)
@@ -299,6 +304,7 @@ namespace ScikitLearn
 
                 internal MissingIndicator(PyObject pyObject)
                 {
+                    _ = sklearn.impute.self;
                     self = pyObject;
                 }
 
@@ -383,6 +389,7 @@ namespace ScikitLearn
             {
                 public SimpleImputer(string? missing_values = null, string strategy = "mean", string? fill_value = null, bool copy = true, bool add_indicator = false, bool keep_empty_features = false)
                 {
+                    _ = sklearn.impute.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (missing_values != null)
@@ -402,6 +409,7 @@ namespace ScikitLearn
 
                 internal SimpleImputer(PyObject pyObject)
                 {
+                    _ = sklearn.impute.self;
                     self = pyObject;
                 }
 

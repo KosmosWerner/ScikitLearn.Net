@@ -43,6 +43,7 @@ namespace ScikitLearn
             {
                 public BernoulliNB(float alpha = 1.0f, bool force_alpha = true, float? binarize = 0.0f, bool fit_prior = true, NDarray? class_prior = null)
                 {
+                    _ = sklearn.naive_bayes.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (alpha != 1.0f)
@@ -60,6 +61,7 @@ namespace ScikitLearn
 
                 internal BernoulliNB(PyObject pyObject)
                 {
+                    _ = sklearn.naive_bayes.self;
                     self = pyObject;
                 }
 
@@ -198,6 +200,7 @@ namespace ScikitLearn
             {
                 public CategoricalNB(float alpha = 1.0f, bool force_alpha = true, bool fit_prior = true, NDarray? class_prior = null, NDarray? min_categories = null)
                 {
+                    _ = sklearn.naive_bayes.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (alpha != 1.0f)
@@ -215,6 +218,7 @@ namespace ScikitLearn
 
                 internal CategoricalNB(PyObject pyObject)
                 {
+                    _ = sklearn.naive_bayes.self;
                     self = pyObject;
                 }
 
@@ -354,6 +358,7 @@ namespace ScikitLearn
             {
                 public ComplementNB(float alpha = 1.0f, bool force_alpha = true, bool fit_prior = true, NDarray? class_prior = null, bool norm = false)
                 {
+                    _ = sklearn.naive_bayes.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (alpha != 1.0f)
@@ -371,6 +376,7 @@ namespace ScikitLearn
 
                 internal ComplementNB(PyObject pyObject)
                 {
+                    _ = sklearn.naive_bayes.self;
                     self = pyObject;
                 }
 
@@ -510,6 +516,7 @@ namespace ScikitLearn
             {
                 public GaussianNB(NDarray? priors = null, float var_smoothing = 1e-09f)
                 {
+                    _ = sklearn.naive_bayes.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (priors != null)
@@ -521,6 +528,7 @@ namespace ScikitLearn
 
                 internal GaussianNB(PyObject pyObject)
                 {
+                    _ = sklearn.naive_bayes.self;
                     self = pyObject;
                 }
 
@@ -660,6 +668,7 @@ namespace ScikitLearn
             {
                 public MultinomialNB(float alpha = 1.0f, bool force_alpha = true, bool fit_prior = true, NDarray? class_prior = null)
                 {
+                    _ = sklearn.naive_bayes.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (alpha != 1.0f)
@@ -675,6 +684,7 @@ namespace ScikitLearn
 
                 internal MultinomialNB(PyObject pyObject)
                 {
+                    _ = sklearn.naive_bayes.self;
                     self = pyObject;
                 }
 

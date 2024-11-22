@@ -43,6 +43,7 @@ namespace ScikitLearn
             {
                 public GroupKFold(int n_splits = 5)
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_splits != 5)
@@ -52,6 +53,7 @@ namespace ScikitLearn
 
                 internal GroupKFold(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -90,7 +92,7 @@ namespace ScikitLearn
                     return this;
                 }
 
-                public (NDarray, NDarray) split(NDarray X, NDarray? y = null, NDarray? groups = null)
+                public (NDarray? , NDarray? ) split(NDarray X, NDarray? y = null, NDarray? groups = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -99,7 +101,8 @@ namespace ScikitLearn
                     if (groups != null)
                         pyDict["groups"] = Helpers.ToPython(groups);
                     PyTuple result = new PyTuple(self.InvokeMethod("split", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
             }
 
@@ -107,6 +110,7 @@ namespace ScikitLearn
             {
                 public GroupShuffleSplit(int n_splits = 5, float? test_size = null, float? train_size = null, int? random_state = null)
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_splits != 5)
@@ -122,6 +126,7 @@ namespace ScikitLearn
 
                 internal GroupShuffleSplit(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -160,7 +165,7 @@ namespace ScikitLearn
                     return this;
                 }
 
-                public (NDarray, NDarray) split(NDarray X, NDarray? y = null, NDarray? groups = null)
+                public (NDarray? , NDarray? ) split(NDarray X, NDarray? y = null, NDarray? groups = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -169,7 +174,8 @@ namespace ScikitLearn
                     if (groups != null)
                         pyDict["groups"] = Helpers.ToPython(groups);
                     PyTuple result = new PyTuple(self.InvokeMethod("split", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
             }
 
@@ -177,6 +183,7 @@ namespace ScikitLearn
             {
                 public KFold(int n_splits = 5, bool shuffle = false, int? random_state = null)
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_splits != 5)
@@ -190,6 +197,7 @@ namespace ScikitLearn
 
                 internal KFold(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -218,7 +226,7 @@ namespace ScikitLearn
                     return Helpers.ToCSharpInt(self.InvokeMethod("get_n_splits", args, pyDict));
                 }
 
-                public (NDarray, NDarray) split(NDarray X, NDarray? y = null, PyObject? groups = null)
+                public (NDarray? , NDarray? ) split(NDarray X, NDarray? y = null, PyObject? groups = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -227,7 +235,8 @@ namespace ScikitLearn
                     if (groups != null)
                         pyDict["groups"] = Helpers.ToPython(groups);
                     PyTuple result = new PyTuple(self.InvokeMethod("split", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
             }
 
@@ -235,6 +244,7 @@ namespace ScikitLearn
             {
                 public LeaveOneGroupOut()
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     self = sklearn.model_selection.self.InvokeMethod("LeaveOneGroupOut", args, pyDict);
@@ -242,6 +252,7 @@ namespace ScikitLearn
 
                 internal LeaveOneGroupOut(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -280,7 +291,7 @@ namespace ScikitLearn
                     return this;
                 }
 
-                public (NDarray, NDarray) split(NDarray X, NDarray? y = null, NDarray? groups = null)
+                public (NDarray? , NDarray? ) split(NDarray X, NDarray? y = null, NDarray? groups = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -289,7 +300,8 @@ namespace ScikitLearn
                     if (groups != null)
                         pyDict["groups"] = Helpers.ToPython(groups);
                     PyTuple result = new PyTuple(self.InvokeMethod("split", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
             }
 
@@ -297,6 +309,7 @@ namespace ScikitLearn
             {
                 public LeaveOneOut()
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     self = sklearn.model_selection.self.InvokeMethod("LeaveOneOut", args, pyDict);
@@ -304,6 +317,7 @@ namespace ScikitLearn
 
                 internal LeaveOneOut(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -330,7 +344,7 @@ namespace ScikitLearn
                     return Helpers.ToCSharpInt(self.InvokeMethod("get_n_splits", args, pyDict));
                 }
 
-                public (NDarray, NDarray) split(NDarray X, NDarray? y = null, PyObject? groups = null)
+                public (NDarray? , NDarray? ) split(NDarray X, NDarray? y = null, PyObject? groups = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -339,7 +353,8 @@ namespace ScikitLearn
                     if (groups != null)
                         pyDict["groups"] = Helpers.ToPython(groups);
                     PyTuple result = new PyTuple(self.InvokeMethod("split", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
             }
 
@@ -347,6 +362,7 @@ namespace ScikitLearn
             {
                 public LeavePGroupsOut(int n_groups)
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(n_groups)]);
                     PyDict pyDict = new PyDict();
                     self = sklearn.model_selection.self.InvokeMethod("LeavePGroupsOut", args, pyDict);
@@ -354,6 +370,7 @@ namespace ScikitLearn
 
                 internal LeavePGroupsOut(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -392,7 +409,7 @@ namespace ScikitLearn
                     return this;
                 }
 
-                public (NDarray, NDarray) split(NDarray X, NDarray? y = null, NDarray? groups = null)
+                public (NDarray? , NDarray? ) split(NDarray X, NDarray? y = null, NDarray? groups = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -401,7 +418,8 @@ namespace ScikitLearn
                     if (groups != null)
                         pyDict["groups"] = Helpers.ToPython(groups);
                     PyTuple result = new PyTuple(self.InvokeMethod("split", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
             }
 
@@ -409,6 +427,7 @@ namespace ScikitLearn
             {
                 public LeavePOut(int p)
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(p)]);
                     PyDict pyDict = new PyDict();
                     self = sklearn.model_selection.self.InvokeMethod("LeavePOut", args, pyDict);
@@ -416,6 +435,7 @@ namespace ScikitLearn
 
                 internal LeavePOut(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -442,7 +462,7 @@ namespace ScikitLearn
                     self.InvokeMethod("get_n_splits", args, pyDict);
                 }
 
-                public (NDarray, NDarray) split(NDarray X, NDarray? y = null, PyObject? groups = null)
+                public (NDarray? , NDarray? ) split(NDarray X, NDarray? y = null, PyObject? groups = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -451,7 +471,8 @@ namespace ScikitLearn
                     if (groups != null)
                         pyDict["groups"] = Helpers.ToPython(groups);
                     PyTuple result = new PyTuple(self.InvokeMethod("split", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
             }
 
@@ -459,6 +480,7 @@ namespace ScikitLearn
             {
                 public PredefinedSplit(NDarray test_fold)
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(test_fold)]);
                     PyDict pyDict = new PyDict();
                     self = sklearn.model_selection.self.InvokeMethod("PredefinedSplit", args, pyDict);
@@ -466,6 +488,7 @@ namespace ScikitLearn
 
                 internal PredefinedSplit(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -494,7 +517,7 @@ namespace ScikitLearn
                     return Helpers.ToCSharpInt(self.InvokeMethod("get_n_splits", args, pyDict));
                 }
 
-                public (NDarray, NDarray) split(PyObject? X = null, PyObject? y = null, PyObject? groups = null)
+                public (NDarray? , NDarray? ) split(PyObject? X = null, PyObject? y = null, PyObject? groups = null)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
@@ -505,7 +528,8 @@ namespace ScikitLearn
                     if (groups != null)
                         pyDict["groups"] = Helpers.ToPython(groups);
                     PyTuple result = new PyTuple(self.InvokeMethod("split", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
             }
 
@@ -513,6 +537,7 @@ namespace ScikitLearn
             {
                 public RepeatedKFold(int n_splits = 5, int n_repeats = 10, int? random_state = null)
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_splits != 5)
@@ -526,6 +551,7 @@ namespace ScikitLearn
 
                 internal RepeatedKFold(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -554,7 +580,7 @@ namespace ScikitLearn
                     return Helpers.ToCSharpInt(self.InvokeMethod("get_n_splits", args, pyDict));
                 }
 
-                public (NDarray, NDarray) split(NDarray X, NDarray? y = null, PyObject? groups = null)
+                public (NDarray? , NDarray? ) split(NDarray X, NDarray? y = null, PyObject? groups = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -563,7 +589,8 @@ namespace ScikitLearn
                     if (groups != null)
                         pyDict["groups"] = Helpers.ToPython(groups);
                     PyTuple result = new PyTuple(self.InvokeMethod("split", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
             }
 
@@ -571,6 +598,7 @@ namespace ScikitLearn
             {
                 public RepeatedStratifiedKFold(int n_splits = 5, int n_repeats = 10, int? random_state = null)
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_splits != 5)
@@ -584,6 +612,7 @@ namespace ScikitLearn
 
                 internal RepeatedStratifiedKFold(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -612,7 +641,7 @@ namespace ScikitLearn
                     return Helpers.ToCSharpInt(self.InvokeMethod("get_n_splits", args, pyDict));
                 }
 
-                public (NDarray, NDarray) split(NDarray X, NDarray? y = null, PyObject? groups = null)
+                public (NDarray? , NDarray? ) split(NDarray X, NDarray? y = null, PyObject? groups = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -621,7 +650,8 @@ namespace ScikitLearn
                     if (groups != null)
                         pyDict["groups"] = Helpers.ToPython(groups);
                     PyTuple result = new PyTuple(self.InvokeMethod("split", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
             }
 
@@ -629,6 +659,7 @@ namespace ScikitLearn
             {
                 public ShuffleSplit(int n_splits = 10, float? test_size = null, float? train_size = null, int? random_state = null)
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_splits != 10)
@@ -644,6 +675,7 @@ namespace ScikitLearn
 
                 internal ShuffleSplit(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -672,7 +704,7 @@ namespace ScikitLearn
                     return Helpers.ToCSharpInt(self.InvokeMethod("get_n_splits", args, pyDict));
                 }
 
-                public (NDarray, NDarray) split(NDarray X, NDarray? y = null, PyObject? groups = null)
+                public (NDarray? , NDarray? ) split(NDarray X, NDarray? y = null, PyObject? groups = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -681,7 +713,8 @@ namespace ScikitLearn
                     if (groups != null)
                         pyDict["groups"] = Helpers.ToPython(groups);
                     PyTuple result = new PyTuple(self.InvokeMethod("split", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
             }
 
@@ -689,6 +722,7 @@ namespace ScikitLearn
             {
                 public StratifiedGroupKFold(int n_splits = 5, bool shuffle = false, int? random_state = null)
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_splits != 5)
@@ -702,6 +736,7 @@ namespace ScikitLearn
 
                 internal StratifiedGroupKFold(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -740,7 +775,7 @@ namespace ScikitLearn
                     return this;
                 }
 
-                public (NDarray, NDarray) split(NDarray X, NDarray? y = null, NDarray? groups = null)
+                public (NDarray? , NDarray? ) split(NDarray X, NDarray? y = null, NDarray? groups = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -749,7 +784,8 @@ namespace ScikitLearn
                     if (groups != null)
                         pyDict["groups"] = Helpers.ToPython(groups);
                     PyTuple result = new PyTuple(self.InvokeMethod("split", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
             }
 
@@ -757,6 +793,7 @@ namespace ScikitLearn
             {
                 public StratifiedKFold(int n_splits = 5, bool shuffle = false, int? random_state = null)
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_splits != 5)
@@ -770,6 +807,7 @@ namespace ScikitLearn
 
                 internal StratifiedKFold(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -798,14 +836,15 @@ namespace ScikitLearn
                     return Helpers.ToCSharpInt(self.InvokeMethod("get_n_splits", args, pyDict));
                 }
 
-                public (NDarray, NDarray) split(NDarray X, NDarray y, PyObject? groups = null)
+                public (NDarray? , NDarray? ) split(NDarray X, NDarray y, PyObject? groups = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (groups != null)
                         pyDict["groups"] = Helpers.ToPython(groups);
                     PyTuple result = new PyTuple(self.InvokeMethod("split", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
             }
 
@@ -813,6 +852,7 @@ namespace ScikitLearn
             {
                 public StratifiedShuffleSplit(int n_splits = 10, float? test_size = null, float? train_size = null, int? random_state = null)
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_splits != 10)
@@ -828,6 +868,7 @@ namespace ScikitLearn
 
                 internal StratifiedShuffleSplit(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -856,14 +897,15 @@ namespace ScikitLearn
                     return Helpers.ToCSharpInt(self.InvokeMethod("get_n_splits", args, pyDict));
                 }
 
-                public (NDarray, NDarray) split(NDarray X, NDarray y, PyObject? groups = null)
+                public (NDarray? , NDarray? ) split(NDarray X, NDarray y, PyObject? groups = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (groups != null)
                         pyDict["groups"] = Helpers.ToPython(groups);
                     PyTuple result = new PyTuple(self.InvokeMethod("split", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
             }
 
@@ -871,6 +913,7 @@ namespace ScikitLearn
             {
                 public TimeSeriesSplit(int n_splits = 5, int? max_train_size = null, int? test_size = null, int gap = 0)
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_splits != 5)
@@ -886,6 +929,7 @@ namespace ScikitLearn
 
                 internal TimeSeriesSplit(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -914,7 +958,7 @@ namespace ScikitLearn
                     return Helpers.ToCSharpInt(self.InvokeMethod("get_n_splits", args, pyDict));
                 }
 
-                public (NDarray, NDarray) split(NDarray X, NDarray? y = null, NDarray? groups = null)
+                public (NDarray? , NDarray? ) split(NDarray X, NDarray? y = null, NDarray? groups = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -923,12 +967,14 @@ namespace ScikitLearn
                     if (groups != null)
                         pyDict["groups"] = Helpers.ToPython(groups);
                     PyTuple result = new PyTuple(self.InvokeMethod("split", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var length = result.Length();
+                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
             }
 
             public static PyObject check_cv(int? cv = 5, NDarray? y = null, bool classifier = false)
             {
+                _ = sklearn.model_selection.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (cv != 5)
@@ -942,6 +988,7 @@ namespace ScikitLearn
 
             public static NDarray train_test_split(NDarray[] arrays, float? test_size = null, float? train_size = null, int? random_state = null, bool shuffle = true, NDarray? stratify = null)
             {
+                _ = sklearn.model_selection.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(arrays)]);
                 PyDict pyDict = new PyDict();
                 if (test_size != null)
@@ -961,6 +1008,7 @@ namespace ScikitLearn
             {
                 public GridSearchCV(PyObject estimator, PyDict param_grid, PyDict? scoring = null, int? n_jobs = null, bool refit = true, int? cv = null, int verbose = 0, string pre_dispatch = "2*n_jobs", PyObject? error_score = null, bool return_train_score = false)
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(estimator), Helpers.ToPython(param_grid)]);
                     PyDict pyDict = new PyDict();
                     if (scoring != null)
@@ -984,6 +1032,7 @@ namespace ScikitLearn
 
                 internal GridSearchCV(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -1112,6 +1161,7 @@ namespace ScikitLearn
             {
                 public HalvingGridSearchCV(PyObject estimator, PyDict param_grid, int factor = 3, string resource = "n_samples", string max_resources = "auto", string min_resources = "exhaust", bool aggressive_elimination = false, int cv = 5, string? scoring = null, bool refit = true, PyObject? error_score = null, bool return_train_score = true, int? random_state = null, int? n_jobs = null, int verbose = 0)
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(estimator), Helpers.ToPython(param_grid)]);
                     PyDict pyDict = new PyDict();
                     if (factor != 3)
@@ -1145,6 +1195,7 @@ namespace ScikitLearn
 
                 internal HalvingGridSearchCV(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -1281,6 +1332,7 @@ namespace ScikitLearn
             {
                 public HalvingRandomSearchCV(PyObject estimator, PyDict param_distributions, string n_candidates = "exhaust", int factor = 3, string resource = "n_samples", string max_resources = "auto", string min_resources = "smallest", bool aggressive_elimination = false, int cv = 5, string? scoring = null, bool refit = true, PyObject? error_score = null, bool return_train_score = true, int? random_state = null, int? n_jobs = null, int verbose = 0)
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(estimator), Helpers.ToPython(param_distributions)]);
                     PyDict pyDict = new PyDict();
                     if (n_candidates != "exhaust")
@@ -1316,6 +1368,7 @@ namespace ScikitLearn
 
                 internal HalvingRandomSearchCV(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -1452,6 +1505,7 @@ namespace ScikitLearn
             {
                 public ParameterGrid(PyDict param_grid)
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(param_grid)]);
                     PyDict pyDict = new PyDict();
                     self = sklearn.model_selection.self.InvokeMethod("ParameterGrid", args, pyDict);
@@ -1459,6 +1513,7 @@ namespace ScikitLearn
 
                 internal ParameterGrid(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -1470,6 +1525,7 @@ namespace ScikitLearn
 
             public static PyDict ParameterSampler(PyDict param_distributions, int n_iter, int? random_state = null)
             {
+                _ = sklearn.model_selection.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(param_distributions), Helpers.ToPython(n_iter)]);
                 PyDict pyDict = new PyDict();
                 if (random_state != null)
@@ -1481,6 +1537,7 @@ namespace ScikitLearn
             {
                 public RandomizedSearchCV(PyObject estimator, PyDict param_distributions, int n_iter = 10, PyDict? scoring = null, int? n_jobs = null, bool refit = true, int? cv = null, int verbose = 0, string pre_dispatch = "2*n_jobs", int? random_state = null, PyObject? error_score = null, bool return_train_score = false)
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(estimator), Helpers.ToPython(param_distributions)]);
                     PyDict pyDict = new PyDict();
                     if (n_iter != 10)
@@ -1508,6 +1565,7 @@ namespace ScikitLearn
 
                 internal RandomizedSearchCV(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -1636,6 +1694,7 @@ namespace ScikitLearn
             {
                 public FixedThresholdClassifier(PyObject estimator, string threshold = "auto", string? pos_label = null, string response_method = "auto")
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(estimator)]);
                     PyDict pyDict = new PyDict();
                     if (threshold != "auto")
@@ -1649,6 +1708,7 @@ namespace ScikitLearn
 
                 internal FixedThresholdClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -1750,6 +1810,7 @@ namespace ScikitLearn
             {
                 public TunedThresholdClassifierCV(PyObject estimator, string scoring = "balanced_accuracy", string response_method = "auto", int thresholds = 100, float? cv = null, bool refit = true, int? n_jobs = null, int? random_state = null, bool store_cv_results = false)
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(estimator)]);
                     PyDict pyDict = new PyDict();
                     if (scoring != "balanced_accuracy")
@@ -1773,6 +1834,7 @@ namespace ScikitLearn
 
                 internal TunedThresholdClassifierCV(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -1875,6 +1937,7 @@ namespace ScikitLearn
 
             public static PyDict cross_val_predict(PyObject estimator, NDarray X, NDarray? y = null, NDarray? groups = null, int? cv = null, int? n_jobs = null, int verbose = 0, PyDict? fit_params = null, PyDict? @params = null, string pre_dispatch = "2*n_jobs", string method = "predict")
             {
+                _ = sklearn.model_selection.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(estimator), Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
                 if (y != null)
@@ -1900,6 +1963,7 @@ namespace ScikitLearn
 
             public static NDarray cross_val_score(PyObject estimator, NDarray X, NDarray? y = null, NDarray? groups = null, string? scoring = null, int? cv = null, int? n_jobs = null, int verbose = 0, PyDict? fit_params = null, PyDict? @params = null, string pre_dispatch = "2*n_jobs", PyObject? error_score = null)
             {
+                _ = sklearn.model_selection.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(estimator), Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
                 if (y != null)
@@ -1927,6 +1991,7 @@ namespace ScikitLearn
 
             public static PyDict cross_validate(PyObject estimator, NDarray X, NDarray? y = null, NDarray? groups = null, PyDict? scoring = null, int? cv = null, int? n_jobs = null, int verbose = 0, PyDict? fit_params = null, PyDict? @params = null, string pre_dispatch = "2*n_jobs", bool return_train_score = false, bool return_estimator = false, bool return_indices = false, PyObject? error_score = null)
             {
+                _ = sklearn.model_selection.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(estimator), Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
                 if (y != null)
@@ -1958,8 +2023,9 @@ namespace ScikitLearn
                 return new PyDict(sklearn.model_selection.self.InvokeMethod("cross_validate", args, pyDict));
             }
 
-            public static (NDarray, NDarray, NDarray, NDarray, NDarray) learning_curve(PyObject estimator, NDarray X, NDarray y, NDarray? groups = null, NDarray? train_sizes = null, int? cv = null, string? scoring = null, bool exploit_incremental_learning = false, int? n_jobs = null, string pre_dispatch = "all", int verbose = 0, bool shuffle = false, int? random_state = null, PyObject? error_score = null, bool return_times = false, PyDict? fit_params = null)
+            public static (NDarray? , NDarray? , NDarray? , NDarray? , NDarray? ) learning_curve(PyObject estimator, NDarray X, NDarray y, NDarray? groups = null, NDarray? train_sizes = null, int? cv = null, string? scoring = null, bool exploit_incremental_learning = false, int? n_jobs = null, string pre_dispatch = "all", int verbose = 0, bool shuffle = false, int? random_state = null, PyObject? error_score = null, bool return_times = false, PyDict? fit_params = null)
             {
+                _ = sklearn.model_selection.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(estimator), Helpers.ToPython(X), Helpers.ToPython(y)]);
                 PyDict pyDict = new PyDict();
                 if (groups != null)
@@ -1989,11 +2055,13 @@ namespace ScikitLearn
                 if (fit_params != null)
                     pyDict["fit_params"] = Helpers.ToPython(fit_params);
                 PyTuple result = new PyTuple(sklearn.model_selection.self.InvokeMethod("learning_curve", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]), Helpers.ToCSharpNDarray(result[3]), Helpers.ToCSharpNDarray(result[4]));
+                var length = result.Length();
+                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, length > 3 ? Helpers.ToCSharpNDarray(result[3]) : null, length > 4 ? Helpers.ToCSharpNDarray(result[4]) : null);
             }
 
-            public static (float, NDarray, float) permutation_test_score(PyObject estimator, NDarray X, NDarray y, NDarray? groups = null, int? cv = null, int n_permutations = 100, int? n_jobs = null, int? random_state = 0, int verbose = 0, string? scoring = null, PyDict? fit_params = null)
+            public static (float? , NDarray? , float? ) permutation_test_score(PyObject estimator, NDarray X, NDarray y, NDarray? groups = null, int? cv = null, int n_permutations = 100, int? n_jobs = null, int? random_state = 0, int verbose = 0, string? scoring = null, PyDict? fit_params = null)
             {
+                _ = sklearn.model_selection.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(estimator), Helpers.ToPython(X), Helpers.ToPython(y)]);
                 PyDict pyDict = new PyDict();
                 if (groups != null)
@@ -2013,11 +2081,13 @@ namespace ScikitLearn
                 if (fit_params != null)
                     pyDict["fit_params"] = Helpers.ToPython(fit_params);
                 PyTuple result = new PyTuple(sklearn.model_selection.self.InvokeMethod("permutation_test_score", args, pyDict));
-                return (Helpers.ToCSharpFloat(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpFloat(result[2]));
+                var length = result.Length();
+                return (length > 0 ? Helpers.ToCSharpFloat(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpFloat(result[2]) : null);
             }
 
-            public static (NDarray, NDarray) validation_curve(PyObject estimator, NDarray X, NDarray y, string param_name, NDarray param_range, NDarray? groups = null, int? cv = null, string? scoring = null, int? n_jobs = null, string pre_dispatch = "all", int verbose = 0, PyObject? error_score = null, PyDict? fit_params = null)
+            public static (NDarray? , NDarray? ) validation_curve(PyObject estimator, NDarray X, NDarray y, string param_name, NDarray param_range, NDarray? groups = null, int? cv = null, string? scoring = null, int? n_jobs = null, string pre_dispatch = "all", int verbose = 0, PyObject? error_score = null, PyDict? fit_params = null)
             {
+                _ = sklearn.model_selection.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(estimator), Helpers.ToPython(X), Helpers.ToPython(y), Helpers.ToPython(param_name), Helpers.ToPython(param_range)]);
                 PyDict pyDict = new PyDict();
                 if (groups != null)
@@ -2037,13 +2107,15 @@ namespace ScikitLearn
                 if (fit_params != null)
                     pyDict["fit_params"] = Helpers.ToPython(fit_params);
                 PyTuple result = new PyTuple(sklearn.model_selection.self.InvokeMethod("validation_curve", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                var length = result.Length();
+                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
             public class LearningCurveDisplay : PythonObject
             {
                 public LearningCurveDisplay(NDarray train_sizes, NDarray train_scores, NDarray test_scores, string? score_name = null)
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(train_sizes), Helpers.ToPython(train_scores), Helpers.ToPython(test_scores)]);
                     PyDict pyDict = new PyDict();
                     if (score_name != null)
@@ -2053,6 +2125,7 @@ namespace ScikitLearn
 
                 internal LearningCurveDisplay(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 
@@ -2142,6 +2215,7 @@ namespace ScikitLearn
             {
                 public ValidationCurveDisplay(string param_name, NDarray param_range, NDarray train_scores, NDarray test_scores, string? score_name = null)
                 {
+                    _ = sklearn.model_selection.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(param_name), Helpers.ToPython(param_range), Helpers.ToPython(train_scores), Helpers.ToPython(test_scores)]);
                     PyDict pyDict = new PyDict();
                     if (score_name != null)
@@ -2151,6 +2225,7 @@ namespace ScikitLearn
 
                 internal ValidationCurveDisplay(PyObject pyObject)
                 {
+                    _ = sklearn.model_selection.self;
                     self = pyObject;
                 }
 

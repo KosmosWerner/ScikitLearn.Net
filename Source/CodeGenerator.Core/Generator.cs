@@ -22,8 +22,8 @@ public static class Generator
             var sortedContainers = nodeContainers.OrderBy(container =>
             {
                 var (_, fullName, _) = TextAnalyzer.Divide.FromDeclaration(container.Declaration);
-                var namespaceParts = fullName.Split('.');
-                return string.Join(".", namespaceParts[..^1]);
+                var (_, callableStaticClass) = TextAnalyzer.Divide.FromFullName(fullName);
+                return callableStaticClass;
             });
 
             string fileName = Path.GetFileNameWithoutExtension(preGeneratedFile);

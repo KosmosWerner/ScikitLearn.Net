@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Diagnostics;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace CodeGenerator.Core.Manager;
@@ -20,34 +21,6 @@ public static partial class TextAnalyzer
             "virtual", "void", "volatile", "while",
         ]);
 
-        private static readonly Dictionary<string, string> valueEquivalences = new()
-        {
-            ["True"] = "true",
-            ["False"] = "false",
-            ["None"] = "null",
-            ["np.float64(2.220446049250313e-16)"] = "float.Epsilon",
-            ["inf"] = "float.PositiveInfinity",
-        };
-
-        public static readonly Dictionary<string, string> typeEquivalences = new()
-        {
-            ["object"] = "PyObject",
-            ["Bunch"] = "PyDict",
-            ["dict"] = "PyDict",
-            ["ndarray"] = "NDarray",
-            ["list of shape"] = "NDarray",
-            ["of shape"] = "NDarray",
-            ["array"] = "NDarray",
-            ["list of"] = "PyTuple",
-            ["str"] = "string",
-            ["float"] = "float",
-            ["int"] = "int",
-            ["bool"] = "bool",
-            ["True"] = "bool",
-            ["False"] = "bool",
-            ["tuple"] = "PyTuple",
-        };
-
         public static string RawText(string rawText)
         {
             StringBuilder stringBuilder = new(rawText);
@@ -68,68 +41,6 @@ public static partial class TextAnalyzer
             return result;
         }
 
-        // (null, string.Empty) null and not determinated
-        public static (string? value, string type) TryGetDefaultValue(string paramDefault)
-        {
-            if (valueEquivalences.TryGetValue(paramDefault, out string? nativeType))
-            {
-                if (nativeType == "true" || nativeType == "false") return (nativeType, "bool"); // value
-                if (nativeType.Contains("float")) return (nativeType, "float"); // value
-                if (nativeType.Contains("null")) return (null, string.Empty); // value
-            }
-
-            if (RegexIsInteger().IsMatch(paramDefault))
-                return (paramDefault, "int");
-
-            if (RegexIsFloat().IsMatch(paramDefault))
-                return ($"{paramDefault}f", "float");
-
-            if (paramDefault.StartsWith('\"') && paramDefault.EndsWith('\"') && paramDefault.Length > 1)
-                return (paramDefault, "string"); // string
-
-            if (paramDefault.StartsWith('(') && paramDefault.EndsWith(')'))
-                return (null, "PyTuple?");
-
-            if (paramDefault.StartsWith('<') && paramDefault.EndsWith('>'))
-                return (null, string.Empty);
-
-            return (null, string.Empty);
-
-            throw new ArgumentException($"The value \"{paramDefault}\" does not match contents of the expected formats (bool,float, etc)");
-        }
-
-
-        public static string ParamTypeFromNonDeducible(string textFromDocumentation, bool storesIsNull)
-        {
-            bool nullable = textFromDocumentation.Contains("None", StringComparison.OrdinalIgnoreCase);
-            nullable = storesIsNull;
-
-            string content = textFromDocumentation.Split("default=", 2, StringSplitOptions.TrimEntries)[0];
-
-            string clear_raw_type = Regex.Replace(content, @"[\(\{]([^()\{\}]*)[\)\}]", m => //delete commas in {,,} or (,,)
-            {
-                return m.Value.Replace(",", "").Replace(" or ", "");
-            });
-
-            var parts = Regex.Split(clear_raw_type, @"\s*,\s*|\s+or\s+");
-
-            bool multiple = textFromDocumentation.Contains(" or ", StringComparison.OrdinalIgnoreCase);
-
-            var result = typeEquivalences
-                .Where(kv => textFromDocumentation.Contains(kv.Key))
-                .Select(kv => kv.Value)
-                .Distinct()
-                .ToList();
-
-            string? output;
-
-            if (result.Count == 0) output = nullable ? "PyObject?" : "PyObject";
-            else if (result.Count == 1) output = nullable ? result[0] += "?" : result[0];
-            else output = nullable ? result[0] += "?" : result[0];
-
-            return output;
-        }
-
         public static string Reserved(string nameOrFullName)
         {
             string[] parts = nameOrFullName.Split('.')
@@ -139,54 +50,18 @@ public static partial class TextAnalyzer
             return string.Join('.', parts);
         }
 
-        public static bool TryGetReturnType(string plainReturn, out string? type)
-        {
-            var match = typeEquivalences
-                .FirstOrDefault(kv => plainReturn.Contains(kv.Key, StringComparison.OrdinalIgnoreCase));
-
-            if (string.IsNullOrEmpty(match.Key))
-            {
-                type = null;
-                return false;
-            }
-
-            if (match.Key.Equals("ndarray", StringComparison.OrdinalIgnoreCase))
-            {
-                type = "NDarray";
-                if (plainReturn.Contains("dtype=np.int64"))
-                {
-                    type = "NDarray<long>";
-                }
-                else if (plainReturn.Contains("dtype=np.intp"))
-                {
-                    type = IntPtr.Size == 8 ? "NDarray<long>" : "NDarray<int>";
-                }
-                return true;
-            }
-
-            type = match.Value;
-            return true;
-        }
-
-        [GeneratedRegex(@"^[+-]?\d+$", RegexOptions.Compiled)]
-        private static partial Regex RegexIsInteger();
-
-        [GeneratedRegex(@"^[+-]?\d+(\.\d+)?(e[+-]?\d+)?$", RegexOptions.IgnoreCase | RegexOptions.Compiled, "es-PE")]
-        private static partial Regex RegexIsFloat();
-
         [GeneratedRegex(@"\s+", RegexOptions.Compiled)]
         private static partial Regex RegexMultipleSpacing();
     }
-
 
     public static partial class Divide
     {
         public static (string identifier, string fullName, string rawParameters) FromDeclaration(string declaration)
         {
             Match declarationMatch = RegexDeclarationParts().Match(declaration);
-            return (declarationMatch.Groups[1].Value,
-                declarationMatch.Groups[2].Value,
-                declarationMatch.Groups[3].Value);
+            return (declarationMatch.Groups["id"].Value,
+                declarationMatch.Groups["name"].Value,
+                declarationMatch.Groups["params"].Value);
         }
 
         public static (string name, string callableStaticClass) FromFullName(string plainName)
@@ -201,39 +76,35 @@ public static partial class TextAnalyzer
 
         public static (string name, string rawType, string rawDefault) FromDefinition(string rawDefinition)
         {
-            string[] segments = rawDefinition.Split(':', 2,
-                StringSplitOptions.RemoveEmptyEntries |
-                StringSplitOptions.TrimEntries);
-
-            if (segments.Length < 2) return (segments[0], string.Empty, string.Empty);
-
-            string[] segmentsType = segments[1].Split(", default=", 2,
-                StringSplitOptions.RemoveEmptyEntries |
-                StringSplitOptions.TrimEntries);
-
-            return (segments[0], segmentsType[0], segmentsType.Length > 1 ? segmentsType[1] : string.Empty);
+            Match definitionMatch = RegexDefinitionParts().Match(rawDefinition);
+            return (definitionMatch.Groups["name"].Value,
+                definitionMatch.Groups["raw"].Value,
+                definitionMatch.Groups["default"].Value);
         }
 
-        public static string[] PlainParameters(string plainParameters)
+        public static string[] FromRawParameters(string rawParameters)
         {
-            plainParameters = plainParameters.TrimStart('(').TrimEnd(')');
-
-            return plainParameters.Split(", ",
-                StringSplitOptions.RemoveEmptyEntries |
-                StringSplitOptions.TrimEntries);
+            var parametersMatch = RegexParametersParts().Split(rawParameters);
+            return parametersMatch
+                .Where(part => !string.IsNullOrWhiteSpace(part))
+                .ToArray();
         }
 
         public static string[] FromRawTuple(string plainTuple)
         {
             plainTuple = plainTuple.TrimStart('(').TrimEnd(')');
 
-            return plainTuple.Split(',',
-                StringSplitOptions.TrimEntries);
+            return plainTuple.Split(',', StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
         }
 
 
-
-        [GeneratedRegex(@"(?:(\w+)\s+)?([\w\.]+)(?:\((.*)\))?", RegexOptions.Compiled)]
+        [GeneratedRegex(@"(?:(?<id>\w+)\s+)?(?<name>[\w\.]+)(?:\((?<params>.*)\))?", RegexOptions.Compiled)]
         private static partial Regex RegexDeclarationParts();
+
+        [GeneratedRegex(@"(?<name>.*?)(?:\s*:\s*(?<raw>.*?)(?:\s*,\s*default=\s*(?<default>.*))?)?$", RegexOptions.Compiled)]
+        private static partial Regex RegexDefinitionParts();
+
+        [GeneratedRegex(@",\s*(?![^()\[\]{}]*[)\]}])", RegexOptions.Compiled)]
+        private static partial Regex RegexParametersParts();
     }
 }

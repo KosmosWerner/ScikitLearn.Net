@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Numpy;
 using Python.Runtime;
 
@@ -41,6 +43,7 @@ namespace ScikitLearn
             {
                 public ColumnTransformer(PyTuple transformers, string remainder = "drop", float sparse_threshold = 0.3f, int? n_jobs = null, PyDict? transformer_weights = null, bool verbose = false, bool verbose_feature_names_out = true, bool force_int_remainder_cols = true)
                 {
+                    _ = sklearn.compose.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(transformers)]);
                     PyDict pyDict = new PyDict();
                     if (remainder != "drop")
@@ -62,6 +65,7 @@ namespace ScikitLearn
 
                 internal ColumnTransformer(PyObject pyObject)
                 {
+                    _ = sklearn.compose.self;
                     self = pyObject;
                 }
 
@@ -159,6 +163,7 @@ namespace ScikitLearn
             {
                 public TransformedTargetRegressor(PyObject? regressor = null, PyObject? transformer = null, PyObject? func = null, PyObject? inverse_func = null, bool check_inverse = true)
                 {
+                    _ = sklearn.compose.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (regressor != null)
@@ -176,6 +181,7 @@ namespace ScikitLearn
 
                 internal TransformedTargetRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.compose.self;
                     self = pyObject;
                 }
 
@@ -256,6 +262,7 @@ namespace ScikitLearn
 
             public static PyObject make_column_selector(string? pattern = null, PyTuple? dtype_include = null, PyTuple? dtype_exclude = null)
             {
+                _ = sklearn.compose.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (pattern != null)
@@ -269,6 +276,7 @@ namespace ScikitLearn
 
             public static PyObject make_column_transformer(PyObject[] transformers, string remainder = "drop", float sparse_threshold = 0.3f, int? n_jobs = null, bool verbose = false, bool verbose_feature_names_out = true, bool force_int_remainder_cols = true)
             {
+                _ = sklearn.compose.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(transformers)]);
                 PyDict pyDict = new PyDict();
                 if (remainder != "drop")

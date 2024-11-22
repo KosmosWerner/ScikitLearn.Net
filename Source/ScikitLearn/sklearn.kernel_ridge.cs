@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Numpy;
 using Python.Runtime;
 
@@ -41,6 +43,7 @@ namespace ScikitLearn
             {
                 public KernelRidge(int alpha = 1, string kernel = "linear", float? gamma = null, int degree = 3, int coef0 = 1, PyDict? kernel_params = null)
                 {
+                    _ = sklearn.kernel_ridge.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (alpha != 1)
@@ -60,6 +63,7 @@ namespace ScikitLearn
 
                 internal KernelRidge(PyObject pyObject)
                 {
+                    _ = sklearn.kernel_ridge.self;
                     self = pyObject;
                 }
 

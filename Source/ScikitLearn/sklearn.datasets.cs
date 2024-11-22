@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Numpy;
 using Python.Runtime;
 
@@ -39,6 +41,7 @@ namespace ScikitLearn
 
             public static void clear_data_home(string? data_home = null)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (data_home != null)
@@ -48,6 +51,7 @@ namespace ScikitLearn
 
             public static void dump_svmlight_file(NDarray X, NDarray y, string f, bool zero_based = true, string? comment = null, NDarray? query_id = null, bool multilabel = false)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y), Helpers.ToPython(f)]);
                 PyDict pyDict = new PyDict();
                 if (zero_based != true)
@@ -61,8 +65,9 @@ namespace ScikitLearn
                 sklearn.datasets.self.InvokeMethod("dump_svmlight_file", args, pyDict);
             }
 
-            public static (PyDict, bool) fetch_20newsgroups(string? data_home = null, string subset = "train", NDarray? categories = null, bool shuffle = true, int? random_state = 42, PyTuple? remove = null, bool download_if_missing = true, bool return_X_y = false, int n_retries = 3, float delay = 1.0f)
+            public static (PyDict?, PyTuple?) fetch_20newsgroups(string? data_home = null, string subset = "train", NDarray? categories = null, bool shuffle = true, int? random_state = 42, PyTuple? remove = null, bool download_if_missing = true, bool return_X_y = false, int n_retries = 3, float delay = 1.0f)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (data_home != null)
@@ -86,11 +91,13 @@ namespace ScikitLearn
                 if (delay != 1.0f)
                     pyDict["delay"] = Helpers.ToPython(delay);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("fetch_20newsgroups", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpPyDict(result[0]) : null, __length > 1 ? Helpers.ToCSharpPyTuple(result[1]) : null);
             }
 
-            public static (PyDict, bool) fetch_20newsgroups_vectorized(string subset = "train", PyTuple? remove = null, string? data_home = null, bool download_if_missing = true, bool return_X_y = false, bool normalize = true, bool as_frame = false, int n_retries = 3, float delay = 1.0f)
+            public static (PyDict?, PyTuple?) fetch_20newsgroups_vectorized(string subset = "train", PyTuple? remove = null, string? data_home = null, bool download_if_missing = true, bool return_X_y = false, bool normalize = true, bool as_frame = false, int n_retries = 3, float delay = 1.0f)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (subset != "train")
@@ -112,11 +119,13 @@ namespace ScikitLearn
                 if (delay != 1.0f)
                     pyDict["delay"] = Helpers.ToPython(delay);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("fetch_20newsgroups_vectorized", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpPyDict(result[0]) : null, __length > 1 ? Helpers.ToCSharpPyTuple(result[1]) : null);
             }
 
-            public static (PyDict, bool) fetch_california_housing(string? data_home = null, bool download_if_missing = true, bool return_X_y = false, bool as_frame = false, int n_retries = 3, float delay = 1.0f)
+            public static (PyDict?, PyTuple?) fetch_california_housing(string? data_home = null, bool download_if_missing = true, bool return_X_y = false, bool as_frame = false, int n_retries = 3, float delay = 1.0f)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (data_home != null)
@@ -132,11 +141,13 @@ namespace ScikitLearn
                 if (delay != 1.0f)
                     pyDict["delay"] = Helpers.ToPython(delay);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("fetch_california_housing", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpPyDict(result[0]) : null, __length > 1 ? Helpers.ToCSharpPyTuple(result[1]) : null);
             }
 
-            public static (PyDict, bool) fetch_covtype(string? data_home = null, bool download_if_missing = true, int? random_state = null, bool shuffle = false, bool return_X_y = false, bool as_frame = false, int n_retries = 3, float delay = 1.0f)
+            public static (PyDict?, PyTuple?) fetch_covtype(string? data_home = null, bool download_if_missing = true, int? random_state = null, bool shuffle = false, bool return_X_y = false, bool as_frame = false, int n_retries = 3, float delay = 1.0f)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (data_home != null)
@@ -156,11 +167,13 @@ namespace ScikitLearn
                 if (delay != 1.0f)
                     pyDict["delay"] = Helpers.ToPython(delay);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("fetch_covtype", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpPyDict(result[0]) : null, __length > 1 ? Helpers.ToCSharpPyTuple(result[1]) : null);
             }
 
-            public static (PyDict, bool) fetch_kddcup99(PyObject? subset = null, string? data_home = null, bool shuffle = false, int? random_state = null, bool percent10 = true, bool download_if_missing = true, bool return_X_y = false, bool as_frame = false, int n_retries = 3, float delay = 1.0f)
+            public static (PyDict?, PyTuple?) fetch_kddcup99(PyObject? subset = null, string? data_home = null, bool shuffle = false, int? random_state = null, bool percent10 = true, bool download_if_missing = true, bool return_X_y = false, bool as_frame = false, int n_retries = 3, float delay = 1.0f)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (subset != null)
@@ -184,11 +197,13 @@ namespace ScikitLearn
                 if (delay != 1.0f)
                     pyDict["delay"] = Helpers.ToPython(delay);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("fetch_kddcup99", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpPyDict(result[0]) : null, __length > 1 ? Helpers.ToCSharpPyTuple(result[1]) : null);
             }
 
             public static PyDict fetch_lfw_pairs(string subset = "train", string? data_home = null, bool funneled = true, float resize = 0.5f, bool color = false, PyTuple? slice_ = null, bool download_if_missing = true, int n_retries = 3, float delay = 1.0f)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (subset != "train")
@@ -212,8 +227,9 @@ namespace ScikitLearn
                 return new PyDict(sklearn.datasets.self.InvokeMethod("fetch_lfw_pairs", args, pyDict));
             }
 
-            public static (PyDict, bool) fetch_lfw_people(string? data_home = null, bool funneled = true, float? resize = 0.5f, int? min_faces_per_person = 0, bool color = false, PyTuple? slice_ = null, bool download_if_missing = true, bool return_X_y = false, int n_retries = 3, float delay = 1.0f)
+            public static (PyDict?, PyTuple?) fetch_lfw_people(string? data_home = null, bool funneled = true, float? resize = 0.5f, int? min_faces_per_person = 0, bool color = false, PyTuple? slice_ = null, bool download_if_missing = true, bool return_X_y = false, int n_retries = 3, float delay = 1.0f)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (data_home != null)
@@ -237,11 +253,13 @@ namespace ScikitLearn
                 if (delay != 1.0f)
                     pyDict["delay"] = Helpers.ToPython(delay);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("fetch_lfw_people", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpPyDict(result[0]) : null, __length > 1 ? Helpers.ToCSharpPyTuple(result[1]) : null);
             }
 
-            public static (PyDict, bool) fetch_olivetti_faces(string? data_home = null, bool shuffle = false, int? random_state = 0, bool download_if_missing = true, bool return_X_y = false, int n_retries = 3, float delay = 1.0f)
+            public static (PyDict?, PyTuple?) fetch_olivetti_faces(string? data_home = null, bool shuffle = false, int? random_state = 0, bool download_if_missing = true, bool return_X_y = false, int n_retries = 3, float delay = 1.0f)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (data_home != null)
@@ -259,11 +277,13 @@ namespace ScikitLearn
                 if (delay != 1.0f)
                     pyDict["delay"] = Helpers.ToPython(delay);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("fetch_olivetti_faces", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpPyDict(result[0]) : null, __length > 1 ? Helpers.ToCSharpPyTuple(result[1]) : null);
             }
 
-            public static (PyDict, bool) fetch_openml(string? name = null, string version = "active", int? data_id = null, string? data_home = null, string? target_column = "default-target", bool cache = true, bool return_X_y = false, string as_frame = "auto", int n_retries = 3, float delay = 1.0f, string parser = "auto", PyDict? read_csv_kwargs = null)
+            public static (PyDict?, PyTuple?) fetch_openml(string? name = null, string version = "active", int? data_id = null, string? data_home = null, string? target_column = "default-target", bool cache = true, bool return_X_y = false, string as_frame = "auto", int n_retries = 3, float delay = 1.0f, string parser = "auto", PyDict? read_csv_kwargs = null)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (name != null)
@@ -291,11 +311,13 @@ namespace ScikitLearn
                 if (read_csv_kwargs != null)
                     pyDict["read_csv_kwargs"] = Helpers.ToPython(read_csv_kwargs);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("fetch_openml", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpPyDict(result[0]) : null, __length > 1 ? Helpers.ToCSharpPyTuple(result[1]) : null);
             }
 
-            public static (PyDict, PyTuple) fetch_rcv1(string? data_home = null, string subset = "all", bool download_if_missing = true, int? random_state = null, bool shuffle = false, bool return_X_y = false, int n_retries = 3, float delay = 1.0f)
+            public static (PyDict?, PyTuple?) fetch_rcv1(string? data_home = null, string subset = "all", bool download_if_missing = true, int? random_state = null, bool shuffle = false, bool return_X_y = false, int n_retries = 3, float delay = 1.0f)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (data_home != null)
@@ -315,11 +337,13 @@ namespace ScikitLearn
                 if (delay != 1.0f)
                     pyDict["delay"] = Helpers.ToPython(delay);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("fetch_rcv1", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpPyTuple(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpPyDict(result[0]) : null, __length > 1 ? Helpers.ToCSharpPyTuple(result[1]) : null);
             }
 
             public static PyDict fetch_species_distributions(string? data_home = null, bool download_if_missing = true, int n_retries = 3, float delay = 1.0f)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (data_home != null)
@@ -335,6 +359,7 @@ namespace ScikitLearn
 
             public static string get_data_home(string? data_home = null)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (data_home != null)
@@ -342,8 +367,9 @@ namespace ScikitLearn
                 return Helpers.ToCSharpString(sklearn.datasets.self.InvokeMethod("get_data_home", args, pyDict));
             }
 
-            public static (PyDict, bool) load_breast_cancer(bool return_X_y = false, bool as_frame = false)
+            public static (PyDict?, PyTuple?) load_breast_cancer(bool return_X_y = false, bool as_frame = false)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (return_X_y != false)
@@ -351,11 +377,13 @@ namespace ScikitLearn
                 if (as_frame != false)
                     pyDict["as_frame"] = Helpers.ToPython(as_frame);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("load_breast_cancer", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpPyDict(result[0]) : null, __length > 1 ? Helpers.ToCSharpPyTuple(result[1]) : null);
             }
 
-            public static (PyDict, bool) load_diabetes(bool return_X_y = false, bool as_frame = false, bool scaled = true)
+            public static (PyDict?, PyTuple?) load_diabetes(bool return_X_y = false, bool as_frame = false, bool scaled = true)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (return_X_y != false)
@@ -365,11 +393,13 @@ namespace ScikitLearn
                 if (scaled != true)
                     pyDict["scaled"] = Helpers.ToPython(scaled);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("load_diabetes", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpPyDict(result[0]) : null, __length > 1 ? Helpers.ToCSharpPyTuple(result[1]) : null);
             }
 
-            public static (PyDict, bool) load_digits(int n_class = 10, bool return_X_y = false, bool as_frame = false)
+            public static (PyDict?, PyTuple?) load_digits(int n_class = 10, bool return_X_y = false, bool as_frame = false)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (n_class != 10)
@@ -379,11 +409,13 @@ namespace ScikitLearn
                 if (as_frame != false)
                     pyDict["as_frame"] = Helpers.ToPython(as_frame);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("load_digits", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpPyDict(result[0]) : null, __length > 1 ? Helpers.ToCSharpPyTuple(result[1]) : null);
             }
 
             public static PyDict load_files(string container_path, string? description = null, PyTuple? categories = null, bool load_content = true, bool shuffle = true, string? encoding = null, string decode_error = "strict", int? random_state = 0, PyTuple? allowed_extensions = null)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(container_path)]);
                 PyDict pyDict = new PyDict();
                 if (description != null)
@@ -405,8 +437,9 @@ namespace ScikitLearn
                 return new PyDict(sklearn.datasets.self.InvokeMethod("load_files", args, pyDict));
             }
 
-            public static (PyDict, bool) load_iris(bool return_X_y = false, bool as_frame = false)
+            public static (PyDict?, PyTuple?) load_iris(bool return_X_y = false, bool as_frame = false)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (return_X_y != false)
@@ -414,11 +447,13 @@ namespace ScikitLearn
                 if (as_frame != false)
                     pyDict["as_frame"] = Helpers.ToPython(as_frame);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("load_iris", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpPyDict(result[0]) : null, __length > 1 ? Helpers.ToCSharpPyTuple(result[1]) : null);
             }
 
-            public static (PyDict, bool) load_linnerud(bool return_X_y = false, bool as_frame = false)
+            public static (PyDict?, PyTuple?) load_linnerud(bool return_X_y = false, bool as_frame = false)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (return_X_y != false)
@@ -426,11 +461,13 @@ namespace ScikitLearn
                 if (as_frame != false)
                     pyDict["as_frame"] = Helpers.ToPython(as_frame);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("load_linnerud", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpPyDict(result[0]) : null, __length > 1 ? Helpers.ToCSharpPyTuple(result[1]) : null);
             }
 
             public static NDarray load_sample_image(PyObject image_name)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(image_name)]);
                 PyDict pyDict = new PyDict();
                 return Helpers.ToCSharpNDarray(sklearn.datasets.self.InvokeMethod("load_sample_image", args, pyDict));
@@ -438,13 +475,15 @@ namespace ScikitLearn
 
             public static PyDict load_sample_images()
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 return new PyDict(sklearn.datasets.self.InvokeMethod("load_sample_images", args, pyDict));
             }
 
-            public static (NDarray, NDarray, NDarray) load_svmlight_file(string f, int? n_features = null, float? dtype = null, bool multilabel = false, string zero_based = "auto", bool query_id = false, int offset = 0, int length = -1)
+            public static (NDarray?, NDarray?, NDarray?) load_svmlight_file(string f, int? n_features = null, float? dtype = null, bool multilabel = false, string zero_based = "auto", bool query_id = false, int offset = 0, int length = -1)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(f)]);
                 PyDict pyDict = new PyDict();
                 if (n_features != null)
@@ -462,11 +501,13 @@ namespace ScikitLearn
                 if (length != -1)
                     pyDict["length"] = Helpers.ToPython(length);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("load_svmlight_file", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
             }
 
             public static NDarray load_svmlight_files(NDarray files, int? n_features = null, float? dtype = null, bool multilabel = false, string zero_based = "auto", bool query_id = false, int offset = 0, int length = -1)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(files)]);
                 PyDict pyDict = new PyDict();
                 if (n_features != null)
@@ -486,8 +527,9 @@ namespace ScikitLearn
                 return Helpers.ToCSharpNDarray(sklearn.datasets.self.InvokeMethod("load_svmlight_files", args, pyDict));
             }
 
-            public static (PyDict, bool) load_wine(bool return_X_y = false, bool as_frame = false)
+            public static (PyDict?, PyTuple?) load_wine(bool return_X_y = false, bool as_frame = false)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (return_X_y != false)
@@ -495,11 +537,13 @@ namespace ScikitLearn
                 if (as_frame != false)
                     pyDict["as_frame"] = Helpers.ToPython(as_frame);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("load_wine", args, pyDict));
-                return (Helpers.ToCSharpPyDict(result[0]), Helpers.ToCSharpBool(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpPyDict(result[0]) : null, __length > 1 ? Helpers.ToCSharpPyTuple(result[1]) : null);
             }
 
-            public static (NDarray, NDarray, NDarray) make_biclusters(NDarray shape, int n_clusters, float noise = 0.0f, int minval = 10, int maxval = 100, bool shuffle = true, int? random_state = null)
+            public static (NDarray?, NDarray?, NDarray?) make_biclusters(NDarray shape, int n_clusters, float noise = 0.0f, int minval = 10, int maxval = 100, bool shuffle = true, int? random_state = null)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(shape), Helpers.ToPython(n_clusters)]);
                 PyDict pyDict = new PyDict();
                 if (noise != 0.0f)
@@ -513,11 +557,13 @@ namespace ScikitLearn
                 if (random_state != null)
                     pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("make_biclusters", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
             }
 
-            public static (NDarray, NDarray, NDarray) make_blobs(int n_samples = 100, int n_features = 2, NDarray? centers = null, float cluster_std = 1.0f, float? center_box = null, bool shuffle = true, int? random_state = null, bool return_centers = false)
+            public static (NDarray?, NDarray?, NDarray?) make_blobs(int n_samples = 100, int n_features = 2, NDarray? centers = null, float cluster_std = 1.0f, PyTuple? center_box = null, bool shuffle = true, int? random_state = null, bool return_centers = false)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (n_samples != 100)
@@ -529,7 +575,7 @@ namespace ScikitLearn
                 if (cluster_std != 1.0f)
                     pyDict["cluster_std"] = Helpers.ToPython(cluster_std);
                 if (center_box != null)
-                    pyDict["center_box"] = Helpers.ToPython(center_box.Value);
+                    pyDict["center_box"] = Helpers.ToPython(center_box);
                 if (shuffle != true)
                     pyDict["shuffle"] = Helpers.ToPython(shuffle);
                 if (random_state != null)
@@ -537,11 +583,13 @@ namespace ScikitLearn
                 if (return_centers != false)
                     pyDict["return_centers"] = Helpers.ToPython(return_centers);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("make_blobs", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
             }
 
-            public static (NDarray, NDarray, NDarray) make_checkerboard(NDarray shape, NDarray n_clusters, float noise = 0.0f, int minval = 10, int maxval = 100, bool shuffle = true, int? random_state = null)
+            public static (NDarray?, NDarray?, NDarray?) make_checkerboard(NDarray shape, NDarray n_clusters, float noise = 0.0f, int minval = 10, int maxval = 100, bool shuffle = true, int? random_state = null)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(shape), Helpers.ToPython(n_clusters)]);
                 PyDict pyDict = new PyDict();
                 if (noise != 0.0f)
@@ -555,11 +603,13 @@ namespace ScikitLearn
                 if (random_state != null)
                     pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("make_checkerboard", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
             }
 
-            public static (NDarray, NDarray) make_circles(int n_samples = 100, bool shuffle = true, float? noise = null, int? random_state = null, float factor = 0.8f)
+            public static (NDarray?, NDarray?) make_circles(int n_samples = 100, bool shuffle = true, float? noise = null, int? random_state = null, float factor = 0.8f)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (n_samples != 100)
@@ -573,11 +623,13 @@ namespace ScikitLearn
                 if (factor != 0.8f)
                     pyDict["factor"] = Helpers.ToPython(factor);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("make_circles", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
-            public static (NDarray, NDarray) make_classification(int n_samples = 100, int n_features = 20, int n_informative = 2, int n_redundant = 2, int n_repeated = 0, int n_classes = 2, int n_clusters_per_class = 2, NDarray? weights = null, float flip_y = 0.01f, float class_sep = 1.0f, bool hypercube = true, float? shift = 0.0f, float? scale = 1.0f, bool shuffle = true, int? random_state = null)
+            public static (NDarray?, NDarray?) make_classification(int n_samples = 100, int n_features = 20, int n_informative = 2, int n_redundant = 2, int n_repeated = 0, int n_classes = 2, int n_clusters_per_class = 2, NDarray? weights = null, float flip_y = 0.01f, float class_sep = 1.0f, bool hypercube = true, float? shift = 0.0f, float? scale = 1.0f, bool shuffle = true, int? random_state = null)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (n_samples != 100)
@@ -611,11 +663,13 @@ namespace ScikitLearn
                 if (random_state != null)
                     pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("make_classification", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
-            public static (NDarray, NDarray) make_friedman1(int n_samples = 100, int n_features = 10, float noise = 0.0f, int? random_state = null)
+            public static (NDarray?, NDarray?) make_friedman1(int n_samples = 100, int n_features = 10, float noise = 0.0f, int? random_state = null)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (n_samples != 100)
@@ -627,11 +681,13 @@ namespace ScikitLearn
                 if (random_state != null)
                     pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("make_friedman1", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
-            public static (NDarray, NDarray) make_friedman2(int n_samples = 100, float noise = 0.0f, int? random_state = null)
+            public static (NDarray?, NDarray?) make_friedman2(int n_samples = 100, float noise = 0.0f, int? random_state = null)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (n_samples != 100)
@@ -641,11 +697,13 @@ namespace ScikitLearn
                 if (random_state != null)
                     pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("make_friedman2", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
-            public static (NDarray, NDarray) make_friedman3(int n_samples = 100, float noise = 0.0f, int? random_state = null)
+            public static (NDarray?, NDarray?) make_friedman3(int n_samples = 100, float noise = 0.0f, int? random_state = null)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (n_samples != 100)
@@ -655,11 +713,13 @@ namespace ScikitLearn
                 if (random_state != null)
                     pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("make_friedman3", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
-            public static (NDarray, NDarray) make_gaussian_quantiles(NDarray? mean = null, float cov = 1.0f, int n_samples = 100, int n_features = 2, int n_classes = 3, bool shuffle = true, int? random_state = null)
+            public static (NDarray?, NDarray?) make_gaussian_quantiles(NDarray? mean = null, float cov = 1.0f, int n_samples = 100, int n_features = 2, int n_classes = 3, bool shuffle = true, int? random_state = null)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (mean != null)
@@ -677,11 +737,13 @@ namespace ScikitLearn
                 if (random_state != null)
                     pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("make_gaussian_quantiles", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
-            public static (NDarray, NDarray) make_hastie_10_2(int n_samples = 12000, int? random_state = null)
+            public static (NDarray?, NDarray?) make_hastie_10_2(int n_samples = 12000, int? random_state = null)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (n_samples != 12000)
@@ -689,11 +751,13 @@ namespace ScikitLearn
                 if (random_state != null)
                     pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("make_hastie_10_2", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
             public static NDarray make_low_rank_matrix(int n_samples = 100, int n_features = 100, int effective_rank = 10, float tail_strength = 0.5f, int? random_state = null)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (n_samples != 100)
@@ -709,8 +773,9 @@ namespace ScikitLearn
                 return Helpers.ToCSharpNDarray(sklearn.datasets.self.InvokeMethod("make_low_rank_matrix", args, pyDict));
             }
 
-            public static (NDarray, NDarray) make_moons(int n_samples = 100, bool shuffle = true, float? noise = null, int? random_state = null)
+            public static (NDarray?, NDarray?) make_moons(int n_samples = 100, bool shuffle = true, float? noise = null, int? random_state = null)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (n_samples != 100)
@@ -722,11 +787,13 @@ namespace ScikitLearn
                 if (random_state != null)
                     pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("make_moons", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
-            public static (NDarray, NDarray, NDarray, NDarray) make_multilabel_classification(int n_samples = 100, int n_features = 20, int n_classes = 5, int n_labels = 2, int length = 50, bool allow_unlabeled = true, bool sparse = false, string return_indicator = "dense", bool return_distributions = false, int? random_state = null)
+            public static (NDarray?, NDarray?, NDarray?, NDarray?) make_multilabel_classification(int n_samples = 100, int n_features = 20, int n_classes = 5, int n_labels = 2, int length = 50, bool allow_unlabeled = true, bool sparse = false, string return_indicator = "dense", bool return_distributions = false, int? random_state = null)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (n_samples != 100)
@@ -750,11 +817,13 @@ namespace ScikitLearn
                 if (random_state != null)
                     pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("make_multilabel_classification", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]), Helpers.ToCSharpNDarray(result[3]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpNDarray(result[3]) : null);
             }
 
-            public static (NDarray, NDarray, NDarray) make_regression(int n_samples = 100, int n_features = 100, int n_informative = 10, int n_targets = 1, float bias = 0.0f, int? effective_rank = null, float tail_strength = 0.5f, float noise = 0.0f, bool shuffle = true, bool coef = false, int? random_state = null)
+            public static (NDarray?, NDarray?, NDarray?) make_regression(int n_samples = 100, int n_features = 100, int n_informative = 10, int n_targets = 1, float bias = 0.0f, int? effective_rank = null, float tail_strength = 0.5f, float noise = 0.0f, bool shuffle = true, bool coef = false, int? random_state = null)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (n_samples != 100)
@@ -780,11 +849,13 @@ namespace ScikitLearn
                 if (random_state != null)
                     pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("make_regression", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
             }
 
-            public static (NDarray, NDarray) make_s_curve(int n_samples = 100, float noise = 0.0f, int? random_state = null)
+            public static (NDarray?, NDarray?) make_s_curve(int n_samples = 100, float noise = 0.0f, int? random_state = null)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (n_samples != 100)
@@ -794,21 +865,25 @@ namespace ScikitLearn
                 if (random_state != null)
                     pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("make_s_curve", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
-            public static (NDarray, PyDict, NDarray) make_sparse_coded_signal(int n_samples, int n_components, int n_features, int n_nonzero_coefs, int? random_state = null)
+            public static (NDarray?, PyDict?, NDarray?) make_sparse_coded_signal(int n_samples, int n_components, int n_features, int n_nonzero_coefs, int? random_state = null)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(n_samples), Helpers.ToPython(n_components), Helpers.ToPython(n_features), Helpers.ToPython(n_nonzero_coefs)]);
                 PyDict pyDict = new PyDict();
                 if (random_state != null)
                     pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("make_sparse_coded_signal", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpPyDict(result[1]), Helpers.ToCSharpNDarray(result[2]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpPyDict(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
             }
 
             public static NDarray make_sparse_spd_matrix(int? n_dim = null, float alpha = 0.95f, bool norm_diag = false, float smallest_coef = 0.1f, float largest_coef = 0.9f, string? sparse_format = null, int? random_state = null, string dim = "deprecated")
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (n_dim != null)
@@ -830,8 +905,9 @@ namespace ScikitLearn
                 return Helpers.ToCSharpNDarray(sklearn.datasets.self.InvokeMethod("make_sparse_spd_matrix", args, pyDict));
             }
 
-            public static (NDarray, NDarray) make_sparse_uncorrelated(int n_samples = 100, int n_features = 10, int? random_state = null)
+            public static (NDarray?, NDarray?) make_sparse_uncorrelated(int n_samples = 100, int n_features = 10, int? random_state = null)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (n_samples != 100)
@@ -841,11 +917,13 @@ namespace ScikitLearn
                 if (random_state != null)
                     pyDict["random_state"] = Helpers.ToPython(random_state.Value);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("make_sparse_uncorrelated", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
             public static NDarray make_spd_matrix(int n_dim, int? random_state = null)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(n_dim)]);
                 PyDict pyDict = new PyDict();
                 if (random_state != null)
@@ -853,8 +931,9 @@ namespace ScikitLearn
                 return Helpers.ToCSharpNDarray(sklearn.datasets.self.InvokeMethod("make_spd_matrix", args, pyDict));
             }
 
-            public static (NDarray, NDarray) make_swiss_roll(int n_samples = 100, float noise = 0.0f, int? random_state = null, bool hole = false)
+            public static (NDarray?, NDarray?) make_swiss_roll(int n_samples = 100, float noise = 0.0f, int? random_state = null, bool hole = false)
             {
+                _ = sklearn.datasets.self;
                 PyTuple args = new PyTuple();
                 PyDict pyDict = new PyDict();
                 if (n_samples != 100)
@@ -866,7 +945,8 @@ namespace ScikitLearn
                 if (hole != false)
                     pyDict["hole"] = Helpers.ToPython(hole);
                 PyTuple result = new PyTuple(sklearn.datasets.self.InvokeMethod("make_swiss_roll", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
         }
     }

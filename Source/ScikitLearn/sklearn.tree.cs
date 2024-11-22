@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Numpy;
 using Python.Runtime;
 
@@ -41,6 +43,7 @@ namespace ScikitLearn
             {
                 public DecisionTreeClassifier(string criterion = "gini", string splitter = "best", int? max_depth = null, int min_samples_split = 2, int min_samples_leaf = 1, float min_weight_fraction_leaf = 0.0f, float? max_features = null, int? random_state = null, int? max_leaf_nodes = null, float min_impurity_decrease = 0.0f, PyDict? class_weight = null, float ccp_alpha = 0.0f, NDarray? monotonic_cst = null)
                 {
+                    _ = sklearn.tree.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (criterion != "gini")
@@ -74,6 +77,7 @@ namespace ScikitLearn
 
                 internal DecisionTreeClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.tree.self;
                     self = pyObject;
                 }
 
@@ -253,6 +257,7 @@ namespace ScikitLearn
             {
                 public DecisionTreeRegressor(string criterion = "squared_error", string splitter = "best", int? max_depth = null, int min_samples_split = 2, int min_samples_leaf = 1, float min_weight_fraction_leaf = 0.0f, float? max_features = null, int? random_state = null, int? max_leaf_nodes = null, float min_impurity_decrease = 0.0f, float ccp_alpha = 0.0f, NDarray? monotonic_cst = null)
                 {
+                    _ = sklearn.tree.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (criterion != "squared_error")
@@ -284,6 +289,7 @@ namespace ScikitLearn
 
                 internal DecisionTreeRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.tree.self;
                     self = pyObject;
                 }
 
@@ -435,6 +441,7 @@ namespace ScikitLearn
             {
                 public ExtraTreeClassifier(string criterion = "gini", string splitter = "random", int? max_depth = null, int min_samples_split = 2, int min_samples_leaf = 1, float min_weight_fraction_leaf = 0.0f, string? max_features = "sqrt", int? random_state = null, int? max_leaf_nodes = null, float min_impurity_decrease = 0.0f, PyDict? class_weight = null, float ccp_alpha = 0.0f, NDarray? monotonic_cst = null)
                 {
+                    _ = sklearn.tree.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (criterion != "gini")
@@ -468,6 +475,7 @@ namespace ScikitLearn
 
                 internal ExtraTreeClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.tree.self;
                     self = pyObject;
                 }
 
@@ -647,6 +655,7 @@ namespace ScikitLearn
             {
                 public ExtraTreeRegressor(string criterion = "squared_error", string splitter = "random", int? max_depth = null, int min_samples_split = 2, int min_samples_leaf = 1, float min_weight_fraction_leaf = 0.0f, float? max_features = 1.0f, int? random_state = null, float min_impurity_decrease = 0.0f, int? max_leaf_nodes = null, float ccp_alpha = 0.0f, NDarray? monotonic_cst = null)
                 {
+                    _ = sklearn.tree.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (criterion != "squared_error")
@@ -678,6 +687,7 @@ namespace ScikitLearn
 
                 internal ExtraTreeRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.tree.self;
                     self = pyObject;
                 }
 
@@ -827,6 +837,7 @@ namespace ScikitLearn
 
             public static string export_graphviz(PyObject decision_tree, PyObject? out_file = null, int? max_depth = null, NDarray? feature_names = null, NDarray? class_names = null, string label = "all", bool filled = false, bool leaves_parallel = false, bool impurity = true, bool node_ids = false, bool proportion = false, bool rotate = false, bool rounded = false, bool special_characters = false, int precision = 3, string fontname = "helvetica")
             {
+                _ = sklearn.tree.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(decision_tree)]);
                 PyDict pyDict = new PyDict();
                 if (out_file != null)
@@ -864,6 +875,7 @@ namespace ScikitLearn
 
             public static string export_text(PyObject decision_tree, NDarray? feature_names = null, NDarray? class_names = null, int max_depth = 10, int spacing = 3, int decimals = 2, bool show_weights = false)
             {
+                _ = sklearn.tree.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(decision_tree)]);
                 PyDict pyDict = new PyDict();
                 if (feature_names != null)
@@ -883,6 +895,7 @@ namespace ScikitLearn
 
             public static PyTuple plot_tree(PyObject decision_tree, int? max_depth = null, NDarray? feature_names = null, NDarray? class_names = null, string label = "all", bool filled = false, bool impurity = true, bool node_ids = false, bool proportion = false, bool rounded = false, int precision = 3, PyObject? ax = null, int? fontsize = null)
             {
+                _ = sklearn.tree.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(decision_tree)]);
                 PyDict pyDict = new PyDict();
                 if (max_depth != null)

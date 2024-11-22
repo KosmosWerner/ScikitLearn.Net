@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Numpy;
 using Python.Runtime;
 
@@ -41,6 +43,7 @@ namespace ScikitLearn
             {
                 public LinearDiscriminantAnalysis(string solver = "svd", float? shrinkage = null, NDarray? priors = null, int? n_components = null, bool store_covariance = false, float tol = 0.0001f, PyObject? covariance_estimator = null)
                 {
+                    _ = sklearn.discriminant_analysis.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (solver != "svd")
@@ -62,6 +65,7 @@ namespace ScikitLearn
 
                 internal LinearDiscriminantAnalysis(PyObject pyObject)
                 {
+                    _ = sklearn.discriminant_analysis.self;
                     self = pyObject;
                 }
 
@@ -205,6 +209,7 @@ namespace ScikitLearn
             {
                 public QuadraticDiscriminantAnalysis(NDarray? priors = null, float reg_param = 0.0f, bool store_covariance = false, float tol = 0.0001f)
                 {
+                    _ = sklearn.discriminant_analysis.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (priors != null)
@@ -220,6 +225,7 @@ namespace ScikitLearn
 
                 internal QuadraticDiscriminantAnalysis(PyObject pyObject)
                 {
+                    _ = sklearn.discriminant_analysis.self;
                     self = pyObject;
                 }
 

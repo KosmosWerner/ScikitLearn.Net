@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Numpy;
 using Python.Runtime;
 
@@ -41,6 +43,7 @@ namespace ScikitLearn
             {
                 public LogisticRegression(string? penalty = "l2", bool dual = false, float tol = 0.0001f, float C = 1.0f, bool fit_intercept = true, int intercept_scaling = 1, PyDict? class_weight = null, int? random_state = null, string solver = "lbfgs", int max_iter = 100, string multi_class = "deprecated", int verbose = 0, bool warm_start = false, int? n_jobs = null, float? l1_ratio = null)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (penalty != "l2")
@@ -78,6 +81,7 @@ namespace ScikitLearn
 
                 internal LogisticRegression(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -207,6 +211,7 @@ namespace ScikitLearn
             {
                 public LogisticRegressionCV(int Cs = 10, bool fit_intercept = true, int? cv = null, bool dual = false, string penalty = "l2", string? scoring = null, string solver = "lbfgs", float tol = 0.0001f, int max_iter = 100, PyDict? class_weight = null, int? n_jobs = null, int verbose = 0, bool refit = true, float intercept_scaling = 1.0f, string multi_class = "deprecated", int? random_state = null, PyTuple? l1_ratios = null)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (Cs != 10)
@@ -248,6 +253,7 @@ namespace ScikitLearn
 
                 internal LogisticRegressionCV(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -387,6 +393,7 @@ namespace ScikitLearn
             {
                 public PassiveAggressiveClassifier(float C = 1.0f, bool fit_intercept = true, int max_iter = 1000, float? tol = 0.001f, bool early_stopping = false, float validation_fraction = 0.1f, int n_iter_no_change = 5, bool shuffle = true, int verbose = 0, string loss = "hinge", int? n_jobs = null, int? random_state = null, bool warm_start = false, PyDict? class_weight = null, bool average = false)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (C != 1.0f)
@@ -424,6 +431,7 @@ namespace ScikitLearn
 
                 internal PassiveAggressiveClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -565,6 +573,7 @@ namespace ScikitLearn
             {
                 public Perceptron(PyObject? penalty = null, float alpha = 0.0001f, float l1_ratio = 0.15f, bool fit_intercept = true, int max_iter = 1000, float? tol = 0.001f, bool shuffle = true, int verbose = 0, float eta0 = 1.0f, int? n_jobs = null, int? random_state = 0, bool early_stopping = false, float validation_fraction = 0.1f, int n_iter_no_change = 5, PyDict? class_weight = null, bool warm_start = false)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (penalty != null)
@@ -604,6 +613,7 @@ namespace ScikitLearn
 
                 internal Perceptron(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -753,6 +763,7 @@ namespace ScikitLearn
             {
                 public RidgeClassifier(float alpha = 1.0f, bool fit_intercept = true, bool copy_X = true, int? max_iter = null, float tol = 0.0001f, PyDict? class_weight = null, string solver = "auto", bool positive = false, int? random_state = null)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (alpha != 1.0f)
@@ -778,6 +789,7 @@ namespace ScikitLearn
 
                 internal RidgeClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -876,8 +888,9 @@ namespace ScikitLearn
 
             public class RidgeClassifierCV : PythonObject
             {
-                public RidgeClassifierCV(NDarray? alphas = null, bool fit_intercept = true, string? scoring = null, int? cv = null, PyDict? class_weight = null, bool? store_cv_results = null, string store_cv_values = "deprecated")
+                public RidgeClassifierCV(PyTuple? alphas = null, bool fit_intercept = true, string? scoring = null, int? cv = null, PyDict? class_weight = null, bool? store_cv_results = null, string store_cv_values = "deprecated")
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (alphas != null)
@@ -899,6 +912,7 @@ namespace ScikitLearn
 
                 internal RidgeClassifierCV(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -1002,6 +1016,7 @@ namespace ScikitLearn
             {
                 public SGDClassifier(string loss = "hinge", string? penalty = "l2", float alpha = 0.0001f, float l1_ratio = 0.15f, bool fit_intercept = true, int max_iter = 1000, float? tol = 0.001f, bool shuffle = true, int verbose = 0, float epsilon = 0.1f, int? n_jobs = null, int? random_state = null, string learning_rate = "optimal", float eta0 = 0.0f, float power_t = 0.5f, bool early_stopping = false, float validation_fraction = 0.1f, int n_iter_no_change = 5, PyDict? class_weight = null, bool warm_start = false, bool average = false)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (loss != "hinge")
@@ -1051,6 +1066,7 @@ namespace ScikitLearn
 
                 internal SGDClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -1214,6 +1230,7 @@ namespace ScikitLearn
             {
                 public SGDOneClassSVM(float nu = 0.5f, bool fit_intercept = true, int max_iter = 1000, float? tol = 0.001f, bool shuffle = true, int verbose = 0, int? random_state = null, string learning_rate = "optimal", float eta0 = 0.0f, float power_t = 0.5f, bool warm_start = false, bool average = false)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (nu != 0.5f)
@@ -1245,6 +1262,7 @@ namespace ScikitLearn
 
                 internal SGDOneClassSVM(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -1386,6 +1404,7 @@ namespace ScikitLearn
             {
                 public LinearRegression(bool fit_intercept = true, bool copy_X = true, int? n_jobs = null, bool positive = false)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (fit_intercept != true)
@@ -1401,6 +1420,7 @@ namespace ScikitLearn
 
                 internal LinearRegression(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -1493,6 +1513,7 @@ namespace ScikitLearn
             {
                 public Ridge(float alpha = 1.0f, bool fit_intercept = true, bool copy_X = true, int? max_iter = null, float tol = 0.0001f, string solver = "auto", bool positive = false, int? random_state = null)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (alpha != 1.0f)
@@ -1516,6 +1537,7 @@ namespace ScikitLearn
 
                 internal Ridge(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -1606,8 +1628,9 @@ namespace ScikitLearn
 
             public class RidgeCV : PythonObject
             {
-                public RidgeCV(NDarray? alphas = null, bool fit_intercept = true, string? scoring = null, int? cv = null, PyObject? gcv_mode = null, bool? store_cv_results = null, bool alpha_per_target = false, string store_cv_values = "deprecated")
+                public RidgeCV(PyTuple? alphas = null, bool fit_intercept = true, string? scoring = null, int? cv = null, PyObject? gcv_mode = null, bool? store_cv_results = null, bool alpha_per_target = false, string store_cv_values = "deprecated")
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (alphas != null)
@@ -1631,6 +1654,7 @@ namespace ScikitLearn
 
                 internal RidgeCV(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -1726,6 +1750,7 @@ namespace ScikitLearn
             {
                 public SGDRegressor(string loss = "squared_error", string? penalty = "l2", float alpha = 0.0001f, float l1_ratio = 0.15f, bool fit_intercept = true, int max_iter = 1000, float? tol = 0.001f, bool shuffle = true, int verbose = 0, float epsilon = 0.1f, int? random_state = null, string learning_rate = "invscaling", float eta0 = 0.01f, float power_t = 0.25f, bool early_stopping = false, float validation_fraction = 0.1f, int n_iter_no_change = 5, bool warm_start = false, bool average = false)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (loss != "squared_error")
@@ -1771,6 +1796,7 @@ namespace ScikitLearn
 
                 internal SGDRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -1907,6 +1933,7 @@ namespace ScikitLearn
             {
                 public ElasticNet(float alpha = 1.0f, float l1_ratio = 0.5f, bool fit_intercept = true, bool precompute = false, int max_iter = 1000, bool copy_X = true, float tol = 0.0001f, bool warm_start = false, bool positive = false, int? random_state = null, string selection = "cyclic")
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (alpha != 1.0f)
@@ -1936,6 +1963,7 @@ namespace ScikitLearn
 
                 internal ElasticNet(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -1980,7 +2008,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray, NDarray, NDarray, PyTuple) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
+                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -2011,7 +2039,8 @@ namespace ScikitLearn
                     if (@params != null)
                         pyDict["params"] = Helpers.ToPython(@params);
                     PyTuple result = new PyTuple(self.InvokeMethod("path", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]), Helpers.ToCSharpPyTuple(result[3]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
                 }
 
                 public NDarray predict(NDarray X)
@@ -2067,6 +2096,7 @@ namespace ScikitLearn
             {
                 public ElasticNetCV(float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, bool fit_intercept = true, string precompute = "auto", int max_iter = 1000, float tol = 0.0001f, int? cv = null, bool copy_X = true, int verbose = 0, int? n_jobs = null, bool positive = false, int? random_state = null, string selection = "cyclic")
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (l1_ratio != 0.5f)
@@ -2104,6 +2134,7 @@ namespace ScikitLearn
 
                 internal ElasticNetCV(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -2151,7 +2182,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray, NDarray, NDarray, PyTuple) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
+                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -2182,7 +2213,8 @@ namespace ScikitLearn
                     if (@params != null)
                         pyDict["params"] = Helpers.ToPython(@params);
                     PyTuple result = new PyTuple(self.InvokeMethod("path", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]), Helpers.ToCSharpPyTuple(result[3]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
                 }
 
                 public NDarray predict(NDarray X)
@@ -2236,6 +2268,7 @@ namespace ScikitLearn
             {
                 public Lars(bool fit_intercept = true, bool verbose = false, string precompute = "auto", int n_nonzero_coefs = 500, float eps = float.Epsilon, bool copy_X = true, bool fit_path = true, float? jitter = null, int? random_state = null)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (fit_intercept != true)
@@ -2261,6 +2294,7 @@ namespace ScikitLearn
 
                 internal Lars(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -2355,6 +2389,7 @@ namespace ScikitLearn
             {
                 public LarsCV(bool fit_intercept = true, bool verbose = false, int max_iter = 500, string precompute = "auto", int? cv = null, int max_n_alphas = 1000, int? n_jobs = null, float eps = float.Epsilon, bool copy_X = true)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (fit_intercept != true)
@@ -2380,6 +2415,7 @@ namespace ScikitLearn
 
                 internal LarsCV(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -2477,6 +2513,7 @@ namespace ScikitLearn
             {
                 public Lasso(float alpha = 1.0f, bool fit_intercept = true, bool precompute = false, bool copy_X = true, int max_iter = 1000, float tol = 0.0001f, bool warm_start = false, bool positive = false, int? random_state = null, string selection = "cyclic")
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (alpha != 1.0f)
@@ -2504,6 +2541,7 @@ namespace ScikitLearn
 
                 internal Lasso(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -2548,7 +2586,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray, NDarray, NDarray, PyTuple) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
+                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -2579,7 +2617,8 @@ namespace ScikitLearn
                     if (@params != null)
                         pyDict["params"] = Helpers.ToPython(@params);
                     PyTuple result = new PyTuple(self.InvokeMethod("path", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]), Helpers.ToCSharpPyTuple(result[3]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
                 }
 
                 public NDarray predict(NDarray X)
@@ -2635,6 +2674,7 @@ namespace ScikitLearn
             {
                 public LassoCV(float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, bool fit_intercept = true, string precompute = "auto", int max_iter = 1000, float tol = 0.0001f, bool copy_X = true, int? cv = null, bool verbose = false, int? n_jobs = null, bool positive = false, int? random_state = null, string selection = "cyclic")
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (eps != 0.001f)
@@ -2670,6 +2710,7 @@ namespace ScikitLearn
 
                 internal LassoCV(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -2716,7 +2757,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray, NDarray, NDarray, PyTuple) path(NDarray X, NDarray y, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, Dictionary<string, PyObject>? @params = null)
+                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -2743,7 +2784,8 @@ namespace ScikitLearn
                     if (@params != null)
                         pyDict["params"] = Helpers.ToPython(@params);
                     PyTuple result = new PyTuple(self.InvokeMethod("path", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]), Helpers.ToCSharpPyTuple(result[3]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
                 }
 
                 public NDarray predict(NDarray X)
@@ -2797,6 +2839,7 @@ namespace ScikitLearn
             {
                 public LassoLars(float alpha = 1.0f, bool fit_intercept = true, bool verbose = false, string precompute = "auto", int max_iter = 500, float eps = float.Epsilon, bool copy_X = true, bool fit_path = true, bool positive = false, float? jitter = null, int? random_state = null)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (alpha != 1.0f)
@@ -2826,6 +2869,7 @@ namespace ScikitLearn
 
                 internal LassoLars(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -2920,6 +2964,7 @@ namespace ScikitLearn
             {
                 public LassoLarsCV(bool fit_intercept = true, bool verbose = false, int max_iter = 500, string precompute = "auto", int? cv = null, int max_n_alphas = 1000, int? n_jobs = null, float eps = float.Epsilon, bool copy_X = true, bool positive = false)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (fit_intercept != true)
@@ -2947,6 +2992,7 @@ namespace ScikitLearn
 
                 internal LassoLarsCV(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -3044,6 +3090,7 @@ namespace ScikitLearn
             {
                 public LassoLarsIC(string criterion = "aic", bool fit_intercept = true, bool verbose = false, string precompute = "auto", int max_iter = 500, float eps = float.Epsilon, bool copy_X = true, bool positive = false, float? noise_variance = null)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (criterion != "aic")
@@ -3069,6 +3116,7 @@ namespace ScikitLearn
 
                 internal LassoLarsIC(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -3164,6 +3212,7 @@ namespace ScikitLearn
             {
                 public OrthogonalMatchingPursuit(int? n_nonzero_coefs = null, float? tol = null, bool fit_intercept = true, string precompute = "auto")
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_nonzero_coefs != null)
@@ -3179,6 +3228,7 @@ namespace ScikitLearn
 
                 internal OrthogonalMatchingPursuit(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -3259,6 +3309,7 @@ namespace ScikitLearn
             {
                 public OrthogonalMatchingPursuitCV(bool copy = true, bool fit_intercept = true, int? max_iter = null, int? cv = null, int? n_jobs = null, bool verbose = false)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (copy != true)
@@ -3278,6 +3329,7 @@ namespace ScikitLearn
 
                 internal OrthogonalMatchingPursuitCV(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -3360,6 +3412,7 @@ namespace ScikitLearn
             {
                 public ARDRegression(int max_iter = 300, float tol = 0.001f, float alpha_1 = 1e-06f, float alpha_2 = 1e-06f, float lambda_1 = 1e-06f, float lambda_2 = 1e-06f, bool compute_score = false, float threshold_lambda = 10000.0f, bool fit_intercept = true, bool copy_X = true, bool verbose = false)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (max_iter != 300)
@@ -3389,6 +3442,7 @@ namespace ScikitLearn
 
                 internal ARDRegression(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -3433,14 +3487,15 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray, NDarray) predict(NDarray X, bool return_std = false)
+                public (NDarray?, NDarray?) predict(NDarray X, bool return_std = false)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     if (return_std != false)
                         pyDict["return_std"] = Helpers.ToPython(return_std);
                     PyTuple result = new PyTuple(self.InvokeMethod("predict", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -3487,6 +3542,7 @@ namespace ScikitLearn
             {
                 public BayesianRidge(int max_iter = 300, float tol = 0.001f, float alpha_1 = 1e-06f, float alpha_2 = 1e-06f, float lambda_1 = 1e-06f, float lambda_2 = 1e-06f, float? alpha_init = null, float? lambda_init = null, bool compute_score = false, bool fit_intercept = true, bool copy_X = true, bool verbose = false)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (max_iter != 300)
@@ -3518,6 +3574,7 @@ namespace ScikitLearn
 
                 internal BayesianRidge(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -3564,14 +3621,15 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray, NDarray) predict(NDarray X, bool return_std = false)
+                public (NDarray?, NDarray?) predict(NDarray X, bool return_std = false)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     if (return_std != false)
                         pyDict["return_std"] = Helpers.ToPython(return_std);
                     PyTuple result = new PyTuple(self.InvokeMethod("predict", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -3628,6 +3686,7 @@ namespace ScikitLearn
             {
                 public MultiTaskElasticNet(float alpha = 1.0f, float l1_ratio = 0.5f, bool fit_intercept = true, bool copy_X = true, int max_iter = 1000, float tol = 0.0001f, bool warm_start = false, int? random_state = null, string selection = "cyclic")
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (alpha != 1.0f)
@@ -3653,6 +3712,7 @@ namespace ScikitLearn
 
                 internal MultiTaskElasticNet(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -3694,7 +3754,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray, NDarray, NDarray, PyTuple) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
+                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -3725,7 +3785,8 @@ namespace ScikitLearn
                     if (@params != null)
                         pyDict["params"] = Helpers.ToPython(@params);
                     PyTuple result = new PyTuple(self.InvokeMethod("path", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]), Helpers.ToCSharpPyTuple(result[3]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
                 }
 
                 public NDarray predict(NDarray X)
@@ -3781,6 +3842,7 @@ namespace ScikitLearn
             {
                 public MultiTaskElasticNetCV(float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, bool fit_intercept = true, int max_iter = 1000, float tol = 0.0001f, int? cv = null, bool copy_X = true, int verbose = 0, int? n_jobs = null, int? random_state = null, string selection = "cyclic")
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (l1_ratio != 0.5f)
@@ -3814,6 +3876,7 @@ namespace ScikitLearn
 
                 internal MultiTaskElasticNetCV(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -3859,7 +3922,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray, NDarray, NDarray, PyTuple) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
+                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -3890,7 +3953,8 @@ namespace ScikitLearn
                     if (@params != null)
                         pyDict["params"] = Helpers.ToPython(@params);
                     PyTuple result = new PyTuple(self.InvokeMethod("path", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]), Helpers.ToCSharpPyTuple(result[3]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
                 }
 
                 public NDarray predict(NDarray X)
@@ -3944,6 +4008,7 @@ namespace ScikitLearn
             {
                 public MultiTaskLasso(float alpha = 1.0f, bool fit_intercept = true, bool copy_X = true, int max_iter = 1000, float tol = 0.0001f, bool warm_start = false, int? random_state = null, string selection = "cyclic")
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (alpha != 1.0f)
@@ -3967,6 +4032,7 @@ namespace ScikitLearn
 
                 internal MultiTaskLasso(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -4008,7 +4074,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray, NDarray, NDarray, PyTuple) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
+                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -4039,7 +4105,8 @@ namespace ScikitLearn
                     if (@params != null)
                         pyDict["params"] = Helpers.ToPython(@params);
                     PyTuple result = new PyTuple(self.InvokeMethod("path", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]), Helpers.ToCSharpPyTuple(result[3]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
                 }
 
                 public NDarray predict(NDarray X)
@@ -4095,6 +4162,7 @@ namespace ScikitLearn
             {
                 public MultiTaskLassoCV(float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, bool fit_intercept = true, int max_iter = 1000, float tol = 0.0001f, bool copy_X = true, int? cv = null, bool verbose = false, int? n_jobs = null, int? random_state = null, string selection = "cyclic")
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (eps != 0.001f)
@@ -4126,6 +4194,7 @@ namespace ScikitLearn
 
                 internal MultiTaskLassoCV(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -4170,7 +4239,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray, NDarray, NDarray, PyTuple) path(NDarray X, NDarray y, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, Dictionary<string, PyObject>? @params = null)
+                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -4197,7 +4266,8 @@ namespace ScikitLearn
                     if (@params != null)
                         pyDict["params"] = Helpers.ToPython(@params);
                     PyTuple result = new PyTuple(self.InvokeMethod("path", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]), Helpers.ToCSharpPyTuple(result[3]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
                 }
 
                 public NDarray predict(NDarray X)
@@ -4251,6 +4321,7 @@ namespace ScikitLearn
             {
                 public HuberRegressor(float epsilon = 1.35f, int max_iter = 100, float alpha = 0.0001f, bool warm_start = false, bool fit_intercept = true, float tol = 1e-05f)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (epsilon != 1.35f)
@@ -4270,6 +4341,7 @@ namespace ScikitLearn
 
                 internal HuberRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -4363,6 +4435,7 @@ namespace ScikitLearn
             {
                 public QuantileRegressor(float quantile = 0.5f, float alpha = 1.0f, bool fit_intercept = true, string solver = "highs", PyDict? solver_options = null)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (quantile != 0.5f)
@@ -4380,6 +4453,7 @@ namespace ScikitLearn
 
                 internal QuantileRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -4471,6 +4545,7 @@ namespace ScikitLearn
             {
                 public RANSACRegressor(PyObject? estimator = null, float? min_samples = null, float? residual_threshold = null, PyObject? is_data_valid = null, PyObject? is_model_valid = null, int max_trials = 100, float max_skips = float.PositiveInfinity, float stop_n_inliers = float.PositiveInfinity, float stop_score = float.PositiveInfinity, float stop_probability = 0.99f, string loss = "absolute_error", int? random_state = null)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (estimator != null)
@@ -4502,6 +4577,7 @@ namespace ScikitLearn
 
                 internal RANSACRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -4590,6 +4666,7 @@ namespace ScikitLearn
             {
                 public TheilSenRegressor(bool fit_intercept = true, bool copy_X = true, float max_subpopulation = 10000.0f, int? n_subsamples = null, int max_iter = 300, float tol = 0.001f, int? random_state = null, int? n_jobs = null, bool verbose = false)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (fit_intercept != true)
@@ -4615,6 +4692,7 @@ namespace ScikitLearn
 
                 internal TheilSenRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -4696,6 +4774,7 @@ namespace ScikitLearn
             {
                 public GammaRegressor(float alpha = 1.0f, bool fit_intercept = true, string solver = "lbfgs", int max_iter = 100, float tol = 0.0001f, bool warm_start = false, int verbose = 0)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (alpha != 1.0f)
@@ -4717,6 +4796,7 @@ namespace ScikitLearn
 
                 internal GammaRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -4808,6 +4888,7 @@ namespace ScikitLearn
             {
                 public PoissonRegressor(float alpha = 1.0f, bool fit_intercept = true, string solver = "lbfgs", int max_iter = 100, float tol = 0.0001f, bool warm_start = false, int verbose = 0)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (alpha != 1.0f)
@@ -4829,6 +4910,7 @@ namespace ScikitLearn
 
                 internal PoissonRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -4920,6 +5002,7 @@ namespace ScikitLearn
             {
                 public TweedieRegressor(float power = 0.0f, float alpha = 1.0f, bool fit_intercept = true, string link = "auto", string solver = "lbfgs", int max_iter = 100, float tol = 0.0001f, bool warm_start = false, int verbose = 0)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (power != 0.0f)
@@ -4945,6 +5028,7 @@ namespace ScikitLearn
 
                 internal TweedieRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -5036,6 +5120,7 @@ namespace ScikitLearn
             {
                 public PassiveAggressiveRegressor(float C = 1.0f, bool fit_intercept = true, int max_iter = 1000, float? tol = 0.001f, bool early_stopping = false, float validation_fraction = 0.1f, int n_iter_no_change = 5, bool shuffle = true, int verbose = 0, string loss = "epsilon_insensitive", float epsilon = 0.1f, int? random_state = null, bool warm_start = false, bool average = false)
                 {
+                    _ = sklearn.linear_model.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (C != 1.0f)
@@ -5071,6 +5156,7 @@ namespace ScikitLearn
 
                 internal PassiveAggressiveRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.linear_model.self;
                     self = pyObject;
                 }
 
@@ -5197,8 +5283,9 @@ namespace ScikitLearn
                 }
             }
 
-            public static (NDarray, NDarray, NDarray, PyTuple) enet_path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
+            public static (NDarray?, NDarray?, NDarray?, PyTuple?) enet_path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
             {
+                _ = sklearn.linear_model.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                 PyDict pyDict = new PyDict();
                 if (l1_ratio != 0.5f)
@@ -5228,11 +5315,13 @@ namespace ScikitLearn
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
                 PyTuple result = new PyTuple(sklearn.linear_model.self.InvokeMethod("enet_path", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]), Helpers.ToCSharpPyTuple(result[3]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
             }
 
-            public static (NDarray, NDarray, NDarray, int) lars_path(NDarray X, NDarray y, NDarray? Xy = null, NDarray? Gram = null, int max_iter = 500, int alpha_min = 0, string method = "lar", bool copy_X = true, float eps = float.Epsilon, bool copy_Gram = true, int verbose = 0, bool return_path = true, bool return_n_iter = false, bool positive = false)
+            public static (NDarray?, NDarray?, NDarray?, int?) lars_path(NDarray X, NDarray y, NDarray? Xy = null, NDarray? Gram = null, int max_iter = 500, int alpha_min = 0, string method = "lar", bool copy_X = true, float eps = float.Epsilon, bool copy_Gram = true, int verbose = 0, bool return_path = true, bool return_n_iter = false, bool positive = false)
             {
+                _ = sklearn.linear_model.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                 PyDict pyDict = new PyDict();
                 if (Xy != null)
@@ -5260,11 +5349,13 @@ namespace ScikitLearn
                 if (positive != false)
                     pyDict["positive"] = Helpers.ToPython(positive);
                 PyTuple result = new PyTuple(sklearn.linear_model.self.InvokeMethod("lars_path", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]), Helpers.ToCSharpInt(result[3]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpInt(result[3]) : null);
             }
 
-            public static (NDarray, NDarray, NDarray, int) lars_path_gram(NDarray Xy, NDarray Gram, int n_samples, int max_iter = 500, int alpha_min = 0, string method = "lar", bool copy_X = true, float eps = float.Epsilon, bool copy_Gram = true, int verbose = 0, bool return_path = true, bool return_n_iter = false, bool positive = false)
+            public static (NDarray?, NDarray?, NDarray?, int?) lars_path_gram(NDarray Xy, NDarray Gram, int n_samples, int max_iter = 500, int alpha_min = 0, string method = "lar", bool copy_X = true, float eps = float.Epsilon, bool copy_Gram = true, int verbose = 0, bool return_path = true, bool return_n_iter = false, bool positive = false)
             {
+                _ = sklearn.linear_model.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(Xy), Helpers.ToPython(Gram), Helpers.ToPython(n_samples)]);
                 PyDict pyDict = new PyDict();
                 if (max_iter != 500)
@@ -5288,11 +5379,13 @@ namespace ScikitLearn
                 if (positive != false)
                     pyDict["positive"] = Helpers.ToPython(positive);
                 PyTuple result = new PyTuple(sklearn.linear_model.self.InvokeMethod("lars_path_gram", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]), Helpers.ToCSharpInt(result[3]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpInt(result[3]) : null);
             }
 
-            public static (NDarray, NDarray, NDarray, PyTuple) lasso_path(NDarray X, NDarray y, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, Dictionary<string, PyObject>? @params = null)
+            public static (NDarray?, NDarray?, NDarray?, PyTuple?) lasso_path(NDarray X, NDarray y, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, Dictionary<string, PyObject>? @params = null)
             {
+                _ = sklearn.linear_model.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                 PyDict pyDict = new PyDict();
                 if (eps != 0.001f)
@@ -5318,11 +5411,13 @@ namespace ScikitLearn
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
                 PyTuple result = new PyTuple(sklearn.linear_model.self.InvokeMethod("lasso_path", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]), Helpers.ToCSharpPyTuple(result[3]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
             }
 
-            public static (NDarray, NDarray) orthogonal_mp(NDarray X, NDarray y, int? n_nonzero_coefs = null, float? tol = null, bool precompute = false, bool copy_X = true, bool return_path = false, bool return_n_iter = false)
+            public static (NDarray?, NDarray?) orthogonal_mp(NDarray X, NDarray y, int? n_nonzero_coefs = null, float? tol = null, bool precompute = false, bool copy_X = true, bool return_path = false, bool return_n_iter = false)
             {
+                _ = sklearn.linear_model.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                 PyDict pyDict = new PyDict();
                 if (n_nonzero_coefs != null)
@@ -5338,11 +5433,13 @@ namespace ScikitLearn
                 if (return_n_iter != false)
                     pyDict["return_n_iter"] = Helpers.ToPython(return_n_iter);
                 PyTuple result = new PyTuple(sklearn.linear_model.self.InvokeMethod("orthogonal_mp", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
-            public static (NDarray, int) orthogonal_mp_gram(NDarray Gram, NDarray Xy, int? n_nonzero_coefs = null, float? tol = null, NDarray? norms_squared = null, bool copy_Gram = true, bool copy_Xy = true, bool return_path = false, bool return_n_iter = false)
+            public static (NDarray?, int?) orthogonal_mp_gram(NDarray Gram, NDarray Xy, int? n_nonzero_coefs = null, float? tol = null, NDarray? norms_squared = null, bool copy_Gram = true, bool copy_Xy = true, bool return_path = false, bool return_n_iter = false)
             {
+                _ = sklearn.linear_model.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(Gram), Helpers.ToPython(Xy)]);
                 PyDict pyDict = new PyDict();
                 if (n_nonzero_coefs != null)
@@ -5360,11 +5457,13 @@ namespace ScikitLearn
                 if (return_n_iter != false)
                     pyDict["return_n_iter"] = Helpers.ToPython(return_n_iter);
                 PyTuple result = new PyTuple(sklearn.linear_model.self.InvokeMethod("orthogonal_mp_gram", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpInt(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpInt(result[1]) : null);
             }
 
-            public static (NDarray, int, NDarray) ridge_regression(NDarray X, NDarray y, NDarray alpha, NDarray? sample_weight = null, string solver = "auto", int? max_iter = null, float tol = 0.0001f, int verbose = 0, bool positive = false, int? random_state = null, bool return_n_iter = false, bool return_intercept = false, bool check_input = true)
+            public static (NDarray?, int?, NDarray?) ridge_regression(NDarray X, NDarray y, NDarray alpha, NDarray? sample_weight = null, string solver = "auto", int? max_iter = null, float tol = 0.0001f, int verbose = 0, bool positive = false, int? random_state = null, bool return_n_iter = false, bool return_intercept = false, bool check_input = true)
             {
+                _ = sklearn.linear_model.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y), Helpers.ToPython(alpha)]);
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
@@ -5388,7 +5487,8 @@ namespace ScikitLearn
                 if (check_input != true)
                     pyDict["check_input"] = Helpers.ToPython(check_input);
                 PyTuple result = new PyTuple(sklearn.linear_model.self.InvokeMethod("ridge_regression", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpInt(result[1]), Helpers.ToCSharpNDarray(result[2]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpInt(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
             }
         }
     }

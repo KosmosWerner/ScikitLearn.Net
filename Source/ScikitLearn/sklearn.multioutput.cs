@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Numpy;
 using Python.Runtime;
 
@@ -41,6 +43,7 @@ namespace ScikitLearn
             {
                 public ClassifierChain(PyObject base_estimator, NDarray? order = null, int? cv = null, string chain_method = "predict", int? random_state = null, bool verbose = false)
                 {
+                    _ = sklearn.multioutput.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(base_estimator)]);
                     PyDict pyDict = new PyDict();
                     if (order != null)
@@ -58,6 +61,7 @@ namespace ScikitLearn
 
                 internal ClassifierChain(PyObject pyObject)
                 {
+                    _ = sklearn.multioutput.self;
                     self = pyObject;
                 }
 
@@ -161,6 +165,7 @@ namespace ScikitLearn
             {
                 public MultiOutputClassifier(PyObject estimator, int? n_jobs = null)
                 {
+                    _ = sklearn.multioutput.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(estimator)]);
                     PyDict pyDict = new PyDict();
                     if (n_jobs != null)
@@ -170,6 +175,7 @@ namespace ScikitLearn
 
                 internal MultiOutputClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.multioutput.self;
                     self = pyObject;
                 }
 
@@ -283,6 +289,7 @@ namespace ScikitLearn
             {
                 public MultiOutputRegressor(PyObject estimator, int? n_jobs = null)
                 {
+                    _ = sklearn.multioutput.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(estimator)]);
                     PyDict pyDict = new PyDict();
                     if (n_jobs != null)
@@ -292,6 +299,7 @@ namespace ScikitLearn
 
                 internal MultiOutputRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.multioutput.self;
                     self = pyObject;
                 }
 
@@ -405,6 +413,7 @@ namespace ScikitLearn
             {
                 public RegressorChain(PyObject base_estimator, NDarray? order = null, int? cv = null, int? random_state = null, bool verbose = false)
                 {
+                    _ = sklearn.multioutput.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(base_estimator)]);
                     PyDict pyDict = new PyDict();
                     if (order != null)
@@ -420,6 +429,7 @@ namespace ScikitLearn
 
                 internal RegressorChain(PyObject pyObject)
                 {
+                    _ = sklearn.multioutput.self;
                     self = pyObject;
                 }
 

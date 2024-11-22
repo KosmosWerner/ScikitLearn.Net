@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Numpy;
 using Python.Runtime;
 
@@ -41,6 +43,7 @@ namespace ScikitLearn
             {
                 public DummyClassifier(string strategy = "prior", int? random_state = null, NDarray? constant = null)
                 {
+                    _ = sklearn.dummy.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (strategy != "prior")
@@ -54,6 +57,7 @@ namespace ScikitLearn
 
                 internal DummyClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.dummy.self;
                     self = pyObject;
                 }
 
@@ -161,6 +165,7 @@ namespace ScikitLearn
             {
                 public DummyRegressor(string strategy = "mean", NDarray? constant = null, float? quantile = null)
                 {
+                    _ = sklearn.dummy.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (strategy != "mean")
@@ -174,6 +179,7 @@ namespace ScikitLearn
 
                 internal DummyRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.dummy.self;
                     self = pyObject;
                 }
 
@@ -213,14 +219,15 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray, NDarray) predict(NDarray X, bool return_std = false)
+                public (NDarray?, NDarray?) predict(NDarray X, bool return_std = false)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     if (return_std != false)
                         pyDict["return_std"] = Helpers.ToPython(return_std);
                     PyTuple result = new PyTuple(self.InvokeMethod("predict", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)

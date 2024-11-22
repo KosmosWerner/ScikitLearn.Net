@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
 		<RootNamespace>ScikitLearn</RootNamespace>
@@ -12,16 +12,28 @@
 		<RepositoryUrl>https://github.com/KosmosWerner/ScikitLearn.Net</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/KosmosWerner/ScikitLearn.Net</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
 		<PackageTags>Machine Learning, Sklearn, ScikitLearn, AI, Clustering, Scikit</PackageTags>
 		<Version>1.1.0</Version>
-		<AssemblyVersion>1.1.0</AssemblyVersion>
-		<ImplicitUsings>enable</ImplicitUsings>
+		<AssemblyVersion>1.2.1</AssemblyVersion>
+
+		<!--Language-->
+		<ImplicitUsings>disable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<NoWarn>CS8981</NoWarn>
 	</PropertyGroup>
 
+	
+	
 	<ItemGroup>
 		<PackageReference Include="Numpy.Bare" Version="3.11.1.33" />
 		<PackageReference Include="Python.Included" Version="3.11.6" />
+	</ItemGroup>
+
+	
+	
+	<ItemGroup>
+		<None Include="README.md" Pack="true" PackagePath="readme.md" />
 	</ItemGroup>
 
 </Project>

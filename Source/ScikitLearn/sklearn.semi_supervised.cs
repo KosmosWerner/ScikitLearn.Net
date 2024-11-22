@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Numpy;
 using Python.Runtime;
 
@@ -41,6 +43,7 @@ namespace ScikitLearn
             {
                 public LabelPropagation(string kernel = "rbf", int gamma = 20, int n_neighbors = 7, int max_iter = 1000, float tol = 0.001f, int? n_jobs = null)
                 {
+                    _ = sklearn.semi_supervised.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (kernel != "rbf")
@@ -60,6 +63,7 @@ namespace ScikitLearn
 
                 internal LabelPropagation(PyObject pyObject)
                 {
+                    _ = sklearn.semi_supervised.self;
                     self = pyObject;
                 }
 
@@ -148,6 +152,7 @@ namespace ScikitLearn
             {
                 public LabelSpreading(string kernel = "rbf", int gamma = 20, int n_neighbors = 7, float alpha = 0.2f, int max_iter = 30, float tol = 0.001f, int? n_jobs = null)
                 {
+                    _ = sklearn.semi_supervised.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (kernel != "rbf")
@@ -169,6 +174,7 @@ namespace ScikitLearn
 
                 internal LabelSpreading(PyObject pyObject)
                 {
+                    _ = sklearn.semi_supervised.self;
                     self = pyObject;
                 }
 
@@ -257,6 +263,7 @@ namespace ScikitLearn
             {
                 public SelfTrainingClassifier(PyObject base_estimator, float threshold = 0.75f, string criterion = "threshold", int k_best = 10, int? max_iter = 10, bool verbose = false)
                 {
+                    _ = sklearn.semi_supervised.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(base_estimator)]);
                     PyDict pyDict = new PyDict();
                     if (threshold != 0.75f)
@@ -274,6 +281,7 @@ namespace ScikitLearn
 
                 internal SelfTrainingClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.semi_supervised.self;
                     self = pyObject;
                 }
 

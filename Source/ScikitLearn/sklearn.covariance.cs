@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Numpy;
 using Python.Runtime;
 
@@ -41,6 +43,7 @@ namespace ScikitLearn
             {
                 public EllipticEnvelope(bool store_precision = true, bool assume_centered = false, float? support_fraction = null, float contamination = 0.1f, int? random_state = null)
                 {
+                    _ = sklearn.covariance.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (store_precision != true)
@@ -58,6 +61,7 @@ namespace ScikitLearn
 
                 internal EllipticEnvelope(PyObject pyObject)
                 {
+                    _ = sklearn.covariance.self;
                     self = pyObject;
                 }
 
@@ -159,12 +163,13 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
-                public (NDarray, NDarray, NDarray) reweight_covariance(NDarray data)
+                public (NDarray?, NDarray?, NDarray?) reweight_covariance(NDarray data)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(data)]);
                     PyDict pyDict = new PyDict();
                     PyTuple result = new PyTuple(self.InvokeMethod("reweight_covariance", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -208,6 +213,7 @@ namespace ScikitLearn
             {
                 public EmpiricalCovariance(bool store_precision = true, bool assume_centered = false)
                 {
+                    _ = sklearn.covariance.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (store_precision != true)
@@ -219,6 +225,7 @@ namespace ScikitLearn
 
                 internal EmpiricalCovariance(PyObject pyObject)
                 {
+                    _ = sklearn.covariance.self;
                     self = pyObject;
                 }
 
@@ -316,6 +323,7 @@ namespace ScikitLearn
             {
                 public GraphicalLasso(float alpha = 0.01f, string mode = "cd", PyObject? covariance = null, float tol = 0.0001f, float enet_tol = 0.0001f, int max_iter = 100, bool verbose = false, float eps = float.Epsilon, bool assume_centered = false)
                 {
+                    _ = sklearn.covariance.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (alpha != 0.01f)
@@ -341,6 +349,7 @@ namespace ScikitLearn
 
                 internal GraphicalLasso(PyObject pyObject)
                 {
+                    _ = sklearn.covariance.self;
                     self = pyObject;
                 }
 
@@ -440,6 +449,7 @@ namespace ScikitLearn
             {
                 public GraphicalLassoCV(int alphas = 4, int n_refinements = 4, int? cv = null, float tol = 0.0001f, float enet_tol = 0.0001f, int max_iter = 100, string mode = "cd", int? n_jobs = null, bool verbose = false, float eps = float.Epsilon, bool assume_centered = false)
                 {
+                    _ = sklearn.covariance.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (alphas != 4)
@@ -469,6 +479,7 @@ namespace ScikitLearn
 
                 internal GraphicalLassoCV(PyObject pyObject)
                 {
+                    _ = sklearn.covariance.self;
                     self = pyObject;
                 }
 
@@ -572,6 +583,7 @@ namespace ScikitLearn
             {
                 public LedoitWolf(bool store_precision = true, bool assume_centered = false, int block_size = 1000)
                 {
+                    _ = sklearn.covariance.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (store_precision != true)
@@ -585,6 +597,7 @@ namespace ScikitLearn
 
                 internal LedoitWolf(PyObject pyObject)
                 {
+                    _ = sklearn.covariance.self;
                     self = pyObject;
                 }
 
@@ -683,6 +696,7 @@ namespace ScikitLearn
             {
                 public MinCovDet(bool store_precision = true, bool assume_centered = false, float? support_fraction = null, int? random_state = null)
                 {
+                    _ = sklearn.covariance.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (store_precision != true)
@@ -698,6 +712,7 @@ namespace ScikitLearn
 
                 internal MinCovDet(PyObject pyObject)
                 {
+                    _ = sklearn.covariance.self;
                     self = pyObject;
                 }
 
@@ -775,12 +790,13 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("mahalanobis", args, pyDict));
                 }
 
-                public (NDarray, NDarray, NDarray) reweight_covariance(NDarray data)
+                public (NDarray?, NDarray?, NDarray?) reweight_covariance(NDarray data)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(data)]);
                     PyDict pyDict = new PyDict();
                     PyTuple result = new PyTuple(self.InvokeMethod("reweight_covariance", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpNDarray(result[2]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
                 }
 
                 public float score(NDarray X_test)
@@ -815,6 +831,7 @@ namespace ScikitLearn
             {
                 public OAS(bool store_precision = true, bool assume_centered = false)
                 {
+                    _ = sklearn.covariance.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (store_precision != true)
@@ -826,6 +843,7 @@ namespace ScikitLearn
 
                 internal OAS(PyObject pyObject)
                 {
+                    _ = sklearn.covariance.self;
                     self = pyObject;
                 }
 
@@ -924,6 +942,7 @@ namespace ScikitLearn
             {
                 public ShrunkCovariance(bool store_precision = true, bool assume_centered = false, float shrinkage = 0.1f)
                 {
+                    _ = sklearn.covariance.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (store_precision != true)
@@ -937,6 +956,7 @@ namespace ScikitLearn
 
                 internal ShrunkCovariance(PyObject pyObject)
                 {
+                    _ = sklearn.covariance.self;
                     self = pyObject;
                 }
 
@@ -1032,6 +1052,7 @@ namespace ScikitLearn
 
             public static NDarray empirical_covariance(NDarray X, bool assume_centered = false)
             {
+                _ = sklearn.covariance.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
                 if (assume_centered != false)
@@ -1039,8 +1060,9 @@ namespace ScikitLearn
                 return Helpers.ToCSharpNDarray(sklearn.covariance.self.InvokeMethod("empirical_covariance", args, pyDict));
             }
 
-            public static (NDarray, NDarray, PyObject, int) graphical_lasso(NDarray emp_cov, float alpha, string mode = "cd", float tol = 0.0001f, float enet_tol = 0.0001f, int max_iter = 100, bool verbose = false, bool return_costs = false, float eps = float.Epsilon, bool return_n_iter = false)
+            public static (NDarray?, NDarray?, PyObject?, int?) graphical_lasso(NDarray emp_cov, float alpha, string mode = "cd", float tol = 0.0001f, float enet_tol = 0.0001f, int max_iter = 100, bool verbose = false, bool return_costs = false, float eps = float.Epsilon, bool return_n_iter = false)
             {
+                _ = sklearn.covariance.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(emp_cov), Helpers.ToPython(alpha)]);
                 PyDict pyDict = new PyDict();
                 if (mode != "cd")
@@ -1060,11 +1082,13 @@ namespace ScikitLearn
                 if (return_n_iter != false)
                     pyDict["return_n_iter"] = Helpers.ToPython(return_n_iter);
                 PyTuple result = new PyTuple(sklearn.covariance.self.InvokeMethod("graphical_lasso", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]), Helpers.ToCSharpPyObject(result[2]), Helpers.ToCSharpInt(result[3]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpPyObject(result[2]) : null, __length > 3 ? Helpers.ToCSharpInt(result[3]) : null);
             }
 
-            public static (NDarray, float) ledoit_wolf(NDarray X, bool assume_centered = false, int block_size = 1000)
+            public static (NDarray?, float?) ledoit_wolf(NDarray X, bool assume_centered = false, int block_size = 1000)
             {
+                _ = sklearn.covariance.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
                 if (assume_centered != false)
@@ -1072,11 +1096,13 @@ namespace ScikitLearn
                 if (block_size != 1000)
                     pyDict["block_size"] = Helpers.ToPython(block_size);
                 PyTuple result = new PyTuple(sklearn.covariance.self.InvokeMethod("ledoit_wolf", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpFloat(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpFloat(result[1]) : null);
             }
 
             public static float ledoit_wolf_shrinkage(NDarray X, bool assume_centered = false, int block_size = 1000)
             {
+                _ = sklearn.covariance.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
                 if (assume_centered != false)
@@ -1086,18 +1112,21 @@ namespace ScikitLearn
                 return Helpers.ToCSharpFloat(sklearn.covariance.self.InvokeMethod("ledoit_wolf_shrinkage", args, pyDict));
             }
 
-            public static (NDarray, float) oas(NDarray X, bool assume_centered = false)
+            public static (NDarray?, float?) oas(NDarray X, bool assume_centered = false)
             {
+                _ = sklearn.covariance.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
                 if (assume_centered != false)
                     pyDict["assume_centered"] = Helpers.ToPython(assume_centered);
                 PyTuple result = new PyTuple(sklearn.covariance.self.InvokeMethod("oas", args, pyDict));
-                return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpFloat(result[1]));
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpFloat(result[1]) : null);
             }
 
             public static NDarray shrunk_covariance(NDarray emp_cov, float shrinkage = 0.1f)
             {
+                _ = sklearn.covariance.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(emp_cov)]);
                 PyDict pyDict = new PyDict();
                 if (shrinkage != 0.1f)

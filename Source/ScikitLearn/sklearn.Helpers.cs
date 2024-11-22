@@ -1,6 +1,7 @@
-﻿using Numpy;
-using Numpy.Models;
+﻿using System;
+using System.Collections.Generic;
 using Python.Runtime;
+using Numpy;
 
 namespace ScikitLearn;
 
@@ -155,8 +156,5 @@ public static partial class sklearn
         internal static PyDict ToCSharpPyDict(PyObject pyObject) => new PyDict(pyObject);
 
         internal static PyTuple ToCSharpPyTuple(PyObject pyObject) => new PyTuple(pyObject);
-
-
     }
-
 }

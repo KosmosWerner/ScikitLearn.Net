@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Numpy;
 using Python.Runtime;
 
@@ -41,6 +43,7 @@ namespace ScikitLearn
             {
                 public BallTree()
                 {
+                    _ = sklearn.neighbors.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     self = sklearn.neighbors.self.InvokeMethod("BallTree", args, pyDict);
@@ -48,6 +51,7 @@ namespace ScikitLearn
 
                 internal BallTree(PyObject pyObject)
                 {
+                    _ = sklearn.neighbors.self;
                     self = pyObject;
                 }
 
@@ -97,7 +101,7 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("kernel_density", args, pyDict));
                 }
 
-                public (bool, bool, NDarray, NDarray) query(NDarray X, int k = 1, bool return_distance = true, bool dualtree = false, bool breadth_first = false)
+                public (bool?, bool?, NDarray?, NDarray?) query(NDarray X, int k = 1, bool return_distance = true, bool dualtree = false, bool breadth_first = false)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -110,10 +114,11 @@ namespace ScikitLearn
                     if (breadth_first != false)
                         pyDict["breadth_first"] = Helpers.ToPython(breadth_first);
                     PyTuple result = new PyTuple(self.InvokeMethod("query", args, pyDict));
-                    return (Helpers.ToCSharpBool(result[0]), Helpers.ToCSharpBool(result[1]), Helpers.ToCSharpNDarray(result[2]), Helpers.ToCSharpNDarray(result[3]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpBool(result[0]) : null, __length > 1 ? Helpers.ToCSharpBool(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpNDarray(result[3]) : null);
                 }
 
-                public (bool, bool, bool, NDarray, PyObject, PyObject) query_radius(NDarray X, PyObject r, bool return_distance = false, bool count_only = false, bool sort_results = false)
+                public (bool?, bool?, bool?, NDarray?, PyObject?, PyObject?) query_radius(NDarray X, PyObject r, bool return_distance = false, bool count_only = false, bool sort_results = false)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(r)]);
                     PyDict pyDict = new PyDict();
@@ -124,7 +129,8 @@ namespace ScikitLearn
                     if (sort_results != false)
                         pyDict["sort_results"] = Helpers.ToPython(sort_results);
                     PyTuple result = new PyTuple(self.InvokeMethod("query_radius", args, pyDict));
-                    return (Helpers.ToCSharpBool(result[0]), Helpers.ToCSharpBool(result[1]), Helpers.ToCSharpBool(result[2]), Helpers.ToCSharpNDarray(result[3]), Helpers.ToCSharpPyObject(result[4]), Helpers.ToCSharpPyObject(result[5]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpBool(result[0]) : null, __length > 1 ? Helpers.ToCSharpBool(result[1]) : null, __length > 2 ? Helpers.ToCSharpBool(result[2]) : null, __length > 3 ? Helpers.ToCSharpNDarray(result[3]) : null, __length > 4 ? Helpers.ToCSharpPyObject(result[4]) : null, __length > 5 ? Helpers.ToCSharpPyObject(result[5]) : null);
                 }
 
                 public void reset_n_calls()
@@ -148,6 +154,7 @@ namespace ScikitLearn
             {
                 public KDTree()
                 {
+                    _ = sklearn.neighbors.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     self = sklearn.neighbors.self.InvokeMethod("KDTree", args, pyDict);
@@ -155,6 +162,7 @@ namespace ScikitLearn
 
                 internal KDTree(PyObject pyObject)
                 {
+                    _ = sklearn.neighbors.self;
                     self = pyObject;
                 }
 
@@ -204,7 +212,7 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("kernel_density", args, pyDict));
                 }
 
-                public (bool, bool, NDarray, NDarray) query(NDarray X, int k = 1, bool return_distance = true, bool dualtree = false, bool breadth_first = false)
+                public (bool?, bool?, NDarray?, NDarray?) query(NDarray X, int k = 1, bool return_distance = true, bool dualtree = false, bool breadth_first = false)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -217,10 +225,11 @@ namespace ScikitLearn
                     if (breadth_first != false)
                         pyDict["breadth_first"] = Helpers.ToPython(breadth_first);
                     PyTuple result = new PyTuple(self.InvokeMethod("query", args, pyDict));
-                    return (Helpers.ToCSharpBool(result[0]), Helpers.ToCSharpBool(result[1]), Helpers.ToCSharpNDarray(result[2]), Helpers.ToCSharpNDarray(result[3]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpBool(result[0]) : null, __length > 1 ? Helpers.ToCSharpBool(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpNDarray(result[3]) : null);
                 }
 
-                public (bool, bool, bool, NDarray, PyObject, PyObject) query_radius(NDarray X, PyObject r, bool return_distance = false, bool count_only = false, bool sort_results = false)
+                public (bool?, bool?, bool?, NDarray?, PyObject?, PyObject?) query_radius(NDarray X, PyObject r, bool return_distance = false, bool count_only = false, bool sort_results = false)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(r)]);
                     PyDict pyDict = new PyDict();
@@ -231,7 +240,8 @@ namespace ScikitLearn
                     if (sort_results != false)
                         pyDict["sort_results"] = Helpers.ToPython(sort_results);
                     PyTuple result = new PyTuple(self.InvokeMethod("query_radius", args, pyDict));
-                    return (Helpers.ToCSharpBool(result[0]), Helpers.ToCSharpBool(result[1]), Helpers.ToCSharpBool(result[2]), Helpers.ToCSharpNDarray(result[3]), Helpers.ToCSharpPyObject(result[4]), Helpers.ToCSharpPyObject(result[5]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpBool(result[0]) : null, __length > 1 ? Helpers.ToCSharpBool(result[1]) : null, __length > 2 ? Helpers.ToCSharpBool(result[2]) : null, __length > 3 ? Helpers.ToCSharpNDarray(result[3]) : null, __length > 4 ? Helpers.ToCSharpPyObject(result[4]) : null, __length > 5 ? Helpers.ToCSharpPyObject(result[5]) : null);
                 }
 
                 public void reset_n_calls()
@@ -255,6 +265,7 @@ namespace ScikitLearn
             {
                 public KNeighborsClassifier(int n_neighbors = 5, string? weights = "uniform", string algorithm = "auto", int leaf_size = 30, int p = 2, string metric = "minkowski", PyDict? metric_params = null, int? n_jobs = null)
                 {
+                    _ = sklearn.neighbors.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_neighbors != 5)
@@ -278,6 +289,7 @@ namespace ScikitLearn
 
                 internal KNeighborsClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.neighbors.self;
                     self = pyObject;
                 }
 
@@ -318,7 +330,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray, NDarray) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
+                public (NDarray?, NDarray?) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
@@ -329,7 +341,8 @@ namespace ScikitLearn
                     if (return_distance != true)
                         pyDict["return_distance"] = Helpers.ToPython(return_distance);
                     PyTuple result = new PyTuple(self.InvokeMethod("kneighbors", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public NDarray kneighbors_graph(NDarray? X = null, int? n_neighbors = null, string mode = "connectivity")
@@ -393,6 +406,7 @@ namespace ScikitLearn
             {
                 public KNeighborsRegressor(int n_neighbors = 5, string? weights = "uniform", string algorithm = "auto", int leaf_size = 30, int p = 2, string metric = "minkowski", PyDict? metric_params = null, int? n_jobs = null)
                 {
+                    _ = sklearn.neighbors.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_neighbors != 5)
@@ -416,6 +430,7 @@ namespace ScikitLearn
 
                 internal KNeighborsRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.neighbors.self;
                     self = pyObject;
                 }
 
@@ -454,7 +469,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray, NDarray) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
+                public (NDarray?, NDarray?) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
@@ -465,7 +480,8 @@ namespace ScikitLearn
                     if (return_distance != true)
                         pyDict["return_distance"] = Helpers.ToPython(return_distance);
                     PyTuple result = new PyTuple(self.InvokeMethod("kneighbors", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public NDarray kneighbors_graph(NDarray? X = null, int? n_neighbors = null, string mode = "connectivity")
@@ -522,6 +538,7 @@ namespace ScikitLearn
             {
                 public KNeighborsTransformer(string mode = "distance", int n_neighbors = 5, string algorithm = "auto", int leaf_size = 30, string metric = "minkowski", int p = 2, PyDict? metric_params = null, int? n_jobs = null)
                 {
+                    _ = sklearn.neighbors.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (mode != "distance")
@@ -545,6 +562,7 @@ namespace ScikitLearn
 
                 internal KNeighborsTransformer(PyObject pyObject)
                 {
+                    _ = sklearn.neighbors.self;
                     self = pyObject;
                 }
 
@@ -599,7 +617,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray, NDarray) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
+                public (NDarray?, NDarray?) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
@@ -610,7 +628,8 @@ namespace ScikitLearn
                     if (return_distance != true)
                         pyDict["return_distance"] = Helpers.ToPython(return_distance);
                     PyTuple result = new PyTuple(self.InvokeMethod("kneighbors", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public NDarray kneighbors_graph(NDarray? X = null, int? n_neighbors = null, string mode = "connectivity")
@@ -658,6 +677,7 @@ namespace ScikitLearn
             {
                 public KernelDensity(float bandwidth = 1.0f, string algorithm = "auto", string kernel = "gaussian", string metric = "euclidean", int atol = 0, int rtol = 0, bool breadth_first = true, int leaf_size = 40, PyDict? metric_params = null)
                 {
+                    _ = sklearn.neighbors.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (bandwidth != 1.0f)
@@ -683,6 +703,7 @@ namespace ScikitLearn
 
                 internal KernelDensity(PyObject pyObject)
                 {
+                    _ = sklearn.neighbors.self;
                     self = pyObject;
                 }
 
@@ -776,6 +797,7 @@ namespace ScikitLearn
             {
                 public LocalOutlierFactor(int n_neighbors = 20, string algorithm = "auto", int leaf_size = 30, string metric = "minkowski", int p = 2, PyDict? metric_params = null, string contamination = "auto", bool novelty = false, int? n_jobs = null)
                 {
+                    _ = sklearn.neighbors.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_neighbors != 20)
@@ -801,6 +823,7 @@ namespace ScikitLearn
 
                 internal LocalOutlierFactor(PyObject pyObject)
                 {
+                    _ = sklearn.neighbors.self;
                     self = pyObject;
                 }
 
@@ -856,7 +879,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray, NDarray) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
+                public (NDarray?, NDarray?) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
@@ -867,7 +890,8 @@ namespace ScikitLearn
                     if (return_distance != true)
                         pyDict["return_distance"] = Helpers.ToPython(return_distance);
                     PyTuple result = new PyTuple(self.InvokeMethod("kneighbors", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public NDarray kneighbors_graph(NDarray? X = null, int? n_neighbors = null, string mode = "connectivity")
@@ -914,6 +938,7 @@ namespace ScikitLearn
             {
                 public NearestCentroid(string metric = "euclidean", float? shrink_threshold = null)
                 {
+                    _ = sklearn.neighbors.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (metric != "euclidean")
@@ -925,6 +950,7 @@ namespace ScikitLearn
 
                 internal NearestCentroid(PyObject pyObject)
                 {
+                    _ = sklearn.neighbors.self;
                     self = pyObject;
                 }
 
@@ -1003,6 +1029,7 @@ namespace ScikitLearn
             {
                 public NearestNeighbors(int n_neighbors = 5, float radius = 1.0f, string algorithm = "auto", int leaf_size = 30, string metric = "minkowski", int p = 2, PyDict? metric_params = null, int? n_jobs = null)
                 {
+                    _ = sklearn.neighbors.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_neighbors != 5)
@@ -1026,6 +1053,7 @@ namespace ScikitLearn
 
                 internal NearestNeighbors(PyObject pyObject)
                 {
+                    _ = sklearn.neighbors.self;
                     self = pyObject;
                 }
 
@@ -1064,7 +1092,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray, NDarray) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
+                public (NDarray?, NDarray?) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
@@ -1075,7 +1103,8 @@ namespace ScikitLearn
                     if (return_distance != true)
                         pyDict["return_distance"] = Helpers.ToPython(return_distance);
                     PyTuple result = new PyTuple(self.InvokeMethod("kneighbors", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public NDarray kneighbors_graph(NDarray? X = null, int? n_neighbors = null, string mode = "connectivity")
@@ -1091,7 +1120,7 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("kneighbors_graph", args, pyDict));
                 }
 
-                public (NDarray, NDarray) radius_neighbors(NDarray? X = null, float? radius = null, bool return_distance = true, bool sort_results = false)
+                public (NDarray?, NDarray?) radius_neighbors(NDarray? X = null, float? radius = null, bool return_distance = true, bool sort_results = false)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
@@ -1104,7 +1133,8 @@ namespace ScikitLearn
                     if (sort_results != false)
                         pyDict["sort_results"] = Helpers.ToPython(sort_results);
                     PyTuple result = new PyTuple(self.InvokeMethod("radius_neighbors", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public NDarray radius_neighbors_graph(NDarray? X = null, float? radius = null, string mode = "connectivity", bool sort_results = false)
@@ -1137,6 +1167,7 @@ namespace ScikitLearn
             {
                 public NeighborhoodComponentsAnalysis(int? n_components = null, string init = "auto", bool warm_start = false, int max_iter = 50, float tol = 1e-05f, PyObject? callback = null, int verbose = 0, int? random_state = null)
                 {
+                    _ = sklearn.neighbors.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != null)
@@ -1160,6 +1191,7 @@ namespace ScikitLearn
 
                 internal NeighborhoodComponentsAnalysis(PyObject pyObject)
                 {
+                    _ = sklearn.neighbors.self;
                     self = pyObject;
                 }
 
@@ -1250,6 +1282,7 @@ namespace ScikitLearn
             {
                 public RadiusNeighborsClassifier(float radius = 1.0f, string? weights = "uniform", string algorithm = "auto", int leaf_size = 30, int p = 2, string metric = "minkowski", PyObject? outlier_label = null, PyDict? metric_params = null, int? n_jobs = null)
                 {
+                    _ = sklearn.neighbors.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (radius != 1.0f)
@@ -1275,6 +1308,7 @@ namespace ScikitLearn
 
                 internal RadiusNeighborsClassifier(PyObject pyObject)
                 {
+                    _ = sklearn.neighbors.self;
                     self = pyObject;
                 }
 
@@ -1330,7 +1364,7 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_proba", args, pyDict));
                 }
 
-                public (NDarray, NDarray) radius_neighbors(NDarray? X = null, float? radius = null, bool return_distance = true, bool sort_results = false)
+                public (NDarray?, NDarray?) radius_neighbors(NDarray? X = null, float? radius = null, bool return_distance = true, bool sort_results = false)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
@@ -1343,7 +1377,8 @@ namespace ScikitLearn
                     if (sort_results != false)
                         pyDict["sort_results"] = Helpers.ToPython(sort_results);
                     PyTuple result = new PyTuple(self.InvokeMethod("radius_neighbors", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public NDarray radius_neighbors_graph(NDarray? X = null, float? radius = null, string mode = "connectivity", bool sort_results = false)
@@ -1395,6 +1430,7 @@ namespace ScikitLearn
             {
                 public RadiusNeighborsRegressor(float radius = 1.0f, string? weights = "uniform", string algorithm = "auto", int leaf_size = 30, int p = 2, string metric = "minkowski", PyDict? metric_params = null, int? n_jobs = null)
                 {
+                    _ = sklearn.neighbors.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (radius != 1.0f)
@@ -1418,6 +1454,7 @@ namespace ScikitLearn
 
                 internal RadiusNeighborsRegressor(PyObject pyObject)
                 {
+                    _ = sklearn.neighbors.self;
                     self = pyObject;
                 }
 
@@ -1463,7 +1500,7 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
-                public (NDarray, NDarray) radius_neighbors(NDarray? X = null, float? radius = null, bool return_distance = true, bool sort_results = false)
+                public (NDarray?, NDarray?) radius_neighbors(NDarray? X = null, float? radius = null, bool return_distance = true, bool sort_results = false)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
@@ -1476,7 +1513,8 @@ namespace ScikitLearn
                     if (sort_results != false)
                         pyDict["sort_results"] = Helpers.ToPython(sort_results);
                     PyTuple result = new PyTuple(self.InvokeMethod("radius_neighbors", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public NDarray radius_neighbors_graph(NDarray? X = null, float? radius = null, string mode = "connectivity", bool sort_results = false)
@@ -1528,6 +1566,7 @@ namespace ScikitLearn
             {
                 public RadiusNeighborsTransformer(string mode = "distance", float radius = 1.0f, string algorithm = "auto", int leaf_size = 30, string metric = "minkowski", int p = 2, PyDict? metric_params = null, int? n_jobs = null)
                 {
+                    _ = sklearn.neighbors.self;
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (mode != "distance")
@@ -1551,6 +1590,7 @@ namespace ScikitLearn
 
                 internal RadiusNeighborsTransformer(PyObject pyObject)
                 {
+                    _ = sklearn.neighbors.self;
                     self = pyObject;
                 }
 
@@ -1605,7 +1645,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray, NDarray) radius_neighbors(NDarray? X = null, float? radius = null, bool return_distance = true, bool sort_results = false)
+                public (NDarray?, NDarray?) radius_neighbors(NDarray? X = null, float? radius = null, bool return_distance = true, bool sort_results = false)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
@@ -1618,7 +1658,8 @@ namespace ScikitLearn
                     if (sort_results != false)
                         pyDict["sort_results"] = Helpers.ToPython(sort_results);
                     PyTuple result = new PyTuple(self.InvokeMethod("radius_neighbors", args, pyDict));
-                    return (Helpers.ToCSharpNDarray(result[0]), Helpers.ToCSharpNDarray(result[1]));
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public NDarray radius_neighbors_graph(NDarray? X = null, float? radius = null, string mode = "connectivity", bool sort_results = false)
@@ -1666,6 +1707,7 @@ namespace ScikitLearn
 
             public static NDarray kneighbors_graph(NDarray X, int n_neighbors, string mode = "connectivity", string metric = "minkowski", int p = 2, PyDict? metric_params = null, bool include_self = false, int? n_jobs = null)
             {
+                _ = sklearn.neighbors.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(n_neighbors)]);
                 PyDict pyDict = new PyDict();
                 if (mode != "connectivity")
@@ -1685,6 +1727,7 @@ namespace ScikitLearn
 
             public static NDarray radius_neighbors_graph(NDarray X, float radius, string mode = "connectivity", string metric = "minkowski", int p = 2, PyDict? metric_params = null, bool include_self = false, int? n_jobs = null)
             {
+                _ = sklearn.neighbors.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(radius)]);
                 PyDict pyDict = new PyDict();
                 if (mode != "connectivity")
@@ -1704,6 +1747,7 @@ namespace ScikitLearn
 
             public static NDarray sort_graph_by_row_values(NDarray graph, bool copy = false, bool warn_when_not_sorted = true)
             {
+                _ = sklearn.neighbors.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(graph)]);
                 PyDict pyDict = new PyDict();
                 if (copy != false)

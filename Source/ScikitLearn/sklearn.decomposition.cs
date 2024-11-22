@@ -2005,7 +2005,7 @@ namespace ScikitLearn
                 }
             }
 
-            public static (NDarray? , PyDict? , NDarray? , int? ) dict_learning(NDarray X, int n_components, float alpha, int max_iter = 100, float tol = 1e-08f, string method = "lars", int? n_jobs = null, NDarray? dict_init = null, NDarray? code_init = null, PyObject? callback = null, bool verbose = false, int? random_state = null, bool return_n_iter = false, bool positive_dict = false, bool positive_code = false, int method_max_iter = 1000)
+            public static (NDarray?, PyDict?, NDarray?, int?) dict_learning(NDarray X, int n_components, float alpha, int max_iter = 100, float tol = 1e-08f, string method = "lars", int? n_jobs = null, NDarray? dict_init = null, NDarray? code_init = null, PyObject? callback = null, bool verbose = false, int? random_state = null, bool return_n_iter = false, bool positive_dict = false, bool positive_code = false, int method_max_iter = 1000)
             {
                 _ = sklearn.decomposition.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(n_components), Helpers.ToPython(alpha)]);
@@ -2037,11 +2037,11 @@ namespace ScikitLearn
                 if (method_max_iter != 1000)
                     pyDict["method_max_iter"] = Helpers.ToPython(method_max_iter);
                 PyTuple result = new PyTuple(sklearn.decomposition.self.InvokeMethod("dict_learning", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpPyDict(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, length > 3 ? Helpers.ToCSharpInt(result[3]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpPyDict(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpInt(result[3]) : null);
             }
 
-            public static (NDarray? , PyDict? , int? ) dict_learning_online(NDarray X, int? n_components = 2, int alpha = 1, int max_iter = 100, bool return_code = true, NDarray? dict_init = null, PyObject? callback = null, int batch_size = 256, bool verbose = false, bool shuffle = true, int? n_jobs = null, string method = "lars", int? random_state = null, bool positive_dict = false, bool positive_code = false, int method_max_iter = 1000, float tol = 0.001f, int max_no_improvement = 10)
+            public static (NDarray?, PyDict?, int?) dict_learning_online(NDarray X, int? n_components = 2, int alpha = 1, int max_iter = 100, bool return_code = true, NDarray? dict_init = null, PyObject? callback = null, int batch_size = 256, bool verbose = false, bool shuffle = true, int? n_jobs = null, string method = "lars", int? random_state = null, bool positive_dict = false, bool positive_code = false, int method_max_iter = 1000, float tol = 0.001f, int max_no_improvement = 10)
             {
                 _ = sklearn.decomposition.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
@@ -2081,11 +2081,11 @@ namespace ScikitLearn
                 if (max_no_improvement != 10)
                     pyDict["max_no_improvement"] = Helpers.ToPython(max_no_improvement);
                 PyTuple result = new PyTuple(sklearn.decomposition.self.InvokeMethod("dict_learning_online", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpPyDict(result[1]) : null, length > 2 ? Helpers.ToCSharpInt(result[2]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpPyDict(result[1]) : null, __length > 2 ? Helpers.ToCSharpInt(result[2]) : null);
             }
 
-            public static (NDarray ? ,  NDarray ? ,  NDarray ? ,  NDarray ? ,  int ? )fastica(NDarray X, int? n_components = null, string algorithm = "parallel", string whiten = "unit-variance", string fun = "logcosh", PyDict? fun_args = null, int max_iter = 200, float tol = 0.0001f, NDarray? w_init = null, string whiten_solver = "svd", int? random_state = null, bool return_X_mean = false, bool compute_sources = true, bool return_n_iter = false)
+            public static (NDarray?, NDarray?, NDarray?, NDarray?, int?) fastica(NDarray X, int? n_components = null, string algorithm = "parallel", string whiten = "unit-variance", string fun = "logcosh", PyDict? fun_args = null, int max_iter = 200, float tol = 0.0001f, NDarray? w_init = null, string whiten_solver = "svd", int? random_state = null, bool return_X_mean = false, bool compute_sources = true, bool return_n_iter = false)
             {
                 _ = sklearn.decomposition.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
@@ -2117,11 +2117,11 @@ namespace ScikitLearn
                 if (return_n_iter != false)
                     pyDict["return_n_iter"] = Helpers.ToPython(return_n_iter);
                 PyTuple result = new PyTuple(sklearn.decomposition.self.InvokeMethod("fastica", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, length > 3 ? Helpers.ToCSharpNDarray(result[3]) : null, length > 4 ? Helpers.ToCSharpInt(result[4]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpNDarray(result[3]) : null, __length > 4 ? Helpers.ToCSharpInt(result[4]) : null);
             }
 
-            public static (NDarray? , NDarray? , int? ) non_negative_factorization(NDarray X, NDarray? W = null, NDarray? H = null, string? n_components = "warn", PyObject? init = null, bool update_H = true, string solver = "cd", string beta_loss = "frobenius", float tol = 0.0001f, int max_iter = 200, float alpha_W = 0.0f, string alpha_H = "same", float l1_ratio = 0.0f, int? random_state = null, int verbose = 0, bool shuffle = false)
+            public static (NDarray?, NDarray?, int?) non_negative_factorization(NDarray X, NDarray? W = null, NDarray? H = null, string? n_components = "warn", PyObject? init = null, bool update_H = true, string solver = "cd", string beta_loss = "frobenius", float tol = 0.0001f, int max_iter = 200, float alpha_W = 0.0f, string alpha_H = "same", float l1_ratio = 0.0f, int? random_state = null, int verbose = 0, bool shuffle = false)
             {
                 _ = sklearn.decomposition.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
@@ -2157,8 +2157,8 @@ namespace ScikitLearn
                 if (shuffle != false)
                     pyDict["shuffle"] = Helpers.ToPython(shuffle);
                 PyTuple result = new PyTuple(sklearn.decomposition.self.InvokeMethod("non_negative_factorization", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpInt(result[2]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpInt(result[2]) : null);
             }
 
             public static NDarray sparse_encode(NDarray X, NDarray dictionary, NDarray? gram = null, NDarray? cov = null, string algorithm = "lasso_lars", int? n_nonzero_coefs = null, float? alpha = null, bool copy_cov = true, NDarray? init = null, int max_iter = 1000, int? n_jobs = null, bool check_input = true, int verbose = 0, bool positive = false)

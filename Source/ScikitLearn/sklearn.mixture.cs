@@ -158,15 +158,15 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_proba", args, pyDict));
                 }
 
-                public (NDarray? , NDarray? ) sample(int n_samples = 1)
+                public (NDarray?, NDarray?) sample(int n_samples = 1)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_samples != 1)
                         pyDict["n_samples"] = Helpers.ToPython(n_samples);
                     PyTuple result = new PyTuple(self.InvokeMethod("sample", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public float score(NDarray X)
@@ -313,15 +313,15 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_proba", args, pyDict));
                 }
 
-                public (NDarray? , NDarray? ) sample(int n_samples = 1)
+                public (NDarray?, NDarray?) sample(int n_samples = 1)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_samples != 1)
                         pyDict["n_samples"] = Helpers.ToPython(n_samples);
                     PyTuple result = new PyTuple(self.InvokeMethod("sample", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public float score(NDarray X)

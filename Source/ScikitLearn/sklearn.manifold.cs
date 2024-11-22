@@ -599,7 +599,7 @@ namespace ScikitLearn
                 }
             }
 
-            public static (NDarray? , float? ) locally_linear_embedding(NDarray X, int n_neighbors, int n_components, float reg = 0.001f, string eigen_solver = "auto", float tol = 1e-06f, int max_iter = 100, string method = "standard", float hessian_tol = 0.0001f, float modified_tol = 1e-12f, int? random_state = null, int? n_jobs = null)
+            public static (NDarray?, float?) locally_linear_embedding(NDarray X, int n_neighbors, int n_components, float reg = 0.001f, string eigen_solver = "auto", float tol = 1e-06f, int max_iter = 100, string method = "standard", float hessian_tol = 0.0001f, float modified_tol = 1e-12f, int? random_state = null, int? n_jobs = null)
             {
                 _ = sklearn.manifold.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(n_neighbors), Helpers.ToPython(n_components)]);
@@ -623,11 +623,11 @@ namespace ScikitLearn
                 if (n_jobs != null)
                     pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
                 PyTuple result = new PyTuple(sklearn.manifold.self.InvokeMethod("locally_linear_embedding", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpFloat(result[1]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpFloat(result[1]) : null);
             }
 
-            public static (NDarray? , string? , int? ) smacof(NDarray dissimilarities, bool metric = true, int n_components = 2, NDarray? init = null, int n_init = 8, int? n_jobs = null, int max_iter = 300, int verbose = 0, float eps = 0.001f, int? random_state = null, bool return_n_iter = false, string normalized_stress = "auto")
+            public static (NDarray?, string?, int?) smacof(NDarray dissimilarities, bool metric = true, int n_components = 2, NDarray? init = null, int n_init = 8, int? n_jobs = null, int max_iter = 300, int verbose = 0, float eps = 0.001f, int? random_state = null, bool return_n_iter = false, string normalized_stress = "auto")
             {
                 _ = sklearn.manifold.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(dissimilarities)]);
@@ -655,8 +655,8 @@ namespace ScikitLearn
                 if (normalized_stress != "auto")
                     pyDict["normalized_stress"] = Helpers.ToPython(normalized_stress);
                 PyTuple result = new PyTuple(sklearn.manifold.self.InvokeMethod("smacof", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpString(result[1]) : null, length > 2 ? Helpers.ToCSharpInt(result[2]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpString(result[1]) : null, __length > 2 ? Helpers.ToCSharpInt(result[2]) : null);
             }
 
             public static NDarray spectral_embedding(NDarray adjacency, int n_components = 8, PyObject? eigen_solver = null, int? random_state = null, string eigen_tol = "auto", bool norm_laplacian = true, bool drop_first = true)

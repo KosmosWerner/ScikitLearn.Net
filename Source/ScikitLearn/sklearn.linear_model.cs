@@ -2008,7 +2008,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray? , NDarray? , NDarray? , PyTuple? ) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
+                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -2039,8 +2039,8 @@ namespace ScikitLearn
                     if (@params != null)
                         pyDict["params"] = Helpers.ToPython(@params);
                     PyTuple result = new PyTuple(self.InvokeMethod("path", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
                 }
 
                 public NDarray predict(NDarray X)
@@ -2182,7 +2182,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray? , NDarray? , NDarray? , PyTuple? ) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
+                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -2213,8 +2213,8 @@ namespace ScikitLearn
                     if (@params != null)
                         pyDict["params"] = Helpers.ToPython(@params);
                     PyTuple result = new PyTuple(self.InvokeMethod("path", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
                 }
 
                 public NDarray predict(NDarray X)
@@ -2586,7 +2586,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray? , NDarray? , NDarray? , PyTuple? ) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
+                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -2617,8 +2617,8 @@ namespace ScikitLearn
                     if (@params != null)
                         pyDict["params"] = Helpers.ToPython(@params);
                     PyTuple result = new PyTuple(self.InvokeMethod("path", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
                 }
 
                 public NDarray predict(NDarray X)
@@ -2757,7 +2757,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray? , NDarray? , NDarray? , PyTuple? ) path(NDarray X, NDarray y, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, Dictionary<string, PyObject>? @params = null)
+                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -2784,8 +2784,8 @@ namespace ScikitLearn
                     if (@params != null)
                         pyDict["params"] = Helpers.ToPython(@params);
                     PyTuple result = new PyTuple(self.InvokeMethod("path", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
                 }
 
                 public NDarray predict(NDarray X)
@@ -3487,15 +3487,15 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray? , NDarray? ) predict(NDarray X, bool return_std = false)
+                public (NDarray?, NDarray?) predict(NDarray X, bool return_std = false)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     if (return_std != false)
                         pyDict["return_std"] = Helpers.ToPython(return_std);
                     PyTuple result = new PyTuple(self.InvokeMethod("predict", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -3621,15 +3621,15 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray? , NDarray? ) predict(NDarray X, bool return_std = false)
+                public (NDarray?, NDarray?) predict(NDarray X, bool return_std = false)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     if (return_std != false)
                         pyDict["return_std"] = Helpers.ToPython(return_std);
                     PyTuple result = new PyTuple(self.InvokeMethod("predict", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -3754,7 +3754,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray? , NDarray? , NDarray? , PyTuple? ) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
+                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -3785,8 +3785,8 @@ namespace ScikitLearn
                     if (@params != null)
                         pyDict["params"] = Helpers.ToPython(@params);
                     PyTuple result = new PyTuple(self.InvokeMethod("path", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
                 }
 
                 public NDarray predict(NDarray X)
@@ -3922,7 +3922,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray? , NDarray? , NDarray? , PyTuple? ) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
+                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -3953,8 +3953,8 @@ namespace ScikitLearn
                     if (@params != null)
                         pyDict["params"] = Helpers.ToPython(@params);
                     PyTuple result = new PyTuple(self.InvokeMethod("path", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
                 }
 
                 public NDarray predict(NDarray X)
@@ -4074,7 +4074,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray? , NDarray? , NDarray? , PyTuple? ) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
+                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -4105,8 +4105,8 @@ namespace ScikitLearn
                     if (@params != null)
                         pyDict["params"] = Helpers.ToPython(@params);
                     PyTuple result = new PyTuple(self.InvokeMethod("path", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
                 }
 
                 public NDarray predict(NDarray X)
@@ -4239,7 +4239,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray? , NDarray? , NDarray? , PyTuple? ) path(NDarray X, NDarray y, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, Dictionary<string, PyObject>? @params = null)
+                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -4266,8 +4266,8 @@ namespace ScikitLearn
                     if (@params != null)
                         pyDict["params"] = Helpers.ToPython(@params);
                     PyTuple result = new PyTuple(self.InvokeMethod("path", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
                 }
 
                 public NDarray predict(NDarray X)
@@ -5283,7 +5283,7 @@ namespace ScikitLearn
                 }
             }
 
-            public static (NDarray? , NDarray? , NDarray? , PyTuple? ) enet_path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
+            public static (NDarray?, NDarray?, NDarray?, PyTuple?) enet_path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
             {
                 _ = sklearn.linear_model.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
@@ -5315,11 +5315,11 @@ namespace ScikitLearn
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
                 PyTuple result = new PyTuple(sklearn.linear_model.self.InvokeMethod("enet_path", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
             }
 
-            public static (NDarray? , NDarray? , NDarray? , int? ) lars_path(NDarray X, NDarray y, NDarray? Xy = null, NDarray? Gram = null, int max_iter = 500, int alpha_min = 0, string method = "lar", bool copy_X = true, float eps = float.Epsilon, bool copy_Gram = true, int verbose = 0, bool return_path = true, bool return_n_iter = false, bool positive = false)
+            public static (NDarray?, NDarray?, NDarray?, int?) lars_path(NDarray X, NDarray y, NDarray? Xy = null, NDarray? Gram = null, int max_iter = 500, int alpha_min = 0, string method = "lar", bool copy_X = true, float eps = float.Epsilon, bool copy_Gram = true, int verbose = 0, bool return_path = true, bool return_n_iter = false, bool positive = false)
             {
                 _ = sklearn.linear_model.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
@@ -5349,11 +5349,11 @@ namespace ScikitLearn
                 if (positive != false)
                     pyDict["positive"] = Helpers.ToPython(positive);
                 PyTuple result = new PyTuple(sklearn.linear_model.self.InvokeMethod("lars_path", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, length > 3 ? Helpers.ToCSharpInt(result[3]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpInt(result[3]) : null);
             }
 
-            public static (NDarray? , NDarray? , NDarray? , int? ) lars_path_gram(NDarray Xy, NDarray Gram, int n_samples, int max_iter = 500, int alpha_min = 0, string method = "lar", bool copy_X = true, float eps = float.Epsilon, bool copy_Gram = true, int verbose = 0, bool return_path = true, bool return_n_iter = false, bool positive = false)
+            public static (NDarray?, NDarray?, NDarray?, int?) lars_path_gram(NDarray Xy, NDarray Gram, int n_samples, int max_iter = 500, int alpha_min = 0, string method = "lar", bool copy_X = true, float eps = float.Epsilon, bool copy_Gram = true, int verbose = 0, bool return_path = true, bool return_n_iter = false, bool positive = false)
             {
                 _ = sklearn.linear_model.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(Xy), Helpers.ToPython(Gram), Helpers.ToPython(n_samples)]);
@@ -5379,11 +5379,11 @@ namespace ScikitLearn
                 if (positive != false)
                     pyDict["positive"] = Helpers.ToPython(positive);
                 PyTuple result = new PyTuple(sklearn.linear_model.self.InvokeMethod("lars_path_gram", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, length > 3 ? Helpers.ToCSharpInt(result[3]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpInt(result[3]) : null);
             }
 
-            public static (NDarray? , NDarray? , NDarray? , PyTuple? ) lasso_path(NDarray X, NDarray y, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, Dictionary<string, PyObject>? @params = null)
+            public static (NDarray?, NDarray?, NDarray?, PyTuple?) lasso_path(NDarray X, NDarray y, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, Dictionary<string, PyObject>? @params = null)
             {
                 _ = sklearn.linear_model.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
@@ -5411,11 +5411,11 @@ namespace ScikitLearn
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
                 PyTuple result = new PyTuple(sklearn.linear_model.self.InvokeMethod("lasso_path", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
             }
 
-            public static (NDarray? , NDarray? ) orthogonal_mp(NDarray X, NDarray y, int? n_nonzero_coefs = null, float? tol = null, bool precompute = false, bool copy_X = true, bool return_path = false, bool return_n_iter = false)
+            public static (NDarray?, NDarray?) orthogonal_mp(NDarray X, NDarray y, int? n_nonzero_coefs = null, float? tol = null, bool precompute = false, bool copy_X = true, bool return_path = false, bool return_n_iter = false)
             {
                 _ = sklearn.linear_model.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
@@ -5433,11 +5433,11 @@ namespace ScikitLearn
                 if (return_n_iter != false)
                     pyDict["return_n_iter"] = Helpers.ToPython(return_n_iter);
                 PyTuple result = new PyTuple(sklearn.linear_model.self.InvokeMethod("orthogonal_mp", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
-            public static (NDarray? , int? ) orthogonal_mp_gram(NDarray Gram, NDarray Xy, int? n_nonzero_coefs = null, float? tol = null, NDarray? norms_squared = null, bool copy_Gram = true, bool copy_Xy = true, bool return_path = false, bool return_n_iter = false)
+            public static (NDarray?, int?) orthogonal_mp_gram(NDarray Gram, NDarray Xy, int? n_nonzero_coefs = null, float? tol = null, NDarray? norms_squared = null, bool copy_Gram = true, bool copy_Xy = true, bool return_path = false, bool return_n_iter = false)
             {
                 _ = sklearn.linear_model.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(Gram), Helpers.ToPython(Xy)]);
@@ -5457,11 +5457,11 @@ namespace ScikitLearn
                 if (return_n_iter != false)
                     pyDict["return_n_iter"] = Helpers.ToPython(return_n_iter);
                 PyTuple result = new PyTuple(sklearn.linear_model.self.InvokeMethod("orthogonal_mp_gram", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpInt(result[1]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpInt(result[1]) : null);
             }
 
-            public static (NDarray? , int? , NDarray? ) ridge_regression(NDarray X, NDarray y, NDarray alpha, NDarray? sample_weight = null, string solver = "auto", int? max_iter = null, float tol = 0.0001f, int verbose = 0, bool positive = false, int? random_state = null, bool return_n_iter = false, bool return_intercept = false, bool check_input = true)
+            public static (NDarray?, int?, NDarray?) ridge_regression(NDarray X, NDarray y, NDarray alpha, NDarray? sample_weight = null, string solver = "auto", int? max_iter = null, float tol = 0.0001f, int verbose = 0, bool positive = false, int? random_state = null, bool return_n_iter = false, bool return_intercept = false, bool check_input = true)
             {
                 _ = sklearn.linear_model.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y), Helpers.ToPython(alpha)]);
@@ -5487,8 +5487,8 @@ namespace ScikitLearn
                 if (check_input != true)
                     pyDict["check_input"] = Helpers.ToPython(check_input);
                 PyTuple result = new PyTuple(sklearn.linear_model.self.InvokeMethod("ridge_regression", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpInt(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpInt(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
             }
         }
     }

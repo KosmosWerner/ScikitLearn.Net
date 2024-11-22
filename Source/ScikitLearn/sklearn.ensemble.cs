@@ -687,13 +687,13 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("apply", args, pyDict));
                 }
 
-                public (NDarray? , NDarray? ) decision_path(NDarray X)
+                public (NDarray?, NDarray?) decision_path(NDarray X)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     PyTuple result = new PyTuple(self.InvokeMethod("decision_path", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public ExtraTreesClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -857,13 +857,13 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("apply", args, pyDict));
                 }
 
-                public (NDarray? , NDarray? ) decision_path(NDarray X)
+                public (NDarray?, NDarray?) decision_path(NDarray X)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     PyTuple result = new PyTuple(self.InvokeMethod("decision_path", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public ExtraTreesRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -1844,13 +1844,13 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("apply", args, pyDict));
                 }
 
-                public (NDarray? , NDarray? ) decision_path(NDarray X)
+                public (NDarray?, NDarray?) decision_path(NDarray X)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     PyTuple result = new PyTuple(self.InvokeMethod("decision_path", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public RandomForestClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -2014,13 +2014,13 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("apply", args, pyDict));
                 }
 
-                public (NDarray? , NDarray? ) decision_path(NDarray X)
+                public (NDarray?, NDarray?) decision_path(NDarray X)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     PyTuple result = new PyTuple(self.InvokeMethod("decision_path", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public RandomForestRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -2157,13 +2157,13 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("apply", args, pyDict));
                 }
 
-                public (NDarray? , NDarray? ) decision_path(NDarray X)
+                public (NDarray?, NDarray?) decision_path(NDarray X)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     PyTuple result = new PyTuple(self.InvokeMethod("decision_path", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public RandomTreesEmbedding fit(NDarray X, NDarray? sample_weight = null)

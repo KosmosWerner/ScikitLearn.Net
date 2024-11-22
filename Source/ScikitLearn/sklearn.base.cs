@@ -108,22 +108,22 @@ namespace ScikitLearn
                     return new BiclusterMixin(pyObject);
                 }
 
-                public (NDarray<long>? , NDarray<long>? ) get_indices(int i)
+                public (NDarray<long>?, NDarray<long>?) get_indices(int i)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(i)]);
                     PyDict pyDict = new PyDict();
                     PyTuple result = new PyTuple(self.InvokeMethod("get_indices", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray<long>(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray<long>(result[1]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray<long>(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray<long>(result[1]) : null);
                 }
 
-                public (int? , int? ) get_shape(int i)
+                public (int?, int?) get_shape(int i)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(i)]);
                     PyDict pyDict = new PyDict();
                     PyTuple result = new PyTuple(self.InvokeMethod("get_shape", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpInt(result[0]) : null, length > 1 ? Helpers.ToCSharpInt(result[1]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpInt(result[0]) : null, __length > 1 ? Helpers.ToCSharpInt(result[1]) : null);
                 }
 
                 public NDarray get_submatrix(int i, NDarray data)

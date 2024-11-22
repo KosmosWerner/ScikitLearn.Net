@@ -219,15 +219,15 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray? , NDarray? ) predict(NDarray X, bool return_std = false)
+                public (NDarray?, NDarray?) predict(NDarray X, bool return_std = false)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     if (return_std != false)
                         pyDict["return_std"] = Helpers.ToPython(return_std);
                     PyTuple result = new PyTuple(self.InvokeMethod("predict", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public float score(NDarray X, NDarray y, NDarray? sample_weight = null)

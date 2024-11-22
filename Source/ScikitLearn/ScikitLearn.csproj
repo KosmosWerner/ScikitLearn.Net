@@ -15,7 +15,7 @@
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
 		<PackageTags>Machine Learning, Sklearn, ScikitLearn, AI, Clustering, Scikit</PackageTags>
 		<Version>1.1.0</Version>
-		<AssemblyVersion>1.1.0</AssemblyVersion>
+		<AssemblyVersion>1.2.1</AssemblyVersion>
 
 		<!--Language-->
 		<ImplicitUsings>disable</ImplicitUsings>

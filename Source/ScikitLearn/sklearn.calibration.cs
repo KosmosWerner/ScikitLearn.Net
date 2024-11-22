@@ -157,7 +157,7 @@ namespace ScikitLearn
                 }
             }
 
-            public static (NDarray? , NDarray? ) calibration_curve(NDarray y_true, NDarray y_prob, string? pos_label = null, int n_bins = 5, string strategy = "uniform")
+            public static (NDarray?, NDarray?) calibration_curve(NDarray y_true, NDarray y_prob, string? pos_label = null, int n_bins = 5, string strategy = "uniform")
             {
                 _ = sklearn.calibration.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(y_true), Helpers.ToPython(y_prob)]);
@@ -169,8 +169,8 @@ namespace ScikitLearn
                 if (strategy != "uniform")
                     pyDict["strategy"] = Helpers.ToPython(strategy);
                 PyTuple result = new PyTuple(sklearn.calibration.self.InvokeMethod("calibration_curve", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
             public class CalibrationDisplay : PythonObject

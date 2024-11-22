@@ -1573,8 +1573,8 @@ namespace ScikitLearn
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                 PyDict pyDict = new PyDict();
                 PyTuple result = new PyTuple(sklearn.feature_selection.self.InvokeMethod("chi2", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
             public static (NDarray? , NDarray? ) f_classif(NDarray X, NDarray y)
@@ -1583,8 +1583,8 @@ namespace ScikitLearn
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                 PyDict pyDict = new PyDict();
                 PyTuple result = new PyTuple(sklearn.feature_selection.self.InvokeMethod("f_classif", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
             public static (NDarray? , NDarray? ) f_regression(NDarray X, NDarray y, bool center = true, bool force_finite = true)
@@ -1597,8 +1597,8 @@ namespace ScikitLearn
                 if (force_finite != true)
                     pyDict["force_finite"] = Helpers.ToPython(force_finite);
                 PyTuple result = new PyTuple(sklearn.feature_selection.self.InvokeMethod("f_regression", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
             public static NDarray mutual_info_classif(NDarray X, NDarray y, string discrete_features = "auto", int n_neighbors = 3, bool copy = true, int? random_state = null, int? n_jobs = null)

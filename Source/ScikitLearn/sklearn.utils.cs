@@ -292,7 +292,7 @@ namespace ScikitLearn
                 return Helpers.ToCSharpNDarray(sklearn.utils.self.InvokeMethod("shuffle", args, pyDict));
             }
 
-            public static (PyObject? , PyObject? ) check_X_y(NDarray X, NDarray y, bool accept_sparse = false, bool accept_large_sparse = true, string? dtype = "numeric", PyObject? order = null, bool copy = false, bool force_writeable = false, bool force_all_finite = true, bool ensure_2d = true, bool allow_nd = false, bool multi_output = false, int ensure_min_samples = 1, int ensure_min_features = 1, bool y_numeric = false, string? estimator = null)
+            public static (PyObject?, PyObject?) check_X_y(NDarray X, NDarray y, bool accept_sparse = false, bool accept_large_sparse = true, string? dtype = "numeric", PyObject? order = null, bool copy = false, bool force_writeable = false, bool force_all_finite = true, bool ensure_2d = true, bool allow_nd = false, bool multi_output = false, int ensure_min_samples = 1, int ensure_min_features = 1, bool y_numeric = false, string? estimator = null)
             {
                 _ = sklearn.utils.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
@@ -326,8 +326,8 @@ namespace ScikitLearn
                 if (estimator != null)
                     pyDict["estimator"] = Helpers.ToPython(estimator);
                 PyTuple result = new PyTuple(sklearn.utils.self.InvokeMethod("check_X_y", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpPyObject(result[0]) : null, length > 1 ? Helpers.ToCSharpPyObject(result[1]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpPyObject(result[0]) : null, __length > 1 ? Helpers.ToCSharpPyObject(result[1]) : null);
             }
 
             public static PyObject check_array(PyObject array, bool accept_sparse = false, bool accept_large_sparse = true, string? dtype = "numeric", PyObject? order = null, bool copy = false, bool force_writeable = false, bool force_all_finite = true, bool ensure_2d = true, bool allow_nd = false, int ensure_min_samples = 1, int ensure_min_features = 1, string? estimator = null, string input_name = "")
@@ -658,7 +658,7 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(sklearn.utils.extmath.self.InvokeMethod("randomized_range_finder", args, pyDict));
                 }
 
-                public static (NDarray? , NDarray? , NDarray? ) randomized_svd(NDarray M, int n_components, int n_oversamples = 10, string n_iter = "auto", string power_iteration_normalizer = "auto", string transpose = "auto", bool flip_sign = true, int? random_state = null, string svd_lapack_driver = "gesdd")
+                public static (NDarray?, NDarray?, NDarray?) randomized_svd(NDarray M, int n_components, int n_oversamples = 10, string n_iter = "auto", string power_iteration_normalizer = "auto", string transpose = "auto", bool flip_sign = true, int? random_state = null, string svd_lapack_driver = "gesdd")
                 {
                     _ = sklearn.utils.extmath.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(M), Helpers.ToPython(n_components)]);
@@ -678,8 +678,8 @@ namespace ScikitLearn
                     if (svd_lapack_driver != "gesdd")
                         pyDict["svd_lapack_driver"] = Helpers.ToPython(svd_lapack_driver);
                     PyTuple result = new PyTuple(sklearn.utils.extmath.self.InvokeMethod("randomized_svd", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
                 }
 
                 public static NDarray safe_sparse_dot(NDarray a, NDarray b, bool dense_output = false)
@@ -692,7 +692,7 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(sklearn.utils.extmath.self.InvokeMethod("safe_sparse_dot", args, pyDict));
                 }
 
-                public static (NDarray? , NDarray? ) weighted_mode(NDarray a, NDarray w, int axis = 0)
+                public static (NDarray?, NDarray?) weighted_mode(NDarray a, NDarray w, int axis = 0)
                 {
                     _ = sklearn.utils.extmath.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(a), Helpers.ToPython(w)]);
@@ -700,8 +700,8 @@ namespace ScikitLearn
                     if (axis != 0)
                         pyDict["axis"] = Helpers.ToPython(axis);
                     PyTuple result = new PyTuple(sklearn.utils.extmath.self.InvokeMethod("weighted_mode", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
             }
 
@@ -1197,7 +1197,7 @@ namespace ScikitLearn
                     ReInitializeLazySelf();
                 }
 
-                public static (NDarray? , NDarray? , NDarray? ) incr_mean_variance_axis(NDarray X, PyObject axis, NDarray last_mean, NDarray last_var, NDarray last_n, NDarray? weights = null)
+                public static (NDarray?, NDarray?, NDarray?) incr_mean_variance_axis(NDarray X, PyObject axis, NDarray last_mean, NDarray last_var, NDarray last_n, NDarray? weights = null)
                 {
                     _ = sklearn.utils.sparsefuncs.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(axis), Helpers.ToPython(last_mean), Helpers.ToPython(last_var), Helpers.ToPython(last_n)]);
@@ -1205,8 +1205,8 @@ namespace ScikitLearn
                     if (weights != null)
                         pyDict["weights"] = Helpers.ToPython(weights);
                     PyTuple result = new PyTuple(sklearn.utils.sparsefuncs.self.InvokeMethod("incr_mean_variance_axis", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
                 }
 
                 public static void inplace_column_scale(NDarray X, NDarray scale)
@@ -1249,7 +1249,7 @@ namespace ScikitLearn
                     sklearn.utils.sparsefuncs.self.InvokeMethod("inplace_swap_row", args, pyDict);
                 }
 
-                public static (NDarray? , NDarray? , NDarray? ) mean_variance_axis(NDarray X, PyObject axis, NDarray? weights = null, bool return_sum_weights = false)
+                public static (NDarray?, NDarray?, NDarray?) mean_variance_axis(NDarray X, PyObject axis, NDarray? weights = null, bool return_sum_weights = false)
                 {
                     _ = sklearn.utils.sparsefuncs.self;
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(axis)]);
@@ -1259,8 +1259,8 @@ namespace ScikitLearn
                     if (return_sum_weights != false)
                         pyDict["return_sum_weights"] = Helpers.ToPython(return_sum_weights);
                     PyTuple result = new PyTuple(sklearn.utils.sparsefuncs.self.InvokeMethod("mean_variance_axis", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
                 }
             }
 

@@ -249,8 +249,8 @@ namespace ScikitLearn
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                 PyTuple result = new PyTuple(sklearn.metrics.self.InvokeMethod("det_curve", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
             }
 
             public static NDarray f1_score(NDarray y_true, NDarray y_pred, NDarray? labels = null, int pos_label = 1, string? average = "binary", NDarray? sample_weight = null, string zero_division = "warn")
@@ -397,8 +397,8 @@ namespace ScikitLearn
                 if (probas_pred != "deprecated")
                     pyDict["probas_pred"] = Helpers.ToPython(probas_pred);
                 PyTuple result = new PyTuple(sklearn.metrics.self.InvokeMethod("precision_recall_curve", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
             }
 
             public static (NDarray?, NDarray?, NDarray?, NDarray?) precision_recall_fscore_support(NDarray y_true, NDarray y_pred, float beta = 1.0f, NDarray? labels = null, int pos_label = 1, PyObject? average = null, PyTuple? warn_for = null, NDarray? sample_weight = null, string zero_division = "warn")
@@ -421,8 +421,8 @@ namespace ScikitLearn
                 if (zero_division != "warn")
                     pyDict["zero_division"] = Helpers.ToPython(zero_division);
                 PyTuple result = new PyTuple(sklearn.metrics.self.InvokeMethod("precision_recall_fscore_support", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, length > 3 ? Helpers.ToCSharpNDarray(result[3]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpNDarray(result[3]) : null);
             }
 
             public static NDarray? precision_score(NDarray y_true, NDarray y_pred, NDarray? labels = null, int pos_label = 1, string? average = "binary", NDarray? sample_weight = null, string zero_division = "warn")
@@ -491,8 +491,8 @@ namespace ScikitLearn
                 if (drop_intermediate != true)
                     pyDict["drop_intermediate"] = Helpers.ToPython(drop_intermediate);
                 PyTuple result = new PyTuple(sklearn.metrics.self.InvokeMethod("roc_curve", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
             }
 
             public static float top_k_accuracy_score(NDarray y_true, NDarray y_score, int k = 2, bool normalize = true, NDarray? sample_weight = null, NDarray? labels = null)
@@ -821,8 +821,8 @@ namespace ScikitLearn
                 if (beta != 1.0f)
                     pyDict["beta"] = Helpers.ToPython(beta);
                 PyTuple result = new PyTuple(sklearn.metrics.self.InvokeMethod("homogeneity_completeness_v_measure", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpFloat(result[0]) : null, length > 1 ? Helpers.ToCSharpFloat(result[1]) : null, length > 2 ? Helpers.ToCSharpFloat(result[2]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpFloat(result[0]) : null, __length > 1 ? Helpers.ToCSharpFloat(result[1]) : null, __length > 2 ? Helpers.ToCSharpFloat(result[2]) : null);
             }
 
             public static float homogeneity_score(NDarray labels_true, NDarray labels_pred)
@@ -986,8 +986,8 @@ namespace ScikitLearn
                 if (metric_kwargs != null)
                     pyDict["metric_kwargs"] = Helpers.ToPython(metric_kwargs);
                 PyTuple result = new PyTuple(sklearn.metrics.self.InvokeMethod("pairwise_distances_argmin_min", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
             public static NDarray pairwise_distances_chunked(NDarray X, NDarray? Y = null, PyObject? reduce_func = null, string metric = "euclidean", int? n_jobs = null, float? working_memory = null, Dictionary<string, PyObject>? @params = null)

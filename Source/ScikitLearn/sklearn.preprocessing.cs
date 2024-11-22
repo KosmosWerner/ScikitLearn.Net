@@ -2346,7 +2346,7 @@ namespace ScikitLearn
                 return Helpers.ToCSharpNDarray(sklearn.preprocessing.self.InvokeMethod("minmax_scale", args, pyDict));
             }
 
-            public static (NDarray? , NDarray? ) normalize(NDarray X, string norm = "l2", int axis = 1, bool copy = true, bool return_norm = false)
+            public static (NDarray?, NDarray?) normalize(NDarray X, string norm = "l2", int axis = 1, bool copy = true, bool return_norm = false)
             {
                 _ = sklearn.preprocessing.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
@@ -2360,8 +2360,8 @@ namespace ScikitLearn
                 if (return_norm != false)
                     pyDict["return_norm"] = Helpers.ToPython(return_norm);
                 PyTuple result = new PyTuple(sklearn.preprocessing.self.InvokeMethod("normalize", args, pyDict));
-                var length = result.Length();
-                return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                var __length = result.Length();
+                return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
             public static NDarray power_transform(NDarray X, string method = "yeo-johnson", bool standardize = true, bool copy = true)

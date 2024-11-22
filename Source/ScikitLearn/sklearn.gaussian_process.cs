@@ -110,7 +110,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (float? , NDarray? ) log_marginal_likelihood(NDarray? theta = null, bool eval_gradient = false, bool clone_kernel = true)
+                public (float?, NDarray?) log_marginal_likelihood(NDarray? theta = null, bool eval_gradient = false, bool clone_kernel = true)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
@@ -121,8 +121,8 @@ namespace ScikitLearn
                     if (clone_kernel != true)
                         pyDict["clone_kernel"] = Helpers.ToPython(clone_kernel);
                     PyTuple result = new PyTuple(self.InvokeMethod("log_marginal_likelihood", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpFloat(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpFloat(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public NDarray predict(PyObject X)
@@ -239,7 +239,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (float? , NDarray? ) log_marginal_likelihood(NDarray? theta = null, bool eval_gradient = false, bool clone_kernel = true)
+                public (float?, NDarray?) log_marginal_likelihood(NDarray? theta = null, bool eval_gradient = false, bool clone_kernel = true)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
@@ -250,11 +250,11 @@ namespace ScikitLearn
                     if (clone_kernel != true)
                         pyDict["clone_kernel"] = Helpers.ToPython(clone_kernel);
                     PyTuple result = new PyTuple(self.InvokeMethod("log_marginal_likelihood", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpFloat(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpFloat(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
-                public (NDarray? , NDarray? , NDarray? ) predict(PyObject X, bool return_std = false, bool return_cov = false)
+                public (NDarray?, NDarray?, NDarray?) predict(PyObject X, bool return_std = false, bool return_cov = false)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -263,8 +263,8 @@ namespace ScikitLearn
                     if (return_cov != false)
                         pyDict["return_cov"] = Helpers.ToPython(return_cov);
                     PyTuple result = new PyTuple(self.InvokeMethod("predict", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
                 }
 
                 public NDarray sample_y(PyObject X, int n_samples = 1, int? random_state = 0)

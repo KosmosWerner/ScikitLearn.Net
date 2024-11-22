@@ -129,7 +129,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray? , NDarray? ) inverse_transform(NDarray X, NDarray? y = null, NDarray? Y = null)
+                public (NDarray?, NDarray?) inverse_transform(NDarray X, NDarray? y = null, NDarray? Y = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -138,8 +138,8 @@ namespace ScikitLearn
                     if (Y != null)
                         pyDict["Y"] = Helpers.ToPython(Y);
                     PyTuple result = new PyTuple(self.InvokeMethod("inverse_transform", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public NDarray predict(NDarray X, bool copy = true)
@@ -316,7 +316,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray? , NDarray? ) inverse_transform(NDarray X, NDarray? y = null, NDarray? Y = null)
+                public (NDarray?, NDarray?) inverse_transform(NDarray X, NDarray? y = null, NDarray? Y = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -325,8 +325,8 @@ namespace ScikitLearn
                     if (Y != null)
                         pyDict["Y"] = Helpers.ToPython(Y);
                     PyTuple result = new PyTuple(self.InvokeMethod("inverse_transform", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public NDarray predict(NDarray X, bool copy = true)
@@ -503,7 +503,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray? , NDarray? ) inverse_transform(NDarray X, NDarray? y = null, NDarray? Y = null)
+                public (NDarray?, NDarray?) inverse_transform(NDarray X, NDarray? y = null, NDarray? Y = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -512,8 +512,8 @@ namespace ScikitLearn
                     if (Y != null)
                         pyDict["Y"] = Helpers.ToPython(Y);
                     PyTuple result = new PyTuple(self.InvokeMethod("inverse_transform", args, pyDict));
-                    var length = result.Length();
-                    return (length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
+                    var __length = result.Length();
+                    return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
                 public NDarray predict(NDarray X, bool copy = true)

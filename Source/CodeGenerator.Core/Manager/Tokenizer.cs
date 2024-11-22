@@ -1,6 +1,6 @@
 ﻿namespace CodeGenerator.Core.Manager;
 
-public static class MapperTypes
+public static class Tokenizer
 {
     public static EntityType GetEntityType(HtmlContainer entity)
     {
@@ -23,7 +23,7 @@ public static class MapperTypes
     // Value = string.empty : No default
     // Value = null : default Null
     // Value != null : default any
-    public static List<(string Type, string Name, string? Value)> GetParameters(string[] declarationParameters, string[] documentedParameters)
+    public static List<(string Type, string Name, string? Value)>[] GetParameters(string[] declarationParameters, string[] documentedParameters)
     {
         // bool is_arg = true;
         Dictionary<string, string> method_args = [];
@@ -56,7 +56,7 @@ public static class MapperTypes
                 string paramName = parts[0].Split(':', StringSplitOptions.TrimEntries)[0]; //sample_weight: bool | None | str = '$UNCHANGED$'
                 string paramDefault = parts[1];
 
-                var (value, type) = TextAnalyzer.Fix.TryGetDefaultValue(paramDefault);
+                var value = TypeAnalyzer.TryGetDefaultValue(paramDefault, out string type);
                 method_kw[paramName] = value;
 
                 // Save reservedNames with nullableType deducible type
@@ -97,11 +97,11 @@ public static class MapperTypes
             {
                 if (method_args.TryGetValue(parameterName, out string? value_arg))
                 {
-                    param_types[parameterName] = TextAnalyzer.Fix.ParamTypeFromNonDeducible(parameterContent, value_arg == null);
+                    param_types[parameterName] = TypeAnalyzer.ParamTypeFromNonDeducible(parameterContent, value_arg == null);
                 }
                 else if (method_kw.TryGetValue(parameterName, out string? value_kw))
                 {
-                    param_types[parameterName] = TextAnalyzer.Fix.ParamTypeFromNonDeducible(parameterContent, value_arg == null);
+                    param_types[parameterName] = TypeAnalyzer.ParamTypeFromNonDeducible(parameterContent, value_arg == null);
                 }
             }
         }
@@ -122,7 +122,7 @@ public static class MapperTypes
             }
         }
 
-        return result;
+        return [result];
     }
 
     public static List<(string Type, string Name)> GetAttributes(List<string> plainAttributes)
@@ -134,7 +134,7 @@ public static class MapperTypes
         {
             var (name, rawType, _) = TextAnalyzer.Divide.FromDefinition(item);
 
-            if (TextAnalyzer.Fix.TryGetReturnType(rawType, out string? type))
+            if (TypeAnalyzer.TryGetReturnType(rawType, out string? type))
             {
                 result.Add((type, name));
             }
@@ -153,25 +153,30 @@ public static class MapperTypes
         plainReturns = plainReturns.Where(x => !x.StartsWith(':')).ToList();
 
         if (plainReturns.Count == 0) return string.Empty;
-        if (plainReturns.Count == 1) return GetType(plainReturns[0]);
+        if (plainReturns.Count == 1)
+        {
+
+            return GetType(plainReturns[0]);
+        }
         else
         {
-            var items = plainReturns.Select(GetType).ToArray();
+            var items = plainReturns.Select(x => $"{GetType(x)}?").ToArray();
             return $"({string.Join(',', items)})";
         }
     }
 
     private static string GetType(string plainReturn)
     {
+        if (plainReturn.Contains("tuple if")) return $"PyTuple";
         if (plainReturn.Contains("self", StringComparison.OrdinalIgnoreCase)) return "this";
         if (plainReturn.Contains("None", StringComparison.OrdinalIgnoreCase))
         {
-            if (TextAnalyzer.Fix.TryGetReturnType(plainReturn, out string? nullableType))
+            if (TypeAnalyzer.TryGetReturnType(plainReturn, out string? nullableType))
                 return nullableType + "?";
             else return string.Empty;
         }
 
-        if (TextAnalyzer.Fix.TryGetReturnType(plainReturn, out string? type))
+        if (TypeAnalyzer.TryGetReturnType(plainReturn, out string? type))
             return type;
         else return "PyObject";
     }

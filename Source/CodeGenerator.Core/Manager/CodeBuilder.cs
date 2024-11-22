@@ -1,7 +1,9 @@
 ﻿using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.ComponentModel;
 using System.Reflection;
+using System.Xml.Linq;
 
 namespace CodeGenerator.Core.Manager;
 
@@ -168,13 +170,12 @@ public static partial class CodeBuilder
         var (_, fullName, rawParameters) = TextAnalyzer.Divide.FromDeclaration(entity.Declaration);
         var (className, callableStaticClass) = TextAnalyzer.Divide.FromFullName(fullName);
 
-        string[] declaredParams = TextAnalyzer.Divide.PlainParameters(rawParameters);
+        string[] declaredParams = TextAnalyzer.Divide.FromRawParameters(rawParameters);
         string[] documentedParams = [.. entity.Parameters];
 
         // Principal constructor
         {
-            // Future
-            List<(string Type, string Name, string? Value)>[] mappedParameters = [MapperTypes.GetParameters(declaredParams, documentedParams)];
+            List<(string Type, string Name, string? Value)>[] mappedParameters = Tokenizer.GetParameters(declaredParams, documentedParams);
             foreach (var parameters in mappedParameters)
             {
                 var parameterList = Helpers.ParametersList(parameters);
@@ -190,9 +191,9 @@ public static partial class CodeBuilder
 
         // Internal Constructor
         {
-            var statement = Create.Statement("self = pyObject;");
+            var statement = Create.Statements([$"_ = {TextAnalyzer.Fix.Reserved(callableStaticClass)}.self;", "self = pyObject;"]);
 
-            var constructor = Create.InternalConstructor(className, [pyObjectParam], [statement]);
+            var constructor = Create.InternalConstructor(className, [pyObjectParam], statement);
             @class = @class.AddMembers(constructor);
         }
 
@@ -207,7 +208,7 @@ public static partial class CodeBuilder
 
     private static void InsertProperties(ref ClassDeclarationSyntax classNode, EntityContainer entity)
     {
-        List<(string Type, string Name)> mappedAttributes = MapperTypes.GetAttributes(entity.Attributes);
+        List<(string Type, string Name)> mappedAttributes = Tokenizer.GetAttributes(entity.Attributes);
 
         foreach (var prop in mappedAttributes)
         {
@@ -245,15 +246,14 @@ public static partial class CodeBuilder
 
     private static void InsertMethod(ref ClassDeclarationSyntax currentClass, EntityMethodContainer methodEntity, string className)
     {
-        var (_, methodName, plainParameters) = TextAnalyzer.Divide.FromDeclaration(methodEntity.Declaration);
+        var (_, methodName, rawParameters) = TextAnalyzer.Divide.FromDeclaration(methodEntity.Declaration);
         if (methodName.StartsWith("__")) return; // Omitir __call__ o similares
 
-        string[] declaredParams = TextAnalyzer.Divide.PlainParameters(plainParameters);
+        string[] declaredParams = TextAnalyzer.Divide.FromRawParameters(rawParameters);
         string[] documentedParams = [.. methodEntity.Parameters];
 
-        // Future
-        List<(string Type, string Name, string? Value)>[] mappedParameters = [MapperTypes.GetParameters(declaredParams, documentedParams)];
-        string returnType = MapperTypes.GetReturn(methodEntity.Returns);
+        List<(string Type, string Name, string? Value)>[] mappedParameters = Tokenizer.GetParameters(declaredParams, documentedParams);
+        string returnType = Tokenizer.GetReturn(methodEntity.Returns);
 
         foreach (var parameters in mappedParameters)
         {
@@ -299,12 +299,11 @@ public static partial class CodeBuilder
         var (_, fullName, rawParameters) = TextAnalyzer.Divide.FromDeclaration(entity.Declaration);
         var (methodName, callableStaticClass) = TextAnalyzer.Divide.FromFullName(fullName);
 
-        string[] declaredParams = TextAnalyzer.Divide.PlainParameters(rawParameters);
+        string[] declaredParams = TextAnalyzer.Divide.FromRawParameters(rawParameters);
         string[] documentedParams = [.. entity.Parameters];
 
-        // Future
-        List<(string Type, string Name, string? Value)>[] mappedParameters = [MapperTypes.GetParameters(declaredParams, documentedParams)];
-        string returnType = MapperTypes.GetReturn(entity.Returns);
+        List<(string Type, string Name, string? Value)>[] mappedParameters = Tokenizer.GetParameters(declaredParams, documentedParams);
+        string returnType = Tokenizer.GetReturn(entity.Returns);
 
         foreach (var parameters in mappedParameters)
         {
@@ -357,6 +356,11 @@ public static partial class CodeBuilder
             string? returnType = null)
         {
             List<string> statements = [];
+
+            if (callableStaticClass != null)
+            {
+                statements.Add($"_ = {TextAnalyzer.Fix.Reserved(callableStaticClass)}.self;");
+            }
 
             // Argumentos sin valor por defecto
             {
@@ -416,8 +420,8 @@ public static partial class CodeBuilder
                             int index = 0;
                             string[] types = TextAnalyzer.Divide.FromRawTuple(returnType);
                             statements.Add($"PyTuple result = new PyTuple({callable}.InvokeMethod(\"{name}\", args, pyDict));");
-
-                            var items = types.Select(type => $"Helpers.ToCSharp{ToUpperName(type)}(result[{index++}])");
+                            statements.Add("var __length = result.Length();");
+                            var items = types.Select(type => $"__length > {index} ? Helpers.ToCSharp{ToUpperName(type).TrimEnd('?')}(result[{index++}]) : null");
                             statements.Add($"return ({string.Join(',', items)});");
                         }
                         else
@@ -431,7 +435,7 @@ public static partial class CodeBuilder
                                 if (returnType.StartsWith("Py"))
                                     statements.Add($"return new {returnType}({callable}.InvokeMethod(\"{name}\", args, pyDict));");
                                 else
-                                    statements.Add($"return Helpers.ToCSharp{ToUpperName(returnType)}({callable}.InvokeMethod(\"{name}\", args, pyDict));");
+                                    statements.Add($"return Helpers.ToCSharp{ToUpperName(returnType).TrimEnd('?')}({callable}.InvokeMethod(\"{name}\", args, pyDict));");
                             }
                         }
                         break;

@@ -6,7 +6,7 @@ public class EntityContainer
 
     public EntityContainer(HtmlContainer htmlContainer)
     {
-        NodeType = MapperTypes.GetEntityType(htmlContainer);
+        NodeType = Tokenizer.GetEntityType(htmlContainer);
 
         Declaration = htmlContainer.Declaration ?? string.Empty;
         Declaration = TextAnalyzer.Fix.RawText(Declaration); // Fix json Format

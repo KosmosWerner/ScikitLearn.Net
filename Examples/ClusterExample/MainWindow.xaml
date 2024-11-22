@@ -109,7 +109,7 @@
                     <Slider x:Name="slEps"
                             IsEnabled="{Binding ElementName=boolDBSCAN, Path=IsChecked}"
                             Minimum="0.25"
-                            Value="2.5"
+                            Value="1.5"
                             Maximum="4"
                             IsSnapToTickEnabled="True"
                             TickFrequency="0.25" />
@@ -121,7 +121,7 @@
                     <Slider x:Name="slMinSamples"
                             IsEnabled="{Binding ElementName=boolDBSCAN, Path=IsChecked}"
                             Minimum="1"
-                            Value="15"
+                            Value="10"
                             Maximum="20"
                             IsSnapToTickEnabled="True"
                             TickFrequency="1" />
@@ -163,7 +163,7 @@
                     <Slider x:Name="slBandWidth"
                             IsEnabled="{Binding ElementName=boolMeanShift, Path=IsChecked}"
                             Minimum="1"
-                            Value="2"
+                            Value="5"
                             Maximum="20"
                             IsSnapToTickEnabled="True"
                             TickFrequency="1" />

@@ -31,7 +31,7 @@ namespace ExampleCluster
             Task.Run(InitializeInstallerAsync).Wait();
             GenerateRandomPoints();
             GenerateRandomGroups();
-            GenerateRanomCircles();
+            GenerateRandomCircles();
         }
 
         private void MainWindow_Closed(object? sender, EventArgs e)
@@ -67,44 +67,25 @@ namespace ExampleCluster
 
         public void GenerateRandomGroups()
         {
-            int count = 300;
-            coordinates2x = new double[count];
-            coordinates2y = new double[count];
-
-            for (int i = 0; i < 4; i++)
-            {
-                double x = -7.5 + random.NextDouble() * 15;
-                double y = -7.5 + random.NextDouble() * 15;
-
-                for (int j = i * 75; j < i * 75 + 75; j++)
-                {
-                    double angle = 2 * random.NextDouble() * Math.PI;
-                    coordinates2x[j] = x + random.NextDouble() * 5 * Math.Cos(angle);
-                    coordinates2y[j] = y + random.NextDouble() * 5 * Math.Sin(angle);
-                }
-            }
+            (var X, _, _) = sklearn.datasets.make_blobs(n_samples: 1500, cluster_std: 2f);
+            if (X == null) return;
+            NDarray xs = X[":,0"];
+            NDarray ys = X[":,1"];
+            coordinates2x = xs.GetData<double>();
+            coordinates2y = ys.GetData<double>();
 
             PlotRandomPoints(coordinates2x, coordinates2y, plotDbcan2, plotOptics2, plotMean2);
         }
 
-        public void GenerateRanomCircles()
+        public void GenerateRandomCircles()
         {
-            coordinates3x = new double[400];
-            coordinates3y = new double[400];
-
-            for (int i = 0; i < 100; i++)
-            {
-                double angle = 2 * random.NextDouble() * Math.PI;
-                coordinates3x[i] = (1 + random.NextDouble() * 1) * Math.Cos(angle);
-                coordinates3y[i] = (1 + random.NextDouble() * 1) * Math.Sin(angle);
-            }
-
-            for (int i = 100; i < 400; i++)
-            {
-                double angle = 2 * random.NextDouble() * Math.PI;
-                coordinates3x[i] = (10 + random.NextDouble() * 2) * Math.Cos(angle);
-                coordinates3y[i] = (10 + random.NextDouble() * 2) * Math.Sin(angle);
-            }
+            (var X, _) = sklearn.datasets.make_circles(n_samples: 1500, noise: 0.05f, factor: 0.5f);
+            if (X == null) return;
+            X = X * 10;
+            NDarray xs = X[":,0"];
+            NDarray ys = X[":,1"];
+            coordinates3x = xs.GetData<double>();
+            coordinates3y = ys.GetData<double>();
 
             PlotRandomPoints(coordinates3x, coordinates3y, plotDbcan3, plotOptics3, plotMean3);
         }
@@ -113,7 +94,7 @@ namespace ExampleCluster
         {
             GenerateRandomPoints();
             GenerateRandomGroups();
-            GenerateRanomCircles();
+            GenerateRandomCircles();
         }
 
         private void ClassifyBDSCAN(double[] _xs, double[] _ys, WpfPlot plot)

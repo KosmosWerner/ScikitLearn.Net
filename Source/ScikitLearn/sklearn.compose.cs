@@ -51,7 +51,7 @@ namespace ScikitLearn
                     if (sparse_threshold != 0.3f)
                         pyDict["sparse_threshold"] = Helpers.ToPython(sparse_threshold);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (transformer_weights != null)
                         pyDict["transformer_weights"] = Helpers.ToPython(transformer_weights);
                     if (verbose != false)
@@ -284,7 +284,7 @@ namespace ScikitLearn
                 if (sparse_threshold != 0.3f)
                     pyDict["sparse_threshold"] = Helpers.ToPython(sparse_threshold);
                 if (n_jobs != null)
-                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                 if (verbose != false)
                     pyDict["verbose"] = Helpers.ToPython(verbose);
                 if (verbose_feature_names_out != true)

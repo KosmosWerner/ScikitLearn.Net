@@ -47,7 +47,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != null)
-                        pyDict["n_components"] = Helpers.ToPython(n_components.Value);
+                        pyDict["n_components"] = Helpers.ToPython(n_components);
                     if (alpha != 1)
                         pyDict["alpha"] = Helpers.ToPython(alpha);
                     if (max_iter != 1000)
@@ -59,11 +59,11 @@ namespace ScikitLearn
                     if (transform_algorithm != "omp")
                         pyDict["transform_algorithm"] = Helpers.ToPython(transform_algorithm);
                     if (transform_n_nonzero_coefs != null)
-                        pyDict["transform_n_nonzero_coefs"] = Helpers.ToPython(transform_n_nonzero_coefs.Value);
+                        pyDict["transform_n_nonzero_coefs"] = Helpers.ToPython(transform_n_nonzero_coefs);
                     if (transform_alpha != null)
-                        pyDict["transform_alpha"] = Helpers.ToPython(transform_alpha.Value);
+                        pyDict["transform_alpha"] = Helpers.ToPython(transform_alpha);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (code_init != null)
                         pyDict["code_init"] = Helpers.ToPython(code_init);
                     if (dict_init != null)
@@ -75,7 +75,7 @@ namespace ScikitLearn
                     if (split_sign != false)
                         pyDict["split_sign"] = Helpers.ToPython(split_sign);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (positive_code != false)
                         pyDict["positive_code"] = Helpers.ToPython(positive_code);
                     if (positive_dict != false)
@@ -178,7 +178,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != null)
-                        pyDict["n_components"] = Helpers.ToPython(n_components.Value);
+                        pyDict["n_components"] = Helpers.ToPython(n_components);
                     if (tol != 0.01f)
                         pyDict["tol"] = Helpers.ToPython(tol);
                     if (copy != true)
@@ -325,7 +325,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != null)
-                        pyDict["n_components"] = Helpers.ToPython(n_components.Value);
+                        pyDict["n_components"] = Helpers.ToPython(n_components);
                     if (algorithm != "parallel")
                         pyDict["algorithm"] = Helpers.ToPython(algorithm);
                     if (whiten != "unit-variance")
@@ -343,7 +343,7 @@ namespace ScikitLearn
                     if (whiten_solver != "svd")
                         pyDict["whiten_solver"] = Helpers.ToPython(whiten_solver);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.decomposition.self.InvokeMethod("FastICA", args, pyDict);
                 }
 
@@ -473,13 +473,13 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != null)
-                        pyDict["n_components"] = Helpers.ToPython(n_components.Value);
+                        pyDict["n_components"] = Helpers.ToPython(n_components);
                     if (whiten != false)
                         pyDict["whiten"] = Helpers.ToPython(whiten);
                     if (copy != true)
                         pyDict["copy"] = Helpers.ToPython(copy);
                     if (batch_size != null)
-                        pyDict["batch_size"] = Helpers.ToPython(batch_size.Value);
+                        pyDict["batch_size"] = Helpers.ToPython(batch_size);
                     self = sklearn.decomposition.self.InvokeMethod("IncrementalPCA", args, pyDict);
                 }
 
@@ -628,11 +628,11 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != null)
-                        pyDict["n_components"] = Helpers.ToPython(n_components.Value);
+                        pyDict["n_components"] = Helpers.ToPython(n_components);
                     if (kernel != "linear")
                         pyDict["kernel"] = Helpers.ToPython(kernel);
                     if (gamma != null)
-                        pyDict["gamma"] = Helpers.ToPython(gamma.Value);
+                        pyDict["gamma"] = Helpers.ToPython(gamma);
                     if (degree != 3)
                         pyDict["degree"] = Helpers.ToPython(degree);
                     if (coef0 != 1)
@@ -648,17 +648,17 @@ namespace ScikitLearn
                     if (tol != 0)
                         pyDict["tol"] = Helpers.ToPython(tol);
                     if (max_iter != null)
-                        pyDict["max_iter"] = Helpers.ToPython(max_iter.Value);
+                        pyDict["max_iter"] = Helpers.ToPython(max_iter);
                     if (iterated_power != "auto")
                         pyDict["iterated_power"] = Helpers.ToPython(iterated_power);
                     if (remove_zero_eig != false)
                         pyDict["remove_zero_eig"] = Helpers.ToPython(remove_zero_eig);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (copy_X != true)
                         pyDict["copy_X"] = Helpers.ToPython(copy_X);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     self = sklearn.decomposition.self.InvokeMethod("KernelPCA", args, pyDict);
                 }
 
@@ -769,9 +769,9 @@ namespace ScikitLearn
                     if (n_components != 10)
                         pyDict["n_components"] = Helpers.ToPython(n_components);
                     if (doc_topic_prior != null)
-                        pyDict["doc_topic_prior"] = Helpers.ToPython(doc_topic_prior.Value);
+                        pyDict["doc_topic_prior"] = Helpers.ToPython(doc_topic_prior);
                     if (topic_word_prior != null)
-                        pyDict["topic_word_prior"] = Helpers.ToPython(topic_word_prior.Value);
+                        pyDict["topic_word_prior"] = Helpers.ToPython(topic_word_prior);
                     if (learning_method != "batch")
                         pyDict["learning_method"] = Helpers.ToPython(learning_method);
                     if (learning_decay != 0.7f)
@@ -793,11 +793,11 @@ namespace ScikitLearn
                     if (max_doc_update_iter != 100)
                         pyDict["max_doc_update_iter"] = Helpers.ToPython(max_doc_update_iter);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (verbose != 0)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.decomposition.self.InvokeMethod("LatentDirichletAllocation", args, pyDict);
                 }
 
@@ -927,7 +927,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != null)
-                        pyDict["n_components"] = Helpers.ToPython(n_components.Value);
+                        pyDict["n_components"] = Helpers.ToPython(n_components);
                     if (alpha != 1)
                         pyDict["alpha"] = Helpers.ToPython(alpha);
                     if (max_iter != 1000)
@@ -935,7 +935,7 @@ namespace ScikitLearn
                     if (fit_algorithm != "lars")
                         pyDict["fit_algorithm"] = Helpers.ToPython(fit_algorithm);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (batch_size != 256)
                         pyDict["batch_size"] = Helpers.ToPython(batch_size);
                     if (shuffle != true)
@@ -945,15 +945,15 @@ namespace ScikitLearn
                     if (transform_algorithm != "omp")
                         pyDict["transform_algorithm"] = Helpers.ToPython(transform_algorithm);
                     if (transform_n_nonzero_coefs != null)
-                        pyDict["transform_n_nonzero_coefs"] = Helpers.ToPython(transform_n_nonzero_coefs.Value);
+                        pyDict["transform_n_nonzero_coefs"] = Helpers.ToPython(transform_n_nonzero_coefs);
                     if (transform_alpha != null)
-                        pyDict["transform_alpha"] = Helpers.ToPython(transform_alpha.Value);
+                        pyDict["transform_alpha"] = Helpers.ToPython(transform_alpha);
                     if (verbose != false)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (split_sign != false)
                         pyDict["split_sign"] = Helpers.ToPython(split_sign);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (positive_code != false)
                         pyDict["positive_code"] = Helpers.ToPython(positive_code);
                     if (positive_dict != false)
@@ -1100,9 +1100,9 @@ namespace ScikitLearn
                     if (fresh_restarts_max_iter != 30)
                         pyDict["fresh_restarts_max_iter"] = Helpers.ToPython(fresh_restarts_max_iter);
                     if (transform_max_iter != null)
-                        pyDict["transform_max_iter"] = Helpers.ToPython(transform_max_iter.Value);
+                        pyDict["transform_max_iter"] = Helpers.ToPython(transform_max_iter);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (verbose != 0)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     self = sklearn.decomposition.self.InvokeMethod("MiniBatchNMF", args, pyDict);
@@ -1232,7 +1232,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != null)
-                        pyDict["n_components"] = Helpers.ToPython(n_components.Value);
+                        pyDict["n_components"] = Helpers.ToPython(n_components);
                     if (alpha != 1)
                         pyDict["alpha"] = Helpers.ToPython(alpha);
                     if (ridge_alpha != 0.01f)
@@ -1248,15 +1248,15 @@ namespace ScikitLearn
                     if (shuffle != true)
                         pyDict["shuffle"] = Helpers.ToPython(shuffle);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (method != "lars")
                         pyDict["method"] = Helpers.ToPython(method);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (tol != 0.001f)
                         pyDict["tol"] = Helpers.ToPython(tol);
                     if (max_no_improvement != 10)
-                        pyDict["max_no_improvement"] = Helpers.ToPython(max_no_improvement.Value);
+                        pyDict["max_no_improvement"] = Helpers.ToPython(max_no_improvement);
                     self = sklearn.decomposition.self.InvokeMethod("MiniBatchSparsePCA", args, pyDict);
                 }
 
@@ -1377,7 +1377,7 @@ namespace ScikitLearn
                     if (max_iter != 200)
                         pyDict["max_iter"] = Helpers.ToPython(max_iter);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (alpha_W != 0.0f)
                         pyDict["alpha_W"] = Helpers.ToPython(alpha_W);
                     if (alpha_H != "same")
@@ -1502,7 +1502,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != null)
-                        pyDict["n_components"] = Helpers.ToPython(n_components.Value);
+                        pyDict["n_components"] = Helpers.ToPython(n_components);
                     if (copy != true)
                         pyDict["copy"] = Helpers.ToPython(copy);
                     if (whiten != false)
@@ -1518,7 +1518,7 @@ namespace ScikitLearn
                     if (power_iteration_normalizer != "auto")
                         pyDict["power_iteration_normalizer"] = Helpers.ToPython(power_iteration_normalizer);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.decomposition.self.InvokeMethod("PCA", args, pyDict);
                 }
 
@@ -1657,13 +1657,13 @@ namespace ScikitLearn
                     if (transform_algorithm != "omp")
                         pyDict["transform_algorithm"] = Helpers.ToPython(transform_algorithm);
                     if (transform_n_nonzero_coefs != null)
-                        pyDict["transform_n_nonzero_coefs"] = Helpers.ToPython(transform_n_nonzero_coefs.Value);
+                        pyDict["transform_n_nonzero_coefs"] = Helpers.ToPython(transform_n_nonzero_coefs);
                     if (transform_alpha != null)
-                        pyDict["transform_alpha"] = Helpers.ToPython(transform_alpha.Value);
+                        pyDict["transform_alpha"] = Helpers.ToPython(transform_alpha);
                     if (split_sign != false)
                         pyDict["split_sign"] = Helpers.ToPython(split_sign);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (positive_code != false)
                         pyDict["positive_code"] = Helpers.ToPython(positive_code);
                     if (transform_max_iter != 1000)
@@ -1766,7 +1766,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != null)
-                        pyDict["n_components"] = Helpers.ToPython(n_components.Value);
+                        pyDict["n_components"] = Helpers.ToPython(n_components);
                     if (alpha != 1)
                         pyDict["alpha"] = Helpers.ToPython(alpha);
                     if (ridge_alpha != 0.01f)
@@ -1778,7 +1778,7 @@ namespace ScikitLearn
                     if (method != "lars")
                         pyDict["method"] = Helpers.ToPython(method);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (U_init != null)
                         pyDict["U_init"] = Helpers.ToPython(U_init);
                     if (V_init != null)
@@ -1786,7 +1786,7 @@ namespace ScikitLearn
                     if (verbose != false)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.decomposition.self.InvokeMethod("SparsePCA", args, pyDict);
                 }
 
@@ -1906,7 +1906,7 @@ namespace ScikitLearn
                     if (power_iteration_normalizer != "auto")
                         pyDict["power_iteration_normalizer"] = Helpers.ToPython(power_iteration_normalizer);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (tol != 0.0f)
                         pyDict["tol"] = Helpers.ToPython(tol);
                     self = sklearn.decomposition.self.InvokeMethod("TruncatedSVD", args, pyDict);
@@ -2005,7 +2005,7 @@ namespace ScikitLearn
                 }
             }
 
-            public static (NDarray?, PyDict?, NDarray?, int?) dict_learning(NDarray X, int n_components, float alpha, int max_iter = 100, float tol = 1e-08f, string method = "lars", int? n_jobs = null, NDarray? dict_init = null, NDarray? code_init = null, PyObject? callback = null, bool verbose = false, int? random_state = null, bool return_n_iter = false, bool positive_dict = false, bool positive_code = false, int method_max_iter = 1000)
+            public static (NDarray? , PyDict? , NDarray? , int? ) dict_learning(NDarray X, int n_components, float alpha, int max_iter = 100, float tol = 1e-08f, string method = "lars", int? n_jobs = null, NDarray? dict_init = null, NDarray? code_init = null, PyObject? callback = null, bool verbose = false, int? random_state = null, bool return_n_iter = false, bool positive_dict = false, bool positive_code = false, int method_max_iter = 1000)
             {
                 _ = sklearn.decomposition.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(n_components), Helpers.ToPython(alpha)]);
@@ -2017,7 +2017,7 @@ namespace ScikitLearn
                 if (method != "lars")
                     pyDict["method"] = Helpers.ToPython(method);
                 if (n_jobs != null)
-                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                 if (dict_init != null)
                     pyDict["dict_init"] = Helpers.ToPython(dict_init);
                 if (code_init != null)
@@ -2027,7 +2027,7 @@ namespace ScikitLearn
                 if (verbose != false)
                     pyDict["verbose"] = Helpers.ToPython(verbose);
                 if (random_state != null)
-                    pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                    pyDict["random_state"] = Helpers.ToPython(random_state);
                 if (return_n_iter != false)
                     pyDict["return_n_iter"] = Helpers.ToPython(return_n_iter);
                 if (positive_dict != false)
@@ -2041,13 +2041,13 @@ namespace ScikitLearn
                 return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpPyDict(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpInt(result[3]) : null);
             }
 
-            public static (NDarray?, PyDict?, int?) dict_learning_online(NDarray X, int? n_components = 2, int alpha = 1, int max_iter = 100, bool return_code = true, NDarray? dict_init = null, PyObject? callback = null, int batch_size = 256, bool verbose = false, bool shuffle = true, int? n_jobs = null, string method = "lars", int? random_state = null, bool positive_dict = false, bool positive_code = false, int method_max_iter = 1000, float tol = 0.001f, int max_no_improvement = 10)
+            public static (NDarray? , PyDict? , int? ) dict_learning_online(NDarray X, int? n_components = 2, int alpha = 1, int max_iter = 100, bool return_code = true, NDarray? dict_init = null, PyObject? callback = null, int batch_size = 256, bool verbose = false, bool shuffle = true, int? n_jobs = null, string method = "lars", int? random_state = null, bool positive_dict = false, bool positive_code = false, int method_max_iter = 1000, float tol = 0.001f, int max_no_improvement = 10)
             {
                 _ = sklearn.decomposition.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
                 if (n_components != 2)
-                    pyDict["n_components"] = Helpers.ToPython(n_components.Value);
+                    pyDict["n_components"] = Helpers.ToPython(n_components);
                 if (alpha != 1)
                     pyDict["alpha"] = Helpers.ToPython(alpha);
                 if (max_iter != 100)
@@ -2065,11 +2065,11 @@ namespace ScikitLearn
                 if (shuffle != true)
                     pyDict["shuffle"] = Helpers.ToPython(shuffle);
                 if (n_jobs != null)
-                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                 if (method != "lars")
                     pyDict["method"] = Helpers.ToPython(method);
                 if (random_state != null)
-                    pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                    pyDict["random_state"] = Helpers.ToPython(random_state);
                 if (positive_dict != false)
                     pyDict["positive_dict"] = Helpers.ToPython(positive_dict);
                 if (positive_code != false)
@@ -2085,13 +2085,13 @@ namespace ScikitLearn
                 return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpPyDict(result[1]) : null, __length > 2 ? Helpers.ToCSharpInt(result[2]) : null);
             }
 
-            public static (NDarray?, NDarray?, NDarray?, NDarray?, int?) fastica(NDarray X, int? n_components = null, string algorithm = "parallel", string whiten = "unit-variance", string fun = "logcosh", PyDict? fun_args = null, int max_iter = 200, float tol = 0.0001f, NDarray? w_init = null, string whiten_solver = "svd", int? random_state = null, bool return_X_mean = false, bool compute_sources = true, bool return_n_iter = false)
+            public static (NDarray ?? ,  NDarray ? ,  NDarray ?? ,  NDarray ? ,  int ? )fastica(NDarray X, int? n_components = null, string algorithm = "parallel", string whiten = "unit-variance", string fun = "logcosh", PyDict? fun_args = null, int max_iter = 200, float tol = 0.0001f, NDarray? w_init = null, string whiten_solver = "svd", int? random_state = null, bool return_X_mean = false, bool compute_sources = true, bool return_n_iter = false)
             {
                 _ = sklearn.decomposition.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
                 if (n_components != null)
-                    pyDict["n_components"] = Helpers.ToPython(n_components.Value);
+                    pyDict["n_components"] = Helpers.ToPython(n_components);
                 if (algorithm != "parallel")
                     pyDict["algorithm"] = Helpers.ToPython(algorithm);
                 if (whiten != "unit-variance")
@@ -2109,7 +2109,7 @@ namespace ScikitLearn
                 if (whiten_solver != "svd")
                     pyDict["whiten_solver"] = Helpers.ToPython(whiten_solver);
                 if (random_state != null)
-                    pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                    pyDict["random_state"] = Helpers.ToPython(random_state);
                 if (return_X_mean != false)
                     pyDict["return_X_mean"] = Helpers.ToPython(return_X_mean);
                 if (compute_sources != true)
@@ -2121,7 +2121,7 @@ namespace ScikitLearn
                 return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpNDarray(result[3]) : null, __length > 4 ? Helpers.ToCSharpInt(result[4]) : null);
             }
 
-            public static (NDarray?, NDarray?, int?) non_negative_factorization(NDarray X, NDarray? W = null, NDarray? H = null, string? n_components = "warn", PyObject? init = null, bool update_H = true, string solver = "cd", string beta_loss = "frobenius", float tol = 0.0001f, int max_iter = 200, float alpha_W = 0.0f, string alpha_H = "same", float l1_ratio = 0.0f, int? random_state = null, int verbose = 0, bool shuffle = false)
+            public static (NDarray? , NDarray? , int? ) non_negative_factorization(NDarray X, NDarray? W = null, NDarray? H = null, string? n_components = "warn", PyObject? init = null, bool update_H = true, string solver = "cd", string beta_loss = "frobenius", float tol = 0.0001f, int max_iter = 200, float alpha_W = 0.0f, string alpha_H = "same", float l1_ratio = 0.0f, int? random_state = null, int verbose = 0, bool shuffle = false)
             {
                 _ = sklearn.decomposition.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
@@ -2151,7 +2151,7 @@ namespace ScikitLearn
                 if (l1_ratio != 0.0f)
                     pyDict["l1_ratio"] = Helpers.ToPython(l1_ratio);
                 if (random_state != null)
-                    pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                    pyDict["random_state"] = Helpers.ToPython(random_state);
                 if (verbose != 0)
                     pyDict["verbose"] = Helpers.ToPython(verbose);
                 if (shuffle != false)
@@ -2173,9 +2173,9 @@ namespace ScikitLearn
                 if (algorithm != "lasso_lars")
                     pyDict["algorithm"] = Helpers.ToPython(algorithm);
                 if (n_nonzero_coefs != null)
-                    pyDict["n_nonzero_coefs"] = Helpers.ToPython(n_nonzero_coefs.Value);
+                    pyDict["n_nonzero_coefs"] = Helpers.ToPython(n_nonzero_coefs);
                 if (alpha != null)
-                    pyDict["alpha"] = Helpers.ToPython(alpha.Value);
+                    pyDict["alpha"] = Helpers.ToPython(alpha);
                 if (copy_cov != true)
                     pyDict["copy_cov"] = Helpers.ToPython(copy_cov);
                 if (init != null)
@@ -2183,7 +2183,7 @@ namespace ScikitLearn
                 if (max_iter != 1000)
                     pyDict["max_iter"] = Helpers.ToPython(max_iter);
                 if (n_jobs != null)
-                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                 if (check_input != true)
                     pyDict["check_input"] = Helpers.ToPython(check_input);
                 if (verbose != 0)

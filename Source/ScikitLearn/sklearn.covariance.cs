@@ -51,11 +51,11 @@ namespace ScikitLearn
                     if (assume_centered != false)
                         pyDict["assume_centered"] = Helpers.ToPython(assume_centered);
                     if (support_fraction != null)
-                        pyDict["support_fraction"] = Helpers.ToPython(support_fraction.Value);
+                        pyDict["support_fraction"] = Helpers.ToPython(support_fraction);
                     if (contamination != 0.1f)
                         pyDict["contamination"] = Helpers.ToPython(contamination);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.covariance.self.InvokeMethod("EllipticEnvelope", args, pyDict);
                 }
 
@@ -457,7 +457,7 @@ namespace ScikitLearn
                     if (n_refinements != 4)
                         pyDict["n_refinements"] = Helpers.ToPython(n_refinements);
                     if (cv != null)
-                        pyDict["cv"] = Helpers.ToPython(cv.Value);
+                        pyDict["cv"] = Helpers.ToPython(cv);
                     if (tol != 0.0001f)
                         pyDict["tol"] = Helpers.ToPython(tol);
                     if (enet_tol != 0.0001f)
@@ -467,7 +467,7 @@ namespace ScikitLearn
                     if (mode != "cd")
                         pyDict["mode"] = Helpers.ToPython(mode);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (verbose != false)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (eps != float.Epsilon)
@@ -704,9 +704,9 @@ namespace ScikitLearn
                     if (assume_centered != false)
                         pyDict["assume_centered"] = Helpers.ToPython(assume_centered);
                     if (support_fraction != null)
-                        pyDict["support_fraction"] = Helpers.ToPython(support_fraction.Value);
+                        pyDict["support_fraction"] = Helpers.ToPython(support_fraction);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.covariance.self.InvokeMethod("MinCovDet", args, pyDict);
                 }
 

@@ -47,7 +47,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (dtype != null)
-                        pyDict["dtype"] = Helpers.ToPython(dtype.Value);
+                        pyDict["dtype"] = Helpers.ToPython(dtype);
                     if (separator != "=")
                         pyDict["separator"] = Helpers.ToPython(separator);
                     if (sparse != true)
@@ -184,7 +184,7 @@ namespace ScikitLearn
                     if (input_type != "dict")
                         pyDict["input_type"] = Helpers.ToPython(input_type);
                     if (dtype != null)
-                        pyDict["dtype"] = Helpers.ToPython(dtype.Value);
+                        pyDict["dtype"] = Helpers.ToPython(dtype);
                     if (alternate_sign != true)
                         pyDict["alternate_sign"] = Helpers.ToPython(alternate_sign);
                     self = sklearn.feature_extraction.self.InvokeMethod("FeatureHasher", args, pyDict);
@@ -314,11 +314,11 @@ namespace ScikitLearn
                         PyTuple args = new PyTuple();
                         PyDict pyDict = new PyDict();
                         if (patch_size != null)
-                            pyDict["patch_size"] = Helpers.ToPython(patch_size.Value);
+                            pyDict["patch_size"] = Helpers.ToPython(patch_size);
                         if (max_patches != null)
-                            pyDict["max_patches"] = Helpers.ToPython(max_patches.Value);
+                            pyDict["max_patches"] = Helpers.ToPython(max_patches);
                         if (random_state != null)
-                            pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                            pyDict["random_state"] = Helpers.ToPython(random_state);
                         self = sklearn.feature_extraction.image.self.InvokeMethod("PatchExtractor", args, pyDict);
                     }
 
@@ -402,9 +402,9 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple([Helpers.ToPython(image), Helpers.ToPython(patch_size)]);
                     PyDict pyDict = new PyDict();
                     if (max_patches != null)
-                        pyDict["max_patches"] = Helpers.ToPython(max_patches.Value);
+                        pyDict["max_patches"] = Helpers.ToPython(max_patches);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     return Helpers.ToCSharpNDarray(sklearn.feature_extraction.image.self.InvokeMethod("extract_patches_2d", args, pyDict));
                 }
 
@@ -420,7 +420,7 @@ namespace ScikitLearn
                     if (return_as != null)
                         pyDict["return_as"] = Helpers.ToPython(return_as);
                     if (dtype != null)
-                        pyDict["dtype"] = Helpers.ToPython(dtype.Value);
+                        pyDict["dtype"] = Helpers.ToPython(dtype);
                     return Helpers.ToCSharpNDarray(sklearn.feature_extraction.image.self.InvokeMethod("grid_to_graph", args, pyDict));
                 }
 
@@ -513,13 +513,13 @@ namespace ScikitLearn
                         if (min_df != 1)
                             pyDict["min_df"] = Helpers.ToPython(min_df);
                         if (max_features != null)
-                            pyDict["max_features"] = Helpers.ToPython(max_features.Value);
+                            pyDict["max_features"] = Helpers.ToPython(max_features);
                         if (vocabulary != null)
                             pyDict["vocabulary"] = Helpers.ToPython(vocabulary);
                         if (binary != false)
                             pyDict["binary"] = Helpers.ToPython(binary);
                         if (dtype != null)
-                            pyDict["dtype"] = Helpers.ToPython(dtype.Value);
+                            pyDict["dtype"] = Helpers.ToPython(dtype);
                         self = sklearn.feature_extraction.text.self.InvokeMethod("CountVectorizer", args, pyDict);
                     }
 
@@ -699,7 +699,7 @@ namespace ScikitLearn
                         if (alternate_sign != true)
                             pyDict["alternate_sign"] = Helpers.ToPython(alternate_sign);
                         if (dtype != null)
-                            pyDict["dtype"] = Helpers.ToPython(dtype.Value);
+                            pyDict["dtype"] = Helpers.ToPython(dtype);
                         self = sklearn.feature_extraction.text.self.InvokeMethod("HashingVectorizer", args, pyDict);
                     }
 
@@ -971,13 +971,13 @@ namespace ScikitLearn
                         if (min_df != 1)
                             pyDict["min_df"] = Helpers.ToPython(min_df);
                         if (max_features != null)
-                            pyDict["max_features"] = Helpers.ToPython(max_features.Value);
+                            pyDict["max_features"] = Helpers.ToPython(max_features);
                         if (vocabulary != null)
                             pyDict["vocabulary"] = Helpers.ToPython(vocabulary);
                         if (binary != false)
                             pyDict["binary"] = Helpers.ToPython(binary);
                         if (dtype != null)
-                            pyDict["dtype"] = Helpers.ToPython(dtype.Value);
+                            pyDict["dtype"] = Helpers.ToPython(dtype);
                         if (norm != "l2")
                             pyDict["norm"] = Helpers.ToPython(norm);
                         if (use_idf != true)

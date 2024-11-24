@@ -108,7 +108,7 @@ namespace ScikitLearn
                     return new BiclusterMixin(pyObject);
                 }
 
-                public (NDarray<long>?, NDarray<long>?) get_indices(int i)
+                public (NDarray<long>? , NDarray<long>? ) get_indices(int i)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(i)]);
                     PyDict pyDict = new PyDict();
@@ -117,7 +117,7 @@ namespace ScikitLearn
                     return (__length > 0 ? Helpers.ToCSharpNDarray<long>(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray<long>(result[1]) : null);
                 }
 
-                public (int?, int?) get_shape(int i)
+                public (int? , int? ) get_shape(int i)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(i)]);
                     PyDict pyDict = new PyDict();

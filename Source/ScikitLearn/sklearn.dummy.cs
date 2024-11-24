@@ -49,7 +49,7 @@ namespace ScikitLearn
                     if (strategy != "prior")
                         pyDict["strategy"] = Helpers.ToPython(strategy);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (constant != null)
                         pyDict["constant"] = Helpers.ToPython(constant);
                     self = sklearn.dummy.self.InvokeMethod("DummyClassifier", args, pyDict);
@@ -173,7 +173,7 @@ namespace ScikitLearn
                     if (constant != null)
                         pyDict["constant"] = Helpers.ToPython(constant);
                     if (quantile != null)
-                        pyDict["quantile"] = Helpers.ToPython(quantile.Value);
+                        pyDict["quantile"] = Helpers.ToPython(quantile);
                     self = sklearn.dummy.self.InvokeMethod("DummyRegressor", args, pyDict);
                 }
 
@@ -219,7 +219,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?) predict(NDarray X, bool return_std = false)
+                public (NDarray? , NDarray? ) predict(NDarray X, bool return_std = false)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();

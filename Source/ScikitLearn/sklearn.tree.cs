@@ -51,7 +51,7 @@ namespace ScikitLearn
                     if (splitter != "best")
                         pyDict["splitter"] = Helpers.ToPython(splitter);
                     if (max_depth != null)
-                        pyDict["max_depth"] = Helpers.ToPython(max_depth.Value);
+                        pyDict["max_depth"] = Helpers.ToPython(max_depth);
                     if (min_samples_split != 2)
                         pyDict["min_samples_split"] = Helpers.ToPython(min_samples_split);
                     if (min_samples_leaf != 1)
@@ -59,11 +59,11 @@ namespace ScikitLearn
                     if (min_weight_fraction_leaf != 0.0f)
                         pyDict["min_weight_fraction_leaf"] = Helpers.ToPython(min_weight_fraction_leaf);
                     if (max_features != null)
-                        pyDict["max_features"] = Helpers.ToPython(max_features.Value);
+                        pyDict["max_features"] = Helpers.ToPython(max_features);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (max_leaf_nodes != null)
-                        pyDict["max_leaf_nodes"] = Helpers.ToPython(max_leaf_nodes.Value);
+                        pyDict["max_leaf_nodes"] = Helpers.ToPython(max_leaf_nodes);
                     if (min_impurity_decrease != 0.0f)
                         pyDict["min_impurity_decrease"] = Helpers.ToPython(min_impurity_decrease);
                     if (class_weight != null)
@@ -265,7 +265,7 @@ namespace ScikitLearn
                     if (splitter != "best")
                         pyDict["splitter"] = Helpers.ToPython(splitter);
                     if (max_depth != null)
-                        pyDict["max_depth"] = Helpers.ToPython(max_depth.Value);
+                        pyDict["max_depth"] = Helpers.ToPython(max_depth);
                     if (min_samples_split != 2)
                         pyDict["min_samples_split"] = Helpers.ToPython(min_samples_split);
                     if (min_samples_leaf != 1)
@@ -273,11 +273,11 @@ namespace ScikitLearn
                     if (min_weight_fraction_leaf != 0.0f)
                         pyDict["min_weight_fraction_leaf"] = Helpers.ToPython(min_weight_fraction_leaf);
                     if (max_features != null)
-                        pyDict["max_features"] = Helpers.ToPython(max_features.Value);
+                        pyDict["max_features"] = Helpers.ToPython(max_features);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (max_leaf_nodes != null)
-                        pyDict["max_leaf_nodes"] = Helpers.ToPython(max_leaf_nodes.Value);
+                        pyDict["max_leaf_nodes"] = Helpers.ToPython(max_leaf_nodes);
                     if (min_impurity_decrease != 0.0f)
                         pyDict["min_impurity_decrease"] = Helpers.ToPython(min_impurity_decrease);
                     if (ccp_alpha != 0.0f)
@@ -449,7 +449,7 @@ namespace ScikitLearn
                     if (splitter != "random")
                         pyDict["splitter"] = Helpers.ToPython(splitter);
                     if (max_depth != null)
-                        pyDict["max_depth"] = Helpers.ToPython(max_depth.Value);
+                        pyDict["max_depth"] = Helpers.ToPython(max_depth);
                     if (min_samples_split != 2)
                         pyDict["min_samples_split"] = Helpers.ToPython(min_samples_split);
                     if (min_samples_leaf != 1)
@@ -459,9 +459,9 @@ namespace ScikitLearn
                     if (max_features != "sqrt")
                         pyDict["max_features"] = Helpers.ToPython(max_features);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (max_leaf_nodes != null)
-                        pyDict["max_leaf_nodes"] = Helpers.ToPython(max_leaf_nodes.Value);
+                        pyDict["max_leaf_nodes"] = Helpers.ToPython(max_leaf_nodes);
                     if (min_impurity_decrease != 0.0f)
                         pyDict["min_impurity_decrease"] = Helpers.ToPython(min_impurity_decrease);
                     if (class_weight != null)
@@ -663,7 +663,7 @@ namespace ScikitLearn
                     if (splitter != "random")
                         pyDict["splitter"] = Helpers.ToPython(splitter);
                     if (max_depth != null)
-                        pyDict["max_depth"] = Helpers.ToPython(max_depth.Value);
+                        pyDict["max_depth"] = Helpers.ToPython(max_depth);
                     if (min_samples_split != 2)
                         pyDict["min_samples_split"] = Helpers.ToPython(min_samples_split);
                     if (min_samples_leaf != 1)
@@ -671,13 +671,13 @@ namespace ScikitLearn
                     if (min_weight_fraction_leaf != 0.0f)
                         pyDict["min_weight_fraction_leaf"] = Helpers.ToPython(min_weight_fraction_leaf);
                     if (max_features != 1.0f)
-                        pyDict["max_features"] = Helpers.ToPython(max_features.Value);
+                        pyDict["max_features"] = Helpers.ToPython(max_features);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (min_impurity_decrease != 0.0f)
                         pyDict["min_impurity_decrease"] = Helpers.ToPython(min_impurity_decrease);
                     if (max_leaf_nodes != null)
-                        pyDict["max_leaf_nodes"] = Helpers.ToPython(max_leaf_nodes.Value);
+                        pyDict["max_leaf_nodes"] = Helpers.ToPython(max_leaf_nodes);
                     if (ccp_alpha != 0.0f)
                         pyDict["ccp_alpha"] = Helpers.ToPython(ccp_alpha);
                     if (monotonic_cst != null)
@@ -843,7 +843,7 @@ namespace ScikitLearn
                 if (out_file != null)
                     pyDict["out_file"] = Helpers.ToPython(out_file);
                 if (max_depth != null)
-                    pyDict["max_depth"] = Helpers.ToPython(max_depth.Value);
+                    pyDict["max_depth"] = Helpers.ToPython(max_depth);
                 if (feature_names != null)
                     pyDict["feature_names"] = Helpers.ToPython(feature_names);
                 if (class_names != null)
@@ -899,7 +899,7 @@ namespace ScikitLearn
                 PyTuple args = new PyTuple([Helpers.ToPython(decision_tree)]);
                 PyDict pyDict = new PyDict();
                 if (max_depth != null)
-                    pyDict["max_depth"] = Helpers.ToPython(max_depth.Value);
+                    pyDict["max_depth"] = Helpers.ToPython(max_depth);
                 if (feature_names != null)
                     pyDict["feature_names"] = Helpers.ToPython(feature_names);
                 if (class_names != null)
@@ -921,7 +921,7 @@ namespace ScikitLearn
                 if (ax != null)
                     pyDict["ax"] = Helpers.ToPython(ax);
                 if (fontsize != null)
-                    pyDict["fontsize"] = Helpers.ToPython(fontsize.Value);
+                    pyDict["fontsize"] = Helpers.ToPython(fontsize);
                 return new PyTuple(sklearn.tree.self.InvokeMethod("plot_tree", args, pyDict));
             }
         }

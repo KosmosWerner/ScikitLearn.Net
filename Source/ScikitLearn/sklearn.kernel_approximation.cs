@@ -49,7 +49,7 @@ namespace ScikitLearn
                     if (sample_steps != 2)
                         pyDict["sample_steps"] = Helpers.ToPython(sample_steps);
                     if (sample_interval != null)
-                        pyDict["sample_interval"] = Helpers.ToPython(sample_interval.Value);
+                        pyDict["sample_interval"] = Helpers.ToPython(sample_interval);
                     self = sklearn.kernel_approximation.self.InvokeMethod("AdditiveChi2Sampler", args, pyDict);
                 }
 
@@ -151,19 +151,19 @@ namespace ScikitLearn
                     if (kernel != "rbf")
                         pyDict["kernel"] = Helpers.ToPython(kernel);
                     if (gamma != null)
-                        pyDict["gamma"] = Helpers.ToPython(gamma.Value);
+                        pyDict["gamma"] = Helpers.ToPython(gamma);
                     if (coef0 != null)
-                        pyDict["coef0"] = Helpers.ToPython(coef0.Value);
+                        pyDict["coef0"] = Helpers.ToPython(coef0);
                     if (degree != null)
-                        pyDict["degree"] = Helpers.ToPython(degree.Value);
+                        pyDict["degree"] = Helpers.ToPython(degree);
                     if (kernel_params != null)
                         pyDict["kernel_params"] = Helpers.ToPython(kernel_params);
                     if (n_components != 100)
                         pyDict["n_components"] = Helpers.ToPython(n_components);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     self = sklearn.kernel_approximation.self.InvokeMethod("Nystroem", args, pyDict);
                 }
 
@@ -274,7 +274,7 @@ namespace ScikitLearn
                     if (n_components != 100)
                         pyDict["n_components"] = Helpers.ToPython(n_components);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.kernel_approximation.self.InvokeMethod("PolynomialCountSketch", args, pyDict);
                 }
 
@@ -380,7 +380,7 @@ namespace ScikitLearn
                     if (n_components != 100)
                         pyDict["n_components"] = Helpers.ToPython(n_components);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.kernel_approximation.self.InvokeMethod("RBFSampler", args, pyDict);
                 }
 
@@ -486,7 +486,7 @@ namespace ScikitLearn
                     if (n_components != 100)
                         pyDict["n_components"] = Helpers.ToPython(n_components);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.kernel_approximation.self.InvokeMethod("SkewedChi2Sampler", args, pyDict);
                 }
 

@@ -67,7 +67,7 @@ namespace ScikitLearn
                     if (verbose != 0)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (max_iter != 1000)
                         pyDict["max_iter"] = Helpers.ToPython(max_iter);
                     self = sklearn.svm.self.InvokeMethod("LinearSVC", args, pyDict);
@@ -211,7 +211,7 @@ namespace ScikitLearn
                     if (verbose != 0)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (max_iter != 1000)
                         pyDict["max_iter"] = Helpers.ToPython(max_iter);
                     self = sklearn.svm.self.InvokeMethod("LinearSVR", args, pyDict);
@@ -343,7 +343,7 @@ namespace ScikitLearn
                     if (break_ties != false)
                         pyDict["break_ties"] = Helpers.ToPython(break_ties);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.svm.self.InvokeMethod("NuSVC", args, pyDict);
                 }
 
@@ -370,6 +370,7 @@ namespace ScikitLearn
                 public NDarray support_ => Helpers.ToCSharpNDarray(self.GetAttr("support_"));
                 public NDarray support_vectors_ => Helpers.ToCSharpNDarray(self.GetAttr("support_vectors_"));
                 public NDarray n_support_ => Helpers.ToCSharpNDarray(self.GetAttr("n_support_"));
+                public int fit_status_ => Helpers.ToCSharpInt(self.GetAttr("fit_status_"));
                 public NDarray probA_ => Helpers.ToCSharpNDarray(self.GetAttr("probA_"));
                 public NDarray probB_ => Helpers.ToCSharpNDarray(self.GetAttr("probB_"));
                 public NDarray shape_fit_ => Helpers.ToCSharpNDarray(self.GetAttr("shape_fit_"));
@@ -763,7 +764,7 @@ namespace ScikitLearn
                     if (break_ties != false)
                         pyDict["break_ties"] = Helpers.ToPython(break_ties);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.svm.self.InvokeMethod("SVC", args, pyDict);
                 }
 

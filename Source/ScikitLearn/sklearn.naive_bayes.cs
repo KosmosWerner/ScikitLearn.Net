@@ -51,7 +51,7 @@ namespace ScikitLearn
                     if (force_alpha != true)
                         pyDict["force_alpha"] = Helpers.ToPython(force_alpha);
                     if (binarize != 0.0f)
-                        pyDict["binarize"] = Helpers.ToPython(binarize.Value);
+                        pyDict["binarize"] = Helpers.ToPython(binarize);
                     if (fit_prior != true)
                         pyDict["fit_prior"] = Helpers.ToPython(fit_prior);
                     if (class_prior != null)

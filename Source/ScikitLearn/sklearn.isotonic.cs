@@ -47,9 +47,9 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (y_min != null)
-                        pyDict["y_min"] = Helpers.ToPython(y_min.Value);
+                        pyDict["y_min"] = Helpers.ToPython(y_min);
                     if (y_max != null)
-                        pyDict["y_max"] = Helpers.ToPython(y_max.Value);
+                        pyDict["y_max"] = Helpers.ToPython(y_max);
                     if (increasing != true)
                         pyDict["increasing"] = Helpers.ToPython(increasing);
                     if (out_of_bounds != "nan")
@@ -221,9 +221,9 @@ namespace ScikitLearn
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                 if (y_min != null)
-                    pyDict["y_min"] = Helpers.ToPython(y_min.Value);
+                    pyDict["y_min"] = Helpers.ToPython(y_min);
                 if (y_max != null)
-                    pyDict["y_max"] = Helpers.ToPython(y_max.Value);
+                    pyDict["y_max"] = Helpers.ToPython(y_max);
                 if (increasing != true)
                     pyDict["increasing"] = Helpers.ToPython(increasing);
                 return Helpers.ToCSharpNDarray(sklearn.isotonic.self.InvokeMethod("isotonic_regression", args, pyDict));

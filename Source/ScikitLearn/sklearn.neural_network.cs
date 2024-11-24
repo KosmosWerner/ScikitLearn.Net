@@ -57,7 +57,7 @@ namespace ScikitLearn
                     if (verbose != 0)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.neural_network.self.InvokeMethod("BernoulliRBM", args, pyDict);
                 }
 
@@ -205,7 +205,7 @@ namespace ScikitLearn
                     if (shuffle != true)
                         pyDict["shuffle"] = Helpers.ToPython(shuffle);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (tol != 0.0001f)
                         pyDict["tol"] = Helpers.ToPython(tol);
                     if (verbose != false)
@@ -383,7 +383,7 @@ namespace ScikitLearn
                     if (shuffle != true)
                         pyDict["shuffle"] = Helpers.ToPython(shuffle);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (tol != 0.0001f)
                         pyDict["tol"] = Helpers.ToPython(tol);
                     if (verbose != false)

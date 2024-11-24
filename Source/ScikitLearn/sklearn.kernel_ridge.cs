@@ -51,7 +51,7 @@ namespace ScikitLearn
                     if (kernel != "linear")
                         pyDict["kernel"] = Helpers.ToPython(kernel);
                     if (gamma != null)
-                        pyDict["gamma"] = Helpers.ToPython(gamma.Value);
+                        pyDict["gamma"] = Helpers.ToPython(gamma);
                     if (degree != 3)
                         pyDict["degree"] = Helpers.ToPython(degree);
                     if (coef0 != 1)

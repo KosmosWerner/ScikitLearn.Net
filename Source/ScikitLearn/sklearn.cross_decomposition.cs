@@ -129,7 +129,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?) inverse_transform(NDarray X, NDarray? y = null, NDarray? Y = null)
+                public (NDarray? , NDarray? ) inverse_transform(NDarray X, NDarray? y = null, NDarray? Y = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -316,7 +316,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?) inverse_transform(NDarray X, NDarray? y = null, NDarray? Y = null)
+                public (NDarray? , NDarray? ) inverse_transform(NDarray X, NDarray? y = null, NDarray? Y = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -503,7 +503,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?) inverse_transform(NDarray X, NDarray? y = null, NDarray? Y = null)
+                public (NDarray? , NDarray? ) inverse_transform(NDarray X, NDarray? y = null, NDarray? Y = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();

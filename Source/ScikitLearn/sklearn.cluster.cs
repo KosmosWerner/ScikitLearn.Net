@@ -61,7 +61,7 @@ namespace ScikitLearn
                     if (verbose != false)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.cluster.self.InvokeMethod("AffinityPropagation", args, pyDict);
                 }
 
@@ -141,7 +141,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_clusters != 2)
-                        pyDict["n_clusters"] = Helpers.ToPython(n_clusters.Value);
+                        pyDict["n_clusters"] = Helpers.ToPython(n_clusters);
                     if (metric != "euclidean")
                         pyDict["metric"] = Helpers.ToPython(metric);
                     if (memory != null)
@@ -153,7 +153,7 @@ namespace ScikitLearn
                     if (linkage != "ward")
                         pyDict["linkage"] = Helpers.ToPython(linkage);
                     if (distance_threshold != null)
-                        pyDict["distance_threshold"] = Helpers.ToPython(distance_threshold.Value);
+                        pyDict["distance_threshold"] = Helpers.ToPython(distance_threshold);
                     if (compute_distances != false)
                         pyDict["compute_distances"] = Helpers.ToPython(compute_distances);
                     self = sklearn.cluster.self.InvokeMethod("AgglomerativeClustering", args, pyDict);
@@ -233,7 +233,7 @@ namespace ScikitLearn
                     if (branching_factor != 50)
                         pyDict["branching_factor"] = Helpers.ToPython(branching_factor);
                     if (n_clusters != 3)
-                        pyDict["n_clusters"] = Helpers.ToPython(n_clusters.Value);
+                        pyDict["n_clusters"] = Helpers.ToPython(n_clusters);
                     if (compute_labels != true)
                         pyDict["compute_labels"] = Helpers.ToPython(compute_labels);
                     if (copy != true)
@@ -372,7 +372,7 @@ namespace ScikitLearn
                     if (n_init != 1)
                         pyDict["n_init"] = Helpers.ToPython(n_init);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (max_iter != 300)
                         pyDict["max_iter"] = Helpers.ToPython(max_iter);
                     if (verbose != 0)
@@ -542,9 +542,9 @@ namespace ScikitLearn
                     if (leaf_size != 30)
                         pyDict["leaf_size"] = Helpers.ToPython(leaf_size);
                     if (p != null)
-                        pyDict["p"] = Helpers.ToPython(p.Value);
+                        pyDict["p"] = Helpers.ToPython(p);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     self = sklearn.cluster.self.InvokeMethod("DBSCAN", args, pyDict);
                 }
 
@@ -629,7 +629,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_clusters != 2)
-                        pyDict["n_clusters"] = Helpers.ToPython(n_clusters.Value);
+                        pyDict["n_clusters"] = Helpers.ToPython(n_clusters);
                     if (metric != "euclidean")
                         pyDict["metric"] = Helpers.ToPython(metric);
                     if (memory != null)
@@ -643,7 +643,7 @@ namespace ScikitLearn
                     if (pooling_func != null)
                         pyDict["pooling_func"] = Helpers.ToPython(pooling_func);
                     if (distance_threshold != null)
-                        pyDict["distance_threshold"] = Helpers.ToPython(distance_threshold.Value);
+                        pyDict["distance_threshold"] = Helpers.ToPython(distance_threshold);
                     if (compute_distances != false)
                         pyDict["compute_distances"] = Helpers.ToPython(compute_distances);
                     self = sklearn.cluster.self.InvokeMethod("FeatureAgglomeration", args, pyDict);
@@ -762,11 +762,11 @@ namespace ScikitLearn
                     if (min_cluster_size != 5)
                         pyDict["min_cluster_size"] = Helpers.ToPython(min_cluster_size);
                     if (min_samples != null)
-                        pyDict["min_samples"] = Helpers.ToPython(min_samples.Value);
+                        pyDict["min_samples"] = Helpers.ToPython(min_samples);
                     if (cluster_selection_epsilon != 0.0f)
                         pyDict["cluster_selection_epsilon"] = Helpers.ToPython(cluster_selection_epsilon);
                     if (max_cluster_size != null)
-                        pyDict["max_cluster_size"] = Helpers.ToPython(max_cluster_size.Value);
+                        pyDict["max_cluster_size"] = Helpers.ToPython(max_cluster_size);
                     if (metric != "euclidean")
                         pyDict["metric"] = Helpers.ToPython(metric);
                     if (metric_params != null)
@@ -778,7 +778,7 @@ namespace ScikitLearn
                     if (leaf_size != 40)
                         pyDict["leaf_size"] = Helpers.ToPython(leaf_size);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (cluster_selection_method != "eom")
                         pyDict["cluster_selection_method"] = Helpers.ToPython(cluster_selection_method);
                     if (allow_single_cluster != false)
@@ -883,7 +883,7 @@ namespace ScikitLearn
                     if (verbose != 0)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (copy_x != true)
                         pyDict["copy_x"] = Helpers.ToPython(copy_x);
                     if (algorithm != "lloyd")
@@ -1034,7 +1034,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (bandwidth != null)
-                        pyDict["bandwidth"] = Helpers.ToPython(bandwidth.Value);
+                        pyDict["bandwidth"] = Helpers.ToPython(bandwidth);
                     if (seeds != null)
                         pyDict["seeds"] = Helpers.ToPython(seeds);
                     if (bin_seeding != false)
@@ -1044,7 +1044,7 @@ namespace ScikitLearn
                     if (cluster_all != true)
                         pyDict["cluster_all"] = Helpers.ToPython(cluster_all);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (max_iter != 300)
                         pyDict["max_iter"] = Helpers.ToPython(max_iter);
                     self = sklearn.cluster.self.InvokeMethod("MeanShift", args, pyDict);
@@ -1138,13 +1138,13 @@ namespace ScikitLearn
                     if (compute_labels != true)
                         pyDict["compute_labels"] = Helpers.ToPython(compute_labels);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (tol != 0.0f)
                         pyDict["tol"] = Helpers.ToPython(tol);
                     if (max_no_improvement != 10)
                         pyDict["max_no_improvement"] = Helpers.ToPython(max_no_improvement);
                     if (init_size != null)
-                        pyDict["init_size"] = Helpers.ToPython(init_size.Value);
+                        pyDict["init_size"] = Helpers.ToPython(init_size);
                     if (n_init != "auto")
                         pyDict["n_init"] = Helpers.ToPython(n_init);
                     if (reassignment_ratio != 0.01f)
@@ -1328,13 +1328,13 @@ namespace ScikitLearn
                     if (cluster_method != "xi")
                         pyDict["cluster_method"] = Helpers.ToPython(cluster_method);
                     if (eps != null)
-                        pyDict["eps"] = Helpers.ToPython(eps.Value);
+                        pyDict["eps"] = Helpers.ToPython(eps);
                     if (xi != 0.05f)
                         pyDict["xi"] = Helpers.ToPython(xi);
                     if (predecessor_correction != true)
                         pyDict["predecessor_correction"] = Helpers.ToPython(predecessor_correction);
                     if (min_cluster_size != null)
-                        pyDict["min_cluster_size"] = Helpers.ToPython(min_cluster_size.Value);
+                        pyDict["min_cluster_size"] = Helpers.ToPython(min_cluster_size);
                     if (algorithm != "auto")
                         pyDict["algorithm"] = Helpers.ToPython(algorithm);
                     if (leaf_size != 30)
@@ -1342,7 +1342,7 @@ namespace ScikitLearn
                     if (memory != null)
                         pyDict["memory"] = Helpers.ToPython(memory);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     self = sklearn.cluster.self.InvokeMethod("OPTICS", args, pyDict);
                 }
 
@@ -1428,7 +1428,7 @@ namespace ScikitLearn
                     if (svd_method != "randomized")
                         pyDict["svd_method"] = Helpers.ToPython(svd_method);
                     if (n_svd_vecs != null)
-                        pyDict["n_svd_vecs"] = Helpers.ToPython(n_svd_vecs.Value);
+                        pyDict["n_svd_vecs"] = Helpers.ToPython(n_svd_vecs);
                     if (mini_batch != false)
                         pyDict["mini_batch"] = Helpers.ToPython(mini_batch);
                     if (init != "k-means++")
@@ -1436,7 +1436,7 @@ namespace ScikitLearn
                     if (n_init != 10)
                         pyDict["n_init"] = Helpers.ToPython(n_init);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.cluster.self.InvokeMethod("SpectralBiclustering", args, pyDict);
                 }
 
@@ -1467,7 +1467,7 @@ namespace ScikitLearn
                     return this;
                 }
 
-                public (NDarray<long>?, NDarray<long>?) get_indices(int i)
+                public (NDarray<long>? , NDarray<long>? ) get_indices(int i)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(i)]);
                     PyDict pyDict = new PyDict();
@@ -1492,7 +1492,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (int?, int?) get_shape(int i)
+                public (int? , int? ) get_shape(int i)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(i)]);
                     PyDict pyDict = new PyDict();
@@ -1531,9 +1531,9 @@ namespace ScikitLearn
                     if (eigen_solver != null)
                         pyDict["eigen_solver"] = Helpers.ToPython(eigen_solver);
                     if (n_components != null)
-                        pyDict["n_components"] = Helpers.ToPython(n_components.Value);
+                        pyDict["n_components"] = Helpers.ToPython(n_components);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (n_init != 10)
                         pyDict["n_init"] = Helpers.ToPython(n_init);
                     if (gamma != 1.0f)
@@ -1553,7 +1553,7 @@ namespace ScikitLearn
                     if (kernel_params != null)
                         pyDict["kernel_params"] = Helpers.ToPython(kernel_params);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (verbose != false)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     self = sklearn.cluster.self.InvokeMethod("SpectralClustering", args, pyDict);
@@ -1629,7 +1629,7 @@ namespace ScikitLearn
                     if (svd_method != "randomized")
                         pyDict["svd_method"] = Helpers.ToPython(svd_method);
                     if (n_svd_vecs != null)
-                        pyDict["n_svd_vecs"] = Helpers.ToPython(n_svd_vecs.Value);
+                        pyDict["n_svd_vecs"] = Helpers.ToPython(n_svd_vecs);
                     if (mini_batch != false)
                         pyDict["mini_batch"] = Helpers.ToPython(mini_batch);
                     if (init != "k-means++")
@@ -1637,7 +1637,7 @@ namespace ScikitLearn
                     if (n_init != 10)
                         pyDict["n_init"] = Helpers.ToPython(n_init);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.cluster.self.InvokeMethod("SpectralCoclustering", args, pyDict);
                 }
 
@@ -1668,7 +1668,7 @@ namespace ScikitLearn
                     return this;
                 }
 
-                public (NDarray<long>?, NDarray<long>?) get_indices(int i)
+                public (NDarray<long>? , NDarray<long>? ) get_indices(int i)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(i)]);
                     PyDict pyDict = new PyDict();
@@ -1693,7 +1693,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (int?, int?) get_shape(int i)
+                public (int? , int? ) get_shape(int i)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(i)]);
                     PyDict pyDict = new PyDict();
@@ -1720,7 +1720,7 @@ namespace ScikitLearn
                 }
             }
 
-            public static (NDarray?, NDarray?, int?) affinity_propagation(NDarray S, NDarray? preference = null, int convergence_iter = 15, int max_iter = 200, float damping = 0.5f, bool copy = true, bool verbose = false, bool return_n_iter = false, int? random_state = null)
+            public static (NDarray? , NDarray? , int? ) affinity_propagation(NDarray S, NDarray? preference = null, int convergence_iter = 15, int max_iter = 200, float damping = 0.5f, bool copy = true, bool verbose = false, bool return_n_iter = false, int? random_state = null)
             {
                 _ = sklearn.cluster.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(S)]);
@@ -1740,7 +1740,7 @@ namespace ScikitLearn
                 if (return_n_iter != false)
                     pyDict["return_n_iter"] = Helpers.ToPython(return_n_iter);
                 if (random_state != null)
-                    pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                    pyDict["random_state"] = Helpers.ToPython(random_state);
                 PyTuple result = new PyTuple(sklearn.cluster.self.InvokeMethod("affinity_propagation", args, pyDict));
                 var __length = result.Length();
                 return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpInt(result[2]) : null);
@@ -1754,13 +1754,13 @@ namespace ScikitLearn
                 return Helpers.ToCSharpNDarray(sklearn.cluster.self.InvokeMethod("cluster_optics_dbscan", args, pyDict));
             }
 
-            public static (NDarray?, NDarray?) cluster_optics_xi(NDarray reachability, NDarray predecessor, NDarray ordering, float min_samples, float? min_cluster_size = null, float xi = 0.05f, bool predecessor_correction = true)
+            public static (NDarray? , NDarray? ) cluster_optics_xi(NDarray reachability, NDarray predecessor, NDarray ordering, float min_samples, float? min_cluster_size = null, float xi = 0.05f, bool predecessor_correction = true)
             {
                 _ = sklearn.cluster.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(reachability), Helpers.ToPython(predecessor), Helpers.ToPython(ordering), Helpers.ToPython(min_samples)]);
                 PyDict pyDict = new PyDict();
                 if (min_cluster_size != null)
-                    pyDict["min_cluster_size"] = Helpers.ToPython(min_cluster_size.Value);
+                    pyDict["min_cluster_size"] = Helpers.ToPython(min_cluster_size);
                 if (xi != 0.05f)
                     pyDict["xi"] = Helpers.ToPython(xi);
                 if (predecessor_correction != true)
@@ -1770,7 +1770,7 @@ namespace ScikitLearn
                 return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
-            public static (NDarray?, NDarray?, NDarray?, NDarray?) compute_optics_graph(NDarray X, float min_samples, float max_eps, string metric, float p, PyDict metric_params, PyObject algorithm, int leaf_size, int n_jobs)
+            public static (NDarray? , NDarray? , NDarray? , NDarray? ) compute_optics_graph(NDarray X, float min_samples, float max_eps, string metric, float p, PyDict metric_params, PyObject algorithm, int leaf_size, int n_jobs)
             {
                 _ = sklearn.cluster.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(min_samples), Helpers.ToPython(max_eps), Helpers.ToPython(metric), Helpers.ToPython(p), Helpers.ToPython(metric_params), Helpers.ToPython(algorithm), Helpers.ToPython(leaf_size), Helpers.ToPython(n_jobs)]);
@@ -1780,7 +1780,7 @@ namespace ScikitLearn
                 return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpNDarray(result[3]) : null);
             }
 
-            public static (NDarray?, NDarray?) dbscan(NDarray X, float eps = 0.5f, int min_samples = 5, string metric = "minkowski", PyDict? metric_params = null, string algorithm = "auto", int leaf_size = 30, int p = 2, NDarray? sample_weight = null, int? n_jobs = null)
+            public static (NDarray? , NDarray? ) dbscan(NDarray X, float eps = 0.5f, int min_samples = 5, string metric = "minkowski", PyDict? metric_params = null, string algorithm = "auto", int leaf_size = 30, int p = 2, NDarray? sample_weight = null, int? n_jobs = null)
             {
                 _ = sklearn.cluster.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
@@ -1802,7 +1802,7 @@ namespace ScikitLearn
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                 if (n_jobs != null)
-                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                 PyTuple result = new PyTuple(sklearn.cluster.self.InvokeMethod("dbscan", args, pyDict));
                 var __length = result.Length();
                 return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
@@ -1816,15 +1816,15 @@ namespace ScikitLearn
                 if (quantile != 0.3f)
                     pyDict["quantile"] = Helpers.ToPython(quantile);
                 if (n_samples != null)
-                    pyDict["n_samples"] = Helpers.ToPython(n_samples.Value);
+                    pyDict["n_samples"] = Helpers.ToPython(n_samples);
                 if (random_state != 0)
-                    pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                    pyDict["random_state"] = Helpers.ToPython(random_state);
                 if (n_jobs != null)
-                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                 return Helpers.ToCSharpFloat(sklearn.cluster.self.InvokeMethod("estimate_bandwidth", args, pyDict));
             }
 
-            public static (NDarray?, NDarray?, float?, int?) k_means(NDarray X, int n_clusters, NDarray? sample_weight = null, string init = "k-means++", string n_init = "auto", int max_iter = 300, bool verbose = false, float tol = 0.0001f, int? random_state = null, bool copy_x = true, string algorithm = "lloyd", bool return_n_iter = false)
+            public static (NDarray? , NDarray? , float? , int? ) k_means(NDarray X, int n_clusters, NDarray? sample_weight = null, string init = "k-means++", string n_init = "auto", int max_iter = 300, bool verbose = false, float tol = 0.0001f, int? random_state = null, bool copy_x = true, string algorithm = "lloyd", bool return_n_iter = false)
             {
                 _ = sklearn.cluster.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(n_clusters)]);
@@ -1842,7 +1842,7 @@ namespace ScikitLearn
                 if (tol != 0.0001f)
                     pyDict["tol"] = Helpers.ToPython(tol);
                 if (random_state != null)
-                    pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                    pyDict["random_state"] = Helpers.ToPython(random_state);
                 if (copy_x != true)
                     pyDict["copy_x"] = Helpers.ToPython(copy_x);
                 if (algorithm != "lloyd")
@@ -1854,7 +1854,7 @@ namespace ScikitLearn
                 return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpFloat(result[2]) : null, __length > 3 ? Helpers.ToCSharpInt(result[3]) : null);
             }
 
-            public static (NDarray?, NDarray?) kmeans_plusplus(NDarray X, int n_clusters, NDarray? sample_weight = null, NDarray? x_squared_norms = null, int? random_state = null, int? n_local_trials = null)
+            public static (NDarray? , NDarray? ) kmeans_plusplus(NDarray X, int n_clusters, NDarray? sample_weight = null, NDarray? x_squared_norms = null, int? random_state = null, int? n_local_trials = null)
             {
                 _ = sklearn.cluster.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(n_clusters)]);
@@ -1864,21 +1864,21 @@ namespace ScikitLearn
                 if (x_squared_norms != null)
                     pyDict["x_squared_norms"] = Helpers.ToPython(x_squared_norms);
                 if (random_state != null)
-                    pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                    pyDict["random_state"] = Helpers.ToPython(random_state);
                 if (n_local_trials != null)
-                    pyDict["n_local_trials"] = Helpers.ToPython(n_local_trials.Value);
+                    pyDict["n_local_trials"] = Helpers.ToPython(n_local_trials);
                 PyTuple result = new PyTuple(sklearn.cluster.self.InvokeMethod("kmeans_plusplus", args, pyDict));
                 var __length = result.Length();
                 return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
-            public static (NDarray?, NDarray?) mean_shift(NDarray X, float? bandwidth = null, NDarray? seeds = null, bool bin_seeding = false, int min_bin_freq = 1, bool cluster_all = true, int max_iter = 300, int? n_jobs = null)
+            public static (NDarray? , NDarray? ) mean_shift(NDarray X, float? bandwidth = null, NDarray? seeds = null, bool bin_seeding = false, int min_bin_freq = 1, bool cluster_all = true, int max_iter = 300, int? n_jobs = null)
             {
                 _ = sklearn.cluster.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                 PyDict pyDict = new PyDict();
                 if (bandwidth != null)
-                    pyDict["bandwidth"] = Helpers.ToPython(bandwidth.Value);
+                    pyDict["bandwidth"] = Helpers.ToPython(bandwidth);
                 if (seeds != null)
                     pyDict["seeds"] = Helpers.ToPython(seeds);
                 if (bin_seeding != false)
@@ -1890,7 +1890,7 @@ namespace ScikitLearn
                 if (max_iter != 300)
                     pyDict["max_iter"] = Helpers.ToPython(max_iter);
                 if (n_jobs != null)
-                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                 PyTuple result = new PyTuple(sklearn.cluster.self.InvokeMethod("mean_shift", args, pyDict));
                 var __length = result.Length();
                 return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
@@ -1902,13 +1902,13 @@ namespace ScikitLearn
                 PyTuple args = new PyTuple([Helpers.ToPython(affinity)]);
                 PyDict pyDict = new PyDict();
                 if (n_clusters != 8)
-                    pyDict["n_clusters"] = Helpers.ToPython(n_clusters.Value);
+                    pyDict["n_clusters"] = Helpers.ToPython(n_clusters);
                 if (n_components != null)
-                    pyDict["n_components"] = Helpers.ToPython(n_components.Value);
+                    pyDict["n_components"] = Helpers.ToPython(n_components);
                 if (eigen_solver != null)
                     pyDict["eigen_solver"] = Helpers.ToPython(eigen_solver);
                 if (random_state != null)
-                    pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                    pyDict["random_state"] = Helpers.ToPython(random_state);
                 if (n_init != 10)
                     pyDict["n_init"] = Helpers.ToPython(n_init);
                 if (eigen_tol != "auto")
@@ -1920,7 +1920,7 @@ namespace ScikitLearn
                 return Helpers.ToCSharpNDarray(sklearn.cluster.self.InvokeMethod("spectral_clustering", args, pyDict));
             }
 
-            public static (NDarray?, int?, int?, NDarray?, NDarray?) ward_tree(NDarray X, NDarray? connectivity = null, int? n_clusters = null, bool return_distance = false)
+            public static (NDarray? , int? , int? , NDarray ? ,  NDarray ? )ward_tree(NDarray X, NDarray? connectivity = null, int? n_clusters = null, bool return_distance = false)
             {
                 _ = sklearn.cluster.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
@@ -1928,7 +1928,7 @@ namespace ScikitLearn
                 if (connectivity != null)
                     pyDict["connectivity"] = Helpers.ToPython(connectivity);
                 if (n_clusters != null)
-                    pyDict["n_clusters"] = Helpers.ToPython(n_clusters.Value);
+                    pyDict["n_clusters"] = Helpers.ToPython(n_clusters);
                 if (return_distance != false)
                     pyDict["return_distance"] = Helpers.ToPython(return_distance);
                 PyTuple result = new PyTuple(sklearn.cluster.self.InvokeMethod("ward_tree", args, pyDict));

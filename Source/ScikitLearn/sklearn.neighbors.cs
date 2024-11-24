@@ -101,7 +101,7 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("kernel_density", args, pyDict));
                 }
 
-                public (bool?, bool?, NDarray?, NDarray?) query(NDarray X, int k = 1, bool return_distance = true, bool dualtree = false, bool breadth_first = false)
+                public (bool? , bool? , NDarray? , NDarray? ) query(NDarray X, int k = 1, bool return_distance = true, bool dualtree = false, bool breadth_first = false)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -118,7 +118,7 @@ namespace ScikitLearn
                     return (__length > 0 ? Helpers.ToCSharpBool(result[0]) : null, __length > 1 ? Helpers.ToCSharpBool(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpNDarray(result[3]) : null);
                 }
 
-                public (bool?, bool?, bool?, NDarray?, PyObject?, PyObject?) query_radius(NDarray X, PyObject r, bool return_distance = false, bool count_only = false, bool sort_results = false)
+                public (bool? , bool? , bool? , NDarray? , PyObject? , PyObject? ) query_radius(NDarray X, PyObject r, bool return_distance = false, bool count_only = false, bool sort_results = false)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(r)]);
                     PyDict pyDict = new PyDict();
@@ -212,7 +212,7 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("kernel_density", args, pyDict));
                 }
 
-                public (bool?, bool?, NDarray?, NDarray?) query(NDarray X, int k = 1, bool return_distance = true, bool dualtree = false, bool breadth_first = false)
+                public (bool? , bool? , NDarray? , NDarray? ) query(NDarray X, int k = 1, bool return_distance = true, bool dualtree = false, bool breadth_first = false)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -229,7 +229,7 @@ namespace ScikitLearn
                     return (__length > 0 ? Helpers.ToCSharpBool(result[0]) : null, __length > 1 ? Helpers.ToCSharpBool(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpNDarray(result[3]) : null);
                 }
 
-                public (bool?, bool?, bool?, NDarray?, PyObject?, PyObject?) query_radius(NDarray X, PyObject r, bool return_distance = false, bool count_only = false, bool sort_results = false)
+                public (bool? , bool? , bool? , NDarray? , PyObject? , PyObject? ) query_radius(NDarray X, PyObject r, bool return_distance = false, bool count_only = false, bool sort_results = false)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(r)]);
                     PyDict pyDict = new PyDict();
@@ -283,7 +283,7 @@ namespace ScikitLearn
                     if (metric_params != null)
                         pyDict["metric_params"] = Helpers.ToPython(metric_params);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     self = sklearn.neighbors.self.InvokeMethod("KNeighborsClassifier", args, pyDict);
                 }
 
@@ -330,14 +330,14 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
+                public (NDarray? , NDarray? ) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (X != null)
                         pyDict["X"] = Helpers.ToPython(X);
                     if (n_neighbors != null)
-                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors.Value);
+                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors);
                     if (return_distance != true)
                         pyDict["return_distance"] = Helpers.ToPython(return_distance);
                     PyTuple result = new PyTuple(self.InvokeMethod("kneighbors", args, pyDict));
@@ -352,7 +352,7 @@ namespace ScikitLearn
                     if (X != null)
                         pyDict["X"] = Helpers.ToPython(X);
                     if (n_neighbors != null)
-                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors.Value);
+                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors);
                     if (mode != "connectivity")
                         pyDict["mode"] = Helpers.ToPython(mode);
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("kneighbors_graph", args, pyDict));
@@ -424,7 +424,7 @@ namespace ScikitLearn
                     if (metric_params != null)
                         pyDict["metric_params"] = Helpers.ToPython(metric_params);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     self = sklearn.neighbors.self.InvokeMethod("KNeighborsRegressor", args, pyDict);
                 }
 
@@ -469,14 +469,14 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
+                public (NDarray? , NDarray? ) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (X != null)
                         pyDict["X"] = Helpers.ToPython(X);
                     if (n_neighbors != null)
-                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors.Value);
+                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors);
                     if (return_distance != true)
                         pyDict["return_distance"] = Helpers.ToPython(return_distance);
                     PyTuple result = new PyTuple(self.InvokeMethod("kneighbors", args, pyDict));
@@ -491,7 +491,7 @@ namespace ScikitLearn
                     if (X != null)
                         pyDict["X"] = Helpers.ToPython(X);
                     if (n_neighbors != null)
-                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors.Value);
+                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors);
                     if (mode != "connectivity")
                         pyDict["mode"] = Helpers.ToPython(mode);
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("kneighbors_graph", args, pyDict));
@@ -556,7 +556,7 @@ namespace ScikitLearn
                     if (metric_params != null)
                         pyDict["metric_params"] = Helpers.ToPython(metric_params);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     self = sklearn.neighbors.self.InvokeMethod("KNeighborsTransformer", args, pyDict);
                 }
 
@@ -617,14 +617,14 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
+                public (NDarray? , NDarray? ) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (X != null)
                         pyDict["X"] = Helpers.ToPython(X);
                     if (n_neighbors != null)
-                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors.Value);
+                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors);
                     if (return_distance != true)
                         pyDict["return_distance"] = Helpers.ToPython(return_distance);
                     PyTuple result = new PyTuple(self.InvokeMethod("kneighbors", args, pyDict));
@@ -639,7 +639,7 @@ namespace ScikitLearn
                     if (X != null)
                         pyDict["X"] = Helpers.ToPython(X);
                     if (n_neighbors != null)
-                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors.Value);
+                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors);
                     if (mode != "connectivity")
                         pyDict["mode"] = Helpers.ToPython(mode);
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("kneighbors_graph", args, pyDict));
@@ -752,7 +752,7 @@ namespace ScikitLearn
                     if (n_samples != 1)
                         pyDict["n_samples"] = Helpers.ToPython(n_samples);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("sample", args, pyDict));
                 }
 
@@ -817,7 +817,7 @@ namespace ScikitLearn
                     if (novelty != false)
                         pyDict["novelty"] = Helpers.ToPython(novelty);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     self = sklearn.neighbors.self.InvokeMethod("LocalOutlierFactor", args, pyDict);
                 }
 
@@ -879,14 +879,14 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
+                public (NDarray? , NDarray? ) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (X != null)
                         pyDict["X"] = Helpers.ToPython(X);
                     if (n_neighbors != null)
-                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors.Value);
+                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors);
                     if (return_distance != true)
                         pyDict["return_distance"] = Helpers.ToPython(return_distance);
                     PyTuple result = new PyTuple(self.InvokeMethod("kneighbors", args, pyDict));
@@ -901,7 +901,7 @@ namespace ScikitLearn
                     if (X != null)
                         pyDict["X"] = Helpers.ToPython(X);
                     if (n_neighbors != null)
-                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors.Value);
+                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors);
                     if (mode != "connectivity")
                         pyDict["mode"] = Helpers.ToPython(mode);
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("kneighbors_graph", args, pyDict));
@@ -944,7 +944,7 @@ namespace ScikitLearn
                     if (metric != "euclidean")
                         pyDict["metric"] = Helpers.ToPython(metric);
                     if (shrink_threshold != null)
-                        pyDict["shrink_threshold"] = Helpers.ToPython(shrink_threshold.Value);
+                        pyDict["shrink_threshold"] = Helpers.ToPython(shrink_threshold);
                     self = sklearn.neighbors.self.InvokeMethod("NearestCentroid", args, pyDict);
                 }
 
@@ -1047,7 +1047,7 @@ namespace ScikitLearn
                     if (metric_params != null)
                         pyDict["metric_params"] = Helpers.ToPython(metric_params);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     self = sklearn.neighbors.self.InvokeMethod("NearestNeighbors", args, pyDict);
                 }
 
@@ -1092,14 +1092,14 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
+                public (NDarray? , NDarray? ) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (X != null)
                         pyDict["X"] = Helpers.ToPython(X);
                     if (n_neighbors != null)
-                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors.Value);
+                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors);
                     if (return_distance != true)
                         pyDict["return_distance"] = Helpers.ToPython(return_distance);
                     PyTuple result = new PyTuple(self.InvokeMethod("kneighbors", args, pyDict));
@@ -1114,20 +1114,20 @@ namespace ScikitLearn
                     if (X != null)
                         pyDict["X"] = Helpers.ToPython(X);
                     if (n_neighbors != null)
-                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors.Value);
+                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors);
                     if (mode != "connectivity")
                         pyDict["mode"] = Helpers.ToPython(mode);
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("kneighbors_graph", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?) radius_neighbors(NDarray? X = null, float? radius = null, bool return_distance = true, bool sort_results = false)
+                public (NDarray? , NDarray? ) radius_neighbors(NDarray? X = null, float? radius = null, bool return_distance = true, bool sort_results = false)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (X != null)
                         pyDict["X"] = Helpers.ToPython(X);
                     if (radius != null)
-                        pyDict["radius"] = Helpers.ToPython(radius.Value);
+                        pyDict["radius"] = Helpers.ToPython(radius);
                     if (return_distance != true)
                         pyDict["return_distance"] = Helpers.ToPython(return_distance);
                     if (sort_results != false)
@@ -1144,7 +1144,7 @@ namespace ScikitLearn
                     if (X != null)
                         pyDict["X"] = Helpers.ToPython(X);
                     if (radius != null)
-                        pyDict["radius"] = Helpers.ToPython(radius.Value);
+                        pyDict["radius"] = Helpers.ToPython(radius);
                     if (mode != "connectivity")
                         pyDict["mode"] = Helpers.ToPython(mode);
                     if (sort_results != false)
@@ -1171,7 +1171,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_components != null)
-                        pyDict["n_components"] = Helpers.ToPython(n_components.Value);
+                        pyDict["n_components"] = Helpers.ToPython(n_components);
                     if (init != "auto")
                         pyDict["init"] = Helpers.ToPython(init);
                     if (warm_start != false)
@@ -1185,7 +1185,7 @@ namespace ScikitLearn
                     if (verbose != 0)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.neighbors.self.InvokeMethod("NeighborhoodComponentsAnalysis", args, pyDict);
                 }
 
@@ -1302,7 +1302,7 @@ namespace ScikitLearn
                     if (metric_params != null)
                         pyDict["metric_params"] = Helpers.ToPython(metric_params);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     self = sklearn.neighbors.self.InvokeMethod("RadiusNeighborsClassifier", args, pyDict);
                 }
 
@@ -1364,14 +1364,14 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_proba", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?) radius_neighbors(NDarray? X = null, float? radius = null, bool return_distance = true, bool sort_results = false)
+                public (NDarray? , NDarray? ) radius_neighbors(NDarray? X = null, float? radius = null, bool return_distance = true, bool sort_results = false)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (X != null)
                         pyDict["X"] = Helpers.ToPython(X);
                     if (radius != null)
-                        pyDict["radius"] = Helpers.ToPython(radius.Value);
+                        pyDict["radius"] = Helpers.ToPython(radius);
                     if (return_distance != true)
                         pyDict["return_distance"] = Helpers.ToPython(return_distance);
                     if (sort_results != false)
@@ -1388,7 +1388,7 @@ namespace ScikitLearn
                     if (X != null)
                         pyDict["X"] = Helpers.ToPython(X);
                     if (radius != null)
-                        pyDict["radius"] = Helpers.ToPython(radius.Value);
+                        pyDict["radius"] = Helpers.ToPython(radius);
                     if (mode != "connectivity")
                         pyDict["mode"] = Helpers.ToPython(mode);
                     if (sort_results != false)
@@ -1448,7 +1448,7 @@ namespace ScikitLearn
                     if (metric_params != null)
                         pyDict["metric_params"] = Helpers.ToPython(metric_params);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     self = sklearn.neighbors.self.InvokeMethod("RadiusNeighborsRegressor", args, pyDict);
                 }
 
@@ -1500,14 +1500,14 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("predict", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?) radius_neighbors(NDarray? X = null, float? radius = null, bool return_distance = true, bool sort_results = false)
+                public (NDarray? , NDarray? ) radius_neighbors(NDarray? X = null, float? radius = null, bool return_distance = true, bool sort_results = false)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (X != null)
                         pyDict["X"] = Helpers.ToPython(X);
                     if (radius != null)
-                        pyDict["radius"] = Helpers.ToPython(radius.Value);
+                        pyDict["radius"] = Helpers.ToPython(radius);
                     if (return_distance != true)
                         pyDict["return_distance"] = Helpers.ToPython(return_distance);
                     if (sort_results != false)
@@ -1524,7 +1524,7 @@ namespace ScikitLearn
                     if (X != null)
                         pyDict["X"] = Helpers.ToPython(X);
                     if (radius != null)
-                        pyDict["radius"] = Helpers.ToPython(radius.Value);
+                        pyDict["radius"] = Helpers.ToPython(radius);
                     if (mode != "connectivity")
                         pyDict["mode"] = Helpers.ToPython(mode);
                     if (sort_results != false)
@@ -1584,7 +1584,7 @@ namespace ScikitLearn
                     if (metric_params != null)
                         pyDict["metric_params"] = Helpers.ToPython(metric_params);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     self = sklearn.neighbors.self.InvokeMethod("RadiusNeighborsTransformer", args, pyDict);
                 }
 
@@ -1645,14 +1645,14 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?) radius_neighbors(NDarray? X = null, float? radius = null, bool return_distance = true, bool sort_results = false)
+                public (NDarray? , NDarray? ) radius_neighbors(NDarray? X = null, float? radius = null, bool return_distance = true, bool sort_results = false)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (X != null)
                         pyDict["X"] = Helpers.ToPython(X);
                     if (radius != null)
-                        pyDict["radius"] = Helpers.ToPython(radius.Value);
+                        pyDict["radius"] = Helpers.ToPython(radius);
                     if (return_distance != true)
                         pyDict["return_distance"] = Helpers.ToPython(return_distance);
                     if (sort_results != false)
@@ -1669,7 +1669,7 @@ namespace ScikitLearn
                     if (X != null)
                         pyDict["X"] = Helpers.ToPython(X);
                     if (radius != null)
-                        pyDict["radius"] = Helpers.ToPython(radius.Value);
+                        pyDict["radius"] = Helpers.ToPython(radius);
                     if (mode != "connectivity")
                         pyDict["mode"] = Helpers.ToPython(mode);
                     if (sort_results != false)
@@ -1721,7 +1721,7 @@ namespace ScikitLearn
                 if (include_self != false)
                     pyDict["include_self"] = Helpers.ToPython(include_self);
                 if (n_jobs != null)
-                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                 return Helpers.ToCSharpNDarray(sklearn.neighbors.self.InvokeMethod("kneighbors_graph", args, pyDict));
             }
 
@@ -1741,7 +1741,7 @@ namespace ScikitLearn
                 if (include_self != false)
                     pyDict["include_self"] = Helpers.ToPython(include_self);
                 if (n_jobs != null)
-                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                 return Helpers.ToCSharpNDarray(sklearn.neighbors.self.InvokeMethod("radius_neighbors_graph", args, pyDict));
             }
 

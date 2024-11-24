@@ -73,9 +73,9 @@ namespace ScikitLearn
                 if (n_repeats != 5)
                     pyDict["n_repeats"] = Helpers.ToPython(n_repeats);
                 if (n_jobs != null)
-                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                 if (random_state != null)
-                    pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                    pyDict["random_state"] = Helpers.ToPython(random_state);
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                 if (max_samples != 1.0f)
@@ -165,9 +165,9 @@ namespace ScikitLearn
                     if (kind != "average")
                         pyDict["kind"] = Helpers.ToPython(kind);
                     if (subsample != 1000)
-                        pyDict["subsample"] = Helpers.ToPython(subsample.Value);
+                        pyDict["subsample"] = Helpers.ToPython(subsample);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (is_categorical != null)
                         pyDict["is_categorical"] = Helpers.ToPython(is_categorical);
                     self = sklearn.inspection.self.InvokeMethod("PartialDependenceDisplay", args, pyDict);
@@ -205,7 +205,7 @@ namespace ScikitLearn
                     if (feature_names != null)
                         pyDict["feature_names"] = Helpers.ToPython(feature_names);
                     if (target != null)
-                        pyDict["target"] = Helpers.ToPython(target.Value);
+                        pyDict["target"] = Helpers.ToPython(target);
                     if (response_method != "auto")
                         pyDict["response_method"] = Helpers.ToPython(response_method);
                     if (n_cols != 3)
@@ -217,7 +217,7 @@ namespace ScikitLearn
                     if (method != "auto")
                         pyDict["method"] = Helpers.ToPython(method);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (verbose != 0)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (line_kw != null)
@@ -235,9 +235,9 @@ namespace ScikitLearn
                     if (centered != false)
                         pyDict["centered"] = Helpers.ToPython(centered);
                     if (subsample != 1000)
-                        pyDict["subsample"] = Helpers.ToPython(subsample.Value);
+                        pyDict["subsample"] = Helpers.ToPython(subsample);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     return self.InvokeMethod("from_estimator", args, pyDict);
                 }
 

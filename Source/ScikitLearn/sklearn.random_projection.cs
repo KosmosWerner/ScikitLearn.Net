@@ -53,7 +53,7 @@ namespace ScikitLearn
                     if (compute_inverse_components != false)
                         pyDict["compute_inverse_components"] = Helpers.ToPython(compute_inverse_components);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.random_projection.self.InvokeMethod("GaussianRandomProjection", args, pyDict);
                 }
 
@@ -171,7 +171,7 @@ namespace ScikitLearn
                     if (compute_inverse_components != false)
                         pyDict["compute_inverse_components"] = Helpers.ToPython(compute_inverse_components);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.random_projection.self.InvokeMethod("SparseRandomProjection", args, pyDict);
                 }
 

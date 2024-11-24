@@ -47,7 +47,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple([Helpers.ToPython(transformer_list)]);
                     PyDict pyDict = new PyDict();
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (transformer_weights != null)
                         pyDict["transformer_weights"] = Helpers.ToPython(transformer_weights);
                     if (verbose != false)
@@ -366,7 +366,7 @@ namespace ScikitLearn
                 PyTuple args = new PyTuple([Helpers.ToPython(transformers)]);
                 PyDict pyDict = new PyDict();
                 if (n_jobs != null)
-                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                 if (verbose != false)
                     pyDict["verbose"] = Helpers.ToPython(verbose);
                 return sklearn.pipeline.self.InvokeMethod("make_union", args, pyDict);

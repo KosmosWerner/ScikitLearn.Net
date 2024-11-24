@@ -1,5 +1,6 @@
 ﻿using CodeGenerator.Core;
 using CodeGenerator.Core.Manager;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -65,7 +66,58 @@ namespace CodeGeneratorTest
                             foreach (var item in container.Attributes)
                             {
                                 var (name, rawType, rawDefault) = TextAnalyzer.Divide.FromDefinition(item);
-                                attributes.Add(rawType);
+                                string nullable = rawType.Contains("None", StringComparison.OrdinalIgnoreCase) ? "?" : "";
+                                if (rawType.Contains("array of shape") || rawType.Contains("array, shape") || rawType == "array" || rawType == "ndarray")
+                                {
+                                    attributes.Add($"NDarray{nullable}: {name}\t\t\t{rawType}");
+                                }
+                                else if (rawType.Contains("array of float") || rawType.Contains("sparse matrix of shape") || rawType.Contains("{ndarray, sparse matrix} of shape"))
+                                {
+                                    attributes.Add($"NDarray{nullable}: {name}\t\t\t{rawType}");
+                                }
+                                else if (rawType.Contains("array-like"))
+                                {
+                                    attributes.Add($"_ARRAYLIKE{nullable}: {name}\t\t\t{rawType}");
+                                }
+                                else if (rawType.Contains("list"))
+                                {
+                                    attributes.Add($"_LIST{nullable}: {name}\t\t\t{rawType}");
+                                }
+                                else if (rawType.Contains("str")) // ok
+                                {
+                                    attributes.Add($"string{nullable}: {name}\t\t\t{rawType}");
+                                }
+                                else if (rawType.Contains("pair of"))
+                                {
+                                    if (rawType.Contains("float"))
+                                        attributes.Add($"Tuple<float, float>{nullable}: {name}\t\t\t{rawType}");
+                                    else if (rawType.Contains("int"))
+                                        attributes.Add($"Tuple<int, int>{nullable}: {name}\t\t\t{rawType}");
+                                    else
+                                        attributes.Add($"PyTuple{nullable}: {name}\t\t\t{rawType}");
+                                }
+                                else if (rawType.Contains("tuple"))
+                                {
+                                   
+                                        attributes.Add($"TUPLE{nullable}: {name}\t\t\t{rawType}");
+                                }
+                                else if (rawType.Contains("float"))
+                                {
+                                    attributes.Add($"float{nullable}: {name}\t\t\t{rawType}");
+                                }
+                                else if (rawType.Contains("int"))
+                                {
+                                    attributes.Add($"int{nullable}: {name}\t\t\t{rawType}");
+
+                                }
+                                else if (rawType.Contains("bool")) // ok
+                                {
+                                    attributes.Add($"bool{nullable}: {name}\t\t\t{rawType}");
+                                }
+                                else
+                                {
+                                    attributes.Add($"PyObject{nullable}: {name}\t\t\t{rawType}");
+                                }
                             }
 
                             //foreach (var method in container.Methods)
@@ -95,12 +147,8 @@ namespace CodeGeneratorTest
                 }
             }
 
-            var ordered = attributes.OrderBy(x => x);
+            File.WriteAllLines(Path.Combine(outpuDirectoryPath, "attributes.txt"), attributes.OrderBy(x => x));
 
-            foreach (var item in ordered)
-            {
-                Console.WriteLine(item);
-            }
         }
     }
 }

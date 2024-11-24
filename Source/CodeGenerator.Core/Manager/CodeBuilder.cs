@@ -381,12 +381,8 @@ public static partial class CodeBuilder
 
                 foreach ((string Type, string Name, string? Value) in kw)
                 {
-                    HashSet<string> valuetypes = ["int?", "bool?", "float?", "double?", "long?"];
-
-                    string value = valuetypes.Contains(Type) ? ".Value" : string.Empty;
-
                     string fixedName = TextAnalyzer.Fix.Reserved(Name);
-                    statements.Add($"if ({fixedName} != {(Value ?? "null")}) pyDict[\"{Name}\"] = Helpers.ToPython({fixedName}{value});");
+                    statements.Add($"if ({fixedName} != {(Value ?? "null")}) pyDict[\"{Name}\"] = Helpers.ToPython({fixedName});");
                 }
             }
 

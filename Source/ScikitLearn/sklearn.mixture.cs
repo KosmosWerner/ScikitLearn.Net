@@ -63,17 +63,17 @@ namespace ScikitLearn
                     if (weight_concentration_prior_type != "dirichlet_process")
                         pyDict["weight_concentration_prior_type"] = Helpers.ToPython(weight_concentration_prior_type);
                     if (weight_concentration_prior != null)
-                        pyDict["weight_concentration_prior"] = Helpers.ToPython(weight_concentration_prior.Value);
+                        pyDict["weight_concentration_prior"] = Helpers.ToPython(weight_concentration_prior);
                     if (mean_precision_prior != null)
-                        pyDict["mean_precision_prior"] = Helpers.ToPython(mean_precision_prior.Value);
+                        pyDict["mean_precision_prior"] = Helpers.ToPython(mean_precision_prior);
                     if (mean_prior != null)
                         pyDict["mean_prior"] = Helpers.ToPython(mean_prior);
                     if (degrees_of_freedom_prior != null)
-                        pyDict["degrees_of_freedom_prior"] = Helpers.ToPython(degrees_of_freedom_prior.Value);
+                        pyDict["degrees_of_freedom_prior"] = Helpers.ToPython(degrees_of_freedom_prior);
                     if (covariance_prior != null)
                         pyDict["covariance_prior"] = Helpers.ToPython(covariance_prior);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (warm_start != false)
                         pyDict["warm_start"] = Helpers.ToPython(warm_start);
                     if (verbose != 0)
@@ -158,7 +158,7 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_proba", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?) sample(int n_samples = 1)
+                public (NDarray? , NDarray? ) sample(int n_samples = 1)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
@@ -222,7 +222,7 @@ namespace ScikitLearn
                     if (precisions_init != null)
                         pyDict["precisions_init"] = Helpers.ToPython(precisions_init);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (warm_start != false)
                         pyDict["warm_start"] = Helpers.ToPython(warm_start);
                     if (verbose != 0)
@@ -313,7 +313,7 @@ namespace ScikitLearn
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("predict_proba", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?) sample(int n_samples = 1)
+                public (NDarray? , NDarray? ) sample(int n_samples = 1)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();

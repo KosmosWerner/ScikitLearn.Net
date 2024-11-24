@@ -49,11 +49,11 @@ namespace ScikitLearn
                     if (order != null)
                         pyDict["order"] = Helpers.ToPython(order);
                     if (cv != null)
-                        pyDict["cv"] = Helpers.ToPython(cv.Value);
+                        pyDict["cv"] = Helpers.ToPython(cv);
                     if (chain_method != "predict")
                         pyDict["chain_method"] = Helpers.ToPython(chain_method);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (verbose != false)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     self = sklearn.multioutput.self.InvokeMethod("ClassifierChain", args, pyDict);
@@ -169,7 +169,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple([Helpers.ToPython(estimator)]);
                     PyDict pyDict = new PyDict();
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     self = sklearn.multioutput.self.InvokeMethod("MultiOutputClassifier", args, pyDict);
                 }
 
@@ -293,7 +293,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple([Helpers.ToPython(estimator)]);
                     PyDict pyDict = new PyDict();
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     self = sklearn.multioutput.self.InvokeMethod("MultiOutputRegressor", args, pyDict);
                 }
 
@@ -419,9 +419,9 @@ namespace ScikitLearn
                     if (order != null)
                         pyDict["order"] = Helpers.ToPython(order);
                     if (cv != null)
-                        pyDict["cv"] = Helpers.ToPython(cv.Value);
+                        pyDict["cv"] = Helpers.ToPython(cv);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (verbose != false)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     self = sklearn.multioutput.self.InvokeMethod("RegressorChain", args, pyDict);

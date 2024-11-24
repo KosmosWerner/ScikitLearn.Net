@@ -47,7 +47,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple([Helpers.ToPython(estimator)]);
                     PyDict pyDict = new PyDict();
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     self = sklearn.multiclass.self.InvokeMethod("OneVsOneClassifier", args, pyDict);
                 }
 
@@ -169,7 +169,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple([Helpers.ToPython(estimator)]);
                     PyDict pyDict = new PyDict();
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (verbose != 0)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     self = sklearn.multiclass.self.InvokeMethod("OneVsRestClassifier", args, pyDict);
@@ -303,9 +303,9 @@ namespace ScikitLearn
                     if (code_size != 1.5f)
                         pyDict["code_size"] = Helpers.ToPython(code_size);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     self = sklearn.multiclass.self.InvokeMethod("OutputCodeClassifier", args, pyDict);
                 }
 

@@ -229,7 +229,7 @@ namespace ScikitLearn
                 PyTuple args = new PyTuple([Helpers.ToPython(y_true), Helpers.ToPython(y_score)]);
                 PyDict pyDict = new PyDict();
                 if (k != null)
-                    pyDict["k"] = Helpers.ToPython(k.Value);
+                    pyDict["k"] = Helpers.ToPython(k);
                 if (log_base != 2)
                     pyDict["log_base"] = Helpers.ToPython(log_base);
                 if (sample_weight != null)
@@ -239,7 +239,7 @@ namespace ScikitLearn
                 return Helpers.ToCSharpFloat(sklearn.metrics.self.InvokeMethod("dcg_score", args, pyDict));
             }
 
-            public static (NDarray?, NDarray?, NDarray?) det_curve(NDarray y_true, NDarray y_score, string? pos_label = null, NDarray? sample_weight = null)
+            public static (NDarray? , NDarray? , NDarray? ) det_curve(NDarray y_true, NDarray y_score, string? pos_label = null, NDarray? sample_weight = null)
             {
                 _ = sklearn.metrics.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(y_true), Helpers.ToPython(y_score)]);
@@ -373,7 +373,7 @@ namespace ScikitLearn
                 PyTuple args = new PyTuple([Helpers.ToPython(y_true), Helpers.ToPython(y_score)]);
                 PyDict pyDict = new PyDict();
                 if (k != null)
-                    pyDict["k"] = Helpers.ToPython(k.Value);
+                    pyDict["k"] = Helpers.ToPython(k);
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                 if (ignore_ties != false)
@@ -381,7 +381,7 @@ namespace ScikitLearn
                 return Helpers.ToCSharpFloat(sklearn.metrics.self.InvokeMethod("ndcg_score", args, pyDict));
             }
 
-            public static (NDarray?, NDarray?, NDarray?) precision_recall_curve(NDarray y_true, NDarray? y_score = null, string? pos_label = null, NDarray? sample_weight = null, bool drop_intermediate = false, string probas_pred = "deprecated")
+            public static (NDarray? , NDarray? , NDarray? ) precision_recall_curve(NDarray y_true, NDarray? y_score = null, string? pos_label = null, NDarray? sample_weight = null, bool drop_intermediate = false, string probas_pred = "deprecated")
             {
                 _ = sklearn.metrics.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(y_true)]);
@@ -401,7 +401,7 @@ namespace ScikitLearn
                 return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null);
             }
 
-            public static (NDarray?, NDarray?, NDarray?, NDarray?) precision_recall_fscore_support(NDarray y_true, NDarray y_pred, float beta = 1.0f, NDarray? labels = null, int pos_label = 1, PyObject? average = null, PyTuple? warn_for = null, NDarray? sample_weight = null, string zero_division = "warn")
+            public static (NDarray ?? ,  NDarray ?? ,  NDarray ?? ,  NDarray ?? )precision_recall_fscore_support(NDarray y_true, NDarray y_pred, float beta = 1.0f, NDarray? labels = null, int pos_label = 1, PyObject? average = null, PyTuple? warn_for = null, NDarray? sample_weight = null, string zero_division = "warn")
             {
                 _ = sklearn.metrics.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(y_true), Helpers.ToPython(y_pred)]);
@@ -471,7 +471,7 @@ namespace ScikitLearn
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                 if (max_fpr != null)
-                    pyDict["max_fpr"] = Helpers.ToPython(max_fpr.Value);
+                    pyDict["max_fpr"] = Helpers.ToPython(max_fpr);
                 if (multi_class != "raise")
                     pyDict["multi_class"] = Helpers.ToPython(multi_class);
                 if (labels != null)
@@ -479,7 +479,7 @@ namespace ScikitLearn
                 return Helpers.ToCSharpFloat(sklearn.metrics.self.InvokeMethod("roc_auc_score", args, pyDict));
             }
 
-            public static (NDarray?, NDarray?, NDarray?) roc_curve(NDarray y_true, NDarray y_score, string? pos_label = null, NDarray? sample_weight = null, bool drop_intermediate = true)
+            public static (NDarray? , NDarray? , NDarray? ) roc_curve(NDarray y_true, NDarray y_score, string? pos_label = null, NDarray? sample_weight = null, bool drop_intermediate = true)
             {
                 _ = sklearn.metrics.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(y_true), Helpers.ToPython(y_score)]);
@@ -813,7 +813,7 @@ namespace ScikitLearn
                 return Helpers.ToCSharpFloat(sklearn.metrics.self.InvokeMethod("fowlkes_mallows_score", args, pyDict));
             }
 
-            public static (float?, float?, float?) homogeneity_completeness_v_measure(NDarray labels_true, NDarray labels_pred, float beta = 1.0f)
+            public static (float? , float? , float? ) homogeneity_completeness_v_measure(NDarray labels_true, NDarray labels_pred, float beta = 1.0f)
             {
                 _ = sklearn.metrics.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(labels_true), Helpers.ToPython(labels_pred)]);
@@ -881,9 +881,9 @@ namespace ScikitLearn
                 if (metric != "euclidean")
                     pyDict["metric"] = Helpers.ToPython(metric);
                 if (sample_size != null)
-                    pyDict["sample_size"] = Helpers.ToPython(sample_size.Value);
+                    pyDict["sample_size"] = Helpers.ToPython(sample_size);
                 if (random_state != null)
-                    pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                    pyDict["random_state"] = Helpers.ToPython(random_state);
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
                 return Helpers.ToCSharpFloat(sklearn.metrics.self.InvokeMethod("silhouette_score", args, pyDict));
@@ -935,7 +935,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple([Helpers.ToPython(metric)]);
                     PyDict pyDict = new PyDict();
                     if (dtype != null)
-                        pyDict["dtype"] = Helpers.ToPython(dtype.Value);
+                        pyDict["dtype"] = Helpers.ToPython(dtype);
                     if (@params != null)
                         pyDict["params"] = Helpers.ToPython(@params);
                     return self.InvokeMethod("get_metric", args, pyDict);
@@ -952,7 +952,7 @@ namespace ScikitLearn
                 if (metric != "euclidean")
                     pyDict["metric"] = Helpers.ToPython(metric);
                 if (n_jobs != null)
-                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                 if (force_all_finite != true)
                     pyDict["force_all_finite"] = Helpers.ToPython(force_all_finite);
                 if (@params != null)
@@ -974,7 +974,7 @@ namespace ScikitLearn
                 return Helpers.ToCSharpNDarray(sklearn.metrics.self.InvokeMethod("pairwise_distances_argmin", args, pyDict));
             }
 
-            public static (NDarray?, NDarray?) pairwise_distances_argmin_min(NDarray X, NDarray Y, int axis = 1, string metric = "euclidean", PyDict? metric_kwargs = null)
+            public static (NDarray? , NDarray? ) pairwise_distances_argmin_min(NDarray X, NDarray Y, int axis = 1, string metric = "euclidean", PyDict? metric_kwargs = null)
             {
                 _ = sklearn.metrics.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(Y)]);
@@ -1002,9 +1002,9 @@ namespace ScikitLearn
                 if (metric != "euclidean")
                     pyDict["metric"] = Helpers.ToPython(metric);
                 if (n_jobs != null)
-                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                 if (working_memory != null)
-                    pyDict["working_memory"] = Helpers.ToPython(working_memory.Value);
+                    pyDict["working_memory"] = Helpers.ToPython(working_memory);
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
                 return Helpers.ToCSharpNDarray(sklearn.metrics.self.InvokeMethod("pairwise_distances_chunked", args, pyDict));
@@ -1211,13 +1211,13 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple([Helpers.ToPython(precision), Helpers.ToPython(recall)]);
                     PyDict pyDict = new PyDict();
                     if (average_precision != null)
-                        pyDict["average_precision"] = Helpers.ToPython(average_precision.Value);
+                        pyDict["average_precision"] = Helpers.ToPython(average_precision);
                     if (estimator_name != null)
                         pyDict["estimator_name"] = Helpers.ToPython(estimator_name);
                     if (pos_label != null)
                         pyDict["pos_label"] = Helpers.ToPython(pos_label);
                     if (prevalence_pos_label != null)
-                        pyDict["prevalence_pos_label"] = Helpers.ToPython(prevalence_pos_label.Value);
+                        pyDict["prevalence_pos_label"] = Helpers.ToPython(prevalence_pos_label);
                     self = sklearn.metrics.self.InvokeMethod("PrecisionRecallDisplay", args, pyDict);
                 }
 
@@ -1337,9 +1337,9 @@ namespace ScikitLearn
                     if (kind != "residual_vs_predicted")
                         pyDict["kind"] = Helpers.ToPython(kind);
                     if (subsample != 1000)
-                        pyDict["subsample"] = Helpers.ToPython(subsample.Value);
+                        pyDict["subsample"] = Helpers.ToPython(subsample);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (ax != null)
                         pyDict["ax"] = Helpers.ToPython(ax);
                     if (scatter_kwargs != null)
@@ -1356,9 +1356,9 @@ namespace ScikitLearn
                     if (kind != "residual_vs_predicted")
                         pyDict["kind"] = Helpers.ToPython(kind);
                     if (subsample != 1000)
-                        pyDict["subsample"] = Helpers.ToPython(subsample.Value);
+                        pyDict["subsample"] = Helpers.ToPython(subsample);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (ax != null)
                         pyDict["ax"] = Helpers.ToPython(ax);
                     if (scatter_kwargs != null)
@@ -1392,7 +1392,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple([Helpers.ToPython(fpr), Helpers.ToPython(tpr)]);
                     PyDict pyDict = new PyDict();
                     if (roc_auc != null)
-                        pyDict["roc_auc"] = Helpers.ToPython(roc_auc.Value);
+                        pyDict["roc_auc"] = Helpers.ToPython(roc_auc);
                     if (estimator_name != null)
                         pyDict["estimator_name"] = Helpers.ToPython(estimator_name);
                     if (pos_label != null)
@@ -1520,11 +1520,11 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple([Helpers.ToPython(labels_true), Helpers.ToPython(labels_pred)]);
                     PyDict pyDict = new PyDict();
                     if (eps != null)
-                        pyDict["eps"] = Helpers.ToPython(eps.Value);
+                        pyDict["eps"] = Helpers.ToPython(eps);
                     if (sparse != false)
                         pyDict["sparse"] = Helpers.ToPython(sparse);
                     if (dtype != null)
-                        pyDict["dtype"] = Helpers.ToPython(dtype.Value);
+                        pyDict["dtype"] = Helpers.ToPython(dtype);
                     return Helpers.ToCSharpNDarray(sklearn.metrics.cluster.self.InvokeMethod("contingency_matrix", args, pyDict));
                 }
 
@@ -1663,7 +1663,7 @@ namespace ScikitLearn
                     if (Y != null)
                         pyDict["Y"] = Helpers.ToPython(Y);
                     if (gamma != null)
-                        pyDict["gamma"] = Helpers.ToPython(gamma.Value);
+                        pyDict["gamma"] = Helpers.ToPython(gamma);
                     return Helpers.ToCSharpNDarray(sklearn.metrics.pairwise.self.InvokeMethod("laplacian_kernel", args, pyDict));
                 }
 
@@ -1699,7 +1699,7 @@ namespace ScikitLearn
                     if (squared != false)
                         pyDict["squared"] = Helpers.ToPython(squared);
                     if (missing_values != null)
-                        pyDict["missing_values"] = Helpers.ToPython(missing_values.Value);
+                        pyDict["missing_values"] = Helpers.ToPython(missing_values);
                     if (copy != true)
                         pyDict["copy"] = Helpers.ToPython(copy);
                     return Helpers.ToCSharpNDarray(sklearn.metrics.pairwise.self.InvokeMethod("nan_euclidean_distances", args, pyDict));
@@ -1753,7 +1753,7 @@ namespace ScikitLearn
                     if (filter_params != false)
                         pyDict["filter_params"] = Helpers.ToPython(filter_params);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (@params != null)
                         pyDict["params"] = Helpers.ToPython(@params);
                     return Helpers.ToCSharpNDarray(sklearn.metrics.pairwise.self.InvokeMethod("pairwise_kernels", args, pyDict));
@@ -1769,7 +1769,7 @@ namespace ScikitLearn
                     if (degree != 3)
                         pyDict["degree"] = Helpers.ToPython(degree);
                     if (gamma != null)
-                        pyDict["gamma"] = Helpers.ToPython(gamma.Value);
+                        pyDict["gamma"] = Helpers.ToPython(gamma);
                     if (coef0 != 1)
                         pyDict["coef0"] = Helpers.ToPython(coef0);
                     return Helpers.ToCSharpNDarray(sklearn.metrics.pairwise.self.InvokeMethod("polynomial_kernel", args, pyDict));
@@ -1783,7 +1783,7 @@ namespace ScikitLearn
                     if (Y != null)
                         pyDict["Y"] = Helpers.ToPython(Y);
                     if (gamma != null)
-                        pyDict["gamma"] = Helpers.ToPython(gamma.Value);
+                        pyDict["gamma"] = Helpers.ToPython(gamma);
                     return Helpers.ToCSharpNDarray(sklearn.metrics.pairwise.self.InvokeMethod("rbf_kernel", args, pyDict));
                 }
 
@@ -1795,7 +1795,7 @@ namespace ScikitLearn
                     if (Y != null)
                         pyDict["Y"] = Helpers.ToPython(Y);
                     if (gamma != null)
-                        pyDict["gamma"] = Helpers.ToPython(gamma.Value);
+                        pyDict["gamma"] = Helpers.ToPython(gamma);
                     if (coef0 != 1)
                         pyDict["coef0"] = Helpers.ToPython(coef0);
                     return Helpers.ToCSharpNDarray(sklearn.metrics.pairwise.self.InvokeMethod("sigmoid_kernel", args, pyDict));

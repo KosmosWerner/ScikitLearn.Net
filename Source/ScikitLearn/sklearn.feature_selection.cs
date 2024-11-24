@@ -169,7 +169,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple([Helpers.ToPython(estimator)]);
                     PyDict pyDict = new PyDict();
                     if (n_features_to_select != null)
-                        pyDict["n_features_to_select"] = Helpers.ToPython(n_features_to_select.Value);
+                        pyDict["n_features_to_select"] = Helpers.ToPython(n_features_to_select);
                     if (step != 1)
                         pyDict["step"] = Helpers.ToPython(step);
                     if (verbose != 0)
@@ -337,13 +337,13 @@ namespace ScikitLearn
                     if (min_features_to_select != 1)
                         pyDict["min_features_to_select"] = Helpers.ToPython(min_features_to_select);
                     if (cv != null)
-                        pyDict["cv"] = Helpers.ToPython(cv.Value);
+                        pyDict["cv"] = Helpers.ToPython(cv);
                     if (scoring != null)
                         pyDict["scoring"] = Helpers.ToPython(scoring);
                     if (verbose != 0)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (importance_getter != "auto")
                         pyDict["importance_getter"] = Helpers.ToPython(importance_getter);
                     self = sklearn.feature_selection.self.InvokeMethod("RFECV", args, pyDict);
@@ -760,7 +760,7 @@ namespace ScikitLearn
                     if (norm_order != 1)
                         pyDict["norm_order"] = Helpers.ToPython(norm_order);
                     if (max_features != null)
-                        pyDict["max_features"] = Helpers.ToPython(max_features.Value);
+                        pyDict["max_features"] = Helpers.ToPython(max_features);
                     if (importance_getter != "auto")
                         pyDict["importance_getter"] = Helpers.ToPython(importance_getter);
                     self = sklearn.feature_selection.self.InvokeMethod("SelectFromModel", args, pyDict);
@@ -1332,15 +1332,15 @@ namespace ScikitLearn
                     if (n_features_to_select != "auto")
                         pyDict["n_features_to_select"] = Helpers.ToPython(n_features_to_select);
                     if (tol != null)
-                        pyDict["tol"] = Helpers.ToPython(tol.Value);
+                        pyDict["tol"] = Helpers.ToPython(tol);
                     if (direction != "forward")
                         pyDict["direction"] = Helpers.ToPython(direction);
                     if (scoring != null)
                         pyDict["scoring"] = Helpers.ToPython(scoring);
                     if (cv != 5)
-                        pyDict["cv"] = Helpers.ToPython(cv.Value);
+                        pyDict["cv"] = Helpers.ToPython(cv);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     self = sklearn.feature_selection.self.InvokeMethod("SequentialFeatureSelector", args, pyDict);
                 }
 
@@ -1613,9 +1613,9 @@ namespace ScikitLearn
                 if (copy != true)
                     pyDict["copy"] = Helpers.ToPython(copy);
                 if (random_state != null)
-                    pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                    pyDict["random_state"] = Helpers.ToPython(random_state);
                 if (n_jobs != null)
-                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                 return Helpers.ToCSharpNDarray(sklearn.feature_selection.self.InvokeMethod("mutual_info_classif", args, pyDict));
             }
 
@@ -1631,9 +1631,9 @@ namespace ScikitLearn
                 if (copy != true)
                     pyDict["copy"] = Helpers.ToPython(copy);
                 if (random_state != null)
-                    pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                    pyDict["random_state"] = Helpers.ToPython(random_state);
                 if (n_jobs != null)
-                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                 return Helpers.ToCSharpNDarray(sklearn.feature_selection.self.InvokeMethod("mutual_info_regression", args, pyDict));
             }
 

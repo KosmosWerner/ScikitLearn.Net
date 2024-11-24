@@ -57,7 +57,7 @@ namespace ScikitLearn
                     if (tol != 0.001f)
                         pyDict["tol"] = Helpers.ToPython(tol);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     self = sklearn.semi_supervised.self.InvokeMethod("LabelPropagation", args, pyDict);
                 }
 
@@ -168,7 +168,7 @@ namespace ScikitLearn
                     if (tol != 0.001f)
                         pyDict["tol"] = Helpers.ToPython(tol);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     self = sklearn.semi_supervised.self.InvokeMethod("LabelSpreading", args, pyDict);
                 }
 
@@ -273,7 +273,7 @@ namespace ScikitLearn
                     if (k_best != 10)
                         pyDict["k_best"] = Helpers.ToPython(k_best);
                     if (max_iter != 10)
-                        pyDict["max_iter"] = Helpers.ToPython(max_iter.Value);
+                        pyDict["max_iter"] = Helpers.ToPython(max_iter);
                     if (verbose != false)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     self = sklearn.semi_supervised.self.InvokeMethod("SelfTrainingClassifier", args, pyDict);

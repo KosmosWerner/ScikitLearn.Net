@@ -148,7 +148,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     if (copy != null)
-                        pyDict["copy"] = Helpers.ToPython(copy.Value);
+                        pyDict["copy"] = Helpers.ToPython(copy);
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("transform", args, pyDict));
                 }
             }
@@ -286,11 +286,11 @@ namespace ScikitLearn
                     if (strategy != "quantile")
                         pyDict["strategy"] = Helpers.ToPython(strategy);
                     if (dtype != null)
-                        pyDict["dtype"] = Helpers.ToPython(dtype.Value);
+                        pyDict["dtype"] = Helpers.ToPython(dtype);
                     if (subsample != 200000)
-                        pyDict["subsample"] = Helpers.ToPython(subsample.Value);
+                        pyDict["subsample"] = Helpers.ToPython(subsample);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.preprocessing.self.InvokeMethod("KBinsDiscretizer", args, pyDict);
                 }
 
@@ -598,7 +598,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple([Helpers.ToPython(Y)]);
                     PyDict pyDict = new PyDict();
                     if (threshold != null)
-                        pyDict["threshold"] = Helpers.ToPython(threshold.Value);
+                        pyDict["threshold"] = Helpers.ToPython(threshold);
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("inverse_transform", args, pyDict));
                 }
 
@@ -1176,7 +1176,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     if (copy != null)
-                        pyDict["copy"] = Helpers.ToPython(copy.Value);
+                        pyDict["copy"] = Helpers.ToPython(copy);
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("transform", args, pyDict));
                 }
             }
@@ -1195,13 +1195,13 @@ namespace ScikitLearn
                     if (sparse_output != true)
                         pyDict["sparse_output"] = Helpers.ToPython(sparse_output);
                     if (dtype != null)
-                        pyDict["dtype"] = Helpers.ToPython(dtype.Value);
+                        pyDict["dtype"] = Helpers.ToPython(dtype);
                     if (handle_unknown != "error")
                         pyDict["handle_unknown"] = Helpers.ToPython(handle_unknown);
                     if (min_frequency != null)
-                        pyDict["min_frequency"] = Helpers.ToPython(min_frequency.Value);
+                        pyDict["min_frequency"] = Helpers.ToPython(min_frequency);
                     if (max_categories != null)
-                        pyDict["max_categories"] = Helpers.ToPython(max_categories.Value);
+                        pyDict["max_categories"] = Helpers.ToPython(max_categories);
                     if (feature_name_combiner != "concat")
                         pyDict["feature_name_combiner"] = Helpers.ToPython(feature_name_combiner);
                     self = sklearn.preprocessing.self.InvokeMethod("OneHotEncoder", args, pyDict);
@@ -1316,17 +1316,17 @@ namespace ScikitLearn
                     if (categories != "auto")
                         pyDict["categories"] = Helpers.ToPython(categories);
                     if (dtype != null)
-                        pyDict["dtype"] = Helpers.ToPython(dtype.Value);
+                        pyDict["dtype"] = Helpers.ToPython(dtype);
                     if (handle_unknown != "error")
                         pyDict["handle_unknown"] = Helpers.ToPython(handle_unknown);
                     if (unknown_value != null)
-                        pyDict["unknown_value"] = Helpers.ToPython(unknown_value.Value);
+                        pyDict["unknown_value"] = Helpers.ToPython(unknown_value);
                     if (encoded_missing_value != null)
-                        pyDict["encoded_missing_value"] = Helpers.ToPython(encoded_missing_value.Value);
+                        pyDict["encoded_missing_value"] = Helpers.ToPython(encoded_missing_value);
                     if (min_frequency != null)
-                        pyDict["min_frequency"] = Helpers.ToPython(min_frequency.Value);
+                        pyDict["min_frequency"] = Helpers.ToPython(min_frequency);
                     if (max_categories != null)
-                        pyDict["max_categories"] = Helpers.ToPython(max_categories.Value);
+                        pyDict["max_categories"] = Helpers.ToPython(max_categories);
                     self = sklearn.preprocessing.self.InvokeMethod("OrdinalEncoder", args, pyDict);
                 }
 
@@ -1655,9 +1655,9 @@ namespace ScikitLearn
                     if (ignore_implicit_zeros != false)
                         pyDict["ignore_implicit_zeros"] = Helpers.ToPython(ignore_implicit_zeros);
                     if (subsample != 10000)
-                        pyDict["subsample"] = Helpers.ToPython(subsample.Value);
+                        pyDict["subsample"] = Helpers.ToPython(subsample);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (copy != true)
                         pyDict["copy"] = Helpers.ToPython(copy);
                     self = sklearn.preprocessing.self.InvokeMethod("QuantileTransformer", args, pyDict);
@@ -2089,7 +2089,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     if (copy != null)
-                        pyDict["copy"] = Helpers.ToPython(copy.Value);
+                        pyDict["copy"] = Helpers.ToPython(copy);
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("inverse_transform", args, pyDict));
                 }
 
@@ -2170,7 +2170,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
                     if (copy != null)
-                        pyDict["copy"] = Helpers.ToPython(copy.Value);
+                        pyDict["copy"] = Helpers.ToPython(copy);
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("transform", args, pyDict));
                 }
             }
@@ -2193,7 +2193,7 @@ namespace ScikitLearn
                     if (shuffle != true)
                         pyDict["shuffle"] = Helpers.ToPython(shuffle);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.preprocessing.self.InvokeMethod("TargetEncoder", args, pyDict);
                 }
 
@@ -2346,7 +2346,7 @@ namespace ScikitLearn
                 return Helpers.ToCSharpNDarray(sklearn.preprocessing.self.InvokeMethod("minmax_scale", args, pyDict));
             }
 
-            public static (NDarray?, NDarray?) normalize(NDarray X, string norm = "l2", int axis = 1, bool copy = true, bool return_norm = false)
+            public static (NDarray? , NDarray? ) normalize(NDarray X, string norm = "l2", int axis = 1, bool copy = true, bool return_norm = false)
             {
                 _ = sklearn.preprocessing.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X)]);
@@ -2392,9 +2392,9 @@ namespace ScikitLearn
                 if (ignore_implicit_zeros != false)
                     pyDict["ignore_implicit_zeros"] = Helpers.ToPython(ignore_implicit_zeros);
                 if (subsample != 100000)
-                    pyDict["subsample"] = Helpers.ToPython(subsample.Value);
+                    pyDict["subsample"] = Helpers.ToPython(subsample);
                 if (random_state != null)
-                    pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                    pyDict["random_state"] = Helpers.ToPython(random_state);
                 if (copy != true)
                     pyDict["copy"] = Helpers.ToPython(copy);
                 return Helpers.ToCSharpNDarray(sklearn.preprocessing.self.InvokeMethod("quantile_transform", args, pyDict));

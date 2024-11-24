@@ -51,9 +51,9 @@ namespace ScikitLearn
                     if (method != "sigmoid")
                         pyDict["method"] = Helpers.ToPython(method);
                     if (cv != null)
-                        pyDict["cv"] = Helpers.ToPython(cv.Value);
+                        pyDict["cv"] = Helpers.ToPython(cv);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (ensemble != true)
                         pyDict["ensemble"] = Helpers.ToPython(ensemble);
                     self = sklearn.calibration.self.InvokeMethod("CalibratedClassifierCV", args, pyDict);
@@ -157,7 +157,7 @@ namespace ScikitLearn
                 }
             }
 
-            public static (NDarray?, NDarray?) calibration_curve(NDarray y_true, NDarray y_prob, string? pos_label = null, int n_bins = 5, string strategy = "uniform")
+            public static (NDarray? , NDarray? ) calibration_curve(NDarray y_true, NDarray y_prob, string? pos_label = null, int n_bins = 5, string strategy = "uniform")
             {
                 _ = sklearn.calibration.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(y_true), Helpers.ToPython(y_prob)]);

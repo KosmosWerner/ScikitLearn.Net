@@ -47,9 +47,9 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_neighbors != 5)
-                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors.Value);
+                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors);
                     if (radius != null)
-                        pyDict["radius"] = Helpers.ToPython(radius.Value);
+                        pyDict["radius"] = Helpers.ToPython(radius);
                     if (n_components != 2)
                         pyDict["n_components"] = Helpers.ToPython(n_components);
                     if (eigen_solver != "auto")
@@ -57,13 +57,13 @@ namespace ScikitLearn
                     if (tol != 0)
                         pyDict["tol"] = Helpers.ToPython(tol);
                     if (max_iter != null)
-                        pyDict["max_iter"] = Helpers.ToPython(max_iter.Value);
+                        pyDict["max_iter"] = Helpers.ToPython(max_iter);
                     if (path_method != "auto")
                         pyDict["path_method"] = Helpers.ToPython(path_method);
                     if (neighbors_algorithm != "auto")
                         pyDict["neighbors_algorithm"] = Helpers.ToPython(neighbors_algorithm);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (metric != "minkowski")
                         pyDict["metric"] = Helpers.ToPython(metric);
                     if (p != 2)
@@ -194,9 +194,9 @@ namespace ScikitLearn
                     if (neighbors_algorithm != "auto")
                         pyDict["neighbors_algorithm"] = Helpers.ToPython(neighbors_algorithm);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     self = sklearn.manifold.self.InvokeMethod("LocallyLinearEmbedding", args, pyDict);
                 }
 
@@ -305,9 +305,9 @@ namespace ScikitLearn
                     if (eps != 0.001f)
                         pyDict["eps"] = Helpers.ToPython(eps);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (dissimilarity != "euclidean")
                         pyDict["dissimilarity"] = Helpers.ToPython(dissimilarity);
                     if (normalized_stress != "auto")
@@ -401,17 +401,17 @@ namespace ScikitLearn
                     if (affinity != "nearest_neighbors")
                         pyDict["affinity"] = Helpers.ToPython(affinity);
                     if (gamma != null)
-                        pyDict["gamma"] = Helpers.ToPython(gamma.Value);
+                        pyDict["gamma"] = Helpers.ToPython(gamma);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (eigen_solver != null)
                         pyDict["eigen_solver"] = Helpers.ToPython(eigen_solver);
                     if (eigen_tol != "auto")
                         pyDict["eigen_tol"] = Helpers.ToPython(eigen_tol);
                     if (n_neighbors != null)
-                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors.Value);
+                        pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     self = sklearn.manifold.self.InvokeMethod("SpectralEmbedding", args, pyDict);
                 }
 
@@ -490,7 +490,7 @@ namespace ScikitLearn
                     if (learning_rate != "auto")
                         pyDict["learning_rate"] = Helpers.ToPython(learning_rate);
                     if (max_iter != null)
-                        pyDict["max_iter"] = Helpers.ToPython(max_iter.Value);
+                        pyDict["max_iter"] = Helpers.ToPython(max_iter);
                     if (n_iter_without_progress != 300)
                         pyDict["n_iter_without_progress"] = Helpers.ToPython(n_iter_without_progress);
                     if (min_grad_norm != 1e-07f)
@@ -504,13 +504,13 @@ namespace ScikitLearn
                     if (verbose != 0)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (method != "barnes_hut")
                         pyDict["method"] = Helpers.ToPython(method);
                     if (angle != 0.5f)
                         pyDict["angle"] = Helpers.ToPython(angle);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (n_iter != "deprecated")
                         pyDict["n_iter"] = Helpers.ToPython(n_iter);
                     self = sklearn.manifold.self.InvokeMethod("TSNE", args, pyDict);
@@ -599,7 +599,7 @@ namespace ScikitLearn
                 }
             }
 
-            public static (NDarray?, float?) locally_linear_embedding(NDarray X, int n_neighbors, int n_components, float reg = 0.001f, string eigen_solver = "auto", float tol = 1e-06f, int max_iter = 100, string method = "standard", float hessian_tol = 0.0001f, float modified_tol = 1e-12f, int? random_state = null, int? n_jobs = null)
+            public static (NDarray? , float? ) locally_linear_embedding(NDarray X, int n_neighbors, int n_components, float reg = 0.001f, string eigen_solver = "auto", float tol = 1e-06f, int max_iter = 100, string method = "standard", float hessian_tol = 0.0001f, float modified_tol = 1e-12f, int? random_state = null, int? n_jobs = null)
             {
                 _ = sklearn.manifold.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(n_neighbors), Helpers.ToPython(n_components)]);
@@ -619,15 +619,15 @@ namespace ScikitLearn
                 if (modified_tol != 1e-12f)
                     pyDict["modified_tol"] = Helpers.ToPython(modified_tol);
                 if (random_state != null)
-                    pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                    pyDict["random_state"] = Helpers.ToPython(random_state);
                 if (n_jobs != null)
-                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                 PyTuple result = new PyTuple(sklearn.manifold.self.InvokeMethod("locally_linear_embedding", args, pyDict));
                 var __length = result.Length();
                 return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpFloat(result[1]) : null);
             }
 
-            public static (NDarray?, string?, int?) smacof(NDarray dissimilarities, bool metric = true, int n_components = 2, NDarray? init = null, int n_init = 8, int? n_jobs = null, int max_iter = 300, int verbose = 0, float eps = 0.001f, int? random_state = null, bool return_n_iter = false, string normalized_stress = "auto")
+            public static (NDarray? , string? , int? ) smacof(NDarray dissimilarities, bool metric = true, int n_components = 2, NDarray? init = null, int n_init = 8, int? n_jobs = null, int max_iter = 300, int verbose = 0, float eps = 0.001f, int? random_state = null, bool return_n_iter = false, string normalized_stress = "auto")
             {
                 _ = sklearn.manifold.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(dissimilarities)]);
@@ -641,7 +641,7 @@ namespace ScikitLearn
                 if (n_init != 8)
                     pyDict["n_init"] = Helpers.ToPython(n_init);
                 if (n_jobs != null)
-                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                    pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                 if (max_iter != 300)
                     pyDict["max_iter"] = Helpers.ToPython(max_iter);
                 if (verbose != 0)
@@ -649,7 +649,7 @@ namespace ScikitLearn
                 if (eps != 0.001f)
                     pyDict["eps"] = Helpers.ToPython(eps);
                 if (random_state != null)
-                    pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                    pyDict["random_state"] = Helpers.ToPython(random_state);
                 if (return_n_iter != false)
                     pyDict["return_n_iter"] = Helpers.ToPython(return_n_iter);
                 if (normalized_stress != "auto")
@@ -669,7 +669,7 @@ namespace ScikitLearn
                 if (eigen_solver != null)
                     pyDict["eigen_solver"] = Helpers.ToPython(eigen_solver);
                 if (random_state != null)
-                    pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                    pyDict["random_state"] = Helpers.ToPython(random_state);
                 if (eigen_tol != "auto")
                     pyDict["eigen_tol"] = Helpers.ToPython(eigen_tol);
                 if (norm_laplacian != true)

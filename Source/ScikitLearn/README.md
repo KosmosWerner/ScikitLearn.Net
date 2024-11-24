@@ -89,7 +89,7 @@ For desktop applications, be sure to call `PythonEngine.Shutdown()` when closing
 
 ### 3. Can't Find the Methods or Constructors You Need
 Each static class has a `self` field of type `PyObject`, from which you can create class instances or call omitted methods.  
-When creating objects, you will receive an instance of `PyObject`. If you are sure of the type, each class has a static method `Encapsulate(PyObject pyObject)`, which allows you to access the class's attributes and methods.
+When creating objects, you will receive an instance of `PyObject`. If you are sure of the type, each class has a static method `Encapsule(PyObject pyObject)`, which allows you to access the class's attributes and methods.
 
 ```csharp
 PyObject obj = sklearn.cluster.self.InvokeMethod("DBSCAN", your_custom_args);

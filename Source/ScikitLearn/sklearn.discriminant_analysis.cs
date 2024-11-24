@@ -49,11 +49,11 @@ namespace ScikitLearn
                     if (solver != "svd")
                         pyDict["solver"] = Helpers.ToPython(solver);
                     if (shrinkage != null)
-                        pyDict["shrinkage"] = Helpers.ToPython(shrinkage.Value);
+                        pyDict["shrinkage"] = Helpers.ToPython(shrinkage);
                     if (priors != null)
                         pyDict["priors"] = Helpers.ToPython(priors);
                     if (n_components != null)
-                        pyDict["n_components"] = Helpers.ToPython(n_components.Value);
+                        pyDict["n_components"] = Helpers.ToPython(n_components);
                     if (store_covariance != false)
                         pyDict["store_covariance"] = Helpers.ToPython(store_covariance);
                     if (tol != 0.0001f)

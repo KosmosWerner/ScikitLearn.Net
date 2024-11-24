@@ -59,11 +59,11 @@ namespace ScikitLearn
                     if (copy_X_train != true)
                         pyDict["copy_X_train"] = Helpers.ToPython(copy_X_train);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (multi_class != "one_vs_rest")
                         pyDict["multi_class"] = Helpers.ToPython(multi_class);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     self = sklearn.gaussian_process.self.InvokeMethod("GaussianProcessClassifier", args, pyDict);
                 }
 
@@ -110,7 +110,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (float?, NDarray?) log_marginal_likelihood(NDarray? theta = null, bool eval_gradient = false, bool clone_kernel = true)
+                public (float? , NDarray? ) log_marginal_likelihood(NDarray? theta = null, bool eval_gradient = false, bool clone_kernel = true)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
@@ -189,9 +189,9 @@ namespace ScikitLearn
                     if (copy_X_train != true)
                         pyDict["copy_X_train"] = Helpers.ToPython(copy_X_train);
                     if (n_targets != null)
-                        pyDict["n_targets"] = Helpers.ToPython(n_targets.Value);
+                        pyDict["n_targets"] = Helpers.ToPython(n_targets);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.gaussian_process.self.InvokeMethod("GaussianProcessRegressor", args, pyDict);
                 }
 
@@ -239,7 +239,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (float?, NDarray?) log_marginal_likelihood(NDarray? theta = null, bool eval_gradient = false, bool clone_kernel = true)
+                public (float? , NDarray? ) log_marginal_likelihood(NDarray? theta = null, bool eval_gradient = false, bool clone_kernel = true)
                 {
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
@@ -254,7 +254,7 @@ namespace ScikitLearn
                     return (__length > 0 ? Helpers.ToCSharpFloat(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
                 }
 
-                public (NDarray?, NDarray?, NDarray?) predict(PyObject X, bool return_std = false, bool return_cov = false)
+                public (NDarray? , NDarray? , NDarray? ) predict(PyObject X, bool return_std = false, bool return_cov = false)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -274,7 +274,7 @@ namespace ScikitLearn
                     if (n_samples != 1)
                         pyDict["n_samples"] = Helpers.ToPython(n_samples);
                     if (random_state != 0)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     return Helpers.ToCSharpNDarray(self.InvokeMethod("sample_y", args, pyDict));
                 }
 

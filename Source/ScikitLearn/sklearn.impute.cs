@@ -49,7 +49,7 @@ namespace ScikitLearn
                     if (estimator != null)
                         pyDict["estimator"] = Helpers.ToPython(estimator);
                     if (missing_values != null)
-                        pyDict["missing_values"] = Helpers.ToPython(missing_values.Value);
+                        pyDict["missing_values"] = Helpers.ToPython(missing_values);
                     if (sample_posterior != false)
                         pyDict["sample_posterior"] = Helpers.ToPython(sample_posterior);
                     if (max_iter != 10)
@@ -57,7 +57,7 @@ namespace ScikitLearn
                     if (tol != 0.001f)
                         pyDict["tol"] = Helpers.ToPython(tol);
                     if (n_nearest_features != null)
-                        pyDict["n_nearest_features"] = Helpers.ToPython(n_nearest_features.Value);
+                        pyDict["n_nearest_features"] = Helpers.ToPython(n_nearest_features);
                     if (initial_strategy != "mean")
                         pyDict["initial_strategy"] = Helpers.ToPython(initial_strategy);
                     if (fill_value != null)
@@ -73,7 +73,7 @@ namespace ScikitLearn
                     if (verbose != 0)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (add_indicator != false)
                         pyDict["add_indicator"] = Helpers.ToPython(add_indicator);
                     if (keep_empty_features != false)

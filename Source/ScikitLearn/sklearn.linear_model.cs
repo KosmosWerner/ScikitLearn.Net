@@ -61,7 +61,7 @@ namespace ScikitLearn
                     if (class_weight != null)
                         pyDict["class_weight"] = Helpers.ToPython(class_weight);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (solver != "lbfgs")
                         pyDict["solver"] = Helpers.ToPython(solver);
                     if (max_iter != 100)
@@ -73,9 +73,9 @@ namespace ScikitLearn
                     if (warm_start != false)
                         pyDict["warm_start"] = Helpers.ToPython(warm_start);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (l1_ratio != null)
-                        pyDict["l1_ratio"] = Helpers.ToPython(l1_ratio.Value);
+                        pyDict["l1_ratio"] = Helpers.ToPython(l1_ratio);
                     self = sklearn.linear_model.self.InvokeMethod("LogisticRegression", args, pyDict);
                 }
 
@@ -219,7 +219,7 @@ namespace ScikitLearn
                     if (fit_intercept != true)
                         pyDict["fit_intercept"] = Helpers.ToPython(fit_intercept);
                     if (cv != null)
-                        pyDict["cv"] = Helpers.ToPython(cv.Value);
+                        pyDict["cv"] = Helpers.ToPython(cv);
                     if (dual != false)
                         pyDict["dual"] = Helpers.ToPython(dual);
                     if (penalty != "l2")
@@ -235,7 +235,7 @@ namespace ScikitLearn
                     if (class_weight != null)
                         pyDict["class_weight"] = Helpers.ToPython(class_weight);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (verbose != 0)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (refit != true)
@@ -245,7 +245,7 @@ namespace ScikitLearn
                     if (multi_class != "deprecated")
                         pyDict["multi_class"] = Helpers.ToPython(multi_class);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (l1_ratios != null)
                         pyDict["l1_ratios"] = Helpers.ToPython(l1_ratios);
                     self = sklearn.linear_model.self.InvokeMethod("LogisticRegressionCV", args, pyDict);
@@ -403,7 +403,7 @@ namespace ScikitLearn
                     if (max_iter != 1000)
                         pyDict["max_iter"] = Helpers.ToPython(max_iter);
                     if (tol != 0.001f)
-                        pyDict["tol"] = Helpers.ToPython(tol.Value);
+                        pyDict["tol"] = Helpers.ToPython(tol);
                     if (early_stopping != false)
                         pyDict["early_stopping"] = Helpers.ToPython(early_stopping);
                     if (validation_fraction != 0.1f)
@@ -417,9 +417,9 @@ namespace ScikitLearn
                     if (loss != "hinge")
                         pyDict["loss"] = Helpers.ToPython(loss);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (warm_start != false)
                         pyDict["warm_start"] = Helpers.ToPython(warm_start);
                     if (class_weight != null)
@@ -587,7 +587,7 @@ namespace ScikitLearn
                     if (max_iter != 1000)
                         pyDict["max_iter"] = Helpers.ToPython(max_iter);
                     if (tol != 0.001f)
-                        pyDict["tol"] = Helpers.ToPython(tol.Value);
+                        pyDict["tol"] = Helpers.ToPython(tol);
                     if (shuffle != true)
                         pyDict["shuffle"] = Helpers.ToPython(shuffle);
                     if (verbose != 0)
@@ -595,9 +595,9 @@ namespace ScikitLearn
                     if (eta0 != 1.0f)
                         pyDict["eta0"] = Helpers.ToPython(eta0);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (random_state != 0)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (early_stopping != false)
                         pyDict["early_stopping"] = Helpers.ToPython(early_stopping);
                     if (validation_fraction != 0.1f)
@@ -773,7 +773,7 @@ namespace ScikitLearn
                     if (copy_X != true)
                         pyDict["copy_X"] = Helpers.ToPython(copy_X);
                     if (max_iter != null)
-                        pyDict["max_iter"] = Helpers.ToPython(max_iter.Value);
+                        pyDict["max_iter"] = Helpers.ToPython(max_iter);
                     if (tol != 0.0001f)
                         pyDict["tol"] = Helpers.ToPython(tol);
                     if (class_weight != null)
@@ -783,7 +783,7 @@ namespace ScikitLearn
                     if (positive != false)
                         pyDict["positive"] = Helpers.ToPython(positive);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.linear_model.self.InvokeMethod("RidgeClassifier", args, pyDict);
                 }
 
@@ -900,11 +900,11 @@ namespace ScikitLearn
                     if (scoring != null)
                         pyDict["scoring"] = Helpers.ToPython(scoring);
                     if (cv != null)
-                        pyDict["cv"] = Helpers.ToPython(cv.Value);
+                        pyDict["cv"] = Helpers.ToPython(cv);
                     if (class_weight != null)
                         pyDict["class_weight"] = Helpers.ToPython(class_weight);
                     if (store_cv_results != null)
-                        pyDict["store_cv_results"] = Helpers.ToPython(store_cv_results.Value);
+                        pyDict["store_cv_results"] = Helpers.ToPython(store_cv_results);
                     if (store_cv_values != "deprecated")
                         pyDict["store_cv_values"] = Helpers.ToPython(store_cv_values);
                     self = sklearn.linear_model.self.InvokeMethod("RidgeClassifierCV", args, pyDict);
@@ -1032,7 +1032,7 @@ namespace ScikitLearn
                     if (max_iter != 1000)
                         pyDict["max_iter"] = Helpers.ToPython(max_iter);
                     if (tol != 0.001f)
-                        pyDict["tol"] = Helpers.ToPython(tol.Value);
+                        pyDict["tol"] = Helpers.ToPython(tol);
                     if (shuffle != true)
                         pyDict["shuffle"] = Helpers.ToPython(shuffle);
                     if (verbose != 0)
@@ -1040,9 +1040,9 @@ namespace ScikitLearn
                     if (epsilon != 0.1f)
                         pyDict["epsilon"] = Helpers.ToPython(epsilon);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (learning_rate != "optimal")
                         pyDict["learning_rate"] = Helpers.ToPython(learning_rate);
                     if (eta0 != 0.0f)
@@ -1240,13 +1240,13 @@ namespace ScikitLearn
                     if (max_iter != 1000)
                         pyDict["max_iter"] = Helpers.ToPython(max_iter);
                     if (tol != 0.001f)
-                        pyDict["tol"] = Helpers.ToPython(tol.Value);
+                        pyDict["tol"] = Helpers.ToPython(tol);
                     if (shuffle != true)
                         pyDict["shuffle"] = Helpers.ToPython(shuffle);
                     if (verbose != 0)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (learning_rate != "optimal")
                         pyDict["learning_rate"] = Helpers.ToPython(learning_rate);
                     if (eta0 != 0.0f)
@@ -1412,7 +1412,7 @@ namespace ScikitLearn
                     if (copy_X != true)
                         pyDict["copy_X"] = Helpers.ToPython(copy_X);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (positive != false)
                         pyDict["positive"] = Helpers.ToPython(positive);
                     self = sklearn.linear_model.self.InvokeMethod("LinearRegression", args, pyDict);
@@ -1523,7 +1523,7 @@ namespace ScikitLearn
                     if (copy_X != true)
                         pyDict["copy_X"] = Helpers.ToPython(copy_X);
                     if (max_iter != null)
-                        pyDict["max_iter"] = Helpers.ToPython(max_iter.Value);
+                        pyDict["max_iter"] = Helpers.ToPython(max_iter);
                     if (tol != 0.0001f)
                         pyDict["tol"] = Helpers.ToPython(tol);
                     if (solver != "auto")
@@ -1531,7 +1531,7 @@ namespace ScikitLearn
                     if (positive != false)
                         pyDict["positive"] = Helpers.ToPython(positive);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.linear_model.self.InvokeMethod("Ridge", args, pyDict);
                 }
 
@@ -1640,11 +1640,11 @@ namespace ScikitLearn
                     if (scoring != null)
                         pyDict["scoring"] = Helpers.ToPython(scoring);
                     if (cv != null)
-                        pyDict["cv"] = Helpers.ToPython(cv.Value);
+                        pyDict["cv"] = Helpers.ToPython(cv);
                     if (gcv_mode != null)
                         pyDict["gcv_mode"] = Helpers.ToPython(gcv_mode);
                     if (store_cv_results != null)
-                        pyDict["store_cv_results"] = Helpers.ToPython(store_cv_results.Value);
+                        pyDict["store_cv_results"] = Helpers.ToPython(store_cv_results);
                     if (alpha_per_target != false)
                         pyDict["alpha_per_target"] = Helpers.ToPython(alpha_per_target);
                     if (store_cv_values != "deprecated")
@@ -1766,7 +1766,7 @@ namespace ScikitLearn
                     if (max_iter != 1000)
                         pyDict["max_iter"] = Helpers.ToPython(max_iter);
                     if (tol != 0.001f)
-                        pyDict["tol"] = Helpers.ToPython(tol.Value);
+                        pyDict["tol"] = Helpers.ToPython(tol);
                     if (shuffle != true)
                         pyDict["shuffle"] = Helpers.ToPython(shuffle);
                     if (verbose != 0)
@@ -1774,7 +1774,7 @@ namespace ScikitLearn
                     if (epsilon != 0.1f)
                         pyDict["epsilon"] = Helpers.ToPython(epsilon);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (learning_rate != "invscaling")
                         pyDict["learning_rate"] = Helpers.ToPython(learning_rate);
                     if (eta0 != 0.01f)
@@ -1955,7 +1955,7 @@ namespace ScikitLearn
                     if (positive != false)
                         pyDict["positive"] = Helpers.ToPython(positive);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (selection != "cyclic")
                         pyDict["selection"] = Helpers.ToPython(selection);
                     self = sklearn.linear_model.self.InvokeMethod("ElasticNet", args, pyDict);
@@ -2008,7 +2008,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
+                public (NDarray? , NDarray? , NDarray? , PyTuple? ) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -2116,17 +2116,17 @@ namespace ScikitLearn
                     if (tol != 0.0001f)
                         pyDict["tol"] = Helpers.ToPython(tol);
                     if (cv != null)
-                        pyDict["cv"] = Helpers.ToPython(cv.Value);
+                        pyDict["cv"] = Helpers.ToPython(cv);
                     if (copy_X != true)
                         pyDict["copy_X"] = Helpers.ToPython(copy_X);
                     if (verbose != 0)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (positive != false)
                         pyDict["positive"] = Helpers.ToPython(positive);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (selection != "cyclic")
                         pyDict["selection"] = Helpers.ToPython(selection);
                     self = sklearn.linear_model.self.InvokeMethod("ElasticNetCV", args, pyDict);
@@ -2182,7 +2182,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
+                public (NDarray? , NDarray? , NDarray? , PyTuple? ) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -2286,9 +2286,9 @@ namespace ScikitLearn
                     if (fit_path != true)
                         pyDict["fit_path"] = Helpers.ToPython(fit_path);
                     if (jitter != null)
-                        pyDict["jitter"] = Helpers.ToPython(jitter.Value);
+                        pyDict["jitter"] = Helpers.ToPython(jitter);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.linear_model.self.InvokeMethod("Lars", args, pyDict);
                 }
 
@@ -2401,11 +2401,11 @@ namespace ScikitLearn
                     if (precompute != "auto")
                         pyDict["precompute"] = Helpers.ToPython(precompute);
                     if (cv != null)
-                        pyDict["cv"] = Helpers.ToPython(cv.Value);
+                        pyDict["cv"] = Helpers.ToPython(cv);
                     if (max_n_alphas != 1000)
                         pyDict["max_n_alphas"] = Helpers.ToPython(max_n_alphas);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (eps != float.Epsilon)
                         pyDict["eps"] = Helpers.ToPython(eps);
                     if (copy_X != true)
@@ -2533,7 +2533,7 @@ namespace ScikitLearn
                     if (positive != false)
                         pyDict["positive"] = Helpers.ToPython(positive);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (selection != "cyclic")
                         pyDict["selection"] = Helpers.ToPython(selection);
                     self = sklearn.linear_model.self.InvokeMethod("Lasso", args, pyDict);
@@ -2586,7 +2586,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
+                public (NDarray? , NDarray? , NDarray? , PyTuple? ) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -2694,15 +2694,15 @@ namespace ScikitLearn
                     if (copy_X != true)
                         pyDict["copy_X"] = Helpers.ToPython(copy_X);
                     if (cv != null)
-                        pyDict["cv"] = Helpers.ToPython(cv.Value);
+                        pyDict["cv"] = Helpers.ToPython(cv);
                     if (verbose != false)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (positive != false)
                         pyDict["positive"] = Helpers.ToPython(positive);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (selection != "cyclic")
                         pyDict["selection"] = Helpers.ToPython(selection);
                     self = sklearn.linear_model.self.InvokeMethod("LassoCV", args, pyDict);
@@ -2757,7 +2757,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, Dictionary<string, PyObject>? @params = null)
+                public (NDarray? , NDarray? , NDarray? , PyTuple? ) path(NDarray X, NDarray y, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -2861,9 +2861,9 @@ namespace ScikitLearn
                     if (positive != false)
                         pyDict["positive"] = Helpers.ToPython(positive);
                     if (jitter != null)
-                        pyDict["jitter"] = Helpers.ToPython(jitter.Value);
+                        pyDict["jitter"] = Helpers.ToPython(jitter);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.linear_model.self.InvokeMethod("LassoLars", args, pyDict);
                 }
 
@@ -2976,11 +2976,11 @@ namespace ScikitLearn
                     if (precompute != "auto")
                         pyDict["precompute"] = Helpers.ToPython(precompute);
                     if (cv != null)
-                        pyDict["cv"] = Helpers.ToPython(cv.Value);
+                        pyDict["cv"] = Helpers.ToPython(cv);
                     if (max_n_alphas != 1000)
                         pyDict["max_n_alphas"] = Helpers.ToPython(max_n_alphas);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (eps != float.Epsilon)
                         pyDict["eps"] = Helpers.ToPython(eps);
                     if (copy_X != true)
@@ -3110,7 +3110,7 @@ namespace ScikitLearn
                     if (positive != false)
                         pyDict["positive"] = Helpers.ToPython(positive);
                     if (noise_variance != null)
-                        pyDict["noise_variance"] = Helpers.ToPython(noise_variance.Value);
+                        pyDict["noise_variance"] = Helpers.ToPython(noise_variance);
                     self = sklearn.linear_model.self.InvokeMethod("LassoLarsIC", args, pyDict);
                 }
 
@@ -3140,7 +3140,7 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
                     if (copy_X != null)
-                        pyDict["copy_X"] = Helpers.ToPython(copy_X.Value);
+                        pyDict["copy_X"] = Helpers.ToPython(copy_X);
                     self.InvokeMethod("fit", args, pyDict);
                     return this;
                 }
@@ -3216,9 +3216,9 @@ namespace ScikitLearn
                     PyTuple args = new PyTuple();
                     PyDict pyDict = new PyDict();
                     if (n_nonzero_coefs != null)
-                        pyDict["n_nonzero_coefs"] = Helpers.ToPython(n_nonzero_coefs.Value);
+                        pyDict["n_nonzero_coefs"] = Helpers.ToPython(n_nonzero_coefs);
                     if (tol != null)
-                        pyDict["tol"] = Helpers.ToPython(tol.Value);
+                        pyDict["tol"] = Helpers.ToPython(tol);
                     if (fit_intercept != true)
                         pyDict["fit_intercept"] = Helpers.ToPython(fit_intercept);
                     if (precompute != "auto")
@@ -3317,11 +3317,11 @@ namespace ScikitLearn
                     if (fit_intercept != true)
                         pyDict["fit_intercept"] = Helpers.ToPython(fit_intercept);
                     if (max_iter != null)
-                        pyDict["max_iter"] = Helpers.ToPython(max_iter.Value);
+                        pyDict["max_iter"] = Helpers.ToPython(max_iter);
                     if (cv != null)
-                        pyDict["cv"] = Helpers.ToPython(cv.Value);
+                        pyDict["cv"] = Helpers.ToPython(cv);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (verbose != false)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     self = sklearn.linear_model.self.InvokeMethod("OrthogonalMatchingPursuitCV", args, pyDict);
@@ -3487,7 +3487,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?) predict(NDarray X, bool return_std = false)
+                public (NDarray? , NDarray? ) predict(NDarray X, bool return_std = false)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -3558,9 +3558,9 @@ namespace ScikitLearn
                     if (lambda_2 != 1e-06f)
                         pyDict["lambda_2"] = Helpers.ToPython(lambda_2);
                     if (alpha_init != null)
-                        pyDict["alpha_init"] = Helpers.ToPython(alpha_init.Value);
+                        pyDict["alpha_init"] = Helpers.ToPython(alpha_init);
                     if (lambda_init != null)
-                        pyDict["lambda_init"] = Helpers.ToPython(lambda_init.Value);
+                        pyDict["lambda_init"] = Helpers.ToPython(lambda_init);
                     if (compute_score != false)
                         pyDict["compute_score"] = Helpers.ToPython(compute_score);
                     if (fit_intercept != true)
@@ -3621,7 +3621,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?) predict(NDarray X, bool return_std = false)
+                public (NDarray? , NDarray? ) predict(NDarray X, bool return_std = false)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X)]);
                     PyDict pyDict = new PyDict();
@@ -3704,7 +3704,7 @@ namespace ScikitLearn
                     if (warm_start != false)
                         pyDict["warm_start"] = Helpers.ToPython(warm_start);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (selection != "cyclic")
                         pyDict["selection"] = Helpers.ToPython(selection);
                     self = sklearn.linear_model.self.InvokeMethod("MultiTaskElasticNet", args, pyDict);
@@ -3754,7 +3754,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
+                public (NDarray? , NDarray? , NDarray? , PyTuple? ) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -3860,15 +3860,15 @@ namespace ScikitLearn
                     if (tol != 0.0001f)
                         pyDict["tol"] = Helpers.ToPython(tol);
                     if (cv != null)
-                        pyDict["cv"] = Helpers.ToPython(cv.Value);
+                        pyDict["cv"] = Helpers.ToPython(cv);
                     if (copy_X != true)
                         pyDict["copy_X"] = Helpers.ToPython(copy_X);
                     if (verbose != 0)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (selection != "cyclic")
                         pyDict["selection"] = Helpers.ToPython(selection);
                     self = sklearn.linear_model.self.InvokeMethod("MultiTaskElasticNetCV", args, pyDict);
@@ -3922,7 +3922,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
+                public (NDarray? , NDarray? , NDarray? , PyTuple? ) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -4024,7 +4024,7 @@ namespace ScikitLearn
                     if (warm_start != false)
                         pyDict["warm_start"] = Helpers.ToPython(warm_start);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (selection != "cyclic")
                         pyDict["selection"] = Helpers.ToPython(selection);
                     self = sklearn.linear_model.self.InvokeMethod("MultiTaskLasso", args, pyDict);
@@ -4074,7 +4074,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
+                public (NDarray? , NDarray? , NDarray? , PyTuple? ) path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -4180,13 +4180,13 @@ namespace ScikitLearn
                     if (copy_X != true)
                         pyDict["copy_X"] = Helpers.ToPython(copy_X);
                     if (cv != null)
-                        pyDict["cv"] = Helpers.ToPython(cv.Value);
+                        pyDict["cv"] = Helpers.ToPython(cv);
                     if (verbose != false)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (selection != "cyclic")
                         pyDict["selection"] = Helpers.ToPython(selection);
                     self = sklearn.linear_model.self.InvokeMethod("MultiTaskLassoCV", args, pyDict);
@@ -4239,7 +4239,7 @@ namespace ScikitLearn
                     return new PyDict(self.InvokeMethod("get_params", args, pyDict));
                 }
 
-                public (NDarray?, NDarray?, NDarray?, PyTuple?) path(NDarray X, NDarray y, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, Dictionary<string, PyObject>? @params = null)
+                public (NDarray? , NDarray? , NDarray? , PyTuple? ) path(NDarray X, NDarray y, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, Dictionary<string, PyObject>? @params = null)
                 {
                     PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                     PyDict pyDict = new PyDict();
@@ -4551,9 +4551,9 @@ namespace ScikitLearn
                     if (estimator != null)
                         pyDict["estimator"] = Helpers.ToPython(estimator);
                     if (min_samples != null)
-                        pyDict["min_samples"] = Helpers.ToPython(min_samples.Value);
+                        pyDict["min_samples"] = Helpers.ToPython(min_samples);
                     if (residual_threshold != null)
-                        pyDict["residual_threshold"] = Helpers.ToPython(residual_threshold.Value);
+                        pyDict["residual_threshold"] = Helpers.ToPython(residual_threshold);
                     if (is_data_valid != null)
                         pyDict["is_data_valid"] = Helpers.ToPython(is_data_valid);
                     if (is_model_valid != null)
@@ -4571,7 +4571,7 @@ namespace ScikitLearn
                     if (loss != "absolute_error")
                         pyDict["loss"] = Helpers.ToPython(loss);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     self = sklearn.linear_model.self.InvokeMethod("RANSACRegressor", args, pyDict);
                 }
 
@@ -4676,15 +4676,15 @@ namespace ScikitLearn
                     if (max_subpopulation != 10000.0f)
                         pyDict["max_subpopulation"] = Helpers.ToPython(max_subpopulation);
                     if (n_subsamples != null)
-                        pyDict["n_subsamples"] = Helpers.ToPython(n_subsamples.Value);
+                        pyDict["n_subsamples"] = Helpers.ToPython(n_subsamples);
                     if (max_iter != 300)
                         pyDict["max_iter"] = Helpers.ToPython(max_iter);
                     if (tol != 0.001f)
                         pyDict["tol"] = Helpers.ToPython(tol);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (n_jobs != null)
-                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs.Value);
+                        pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
                     if (verbose != false)
                         pyDict["verbose"] = Helpers.ToPython(verbose);
                     self = sklearn.linear_model.self.InvokeMethod("TheilSenRegressor", args, pyDict);
@@ -5130,7 +5130,7 @@ namespace ScikitLearn
                     if (max_iter != 1000)
                         pyDict["max_iter"] = Helpers.ToPython(max_iter);
                     if (tol != 0.001f)
-                        pyDict["tol"] = Helpers.ToPython(tol.Value);
+                        pyDict["tol"] = Helpers.ToPython(tol);
                     if (early_stopping != false)
                         pyDict["early_stopping"] = Helpers.ToPython(early_stopping);
                     if (validation_fraction != 0.1f)
@@ -5146,7 +5146,7 @@ namespace ScikitLearn
                     if (epsilon != 0.1f)
                         pyDict["epsilon"] = Helpers.ToPython(epsilon);
                     if (random_state != null)
-                        pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                        pyDict["random_state"] = Helpers.ToPython(random_state);
                     if (warm_start != false)
                         pyDict["warm_start"] = Helpers.ToPython(warm_start);
                     if (average != false)
@@ -5283,7 +5283,7 @@ namespace ScikitLearn
                 }
             }
 
-            public static (NDarray?, NDarray?, NDarray?, PyTuple?) enet_path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
+            public static (NDarray? , NDarray? , NDarray? , PyTuple? ) enet_path(NDarray X, NDarray y, float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, bool check_input = true, Dictionary<string, PyObject>? @params = null)
             {
                 _ = sklearn.linear_model.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
@@ -5319,7 +5319,7 @@ namespace ScikitLearn
                 return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
             }
 
-            public static (NDarray?, NDarray?, NDarray?, int?) lars_path(NDarray X, NDarray y, NDarray? Xy = null, NDarray? Gram = null, int max_iter = 500, int alpha_min = 0, string method = "lar", bool copy_X = true, float eps = float.Epsilon, bool copy_Gram = true, int verbose = 0, bool return_path = true, bool return_n_iter = false, bool positive = false)
+            public static (NDarray? , NDarray? , NDarray? , int? ) lars_path(NDarray X, NDarray y, NDarray? Xy = null, NDarray? Gram = null, int max_iter = 500, int alpha_min = 0, string method = "lar", bool copy_X = true, float eps = float.Epsilon, bool copy_Gram = true, int verbose = 0, bool return_path = true, bool return_n_iter = false, bool positive = false)
             {
                 _ = sklearn.linear_model.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
@@ -5353,7 +5353,7 @@ namespace ScikitLearn
                 return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpInt(result[3]) : null);
             }
 
-            public static (NDarray?, NDarray?, NDarray?, int?) lars_path_gram(NDarray Xy, NDarray Gram, int n_samples, int max_iter = 500, int alpha_min = 0, string method = "lar", bool copy_X = true, float eps = float.Epsilon, bool copy_Gram = true, int verbose = 0, bool return_path = true, bool return_n_iter = false, bool positive = false)
+            public static (NDarray? , NDarray? , NDarray? , int? ) lars_path_gram(NDarray Xy, NDarray Gram, int n_samples, int max_iter = 500, int alpha_min = 0, string method = "lar", bool copy_X = true, float eps = float.Epsilon, bool copy_Gram = true, int verbose = 0, bool return_path = true, bool return_n_iter = false, bool positive = false)
             {
                 _ = sklearn.linear_model.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(Xy), Helpers.ToPython(Gram), Helpers.ToPython(n_samples)]);
@@ -5383,7 +5383,7 @@ namespace ScikitLearn
                 return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpInt(result[3]) : null);
             }
 
-            public static (NDarray?, NDarray?, NDarray?, PyTuple?) lasso_path(NDarray X, NDarray y, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, Dictionary<string, PyObject>? @params = null)
+            public static (NDarray? , NDarray? , NDarray? , PyTuple? ) lasso_path(NDarray X, NDarray y, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, string precompute = "auto", NDarray? Xy = null, bool copy_X = true, NDarray? coef_init = null, bool verbose = false, bool return_n_iter = false, bool positive = false, Dictionary<string, PyObject>? @params = null)
             {
                 _ = sklearn.linear_model.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
@@ -5415,15 +5415,15 @@ namespace ScikitLearn
                 return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null, __length > 2 ? Helpers.ToCSharpNDarray(result[2]) : null, __length > 3 ? Helpers.ToCSharpPyTuple(result[3]) : null);
             }
 
-            public static (NDarray?, NDarray?) orthogonal_mp(NDarray X, NDarray y, int? n_nonzero_coefs = null, float? tol = null, bool precompute = false, bool copy_X = true, bool return_path = false, bool return_n_iter = false)
+            public static (NDarray? , NDarray? ) orthogonal_mp(NDarray X, NDarray y, int? n_nonzero_coefs = null, float? tol = null, bool precompute = false, bool copy_X = true, bool return_path = false, bool return_n_iter = false)
             {
                 _ = sklearn.linear_model.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y)]);
                 PyDict pyDict = new PyDict();
                 if (n_nonzero_coefs != null)
-                    pyDict["n_nonzero_coefs"] = Helpers.ToPython(n_nonzero_coefs.Value);
+                    pyDict["n_nonzero_coefs"] = Helpers.ToPython(n_nonzero_coefs);
                 if (tol != null)
-                    pyDict["tol"] = Helpers.ToPython(tol.Value);
+                    pyDict["tol"] = Helpers.ToPython(tol);
                 if (precompute != false)
                     pyDict["precompute"] = Helpers.ToPython(precompute);
                 if (copy_X != true)
@@ -5437,15 +5437,15 @@ namespace ScikitLearn
                 return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpNDarray(result[1]) : null);
             }
 
-            public static (NDarray?, int?) orthogonal_mp_gram(NDarray Gram, NDarray Xy, int? n_nonzero_coefs = null, float? tol = null, NDarray? norms_squared = null, bool copy_Gram = true, bool copy_Xy = true, bool return_path = false, bool return_n_iter = false)
+            public static (NDarray? , int? ) orthogonal_mp_gram(NDarray Gram, NDarray Xy, int? n_nonzero_coefs = null, float? tol = null, NDarray? norms_squared = null, bool copy_Gram = true, bool copy_Xy = true, bool return_path = false, bool return_n_iter = false)
             {
                 _ = sklearn.linear_model.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(Gram), Helpers.ToPython(Xy)]);
                 PyDict pyDict = new PyDict();
                 if (n_nonzero_coefs != null)
-                    pyDict["n_nonzero_coefs"] = Helpers.ToPython(n_nonzero_coefs.Value);
+                    pyDict["n_nonzero_coefs"] = Helpers.ToPython(n_nonzero_coefs);
                 if (tol != null)
-                    pyDict["tol"] = Helpers.ToPython(tol.Value);
+                    pyDict["tol"] = Helpers.ToPython(tol);
                 if (norms_squared != null)
                     pyDict["norms_squared"] = Helpers.ToPython(norms_squared);
                 if (copy_Gram != true)
@@ -5461,7 +5461,7 @@ namespace ScikitLearn
                 return (__length > 0 ? Helpers.ToCSharpNDarray(result[0]) : null, __length > 1 ? Helpers.ToCSharpInt(result[1]) : null);
             }
 
-            public static (NDarray?, int?, NDarray?) ridge_regression(NDarray X, NDarray y, NDarray alpha, NDarray? sample_weight = null, string solver = "auto", int? max_iter = null, float tol = 0.0001f, int verbose = 0, bool positive = false, int? random_state = null, bool return_n_iter = false, bool return_intercept = false, bool check_input = true)
+            public static (NDarray? , int? , NDarray? ) ridge_regression(NDarray X, NDarray y, NDarray alpha, NDarray? sample_weight = null, string solver = "auto", int? max_iter = null, float tol = 0.0001f, int verbose = 0, bool positive = false, int? random_state = null, bool return_n_iter = false, bool return_intercept = false, bool check_input = true)
             {
                 _ = sklearn.linear_model.self;
                 PyTuple args = new PyTuple([Helpers.ToPython(X), Helpers.ToPython(y), Helpers.ToPython(alpha)]);
@@ -5471,7 +5471,7 @@ namespace ScikitLearn
                 if (solver != "auto")
                     pyDict["solver"] = Helpers.ToPython(solver);
                 if (max_iter != null)
-                    pyDict["max_iter"] = Helpers.ToPython(max_iter.Value);
+                    pyDict["max_iter"] = Helpers.ToPython(max_iter);
                 if (tol != 0.0001f)
                     pyDict["tol"] = Helpers.ToPython(tol);
                 if (verbose != 0)
@@ -5479,7 +5479,7 @@ namespace ScikitLearn
                 if (positive != false)
                     pyDict["positive"] = Helpers.ToPython(positive);
                 if (random_state != null)
-                    pyDict["random_state"] = Helpers.ToPython(random_state.Value);
+                    pyDict["random_state"] = Helpers.ToPython(random_state);
                 if (return_n_iter != false)
                     pyDict["return_n_iter"] = Helpers.ToPython(return_n_iter);
                 if (return_intercept != false)

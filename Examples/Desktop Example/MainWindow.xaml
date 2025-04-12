@@ -1,0 +1,175 @@
+﻿<Window x:Class="Desktop_Example.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Desktop_Example"
+        xmlns:Scottplot="clr-namespace:ScottPlot.WPF;assembly=ScottPlot.WPF"
+        mc:Ignorable="d"
+        Title="Sklearn.NET Cluster"
+        WindowStartupLocation="CenterScreen"
+        Height="600"
+        Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="200" />
+        </Grid.ColumnDefinitions>
+
+        <Scottplot:WpfPlot x:Name="plotDbcan1"
+                           Grid.Row="0"
+                           Grid.Column="0" />
+
+        <Scottplot:WpfPlot x:Name="plotDbcan2"
+                           Grid.Row="1"
+                           Grid.Column="0" />
+
+        <Scottplot:WpfPlot x:Name="plotDbcan3"
+                           Grid.Row="2"
+                           Grid.Column="0" />
+
+        <Scottplot:WpfPlot x:Name="plotOptics1"
+                           Grid.Row="0"
+                           Grid.Column="1" />
+
+        <Scottplot:WpfPlot x:Name="plotOptics2"
+                           Grid.Row="1"
+                           Grid.Column="1" />
+
+        <Scottplot:WpfPlot x:Name="plotOptics3"
+                           Grid.Row="2"
+                           Grid.Column="1" />
+
+        <Scottplot:WpfPlot x:Name="plotMean1"
+                           Grid.Row="0"
+                           Grid.Column="2" />
+
+        <Scottplot:WpfPlot x:Name="plotMean2"
+                           Grid.Row="1"
+                           Grid.Column="2" />
+
+        <Scottplot:WpfPlot x:Name="plotMean3"
+                           Grid.Row="2"
+                           Grid.Column="2" />
+
+        <TextBlock Text="DBSCAN"
+                   HorizontalAlignment="Center"
+                   FontSize="30"
+                   Grid.Row="3"
+                   Grid.Column="0" />
+
+        <TextBlock Text="OPTICS"
+                   HorizontalAlignment="Center"
+                   FontSize="30"
+                   Grid.Row="3"
+                   Grid.Column="1" />
+
+        <TextBlock Text="Mean Shift"
+                   HorizontalAlignment="Center"
+                   FontSize="30"
+                   Grid.Row="3"
+                   Grid.Column="2" />
+
+        <StackPanel Grid.Row="0"
+                    Grid.RowSpan="4"
+                    Grid.Column="3"
+                    Margin="10">
+
+            <Button DockPanel.Dock="Top"
+                    Height="30"
+                    Margin="0 0 0 10"
+                    Click="ButtonGenerate_Click"
+                    Content="Generate" />
+
+            <Button DockPanel.Dock="Bottom"
+                    Height="30"
+                    Margin="0 0 0 10"
+                    Click="ButtonClassify_Click"
+                    Content="Classify" />
+
+            <GroupBox Margin="0 0 0 10">
+                <GroupBox.Header>
+                    <CheckBox IsChecked="True"
+                              x:Name="boolDBSCAN"
+                              Content="DBSCAN" />
+                </GroupBox.Header>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="EPS: " />
+                        <TextBlock Text="{Binding ElementName=slEps, Path=Value}" />
+                    </StackPanel>
+                    <Slider x:Name="sliderEPS"
+                            IsEnabled="{Binding ElementName=boolDBSCAN, Path=IsChecked}"
+                            Minimum="0.25"
+                            Value="1.5"
+                            Maximum="4"
+                            IsSnapToTickEnabled="True"
+                            TickFrequency="0.25" />
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Min Samples: " />
+                        <TextBlock Text="{Binding ElementName=slMinSamples, Path=Value}" />
+                    </StackPanel>
+                    <Slider x:Name="sliderMinSamples"
+                            IsEnabled="{Binding ElementName=boolDBSCAN, Path=IsChecked}"
+                            Minimum="1"
+                            Value="10"
+                            Maximum="20"
+                            IsSnapToTickEnabled="True"
+                            TickFrequency="1" />
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Margin="0 0 0 10">
+                <GroupBox.Header>
+                    <CheckBox IsChecked="True"
+                              x:Name="boolOPTICS"
+                              Content="OPTICS" />
+                </GroupBox.Header>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Min Samples: " />
+                        <TextBlock Text="{Binding ElementName=slMin_Samples2, Path=Value}" />
+                    </StackPanel>
+                    <Slider x:Name="slMin_Samples2"
+                            IsEnabled="{Binding ElementName=boolOPTICS, Path=IsChecked}"
+                            Minimum="1"
+                            Value="2"
+                            Maximum="20"
+                            IsSnapToTickEnabled="True"
+                            TickFrequency="1" />
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Margin="0 0 0 10">
+                <GroupBox.Header>
+                    <CheckBox IsChecked="True"
+                              x:Name="boolMeanShift"
+                              Content="Mean Shift" />
+                </GroupBox.Header>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Band Width: " />
+                        <TextBlock Text="{Binding ElementName=slBandWidth, Path=Value}" />
+                    </StackPanel>
+                    <Slider x:Name="slBandWidth"
+                            IsEnabled="{Binding ElementName=boolMeanShift, Path=IsChecked}"
+                            Minimum="1"
+                            Value="5"
+                            Maximum="20"
+                            IsSnapToTickEnabled="True"
+                            TickFrequency="1" />
+                </StackPanel>
+            </GroupBox>
+
+        </StackPanel>
+    </Grid>
+</Window>

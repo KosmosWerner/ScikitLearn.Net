@@ -1,0 +1,42 @@
+name: Deploy
+
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+env:
+  DOTNET_VERSION: "8.0.x"
+  ARTIFACT_FOLDER: "artifacts"
+
+jobs:
+  deploy:
+    name: NuGet Packages
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET ${{ env.DOTNET_VERSION }}
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Clean Artifacts Folder
+        run: rm -rf ${{ env.ARTIFACT_FOLDER }}
+
+      - name: Package ScikitLearn.Net
+        env:
+          PROJECT_FOLDER: "Source/ScikitLearn"
+        run: |
+          dotnet restore "${{ env.PROJECT_FOLDER }}"
+          dotnet build "${{ env.PROJECT_FOLDER }}" --configuration Release
+          dotnet pack "${{ env.PROJECT_FOLDER }}" --configuration Release -o "${{ env.ARTIFACT_FOLDER }}"
+
+      - name: Setup NuGet
+        uses: nuget/setup-nuget@v3
+        with:
+          nuget-api-key: ${{ secrets.NUGET_API_KEY }}
+
+      - name: Deploy Packages
+        run: nuget push "${{ env.ARTIFACT_FOLDER }}/*.nupkg" -SkipDuplicate -Source https://api.nuget.org/v3/index.json

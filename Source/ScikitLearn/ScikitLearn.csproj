@@ -1,0 +1,37 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<!--<TargetFrameworks>net6.0;net8.0</TargetFrameworks>-->
+		<TargetFramework>net8.0</TargetFramework>
+		<RootNamespace>ScikitLearn</RootNamespace>
+		<AssemblyName>ScikitLearn</AssemblyName>
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+		<Authors>Kosmos Werner</Authors>
+		<Product>ScikitLearn.NET</Product>
+		<PackageId>ScikitLearn</PackageId>
+		<Description>C# bindings for Scikit-Learn</Description>
+		<Copyright>2025 - Kosmos Werner H</Copyright>
+		<RepositoryUrl>https://github.com/KosmosWerner/ScikitLearn.Net</RepositoryUrl>
+		<PackageProjectUrl>https://github.com/KosmosWerner/ScikitLearn.Net</PackageProjectUrl>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>readme.md</PackageReadmeFile>
+		<!--<PackageIcon>icon.png</PackageIcon>-->
+		<PackageTags>MachineLearning, Sklearn, ScikitLearn, AI, Clustering, Scikit</PackageTags>
+		<Version>1.3.161</Version>
+		<AssemblyVersion>1.3.161</AssemblyVersion>
+
+		<!-- Language -->
+		<ImplicitUsings>disable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<NoWarn>CS8981</NoWarn>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Numpy.Bare" Version="3.11.*" />
+		<PackageReference Include="Python.Included" Version="3.11.*" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="readme.md" Pack="true" PackagePath="\" />
+		<!--<None Include="icon.png" Pack="true" PackagePath="\" />-->
+	</ItemGroup>
+</Project>

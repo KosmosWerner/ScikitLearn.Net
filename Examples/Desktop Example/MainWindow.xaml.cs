@@ -30,8 +30,8 @@ public partial class MainWindow : Window
 
         // Generate initial datasets
         pointsA = np.random.rand(300, 2) * 20 - 10;
-        pointsB = sklearn.datasets.make_blobs(n_samples: 1500, cluster_std: 2f).Item1 * 1;
-        pointsC = sklearn.datasets.make_circles(n_samples: 1500, noise: 0.05f, factor: 0.5f).Item1 * 3;
+        pointsB = sklearn.datasets.make_blobs(n_samples: 1500, cluster_std: 2f).X * 1;
+        pointsC = sklearn.datasets.make_circles(n_samples: 1500, noise: 0.05f, factor: 0.5f).X * 3;
 
         // Plot datasets
         PlotPoints(pointsA, plotDbcan1, plotOptics1, plotMean1);
@@ -67,7 +67,10 @@ public partial class MainWindow : Window
 
     private void MainWindow_Closed(object? sender, EventArgs e)
     {
+        // IMPORTANT
+        // -------------------------
         PythonEngine.Shutdown();
+        // -------------------------
     }
 
     // -------------------------
@@ -142,13 +145,13 @@ public partial class MainWindow : Window
 
     public void ResetPointsB()
     {
-        pointsB = sklearn.datasets.make_blobs(n_samples: 1500, cluster_std: 2f).Item1;
+        pointsB = sklearn.datasets.make_blobs(n_samples: 1500, cluster_std: 2f).X;
         PlotPoints(pointsB, plotDbcan2, plotOptics2, plotMean2);
     }
 
     public void ResetPointsC()
     {
-        pointsC = sklearn.datasets.make_circles(n_samples: 1500, noise: 0.05f, factor: 0.5f).Item1 * 3;
+        pointsC = sklearn.datasets.make_circles(n_samples: 1500, noise: 0.05f, factor: 0.5f).X * 3;
         PlotPoints(pointsC, plotDbcan3, plotOptics3, plotMean3);
     }
 

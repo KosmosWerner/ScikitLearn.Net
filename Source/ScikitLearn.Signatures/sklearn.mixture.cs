@@ -1,0 +1,92 @@
+using System;
+using System.Collections.Generic;
+using Numpy;
+using Python.Runtime;
+
+namespace ScikitLearn;
+public static partial class sklearn
+{
+    // Classes
+    [Module]
+    public static class mixture
+    {
+        // Classes
+        public class BayesianGaussianMixture
+        {
+            // Constructor
+            public BayesianGaussianMixture(int n_components = 1, string covariance_type = "full", float tol = 0.001f, float reg_covar = 1e-06f, int max_iter = 100, int n_init = 1, string init_params = "kmeans", string weight_concentration_prior_type = "dirichlet_process", float? weight_concentration_prior = null, float? mean_precision_prior = null, NDarray? mean_prior = null, float? degrees_of_freedom_prior = null, NDarray? covariance_prior = null, int? random_state = null, bool warm_start = false, int verbose = 0, int verbose_interval = 10)
+            {
+            }
+
+            // Properties
+            public NDarray weights_ => default !;
+            public NDarray means_ => default !;
+            public NDarray covariances_ => default !;
+            public NDarray precisions_ => default !;
+            public NDarray precisions_cholesky_ => default !;
+            public bool converged_ => default !;
+            public int n_iter_ => default !;
+            public float lower_bound_ => default !;
+            public float weight_concentration_prior_ => default !;
+            public NDarray weight_concentration_ => default !;
+            public float mean_precision_prior_ => default !;
+            public NDarray mean_precision_ => default !;
+            public NDarray mean_prior_ => default !;
+            public float degrees_of_freedom_prior_ => default !;
+            public NDarray degrees_of_freedom_ => default !;
+            public NDarray covariance_prior_ => default !;
+            public int n_features_in_ => default !;
+            public NDarray feature_names_in_ => default !;
+
+            // Methods
+            [ReturnThis]
+            public BayesianGaussianMixture fit(NDarray X) => default !;
+            public NDarray fit_predict(NDarray X) => default !;
+            public PyObject get_metadata_routing() => default !;
+            public PyDict get_params(bool deep = true) => default !;
+            public NDarray predict(NDarray X) => default !;
+            public NDarray predict_proba(NDarray X) => default !;
+            public (NDarray? , NDarray? ) sample(int n_samples = 1) => default !;
+            public float score(NDarray X) => default !;
+            public NDarray score_samples(NDarray X) => default !;
+            [ReturnThis]
+            public BayesianGaussianMixture set_params(Dictionary<string, PyObject>? @params = null) => default !;
+        }
+
+        public class GaussianMixture
+        {
+            // Constructor
+            public GaussianMixture(int n_components = 1, string covariance_type = "full", float tol = 0.001f, float reg_covar = 1e-06f, int max_iter = 100, int n_init = 1, string init_params = "kmeans", NDarray? weights_init = null, NDarray? means_init = null, NDarray? precisions_init = null, int? random_state = null, bool warm_start = false, int verbose = 0, int verbose_interval = 10)
+            {
+            }
+
+            // Properties
+            public NDarray weights_ => default !;
+            public NDarray means_ => default !;
+            public NDarray covariances_ => default !;
+            public NDarray precisions_ => default !;
+            public NDarray precisions_cholesky_ => default !;
+            public bool converged_ => default !;
+            public int n_iter_ => default !;
+            public float lower_bound_ => default !;
+            public int n_features_in_ => default !;
+            public NDarray feature_names_in_ => default !;
+
+            // Methods
+            public float aic(NDarray X) => default !;
+            public float bic(NDarray X) => default !;
+            [ReturnThis]
+            public GaussianMixture fit(NDarray X) => default !;
+            public NDarray fit_predict(NDarray X) => default !;
+            public PyObject get_metadata_routing() => default !;
+            public PyDict get_params(bool deep = true) => default !;
+            public NDarray predict(NDarray X) => default !;
+            public NDarray predict_proba(NDarray X) => default !;
+            public (NDarray? , NDarray? ) sample(int n_samples = 1) => default !;
+            public float score(NDarray X) => default !;
+            public NDarray score_samples(NDarray X) => default !;
+            [ReturnThis]
+            public GaussianMixture set_params(Dictionary<string, PyObject>? @params = null) => default !;
+        }
+    }
+}

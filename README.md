@@ -54,8 +54,8 @@ internal class Program
 }
 ```
 
-🖥️ [Console Example](https://github.com/KosmosWerner/ScikitLearn.Net/blob/e1cd57274835095b9686a5de59a3c141baa7689b/Examples/Console%20Example/Program.cs#L36)
-💻 [Desktop Example](https://github.com/KosmosWerner/ScikitLearn.Net/blob/e1cd57274835095b9686a5de59a3c141baa7689b/Examples/Desktop%20Example/MainWindow.xaml.cs#L47)
+🖥️ [Console Example](https://github.com/KosmosWerner/ScikitLearn.Net/blob/master/Examples/Console%20Example/Program.cs#L36)
+💻 [Desktop Example](https://github.com/KosmosWerner/ScikitLearn.Net/blob/master/Examples/Desktop%20Example/MainWindow.xaml.cs#L47)
 
 ## ⚙ Usage
 
@@ -92,7 +92,7 @@ long[] labels = my_model.labels_.GetData<long>();
 
 For desktop apps, always call `PythonEngine.Shutdown()` when the app closes to avoid Python processes running in the background.
 
-💻 [Desktop Example](https://github.com/KosmosWerner/ScikitLearn.Net/blob/e1cd57274835095b9686a5de59a3c141baa7689b/Examples/Desktop%20Example/MainWindow.xaml.cs#L68)
+💻 [Desktop Example](https://github.com/KosmosWerner/ScikitLearn.Net/blob/master/Examples/Desktop%20Example/MainWindow.xaml.cs#L68)
 
 ### 3. Missing Methods or Constructors?
 
@@ -117,9 +117,9 @@ Here’s a simple app that interactively compares clustering methods like DBSCAN
 
 ## 🤝 How to Contribute
 
-To make the project easier to maintain, all class and method declarations are located in the [ScikitLearn.Signatures](https://github.com/KosmosWerner/ScikitLearn.Net/tree/e1cd57274835095b9686a5de59a3c141baa7689b/Source/ScikitLearn.Signatures) project.
+To make the project easier to maintain, all class and method declarations are located in the [ScikitLearn.Signatures](https://github.com/KosmosWerner/ScikitLearn.Net/tree/master/Source/ScikitLearn.Signatures) project.
 
-If a method, constructor, or class has incorrect parameters, correct or implement it there. Then run the [CodeGenerator](https://github.com/KosmosWerner/ScikitLearn.Net/tree/e1cd57274835095b9686a5de59a3c141baa7689b/Source/CodeGenerator) to apply changes.
+If a method, constructor, or class has incorrect parameters, correct or implement it there. Then run the [CodeGenerator](https://github.com/KosmosWerner/ScikitLearn.Net/tree/master/Source/CodeGenerator) to apply changes.
 
 ## 📝 Final Notes
 
@@ -131,4 +131,4 @@ Work is ongoing to add tests that verify return types and improve type safety.
 This project is licensed under the MIT License.
 
 It wraps and makes use of the Scikit-Learn project, which is licensed under the BSD 3-Clause License.  
-See [LICENSE.scikit-learn](https://github.com/KosmosWerner/ScikitLearn.Net/blob/e1cd57274835095b9686a5de59a3c141baa7689b/LICENSE.scikit-learn.txt) for details.
+See [LICENSE.scikit-learn](https://github.com/KosmosWerner/ScikitLearn.Net/blob/master/LICENSE.scikit-learn.txt) for details.

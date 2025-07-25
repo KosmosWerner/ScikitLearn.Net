@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<!--<TargetFrameworks>net6.0;net8.0</TargetFrameworks>-->
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFrameworks>net6.0;net8.0</TargetFrameworks>
+		<!--<TargetFramework>net9.0</TargetFramework>-->
 		<RootNamespace>ScikitLearn</RootNamespace>
 		<AssemblyName>ScikitLearn</AssemblyName>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
@@ -16,8 +16,8 @@
 		<PackageReadmeFile>readme.md</PackageReadmeFile>
 		<!--<PackageIcon>icon.png</PackageIcon>-->
 		<PackageTags>MachineLearning, Sklearn, ScikitLearn, AI, Clustering, Scikit</PackageTags>
-		<Version>1.3.161</Version>
-		<AssemblyVersion>1.3.161</AssemblyVersion>
+		<Version>1.7.1</Version>
+		<AssemblyVersion>1.7.1</AssemblyVersion>
 
 		<!-- Language -->
 		<ImplicitUsings>disable</ImplicitUsings>
@@ -26,8 +26,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Numpy.Bare" Version="3.11.*" />
-		<PackageReference Include="Python.Included" Version="3.11.*" />
+		<PackageReference Include="Numpy.Bare" Version="3.11.1.33" />
+		<PackageReference Include="Python.Included" Version="3.11.6" />
 	</ItemGroup>
 
 	<ItemGroup>

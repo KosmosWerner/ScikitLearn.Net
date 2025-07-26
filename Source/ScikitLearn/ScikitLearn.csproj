@@ -1,11 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFrameworks>net6.0;net8.0</TargetFrameworks>
-		<!--<TargetFramework>net9.0</TargetFramework>-->
 		<RootNamespace>ScikitLearn</RootNamespace>
 		<AssemblyName>ScikitLearn</AssemblyName>
 		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-		<Authors>Kosmos Werner</Authors>
+		<Authors>Kosmos Werner H.</Authors>
 		<Product>ScikitLearn.NET</Product>
 		<PackageId>ScikitLearn</PackageId>
 		<Description>C# bindings for Scikit-Learn</Description>
@@ -13,25 +12,29 @@
 		<RepositoryUrl>https://github.com/KosmosWerner/ScikitLearn.Net</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/KosmosWerner/ScikitLearn.Net</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-		<PackageReadmeFile>readme.md</PackageReadmeFile>
-		<!--<PackageIcon>icon.png</PackageIcon>-->
+		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageTags>MachineLearning, Sklearn, ScikitLearn, AI, Clustering, Scikit</PackageTags>
 		<Version>1.7.1</Version>
 		<AssemblyVersion>1.7.1</AssemblyVersion>
 
 		<!-- Language -->
-		<ImplicitUsings>disable</ImplicitUsings>
+		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<NoWarn>CS8981</NoWarn>
 	</PropertyGroup>
-
 	<ItemGroup>
-		<PackageReference Include="Numpy.Bare" Version="3.11.1.33" />
-		<PackageReference Include="Python.Included" Version="3.11.6" />
+		<None Include="..\..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Include="readme.md" Pack="true" PackagePath="\" />
-		<!--<None Include="icon.png" Pack="true" PackagePath="\" />-->
+		<PackageReference Include="Numpy.Bare" Version="3.11.1.33" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="Numpy" />
+		<Using Include="Python.Runtime" />
 	</ItemGroup>
 </Project>

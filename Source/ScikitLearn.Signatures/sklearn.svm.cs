@@ -11,7 +11,7 @@ public static partial class sklearn
     public static class svm
     {
         // Methods
-        public static float l1_min_c(NDarray X, NDarray y, string loss = "squared_hinge", bool fit_intercept = true, float intercept_scaling = 1.0f) => default !;
+        public static float l1_min_c(NDarray X, NDarray y, string loss = "squared_hinge", bool fit_intercept = true, float intercept_scaling = 1.0f) => default!;
         // Classes
         public class LinearSVC
         {
@@ -21,31 +21,31 @@ public static partial class sklearn
             }
 
             // Properties
-            public NDarray coef_ => default !;
-            public NDarray intercept_ => default !;
-            public NDarray classes_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public int n_iter_ => default !;
+            public NDarray coef_ => default!;
+            public NDarray intercept_ => default!;
+            public NDarray classes_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public int n_iter_ => default!;
 
             // Methods
-            public NDarray decision_function(NDarray X) => default !;
+            public NDarray decision_function(NDarray X) => default!;
             [ReturnThis]
-            public LinearSVC densify() => default !;
+            public LinearSVC densify() => default!;
             [ReturnThis]
-            public LinearSVC fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public LinearSVC fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public LinearSVC set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public LinearSVC set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public LinearSVC set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public LinearSVC set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public LinearSVC set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public LinearSVC set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public LinearSVC sparsify() => default !;
+            public LinearSVC sparsify() => default!;
         }
 
         public class LinearSVR
@@ -56,25 +56,25 @@ public static partial class sklearn
             }
 
             // Properties
-            public NDarray coef_ => default !;
-            public NDarray intercept_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public int n_iter_ => default !;
+            public NDarray coef_ => default!;
+            public NDarray intercept_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public int n_iter_ => default!;
 
             // Methods
             [ReturnThis]
-            public LinearSVR fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public LinearSVR fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public LinearSVR set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public LinearSVR set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public LinearSVR set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public LinearSVR set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public LinearSVR set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public LinearSVR set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
         public class NuSVC
@@ -85,39 +85,38 @@ public static partial class sklearn
             }
 
             // Properties
-            public NDarray class_weight_ => default !;
-            public NDarray classes_ => default !;
-            public NDarray coef_ => default !;
-            public NDarray dual_coef_ => default !;
-            public int fit_status_ => default !;
-            public NDarray intercept_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public NDarray n_iter_ => default !;
-            public NDarray support_ => default !;
-            public NDarray support_vectors_ => default !;
-            public NDarray n_support_ => default !;
-            public int fit_status_ => default !;
-            public NDarray probA_ => default !;
-            public NDarray probB_ => default !;
-            public NDarray shape_fit_ => default !;
+            public NDarray class_weight_ => default!;
+            public NDarray classes_ => default!;
+            public NDarray coef_ => default!;
+            public NDarray dual_coef_ => default!;
+            public int fit_status_ => default!;
+            public NDarray intercept_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public NDarray n_iter_ => default!;
+            public NDarray support_ => default!;
+            public NDarray support_vectors_ => default!;
+            public NDarray n_support_ => default!;
+            public NDarray probA_ => default!;
+            public NDarray probB_ => default!;
+            public NDarray shape_fit_ => default!;
 
             // Methods
-            public NDarray decision_function(NDarray X) => default !;
+            public NDarray decision_function(NDarray X) => default!;
             [ReturnThis]
-            public NuSVC fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public NDarray predict_log_proba(NDarray X) => default !;
-            public NDarray predict_proba(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public NuSVC fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public NDarray predict_log_proba(NDarray X) => default!;
+            public NDarray predict_proba(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public NuSVC set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public NuSVC set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public NuSVC set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public NuSVC set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public NuSVC set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public NuSVC set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
         public class NuSVR
@@ -128,31 +127,31 @@ public static partial class sklearn
             }
 
             // Properties
-            public NDarray coef_ => default !;
-            public NDarray dual_coef_ => default !;
-            public int fit_status_ => default !;
-            public NDarray intercept_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public int n_iter_ => default !;
-            public NDarray n_support_ => default !;
-            public NDarray shape_fit_ => default !;
-            public NDarray support_ => default !;
-            public NDarray support_vectors_ => default !;
+            public NDarray coef_ => default!;
+            public NDarray dual_coef_ => default!;
+            public int fit_status_ => default!;
+            public NDarray intercept_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public int n_iter_ => default!;
+            public NDarray n_support_ => default!;
+            public NDarray shape_fit_ => default!;
+            public NDarray support_ => default!;
+            public NDarray support_vectors_ => default!;
 
             // Methods
             [ReturnThis]
-            public NuSVR fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public NuSVR fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public NuSVR set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public NuSVR set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public NuSVR set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public NuSVR set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public NuSVR set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public NuSVR set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
         public class OneClassSVM
@@ -163,32 +162,32 @@ public static partial class sklearn
             }
 
             // Properties
-            public NDarray coef_ => default !;
-            public NDarray dual_coef_ => default !;
-            public int fit_status_ => default !;
-            public NDarray intercept_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public int n_iter_ => default !;
-            public NDarray n_support_ => default !;
-            public float offset_ => default !;
-            public NDarray shape_fit_ => default !;
-            public NDarray support_ => default !;
-            public NDarray support_vectors_ => default !;
+            public NDarray coef_ => default!;
+            public NDarray dual_coef_ => default!;
+            public int fit_status_ => default!;
+            public NDarray intercept_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public int n_iter_ => default!;
+            public NDarray n_support_ => default!;
+            public float offset_ => default!;
+            public NDarray shape_fit_ => default!;
+            public NDarray support_ => default!;
+            public NDarray support_vectors_ => default!;
 
             // Methods
-            public NDarray decision_function(NDarray X) => default !;
+            public NDarray decision_function(NDarray X) => default!;
             [ReturnThis]
-            public OneClassSVM fit(NDarray X, NDarray? sample_weight = null) => default !;
-            public NDarray fit_predict(NDarray X, Dictionary<string, PyObject>? @params = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public NDarray score_samples(NDarray X) => default !;
+            public OneClassSVM fit(NDarray X, NDarray? sample_weight = null) => default!;
+            public NDarray fit_predict(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public NDarray score_samples(NDarray X) => default!;
             [ReturnThis]
-            public OneClassSVM set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public OneClassSVM set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public OneClassSVM set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public OneClassSVM set_params(Dictionary<string, PyObject>? @params = null) => default!;
         }
 
         public class SVC
@@ -199,38 +198,38 @@ public static partial class sklearn
             }
 
             // Properties
-            public NDarray class_weight_ => default !;
-            public NDarray classes_ => default !;
-            public NDarray coef_ => default !;
-            public NDarray dual_coef_ => default !;
-            public int fit_status_ => default !;
-            public NDarray intercept_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public NDarray n_iter_ => default !;
-            public NDarray support_ => default !;
-            public NDarray support_vectors_ => default !;
-            public NDarray n_support_ => default !;
-            public NDarray probA_ => default !;
-            public NDarray probB_ => default !;
-            public NDarray shape_fit_ => default !;
+            public NDarray class_weight_ => default!;
+            public NDarray classes_ => default!;
+            public NDarray coef_ => default!;
+            public NDarray dual_coef_ => default!;
+            public int fit_status_ => default!;
+            public NDarray intercept_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public NDarray n_iter_ => default!;
+            public NDarray support_ => default!;
+            public NDarray support_vectors_ => default!;
+            public NDarray n_support_ => default!;
+            public NDarray probA_ => default!;
+            public NDarray probB_ => default!;
+            public NDarray shape_fit_ => default!;
 
             // Methods
-            public NDarray decision_function(NDarray X) => default !;
+            public NDarray decision_function(NDarray X) => default!;
             [ReturnThis]
-            public SVC fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public NDarray predict_log_proba(NDarray X) => default !;
-            public NDarray predict_proba(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public SVC fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public NDarray predict_log_proba(NDarray X) => default!;
+            public NDarray predict_proba(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public SVC set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public SVC set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public SVC set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public SVC set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public SVC set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public SVC set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
         public class SVR
@@ -241,31 +240,31 @@ public static partial class sklearn
             }
 
             // Properties
-            public NDarray coef_ => default !;
-            public NDarray dual_coef_ => default !;
-            public int fit_status_ => default !;
-            public NDarray intercept_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public int n_iter_ => default !;
-            public NDarray n_support_ => default !;
-            public NDarray shape_fit_ => default !;
-            public NDarray support_ => default !;
-            public NDarray support_vectors_ => default !;
+            public NDarray coef_ => default!;
+            public NDarray dual_coef_ => default!;
+            public int fit_status_ => default!;
+            public NDarray intercept_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public int n_iter_ => default!;
+            public NDarray n_support_ => default!;
+            public NDarray shape_fit_ => default!;
+            public NDarray support_ => default!;
+            public NDarray support_vectors_ => default!;
 
             // Methods
             [ReturnThis]
-            public SVR fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public SVR fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public SVR set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public SVR set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public SVR set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public SVR set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public SVR set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public SVR set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
     }
 }

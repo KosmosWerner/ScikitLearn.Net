@@ -19,26 +19,26 @@ public static partial class sklearn
             }
 
             // Properties
-            public PyDict vocabulary_ => default !;
-            public PyObject feature_names_ => default !;
+            public PyDict vocabulary_ => default!;
+            public PyObject feature_names_ => default!;
 
             // Methods
             [ReturnThis]
-            public DictVectorizer fit(PyObject X, PyObject? y = null) => default !;
-            public NDarray fit_transform(PyObject X, PyObject? y = null) => default !;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public PyObject inverse_transform(NDarray X, PyDict? dict_type = null) => default !;
+            public DictVectorizer fit(PyObject X, PyObject? y = null) => default!;
+            public NDarray fit_transform(PyObject X, PyObject? y = null) => default!;
+            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public PyObject inverse_transform(NDarray X, PyDict? dict_type = null) => default!;
             [ReturnThis]
-            public DictVectorizer restrict(NDarray support, bool indices = false) => default !;
+            public DictVectorizer restrict(NDarray support, bool indices = false) => default!;
             [ReturnThis]
-            public DictVectorizer set_inverse_transform_request(string? dict_type = "$UNCHANGED$") => default !;
+            public DictVectorizer set_inverse_transform_request(string? dict_type = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public DictVectorizer set_output(PyObject? transform = null) => default !;
+            public DictVectorizer set_output(PyObject? transform = null) => default!;
             [ReturnThis]
-            public DictVectorizer set_params(Dictionary<string, PyObject>? @params = null) => default !;
-            public NDarray transform(NDarray X) => default !;
+            public DictVectorizer set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            public NDarray transform(NDarray X) => default!;
         }
 
         public class FeatureHasher
@@ -50,27 +50,27 @@ public static partial class sklearn
 
             // Methods
             [ReturnThis]
-            public FeatureHasher fit() => default !;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
+            public FeatureHasher fit() => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
             [ReturnThis]
-            public FeatureHasher set_output(PyObject? transform = null) => default !;
+            public FeatureHasher set_output(PyObject? transform = null) => default!;
             [ReturnThis]
-            public FeatureHasher set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public FeatureHasher set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public FeatureHasher set_transform_request(string? raw_X = "$UNCHANGED$") => default !;
-            public NDarray transform(PyObject raw_X) => default !;
+            public FeatureHasher set_transform_request(string? raw_X = "$UNCHANGED$") => default!;
+            public NDarray transform(PyObject raw_X) => default!;
         }
 
         [Module]
         public static class image
         {
             // Methods
-            public static NDarray extract_patches_2d(NDarray image, int patch_size, float? max_patches = null, int? random_state = null) => default !;
-            public static NDarray grid_to_graph(int n_x, int n_y, int n_z = 1, NDarray? mask = null, NDarray? return_as = null, int? dtype = null) => default !;
-            public static NDarray img_to_graph(NDarray img, NDarray? mask = null, NDarray? return_as = null, PyObject? dtype = null) => default !;
-            public static NDarray reconstruct_from_patches_2d(NDarray patches, int image_size) => default !;
+            public static NDarray extract_patches_2d(NDarray image, int patch_size, float? max_patches = null, int? random_state = null) => default!;
+            public static NDarray grid_to_graph(int n_x, int n_y, int n_z = 1, NDarray? mask = null, NDarray? return_as = null, int? dtype = null) => default!;
+            public static NDarray img_to_graph(NDarray img, NDarray? mask = null, NDarray? return_as = null, PyObject? dtype = null) => default!;
+            public static NDarray reconstruct_from_patches_2d(NDarray patches, int image_size) => default!;
             // Classes
             public class PatchExtractor
             {
@@ -81,15 +81,15 @@ public static partial class sklearn
 
                 // Methods
                 [ReturnThis]
-                public PatchExtractor fit(NDarray X) => default !;
-                public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default !;
-                public PyObject get_metadata_routing() => default !;
-                public PyDict get_params(bool deep = true) => default !;
+                public PatchExtractor fit(NDarray X) => default!;
+                public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
+                public PyObject get_metadata_routing() => default!;
+                public PyDict get_params(bool deep = true) => default!;
                 [ReturnThis]
-                public PatchExtractor set_output(PyObject? transform = null) => default !;
+                public PatchExtractor set_output(PyObject? transform = null) => default!;
                 [ReturnThis]
-                public PatchExtractor set_params(Dictionary<string, PyObject>? @params = null) => default !;
-                public NDarray transform(NDarray X) => default !;
+                public PatchExtractor set_params(Dictionary<string, PyObject>? @params = null) => default!;
+                public NDarray transform(NDarray X) => default!;
             }
         }
 
@@ -105,32 +105,32 @@ public static partial class sklearn
                 }
 
                 // Properties
-                public PyDict vocabulary_ => default !;
-                public bool fixed_vocabulary_ => default !;
+                public PyDict vocabulary_ => default!;
+                public bool fixed_vocabulary_ => default!;
 
                 // Methods
-                public PyObject build_analyzer() => default !;
-                public PyObject build_preprocessor() => default !;
-                public PyObject build_tokenizer() => default !;
-                public string decode(string doc) => default !;
+                public PyObject build_analyzer() => default!;
+                public PyObject build_preprocessor() => default!;
+                public PyObject build_tokenizer() => default!;
+                public string decode(string doc) => default!;
                 [ReturnThis]
-                public CountVectorizer fit(PyObject raw_documents, PyObject? y = null) => default !;
-                public NDarray fit_transform(PyObject raw_documents, PyObject? y = null) => default !;
-                public PyObject get_feature_names_out(NDarray? input_features = null) => default !;
-                public PyObject get_metadata_routing() => default !;
-                public PyDict get_params(bool deep = true) => default !;
+                public CountVectorizer fit(PyObject raw_documents, PyObject? y = null) => default!;
+                public NDarray fit_transform(PyObject raw_documents, PyObject? y = null) => default!;
+                public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
+                public PyObject get_metadata_routing() => default!;
+                public PyDict get_params(bool deep = true) => default!;
                 public void get_stop_words()
                 {
                 }
 
-                public NDarray inverse_transform(NDarray X) => default !;
+                public NDarray inverse_transform(NDarray X) => default!;
                 [ReturnThis]
-                public CountVectorizer set_fit_request(string? raw_documents = "$UNCHANGED$") => default !;
+                public CountVectorizer set_fit_request(string? raw_documents = "$UNCHANGED$") => default!;
                 [ReturnThis]
-                public CountVectorizer set_params(Dictionary<string, PyObject>? @params = null) => default !;
+                public CountVectorizer set_params(Dictionary<string, PyObject>? @params = null) => default!;
                 [ReturnThis]
-                public CountVectorizer set_transform_request(string? raw_documents = "$UNCHANGED$") => default !;
-                public NDarray transform(PyObject raw_documents) => default !;
+                public CountVectorizer set_transform_request(string? raw_documents = "$UNCHANGED$") => default!;
+                public NDarray transform(PyObject raw_documents) => default!;
             }
 
             public class HashingVectorizer
@@ -141,26 +141,26 @@ public static partial class sklearn
                 }
 
                 // Methods
-                public PyObject build_analyzer() => default !;
-                public PyObject build_preprocessor() => default !;
-                public PyObject build_tokenizer() => default !;
-                public string decode(string doc) => default !;
+                public PyObject build_analyzer() => default!;
+                public PyObject build_preprocessor() => default!;
+                public PyObject build_tokenizer() => default!;
+                public string decode(string doc) => default!;
                 [ReturnThis]
-                public HashingVectorizer fit(NDarray X) => default !;
-                public NDarray fit_transform(PyObject X, PyObject? y = null) => default !;
-                public PyObject get_metadata_routing() => default !;
-                public PyDict get_params(bool deep = true) => default !;
+                public HashingVectorizer fit(NDarray X) => default!;
+                public NDarray fit_transform(PyObject X, PyObject? y = null) => default!;
+                public PyObject get_metadata_routing() => default!;
+                public PyDict get_params(bool deep = true) => default!;
                 public void get_stop_words()
                 {
                 }
 
                 [ReturnThis]
-                public HashingVectorizer partial_fit(NDarray X) => default !;
+                public HashingVectorizer partial_fit(NDarray X) => default!;
                 [ReturnThis]
-                public HashingVectorizer set_output(PyObject? transform = null) => default !;
+                public HashingVectorizer set_output(PyObject? transform = null) => default!;
                 [ReturnThis]
-                public HashingVectorizer set_params(Dictionary<string, PyObject>? @params = null) => default !;
-                public NDarray transform(PyObject X) => default !;
+                public HashingVectorizer set_params(Dictionary<string, PyObject>? @params = null) => default!;
+                public NDarray transform(PyObject X) => default!;
             }
 
             public class TfidfTransformer
@@ -171,24 +171,24 @@ public static partial class sklearn
                 }
 
                 // Properties
-                public NDarray idf_ => default !;
-                public int n_features_in_ => default !;
-                public NDarray feature_names_in_ => default !;
+                public NDarray idf_ => default!;
+                public int n_features_in_ => default!;
+                public NDarray feature_names_in_ => default!;
 
                 // Methods
                 [ReturnThis]
-                public TfidfTransformer fit(NDarray X, PyObject? y = null) => default !;
-                public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default !;
-                public PyObject get_feature_names_out(NDarray? input_features = null) => default !;
-                public PyObject get_metadata_routing() => default !;
-                public PyDict get_params(bool deep = true) => default !;
+                public TfidfTransformer fit(NDarray X, PyObject? y = null) => default!;
+                public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
+                public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
+                public PyObject get_metadata_routing() => default!;
+                public PyDict get_params(bool deep = true) => default!;
                 [ReturnThis]
-                public TfidfTransformer set_output(PyObject? transform = null) => default !;
+                public TfidfTransformer set_output(PyObject? transform = null) => default!;
                 [ReturnThis]
-                public TfidfTransformer set_params(Dictionary<string, PyObject>? @params = null) => default !;
+                public TfidfTransformer set_params(Dictionary<string, PyObject>? @params = null) => default!;
                 [ReturnThis]
-                public TfidfTransformer set_transform_request(string? copy = "$UNCHANGED$") => default !;
-                public NDarray transform(PyObject X, bool copy = true) => default !;
+                public TfidfTransformer set_transform_request(string? copy = "$UNCHANGED$") => default!;
+                public NDarray transform(PyObject X, bool copy = true) => default!;
             }
 
             public class TfidfVectorizer
@@ -199,33 +199,33 @@ public static partial class sklearn
                 }
 
                 // Properties
-                public PyDict vocabulary_ => default !;
-                public bool fixed_vocabulary_ => default !;
-                public NDarray idf_ => default !;
+                public PyDict vocabulary_ => default!;
+                public bool fixed_vocabulary_ => default!;
+                public NDarray idf_ => default!;
 
                 // Methods
-                public PyObject build_analyzer() => default !;
-                public PyObject build_preprocessor() => default !;
-                public PyObject build_tokenizer() => default !;
-                public string decode(string doc) => default !;
+                public PyObject build_analyzer() => default!;
+                public PyObject build_preprocessor() => default!;
+                public PyObject build_tokenizer() => default!;
+                public string decode(string doc) => default!;
                 [ReturnThis]
-                public TfidfVectorizer fit(PyObject raw_documents, PyObject? y = null) => default !;
-                public PyObject fit_transform(PyObject raw_documents, PyObject? y = null) => default !;
-                public PyObject get_feature_names_out(NDarray? input_features = null) => default !;
-                public PyObject get_metadata_routing() => default !;
-                public PyDict get_params(bool deep = true) => default !;
+                public TfidfVectorizer fit(PyObject raw_documents, PyObject? y = null) => default!;
+                public PyObject fit_transform(PyObject raw_documents, PyObject? y = null) => default!;
+                public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
+                public PyObject get_metadata_routing() => default!;
+                public PyDict get_params(bool deep = true) => default!;
                 public void get_stop_words()
                 {
                 }
 
-                public NDarray inverse_transform(NDarray X) => default !;
+                public NDarray inverse_transform(NDarray X) => default!;
                 [ReturnThis]
-                public TfidfVectorizer set_fit_request(string? raw_documents = "$UNCHANGED$") => default !;
+                public TfidfVectorizer set_fit_request(string? raw_documents = "$UNCHANGED$") => default!;
                 [ReturnThis]
-                public TfidfVectorizer set_params(Dictionary<string, PyObject>? @params = null) => default !;
+                public TfidfVectorizer set_params(Dictionary<string, PyObject>? @params = null) => default!;
                 [ReturnThis]
-                public TfidfVectorizer set_transform_request(string? raw_documents = "$UNCHANGED$") => default !;
-                public PyObject transform(PyObject raw_documents) => default !;
+                public TfidfVectorizer set_transform_request(string? raw_documents = "$UNCHANGED$") => default!;
+                public PyObject transform(PyObject raw_documents) => default!;
             }
         }
     }

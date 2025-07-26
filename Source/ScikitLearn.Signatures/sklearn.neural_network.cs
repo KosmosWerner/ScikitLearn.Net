@@ -19,29 +19,29 @@ public static partial class sklearn
             }
 
             // Properties
-            public NDarray intercept_hidden_ => default !;
-            public NDarray intercept_visible_ => default !;
-            public NDarray components_ => default !;
-            public NDarray h_samples_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
+            public NDarray intercept_hidden_ => default!;
+            public NDarray intercept_visible_ => default!;
+            public NDarray components_ => default!;
+            public NDarray h_samples_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
 
             // Methods
             [ReturnThis]
-            public BernoulliRBM fit(NDarray X, NDarray? y = null) => default !;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default !;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray gibbs(NDarray v) => default !;
+            public BernoulliRBM fit(NDarray X, NDarray? y = null) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
+            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray gibbs(NDarray v) => default!;
             [ReturnThis]
-            public BernoulliRBM partial_fit(NDarray X, NDarray? y = null) => default !;
-            public NDarray score_samples(NDarray X) => default !;
+            public BernoulliRBM partial_fit(NDarray X, NDarray? y = null) => default!;
+            public NDarray score_samples(NDarray X) => default!;
             [ReturnThis]
-            public BernoulliRBM set_output(PyObject? transform = null) => default !;
+            public BernoulliRBM set_output(PyObject? transform = null) => default!;
             [ReturnThis]
-            public BernoulliRBM set_params(Dictionary<string, PyObject>? @params = null) => default !;
-            public NDarray transform(NDarray X) => default !;
+            public BernoulliRBM set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            public NDarray transform(NDarray X) => default!;
         }
 
         public class MLPClassifier
@@ -52,39 +52,39 @@ public static partial class sklearn
             }
 
             // Properties
-            public NDarray classes_ => default !;
-            public float loss_ => default !;
-            public float best_loss_ => default !;
-            public NDarray loss_curve_ => default !;
-            public NDarray validation_scores_ => default !;
-            public float best_validation_score_ => default !;
-            public int t_ => default !;
-            public NDarray coefs_ => default !;
-            public NDarray intercepts_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public int n_iter_ => default !;
-            public int n_layers_ => default !;
-            public int n_outputs_ => default !;
-            public string out_activation_ => default !;
+            public NDarray classes_ => default!;
+            public float loss_ => default!;
+            public float best_loss_ => default!;
+            public NDarray loss_curve_ => default!;
+            public NDarray validation_scores_ => default!;
+            public float best_validation_score_ => default!;
+            public int t_ => default!;
+            public NDarray coefs_ => default!;
+            public NDarray intercepts_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public int n_iter_ => default!;
+            public int n_layers_ => default!;
+            public int n_outputs_ => default!;
+            public string out_activation_ => default!;
 
             // Methods
             [ReturnThis]
-            public MLPClassifier fit(NDarray X, NDarray y) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
+            public MLPClassifier fit(NDarray X, NDarray y) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
             [ReturnThis]
-            public MLPClassifier partial_fit(NDarray X, NDarray y, NDarray? classes = null) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public NDarray predict_log_proba(NDarray X) => default !;
-            public NDarray predict_proba(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public MLPClassifier partial_fit(NDarray X, NDarray y, NDarray? classes = null) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public NDarray predict_log_proba(NDarray X) => default!;
+            public NDarray predict_proba(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public MLPClassifier set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public MLPClassifier set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public MLPClassifier set_partial_fit_request(string? classes = "$UNCHANGED$") => default !;
+            public MLPClassifier set_partial_fit_request(string? classes = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public MLPClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public MLPClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
         public class MLPRegressor
@@ -95,34 +95,34 @@ public static partial class sklearn
             }
 
             // Properties
-            public float loss_ => default !;
-            public float best_loss_ => default !;
-            public NDarray loss_curve_ => default !;
-            public NDarray validation_scores_ => default !;
-            public float best_validation_score_ => default !;
-            public int t_ => default !;
-            public NDarray coefs_ => default !;
-            public NDarray intercepts_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public int n_iter_ => default !;
-            public int n_layers_ => default !;
-            public int n_outputs_ => default !;
-            public string out_activation_ => default !;
+            public float loss_ => default!;
+            public float best_loss_ => default!;
+            public NDarray loss_curve_ => default!;
+            public NDarray validation_scores_ => default!;
+            public float best_validation_score_ => default!;
+            public int t_ => default!;
+            public NDarray coefs_ => default!;
+            public NDarray intercepts_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public int n_iter_ => default!;
+            public int n_layers_ => default!;
+            public int n_outputs_ => default!;
+            public string out_activation_ => default!;
 
             // Methods
             [ReturnThis]
-            public MLPRegressor fit(NDarray X, NDarray y) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
+            public MLPRegressor fit(NDarray X, NDarray y) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
             [ReturnThis]
-            public MLPRegressor partial_fit(NDarray X, NDarray y) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public MLPRegressor partial_fit(NDarray X, NDarray y) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public MLPRegressor set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public MLPRegressor set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public MLPRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public MLPRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
     }
 }

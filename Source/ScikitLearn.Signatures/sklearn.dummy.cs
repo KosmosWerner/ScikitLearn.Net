@@ -19,29 +19,29 @@ public static partial class sklearn
             }
 
             // Properties
-            public NDarray classes_ => default !;
-            public PyTuple n_classes_ => default !;
-            public NDarray class_prior_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public int n_outputs_ => default !;
-            public bool sparse_output_ => default !;
+            public NDarray classes_ => default!;
+            public PyTuple n_classes_ => default!;
+            public NDarray class_prior_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public int n_outputs_ => default!;
+            public bool sparse_output_ => default!;
 
             // Methods
             [ReturnThis]
-            public DummyClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public NDarray predict_log_proba(PyObject X) => default !;
-            public NDarray predict_proba(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public DummyClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public NDarray predict_log_proba(PyObject X) => default!;
+            public NDarray predict_proba(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public DummyClassifier set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public DummyClassifier set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public DummyClassifier set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public DummyClassifier set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public DummyClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public DummyClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
         public class DummyRegressor
@@ -52,26 +52,26 @@ public static partial class sklearn
             }
 
             // Properties
-            public NDarray constant_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public int n_outputs_ => default !;
+            public NDarray constant_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public int n_outputs_ => default!;
 
             // Methods
             [ReturnThis]
-            public DummyRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public (NDarray? , NDarray? ) predict(NDarray X, bool return_std = false) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public DummyRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public (NDarray?, NDarray?) predict(NDarray X, bool return_std = false) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public DummyRegressor set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public DummyRegressor set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public DummyRegressor set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public DummyRegressor set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public DummyRegressor set_predict_request(string? return_std = "$UNCHANGED$") => default !;
+            public DummyRegressor set_predict_request(string? return_std = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public DummyRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public DummyRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
     }
 }

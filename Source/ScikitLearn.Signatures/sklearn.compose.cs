@@ -11,8 +11,8 @@ public static partial class sklearn
     public static class compose
     {
         // Methods
-        public static PyObject make_column_selector(string? pattern = null, PyTuple? dtype_include = null, PyTuple? dtype_exclude = null) => default !;
-        public static PyObject make_column_transformer(PyObject[] transformers, string remainder = "drop", float sparse_threshold = 0.3f, int? n_jobs = null, bool verbose = false, bool verbose_feature_names_out = true, bool force_int_remainder_cols = true) => default !;
+        public static PyObject make_column_selector(string? pattern = null, PyTuple? dtype_include = null, PyTuple? dtype_exclude = null) => default!;
+        public static PyObject make_column_transformer(PyObject[] transformers, string remainder = "drop", float sparse_threshold = 0.3f, int? n_jobs = null, bool verbose = false, bool verbose_feature_names_out = true, bool force_int_remainder_cols = true) => default!;
         // Classes
         public class ColumnTransformer
         {
@@ -22,25 +22,25 @@ public static partial class sklearn
             }
 
             // Properties
-            public PyObject transformers_ => default !;
-            public PyDict named_transformers_ => default !;
-            public bool sparse_output_ => default !;
-            public PyDict output_indices_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
+            public PyObject transformers_ => default!;
+            public PyDict named_transformers_ => default!;
+            public bool sparse_output_ => default!;
+            public PyDict output_indices_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
 
             // Methods
             [ReturnThis]
-            public ColumnTransformer fit(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default !;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default !;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
+            public ColumnTransformer fit(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
+            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
             [ReturnThis]
-            public ColumnTransformer set_output(PyObject? transform = null) => default !;
+            public ColumnTransformer set_output(PyObject? transform = null) => default!;
             [ReturnThis]
-            public ColumnTransformer set_params(Dictionary<string, PyObject>? @params = null) => default !;
-            public NDarray transform(NDarray X, Dictionary<string, PyObject>? @params = null) => default !;
+            public ColumnTransformer set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            public NDarray transform(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
         }
 
         public class TransformedTargetRegressor
@@ -51,25 +51,25 @@ public static partial class sklearn
             }
 
             // Properties
-            public PyObject regressor_ => default !;
-            public PyObject transformer_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
+            public PyObject regressor_ => default!;
+            public PyObject transformer_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
 
             // Methods
             [ReturnThis]
-            public TransformedTargetRegressor fit(NDarray X, NDarray y, Dictionary<string, PyObject>? @params = null) => default !;
+            public TransformedTargetRegressor fit(NDarray X, NDarray y, Dictionary<string, PyObject>? @params = null) => default!;
             public void get_metadata_routing()
             {
             }
 
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X, Dictionary<string, PyObject>? @params = null) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public TransformedTargetRegressor set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public TransformedTargetRegressor set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public TransformedTargetRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public TransformedTargetRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
     }
 }

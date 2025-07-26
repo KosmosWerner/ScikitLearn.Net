@@ -19,26 +19,26 @@ public static partial class sklearn
             }
 
             // Properties
-            public NDarray X_ => default !;
-            public NDarray classes_ => default !;
-            public NDarray label_distributions_ => default !;
-            public NDarray transduction_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public int n_iter_ => default !;
+            public NDarray X_ => default!;
+            public NDarray classes_ => default!;
+            public NDarray label_distributions_ => default!;
+            public NDarray transduction_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public int n_iter_ => default!;
 
             // Methods
             [ReturnThis]
-            public LabelPropagation fit(NDarray X, NDarray y) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public NDarray predict_proba(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public LabelPropagation fit(NDarray X, NDarray y) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public NDarray predict_proba(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public LabelPropagation set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public LabelPropagation set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public LabelPropagation set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public LabelPropagation set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
         public class LabelSpreading
@@ -49,26 +49,26 @@ public static partial class sklearn
             }
 
             // Properties
-            public NDarray X_ => default !;
-            public NDarray classes_ => default !;
-            public NDarray label_distributions_ => default !;
-            public NDarray transduction_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public int n_iter_ => default !;
+            public NDarray X_ => default!;
+            public NDarray classes_ => default!;
+            public NDarray label_distributions_ => default!;
+            public NDarray transduction_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public int n_iter_ => default!;
 
             // Methods
             [ReturnThis]
-            public LabelSpreading fit(NDarray X, NDarray y) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public NDarray predict_proba(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public LabelSpreading fit(NDarray X, NDarray y) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public NDarray predict_proba(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public LabelSpreading set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public LabelSpreading set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public LabelSpreading set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public LabelSpreading set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
         public class SelfTrainingClassifier
@@ -79,30 +79,30 @@ public static partial class sklearn
             }
 
             // Properties
-            public PyObject base_estimator_ => default !;
-            public NDarray classes_ => default !;
-            public NDarray transduction_ => default !;
-            public NDarray labeled_iter_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public int n_iter_ => default !;
-            public PyObject termination_condition_ => default !;
+            public PyObject base_estimator_ => default!;
+            public NDarray classes_ => default!;
+            public NDarray transduction_ => default!;
+            public NDarray labeled_iter_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public int n_iter_ => default!;
+            public PyObject termination_condition_ => default!;
 
             // Methods
-            public NDarray decision_function(NDarray X) => default !;
+            public NDarray decision_function(NDarray X) => default!;
             [ReturnThis]
-            public SelfTrainingClassifier fit(NDarray X, NDarray y) => default !;
+            public SelfTrainingClassifier fit(NDarray X, NDarray y) => default!;
             public void get_metadata_routing()
             {
             }
 
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public NDarray predict_log_proba(NDarray X) => default !;
-            public NDarray predict_proba(NDarray X) => default !;
-            public float score(NDarray X, NDarray y) => default !;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public NDarray predict_log_proba(NDarray X) => default!;
+            public NDarray predict_proba(NDarray X) => default!;
+            public float score(NDarray X, NDarray y) => default!;
             [ReturnThis]
-            public SelfTrainingClassifier set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public SelfTrainingClassifier set_params(Dictionary<string, PyObject>? @params = null) => default!;
         }
     }
 }

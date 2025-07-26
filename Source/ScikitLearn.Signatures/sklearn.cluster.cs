@@ -84,16 +84,16 @@ public static partial class sklearn
             bool return_n_iter = false) => default!;
         [Checked]
         public static (NDarray centers, NDarray indices) kmeans_plusplus(
-            NDarray X, 
-            int n_clusters, 
-            NDarray? sample_weight = null, 
-            NDarray? x_squared_norms = null, 
-            int? random_state = null, 
+            NDarray X,
+            int n_clusters,
+            NDarray? sample_weight = null,
+            NDarray? x_squared_norms = null,
+            int? random_state = null,
             int? n_local_trials = null) => default!;
         [Checked]
         public static (NDarray cluster_centers, NDarray labels) mean_shift(
-            NDarray X, 
-            float? bandwidth = null, 
+            NDarray X,
+            float? bandwidth = null,
             NDarray? seeds = null,
             bool bin_seeding = false,
             int min_bin_freq = 1,
@@ -102,20 +102,20 @@ public static partial class sklearn
             int? n_jobs = null) => default!;
         [Checked]
         public static NDarray spectral_clustering(
-            NDarray affinity, 
-            int? n_clusters = null, 
+            NDarray affinity,
+            int? n_clusters = null,
             int? n_components = null,
             string? eigen_solver = null,
-            int? random_state = null, 
-            int n_init = 10, 
-            string eigen_tol = "auto", 
-            string assign_labels = "kmeans", 
+            int? random_state = null,
+            int n_init = 10,
+            string eigen_tol = "auto",
+            string assign_labels = "kmeans",
             bool verbose = false) => default!;
         [Checked]
         public static (NDarray children, int n_connected_components, int n_leaves, NDarray? parents, NDarray? distances) ward_tree(
-            NDarray X, 
+            NDarray X,
             NDarray? connectivity = null,
-            int? n_clusters = null, 
+            int? n_clusters = null,
             bool return_distance = false) => default!;
         // Classes
         public class AffinityPropagation

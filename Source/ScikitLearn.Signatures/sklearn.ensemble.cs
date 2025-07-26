@@ -19,39 +19,39 @@ public static partial class sklearn
             }
 
             // Properties
-            public PyObject estimator_ => default !;
-            public PyTuple estimators_ => default !;
-            public NDarray classes_ => default !;
-            public int n_classes_ => default !;
-            public NDarray estimator_weights_ => default !;
-            public NDarray estimator_errors_ => default !;
-            public NDarray feature_importances_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
+            public PyObject estimator_ => default!;
+            public PyTuple estimators_ => default!;
+            public NDarray classes_ => default!;
+            public int n_classes_ => default!;
+            public NDarray estimator_weights_ => default!;
+            public NDarray estimator_errors_ => default!;
+            public NDarray feature_importances_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
 
             // Methods
-            public NDarray decision_function(NDarray X) => default !;
+            public NDarray decision_function(NDarray X) => default!;
             [ReturnThis]
-            public AdaBoostClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public AdaBoostClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             public void get_metadata_routing()
             {
             }
 
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public NDarray predict_log_proba(NDarray X) => default !;
-            public NDarray predict_proba(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public NDarray predict_log_proba(NDarray X) => default!;
+            public NDarray predict_proba(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public AdaBoostClassifier set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public AdaBoostClassifier set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public AdaBoostClassifier set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public AdaBoostClassifier set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public AdaBoostClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
-            public NDarray staged_decision_function(NDarray X) => default !;
-            public NDarray staged_predict(NDarray X) => default !;
-            public NDarray staged_predict_proba(NDarray X) => default !;
-            public float staged_score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public AdaBoostClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
+            public NDarray staged_decision_function(NDarray X) => default!;
+            public NDarray staged_predict(NDarray X) => default!;
+            public NDarray staged_predict_proba(NDarray X) => default!;
+            public float staged_score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
         }
 
         public class AdaBoostRegressor
@@ -62,32 +62,32 @@ public static partial class sklearn
             }
 
             // Properties
-            public PyObject estimator_ => default !;
-            public PyTuple estimators_ => default !;
-            public NDarray estimator_weights_ => default !;
-            public NDarray estimator_errors_ => default !;
-            public NDarray feature_importances_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
+            public PyObject estimator_ => default!;
+            public PyTuple estimators_ => default!;
+            public NDarray estimator_weights_ => default!;
+            public NDarray estimator_errors_ => default!;
+            public NDarray feature_importances_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
 
             // Methods
             [ReturnThis]
-            public AdaBoostRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public AdaBoostRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             public void get_metadata_routing()
             {
             }
 
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public AdaBoostRegressor set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public AdaBoostRegressor set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public AdaBoostRegressor set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public AdaBoostRegressor set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public AdaBoostRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
-            public NDarray staged_predict(NDarray X) => default !;
-            public float staged_score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public AdaBoostRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
+            public NDarray staged_predict(NDarray X) => default!;
+            public float staged_score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
         }
 
         public class BaggingClassifier
@@ -98,33 +98,33 @@ public static partial class sklearn
             }
 
             // Properties
-            public PyObject estimator_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public PyTuple estimators_ => default !;
-            public NDarray estimators_samples_ => default !;
-            public NDarray estimators_features_ => default !;
-            public NDarray classes_ => default !;
-            public int n_classes_ => default !;
-            public float oob_score_ => default !;
-            public NDarray oob_decision_function_ => default !;
+            public PyObject estimator_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public PyTuple estimators_ => default!;
+            public NDarray estimators_samples_ => default!;
+            public NDarray estimators_features_ => default!;
+            public NDarray classes_ => default!;
+            public int n_classes_ => default!;
+            public float oob_score_ => default!;
+            public NDarray oob_decision_function_ => default!;
 
             // Methods
-            public NDarray decision_function(NDarray X) => default !;
+            public NDarray decision_function(NDarray X) => default!;
             [ReturnThis]
-            public BaggingClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public NDarray predict_log_proba(NDarray X) => default !;
-            public NDarray predict_proba(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public BaggingClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public NDarray predict_log_proba(NDarray X) => default!;
+            public NDarray predict_proba(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public BaggingClassifier set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public BaggingClassifier set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public BaggingClassifier set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public BaggingClassifier set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public BaggingClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public BaggingClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
         public class BaggingRegressor
@@ -135,28 +135,28 @@ public static partial class sklearn
             }
 
             // Properties
-            public PyObject estimator_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public PyTuple estimators_ => default !;
-            public NDarray estimators_samples_ => default !;
-            public NDarray estimators_features_ => default !;
-            public float oob_score_ => default !;
-            public NDarray oob_prediction_ => default !;
+            public PyObject estimator_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public PyTuple estimators_ => default!;
+            public NDarray estimators_samples_ => default!;
+            public NDarray estimators_features_ => default!;
+            public float oob_score_ => default!;
+            public NDarray oob_prediction_ => default!;
 
             // Methods
             [ReturnThis]
-            public BaggingRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public BaggingRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public BaggingRegressor set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public BaggingRegressor set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public BaggingRegressor set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public BaggingRegressor set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public BaggingRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public BaggingRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
         public class ExtraTreesClassifier
@@ -167,35 +167,35 @@ public static partial class sklearn
             }
 
             // Properties
-            public PyObject estimator_ => default !;
-            public PyTuple estimators_ => default !;
-            public NDarray classes_ => default !;
-            public int n_classes_ => default !;
-            public NDarray feature_importances_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public int n_outputs_ => default !;
-            public float oob_score_ => default !;
-            public NDarray oob_decision_function_ => default !;
-            public NDarray estimators_samples_ => default !;
+            public PyObject estimator_ => default!;
+            public PyTuple estimators_ => default!;
+            public NDarray classes_ => default!;
+            public int n_classes_ => default!;
+            public NDarray feature_importances_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public int n_outputs_ => default!;
+            public float oob_score_ => default!;
+            public NDarray oob_decision_function_ => default!;
+            public NDarray estimators_samples_ => default!;
 
             // Methods
-            public NDarray apply(NDarray X) => default !;
-            public (NDarray? , NDarray? ) decision_path(NDarray X) => default !;
+            public NDarray apply(NDarray X) => default!;
+            public (NDarray?, NDarray?) decision_path(NDarray X) => default!;
             [ReturnThis]
-            public ExtraTreesClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public NDarray predict_log_proba(NDarray X) => default !;
-            public NDarray predict_proba(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public ExtraTreesClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public NDarray predict_log_proba(NDarray X) => default!;
+            public NDarray predict_proba(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public ExtraTreesClassifier set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public ExtraTreesClassifier set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public ExtraTreesClassifier set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public ExtraTreesClassifier set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public ExtraTreesClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public ExtraTreesClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
         public class ExtraTreesRegressor
@@ -206,31 +206,31 @@ public static partial class sklearn
             }
 
             // Properties
-            public PyObject estimator_ => default !;
-            public PyTuple estimators_ => default !;
-            public NDarray feature_importances_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public int n_outputs_ => default !;
-            public float oob_score_ => default !;
-            public NDarray oob_prediction_ => default !;
-            public NDarray estimators_samples_ => default !;
+            public PyObject estimator_ => default!;
+            public PyTuple estimators_ => default!;
+            public NDarray feature_importances_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public int n_outputs_ => default!;
+            public float oob_score_ => default!;
+            public NDarray oob_prediction_ => default!;
+            public NDarray estimators_samples_ => default!;
 
             // Methods
-            public NDarray apply(NDarray X) => default !;
-            public (NDarray? , NDarray? ) decision_path(NDarray X) => default !;
+            public NDarray apply(NDarray X) => default!;
+            public (NDarray?, NDarray?) decision_path(NDarray X) => default!;
             [ReturnThis]
-            public ExtraTreesRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public ExtraTreesRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public ExtraTreesRegressor set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public ExtraTreesRegressor set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public ExtraTreesRegressor set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public ExtraTreesRegressor set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public ExtraTreesRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public ExtraTreesRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
         public class GradientBoostingClassifier
@@ -241,41 +241,41 @@ public static partial class sklearn
             }
 
             // Properties
-            public int n_estimators_ => default !;
-            public int n_trees_per_iteration_ => default !;
-            public NDarray feature_importances_ => default !;
-            public NDarray oob_improvement_ => default !;
-            public NDarray oob_scores_ => default !;
-            public float oob_score_ => default !;
-            public NDarray train_score_ => default !;
-            public PyObject init_ => default !;
-            public NDarray estimators_ => default !;
-            public NDarray classes_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public int n_classes_ => default !;
-            public int max_features_ => default !;
+            public int n_estimators_ => default!;
+            public int n_trees_per_iteration_ => default!;
+            public NDarray feature_importances_ => default!;
+            public NDarray oob_improvement_ => default!;
+            public NDarray oob_scores_ => default!;
+            public float oob_score_ => default!;
+            public NDarray train_score_ => default!;
+            public PyObject init_ => default!;
+            public NDarray estimators_ => default!;
+            public NDarray classes_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public int n_classes_ => default!;
+            public int max_features_ => default!;
 
             // Methods
-            public NDarray apply(NDarray X) => default !;
-            public NDarray decision_function(NDarray X) => default !;
+            public NDarray apply(NDarray X) => default!;
+            public NDarray decision_function(NDarray X) => default!;
             [ReturnThis]
-            public GradientBoostingClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null, PyObject? monitor = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public NDarray predict_log_proba(NDarray X) => default !;
-            public NDarray predict_proba(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public GradientBoostingClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null, PyObject? monitor = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public NDarray predict_log_proba(NDarray X) => default!;
+            public NDarray predict_proba(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public GradientBoostingClassifier set_fit_request(string? monitor = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$") => default !;
+            public GradientBoostingClassifier set_fit_request(string? monitor = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public GradientBoostingClassifier set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public GradientBoostingClassifier set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public GradientBoostingClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
-            public NDarray staged_decision_function(NDarray X) => default !;
-            public NDarray staged_predict(NDarray X) => default !;
-            public NDarray staged_predict_proba(NDarray X) => default !;
+            public GradientBoostingClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
+            public NDarray staged_decision_function(NDarray X) => default!;
+            public NDarray staged_predict(NDarray X) => default!;
+            public NDarray staged_predict_proba(NDarray X) => default!;
         }
 
         public class GradientBoostingRegressor
@@ -286,34 +286,34 @@ public static partial class sklearn
             }
 
             // Properties
-            public int n_estimators_ => default !;
-            public int n_trees_per_iteration_ => default !;
-            public NDarray feature_importances_ => default !;
-            public NDarray oob_improvement_ => default !;
-            public NDarray oob_scores_ => default !;
-            public float oob_score_ => default !;
-            public NDarray train_score_ => default !;
-            public PyObject init_ => default !;
-            public NDarray estimators_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public int max_features_ => default !;
+            public int n_estimators_ => default!;
+            public int n_trees_per_iteration_ => default!;
+            public NDarray feature_importances_ => default!;
+            public NDarray oob_improvement_ => default!;
+            public NDarray oob_scores_ => default!;
+            public float oob_score_ => default!;
+            public NDarray train_score_ => default!;
+            public PyObject init_ => default!;
+            public NDarray estimators_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public int max_features_ => default!;
 
             // Methods
-            public NDarray apply(NDarray X) => default !;
+            public NDarray apply(NDarray X) => default!;
             [ReturnThis]
-            public GradientBoostingRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null, PyObject? monitor = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public GradientBoostingRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null, PyObject? monitor = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public GradientBoostingRegressor set_fit_request(string? monitor = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$") => default !;
+            public GradientBoostingRegressor set_fit_request(string? monitor = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public GradientBoostingRegressor set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public GradientBoostingRegressor set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public GradientBoostingRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
-            public NDarray staged_predict(NDarray X) => default !;
+            public GradientBoostingRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
+            public NDarray staged_predict(NDarray X) => default!;
         }
 
         public class HistGradientBoostingClassifier
@@ -324,34 +324,34 @@ public static partial class sklearn
             }
 
             // Properties
-            public NDarray classes_ => default !;
-            public bool do_early_stopping_ => default !;
-            public int n_iter_ => default !;
-            public int n_trees_per_iteration_ => default !;
-            public NDarray train_score_ => default !;
-            public NDarray validation_score_ => default !;
-            public NDarray is_categorical_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
+            public NDarray classes_ => default!;
+            public bool do_early_stopping_ => default!;
+            public int n_iter_ => default!;
+            public int n_trees_per_iteration_ => default!;
+            public NDarray train_score_ => default!;
+            public NDarray validation_score_ => default!;
+            public NDarray is_categorical_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
 
             // Methods
-            public NDarray decision_function(NDarray X) => default !;
+            public NDarray decision_function(NDarray X) => default!;
             [ReturnThis]
-            public HistGradientBoostingClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public NDarray predict_proba(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public HistGradientBoostingClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public NDarray predict_proba(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public HistGradientBoostingClassifier set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public HistGradientBoostingClassifier set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public HistGradientBoostingClassifier set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public HistGradientBoostingClassifier set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public HistGradientBoostingClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
-            public NDarray staged_decision_function(NDarray X) => default !;
-            public NDarray staged_predict(NDarray X) => default !;
-            public NDarray staged_predict_proba(NDarray X) => default !;
+            public HistGradientBoostingClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
+            public NDarray staged_decision_function(NDarray X) => default!;
+            public NDarray staged_predict(NDarray X) => default!;
+            public NDarray staged_predict_proba(NDarray X) => default!;
         }
 
         public class HistGradientBoostingRegressor
@@ -362,29 +362,29 @@ public static partial class sklearn
             }
 
             // Properties
-            public bool do_early_stopping_ => default !;
-            public int n_iter_ => default !;
-            public int n_trees_per_iteration_ => default !;
-            public NDarray train_score_ => default !;
-            public NDarray validation_score_ => default !;
-            public NDarray is_categorical_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
+            public bool do_early_stopping_ => default!;
+            public int n_iter_ => default!;
+            public int n_trees_per_iteration_ => default!;
+            public NDarray train_score_ => default!;
+            public NDarray validation_score_ => default!;
+            public NDarray is_categorical_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
 
             // Methods
             [ReturnThis]
-            public HistGradientBoostingRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public HistGradientBoostingRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public HistGradientBoostingRegressor set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public HistGradientBoostingRegressor set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public HistGradientBoostingRegressor set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public HistGradientBoostingRegressor set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public HistGradientBoostingRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
-            public NDarray staged_predict(NDarray X) => default !;
+            public HistGradientBoostingRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
+            public NDarray staged_predict(NDarray X) => default!;
         }
 
         public class IsolationForest
@@ -395,28 +395,28 @@ public static partial class sklearn
             }
 
             // Properties
-            public PyObject estimator_ => default !;
-            public PyTuple estimators_ => default !;
-            public NDarray estimators_features_ => default !;
-            public NDarray estimators_samples_ => default !;
-            public int max_samples_ => default !;
-            public float offset_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
+            public PyObject estimator_ => default!;
+            public PyTuple estimators_ => default!;
+            public NDarray estimators_features_ => default!;
+            public NDarray estimators_samples_ => default!;
+            public int max_samples_ => default!;
+            public float offset_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
 
             // Methods
-            public NDarray decision_function(NDarray X) => default !;
+            public NDarray decision_function(NDarray X) => default!;
             [ReturnThis]
-            public IsolationForest fit(NDarray X, NDarray? sample_weight = null) => default !;
-            public NDarray fit_predict(NDarray X, Dictionary<string, PyObject>? @params = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public NDarray score_samples(NDarray X) => default !;
+            public IsolationForest fit(NDarray X, NDarray? sample_weight = null) => default!;
+            public NDarray fit_predict(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public NDarray score_samples(NDarray X) => default!;
             [ReturnThis]
-            public IsolationForest set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public IsolationForest set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public IsolationForest set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public IsolationForest set_params(Dictionary<string, PyObject>? @params = null) => default!;
         }
 
         public class RandomForestClassifier
@@ -427,35 +427,35 @@ public static partial class sklearn
             }
 
             // Properties
-            public PyObject estimator_ => default !;
-            public PyTuple estimators_ => default !;
-            public NDarray classes_ => default !;
-            public int n_classes_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public int n_outputs_ => default !;
-            public NDarray feature_importances_ => default !;
-            public float oob_score_ => default !;
-            public NDarray oob_decision_function_ => default !;
-            public NDarray estimators_samples_ => default !;
+            public PyObject estimator_ => default!;
+            public PyTuple estimators_ => default!;
+            public NDarray classes_ => default!;
+            public int n_classes_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public int n_outputs_ => default!;
+            public NDarray feature_importances_ => default!;
+            public float oob_score_ => default!;
+            public NDarray oob_decision_function_ => default!;
+            public NDarray estimators_samples_ => default!;
 
             // Methods
-            public NDarray apply(NDarray X) => default !;
-            public (NDarray? , NDarray? ) decision_path(NDarray X) => default !;
+            public NDarray apply(NDarray X) => default!;
+            public (NDarray?, NDarray?) decision_path(NDarray X) => default!;
             [ReturnThis]
-            public RandomForestClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public NDarray predict_log_proba(NDarray X) => default !;
-            public NDarray predict_proba(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public RandomForestClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public NDarray predict_log_proba(NDarray X) => default!;
+            public NDarray predict_proba(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public RandomForestClassifier set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public RandomForestClassifier set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public RandomForestClassifier set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public RandomForestClassifier set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public RandomForestClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public RandomForestClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
         public class RandomForestRegressor
@@ -466,31 +466,31 @@ public static partial class sklearn
             }
 
             // Properties
-            public PyObject estimator_ => default !;
-            public PyTuple estimators_ => default !;
-            public NDarray feature_importances_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public int n_outputs_ => default !;
-            public float oob_score_ => default !;
-            public NDarray oob_prediction_ => default !;
-            public NDarray estimators_samples_ => default !;
+            public PyObject estimator_ => default!;
+            public PyTuple estimators_ => default!;
+            public NDarray feature_importances_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public int n_outputs_ => default!;
+            public float oob_score_ => default!;
+            public NDarray oob_prediction_ => default!;
+            public NDarray estimators_samples_ => default!;
 
             // Methods
-            public NDarray apply(NDarray X) => default !;
-            public (NDarray? , NDarray? ) decision_path(NDarray X) => default !;
+            public NDarray apply(NDarray X) => default!;
+            public (NDarray?, NDarray?) decision_path(NDarray X) => default!;
             [ReturnThis]
-            public RandomForestRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public RandomForestRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public RandomForestRegressor set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public RandomForestRegressor set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public RandomForestRegressor set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public RandomForestRegressor set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public RandomForestRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public RandomForestRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
         public class RandomTreesEmbedding
@@ -501,31 +501,31 @@ public static partial class sklearn
             }
 
             // Properties
-            public PyObject estimator_ => default !;
-            public PyTuple estimators_ => default !;
-            public NDarray feature_importances_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public int n_outputs_ => default !;
-            public PyObject one_hot_encoder_ => default !;
-            public NDarray estimators_samples_ => default !;
+            public PyObject estimator_ => default!;
+            public PyTuple estimators_ => default!;
+            public NDarray feature_importances_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public int n_outputs_ => default!;
+            public PyObject one_hot_encoder_ => default!;
+            public NDarray estimators_samples_ => default!;
 
             // Methods
-            public NDarray apply(NDarray X) => default !;
-            public (NDarray? , NDarray? ) decision_path(NDarray X) => default !;
+            public NDarray apply(NDarray X) => default!;
+            public (NDarray?, NDarray?) decision_path(NDarray X) => default!;
             [ReturnThis]
-            public RandomTreesEmbedding fit(NDarray X, NDarray? sample_weight = null) => default !;
-            public NDarray fit_transform(NDarray X, NDarray? sample_weight = null) => default !;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
+            public RandomTreesEmbedding fit(NDarray X, NDarray? sample_weight = null) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? sample_weight = null) => default!;
+            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
             [ReturnThis]
-            public RandomTreesEmbedding set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public RandomTreesEmbedding set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public RandomTreesEmbedding set_output(PyObject? transform = null) => default !;
+            public RandomTreesEmbedding set_output(PyObject? transform = null) => default!;
             [ReturnThis]
-            public RandomTreesEmbedding set_params(Dictionary<string, PyObject>? @params = null) => default !;
-            public NDarray transform(NDarray X) => default !;
+            public RandomTreesEmbedding set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            public NDarray transform(NDarray X) => default!;
         }
 
         public class StackingClassifier
@@ -536,37 +536,37 @@ public static partial class sklearn
             }
 
             // Properties
-            public NDarray classes_ => default !;
-            public PyTuple estimators_ => default !;
-            public PyDict named_estimators_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public PyObject final_estimator_ => default !;
-            public PyTuple stack_method_ => default !;
+            public NDarray classes_ => default!;
+            public PyTuple estimators_ => default!;
+            public PyDict named_estimators_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public PyObject final_estimator_ => default!;
+            public PyTuple stack_method_ => default!;
 
             // Methods
-            public NDarray decision_function(NDarray X) => default !;
+            public NDarray decision_function(NDarray X) => default!;
             [ReturnThis]
-            public StackingClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default !;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default !;
+            public StackingClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
+            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
             public void get_metadata_routing()
             {
             }
 
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X, Dictionary<string, PyObject>? @params = null) => default !;
-            public NDarray predict_proba(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
+            public NDarray predict_proba(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public StackingClassifier set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public StackingClassifier set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public StackingClassifier set_output(PyObject? transform = null) => default !;
+            public StackingClassifier set_output(PyObject? transform = null) => default!;
             [ReturnThis]
-            public StackingClassifier set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public StackingClassifier set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public StackingClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
-            public NDarray transform(NDarray X) => default !;
+            public StackingClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
+            public NDarray transform(NDarray X) => default!;
         }
 
         public class StackingRegressor
@@ -577,34 +577,34 @@ public static partial class sklearn
             }
 
             // Properties
-            public PyTuple estimators_ => default !;
-            public PyDict named_estimators_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
-            public PyObject final_estimator_ => default !;
-            public PyTuple stack_method_ => default !;
+            public PyTuple estimators_ => default!;
+            public PyDict named_estimators_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
+            public PyObject final_estimator_ => default!;
+            public PyTuple stack_method_ => default!;
 
             // Methods
             [ReturnThis]
-            public StackingRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
-            public NDarray fit_transform(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default !;
+            public StackingRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
+            public NDarray fit_transform(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
+            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
             public void get_metadata_routing()
             {
             }
 
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X, Dictionary<string, PyObject>? @params = null) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public StackingRegressor set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public StackingRegressor set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public StackingRegressor set_output(PyObject? transform = null) => default !;
+            public StackingRegressor set_output(PyObject? transform = null) => default!;
             [ReturnThis]
-            public StackingRegressor set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public StackingRegressor set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public StackingRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
-            public NDarray transform(NDarray X) => default !;
+            public StackingRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
+            public NDarray transform(NDarray X) => default!;
         }
 
         public class VotingClassifier
@@ -615,32 +615,32 @@ public static partial class sklearn
             }
 
             // Properties
-            public PyTuple estimators_ => default !;
-            public PyDict named_estimators_ => default !;
-            public PyObject le_ => default !;
-            public NDarray classes_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
+            public PyTuple estimators_ => default!;
+            public PyDict named_estimators_ => default!;
+            public PyObject le_ => default!;
+            public NDarray classes_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
 
             // Methods
             [ReturnThis]
-            public VotingClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null) => default !;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default !;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public NDarray predict_proba(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public VotingClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
+            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public NDarray predict_proba(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public VotingClassifier set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public VotingClassifier set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public VotingClassifier set_output(PyObject? transform = null) => default !;
+            public VotingClassifier set_output(PyObject? transform = null) => default!;
             [ReturnThis]
-            public VotingClassifier set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public VotingClassifier set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public VotingClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
-            public PyObject transform(NDarray X) => default !;
+            public VotingClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
+            public PyObject transform(NDarray X) => default!;
         }
 
         public class VotingRegressor
@@ -651,29 +651,29 @@ public static partial class sklearn
             }
 
             // Properties
-            public PyTuple estimators_ => default !;
-            public PyDict named_estimators_ => default !;
-            public int n_features_in_ => default !;
-            public NDarray feature_names_in_ => default !;
+            public PyTuple estimators_ => default!;
+            public PyDict named_estimators_ => default!;
+            public int n_features_in_ => default!;
+            public NDarray feature_names_in_ => default!;
 
             // Methods
             [ReturnThis]
-            public VotingRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null) => default !;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default !;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default !;
-            public PyObject get_metadata_routing() => default !;
-            public PyDict get_params(bool deep = true) => default !;
-            public NDarray predict(NDarray X) => default !;
-            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default !;
+            public VotingRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
+            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
+            public PyObject get_metadata_routing() => default!;
+            public PyDict get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X) => default!;
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public VotingRegressor set_fit_request(string? sample_weight = "$UNCHANGED$") => default !;
+            public VotingRegressor set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
-            public VotingRegressor set_output(PyObject? transform = null) => default !;
+            public VotingRegressor set_output(PyObject? transform = null) => default!;
             [ReturnThis]
-            public VotingRegressor set_params(Dictionary<string, PyObject>? @params = null) => default !;
+            public VotingRegressor set_params(Dictionary<string, PyObject>? @params = null) => default!;
             [ReturnThis]
-            public VotingRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default !;
-            public PyDict transform(NDarray X) => default !;
+            public VotingRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
+            public PyDict transform(NDarray X) => default!;
         }
     }
 }

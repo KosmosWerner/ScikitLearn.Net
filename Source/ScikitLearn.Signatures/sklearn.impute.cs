@@ -11,7 +11,7 @@ public static partial class sklearn
     public static class impute
     {
         // Classes
-        public class IterativeImputer
+        public class IterativeImputer : PythonObject
         {
             // Constructor
             public IterativeImputer(PyObject? estimator = null, int? missing_values = null, bool sample_posterior = false, int max_iter = 10, float tol = 0.001f, int? n_nearest_features = null, string initial_strategy = "mean", string? fill_value = null, string imputation_order = "ascending", bool skip_complete = false, NDarray? min_value = null, float max_value = float.PositiveInfinity, int verbose = 0, int? random_state = null, bool add_indicator = false, bool keep_empty_features = false)
@@ -42,7 +42,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class KNNImputer
+        public class KNNImputer : PythonObject
         {
             // Constructor
             public KNNImputer(string? missing_values = null, int n_neighbors = 5, string weights = "uniform", string metric = "nan_euclidean", bool copy = true, bool add_indicator = false, bool keep_empty_features = false)
@@ -68,7 +68,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class MissingIndicator
+        public class MissingIndicator : PythonObject
         {
             // Constructor
             public MissingIndicator(string? missing_values = null, string features = "missing-only", string sparse = "auto", bool error_on_new = true)
@@ -94,7 +94,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class SimpleImputer
+        public class SimpleImputer : PythonObject
         {
             // Constructor
             public SimpleImputer(string? missing_values = null, string strategy = "mean", string? fill_value = null, bool copy = true, bool add_indicator = false, bool keep_empty_features = false)

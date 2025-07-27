@@ -15,7 +15,7 @@ public static partial class sklearn
         public static NDarray radius_neighbors_graph(NDarray X, float radius, string mode = "connectivity", string metric = "minkowski", int p = 2, PyDict? metric_params = null, bool include_self = false, int? n_jobs = null) => default!;
         public static NDarray sort_graph_by_row_values(NDarray graph, bool copy = false, bool warn_when_not_sorted = true) => default!;
         // Classes
-        public class BallTree
+        public class BallTree : PythonObject
         {
             // Constructor
             public BallTree()
@@ -40,7 +40,7 @@ public static partial class sklearn
             public NDarray two_point_correlation(NDarray X, NDarray r, bool dualtree = false) => default!;
         }
 
-        public class KDTree
+        public class KDTree : PythonObject
         {
             // Constructor
             public KDTree()
@@ -65,7 +65,7 @@ public static partial class sklearn
             public NDarray two_point_correlation(NDarray X, NDarray r, bool dualtree = false) => default!;
         }
 
-        public class KNeighborsClassifier
+        public class KNeighborsClassifier : PythonObject
         {
             // Constructor
             public KNeighborsClassifier(int n_neighbors = 5, string? weights = "uniform", string algorithm = "auto", int leaf_size = 30, int p = 2, string metric = "minkowski", PyDict? metric_params = null, int? n_jobs = null)
@@ -97,7 +97,7 @@ public static partial class sklearn
             public KNeighborsClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class KNeighborsRegressor
+        public class KNeighborsRegressor : PythonObject
         {
             // Constructor
             public KNeighborsRegressor(int n_neighbors = 5, string? weights = "uniform", string algorithm = "auto", int leaf_size = 30, int p = 2, string metric = "minkowski", PyDict? metric_params = null, int? n_jobs = null)
@@ -126,7 +126,7 @@ public static partial class sklearn
             public KNeighborsRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class KNeighborsTransformer
+        public class KNeighborsTransformer : PythonObject
         {
             // Constructor
             public KNeighborsTransformer(string mode = "distance", int n_neighbors = 5, string algorithm = "auto", int leaf_size = 30, string metric = "minkowski", int p = 2, PyDict? metric_params = null, int? n_jobs = null)
@@ -156,7 +156,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class KernelDensity
+        public class KernelDensity : PythonObject
         {
             // Constructor
             public KernelDensity(float bandwidth = 1.0f, string algorithm = "auto", string kernel = "gaussian", string metric = "euclidean", int atol = 0, int rtol = 0, bool breadth_first = true, int leaf_size = 40, PyDict? metric_params = null)
@@ -183,7 +183,7 @@ public static partial class sklearn
             public KernelDensity set_params(Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class LocalOutlierFactor
+        public class LocalOutlierFactor : PythonObject
         {
             // Constructor
             public LocalOutlierFactor(int n_neighbors = 20, string algorithm = "auto", int leaf_size = 30, string metric = "minkowski", int p = 2, PyDict? metric_params = null, string contamination = "auto", bool novelty = false, int? n_jobs = null)
@@ -215,7 +215,7 @@ public static partial class sklearn
             public LocalOutlierFactor set_params(Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class NearestCentroid
+        public class NearestCentroid : PythonObject
         {
             // Constructor
             public NearestCentroid(string metric = "euclidean", float? shrink_threshold = null)
@@ -241,7 +241,7 @@ public static partial class sklearn
             public NearestCentroid set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class NearestNeighbors
+        public class NearestNeighbors : PythonObject
         {
             // Constructor
             public NearestNeighbors(int n_neighbors = 5, float radius = 1.0f, string algorithm = "auto", int leaf_size = 30, string metric = "minkowski", int p = 2, PyDict? metric_params = null, int? n_jobs = null)
@@ -268,7 +268,7 @@ public static partial class sklearn
             public NearestNeighbors set_params(Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class NeighborhoodComponentsAnalysis
+        public class NeighborhoodComponentsAnalysis : PythonObject
         {
             // Constructor
             public NeighborhoodComponentsAnalysis(int? n_components = null, string init = "auto", bool warm_start = false, int max_iter = 50, float tol = 1e-05f, PyObject? callback = null, int verbose = 0, int? random_state = null)
@@ -296,7 +296,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class RadiusNeighborsClassifier
+        public class RadiusNeighborsClassifier : PythonObject
         {
             // Constructor
             public RadiusNeighborsClassifier(float radius = 1.0f, string? weights = "uniform", string algorithm = "auto", int leaf_size = 30, int p = 2, string metric = "minkowski", PyObject? outlier_label = null, PyDict? metric_params = null, int? n_jobs = null)
@@ -329,7 +329,7 @@ public static partial class sklearn
             public RadiusNeighborsClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class RadiusNeighborsRegressor
+        public class RadiusNeighborsRegressor : PythonObject
         {
             // Constructor
             public RadiusNeighborsRegressor(float radius = 1.0f, string? weights = "uniform", string algorithm = "auto", int leaf_size = 30, int p = 2, string metric = "minkowski", PyDict? metric_params = null, int? n_jobs = null)
@@ -358,7 +358,7 @@ public static partial class sklearn
             public RadiusNeighborsRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class RadiusNeighborsTransformer
+        public class RadiusNeighborsTransformer : PythonObject
         {
             // Constructor
             public RadiusNeighborsTransformer(string mode = "distance", float radius = 1.0f, string algorithm = "auto", int leaf_size = 30, string metric = "minkowski", int p = 2, PyDict? metric_params = null, int? n_jobs = null)

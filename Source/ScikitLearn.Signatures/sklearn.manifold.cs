@@ -16,7 +16,7 @@ public static partial class sklearn
         public static NDarray spectral_embedding(NDarray adjacency, int n_components = 8, PyObject? eigen_solver = null, int? random_state = null, string eigen_tol = "auto", bool norm_laplacian = true, bool drop_first = true) => default!;
         public static float trustworthiness(NDarray X, NDarray X_embedded, int n_neighbors = 5, string metric = "euclidean") => default!;
         // Classes
-        public class Isomap
+        public class Isomap : PythonObject
         {
             // Constructor
             public Isomap(int? n_neighbors = 5, float? radius = null, int n_components = 2, string eigen_solver = "auto", int tol = 0, int? max_iter = null, string path_method = "auto", string neighbors_algorithm = "auto", int? n_jobs = null, string metric = "minkowski", int p = 2, PyDict? metric_params = null)
@@ -46,7 +46,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class LocallyLinearEmbedding
+        public class LocallyLinearEmbedding : PythonObject
         {
             // Constructor
             public LocallyLinearEmbedding(int n_neighbors = 5, int n_components = 2, float reg = 0.001f, string eigen_solver = "auto", float tol = 1e-06f, int max_iter = 100, string method = "standard", float hessian_tol = 0.0001f, float modified_tol = 1e-12f, string neighbors_algorithm = "auto", int? random_state = null, int? n_jobs = null)
@@ -74,7 +74,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class MDS
+        public class MDS : PythonObject
         {
             // Constructor
             public MDS(int n_components = 2, bool metric = true, int n_init = 4, int max_iter = 300, int verbose = 0, float eps = 0.001f, int? n_jobs = null, int? random_state = null, string dissimilarity = "euclidean", string normalized_stress = "auto")
@@ -101,7 +101,7 @@ public static partial class sklearn
             public MDS set_params(Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class SpectralEmbedding
+        public class SpectralEmbedding : PythonObject
         {
             // Constructor
             public SpectralEmbedding(int n_components = 2, string affinity = "nearest_neighbors", float? gamma = null, int? random_state = null, PyObject? eigen_solver = null, string eigen_tol = "auto", int? n_neighbors = null, int? n_jobs = null)
@@ -125,7 +125,7 @@ public static partial class sklearn
             public SpectralEmbedding set_params(Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class TSNE
+        public class TSNE : PythonObject
         {
             // Constructor
             public TSNE(int n_components = 2, float perplexity = 30.0f, float early_exaggeration = 12.0f, string learning_rate = "auto", int? max_iter = null, int n_iter_without_progress = 300, float min_grad_norm = 1e-07f, string metric = "euclidean", PyDict? metric_params = null, string init = "pca", int verbose = 0, int? random_state = null, string method = "barnes_hut", float angle = 0.5f, int? n_jobs = null, string n_iter = "deprecated")

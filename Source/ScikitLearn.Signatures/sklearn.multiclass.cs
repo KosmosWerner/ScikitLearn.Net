@@ -11,7 +11,7 @@ public static partial class sklearn
     public static class multiclass
     {
         // Classes
-        public class OneVsOneClassifier
+        public class OneVsOneClassifier : PythonObject
         {
             // Constructor
             public OneVsOneClassifier(PyObject estimator, int? n_jobs = null)
@@ -44,7 +44,7 @@ public static partial class sklearn
             public OneVsOneClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class OneVsRestClassifier
+        public class OneVsRestClassifier : PythonObject
         {
             // Constructor
             public OneVsRestClassifier(PyObject estimator, int? n_jobs = null, int verbose = 0)
@@ -79,7 +79,7 @@ public static partial class sklearn
             public OneVsRestClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class OutputCodeClassifier
+        public class OutputCodeClassifier : PythonObject
         {
             // Constructor
             public OutputCodeClassifier(PyObject estimator, float code_size = 1.5f, int? random_state = null, int? n_jobs = null)

@@ -11,7 +11,7 @@ public static partial class sklearn
     public static class ensemble
     {
         // Classes
-        public class AdaBoostClassifier
+        public class AdaBoostClassifier : PythonObject
         {
             // Constructor
             public AdaBoostClassifier(PyObject? estimator = null, int n_estimators = 50, float learning_rate = 1.0f, string algorithm = "SAMME.R", int? random_state = null)
@@ -54,7 +54,7 @@ public static partial class sklearn
             public float staged_score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
         }
 
-        public class AdaBoostRegressor
+        public class AdaBoostRegressor : PythonObject
         {
             // Constructor
             public AdaBoostRegressor(PyObject? estimator = null, int n_estimators = 50, float learning_rate = 1.0f, string loss = "linear", int? random_state = null)
@@ -90,7 +90,7 @@ public static partial class sklearn
             public float staged_score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
         }
 
-        public class BaggingClassifier
+        public class BaggingClassifier : PythonObject
         {
             // Constructor
             public BaggingClassifier(PyObject? estimator = null, int n_estimators = 10, float max_samples = 1.0f, float max_features = 1.0f, bool bootstrap = true, bool bootstrap_features = false, bool oob_score = false, bool warm_start = false, int? n_jobs = null, int? random_state = null, int verbose = 0)
@@ -127,7 +127,7 @@ public static partial class sklearn
             public BaggingClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class BaggingRegressor
+        public class BaggingRegressor : PythonObject
         {
             // Constructor
             public BaggingRegressor(PyObject? estimator = null, int n_estimators = 10, float max_samples = 1.0f, float max_features = 1.0f, bool bootstrap = true, bool bootstrap_features = false, bool oob_score = false, bool warm_start = false, int? n_jobs = null, int? random_state = null, int verbose = 0)
@@ -159,7 +159,7 @@ public static partial class sklearn
             public BaggingRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class ExtraTreesClassifier
+        public class ExtraTreesClassifier : PythonObject
         {
             // Constructor
             public ExtraTreesClassifier(int n_estimators = 100, string criterion = "gini", int? max_depth = null, int min_samples_split = 2, int min_samples_leaf = 1, float min_weight_fraction_leaf = 0.0f, string? max_features = "sqrt", int? max_leaf_nodes = null, float min_impurity_decrease = 0.0f, bool bootstrap = false, bool oob_score = false, int? n_jobs = null, int? random_state = null, int verbose = 0, bool warm_start = false, PyDict? class_weight = null, float ccp_alpha = 0.0f, float? max_samples = null, NDarray? monotonic_cst = null)
@@ -198,7 +198,7 @@ public static partial class sklearn
             public ExtraTreesClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class ExtraTreesRegressor
+        public class ExtraTreesRegressor : PythonObject
         {
             // Constructor
             public ExtraTreesRegressor(int n_estimators = 100, string criterion = "squared_error", int? max_depth = null, int min_samples_split = 2, int min_samples_leaf = 1, float min_weight_fraction_leaf = 0.0f, float? max_features = 1.0f, int? max_leaf_nodes = null, float min_impurity_decrease = 0.0f, bool bootstrap = false, bool oob_score = false, int? n_jobs = null, int? random_state = null, int verbose = 0, bool warm_start = false, float ccp_alpha = 0.0f, float? max_samples = null, NDarray? monotonic_cst = null)
@@ -233,7 +233,7 @@ public static partial class sklearn
             public ExtraTreesRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class GradientBoostingClassifier
+        public class GradientBoostingClassifier : PythonObject
         {
             // Constructor
             public GradientBoostingClassifier(string loss = "log_loss", float learning_rate = 0.1f, int n_estimators = 100, float subsample = 1.0f, string criterion = "friedman_mse", int min_samples_split = 2, int min_samples_leaf = 1, float min_weight_fraction_leaf = 0.0f, int? max_depth = 3, float min_impurity_decrease = 0.0f, PyObject? init = null, int? random_state = null, float? max_features = null, int verbose = 0, int? max_leaf_nodes = null, bool warm_start = false, float validation_fraction = 0.1f, int? n_iter_no_change = null, float tol = 0.0001f, float ccp_alpha = 0.0f)
@@ -278,7 +278,7 @@ public static partial class sklearn
             public NDarray staged_predict_proba(NDarray X) => default!;
         }
 
-        public class GradientBoostingRegressor
+        public class GradientBoostingRegressor : PythonObject
         {
             // Constructor
             public GradientBoostingRegressor(string loss = "squared_error", float learning_rate = 0.1f, int n_estimators = 100, float subsample = 1.0f, string criterion = "friedman_mse", int min_samples_split = 2, int min_samples_leaf = 1, float min_weight_fraction_leaf = 0.0f, int? max_depth = 3, float min_impurity_decrease = 0.0f, PyObject? init = null, int? random_state = null, float? max_features = null, float alpha = 0.9f, int verbose = 0, int? max_leaf_nodes = null, bool warm_start = false, float validation_fraction = 0.1f, int? n_iter_no_change = null, float tol = 0.0001f, float ccp_alpha = 0.0f)
@@ -316,7 +316,7 @@ public static partial class sklearn
             public NDarray staged_predict(NDarray X) => default!;
         }
 
-        public class HistGradientBoostingClassifier
+        public class HistGradientBoostingClassifier : PythonObject
         {
             // Constructor
             public HistGradientBoostingClassifier(string loss = "log_loss", float learning_rate = 0.1f, int max_iter = 100, int? max_leaf_nodes = 31, int? max_depth = null, int min_samples_leaf = 20, float l2_regularization = 0.0f, float max_features = 1.0f, int max_bins = 255, string? categorical_features = "warn", PyDict? monotonic_cst = null, int? interaction_cst = null, bool warm_start = false, string early_stopping = "auto", string? scoring = "loss", float? validation_fraction = 0.1f, int n_iter_no_change = 10, float tol = 1e-07f, int verbose = 0, int? random_state = null, PyDict? class_weight = null)
@@ -354,7 +354,7 @@ public static partial class sklearn
             public NDarray staged_predict_proba(NDarray X) => default!;
         }
 
-        public class HistGradientBoostingRegressor
+        public class HistGradientBoostingRegressor : PythonObject
         {
             // Constructor
             public HistGradientBoostingRegressor(string loss = "squared_error", float? quantile = null, float learning_rate = 0.1f, int max_iter = 100, int? max_leaf_nodes = 31, int? max_depth = null, int min_samples_leaf = 20, float l2_regularization = 0.0f, float max_features = 1.0f, int max_bins = 255, string? categorical_features = "warn", PyDict? monotonic_cst = null, int? interaction_cst = null, bool warm_start = false, string early_stopping = "auto", string? scoring = "loss", float? validation_fraction = 0.1f, int n_iter_no_change = 10, float tol = 1e-07f, int verbose = 0, int? random_state = null)
@@ -387,7 +387,7 @@ public static partial class sklearn
             public NDarray staged_predict(NDarray X) => default!;
         }
 
-        public class IsolationForest
+        public class IsolationForest : PythonObject
         {
             // Constructor
             public IsolationForest(int n_estimators = 100, string max_samples = "auto", string contamination = "auto", float max_features = 1.0f, bool bootstrap = false, int? n_jobs = null, int? random_state = null, int verbose = 0, bool warm_start = false)
@@ -419,7 +419,7 @@ public static partial class sklearn
             public IsolationForest set_params(Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class RandomForestClassifier
+        public class RandomForestClassifier : PythonObject
         {
             // Constructor
             public RandomForestClassifier(int n_estimators = 100, string criterion = "gini", int? max_depth = null, int min_samples_split = 2, int min_samples_leaf = 1, float min_weight_fraction_leaf = 0.0f, string? max_features = "sqrt", int? max_leaf_nodes = null, float min_impurity_decrease = 0.0f, bool bootstrap = true, bool oob_score = false, int? n_jobs = null, int? random_state = null, int verbose = 0, bool warm_start = false, PyDict? class_weight = null, float ccp_alpha = 0.0f, float? max_samples = null, NDarray? monotonic_cst = null)
@@ -458,7 +458,7 @@ public static partial class sklearn
             public RandomForestClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class RandomForestRegressor
+        public class RandomForestRegressor : PythonObject
         {
             // Constructor
             public RandomForestRegressor(int n_estimators = 100, string criterion = "squared_error", int? max_depth = null, int min_samples_split = 2, int min_samples_leaf = 1, float min_weight_fraction_leaf = 0.0f, float? max_features = 1.0f, int? max_leaf_nodes = null, float min_impurity_decrease = 0.0f, bool bootstrap = true, bool oob_score = false, int? n_jobs = null, int? random_state = null, int verbose = 0, bool warm_start = false, float ccp_alpha = 0.0f, float? max_samples = null, NDarray? monotonic_cst = null)
@@ -493,7 +493,7 @@ public static partial class sklearn
             public RandomForestRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class RandomTreesEmbedding
+        public class RandomTreesEmbedding : PythonObject
         {
             // Constructor
             public RandomTreesEmbedding(int n_estimators = 100, int max_depth = 5, int min_samples_split = 2, int min_samples_leaf = 1, float min_weight_fraction_leaf = 0.0f, int? max_leaf_nodes = null, float min_impurity_decrease = 0.0f, bool sparse_output = true, int? n_jobs = null, int? random_state = null, int verbose = 0, bool warm_start = false)
@@ -528,7 +528,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class StackingClassifier
+        public class StackingClassifier : PythonObject
         {
             // Constructor
             public StackingClassifier(PyTuple estimators, PyObject? final_estimator = null, int? cv = null, string stack_method = "auto", int? n_jobs = null, bool passthrough = false, int verbose = 0)
@@ -569,7 +569,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class StackingRegressor
+        public class StackingRegressor : PythonObject
         {
             // Constructor
             public StackingRegressor(PyTuple estimators, PyObject? final_estimator = null, int? cv = null, int? n_jobs = null, bool passthrough = false, int verbose = 0)
@@ -607,7 +607,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class VotingClassifier
+        public class VotingClassifier : PythonObject
         {
             // Constructor
             public VotingClassifier(PyTuple estimators, string voting = "hard", NDarray? weights = null, int? n_jobs = null, bool flatten_transform = true, bool verbose = false)
@@ -643,7 +643,7 @@ public static partial class sklearn
             public PyObject transform(NDarray X) => default!;
         }
 
-        public class VotingRegressor
+        public class VotingRegressor : PythonObject
         {
             // Constructor
             public VotingRegressor(PyTuple estimators, NDarray? weights = null, int? n_jobs = null, bool verbose = false)

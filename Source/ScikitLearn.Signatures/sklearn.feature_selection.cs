@@ -18,7 +18,7 @@ public static partial class sklearn
         public static NDarray mutual_info_regression(NDarray X, NDarray y, string discrete_features = "auto", int n_neighbors = 3, bool copy = true, int? random_state = null, int? n_jobs = null) => default!;
         public static NDarray r_regression(NDarray X, NDarray y, bool center = true, bool force_finite = true) => default!;
         // Classes
-        public class GenericUnivariateSelect
+        public class GenericUnivariateSelect : PythonObject
         {
             // Constructor
             public GenericUnivariateSelect(PyObject? score_func = null, string mode = "percentile", float param = 1e-05f)
@@ -47,7 +47,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class RFE
+        public class RFE : PythonObject
         {
             // Constructor
             public RFE(PyObject estimator, float? n_features_to_select = null, int step = 1, int verbose = 0, string importance_getter = "auto")
@@ -87,7 +87,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class RFECV
+        public class RFECV : PythonObject
         {
             // Constructor
             public RFECV(PyObject estimator, int step = 1, int min_features_to_select = 1, int? cv = null, string? scoring = null, int verbose = 0, int? n_jobs = null, string importance_getter = "auto")
@@ -130,7 +130,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class SelectFdr
+        public class SelectFdr : PythonObject
         {
             // Constructor
             public SelectFdr(PyObject? score_func = null, float alpha = 0.05f)
@@ -159,7 +159,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class SelectFpr
+        public class SelectFpr : PythonObject
         {
             // Constructor
             public SelectFpr(PyObject? score_func = null, float alpha = 0.05f)
@@ -188,7 +188,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class SelectFromModel
+        public class SelectFromModel : PythonObject
         {
             // Constructor
             public SelectFromModel(PyObject estimator, string? threshold = null, bool prefit = false, int norm_order = 1, int? max_features = null, string importance_getter = "auto")
@@ -220,7 +220,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class SelectFwe
+        public class SelectFwe : PythonObject
         {
             // Constructor
             public SelectFwe(PyObject? score_func = null, float alpha = 0.05f)
@@ -249,7 +249,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class SelectKBest
+        public class SelectKBest : PythonObject
         {
             // Constructor
             public SelectKBest(PyObject? score_func = null, int k = 10)
@@ -278,7 +278,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class SelectPercentile
+        public class SelectPercentile : PythonObject
         {
             // Constructor
             public SelectPercentile(PyObject? score_func = null, int percentile = 10)
@@ -307,7 +307,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class SelectorMixin
+        public class SelectorMixin : PythonObject
         {
             // Constructor
             public SelectorMixin()
@@ -324,7 +324,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class SequentialFeatureSelector
+        public class SequentialFeatureSelector : PythonObject
         {
             // Constructor
             public SequentialFeatureSelector(PyObject estimator, string n_features_to_select = "auto", float? tol = null, string direction = "forward", string? scoring = null, int? cv = 5, int? n_jobs = null)
@@ -356,7 +356,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class VarianceThreshold
+        public class VarianceThreshold : PythonObject
         {
             // Constructor
             public VarianceThreshold(float threshold = 0.0f)

@@ -13,7 +13,7 @@ public static partial class sklearn
         // Methods
         public static (NDarray?, NDarray?) calibration_curve(NDarray y_true, NDarray y_prob, string? pos_label = null, int n_bins = 5, string strategy = "uniform") => default!;
         // Classes
-        public class CalibratedClassifierCV
+        public class CalibratedClassifierCV : PythonObject
         {
             // Constructor
             public CalibratedClassifierCV(PyObject? estimator = null, string method = "sigmoid", int? cv = null, int? n_jobs = null, bool ensemble = true)
@@ -42,7 +42,7 @@ public static partial class sklearn
             public CalibratedClassifierCV set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class CalibrationDisplay
+        public class CalibrationDisplay : PythonObject
         {
             // Constructor
             public CalibrationDisplay(NDarray prob_true, NDarray prob_pred, NDarray y_prob, string? estimator_name = null, string? pos_label = null)

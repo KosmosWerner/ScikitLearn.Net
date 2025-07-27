@@ -11,7 +11,7 @@ public static partial class sklearn
     public static class kernel_approximation
     {
         // Classes
-        public class AdditiveChi2Sampler
+        public class AdditiveChi2Sampler : PythonObject
         {
             // Constructor
             public AdditiveChi2Sampler(int sample_steps = 2, float? sample_interval = null)
@@ -36,7 +36,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class Nystroem
+        public class Nystroem : PythonObject
         {
             // Constructor
             public Nystroem(string kernel = "rbf", float? gamma = null, float? coef0 = null, float? degree = null, PyDict? kernel_params = null, int n_components = 100, int? random_state = null, int? n_jobs = null)
@@ -64,7 +64,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class PolynomialCountSketch
+        public class PolynomialCountSketch : PythonObject
         {
             // Constructor
             public PolynomialCountSketch(float gamma = 1.0f, int degree = 2, int coef0 = 0, int n_components = 100, int? random_state = null)
@@ -91,7 +91,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class RBFSampler
+        public class RBFSampler : PythonObject
         {
             // Constructor
             public RBFSampler(float gamma = 1.0f, int n_components = 100, int? random_state = null)
@@ -118,7 +118,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class SkewedChi2Sampler
+        public class SkewedChi2Sampler : PythonObject
         {
             // Constructor
             public SkewedChi2Sampler(float skewedness = 1.0f, int n_components = 100, int? random_state = null)

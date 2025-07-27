@@ -18,7 +18,7 @@ public static partial class sklearn
         public static (NDarray?, float?) oas(NDarray X, bool assume_centered = false) => default!;
         public static NDarray shrunk_covariance(NDarray emp_cov, float shrinkage = 0.1f) => default!;
         // Classes
-        public class EllipticEnvelope
+        public class EllipticEnvelope : PythonObject
         {
             // Constructor
             public EllipticEnvelope(bool store_precision = true, bool assume_centered = false, float? support_fraction = null, float contamination = 0.1f, int? random_state = null)
@@ -59,7 +59,7 @@ public static partial class sklearn
             public EllipticEnvelope set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class EmpiricalCovariance
+        public class EmpiricalCovariance : PythonObject
         {
             // Constructor
             public EmpiricalCovariance(bool store_precision = true, bool assume_centered = false)
@@ -88,7 +88,7 @@ public static partial class sklearn
             public EmpiricalCovariance set_score_request(string? X_test = "$UNCHANGED$") => default!;
         }
 
-        public class GraphicalLasso
+        public class GraphicalLasso : PythonObject
         {
             // Constructor
             public GraphicalLasso(float alpha = 0.01f, string mode = "cd", PyObject? covariance = null, float tol = 0.0001f, float enet_tol = 0.0001f, int max_iter = 100, bool verbose = false, float eps = float.Epsilon, bool assume_centered = false)
@@ -119,7 +119,7 @@ public static partial class sklearn
             public GraphicalLasso set_score_request(string? X_test = "$UNCHANGED$") => default!;
         }
 
-        public class GraphicalLassoCV
+        public class GraphicalLassoCV : PythonObject
         {
             // Constructor
             public GraphicalLassoCV(int alphas = 4, int n_refinements = 4, int? cv = null, float tol = 0.0001f, float enet_tol = 0.0001f, int max_iter = 100, string mode = "cd", int? n_jobs = null, bool verbose = false, float eps = float.Epsilon, bool assume_centered = false)
@@ -152,7 +152,7 @@ public static partial class sklearn
             public GraphicalLassoCV set_score_request(string? X_test = "$UNCHANGED$") => default!;
         }
 
-        public class LedoitWolf
+        public class LedoitWolf : PythonObject
         {
             // Constructor
             public LedoitWolf(bool store_precision = true, bool assume_centered = false, int block_size = 1000)
@@ -182,7 +182,7 @@ public static partial class sklearn
             public LedoitWolf set_score_request(string? X_test = "$UNCHANGED$") => default!;
         }
 
-        public class MinCovDet
+        public class MinCovDet : PythonObject
         {
             // Constructor
             public MinCovDet(bool store_precision = true, bool assume_centered = false, float? support_fraction = null, int? random_state = null)
@@ -218,7 +218,7 @@ public static partial class sklearn
             public MinCovDet set_score_request(string? X_test = "$UNCHANGED$") => default!;
         }
 
-        public class OAS
+        public class OAS : PythonObject
         {
             // Constructor
             public OAS(bool store_precision = true, bool assume_centered = false)
@@ -248,7 +248,7 @@ public static partial class sklearn
             public OAS set_score_request(string? X_test = "$UNCHANGED$") => default!;
         }
 
-        public class ShrunkCovariance
+        public class ShrunkCovariance : PythonObject
         {
             // Constructor
             public ShrunkCovariance(bool store_precision = true, bool assume_centered = false, float shrinkage = 0.1f)

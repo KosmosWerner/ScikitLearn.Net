@@ -11,7 +11,7 @@ public static partial class sklearn
     public static class feature_extraction
     {
         // Classes
-        public class DictVectorizer
+        public class DictVectorizer : PythonObject
         {
             // Constructor
             public DictVectorizer(float? dtype = null, string separator = "=", bool sparse = true, bool sort = true)
@@ -41,7 +41,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class FeatureHasher
+        public class FeatureHasher : PythonObject
         {
             // Constructor
             public FeatureHasher(int n_features = 1048576, string input_type = "dict", float? dtype = null, bool alternate_sign = true)
@@ -72,7 +72,7 @@ public static partial class sklearn
             public static NDarray img_to_graph(NDarray img, NDarray? mask = null, NDarray? return_as = null, PyObject? dtype = null) => default!;
             public static NDarray reconstruct_from_patches_2d(NDarray patches, int image_size) => default!;
             // Classes
-            public class PatchExtractor
+            public class PatchExtractor : PythonObject
             {
                 // Constructor
                 public PatchExtractor(int? patch_size = null, float? max_patches = null, int? random_state = null)
@@ -97,7 +97,7 @@ public static partial class sklearn
         public static class text
         {
             // Classes
-            public class CountVectorizer
+            public class CountVectorizer : PythonObject
             {
                 // Constructor
                 public CountVectorizer(string input = "content", string encoding = "utf-8", string decode_error = "strict", PyObject? strip_accents = null, bool lowercase = true, PyObject? preprocessor = null, PyObject? tokenizer = null, PyObject? stop_words = null, string? token_pattern = "(?u)\\b\\w\\w+\\b", PyTuple? ngram_range = null, string analyzer = "word", float max_df = 1.0f, int min_df = 1, int? max_features = null, PyObject? vocabulary = null, bool binary = false, int? dtype = null)
@@ -133,7 +133,7 @@ public static partial class sklearn
                 public NDarray transform(PyObject raw_documents) => default!;
             }
 
-            public class HashingVectorizer
+            public class HashingVectorizer : PythonObject
             {
                 // Constructor
                 public HashingVectorizer(string input = "content", string encoding = "utf-8", string decode_error = "strict", PyObject? strip_accents = null, bool lowercase = true, PyObject? preprocessor = null, PyObject? tokenizer = null, PyObject? stop_words = null, string? token_pattern = "(?u)\\b\\w\\w+\\b", PyTuple? ngram_range = null, string analyzer = "word", int n_features = 1048576, bool binary = false, string norm = "l2", bool alternate_sign = true, float? dtype = null)
@@ -163,7 +163,7 @@ public static partial class sklearn
                 public NDarray transform(PyObject X) => default!;
             }
 
-            public class TfidfTransformer
+            public class TfidfTransformer : PythonObject
             {
                 // Constructor
                 public TfidfTransformer(string? norm = "l2", bool use_idf = true, bool smooth_idf = true, bool sublinear_tf = false)
@@ -191,7 +191,7 @@ public static partial class sklearn
                 public NDarray transform(PyObject X, bool copy = true) => default!;
             }
 
-            public class TfidfVectorizer
+            public class TfidfVectorizer : PythonObject
             {
                 // Constructor
                 public TfidfVectorizer(string input = "content", string encoding = "utf-8", string decode_error = "strict", PyObject? strip_accents = null, bool lowercase = true, PyObject? preprocessor = null, PyObject? tokenizer = null, string analyzer = "word", PyObject? stop_words = null, string token_pattern = "(?u)\\b\\w\\w+\\b", PyTuple? ngram_range = null, float max_df = 1.0f, int min_df = 1, int? max_features = null, PyObject? vocabulary = null, bool binary = false, float? dtype = null, string? norm = "l2", bool use_idf = true, bool smooth_idf = true, bool sublinear_tf = false)

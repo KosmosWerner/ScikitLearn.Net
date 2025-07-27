@@ -14,7 +14,7 @@ public static partial class sklearn
         public static PyDict partial_dependence(PyObject estimator, NDarray X, NDarray features, NDarray? sample_weight = null, NDarray? categorical_features = null, NDarray? feature_names = null, string response_method = "auto", PyTuple? percentiles = null, int grid_resolution = 100, string method = "auto", string kind = "average") => default!;
         public static PyDict permutation_importance(PyObject estimator, NDarray X, NDarray y, PyDict? scoring = null, int n_repeats = 5, int? n_jobs = null, int? random_state = null, NDarray? sample_weight = null, float max_samples = 1.0f) => default!;
         // Classes
-        public class DecisionBoundaryDisplay
+        public class DecisionBoundaryDisplay : PythonObject
         {
             // Constructor
             public DecisionBoundaryDisplay(NDarray xx0, NDarray xx1, NDarray response, string? xlabel = null, string? ylabel = null)
@@ -31,7 +31,7 @@ public static partial class sklearn
             public PyObject plot(string plot_method = "contourf", PyObject? ax = null, string? xlabel = null, string? ylabel = null, Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class PartialDependenceDisplay
+        public class PartialDependenceDisplay : PythonObject
         {
             // Constructor
             public PartialDependenceDisplay(PyDict pd_results, PyTuple features, PyTuple feature_names, int target_idx, PyDict deciles, string kind = "average", int? subsample = 1000, int? random_state = null, PyTuple? is_categorical = null)

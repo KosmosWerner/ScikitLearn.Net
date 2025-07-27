@@ -21,7 +21,7 @@ public static partial class sklearn
         public static (float?, NDarray?, float?) permutation_test_score(PyObject estimator, NDarray X, NDarray y, NDarray? groups = null, int? cv = null, int n_permutations = 100, int? n_jobs = null, int? random_state = 0, int verbose = 0, string? scoring = null, PyDict? fit_params = null) => default!;
         public static (NDarray?, NDarray?) validation_curve(PyObject estimator, NDarray X, NDarray y, string param_name, NDarray param_range, NDarray? groups = null, int? cv = null, string? scoring = null, int? n_jobs = null, string pre_dispatch = "all", int verbose = 0, PyObject? error_score = null, PyDict? fit_params = null) => default!;
         // Classes
-        public class GroupKFold
+        public class GroupKFold : PythonObject
         {
             // Constructor
             public GroupKFold(int n_splits = 5)
@@ -36,7 +36,7 @@ public static partial class sklearn
             public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, NDarray? groups = null) => default!;
         }
 
-        public class GroupShuffleSplit
+        public class GroupShuffleSplit : PythonObject
         {
             // Constructor
             public GroupShuffleSplit(int n_splits = 5, float? test_size = null, float? train_size = null, int? random_state = null)
@@ -51,7 +51,7 @@ public static partial class sklearn
             public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, NDarray? groups = null) => default!;
         }
 
-        public class KFold
+        public class KFold : PythonObject
         {
             // Constructor
             public KFold(int n_splits = 5, bool shuffle = false, int? random_state = null)
@@ -64,7 +64,7 @@ public static partial class sklearn
             public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, PyObject? groups = null) => default!;
         }
 
-        public class LeaveOneGroupOut
+        public class LeaveOneGroupOut : PythonObject
         {
             // Constructor
             public LeaveOneGroupOut()
@@ -79,7 +79,7 @@ public static partial class sklearn
             public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, NDarray? groups = null) => default!;
         }
 
-        public class LeaveOneOut
+        public class LeaveOneOut : PythonObject
         {
             // Constructor
             public LeaveOneOut()
@@ -92,7 +92,7 @@ public static partial class sklearn
             public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, PyObject? groups = null) => default!;
         }
 
-        public class LeavePGroupsOut
+        public class LeavePGroupsOut : PythonObject
         {
             // Constructor
             public LeavePGroupsOut(int n_groups)
@@ -107,7 +107,7 @@ public static partial class sklearn
             public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, NDarray? groups = null) => default!;
         }
 
-        public class LeavePOut
+        public class LeavePOut : PythonObject
         {
             // Constructor
             public LeavePOut(int p)
@@ -123,7 +123,7 @@ public static partial class sklearn
             public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, PyObject? groups = null) => default!;
         }
 
-        public class PredefinedSplit
+        public class PredefinedSplit : PythonObject
         {
             // Constructor
             public PredefinedSplit(NDarray test_fold)
@@ -136,7 +136,7 @@ public static partial class sklearn
             public (NDarray?, NDarray?) split(PyObject? X = null, PyObject? y = null, PyObject? groups = null) => default!;
         }
 
-        public class RepeatedKFold
+        public class RepeatedKFold : PythonObject
         {
             // Constructor
             public RepeatedKFold(int n_splits = 5, int n_repeats = 10, int? random_state = null)
@@ -149,7 +149,7 @@ public static partial class sklearn
             public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, PyObject? groups = null) => default!;
         }
 
-        public class RepeatedStratifiedKFold
+        public class RepeatedStratifiedKFold : PythonObject
         {
             // Constructor
             public RepeatedStratifiedKFold(int n_splits = 5, int n_repeats = 10, int? random_state = null)
@@ -162,7 +162,7 @@ public static partial class sklearn
             public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, PyObject? groups = null) => default!;
         }
 
-        public class ShuffleSplit
+        public class ShuffleSplit : PythonObject
         {
             // Constructor
             public ShuffleSplit(int n_splits = 10, float? test_size = null, float? train_size = null, int? random_state = null)
@@ -175,7 +175,7 @@ public static partial class sklearn
             public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, PyObject? groups = null) => default!;
         }
 
-        public class StratifiedGroupKFold
+        public class StratifiedGroupKFold : PythonObject
         {
             // Constructor
             public StratifiedGroupKFold(int n_splits = 5, bool shuffle = false, int? random_state = null)
@@ -190,7 +190,7 @@ public static partial class sklearn
             public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, NDarray? groups = null) => default!;
         }
 
-        public class StratifiedKFold
+        public class StratifiedKFold : PythonObject
         {
             // Constructor
             public StratifiedKFold(int n_splits = 5, bool shuffle = false, int? random_state = null)
@@ -203,7 +203,7 @@ public static partial class sklearn
             public (NDarray?, NDarray?) split(NDarray X, NDarray y, PyObject? groups = null) => default!;
         }
 
-        public class StratifiedShuffleSplit
+        public class StratifiedShuffleSplit : PythonObject
         {
             // Constructor
             public StratifiedShuffleSplit(int n_splits = 10, float? test_size = null, float? train_size = null, int? random_state = null)
@@ -216,7 +216,7 @@ public static partial class sklearn
             public (NDarray?, NDarray?) split(NDarray X, NDarray y, PyObject? groups = null) => default!;
         }
 
-        public class TimeSeriesSplit
+        public class TimeSeriesSplit : PythonObject
         {
             // Constructor
             public TimeSeriesSplit(int n_splits = 5, int? max_train_size = null, int? test_size = null, int gap = 0)
@@ -229,7 +229,7 @@ public static partial class sklearn
             public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, NDarray? groups = null) => default!;
         }
 
-        public class GridSearchCV
+        public class GridSearchCV : PythonObject
         {
             // Constructor
             public GridSearchCV(PyObject estimator, PyDict param_grid, PyDict? scoring = null, int? n_jobs = null, bool refit = true, int? cv = null, int verbose = 0, string pre_dispatch = "2*n_jobs", PyObject? error_score = null, bool return_train_score = false)
@@ -267,7 +267,7 @@ public static partial class sklearn
             public NDarray transform(PyObject X) => default!;
         }
 
-        public class HalvingGridSearchCV
+        public class HalvingGridSearchCV : PythonObject
         {
             // Constructor
             public HalvingGridSearchCV(PyObject estimator, PyDict param_grid, int factor = 3, string resource = "n_samples", string max_resources = "auto", string min_resources = "exhaust", bool aggressive_elimination = false, int cv = 5, string? scoring = null, bool refit = true, PyObject? error_score = null, bool return_train_score = true, int? random_state = null, int? n_jobs = null, int verbose = 0)
@@ -313,7 +313,7 @@ public static partial class sklearn
             public NDarray transform(PyObject X) => default!;
         }
 
-        public class HalvingRandomSearchCV
+        public class HalvingRandomSearchCV : PythonObject
         {
             // Constructor
             public HalvingRandomSearchCV(PyObject estimator, PyDict param_distributions, string n_candidates = "exhaust", int factor = 3, string resource = "n_samples", string max_resources = "auto", string min_resources = "smallest", bool aggressive_elimination = false, int cv = 5, string? scoring = null, bool refit = true, PyObject? error_score = null, bool return_train_score = true, int? random_state = null, int? n_jobs = null, int verbose = 0)
@@ -359,7 +359,7 @@ public static partial class sklearn
             public NDarray transform(PyObject X) => default!;
         }
 
-        public class ParameterGrid
+        public class ParameterGrid : PythonObject
         {
             // Constructor
             public ParameterGrid(PyDict param_grid)
@@ -367,7 +367,7 @@ public static partial class sklearn
             }
         }
 
-        public class RandomizedSearchCV
+        public class RandomizedSearchCV : PythonObject
         {
             // Constructor
             public RandomizedSearchCV(PyObject estimator, PyDict param_distributions, int n_iter = 10, PyDict? scoring = null, int? n_jobs = null, bool refit = true, int? cv = null, int verbose = 0, string pre_dispatch = "2*n_jobs", int? random_state = null, PyObject? error_score = null, bool return_train_score = false)
@@ -405,7 +405,7 @@ public static partial class sklearn
             public NDarray transform(PyObject X) => default!;
         }
 
-        public class FixedThresholdClassifier
+        public class FixedThresholdClassifier : PythonObject
         {
             // Constructor
             public FixedThresholdClassifier(PyObject estimator, string threshold = "auto", string? pos_label = null, string response_method = "auto")
@@ -434,7 +434,7 @@ public static partial class sklearn
             public FixedThresholdClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class TunedThresholdClassifierCV
+        public class TunedThresholdClassifierCV : PythonObject
         {
             // Constructor
             public TunedThresholdClassifierCV(PyObject estimator, string scoring = "balanced_accuracy", string response_method = "auto", int thresholds = 100, float? cv = null, bool refit = true, int? n_jobs = null, int? random_state = null, bool store_cv_results = false)
@@ -466,7 +466,7 @@ public static partial class sklearn
             public TunedThresholdClassifierCV set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class LearningCurveDisplay
+        public class LearningCurveDisplay : PythonObject
         {
             // Constructor
             public LearningCurveDisplay(NDarray train_sizes, NDarray train_scores, NDarray test_scores, string? score_name = null)
@@ -485,7 +485,7 @@ public static partial class sklearn
             public PyObject plot(PyObject? ax = null, bool negate_score = false, string? score_name = null, string score_type = "both", string? std_display_style = "fill_between", PyDict? line_kw = null, PyDict? fill_between_kw = null, PyDict? errorbar_kw = null) => default!;
         }
 
-        public class ValidationCurveDisplay
+        public class ValidationCurveDisplay : PythonObject
         {
             // Constructor
             public ValidationCurveDisplay(string param_name, NDarray param_range, NDarray train_scores, NDarray test_scores, string? score_name = null)

@@ -19,7 +19,7 @@ public static partial class sklearn
         public static (NDarray?, int?) orthogonal_mp_gram(NDarray Gram, NDarray Xy, int? n_nonzero_coefs = null, float? tol = null, NDarray? norms_squared = null, bool copy_Gram = true, bool copy_Xy = true, bool return_path = false, bool return_n_iter = false) => default!;
         public static (NDarray?, int?, NDarray?) ridge_regression(NDarray X, NDarray y, NDarray alpha, NDarray? sample_weight = null, string solver = "auto", int? max_iter = null, float tol = 0.0001f, int verbose = 0, bool positive = false, int? random_state = null, bool return_n_iter = false, bool return_intercept = false, bool check_input = true) => default!;
         // Classes
-        public class LogisticRegression
+        public class LogisticRegression : PythonObject
         {
             // Constructor
             public LogisticRegression(string? penalty = "l2", bool dual = false, float tol = 0.0001f, float C = 1.0f, bool fit_intercept = true, int intercept_scaling = 1, PyDict? class_weight = null, int? random_state = null, string solver = "lbfgs", int max_iter = 100, string multi_class = "deprecated", int verbose = 0, bool warm_start = false, int? n_jobs = null, float? l1_ratio = null)
@@ -56,7 +56,7 @@ public static partial class sklearn
             public LogisticRegression sparsify() => default!;
         }
 
-        public class LogisticRegressionCV
+        public class LogisticRegressionCV : PythonObject
         {
             // Constructor
             public LogisticRegressionCV(int Cs = 10, bool fit_intercept = true, int? cv = null, bool dual = false, string penalty = "l2", string? scoring = null, string solver = "lbfgs", float tol = 0.0001f, int max_iter = 100, PyDict? class_weight = null, int? n_jobs = null, int verbose = 0, bool refit = true, float intercept_scaling = 1.0f, string multi_class = "deprecated", int? random_state = null, PyTuple? l1_ratios = null)
@@ -99,7 +99,7 @@ public static partial class sklearn
             public LogisticRegressionCV sparsify() => default!;
         }
 
-        public class PassiveAggressiveClassifier
+        public class PassiveAggressiveClassifier : PythonObject
         {
             // Constructor
             public PassiveAggressiveClassifier(float C = 1.0f, bool fit_intercept = true, int max_iter = 1000, float? tol = 0.001f, bool early_stopping = false, float validation_fraction = 0.1f, int n_iter_no_change = 5, bool shuffle = true, int verbose = 0, string loss = "hinge", int? n_jobs = null, int? random_state = null, bool warm_start = false, PyDict? class_weight = null, bool average = false)
@@ -140,7 +140,7 @@ public static partial class sklearn
             public PassiveAggressiveClassifier sparsify() => default!;
         }
 
-        public class Perceptron
+        public class Perceptron : PythonObject
         {
             // Constructor
             public Perceptron(PyObject? penalty = null, float alpha = 0.0001f, float l1_ratio = 0.15f, bool fit_intercept = true, int max_iter = 1000, float? tol = 0.001f, bool shuffle = true, int verbose = 0, float eta0 = 1.0f, int? n_jobs = null, int? random_state = 0, bool early_stopping = false, float validation_fraction = 0.1f, int n_iter_no_change = 5, PyDict? class_weight = null, bool warm_start = false)
@@ -181,7 +181,7 @@ public static partial class sklearn
             public Perceptron sparsify() => default!;
         }
 
-        public class RidgeClassifier
+        public class RidgeClassifier : PythonObject
         {
             // Constructor
             public RidgeClassifier(float alpha = 1.0f, bool fit_intercept = true, bool copy_X = true, int? max_iter = null, float tol = 0.0001f, PyDict? class_weight = null, string solver = "auto", bool positive = false, int? random_state = null)
@@ -213,7 +213,7 @@ public static partial class sklearn
             public RidgeClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class RidgeClassifierCV
+        public class RidgeClassifierCV : PythonObject
         {
             // Constructor
             public RidgeClassifierCV(PyTuple? alphas = null, bool fit_intercept = true, string? scoring = null, int? cv = null, PyDict? class_weight = null, bool? store_cv_results = null, string store_cv_values = "deprecated")
@@ -246,7 +246,7 @@ public static partial class sklearn
             public RidgeClassifierCV set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class SGDClassifier
+        public class SGDClassifier : PythonObject
         {
             // Constructor
             public SGDClassifier(string loss = "hinge", string? penalty = "l2", float alpha = 0.0001f, float l1_ratio = 0.15f, bool fit_intercept = true, int max_iter = 1000, float? tol = 0.001f, bool shuffle = true, int verbose = 0, float epsilon = 0.1f, int? n_jobs = null, int? random_state = null, string learning_rate = "optimal", float eta0 = 0.0f, float power_t = 0.5f, bool early_stopping = false, float validation_fraction = 0.1f, int n_iter_no_change = 5, PyDict? class_weight = null, bool warm_start = false, bool average = false)
@@ -289,7 +289,7 @@ public static partial class sklearn
             public SGDClassifier sparsify() => default!;
         }
 
-        public class SGDOneClassSVM
+        public class SGDOneClassSVM : PythonObject
         {
             // Constructor
             public SGDOneClassSVM(float nu = 0.5f, bool fit_intercept = true, int max_iter = 1000, float? tol = 0.001f, bool shuffle = true, int verbose = 0, int? random_state = null, string learning_rate = "optimal", float eta0 = 0.0f, float power_t = 0.5f, bool warm_start = false, bool average = false)
@@ -328,7 +328,7 @@ public static partial class sklearn
             public SGDOneClassSVM sparsify() => default!;
         }
 
-        public class LinearRegression
+        public class LinearRegression : PythonObject
         {
             // Constructor
             public LinearRegression(bool fit_intercept = true, bool copy_X = true, int? n_jobs = null, bool positive = false)
@@ -358,7 +358,7 @@ public static partial class sklearn
             public LinearRegression set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class Ridge
+        public class Ridge : PythonObject
         {
             // Constructor
             public Ridge(float alpha = 1.0f, bool fit_intercept = true, bool copy_X = true, int? max_iter = null, float tol = 0.0001f, string solver = "auto", bool positive = false, int? random_state = null)
@@ -388,7 +388,7 @@ public static partial class sklearn
             public Ridge set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class RidgeCV
+        public class RidgeCV : PythonObject
         {
             // Constructor
             public RidgeCV(PyTuple? alphas = null, bool fit_intercept = true, string? scoring = null, int? cv = null, PyObject? gcv_mode = null, bool? store_cv_results = null, bool alpha_per_target = false, string store_cv_values = "deprecated")
@@ -419,7 +419,7 @@ public static partial class sklearn
             public RidgeCV set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class SGDRegressor
+        public class SGDRegressor : PythonObject
         {
             // Constructor
             public SGDRegressor(string loss = "squared_error", string? penalty = "l2", float alpha = 0.0001f, float l1_ratio = 0.15f, bool fit_intercept = true, int max_iter = 1000, float? tol = 0.001f, bool shuffle = true, int verbose = 0, float epsilon = 0.1f, int? random_state = null, string learning_rate = "invscaling", float eta0 = 0.01f, float power_t = 0.25f, bool early_stopping = false, float validation_fraction = 0.1f, int n_iter_no_change = 5, bool warm_start = false, bool average = false)
@@ -457,7 +457,7 @@ public static partial class sklearn
             public SGDRegressor sparsify() => default!;
         }
 
-        public class ElasticNet
+        public class ElasticNet : PythonObject
         {
             // Constructor
             public ElasticNet(float alpha = 1.0f, float l1_ratio = 0.5f, bool fit_intercept = true, bool precompute = false, int max_iter = 1000, bool copy_X = true, float tol = 0.0001f, bool warm_start = false, bool positive = false, int? random_state = null, string selection = "cyclic")
@@ -489,7 +489,7 @@ public static partial class sklearn
             public ElasticNet set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class ElasticNetCV
+        public class ElasticNetCV : PythonObject
         {
             // Constructor
             public ElasticNetCV(float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, bool fit_intercept = true, string precompute = "auto", int max_iter = 1000, float tol = 0.0001f, int? cv = null, bool copy_X = true, int verbose = 0, int? n_jobs = null, bool positive = false, int? random_state = null, string selection = "cyclic")
@@ -524,7 +524,7 @@ public static partial class sklearn
             public ElasticNetCV set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class Lars
+        public class Lars : PythonObject
         {
             // Constructor
             public Lars(bool fit_intercept = true, bool verbose = false, string precompute = "auto", int n_nonzero_coefs = 500, float eps = float.Epsilon, bool copy_X = true, bool fit_path = true, float? jitter = null, int? random_state = null)
@@ -556,7 +556,7 @@ public static partial class sklearn
             public Lars set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class LarsCV
+        public class LarsCV : PythonObject
         {
             // Constructor
             public LarsCV(bool fit_intercept = true, bool verbose = false, int max_iter = 500, string precompute = "auto", int? cv = null, int max_n_alphas = 1000, int? n_jobs = null, float eps = float.Epsilon, bool copy_X = true)
@@ -591,7 +591,7 @@ public static partial class sklearn
             public LarsCV set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class Lasso
+        public class Lasso : PythonObject
         {
             // Constructor
             public Lasso(float alpha = 1.0f, bool fit_intercept = true, bool precompute = false, bool copy_X = true, int max_iter = 1000, float tol = 0.0001f, bool warm_start = false, bool positive = false, int? random_state = null, string selection = "cyclic")
@@ -623,7 +623,7 @@ public static partial class sklearn
             public Lasso set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class LassoCV
+        public class LassoCV : PythonObject
         {
             // Constructor
             public LassoCV(float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, bool fit_intercept = true, string precompute = "auto", int max_iter = 1000, float tol = 0.0001f, bool copy_X = true, int? cv = null, bool verbose = false, int? n_jobs = null, bool positive = false, int? random_state = null, string selection = "cyclic")
@@ -657,7 +657,7 @@ public static partial class sklearn
             public LassoCV set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class LassoLars
+        public class LassoLars : PythonObject
         {
             // Constructor
             public LassoLars(float alpha = 1.0f, bool fit_intercept = true, bool verbose = false, string precompute = "auto", int max_iter = 500, float eps = float.Epsilon, bool copy_X = true, bool fit_path = true, bool positive = false, float? jitter = null, int? random_state = null)
@@ -689,7 +689,7 @@ public static partial class sklearn
             public LassoLars set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class LassoLarsCV
+        public class LassoLarsCV : PythonObject
         {
             // Constructor
             public LassoLarsCV(bool fit_intercept = true, bool verbose = false, int max_iter = 500, string precompute = "auto", int? cv = null, int max_n_alphas = 1000, int? n_jobs = null, float eps = float.Epsilon, bool copy_X = true, bool positive = false)
@@ -724,7 +724,7 @@ public static partial class sklearn
             public LassoLarsCV set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class LassoLarsIC
+        public class LassoLarsIC : PythonObject
         {
             // Constructor
             public LassoLarsIC(string criterion = "aic", bool fit_intercept = true, bool verbose = false, string precompute = "auto", int max_iter = 500, float eps = float.Epsilon, bool copy_X = true, bool positive = false, float? noise_variance = null)
@@ -757,7 +757,7 @@ public static partial class sklearn
             public LassoLarsIC set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class OrthogonalMatchingPursuit
+        public class OrthogonalMatchingPursuit : PythonObject
         {
             // Constructor
             public OrthogonalMatchingPursuit(int? n_nonzero_coefs = null, float? tol = null, bool fit_intercept = true, string precompute = "auto")
@@ -785,7 +785,7 @@ public static partial class sklearn
             public OrthogonalMatchingPursuit set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class OrthogonalMatchingPursuitCV
+        public class OrthogonalMatchingPursuitCV : PythonObject
         {
             // Constructor
             public OrthogonalMatchingPursuitCV(bool copy = true, bool fit_intercept = true, int? max_iter = null, int? cv = null, int? n_jobs = null, bool verbose = false)
@@ -813,7 +813,7 @@ public static partial class sklearn
             public OrthogonalMatchingPursuitCV set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class ARDRegression
+        public class ARDRegression : PythonObject
         {
             // Constructor
             public ARDRegression(int max_iter = 300, float tol = 0.001f, float alpha_1 = 1e-06f, float alpha_2 = 1e-06f, float lambda_1 = 1e-06f, float lambda_2 = 1e-06f, bool compute_score = false, float threshold_lambda = 10000.0f, bool fit_intercept = true, bool copy_X = true, bool verbose = false)
@@ -848,7 +848,7 @@ public static partial class sklearn
             public ARDRegression set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class BayesianRidge
+        public class BayesianRidge : PythonObject
         {
             // Constructor
             public BayesianRidge(int max_iter = 300, float tol = 0.001f, float alpha_1 = 1e-06f, float alpha_2 = 1e-06f, float lambda_1 = 1e-06f, float lambda_2 = 1e-06f, float? alpha_init = null, float? lambda_init = null, bool compute_score = false, bool fit_intercept = true, bool copy_X = true, bool verbose = false)
@@ -885,7 +885,7 @@ public static partial class sklearn
             public BayesianRidge set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class MultiTaskElasticNet
+        public class MultiTaskElasticNet : PythonObject
         {
             // Constructor
             public MultiTaskElasticNet(float alpha = 1.0f, float l1_ratio = 0.5f, bool fit_intercept = true, bool copy_X = true, int max_iter = 1000, float tol = 0.0001f, bool warm_start = false, int? random_state = null, string selection = "cyclic")
@@ -918,7 +918,7 @@ public static partial class sklearn
             public MultiTaskElasticNet set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class MultiTaskElasticNetCV
+        public class MultiTaskElasticNetCV : PythonObject
         {
             // Constructor
             public MultiTaskElasticNetCV(float l1_ratio = 0.5f, float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, bool fit_intercept = true, int max_iter = 1000, float tol = 0.0001f, int? cv = null, bool copy_X = true, int verbose = 0, int? n_jobs = null, int? random_state = null, string selection = "cyclic")
@@ -953,7 +953,7 @@ public static partial class sklearn
             public MultiTaskElasticNetCV set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class MultiTaskLasso
+        public class MultiTaskLasso : PythonObject
         {
             // Constructor
             public MultiTaskLasso(float alpha = 1.0f, bool fit_intercept = true, bool copy_X = true, int max_iter = 1000, float tol = 0.0001f, bool warm_start = false, int? random_state = null, string selection = "cyclic")
@@ -986,7 +986,7 @@ public static partial class sklearn
             public MultiTaskLasso set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class MultiTaskLassoCV
+        public class MultiTaskLassoCV : PythonObject
         {
             // Constructor
             public MultiTaskLassoCV(float eps = 0.001f, int n_alphas = 100, NDarray? alphas = null, bool fit_intercept = true, int max_iter = 1000, float tol = 0.0001f, bool copy_X = true, int? cv = null, bool verbose = false, int? n_jobs = null, int? random_state = null, string selection = "cyclic")
@@ -1020,7 +1020,7 @@ public static partial class sklearn
             public MultiTaskLassoCV set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class HuberRegressor
+        public class HuberRegressor : PythonObject
         {
             // Constructor
             public HuberRegressor(float epsilon = 1.35f, int max_iter = 100, float alpha = 0.0001f, bool warm_start = false, bool fit_intercept = true, float tol = 1e-05f)
@@ -1051,7 +1051,7 @@ public static partial class sklearn
             public HuberRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class QuantileRegressor
+        public class QuantileRegressor : PythonObject
         {
             // Constructor
             public QuantileRegressor(float quantile = 0.5f, float alpha = 1.0f, bool fit_intercept = true, string solver = "highs", PyDict? solver_options = null)
@@ -1080,7 +1080,7 @@ public static partial class sklearn
             public QuantileRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class RANSACRegressor
+        public class RANSACRegressor : PythonObject
         {
             // Constructor
             public RANSACRegressor(PyObject? estimator = null, float? min_samples = null, float? residual_threshold = null, PyObject? is_data_valid = null, PyObject? is_model_valid = null, int max_trials = 100, float max_skips = float.PositiveInfinity, float stop_n_inliers = float.PositiveInfinity, float stop_score = float.PositiveInfinity, float stop_probability = 0.99f, string loss = "absolute_error", int? random_state = null)
@@ -1110,7 +1110,7 @@ public static partial class sklearn
             public RANSACRegressor set_params(Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class TheilSenRegressor
+        public class TheilSenRegressor : PythonObject
         {
             // Constructor
             public TheilSenRegressor(bool fit_intercept = true, bool copy_X = true, float max_subpopulation = 10000.0f, int? n_subsamples = null, int max_iter = 300, float tol = 0.001f, int? random_state = null, int? n_jobs = null, bool verbose = false)
@@ -1139,7 +1139,7 @@ public static partial class sklearn
             public TheilSenRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class GammaRegressor
+        public class GammaRegressor : PythonObject
         {
             // Constructor
             public GammaRegressor(float alpha = 1.0f, bool fit_intercept = true, string solver = "lbfgs", int max_iter = 100, float tol = 0.0001f, bool warm_start = false, int verbose = 0)
@@ -1168,7 +1168,7 @@ public static partial class sklearn
             public GammaRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class PoissonRegressor
+        public class PoissonRegressor : PythonObject
         {
             // Constructor
             public PoissonRegressor(float alpha = 1.0f, bool fit_intercept = true, string solver = "lbfgs", int max_iter = 100, float tol = 0.0001f, bool warm_start = false, int verbose = 0)
@@ -1197,7 +1197,7 @@ public static partial class sklearn
             public PoissonRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class TweedieRegressor
+        public class TweedieRegressor : PythonObject
         {
             // Constructor
             public TweedieRegressor(float power = 0.0f, float alpha = 1.0f, bool fit_intercept = true, string link = "auto", string solver = "lbfgs", int max_iter = 100, float tol = 0.0001f, bool warm_start = false, int verbose = 0)
@@ -1226,7 +1226,7 @@ public static partial class sklearn
             public TweedieRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class PassiveAggressiveRegressor
+        public class PassiveAggressiveRegressor : PythonObject
         {
             // Constructor
             public PassiveAggressiveRegressor(float C = 1.0f, bool fit_intercept = true, int max_iter = 1000, float? tol = 0.001f, bool early_stopping = false, float validation_fraction = 0.1f, int n_iter_no_change = 5, bool shuffle = true, int verbose = 0, string loss = "epsilon_insensitive", float epsilon = 0.1f, int? random_state = null, bool warm_start = false, bool average = false)

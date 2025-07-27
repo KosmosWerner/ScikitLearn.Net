@@ -13,7 +13,7 @@ public static partial class sklearn
         // Methods
         public static float l1_min_c(NDarray X, NDarray y, string loss = "squared_hinge", bool fit_intercept = true, float intercept_scaling = 1.0f) => default!;
         // Classes
-        public class LinearSVC
+        public class LinearSVC : PythonObject
         {
             // Constructor
             public LinearSVC(string penalty = "l2", string loss = "squared_hinge", string dual = "auto", float tol = 0.0001f, float C = 1.0f, string multi_class = "ovr", bool fit_intercept = true, int intercept_scaling = 1, PyDict? class_weight = null, int verbose = 0, int? random_state = null, int max_iter = 1000)
@@ -48,7 +48,7 @@ public static partial class sklearn
             public LinearSVC sparsify() => default!;
         }
 
-        public class LinearSVR
+        public class LinearSVR : PythonObject
         {
             // Constructor
             public LinearSVR(float epsilon = 0.0f, float tol = 0.0001f, float C = 1.0f, string loss = "epsilon_insensitive", bool fit_intercept = true, float intercept_scaling = 1.0f, string dual = "auto", int verbose = 0, int? random_state = null, int max_iter = 1000)
@@ -77,7 +77,7 @@ public static partial class sklearn
             public LinearSVR set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class NuSVC
+        public class NuSVC : PythonObject
         {
             // Constructor
             public NuSVC(float nu = 0.5f, string kernel = "rbf", int degree = 3, string gamma = "scale", float coef0 = 0.0f, bool shrinking = true, bool probability = false, float tol = 0.001f, int cache_size = 200, PyDict? class_weight = null, bool verbose = false, int max_iter = -1, string decision_function_shape = "ovr", bool break_ties = false, int? random_state = null)
@@ -119,7 +119,7 @@ public static partial class sklearn
             public NuSVC set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class NuSVR
+        public class NuSVR : PythonObject
         {
             // Constructor
             public NuSVR(float nu = 0.5f, float C = 1.0f, string kernel = "rbf", int degree = 3, string gamma = "scale", float coef0 = 0.0f, bool shrinking = true, float tol = 0.001f, int cache_size = 200, bool verbose = false, int max_iter = -1)
@@ -154,7 +154,7 @@ public static partial class sklearn
             public NuSVR set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class OneClassSVM
+        public class OneClassSVM : PythonObject
         {
             // Constructor
             public OneClassSVM(string kernel = "rbf", int degree = 3, string gamma = "scale", float coef0 = 0.0f, float tol = 0.001f, float nu = 0.5f, bool shrinking = true, int cache_size = 200, bool verbose = false, int max_iter = -1)
@@ -190,7 +190,7 @@ public static partial class sklearn
             public OneClassSVM set_params(Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class SVC
+        public class SVC : PythonObject
         {
             // Constructor
             public SVC(float C = 1.0f, string kernel = "rbf", int degree = 3, string gamma = "scale", float coef0 = 0.0f, bool shrinking = true, bool probability = false, float tol = 0.001f, int cache_size = 200, PyDict? class_weight = null, bool verbose = false, int max_iter = -1, string decision_function_shape = "ovr", bool break_ties = false, int? random_state = null)
@@ -232,7 +232,7 @@ public static partial class sklearn
             public SVC set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class SVR
+        public class SVR : PythonObject
         {
             // Constructor
             public SVR(string kernel = "rbf", int degree = 3, string gamma = "scale", float coef0 = 0.0f, float tol = 0.001f, float C = 1.0f, float epsilon = 0.1f, bool shrinking = true, int cache_size = 200, bool verbose = false, int max_iter = -1)

@@ -11,7 +11,7 @@ public static partial class sklearn
     public static class multioutput
     {
         // Classes
-        public class ClassifierChain
+        public class ClassifierChain : PythonObject
         {
             // Constructor
             public ClassifierChain(PyObject base_estimator, NDarray? order = null, int? cv = null, string chain_method = "predict", int? random_state = null, bool verbose = false)
@@ -42,7 +42,7 @@ public static partial class sklearn
             public ClassifierChain set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class MultiOutputClassifier
+        public class MultiOutputClassifier : PythonObject
         {
             // Constructor
             public MultiOutputClassifier(PyObject estimator, int? n_jobs = null)
@@ -73,7 +73,7 @@ public static partial class sklearn
             public MultiOutputClassifier set_partial_fit_request(string? classes = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class MultiOutputRegressor
+        public class MultiOutputRegressor : PythonObject
         {
             // Constructor
             public MultiOutputRegressor(PyObject estimator, int? n_jobs = null)
@@ -104,7 +104,7 @@ public static partial class sklearn
             public MultiOutputRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class RegressorChain
+        public class RegressorChain : PythonObject
         {
             // Constructor
             public RegressorChain(PyObject base_estimator, NDarray? order = null, int? cv = null, int? random_state = null, bool verbose = false)

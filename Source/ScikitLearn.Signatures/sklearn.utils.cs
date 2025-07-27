@@ -38,7 +38,7 @@ public static partial class sklearn
         public static PyObject check_random_state(int seed) => default!;
         public static PyObject check_scalar(PyObject x, string name, PyTuple target_type, float? min_val = null, float? max_val = null, string include_boundaries = "both") => default!;
         // Classes
-        public class Bunch
+        public class Bunch : PythonObject
         {
             // Constructor
             public Bunch()
@@ -91,7 +91,7 @@ public static partial class sklearn
             }
         }
 
-        public class deprecated
+        public class deprecated : PythonObject
         {
             // Constructor
             public deprecated(string extra = "")
@@ -144,13 +144,14 @@ public static partial class sklearn
             public static PyDict single_source_shortest_path_length(NDarray graph, int source, int? cutoff = null) => default!;
         }
 
+        [Module]
         public static class metadata_routing
         {
             // Methods
             public static PyObject get_routing_for_object(PyObject? obj = null) => default!;
             public static PyDict process_routing(PyObject _obj, string _method, Dictionary<string, PyObject>? @params = null) => default!;
             // Classes
-            public class MetadataRequest
+            public class MetadataRequest : PythonObject
             {
                 // Constructor
                 public MetadataRequest(string owner)
@@ -161,7 +162,7 @@ public static partial class sklearn
                 public string consumes(string method, string @params) => default!;
             }
 
-            public class MetadataRouter
+            public class MetadataRouter : PythonObject
             {
                 // Constructor
                 public MetadataRouter(string owner)
@@ -180,7 +181,7 @@ public static partial class sklearn
                 }
             }
 
-            public class MethodMapping
+            public class MethodMapping : PythonObject
             {
                 // Constructor
                 public MethodMapping()
@@ -193,12 +194,14 @@ public static partial class sklearn
             }
         }
 
+        [Module]
         public static class metaestimators
         {
             // Methods
             public static PyObject available_if(PyObject check) => default!;
         }
 
+        [Module]
         public static class multiclass
         {
             // Methods
@@ -207,12 +210,13 @@ public static partial class sklearn
             public static NDarray unique_labels(NDarray[] ys) => default!;
         }
 
+        [Module]
         public static class parallel
         {
             // Methods
             public static PyTuple delayed(PyObject function) => default!;
             // Classes
-            public class Parallel
+            public class Parallel : PythonObject
             {
                 // Constructor
                 public Parallel(string return_as = "list", string pre_dispatch = "2 * n_jobs", string batch_size = "auto")
@@ -238,12 +242,14 @@ public static partial class sklearn
             }
         }
 
+        [Module]
         public static class random
         {
             // Methods
             public static NDarray sample_without_replacement(int n_population, int n_samples, string method = "auto", int? random_state = null) => default!;
         }
 
+        [Module]
         public static class sparsefuncs
         {
             // Methods
@@ -271,6 +277,7 @@ public static partial class sklearn
             public static (NDarray?, NDarray?, NDarray?) mean_variance_axis(NDarray X, PyObject axis, NDarray? weights = null, bool return_sum_weights = false) => default!;
         }
 
+        [Module]
         public static class sparsefuncs_fast
         {
             // Methods
@@ -279,6 +286,7 @@ public static partial class sklearn
             public static void inplace_csr_row_normalize_l2(PyObject X) { }
         }
 
+        [Module]
         public static class validation
         {
             // Methods

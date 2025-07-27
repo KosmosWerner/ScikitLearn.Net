@@ -14,7 +14,7 @@ public static partial class sklearn
         public static PyObject make_column_selector(string? pattern = null, PyTuple? dtype_include = null, PyTuple? dtype_exclude = null) => default!;
         public static PyObject make_column_transformer(PyObject[] transformers, string remainder = "drop", float sparse_threshold = 0.3f, int? n_jobs = null, bool verbose = false, bool verbose_feature_names_out = true, bool force_int_remainder_cols = true) => default!;
         // Classes
-        public class ColumnTransformer
+        public class ColumnTransformer : PythonObject
         {
             // Constructor
             public ColumnTransformer(PyTuple transformers, string remainder = "drop", float sparse_threshold = 0.3f, int? n_jobs = null, PyDict? transformer_weights = null, bool verbose = false, bool verbose_feature_names_out = true, bool force_int_remainder_cols = true)
@@ -43,7 +43,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class TransformedTargetRegressor
+        public class TransformedTargetRegressor : PythonObject
         {
             // Constructor
             public TransformedTargetRegressor(PyObject? regressor = null, PyObject? transformer = null, PyObject? func = null, PyObject? inverse_func = null, bool check_inverse = true)

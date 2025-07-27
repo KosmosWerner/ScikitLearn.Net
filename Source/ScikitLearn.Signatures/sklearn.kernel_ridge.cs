@@ -11,7 +11,7 @@ public static partial class sklearn
     public static class kernel_ridge
     {
         // Classes
-        public class KernelRidge
+        public class KernelRidge : PythonObject
         {
             // Constructor
             public KernelRidge(int alpha = 1, string kernel = "linear", float? gamma = null, int degree = 3, int coef0 = 1, PyDict? kernel_params = null)

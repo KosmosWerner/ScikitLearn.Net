@@ -11,7 +11,7 @@ public static partial class sklearn
     public static class gaussian_process
     {
         // Classes
-        public class GaussianProcessClassifier
+        public class GaussianProcessClassifier : PythonObject
         {
             // Constructor
             public GaussianProcessClassifier(PyObject? kernel = null, string? optimizer = "fmin_l_bfgs_b", int n_restarts_optimizer = 0, int max_iter_predict = 100, bool warm_start = false, bool copy_X_train = true, int? random_state = null, string multi_class = "one_vs_rest", int? n_jobs = null)
@@ -42,7 +42,7 @@ public static partial class sklearn
             public GaussianProcessClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class GaussianProcessRegressor
+        public class GaussianProcessRegressor : PythonObject
         {
             // Constructor
             public GaussianProcessRegressor(PyObject? kernel = null, float alpha = 1e-10f, string? optimizer = "fmin_l_bfgs_b", int n_restarts_optimizer = 0, bool normalize_y = false, bool copy_X_train = true, int? n_targets = null, int? random_state = null)
@@ -80,7 +80,7 @@ public static partial class sklearn
         public static class kernels
         {
             // Classes
-            public class CompoundKernel
+            public class CompoundKernel : PythonObject
             {
                 // Constructor
                 public CompoundKernel(PyTuple kernels)
@@ -102,7 +102,7 @@ public static partial class sklearn
                 public CompoundKernel set_params() => default!;
             }
 
-            public class ConstantKernel
+            public class ConstantKernel : PythonObject
             {
                 // Constructor
                 public ConstantKernel(float constant_value = 1.0f, PyTuple? constant_value_bounds = null)
@@ -124,7 +124,7 @@ public static partial class sklearn
                 public ConstantKernel set_params() => default!;
             }
 
-            public class DotProduct
+            public class DotProduct : PythonObject
             {
                 // Constructor
                 public DotProduct(float sigma_0 = 1.0f, PyTuple? sigma_0_bounds = null)
@@ -146,7 +146,7 @@ public static partial class sklearn
                 public DotProduct set_params() => default!;
             }
 
-            public class ExpSineSquared
+            public class ExpSineSquared : PythonObject
             {
                 // Constructor
                 public ExpSineSquared(float length_scale = 1.0f, float periodicity = 1.0f, PyTuple? length_scale_bounds = null, PyTuple? periodicity_bounds = null)
@@ -168,7 +168,7 @@ public static partial class sklearn
                 public ExpSineSquared set_params() => default!;
             }
 
-            public class Exponentiation
+            public class Exponentiation : PythonObject
             {
                 // Constructor
                 public Exponentiation(PyObject kernel, float exponent)
@@ -190,7 +190,7 @@ public static partial class sklearn
                 public Exponentiation set_params() => default!;
             }
 
-            public class Hyperparameter
+            public class Hyperparameter : PythonObject
             {
                 // Constructor
                 public Hyperparameter(int n_elements = 1)
@@ -214,7 +214,7 @@ public static partial class sklearn
                 }
             }
 
-            public class Kernel
+            public class Kernel : PythonObject
             {
                 // Constructor
                 public Kernel()
@@ -236,7 +236,7 @@ public static partial class sklearn
                 public Kernel set_params() => default!;
             }
 
-            public class Matern
+            public class Matern : PythonObject
             {
                 // Constructor
                 public Matern(float length_scale = 1.0f, PyTuple? length_scale_bounds = null, float nu = 1.5f)
@@ -258,7 +258,7 @@ public static partial class sklearn
                 public Matern set_params() => default!;
             }
 
-            public class PairwiseKernel
+            public class PairwiseKernel : PythonObject
             {
                 // Constructor
                 public PairwiseKernel(float gamma = 1.0f, PyTuple? gamma_bounds = null, string metric = "linear", PyDict? pairwise_kernels_kwargs = null)
@@ -280,7 +280,7 @@ public static partial class sklearn
                 public PairwiseKernel set_params() => default!;
             }
 
-            public class Product
+            public class Product : PythonObject
             {
                 // Constructor
                 public Product(PyObject k1, PyObject k2)
@@ -302,7 +302,7 @@ public static partial class sklearn
                 public Product set_params() => default!;
             }
 
-            public class RBF
+            public class RBF : PythonObject
             {
                 // Constructor
                 public RBF(float length_scale = 1.0f, PyTuple? length_scale_bounds = null)
@@ -324,7 +324,7 @@ public static partial class sklearn
                 public RBF set_params() => default!;
             }
 
-            public class RationalQuadratic
+            public class RationalQuadratic : PythonObject
             {
                 // Constructor
                 public RationalQuadratic(float length_scale = 1.0f, float alpha = 1.0f, PyTuple? length_scale_bounds = null, PyTuple? alpha_bounds = null)
@@ -346,7 +346,7 @@ public static partial class sklearn
                 public RationalQuadratic set_params() => default!;
             }
 
-            public class Sum
+            public class Sum : PythonObject
             {
                 // Constructor
                 public Sum(PyObject k1, PyObject k2)
@@ -368,7 +368,7 @@ public static partial class sklearn
                 public Sum set_params() => default!;
             }
 
-            public class WhiteKernel
+            public class WhiteKernel : PythonObject
             {
                 // Constructor
                 public WhiteKernel(float noise_level = 1.0f, PyTuple? noise_level_bounds = null)

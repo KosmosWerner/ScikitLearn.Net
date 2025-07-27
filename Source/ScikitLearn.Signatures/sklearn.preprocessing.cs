@@ -22,7 +22,7 @@ public static partial class sklearn
         public static NDarray robust_scale(NDarray X, int axis = 0, bool with_centering = true, bool with_scaling = true, PyTuple? quantile_range = null, bool copy = true, bool unit_variance = false) => default!;
         public static NDarray scale(NDarray X, int axis = 0, bool with_mean = true, bool with_std = true, bool copy = true) => default!;
         // Classes
-        public class Binarizer
+        public class Binarizer : PythonObject
         {
             // Constructor
             public Binarizer(float threshold = 0.0f, bool copy = true)
@@ -49,7 +49,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X, bool? copy = null) => default!;
         }
 
-        public class FunctionTransformer
+        public class FunctionTransformer : PythonObject
         {
             // Constructor
             public FunctionTransformer(PyObject? func = null, PyObject? inverse_func = null, bool validate = false, bool accept_sparse = false, bool check_inverse = true, PyObject? feature_names_out = null, PyDict? kw_args = null, PyDict? inv_kw_args = null)
@@ -75,7 +75,7 @@ public static partial class sklearn
             public NDarray transform(PyObject X) => default!;
         }
 
-        public class KBinsDiscretizer
+        public class KBinsDiscretizer : PythonObject
         {
             // Constructor
             public KBinsDiscretizer(int n_bins = 5, string encode = "onehot", string strategy = "quantile", float? dtype = null, int? subsample = 200000, int? random_state = null)
@@ -105,7 +105,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class KernelCenterer
+        public class KernelCenterer : PythonObject
         {
             // Constructor
             public KernelCenterer()
@@ -136,7 +136,7 @@ public static partial class sklearn
             public NDarray transform(NDarray K, bool copy = true) => default!;
         }
 
-        public class LabelBinarizer
+        public class LabelBinarizer : PythonObject
         {
             // Constructor
             public LabelBinarizer(int neg_label = 0, int pos_label = 1, bool sparse_output = false)
@@ -164,7 +164,7 @@ public static partial class sklearn
             public NDarray transform(NDarray y) => default!;
         }
 
-        public class LabelEncoder
+        public class LabelEncoder : PythonObject
         {
             // Constructor
             public LabelEncoder()
@@ -188,7 +188,7 @@ public static partial class sklearn
             public NDarray transform(NDarray y) => default!;
         }
 
-        public class MaxAbsScaler
+        public class MaxAbsScaler : PythonObject
         {
             // Constructor
             public MaxAbsScaler(bool copy = true)
@@ -219,7 +219,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class MinMaxScaler
+        public class MinMaxScaler : PythonObject
         {
             // Constructor
             public MinMaxScaler(PyTuple? feature_range = null, bool copy = true, bool clip = false)
@@ -253,7 +253,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class MultiLabelBinarizer
+        public class MultiLabelBinarizer : PythonObject
         {
             // Constructor
             public MultiLabelBinarizer(NDarray? classes = null, bool sparse_output = false)
@@ -277,7 +277,7 @@ public static partial class sklearn
             public NDarray transform(PyObject y) => default!;
         }
 
-        public class Normalizer
+        public class Normalizer : PythonObject
         {
             // Constructor
             public Normalizer(string norm = "l2", bool copy = true)
@@ -304,7 +304,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X, bool? copy = null) => default!;
         }
 
-        public class OneHotEncoder
+        public class OneHotEncoder : PythonObject
         {
             // Constructor
             public OneHotEncoder(string categories = "auto", NDarray? drop = null, bool sparse_output = true, float? dtype = null, string handle_unknown = "error", float? min_frequency = null, int? max_categories = null, string feature_name_combiner = "concat")
@@ -334,7 +334,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class OrdinalEncoder
+        public class OrdinalEncoder : PythonObject
         {
             // Constructor
             public OrdinalEncoder(string categories = "auto", float? dtype = null, string handle_unknown = "error", int? unknown_value = null, int? encoded_missing_value = null, float? min_frequency = null, int? max_categories = null)
@@ -362,7 +362,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class PolynomialFeatures
+        public class PolynomialFeatures : PythonObject
         {
             // Constructor
             public PolynomialFeatures(int degree = 2, bool interaction_only = false, bool include_bias = true, string order = "C")
@@ -389,7 +389,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class PowerTransformer
+        public class PowerTransformer : PythonObject
         {
             // Constructor
             public PowerTransformer(string method = "yeo-johnson", bool standardize = true, bool copy = true)
@@ -416,7 +416,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class QuantileTransformer
+        public class QuantileTransformer : PythonObject
         {
             // Constructor
             public QuantileTransformer(int n_quantiles = 1000, string output_distribution = "uniform", bool ignore_implicit_zeros = false, int? subsample = 10000, int? random_state = null, bool copy = true)
@@ -445,7 +445,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class RobustScaler
+        public class RobustScaler : PythonObject
         {
             // Constructor
             public RobustScaler(bool with_centering = true, bool with_scaling = true, PyTuple? quantile_range = null, bool copy = true, bool unit_variance = false)
@@ -473,7 +473,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class SplineTransformer
+        public class SplineTransformer : PythonObject
         {
             // Constructor
             public SplineTransformer(int n_knots = 5, int degree = 3, string knots = "uniform", string extrapolation = "constant", bool include_bias = true, string order = "C", bool sparse_output = false)
@@ -502,7 +502,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class StandardScaler
+        public class StandardScaler : PythonObject
         {
             // Constructor
             public StandardScaler(bool copy = true, bool with_mean = true, bool with_std = true)
@@ -542,7 +542,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X, bool? copy = null) => default!;
         }
 
-        public class TargetEncoder
+        public class TargetEncoder : PythonObject
         {
             // Constructor
             public TargetEncoder(string categories = "auto", string target_type = "auto", string smooth = "auto", int cv = 5, bool shuffle = true, int? random_state = null)

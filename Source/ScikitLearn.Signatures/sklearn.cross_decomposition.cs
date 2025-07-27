@@ -11,7 +11,7 @@ public static partial class sklearn
     public static class cross_decomposition
     {
         // Classes
-        public class CCA
+        public class CCA : PythonObject
         {
             // Constructor
             public CCA(int n_components = 2, bool scale = true, int max_iter = 500, float tol = 1e-06f, bool copy = true)
@@ -55,7 +55,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X, NDarray? y = null, NDarray? Y = null, bool copy = true) => default!;
         }
 
-        public class PLSCanonical
+        public class PLSCanonical : PythonObject
         {
             // Constructor
             public PLSCanonical(int n_components = 2, bool scale = true, string algorithm = "nipals", int max_iter = 500, float tol = 1e-06f, bool copy = true)
@@ -99,7 +99,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X, NDarray? y = null, NDarray? Y = null, bool copy = true) => default!;
         }
 
-        public class PLSRegression
+        public class PLSRegression : PythonObject
         {
             // Constructor
             public PLSRegression(int n_components = 2, bool scale = true, int max_iter = 500, float tol = 1e-06f, bool copy = true)
@@ -145,7 +145,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X, NDarray? y = null, NDarray? Y = null, bool copy = true) => default!;
         }
 
-        public class PLSSVD
+        public class PLSSVD : PythonObject
         {
             // Constructor
             public PLSSVD(int n_components = 2, bool scale = true, bool copy = true)

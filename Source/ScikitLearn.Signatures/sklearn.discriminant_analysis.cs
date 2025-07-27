@@ -11,7 +11,7 @@ public static partial class sklearn
     public static class discriminant_analysis
     {
         // Classes
-        public class LinearDiscriminantAnalysis
+        public class LinearDiscriminantAnalysis : PythonObject
         {
             // Constructor
             public LinearDiscriminantAnalysis(string solver = "svd", float? shrinkage = null, NDarray? priors = null, int? n_components = null, bool store_covariance = false, float tol = 0.0001f, PyObject? covariance_estimator = null)
@@ -52,7 +52,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class QuadraticDiscriminantAnalysis
+        public class QuadraticDiscriminantAnalysis : PythonObject
         {
             // Constructor
             public QuadraticDiscriminantAnalysis(NDarray? priors = null, float reg_param = 0.0f, bool store_covariance = false, float tol = 0.0001f)

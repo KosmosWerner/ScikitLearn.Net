@@ -70,7 +70,7 @@ public static partial class sklearn
             PyObject? ax = null,
             int? fontsize = null) => default!;
         // Classes
-        public class DecisionTreeClassifier
+        public class DecisionTreeClassifier : PythonObject
         {
             // Constructor
             public DecisionTreeClassifier(
@@ -128,7 +128,7 @@ public static partial class sklearn
             public DecisionTreeClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class DecisionTreeRegressor
+        public class DecisionTreeRegressor : PythonObject
         {
             // Constructor
             public DecisionTreeRegressor(string criterion = "squared_error", string splitter = "best", int? max_depth = null, int min_samples_split = 2, int min_samples_leaf = 1, float min_weight_fraction_leaf = 0.0f, float? max_features = null, int? random_state = null, int? max_leaf_nodes = null, float min_impurity_decrease = 0.0f, float ccp_alpha = 0.0f, NDarray? monotonic_cst = null)
@@ -167,7 +167,7 @@ public static partial class sklearn
             public DecisionTreeRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class ExtraTreeClassifier
+        public class ExtraTreeClassifier : PythonObject
         {
             // Constructor
             public ExtraTreeClassifier(string criterion = "gini", string splitter = "random", int? max_depth = null, int min_samples_split = 2, int min_samples_leaf = 1, float min_weight_fraction_leaf = 0.0f, string? max_features = "sqrt", int? random_state = null, int? max_leaf_nodes = null, float min_impurity_decrease = 0.0f, PyDict? class_weight = null, float ccp_alpha = 0.0f, NDarray? monotonic_cst = null)
@@ -212,7 +212,7 @@ public static partial class sklearn
             public ExtraTreeClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class ExtraTreeRegressor
+        public class ExtraTreeRegressor : PythonObject
         {
             // Constructor
             public ExtraTreeRegressor(string criterion = "squared_error", string splitter = "random", int? max_depth = null, int min_samples_split = 2, int min_samples_leaf = 1, float min_weight_fraction_leaf = 0.0f, float? max_features = 1.0f, int? random_state = null, float min_impurity_decrease = 0.0f, int? max_leaf_nodes = null, float ccp_alpha = 0.0f, NDarray? monotonic_cst = null)

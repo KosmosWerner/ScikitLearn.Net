@@ -11,7 +11,7 @@ public static partial class sklearn
     public static class naive_bayes
     {
         // Classes
-        public class BernoulliNB
+        public class BernoulliNB : PythonObject
         {
             // Constructor
             public BernoulliNB(float alpha = 1.0f, bool force_alpha = true, float? binarize = 0.0f, bool fit_prior = true, NDarray? class_prior = null)
@@ -49,7 +49,7 @@ public static partial class sklearn
             public BernoulliNB set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class CategoricalNB
+        public class CategoricalNB : PythonObject
         {
             // Constructor
             public CategoricalNB(float alpha = 1.0f, bool force_alpha = true, bool fit_prior = true, NDarray? class_prior = null, NDarray? min_categories = null)
@@ -88,7 +88,7 @@ public static partial class sklearn
             public CategoricalNB set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class ComplementNB
+        public class ComplementNB : PythonObject
         {
             // Constructor
             public ComplementNB(float alpha = 1.0f, bool force_alpha = true, bool fit_prior = true, NDarray? class_prior = null, bool norm = false)
@@ -127,7 +127,7 @@ public static partial class sklearn
             public ComplementNB set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class GaussianNB
+        public class GaussianNB : PythonObject
         {
             // Constructor
             public GaussianNB(NDarray? priors = null, float var_smoothing = 1e-09f)
@@ -166,7 +166,7 @@ public static partial class sklearn
             public GaussianNB set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class MultinomialNB
+        public class MultinomialNB : PythonObject
         {
             // Constructor
             public MultinomialNB(float alpha = 1.0f, bool force_alpha = true, bool fit_prior = true, NDarray? class_prior = null)

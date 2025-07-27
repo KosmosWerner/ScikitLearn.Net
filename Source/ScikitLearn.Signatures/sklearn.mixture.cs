@@ -11,7 +11,7 @@ public static partial class sklearn
     public static class mixture
     {
         // Classes
-        public class BayesianGaussianMixture
+        public class BayesianGaussianMixture : PythonObject
         {
             // Constructor
             public BayesianGaussianMixture(int n_components = 1, string covariance_type = "full", float tol = 0.001f, float reg_covar = 1e-06f, int max_iter = 100, int n_init = 1, string init_params = "kmeans", string weight_concentration_prior_type = "dirichlet_process", float? weight_concentration_prior = null, float? mean_precision_prior = null, NDarray? mean_prior = null, float? degrees_of_freedom_prior = null, NDarray? covariance_prior = null, int? random_state = null, bool warm_start = false, int verbose = 0, int verbose_interval = 10)
@@ -53,7 +53,7 @@ public static partial class sklearn
             public BayesianGaussianMixture set_params(Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class GaussianMixture
+        public class GaussianMixture : PythonObject
         {
             // Constructor
             public GaussianMixture(int n_components = 1, string covariance_type = "full", float tol = 0.001f, float reg_covar = 1e-06f, int max_iter = 100, int n_init = 1, string init_params = "kmeans", NDarray? weights_init = null, NDarray? means_init = null, NDarray? precisions_init = null, int? random_state = null, bool warm_start = false, int verbose = 0, int verbose_interval = 10)

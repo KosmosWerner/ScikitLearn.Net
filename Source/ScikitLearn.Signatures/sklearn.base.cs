@@ -15,7 +15,7 @@ public static partial class sklearn
         public static bool is_classifier(PyObject estimator) => default!;
         public static bool is_regressor(PyObject estimator) => default!;
         // Classes
-        public class BaseEstimator
+        public class BaseEstimator : PythonObject
         {
             // Constructor
             public BaseEstimator() { }
@@ -27,7 +27,7 @@ public static partial class sklearn
             public BaseEstimator set_params(Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class BiclusterMixin
+        public class BiclusterMixin : PythonObject
         {
             // Constructor
             public BiclusterMixin() { }
@@ -38,7 +38,7 @@ public static partial class sklearn
             public NDarray get_submatrix(int i, NDarray data) => default!;
         }
 
-        public class ClassNamePrefixFeaturesOutMixin
+        public class ClassNamePrefixFeaturesOutMixin : PythonObject
         {
             // Constructor
             public ClassNamePrefixFeaturesOutMixin() { }
@@ -47,7 +47,7 @@ public static partial class sklearn
             public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
         }
 
-        public class ClassifierMixin
+        public class ClassifierMixin : PythonObject
         {
             // Constructor
             public ClassifierMixin() { }
@@ -56,7 +56,7 @@ public static partial class sklearn
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
         }
 
-        public class ClusterMixin
+        public class ClusterMixin : PythonObject
         {
             // Constructor
             public ClusterMixin() { }
@@ -65,7 +65,7 @@ public static partial class sklearn
             public NDarray<long> fit_predict(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class DensityMixin
+        public class DensityMixin : PythonObject
         {
             // Constructor
             public DensityMixin() { }
@@ -74,13 +74,13 @@ public static partial class sklearn
             public float score(NDarray X) => default!;
         }
 
-        public class MetaEstimatorMixin
+        public class MetaEstimatorMixin : PythonObject
         {
             // Constructor
             public MetaEstimatorMixin() { }
         }
 
-        public class OneToOneFeatureMixin
+        public class OneToOneFeatureMixin : PythonObject
         {
             // Constructor
             public OneToOneFeatureMixin() { }
@@ -89,7 +89,7 @@ public static partial class sklearn
             public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
         }
 
-        public class OutlierMixin
+        public class OutlierMixin : PythonObject
         {
             // Constructor
             public OutlierMixin() { }
@@ -98,7 +98,7 @@ public static partial class sklearn
             public NDarray fit_predict(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class RegressorMixin
+        public class RegressorMixin : PythonObject
         {
             // Constructor
             public RegressorMixin() { }
@@ -107,7 +107,7 @@ public static partial class sklearn
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
         }
 
-        public class TransformerMixin
+        public class TransformerMixin : PythonObject
         {
             // Constructor
             public TransformerMixin() { }

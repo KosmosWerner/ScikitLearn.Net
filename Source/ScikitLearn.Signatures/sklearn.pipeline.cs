@@ -14,7 +14,7 @@ public static partial class sklearn
         public static PyObject make_pipeline(PyObject[] steps, PyObject? memory = null, bool verbose = false) => default!;
         public static PyObject make_union(PyObject[] transformers, int? n_jobs = null, bool verbose = false) => default!;
         // Classes
-        public class FeatureUnion
+        public class FeatureUnion : PythonObject
         {
             // Constructor
             public FeatureUnion(PyTuple transformer_list, int? n_jobs = null, PyDict? transformer_weights = null, bool verbose = false, bool verbose_feature_names_out = true)
@@ -40,7 +40,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class Pipeline
+        public class Pipeline : PythonObject
         {
             // Constructor
             public Pipeline(PyTuple steps, PyObject? memory = null, bool verbose = false)

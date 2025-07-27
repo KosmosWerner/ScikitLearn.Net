@@ -13,7 +13,7 @@ public static partial class sklearn
         // Methods
         public static NDarray johnson_lindenstrauss_min_dim(NDarray n_samples, float eps = 0.1f) => default!;
         // Classes
-        public class GaussianRandomProjection
+        public class GaussianRandomProjection : PythonObject
         {
             // Constructor
             public GaussianRandomProjection(string n_components = "auto", float eps = 0.1f, bool compute_inverse_components = false, int? random_state = null)
@@ -42,7 +42,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class SparseRandomProjection
+        public class SparseRandomProjection : PythonObject
         {
             // Constructor
             public SparseRandomProjection(string n_components = "auto", string density = "auto", float eps = 0.1f, bool dense_output = false, bool compute_inverse_components = false, int? random_state = null)

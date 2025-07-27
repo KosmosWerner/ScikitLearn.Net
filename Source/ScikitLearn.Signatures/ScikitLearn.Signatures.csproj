@@ -2,6 +2,11 @@
 
 	<PropertyGroup>
 		<TargetFramework>net8.0</TargetFramework>
+
+		<Version>1.7.1.0</Version>
+		<AssemblyVersion>1.7.1.0</AssemblyVersion>
+
+		<!-- Language -->
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<NoWarn>CS8981</NoWarn>
@@ -9,5 +14,10 @@
 
 	<ItemGroup>
 		<PackageReference Include="Numpy.Bare" Version="3.11.1.33" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Using Include="Numpy" />
+		<Using Include="Python.Runtime" />
 	</ItemGroup>
 </Project>

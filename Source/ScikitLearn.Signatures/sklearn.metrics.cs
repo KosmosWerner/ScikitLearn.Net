@@ -84,7 +84,7 @@ public static partial class sklearn
         public static (NDarray?, NDarray?) pairwise_distances_argmin_min(NDarray X, NDarray Y, int axis = 1, string metric = "euclidean", PyDict? metric_kwargs = null) => default!;
         public static NDarray pairwise_distances_chunked(NDarray X, NDarray? Y = null, PyObject? reduce_func = null, string metric = "euclidean", int? n_jobs = null, float? working_memory = null, Dictionary<string, PyObject>? @params = null) => default!;
         // Classes
-        public class DistanceMetric
+        public class DistanceMetric : PythonObject
         {
             // Constructor
             public DistanceMetric()
@@ -95,7 +95,7 @@ public static partial class sklearn
             public PyObject get_metric(string metric, float? dtype = null, Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class ConfusionMatrixDisplay
+        public class ConfusionMatrixDisplay : PythonObject
         {
             // Constructor
             public ConfusionMatrixDisplay(NDarray confusion_matrix, NDarray? display_labels = null)
@@ -114,7 +114,7 @@ public static partial class sklearn
             public PyObject plot(bool include_values = true, string cmap = "viridis", string xticks_rotation = "horizontal", string? values_format = null, PyObject? ax = null, bool colorbar = true, PyDict? im_kw = null, PyDict? text_kw = null) => default!;
         }
 
-        public class DetCurveDisplay
+        public class DetCurveDisplay : PythonObject
         {
             // Constructor
             public DetCurveDisplay(NDarray fpr, NDarray fnr, string? estimator_name = null, string? pos_label = null)
@@ -132,7 +132,7 @@ public static partial class sklearn
             public PyObject plot(PyObject? ax = null, string? name = null, Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class PrecisionRecallDisplay
+        public class PrecisionRecallDisplay : PythonObject
         {
             // Constructor
             public PrecisionRecallDisplay(NDarray precision, NDarray recall, float? average_precision = null, string? estimator_name = null, string? pos_label = null, float? prevalence_pos_label = null)
@@ -151,7 +151,7 @@ public static partial class sklearn
             public PyObject plot(PyObject? ax = null, string? name = null, bool plot_chance_level = false, PyDict? chance_level_kw = null, Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class PredictionErrorDisplay
+        public class PredictionErrorDisplay : PythonObject
         {
             // Constructor
             public PredictionErrorDisplay(NDarray y_true, NDarray y_pred)
@@ -171,7 +171,7 @@ public static partial class sklearn
             public PyDict plot(PyObject? ax = null, string kind = "residual_vs_predicted", PyDict? scatter_kwargs = null, PyDict? line_kwargs = null) => default!;
         }
 
-        public class RocCurveDisplay
+        public class RocCurveDisplay : PythonObject
         {
             // Constructor
             public RocCurveDisplay(NDarray fpr, NDarray tpr, float? roc_auc = null, string? estimator_name = null, string? pos_label = null)

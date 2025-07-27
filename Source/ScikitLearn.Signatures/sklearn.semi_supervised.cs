@@ -11,7 +11,7 @@ public static partial class sklearn
     public static class semi_supervised
     {
         // Classes
-        public class LabelPropagation
+        public class LabelPropagation : PythonObject
         {
             // Constructor
             public LabelPropagation(string kernel = "rbf", int gamma = 20, int n_neighbors = 7, int max_iter = 1000, float tol = 0.001f, int? n_jobs = null)
@@ -41,7 +41,7 @@ public static partial class sklearn
             public LabelPropagation set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class LabelSpreading
+        public class LabelSpreading : PythonObject
         {
             // Constructor
             public LabelSpreading(string kernel = "rbf", int gamma = 20, int n_neighbors = 7, float alpha = 0.2f, int max_iter = 30, float tol = 0.001f, int? n_jobs = null)
@@ -71,7 +71,7 @@ public static partial class sklearn
             public LabelSpreading set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class SelfTrainingClassifier
+        public class SelfTrainingClassifier : PythonObject
         {
             // Constructor
             public SelfTrainingClassifier(PyObject base_estimator, float threshold = 0.75f, string criterion = "threshold", int k_best = 10, int? max_iter = 10, bool verbose = false)

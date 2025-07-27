@@ -118,7 +118,7 @@ public static partial class sklearn
             int? n_clusters = null,
             bool return_distance = false) => default!;
         // Classes
-        public class AffinityPropagation
+        public class AffinityPropagation : PythonObject
         {
             // Constructor
             public AffinityPropagation(
@@ -152,7 +152,7 @@ public static partial class sklearn
             public AffinityPropagation set_params(Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class AgglomerativeClustering
+        public class AgglomerativeClustering : PythonObject
         {
             // Constructor
             public AgglomerativeClustering(int? n_clusters = 2, string metric = "euclidean", PyObject? memory = null, NDarray? connectivity = null, string compute_full_tree = "auto", string linkage = "ward", float? distance_threshold = null, bool compute_distances = false)
@@ -179,7 +179,7 @@ public static partial class sklearn
             public AgglomerativeClustering set_params(Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class Birch
+        public class Birch : PythonObject
         {
             // Constructor
             public Birch(float threshold = 0.5f, int branching_factor = 50, int? n_clusters = 3, bool compute_labels = true, bool copy = true)
@@ -213,7 +213,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class BisectingKMeans
+        public class BisectingKMeans : PythonObject
         {
             // Constructor
             public BisectingKMeans(int n_clusters = 8, string init = "random", int n_init = 1, int? random_state = null, int max_iter = 300, int verbose = 0, float tol = 0.0001f, bool copy_x = true, string algorithm = "lloyd", string bisecting_strategy = "biggest_inertia")
@@ -248,7 +248,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class DBSCAN
+        public class DBSCAN : PythonObject
         {
             // Constructor
             public DBSCAN(float eps = 0.5f, int min_samples = 5, string metric = "euclidean", PyDict? metric_params = null, string algorithm = "auto", int leaf_size = 30, float? p = null, int? n_jobs = null)
@@ -274,7 +274,7 @@ public static partial class sklearn
             public DBSCAN set_params(Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class FeatureAgglomeration
+        public class FeatureAgglomeration : PythonObject
         {
             // Constructor
             public FeatureAgglomeration(int? n_clusters = 2, string metric = "euclidean", PyObject? memory = null, NDarray? connectivity = null, string compute_full_tree = "auto", string linkage = "ward", PyObject? pooling_func = null, float? distance_threshold = null, bool compute_distances = false)
@@ -306,7 +306,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class HDBSCAN
+        public class HDBSCAN : PythonObject
         {
             // Constructor
             public HDBSCAN(int min_cluster_size = 5, int? min_samples = null, float cluster_selection_epsilon = 0.0f, int? max_cluster_size = null, string metric = "euclidean", PyDict? metric_params = null, float alpha = 1.0f, string algorithm = "auto", int leaf_size = 40, int? n_jobs = null, string cluster_selection_method = "eom", bool allow_single_cluster = false, string? store_centers = null, bool copy = false)
@@ -332,7 +332,7 @@ public static partial class sklearn
             public HDBSCAN set_params(Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class KMeans
+        public class KMeans : PythonObject
         {
             // Constructor
             public KMeans(int n_clusters = 8, string init = "k-means++", string n_init = "auto", int max_iter = 300, float tol = 0.0001f, int verbose = 0, int? random_state = null, bool copy_x = true, string algorithm = "lloyd")
@@ -368,7 +368,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class MeanShift
+        public class MeanShift : PythonObject
         {
             // Constructor
             public MeanShift(float? bandwidth = null, NDarray? seeds = null, bool bin_seeding = false, int min_bin_freq = 1, bool cluster_all = true, int? n_jobs = null, int max_iter = 300)
@@ -393,7 +393,7 @@ public static partial class sklearn
             public MeanShift set_params(Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class MiniBatchKMeans
+        public class MiniBatchKMeans : PythonObject
         {
             // Constructor
             public MiniBatchKMeans(int n_clusters = 8, string init = "k-means++", int max_iter = 100, int batch_size = 1024, int verbose = 0, bool compute_labels = true, int? random_state = null, float tol = 0.0f, int max_no_improvement = 10, int? init_size = null, string n_init = "auto", float reassignment_ratio = 0.01f)
@@ -434,7 +434,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class OPTICS
+        public class OPTICS : PythonObject
         {
             // Constructor
             public OPTICS(int min_samples = 5, float max_eps = float.PositiveInfinity, string metric = "minkowski", int p = 2, PyDict? metric_params = null, string cluster_method = "xi", float? eps = null, float xi = 0.05f, bool predecessor_correction = true, float? min_cluster_size = null, string algorithm = "auto", int leaf_size = 30, PyObject? memory = null, int? n_jobs = null)
@@ -461,7 +461,7 @@ public static partial class sklearn
             public OPTICS set_params(Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class SpectralBiclustering
+        public class SpectralBiclustering : PythonObject
         {
             // Constructor
             public SpectralBiclustering(int n_clusters = 3, string method = "bistochastic", int n_components = 6, int n_best = 3, string svd_method = "randomized", int? n_svd_vecs = null, bool mini_batch = false, string init = "k-means++", int n_init = 10, int? random_state = null)
@@ -489,7 +489,7 @@ public static partial class sklearn
             public SpectralBiclustering set_params(Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class SpectralClustering
+        public class SpectralClustering : PythonObject
         {
             // Constructor
             public SpectralClustering(int n_clusters = 8, PyObject? eigen_solver = null, int? n_components = null, int? random_state = null, int n_init = 10, float gamma = 1.0f, string affinity = "rbf", int n_neighbors = 10, string eigen_tol = "auto", string assign_labels = "kmeans", int degree = 3, int coef0 = 1, PyDict? kernel_params = null, int? n_jobs = null, bool verbose = false)
@@ -512,7 +512,7 @@ public static partial class sklearn
             public SpectralClustering set_params(Dictionary<string, PyObject>? @params = null) => default!;
         }
 
-        public class SpectralCoclustering
+        public class SpectralCoclustering : PythonObject
         {
             // Constructor
             public SpectralCoclustering(int n_clusters = 3, string svd_method = "randomized", int? n_svd_vecs = null, bool mini_batch = false, string init = "k-means++", int n_init = 10, int? random_state = null)

@@ -11,7 +11,7 @@ public static partial class sklearn
     public static class dummy
     {
         // Classes
-        public class DummyClassifier
+        public class DummyClassifier : PythonObject
         {
             // Constructor
             public DummyClassifier(string strategy = "prior", int? random_state = null, NDarray? constant = null)
@@ -44,7 +44,7 @@ public static partial class sklearn
             public DummyClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class DummyRegressor
+        public class DummyRegressor : PythonObject
         {
             // Constructor
             public DummyRegressor(string strategy = "mean", NDarray? constant = null, float? quantile = null)

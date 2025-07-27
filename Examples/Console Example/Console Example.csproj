@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Python.Included" Version="3.11.6" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\Source\ScikitLearn\ScikitLearn.csproj" />
   </ItemGroup>
 

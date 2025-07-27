@@ -97,12 +97,12 @@ For desktop apps, always call `PythonEngine.Shutdown()` when the app closes to a
 ### 3. Missing Methods or Constructors?
 
 Each static class contains a `self` field of type `PyObject`, which you can use to create instances or call missing methods.
-If you create an object and are confident of its type, use the static `Encapsule(PyObject pyObject)` method to convert it into a typed wrapper:
+If you create an object and are confident of its type, use the static `Wrap(PyObject pyObject)` method to convert it into a typed wrapper:
 
 ```csharp
 PyObject obj = sklearn.cluster.self.InvokeMethod("DBSCAN", your_custom_args);
 
-var model = sklearn.cluster.DBSCAN.Encapsule(obj);
+var model = sklearn.cluster.DBSCAN.Wrap(obj);
 model.fit(...);
 ```
 

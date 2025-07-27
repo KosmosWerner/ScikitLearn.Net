@@ -1,4 +1,5 @@
 namespace ScikitLearn;
+#nullable enable
 public static partial class sklearn
 {
     public static class random_projection
@@ -40,7 +41,7 @@ public static partial class sklearn
             PyDict pyDict = new PyDict();
             if (eps != 0.1f)
                 pyDict["eps"] = Helpers.ToPython(eps);
-            throw new NotImplementedException();
+            return new NotImplementedException();
         }
 
         public class GaussianRandomProjection : PythonObject
@@ -67,52 +68,19 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static GaussianRandomProjection Encapsule(PyObject pyObject) => new GaussianRandomProjection(pyObject);
-            public int n_components_
-            {
-                get
-                {
-                    return self.GetAttr("n_components_").As<int>();
-                }
-            }
-
-            public NDarray components_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray inverse_components_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
+            public static GaussianRandomProjection Wrap(PyObject pyObject) => new GaussianRandomProjection(pyObject);
+            public int n_components_ => self.GetAttr("n_components_").As<int>()public NDarray components_ => new NotImplementedException();
+            public NDarray inverse_components_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
 
             public GaussianRandomProjection fit(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null)
@@ -123,7 +91,7 @@ public static partial class sklearn
                     pyDict["y"] = Helpers.ToPython(y);
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -132,14 +100,14 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (input_features != null)
                     pyDict["input_features"] = Helpers.ToPython(input_features);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -148,14 +116,14 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray inverse_transform(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public GaussianRandomProjection set_output(PyObject? transform = null)
@@ -164,7 +132,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (transform != null)
                     pyDict["transform"] = Helpers.ToPython(transform);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_output", args, pyDict);
+                return this;
             }
 
             public GaussianRandomProjection set_params(Dictionary<string, PyObject>? @params = null)
@@ -173,14 +142,15 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public NDarray transform(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
         }
 
@@ -212,60 +182,19 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static SparseRandomProjection Encapsule(PyObject pyObject) => new SparseRandomProjection(pyObject);
-            public int n_components_
-            {
-                get
-                {
-                    return self.GetAttr("n_components_").As<int>();
-                }
-            }
-
-            public NDarray components_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray inverse_components_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public float density_
-            {
-                get
-                {
-                    return self.GetAttr("density_").As<float>();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
+            public static SparseRandomProjection Wrap(PyObject pyObject) => new SparseRandomProjection(pyObject);
+            public int n_components_ => self.GetAttr("n_components_").As<int>()public NDarray components_ => new NotImplementedException();
+            public NDarray inverse_components_ => new NotImplementedException();
+            public float density_ => self.GetAttr("density_").As<float>()public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
 
             public SparseRandomProjection fit(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null)
@@ -276,7 +205,7 @@ public static partial class sklearn
                     pyDict["y"] = Helpers.ToPython(y);
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -285,14 +214,14 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (input_features != null)
                     pyDict["input_features"] = Helpers.ToPython(input_features);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -301,14 +230,14 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray inverse_transform(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public SparseRandomProjection set_output(PyObject? transform = null)
@@ -317,7 +246,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (transform != null)
                     pyDict["transform"] = Helpers.ToPython(transform);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_output", args, pyDict);
+                return this;
             }
 
             public SparseRandomProjection set_params(Dictionary<string, PyObject>? @params = null)
@@ -326,14 +256,15 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public NDarray transform(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
         }
     }

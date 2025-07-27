@@ -1,4 +1,5 @@
 namespace ScikitLearn;
+#nullable enable
 public static partial class sklearn
 {
     public static class isotonic
@@ -38,7 +39,7 @@ public static partial class sklearn
             _ = sklearn.isotonic.self;
             PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(x), Helpers.ToPython(y) });
             PyDict pyDict = new PyDict();
-            return self.InvokeMethod("check_increasing", args, pyDict).As<bool>();
+            self.InvokeMethod("check_increasing", args, pyDict);
         }
 
         public static NDarray isotonic_regression(NDarray y, NDarray? sample_weight = null, float? y_min = null, float? y_max = null, bool increasing = true)
@@ -54,7 +55,7 @@ public static partial class sklearn
                 pyDict["y_max"] = Helpers.ToPython(y_max);
             if (increasing != true)
                 pyDict["increasing"] = Helpers.ToPython(increasing);
-            throw new NotImplementedException();
+            return new NotImplementedException();
         }
 
         public class IsotonicRegression : PythonObject
@@ -81,62 +82,20 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static IsotonicRegression Encapsule(PyObject pyObject) => new IsotonicRegression(pyObject);
-            public float X_min_
-            {
-                get
-                {
-                    return self.GetAttr("X_min_").As<float>();
-                }
-            }
-
-            public float X_max_
-            {
-                get
-                {
-                    return self.GetAttr("X_max_").As<float>();
-                }
-            }
-
-            public NDarray X_thresholds_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray y_thresholds_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public PyObject f_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public bool increasing_
-            {
-                get
-                {
-                    return self.GetAttr("increasing_").As<bool>();
-                }
-            }
-
-            public IsotonicRegression fit(NDarray X, NDarray y, NDarray? sample_weight = null)
+            public static IsotonicRegression Wrap(PyObject pyObject) => new IsotonicRegression(pyObject);
+            public float X_min_ => self.GetAttr("X_min_").As<float>()public float X_max_ => self.GetAttr("X_max_").As<float>()public NDarray X_thresholds_ => new NotImplementedException();
+            public NDarray y_thresholds_ => new NotImplementedException();
+            public PyObject f_ => new NotImplementedException();
+            public bool increasing_ => self.GetAttr("increasing_").As<bool>()public IsotonicRegression fit(NDarray X, NDarray y, NDarray? sample_weight = null)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X), Helpers.ToPython(y) });
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null)
@@ -147,7 +106,7 @@ public static partial class sklearn
                     pyDict["y"] = Helpers.ToPython(y);
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -156,14 +115,14 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (input_features != null)
                     pyDict["input_features"] = Helpers.ToPython(input_features);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -172,14 +131,14 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray predict(NDarray T)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(T) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -188,8 +147,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("score", args, pyDict).As<float>()}
 
             public IsotonicRegression set_fit_request(string? sample_weight = "$UNCHANGED$")
             {
@@ -197,7 +155,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != "$UNCHANGED$")
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_fit_request", args, pyDict);
+                return this;
             }
 
             public IsotonicRegression set_output(PyObject? transform = null)
@@ -206,7 +165,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (transform != null)
                     pyDict["transform"] = Helpers.ToPython(transform);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_output", args, pyDict);
+                return this;
             }
 
             public IsotonicRegression set_params(Dictionary<string, PyObject>? @params = null)
@@ -215,7 +175,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public IsotonicRegression set_predict_request(string? T = "$UNCHANGED$")
@@ -224,7 +185,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (T != "$UNCHANGED$")
                     pyDict["T"] = Helpers.ToPython(T);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_predict_request", args, pyDict);
+                return this;
             }
 
             public IsotonicRegression set_score_request(string? sample_weight = "$UNCHANGED$")
@@ -233,7 +195,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != "$UNCHANGED$")
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_score_request", args, pyDict);
+                return this;
             }
 
             public IsotonicRegression set_transform_request(string? T = "$UNCHANGED$")
@@ -242,14 +205,15 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (T != "$UNCHANGED$")
                     pyDict["T"] = Helpers.ToPython(T);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_transform_request", args, pyDict);
+                return this;
             }
 
             public NDarray transform(NDarray T)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(T) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
         }
     }

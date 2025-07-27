@@ -1,4 +1,5 @@
 namespace ScikitLearn;
+#nullable enable
 public static partial class sklearn
 {
     public static class neighbors
@@ -50,7 +51,7 @@ public static partial class sklearn
                 pyDict["include_self"] = Helpers.ToPython(include_self);
             if (n_jobs != null)
                 pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
-            throw new NotImplementedException();
+            return new NotImplementedException();
         }
 
         public static NDarray radius_neighbors_graph(NDarray X, float radius, string mode = "connectivity", string metric = "minkowski", int p = 2, PyDict? metric_params = null, bool include_self = false, int? n_jobs = null)
@@ -70,7 +71,7 @@ public static partial class sklearn
                 pyDict["include_self"] = Helpers.ToPython(include_self);
             if (n_jobs != null)
                 pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
-            throw new NotImplementedException();
+            return new NotImplementedException();
         }
 
         public static NDarray sort_graph_by_row_values(NDarray graph, bool copy = false, bool warn_when_not_sorted = true)
@@ -82,7 +83,7 @@ public static partial class sklearn
                 pyDict["copy"] = Helpers.ToPython(copy);
             if (warn_when_not_sorted != true)
                 pyDict["warn_when_not_sorted"] = Helpers.ToPython(warn_when_not_sorted);
-            throw new NotImplementedException();
+            return new NotImplementedException();
         }
 
         public class BallTree : PythonObject
@@ -101,43 +102,30 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static BallTree Encapsule(PyObject pyObject) => new BallTree(pyObject);
-            public PyObject data
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public PyTuple valid_metrics
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
+            public static BallTree Wrap(PyObject pyObject) => new BallTree(pyObject);
+            public PyObject data => new NotImplementedException();
+            public PyTuple valid_metrics => new NotImplementedException();
 
             public NDarray get_arrays()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public int get_n_calls()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return self.InvokeMethod("get_n_calls", args, pyDict).As<int>();
-            }
+                return self.InvokeMethod("get_n_calls", args, pyDict).As<int>()}
 
             public int get_tree_stats()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return self.InvokeMethod("get_tree_stats", args, pyDict).As<int>();
-            }
+                return self.InvokeMethod("get_tree_stats", args, pyDict).As<int>()}
 
             public NDarray kernel_density(NDarray X, float h, string kernel = "gaussian", int atol = 0, float rtol = 1E-8f, bool breadth_first = true, bool return_log = false)
             {
@@ -153,7 +141,7 @@ public static partial class sklearn
                     pyDict["breadth_first"] = Helpers.ToPython(breadth_first);
                 if (return_log != false)
                     pyDict["return_log"] = Helpers.ToPython(return_log);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public (bool? , bool? , NDarray? , NDarray? ) query(NDarray X, int k = 1, bool return_distance = true, bool dualtree = false, bool breadth_first = false)
@@ -168,7 +156,7 @@ public static partial class sklearn
                     pyDict["dualtree"] = Helpers.ToPython(dualtree);
                 if (breadth_first != false)
                     pyDict["breadth_first"] = Helpers.ToPython(breadth_first);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public (bool? , bool? , bool? , NDarray? , PyObject? , PyObject? ) query_radius(NDarray X, PyObject r, bool return_distance = false, bool count_only = false, bool sort_results = false)
@@ -181,14 +169,14 @@ public static partial class sklearn
                     pyDict["count_only"] = Helpers.ToPython(count_only);
                 if (sort_results != false)
                     pyDict["sort_results"] = Helpers.ToPython(sort_results);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public void reset_n_calls()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                self.InvokeMethod("reset_n_calls", args, pyDict);
+                return new NotImplementedException();
             }
 
             public NDarray two_point_correlation(NDarray X, NDarray r, bool dualtree = false)
@@ -197,7 +185,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (dualtree != false)
                     pyDict["dualtree"] = Helpers.ToPython(dualtree);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
         }
 
@@ -217,43 +205,30 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static KDTree Encapsule(PyObject pyObject) => new KDTree(pyObject);
-            public PyObject data
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public PyTuple valid_metrics
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
+            public static KDTree Wrap(PyObject pyObject) => new KDTree(pyObject);
+            public PyObject data => new NotImplementedException();
+            public PyTuple valid_metrics => new NotImplementedException();
 
             public NDarray get_arrays()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public int get_n_calls()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return self.InvokeMethod("get_n_calls", args, pyDict).As<int>();
-            }
+                return self.InvokeMethod("get_n_calls", args, pyDict).As<int>()}
 
             public int get_tree_stats()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return self.InvokeMethod("get_tree_stats", args, pyDict).As<int>();
-            }
+                return self.InvokeMethod("get_tree_stats", args, pyDict).As<int>()}
 
             public NDarray kernel_density(NDarray X, float h, string kernel = "gaussian", int atol = 0, float rtol = 1E-8f, bool breadth_first = true, bool return_log = false)
             {
@@ -269,7 +244,7 @@ public static partial class sklearn
                     pyDict["breadth_first"] = Helpers.ToPython(breadth_first);
                 if (return_log != false)
                     pyDict["return_log"] = Helpers.ToPython(return_log);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public (bool? , bool? , NDarray? , NDarray? ) query(NDarray X, int k = 1, bool return_distance = true, bool dualtree = false, bool breadth_first = false)
@@ -284,7 +259,7 @@ public static partial class sklearn
                     pyDict["dualtree"] = Helpers.ToPython(dualtree);
                 if (breadth_first != false)
                     pyDict["breadth_first"] = Helpers.ToPython(breadth_first);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public (bool? , bool? , bool? , NDarray? , PyObject? , PyObject? ) query_radius(NDarray X, PyObject r, bool return_distance = false, bool count_only = false, bool sort_results = false)
@@ -297,14 +272,14 @@ public static partial class sklearn
                     pyDict["count_only"] = Helpers.ToPython(count_only);
                 if (sort_results != false)
                     pyDict["sort_results"] = Helpers.ToPython(sort_results);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public void reset_n_calls()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                self.InvokeMethod("reset_n_calls", args, pyDict);
+                return new NotImplementedException();
             }
 
             public NDarray two_point_correlation(NDarray X, NDarray r, bool dualtree = false)
@@ -313,7 +288,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (dualtree != false)
                     pyDict["dualtree"] = Helpers.ToPython(dualtree);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
         }
 
@@ -349,75 +324,25 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static KNeighborsClassifier Encapsule(PyObject pyObject) => new KNeighborsClassifier(pyObject);
-            public NDarray classes_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public string effective_metric_
-            {
-                get
-                {
-                    return self.GetAttr("effective_metric_").As<string>();
-                }
-            }
-
-            public PyDict effective_metric_params_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_samples_fit_
-            {
-                get
-                {
-                    return self.GetAttr("n_samples_fit_").As<int>();
-                }
-            }
-
-            public bool outputs_2d_
-            {
-                get
-                {
-                    return self.GetAttr("outputs_2d_").As<bool>();
-                }
-            }
-
-            public KNeighborsClassifier fit(NDarray X, NDarray y)
+            public static KNeighborsClassifier Wrap(PyObject pyObject) => new KNeighborsClassifier(pyObject);
+            public NDarray classes_ => new NotImplementedException();
+            public string effective_metric_ => self.GetAttr("effective_metric_").As<string>()public PyDict effective_metric_params_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+            public int n_samples_fit_ => self.GetAttr("n_samples_fit_").As<int>()public bool outputs_2d_ => self.GetAttr("outputs_2d_").As<bool>()public KNeighborsClassifier fit(NDarray X, NDarray y)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X), Helpers.ToPython(y) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -426,7 +351,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public (NDarray? , NDarray? ) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
@@ -439,7 +364,7 @@ public static partial class sklearn
                     pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors);
                 if (return_distance != true)
                     pyDict["return_distance"] = Helpers.ToPython(return_distance);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray kneighbors_graph(NDarray? X = null, int? n_neighbors = null, string mode = "connectivity")
@@ -452,21 +377,21 @@ public static partial class sklearn
                     pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors);
                 if (mode != "connectivity")
                     pyDict["mode"] = Helpers.ToPython(mode);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray predict_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -475,8 +400,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("score", args, pyDict).As<float>()}
 
             public KNeighborsClassifier set_params(Dictionary<string, PyObject>? @params = null)
             {
@@ -484,7 +408,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public KNeighborsClassifier set_score_request(string? sample_weight = "$UNCHANGED$")
@@ -493,7 +418,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != "$UNCHANGED$")
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_score_request", args, pyDict);
+                return this;
             }
         }
 
@@ -529,59 +455,24 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static KNeighborsRegressor Encapsule(PyObject pyObject) => new KNeighborsRegressor(pyObject);
-            public string effective_metric_
-            {
-                get
-                {
-                    return self.GetAttr("effective_metric_").As<string>();
-                }
-            }
-
-            public PyDict effective_metric_params_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_samples_fit_
-            {
-                get
-                {
-                    return self.GetAttr("n_samples_fit_").As<int>();
-                }
-            }
-
-            public KNeighborsRegressor fit(NDarray X, NDarray y)
+            public static KNeighborsRegressor Wrap(PyObject pyObject) => new KNeighborsRegressor(pyObject);
+            public string effective_metric_ => self.GetAttr("effective_metric_").As<string>()public PyDict effective_metric_params_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+            public int n_samples_fit_ => self.GetAttr("n_samples_fit_").As<int>()public KNeighborsRegressor fit(NDarray X, NDarray y)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X), Helpers.ToPython(y) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -590,7 +481,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public (NDarray? , NDarray? ) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
@@ -603,7 +494,7 @@ public static partial class sklearn
                     pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors);
                 if (return_distance != true)
                     pyDict["return_distance"] = Helpers.ToPython(return_distance);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray kneighbors_graph(NDarray? X = null, int? n_neighbors = null, string mode = "connectivity")
@@ -616,14 +507,14 @@ public static partial class sklearn
                     pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors);
                 if (mode != "connectivity")
                     pyDict["mode"] = Helpers.ToPython(mode);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -632,8 +523,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("score", args, pyDict).As<float>()}
 
             public KNeighborsRegressor set_params(Dictionary<string, PyObject>? @params = null)
             {
@@ -641,7 +531,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public KNeighborsRegressor set_score_request(string? sample_weight = "$UNCHANGED$")
@@ -650,7 +541,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != "$UNCHANGED$")
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_score_request", args, pyDict);
+                return this;
             }
         }
 
@@ -686,59 +578,24 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static KNeighborsTransformer Encapsule(PyObject pyObject) => new KNeighborsTransformer(pyObject);
-            public string effective_metric_
-            {
-                get
-                {
-                    return self.GetAttr("effective_metric_").As<string>();
-                }
-            }
-
-            public PyDict effective_metric_params_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_samples_fit_
-            {
-                get
-                {
-                    return self.GetAttr("n_samples_fit_").As<int>();
-                }
-            }
-
-            public KNeighborsTransformer fit(NDarray X)
+            public static KNeighborsTransformer Wrap(PyObject pyObject) => new KNeighborsTransformer(pyObject);
+            public string effective_metric_ => self.GetAttr("effective_metric_").As<string>()public PyDict effective_metric_params_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+            public int n_samples_fit_ => self.GetAttr("n_samples_fit_").As<int>()public KNeighborsTransformer fit(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public NDarray fit_transform(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -747,14 +604,14 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (input_features != null)
                     pyDict["input_features"] = Helpers.ToPython(input_features);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -763,7 +620,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public (NDarray? , NDarray? ) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
@@ -776,7 +633,7 @@ public static partial class sklearn
                     pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors);
                 if (return_distance != true)
                     pyDict["return_distance"] = Helpers.ToPython(return_distance);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray kneighbors_graph(NDarray? X = null, int? n_neighbors = null, string mode = "connectivity")
@@ -789,7 +646,7 @@ public static partial class sklearn
                     pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors);
                 if (mode != "connectivity")
                     pyDict["mode"] = Helpers.ToPython(mode);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public KNeighborsTransformer set_output(PyObject? transform = null)
@@ -798,7 +655,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (transform != null)
                     pyDict["transform"] = Helpers.ToPython(transform);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_output", args, pyDict);
+                return this;
             }
 
             public KNeighborsTransformer set_params(Dictionary<string, PyObject>? @params = null)
@@ -807,14 +665,15 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public NDarray transform(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
         }
 
@@ -852,40 +711,12 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static KernelDensity Encapsule(PyObject pyObject) => new KernelDensity(pyObject);
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public PyObject tree_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public float bandwidth_
-            {
-                get
-                {
-                    return self.GetAttr("bandwidth_").As<float>();
-                }
-            }
-
-            public KernelDensity fit(NDarray X, PyObject? y = null, NDarray? sample_weight = null)
+            public static KernelDensity Wrap(PyObject pyObject) => new KernelDensity(pyObject);
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public PyObject tree_ => new NotImplementedException();
+            public NDarray feature_names_in_ => new NotImplementedException();
+            public float bandwidth_ => self.GetAttr("bandwidth_").As<float>()public KernelDensity fit(NDarray X, PyObject? y = null, NDarray? sample_weight = null)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
@@ -893,14 +724,15 @@ public static partial class sklearn
                     pyDict["y"] = Helpers.ToPython(y);
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -909,7 +741,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray sample(int n_samples = 1, int? random_state = null)
@@ -920,7 +752,7 @@ public static partial class sklearn
                     pyDict["n_samples"] = Helpers.ToPython(n_samples);
                 if (random_state != null)
                     pyDict["random_state"] = Helpers.ToPython(random_state);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float score(NDarray X, PyObject? y = null)
@@ -929,14 +761,13 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (y != null)
                     pyDict["y"] = Helpers.ToPython(y);
-                return self.InvokeMethod("score", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("score", args, pyDict).As<float>()}
 
             public NDarray score_samples(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public KernelDensity set_fit_request(string? sample_weight = "$UNCHANGED$")
@@ -945,7 +776,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != "$UNCHANGED$")
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_fit_request", args, pyDict);
+                return this;
             }
 
             public KernelDensity set_params(Dictionary<string, PyObject>? @params = null)
@@ -954,7 +786,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
         }
 
@@ -992,97 +825,39 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static LocalOutlierFactor Encapsule(PyObject pyObject) => new LocalOutlierFactor(pyObject);
-            public NDarray negative_outlier_factor_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_neighbors_
-            {
-                get
-                {
-                    return self.GetAttr("n_neighbors_").As<int>();
-                }
-            }
-
-            public float offset_
-            {
-                get
-                {
-                    return self.GetAttr("offset_").As<float>();
-                }
-            }
-
-            public string effective_metric_
-            {
-                get
-                {
-                    return self.GetAttr("effective_metric_").As<string>();
-                }
-            }
-
-            public PyDict effective_metric_params_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_samples_fit_
-            {
-                get
-                {
-                    return self.GetAttr("n_samples_fit_").As<int>();
-                }
-            }
-
-            public NDarray decision_function(NDarray X)
+            public static LocalOutlierFactor Wrap(PyObject pyObject) => new LocalOutlierFactor(pyObject);
+            public NDarray negative_outlier_factor_ => new NotImplementedException();
+            public int n_neighbors_ => self.GetAttr("n_neighbors_").As<int>()public float offset_ => self.GetAttr("offset_").As<float>()public string effective_metric_ => self.GetAttr("effective_metric_").As<string>()public PyDict effective_metric_params_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+            public int n_samples_fit_ => self.GetAttr("n_samples_fit_").As<int>()public NDarray decision_function(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public LocalOutlierFactor fit(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public NDarray fit_predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -1091,7 +866,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public (NDarray? , NDarray? ) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
@@ -1104,7 +879,7 @@ public static partial class sklearn
                     pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors);
                 if (return_distance != true)
                     pyDict["return_distance"] = Helpers.ToPython(return_distance);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray kneighbors_graph(NDarray? X = null, int? n_neighbors = null, string mode = "connectivity")
@@ -1117,7 +892,7 @@ public static partial class sklearn
                     pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors);
                 if (mode != "connectivity")
                     pyDict["mode"] = Helpers.ToPython(mode);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray predict(NDarray? X = null)
@@ -1126,14 +901,14 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (X != null)
                     pyDict["X"] = Helpers.ToPython(X);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray score_samples(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public LocalOutlierFactor set_params(Dictionary<string, PyObject>? @params = null)
@@ -1142,7 +917,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
         }
 
@@ -1166,51 +942,26 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static NearestCentroid Encapsule(PyObject pyObject) => new NearestCentroid(pyObject);
-            public NDarray centroids_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray classes_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
+            public static NearestCentroid Wrap(PyObject pyObject) => new NearestCentroid(pyObject);
+            public NDarray centroids_ => new NotImplementedException();
+            public NDarray classes_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
 
             public NearestCentroid fit(NDarray X, NDarray y)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X), Helpers.ToPython(y) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -1219,14 +970,14 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -1235,8 +986,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("score", args, pyDict).As<float>()}
 
             public NearestCentroid set_params(Dictionary<string, PyObject>? @params = null)
             {
@@ -1244,7 +994,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public NearestCentroid set_score_request(string? sample_weight = "$UNCHANGED$")
@@ -1253,7 +1004,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != "$UNCHANGED$")
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_score_request", args, pyDict);
+                return this;
             }
         }
 
@@ -1289,59 +1041,24 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static NearestNeighbors Encapsule(PyObject pyObject) => new NearestNeighbors(pyObject);
-            public string effective_metric_
-            {
-                get
-                {
-                    return self.GetAttr("effective_metric_").As<string>();
-                }
-            }
-
-            public PyDict effective_metric_params_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_samples_fit_
-            {
-                get
-                {
-                    return self.GetAttr("n_samples_fit_").As<int>();
-                }
-            }
-
-            public NearestNeighbors fit(NDarray X)
+            public static NearestNeighbors Wrap(PyObject pyObject) => new NearestNeighbors(pyObject);
+            public string effective_metric_ => self.GetAttr("effective_metric_").As<string>()public PyDict effective_metric_params_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+            public int n_samples_fit_ => self.GetAttr("n_samples_fit_").As<int>()public NearestNeighbors fit(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -1350,7 +1067,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public (NDarray? , NDarray? ) kneighbors(NDarray? X = null, int? n_neighbors = null, bool return_distance = true)
@@ -1363,7 +1080,7 @@ public static partial class sklearn
                     pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors);
                 if (return_distance != true)
                     pyDict["return_distance"] = Helpers.ToPython(return_distance);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray kneighbors_graph(NDarray? X = null, int? n_neighbors = null, string mode = "connectivity")
@@ -1376,7 +1093,7 @@ public static partial class sklearn
                     pyDict["n_neighbors"] = Helpers.ToPython(n_neighbors);
                 if (mode != "connectivity")
                     pyDict["mode"] = Helpers.ToPython(mode);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public (NDarray? , NDarray? ) radius_neighbors(NDarray? X = null, float? radius = null, bool return_distance = true, bool sort_results = false)
@@ -1391,7 +1108,7 @@ public static partial class sklearn
                     pyDict["return_distance"] = Helpers.ToPython(return_distance);
                 if (sort_results != false)
                     pyDict["sort_results"] = Helpers.ToPython(sort_results);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray radius_neighbors_graph(NDarray? X = null, float? radius = null, string mode = "connectivity", bool sort_results = false)
@@ -1406,7 +1123,7 @@ public static partial class sklearn
                     pyDict["mode"] = Helpers.ToPython(mode);
                 if (sort_results != false)
                     pyDict["sort_results"] = Helpers.ToPython(sort_results);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NearestNeighbors set_params(Dictionary<string, PyObject>? @params = null)
@@ -1415,7 +1132,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
         }
 
@@ -1451,52 +1169,19 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static NeighborhoodComponentsAnalysis Encapsule(PyObject pyObject) => new NeighborhoodComponentsAnalysis(pyObject);
-            public NDarray components_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public int n_iter_
-            {
-                get
-                {
-                    return self.GetAttr("n_iter_").As<int>();
-                }
-            }
-
-            public PyObject random_state_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
+            public static NeighborhoodComponentsAnalysis Wrap(PyObject pyObject) => new NeighborhoodComponentsAnalysis(pyObject);
+            public NDarray components_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public int n_iter_ => self.GetAttr("n_iter_").As<int>()public PyObject random_state_ => new NotImplementedException();
+            public NDarray feature_names_in_ => new NotImplementedException();
 
             public NeighborhoodComponentsAnalysis fit(NDarray X, NDarray y)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X), Helpers.ToPython(y) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null)
@@ -1507,7 +1192,7 @@ public static partial class sklearn
                     pyDict["y"] = Helpers.ToPython(y);
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -1516,14 +1201,14 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (input_features != null)
                     pyDict["input_features"] = Helpers.ToPython(input_features);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -1532,7 +1217,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NeighborhoodComponentsAnalysis set_output(PyObject? transform = null)
@@ -1541,7 +1226,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (transform != null)
                     pyDict["transform"] = Helpers.ToPython(transform);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_output", args, pyDict);
+                return this;
             }
 
             public NeighborhoodComponentsAnalysis set_params(Dictionary<string, PyObject>? @params = null)
@@ -1550,14 +1236,15 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public NDarray transform(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
         }
 
@@ -1595,83 +1282,26 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static RadiusNeighborsClassifier Encapsule(PyObject pyObject) => new RadiusNeighborsClassifier(pyObject);
-            public NDarray classes_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public string effective_metric_
-            {
-                get
-                {
-                    return self.GetAttr("effective_metric_").As<string>();
-                }
-            }
-
-            public PyDict effective_metric_params_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_samples_fit_
-            {
-                get
-                {
-                    return self.GetAttr("n_samples_fit_").As<int>();
-                }
-            }
-
-            public NDarray outlier_label_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public bool outputs_2d_
-            {
-                get
-                {
-                    return self.GetAttr("outputs_2d_").As<bool>();
-                }
-            }
-
-            public RadiusNeighborsClassifier fit(NDarray X, NDarray y)
+            public static RadiusNeighborsClassifier Wrap(PyObject pyObject) => new RadiusNeighborsClassifier(pyObject);
+            public NDarray classes_ => new NotImplementedException();
+            public string effective_metric_ => self.GetAttr("effective_metric_").As<string>()public PyDict effective_metric_params_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+            public int n_samples_fit_ => self.GetAttr("n_samples_fit_").As<int>()public NDarray outlier_label_ => new NotImplementedException();
+            public bool outputs_2d_ => self.GetAttr("outputs_2d_").As<bool>()public RadiusNeighborsClassifier fit(NDarray X, NDarray y)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X), Helpers.ToPython(y) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -1680,21 +1310,21 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray predict_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public (NDarray? , NDarray? ) radius_neighbors(NDarray? X = null, float? radius = null, bool return_distance = true, bool sort_results = false)
@@ -1709,7 +1339,7 @@ public static partial class sklearn
                     pyDict["return_distance"] = Helpers.ToPython(return_distance);
                 if (sort_results != false)
                     pyDict["sort_results"] = Helpers.ToPython(sort_results);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray radius_neighbors_graph(NDarray? X = null, float? radius = null, string mode = "connectivity", bool sort_results = false)
@@ -1724,7 +1354,7 @@ public static partial class sklearn
                     pyDict["mode"] = Helpers.ToPython(mode);
                 if (sort_results != false)
                     pyDict["sort_results"] = Helpers.ToPython(sort_results);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -1733,8 +1363,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("score", args, pyDict).As<float>()}
 
             public RadiusNeighborsClassifier set_params(Dictionary<string, PyObject>? @params = null)
             {
@@ -1742,7 +1371,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public RadiusNeighborsClassifier set_score_request(string? sample_weight = "$UNCHANGED$")
@@ -1751,7 +1381,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != "$UNCHANGED$")
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_score_request", args, pyDict);
+                return this;
             }
         }
 
@@ -1787,59 +1418,24 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static RadiusNeighborsRegressor Encapsule(PyObject pyObject) => new RadiusNeighborsRegressor(pyObject);
-            public string effective_metric_
-            {
-                get
-                {
-                    return self.GetAttr("effective_metric_").As<string>();
-                }
-            }
-
-            public PyDict effective_metric_params_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_samples_fit_
-            {
-                get
-                {
-                    return self.GetAttr("n_samples_fit_").As<int>();
-                }
-            }
-
-            public RadiusNeighborsRegressor fit(NDarray X, NDarray y)
+            public static RadiusNeighborsRegressor Wrap(PyObject pyObject) => new RadiusNeighborsRegressor(pyObject);
+            public string effective_metric_ => self.GetAttr("effective_metric_").As<string>()public PyDict effective_metric_params_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+            public int n_samples_fit_ => self.GetAttr("n_samples_fit_").As<int>()public RadiusNeighborsRegressor fit(NDarray X, NDarray y)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X), Helpers.ToPython(y) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -1848,14 +1444,14 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public (NDarray? , NDarray? ) radius_neighbors(NDarray? X = null, float? radius = null, bool return_distance = true, bool sort_results = false)
@@ -1870,7 +1466,7 @@ public static partial class sklearn
                     pyDict["return_distance"] = Helpers.ToPython(return_distance);
                 if (sort_results != false)
                     pyDict["sort_results"] = Helpers.ToPython(sort_results);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray radius_neighbors_graph(NDarray? X = null, float? radius = null, string mode = "connectivity", bool sort_results = false)
@@ -1885,7 +1481,7 @@ public static partial class sklearn
                     pyDict["mode"] = Helpers.ToPython(mode);
                 if (sort_results != false)
                     pyDict["sort_results"] = Helpers.ToPython(sort_results);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -1894,8 +1490,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("score", args, pyDict).As<float>()}
 
             public RadiusNeighborsRegressor set_params(Dictionary<string, PyObject>? @params = null)
             {
@@ -1903,7 +1498,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public RadiusNeighborsRegressor set_score_request(string? sample_weight = "$UNCHANGED$")
@@ -1912,7 +1508,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != "$UNCHANGED$")
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_score_request", args, pyDict);
+                return this;
             }
         }
 
@@ -1948,59 +1545,24 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static RadiusNeighborsTransformer Encapsule(PyObject pyObject) => new RadiusNeighborsTransformer(pyObject);
-            public string effective_metric_
-            {
-                get
-                {
-                    return self.GetAttr("effective_metric_").As<string>();
-                }
-            }
-
-            public PyDict effective_metric_params_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_samples_fit_
-            {
-                get
-                {
-                    return self.GetAttr("n_samples_fit_").As<int>();
-                }
-            }
-
-            public RadiusNeighborsTransformer fit(NDarray X)
+            public static RadiusNeighborsTransformer Wrap(PyObject pyObject) => new RadiusNeighborsTransformer(pyObject);
+            public string effective_metric_ => self.GetAttr("effective_metric_").As<string>()public PyDict effective_metric_params_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+            public int n_samples_fit_ => self.GetAttr("n_samples_fit_").As<int>()public RadiusNeighborsTransformer fit(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public NDarray fit_transform(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -2009,14 +1571,14 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (input_features != null)
                     pyDict["input_features"] = Helpers.ToPython(input_features);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -2025,7 +1587,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public (NDarray? , NDarray? ) radius_neighbors(NDarray? X = null, float? radius = null, bool return_distance = true, bool sort_results = false)
@@ -2040,7 +1602,7 @@ public static partial class sklearn
                     pyDict["return_distance"] = Helpers.ToPython(return_distance);
                 if (sort_results != false)
                     pyDict["sort_results"] = Helpers.ToPython(sort_results);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray radius_neighbors_graph(NDarray? X = null, float? radius = null, string mode = "connectivity", bool sort_results = false)
@@ -2055,7 +1617,7 @@ public static partial class sklearn
                     pyDict["mode"] = Helpers.ToPython(mode);
                 if (sort_results != false)
                     pyDict["sort_results"] = Helpers.ToPython(sort_results);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public RadiusNeighborsTransformer set_output(PyObject? transform = null)
@@ -2064,7 +1626,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (transform != null)
                     pyDict["transform"] = Helpers.ToPython(transform);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_output", args, pyDict);
+                return this;
             }
 
             public RadiusNeighborsTransformer set_params(Dictionary<string, PyObject>? @params = null)
@@ -2073,14 +1636,15 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public NDarray transform(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
         }
     }

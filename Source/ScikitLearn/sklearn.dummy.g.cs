@@ -1,4 +1,5 @@
 namespace ScikitLearn;
+#nullable enable
 public static partial class sklearn
 {
     public static class dummy
@@ -55,77 +56,28 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static DummyClassifier Encapsule(PyObject pyObject) => new DummyClassifier(pyObject);
-            public NDarray classes_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public PyTuple n_classes_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray class_prior_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_outputs_
-            {
-                get
-                {
-                    return self.GetAttr("n_outputs_").As<int>();
-                }
-            }
-
-            public bool sparse_output_
-            {
-                get
-                {
-                    return self.GetAttr("sparse_output_").As<bool>();
-                }
-            }
-
-            public DummyClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null)
+            public static DummyClassifier Wrap(PyObject pyObject) => new DummyClassifier(pyObject);
+            public NDarray classes_ => new NotImplementedException();
+            public PyTuple n_classes_ => new NotImplementedException();
+            public NDarray class_prior_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+            public int n_outputs_ => self.GetAttr("n_outputs_").As<int>()public bool sparse_output_ => self.GetAttr("sparse_output_").As<bool>()public DummyClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X), Helpers.ToPython(y) });
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -134,28 +86,28 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray predict_log_proba(PyObject X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray predict_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -164,8 +116,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("score", args, pyDict).As<float>()}
 
             public DummyClassifier set_fit_request(string? sample_weight = "$UNCHANGED$")
             {
@@ -173,7 +124,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != "$UNCHANGED$")
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_fit_request", args, pyDict);
+                return this;
             }
 
             public DummyClassifier set_params(Dictionary<string, PyObject>? @params = null)
@@ -182,7 +134,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public DummyClassifier set_score_request(string? sample_weight = "$UNCHANGED$")
@@ -191,7 +144,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != "$UNCHANGED$")
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_score_request", args, pyDict);
+                return this;
             }
         }
 
@@ -217,53 +171,26 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static DummyRegressor Encapsule(PyObject pyObject) => new DummyRegressor(pyObject);
-            public NDarray constant_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_outputs_
-            {
-                get
-                {
-                    return self.GetAttr("n_outputs_").As<int>();
-                }
-            }
-
-            public DummyRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null)
+            public static DummyRegressor Wrap(PyObject pyObject) => new DummyRegressor(pyObject);
+            public NDarray constant_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+            public int n_outputs_ => self.GetAttr("n_outputs_").As<int>()public DummyRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X), Helpers.ToPython(y) });
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -272,7 +199,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public (NDarray? , NDarray? ) predict(NDarray X, bool return_std = false)
@@ -281,7 +208,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (return_std != false)
                     pyDict["return_std"] = Helpers.ToPython(return_std);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -290,8 +217,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("score", args, pyDict).As<float>()}
 
             public DummyRegressor set_fit_request(string? sample_weight = "$UNCHANGED$")
             {
@@ -299,7 +225,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != "$UNCHANGED$")
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_fit_request", args, pyDict);
+                return this;
             }
 
             public DummyRegressor set_params(Dictionary<string, PyObject>? @params = null)
@@ -308,7 +235,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public DummyRegressor set_predict_request(string? return_std = "$UNCHANGED$")
@@ -317,7 +245,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (return_std != "$UNCHANGED$")
                     pyDict["return_std"] = Helpers.ToPython(return_std);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_predict_request", args, pyDict);
+                return this;
             }
 
             public DummyRegressor set_score_request(string? sample_weight = "$UNCHANGED$")
@@ -326,7 +255,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != "$UNCHANGED$")
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_score_request", args, pyDict);
+                return this;
             }
         }
     }

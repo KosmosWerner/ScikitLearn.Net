@@ -35,6 +35,7 @@
 
 	<ItemGroup>
 		<Using Include="Numpy" />
+		<Using Include="Numpy.Models" />
 		<Using Include="Python.Runtime" />
 	</ItemGroup>
 </Project>

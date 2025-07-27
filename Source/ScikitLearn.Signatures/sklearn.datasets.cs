@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Numpy;
+using Numpy.Models;
 using Python.Runtime;
 using ScikitLearn.Signatures.Annotations;
 
@@ -170,7 +171,7 @@ public static partial class sklearn
 
         [Checked]
         public static (NDarray X, NDarray y) make_moons(
-            (int, int) n_samples,
+            Shape n_samples,
             bool shuffle = true,
             float? noise = null,
             int? random_state = null) => default!;

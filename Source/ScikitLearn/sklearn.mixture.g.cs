@@ -1,4 +1,5 @@
 namespace ScikitLearn;
+#nullable enable
 public static partial class sklearn
 {
     public static class mixture
@@ -83,170 +84,41 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static BayesianGaussianMixture Encapsule(PyObject pyObject) => new BayesianGaussianMixture(pyObject);
-            public NDarray weights_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray means_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray covariances_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray precisions_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray precisions_cholesky_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public bool converged_
-            {
-                get
-                {
-                    return self.GetAttr("converged_").As<bool>();
-                }
-            }
-
-            public int n_iter_
-            {
-                get
-                {
-                    return self.GetAttr("n_iter_").As<int>();
-                }
-            }
-
-            public float lower_bound_
-            {
-                get
-                {
-                    return self.GetAttr("lower_bound_").As<float>();
-                }
-            }
-
-            public float weight_concentration_prior_
-            {
-                get
-                {
-                    return self.GetAttr("weight_concentration_prior_").As<float>();
-                }
-            }
-
-            public NDarray weight_concentration_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public float mean_precision_prior_
-            {
-                get
-                {
-                    return self.GetAttr("mean_precision_prior_").As<float>();
-                }
-            }
-
-            public NDarray mean_precision_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray mean_prior_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public float degrees_of_freedom_prior_
-            {
-                get
-                {
-                    return self.GetAttr("degrees_of_freedom_prior_").As<float>();
-                }
-            }
-
-            public NDarray degrees_of_freedom_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray covariance_prior_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
+            public static BayesianGaussianMixture Wrap(PyObject pyObject) => new BayesianGaussianMixture(pyObject);
+            public NDarray weights_ => new NotImplementedException();
+            public NDarray means_ => new NotImplementedException();
+            public NDarray covariances_ => new NotImplementedException();
+            public NDarray precisions_ => new NotImplementedException();
+            public NDarray precisions_cholesky_ => new NotImplementedException();
+            public bool converged_ => self.GetAttr("converged_").As<bool>()public int n_iter_ => self.GetAttr("n_iter_").As<int>()public float lower_bound_ => self.GetAttr("lower_bound_").As<float>()public float weight_concentration_prior_ => self.GetAttr("weight_concentration_prior_").As<float>()public NDarray weight_concentration_ => new NotImplementedException();
+            public float mean_precision_prior_ => self.GetAttr("mean_precision_prior_").As<float>()public NDarray mean_precision_ => new NotImplementedException();
+            public NDarray mean_prior_ => new NotImplementedException();
+            public float degrees_of_freedom_prior_ => self.GetAttr("degrees_of_freedom_prior_").As<float>()public NDarray degrees_of_freedom_ => new NotImplementedException();
+            public NDarray covariance_prior_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
 
             public BayesianGaussianMixture fit(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public NDarray fit_predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -255,21 +127,21 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray predict_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public (NDarray? , NDarray? ) sample(int n_samples = 1)
@@ -278,21 +150,20 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (n_samples != 1)
                     pyDict["n_samples"] = Helpers.ToPython(n_samples);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float score(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return self.InvokeMethod("score", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("score", args, pyDict).As<float>()}
 
             public NDarray score_samples(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public BayesianGaussianMixture set_params(Dictionary<string, PyObject>? @params = null)
@@ -301,7 +172,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
         }
 
@@ -349,120 +221,48 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static GaussianMixture Encapsule(PyObject pyObject) => new GaussianMixture(pyObject);
-            public NDarray weights_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray means_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray covariances_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray precisions_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray precisions_cholesky_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public bool converged_
-            {
-                get
-                {
-                    return self.GetAttr("converged_").As<bool>();
-                }
-            }
-
-            public int n_iter_
-            {
-                get
-                {
-                    return self.GetAttr("n_iter_").As<int>();
-                }
-            }
-
-            public float lower_bound_
-            {
-                get
-                {
-                    return self.GetAttr("lower_bound_").As<float>();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
+            public static GaussianMixture Wrap(PyObject pyObject) => new GaussianMixture(pyObject);
+            public NDarray weights_ => new NotImplementedException();
+            public NDarray means_ => new NotImplementedException();
+            public NDarray covariances_ => new NotImplementedException();
+            public NDarray precisions_ => new NotImplementedException();
+            public NDarray precisions_cholesky_ => new NotImplementedException();
+            public bool converged_ => self.GetAttr("converged_").As<bool>()public int n_iter_ => self.GetAttr("n_iter_").As<int>()public float lower_bound_ => self.GetAttr("lower_bound_").As<float>()public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
 
             public float aic(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return self.InvokeMethod("aic", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("aic", args, pyDict).As<float>()}
 
             public float bic(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return self.InvokeMethod("bic", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("bic", args, pyDict).As<float>()}
 
             public GaussianMixture fit(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public NDarray fit_predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -471,21 +271,21 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray predict_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public (NDarray? , NDarray? ) sample(int n_samples = 1)
@@ -494,21 +294,20 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (n_samples != 1)
                     pyDict["n_samples"] = Helpers.ToPython(n_samples);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float score(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return self.InvokeMethod("score", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("score", args, pyDict).As<float>()}
 
             public NDarray score_samples(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public GaussianMixture set_params(Dictionary<string, PyObject>? @params = null)
@@ -517,7 +316,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
         }
     }

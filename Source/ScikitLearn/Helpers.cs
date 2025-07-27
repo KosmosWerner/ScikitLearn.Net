@@ -1,4 +1,5 @@
 ﻿using Numpy;
+using Numpy.Models;
 using Python.Runtime;
 using System.Collections.Generic;
 
@@ -27,6 +28,13 @@ public static class Helpers
         PyObject[] objs = new PyObject[value.Length];
         for (int i = 0; i < value.Length; i++) objs[i] = ToPython(value[i]);
         return new PyTuple(objs);
+    }
+    public static PyTuple ToPython(Shape shape)
+    {
+        PyObject[] array = new PyObject[shape.Dimensions.Length];
+        for (int i = 0; i < shape.Dimensions.Length; i++)
+            array[i] = ToPython(shape.Dimensions[i]);
+        return new PyTuple(array);
     }
 
     public static PyDict ToPython(Dictionary<string, bool> value)

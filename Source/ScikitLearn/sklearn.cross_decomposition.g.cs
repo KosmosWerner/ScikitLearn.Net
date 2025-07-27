@@ -1,4 +1,5 @@
 namespace ScikitLearn;
+#nullable enable
 public static partial class sklearn
 {
     public static class cross_decomposition
@@ -59,94 +60,19 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static CCA Encapsule(PyObject pyObject) => new CCA(pyObject);
-            public NDarray x_weights_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray y_weights_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray x_loadings_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray y_loadings_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray x_rotations_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray y_rotations_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray coef_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray intercept_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray n_iter_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
+            public static CCA Wrap(PyObject pyObject) => new CCA(pyObject);
+            public NDarray x_weights_ => new NotImplementedException();
+            public NDarray y_weights_ => new NotImplementedException();
+            public NDarray x_loadings_ => new NotImplementedException();
+            public NDarray y_loadings_ => new NotImplementedException();
+            public NDarray x_rotations_ => new NotImplementedException();
+            public NDarray y_rotations_ => new NotImplementedException();
+            public NDarray coef_ => new NotImplementedException();
+            public NDarray intercept_ => new NotImplementedException();
+            public NDarray n_iter_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
 
             public CCA fit(NDarray X, NDarray? y = null, NDarray? Y = null)
             {
@@ -156,7 +82,8 @@ public static partial class sklearn
                     pyDict["y"] = Helpers.ToPython(y);
                 if (Y != null)
                     pyDict["Y"] = Helpers.ToPython(Y);
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public CCA fit_transform(NDarray X, NDarray? y = null)
@@ -165,7 +92,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (y != null)
                     pyDict["y"] = Helpers.ToPython(y);
-                throw new NotImplementedException();
+                self.InvokeMethod("fit_transform", args, pyDict);
+                return this;
             }
 
             public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -174,14 +102,14 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (input_features != null)
                     pyDict["input_features"] = Helpers.ToPython(input_features);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -190,7 +118,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public (NDarray? , NDarray? ) inverse_transform(NDarray X, NDarray? y = null, NDarray? Y = null)
@@ -201,7 +129,7 @@ public static partial class sklearn
                     pyDict["y"] = Helpers.ToPython(y);
                 if (Y != null)
                     pyDict["Y"] = Helpers.ToPython(Y);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray predict(NDarray X, bool copy = true)
@@ -210,7 +138,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (copy != true)
                     pyDict["copy"] = Helpers.ToPython(copy);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -219,8 +147,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("score", args, pyDict).As<float>()}
 
             public CCA set_output(PyObject? transform = null)
             {
@@ -228,7 +155,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (transform != null)
                     pyDict["transform"] = Helpers.ToPython(transform);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_output", args, pyDict);
+                return this;
             }
 
             public CCA set_params(Dictionary<string, PyObject>? @params = null)
@@ -237,7 +165,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public CCA set_predict_request(string? copy = "$UNCHANGED$")
@@ -246,7 +175,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (copy != "$UNCHANGED$")
                     pyDict["copy"] = Helpers.ToPython(copy);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_predict_request", args, pyDict);
+                return this;
             }
 
             public CCA set_score_request(string? sample_weight = "$UNCHANGED$")
@@ -255,7 +185,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != "$UNCHANGED$")
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_score_request", args, pyDict);
+                return this;
             }
 
             public CCA set_transform_request(string? copy = "$UNCHANGED$")
@@ -264,7 +195,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (copy != "$UNCHANGED$")
                     pyDict["copy"] = Helpers.ToPython(copy);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_transform_request", args, pyDict);
+                return this;
             }
 
             public NDarray transform(NDarray X, NDarray? y = null, NDarray? Y = null, bool copy = true)
@@ -277,7 +209,7 @@ public static partial class sklearn
                     pyDict["Y"] = Helpers.ToPython(Y);
                 if (copy != true)
                     pyDict["copy"] = Helpers.ToPython(copy);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
         }
 
@@ -309,94 +241,19 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static PLSCanonical Encapsule(PyObject pyObject) => new PLSCanonical(pyObject);
-            public NDarray x_weights_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray y_weights_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray x_loadings_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray y_loadings_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray x_rotations_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray y_rotations_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray coef_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray intercept_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray n_iter_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
+            public static PLSCanonical Wrap(PyObject pyObject) => new PLSCanonical(pyObject);
+            public NDarray x_weights_ => new NotImplementedException();
+            public NDarray y_weights_ => new NotImplementedException();
+            public NDarray x_loadings_ => new NotImplementedException();
+            public NDarray y_loadings_ => new NotImplementedException();
+            public NDarray x_rotations_ => new NotImplementedException();
+            public NDarray y_rotations_ => new NotImplementedException();
+            public NDarray coef_ => new NotImplementedException();
+            public NDarray intercept_ => new NotImplementedException();
+            public NDarray n_iter_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
 
             public PLSCanonical fit(NDarray X, NDarray? y = null, NDarray? Y = null)
             {
@@ -406,7 +263,8 @@ public static partial class sklearn
                     pyDict["y"] = Helpers.ToPython(y);
                 if (Y != null)
                     pyDict["Y"] = Helpers.ToPython(Y);
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public PLSCanonical fit_transform(NDarray X, NDarray? y = null)
@@ -415,7 +273,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (y != null)
                     pyDict["y"] = Helpers.ToPython(y);
-                throw new NotImplementedException();
+                self.InvokeMethod("fit_transform", args, pyDict);
+                return this;
             }
 
             public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -424,14 +283,14 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (input_features != null)
                     pyDict["input_features"] = Helpers.ToPython(input_features);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -440,7 +299,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public (NDarray? , NDarray? ) inverse_transform(NDarray X, NDarray? y = null, NDarray? Y = null)
@@ -451,7 +310,7 @@ public static partial class sklearn
                     pyDict["y"] = Helpers.ToPython(y);
                 if (Y != null)
                     pyDict["Y"] = Helpers.ToPython(Y);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray predict(NDarray X, bool copy = true)
@@ -460,7 +319,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (copy != true)
                     pyDict["copy"] = Helpers.ToPython(copy);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -469,8 +328,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("score", args, pyDict).As<float>()}
 
             public PLSCanonical set_output(PyObject? transform = null)
             {
@@ -478,7 +336,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (transform != null)
                     pyDict["transform"] = Helpers.ToPython(transform);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_output", args, pyDict);
+                return this;
             }
 
             public PLSCanonical set_params(Dictionary<string, PyObject>? @params = null)
@@ -487,7 +346,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public PLSCanonical set_predict_request(string? copy = "$UNCHANGED$")
@@ -496,7 +356,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (copy != "$UNCHANGED$")
                     pyDict["copy"] = Helpers.ToPython(copy);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_predict_request", args, pyDict);
+                return this;
             }
 
             public PLSCanonical set_score_request(string? sample_weight = "$UNCHANGED$")
@@ -505,7 +366,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != "$UNCHANGED$")
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_score_request", args, pyDict);
+                return this;
             }
 
             public PLSCanonical set_transform_request(string? copy = "$UNCHANGED$")
@@ -514,7 +376,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (copy != "$UNCHANGED$")
                     pyDict["copy"] = Helpers.ToPython(copy);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_transform_request", args, pyDict);
+                return this;
             }
 
             public NDarray transform(NDarray X, NDarray? y = null, NDarray? Y = null, bool copy = true)
@@ -527,7 +390,7 @@ public static partial class sklearn
                     pyDict["Y"] = Helpers.ToPython(Y);
                 if (copy != true)
                     pyDict["copy"] = Helpers.ToPython(copy);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
         }
 
@@ -557,110 +420,21 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static PLSRegression Encapsule(PyObject pyObject) => new PLSRegression(pyObject);
-            public NDarray x_weights_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray y_weights_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray x_loadings_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray y_loadings_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray x_scores_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray y_scores_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray x_rotations_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray y_rotations_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray coef_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray intercept_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray n_iter_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
+            public static PLSRegression Wrap(PyObject pyObject) => new PLSRegression(pyObject);
+            public NDarray x_weights_ => new NotImplementedException();
+            public NDarray y_weights_ => new NotImplementedException();
+            public NDarray x_loadings_ => new NotImplementedException();
+            public NDarray y_loadings_ => new NotImplementedException();
+            public NDarray x_scores_ => new NotImplementedException();
+            public NDarray y_scores_ => new NotImplementedException();
+            public NDarray x_rotations_ => new NotImplementedException();
+            public NDarray y_rotations_ => new NotImplementedException();
+            public NDarray coef_ => new NotImplementedException();
+            public NDarray intercept_ => new NotImplementedException();
+            public NDarray n_iter_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
 
             public PLSRegression fit(NDarray X, NDarray? y = null, NDarray? Y = null)
             {
@@ -670,7 +444,8 @@ public static partial class sklearn
                     pyDict["y"] = Helpers.ToPython(y);
                 if (Y != null)
                     pyDict["Y"] = Helpers.ToPython(Y);
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public PLSRegression fit_transform(NDarray X, NDarray? y = null)
@@ -679,7 +454,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (y != null)
                     pyDict["y"] = Helpers.ToPython(y);
-                throw new NotImplementedException();
+                self.InvokeMethod("fit_transform", args, pyDict);
+                return this;
             }
 
             public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -688,14 +464,14 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (input_features != null)
                     pyDict["input_features"] = Helpers.ToPython(input_features);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -704,7 +480,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public (NDarray? , NDarray? ) inverse_transform(NDarray X, NDarray? y = null, NDarray? Y = null)
@@ -715,7 +491,7 @@ public static partial class sklearn
                     pyDict["y"] = Helpers.ToPython(y);
                 if (Y != null)
                     pyDict["Y"] = Helpers.ToPython(Y);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray predict(NDarray X, bool copy = true)
@@ -724,7 +500,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (copy != true)
                     pyDict["copy"] = Helpers.ToPython(copy);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -733,8 +509,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("score", args, pyDict).As<float>()}
 
             public PLSRegression set_output(PyObject? transform = null)
             {
@@ -742,7 +517,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (transform != null)
                     pyDict["transform"] = Helpers.ToPython(transform);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_output", args, pyDict);
+                return this;
             }
 
             public PLSRegression set_params(Dictionary<string, PyObject>? @params = null)
@@ -751,7 +527,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public PLSRegression set_predict_request(string? copy = "$UNCHANGED$")
@@ -760,7 +537,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (copy != "$UNCHANGED$")
                     pyDict["copy"] = Helpers.ToPython(copy);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_predict_request", args, pyDict);
+                return this;
             }
 
             public PLSRegression set_score_request(string? sample_weight = "$UNCHANGED$")
@@ -769,7 +547,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != "$UNCHANGED$")
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_score_request", args, pyDict);
+                return this;
             }
 
             public PLSRegression set_transform_request(string? copy = "$UNCHANGED$")
@@ -778,7 +557,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (copy != "$UNCHANGED$")
                     pyDict["copy"] = Helpers.ToPython(copy);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_transform_request", args, pyDict);
+                return this;
             }
 
             public NDarray transform(NDarray X, NDarray? y = null, NDarray? Y = null, bool copy = true)
@@ -791,7 +571,7 @@ public static partial class sklearn
                     pyDict["Y"] = Helpers.ToPython(Y);
                 if (copy != true)
                     pyDict["copy"] = Helpers.ToPython(copy);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
         }
 
@@ -817,38 +597,12 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static PLSSVD Encapsule(PyObject pyObject) => new PLSSVD(pyObject);
-            public NDarray x_weights_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray y_weights_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
+            public static PLSSVD Wrap(PyObject pyObject) => new PLSSVD(pyObject);
+            public NDarray x_weights_ => new NotImplementedException();
+            public NDarray y_weights_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
 
             public PLSSVD fit(NDarray X, NDarray? y = null, NDarray? Y = null)
             {
@@ -858,7 +612,8 @@ public static partial class sklearn
                     pyDict["y"] = Helpers.ToPython(y);
                 if (Y != null)
                     pyDict["Y"] = Helpers.ToPython(Y);
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public NDarray fit_transform(NDarray X, NDarray? y = null)
@@ -867,7 +622,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (y != null)
                     pyDict["y"] = Helpers.ToPython(y);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -876,14 +631,14 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (input_features != null)
                     pyDict["input_features"] = Helpers.ToPython(input_features);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -892,7 +647,7 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PLSSVD set_output(PyObject? transform = null)
@@ -901,7 +656,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (transform != null)
                     pyDict["transform"] = Helpers.ToPython(transform);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_output", args, pyDict);
+                return this;
             }
 
             public PLSSVD set_params(Dictionary<string, PyObject>? @params = null)
@@ -910,7 +666,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public NDarray transform(NDarray X, NDarray? y = null, NDarray? Y = null)
@@ -921,7 +678,7 @@ public static partial class sklearn
                     pyDict["y"] = Helpers.ToPython(y);
                 if (Y != null)
                     pyDict["Y"] = Helpers.ToPython(Y);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
         }
     }

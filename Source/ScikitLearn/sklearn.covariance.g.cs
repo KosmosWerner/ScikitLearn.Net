@@ -1,4 +1,5 @@
 namespace ScikitLearn;
+#nullable enable
 public static partial class sklearn
 {
     public static class covariance
@@ -40,7 +41,7 @@ public static partial class sklearn
             PyDict pyDict = new PyDict();
             if (assume_centered != false)
                 pyDict["assume_centered"] = Helpers.ToPython(assume_centered);
-            throw new NotImplementedException();
+            return new NotImplementedException();
         }
 
         public static (NDarray? , NDarray? , PyObject? , int? ) graphical_lasso(NDarray emp_cov, float alpha, string mode = "cd", float tol = 0.0001f, float enet_tol = 0.0001f, int max_iter = 100, bool verbose = false, bool return_costs = false, float eps = float.Epsilon, bool return_n_iter = false)
@@ -64,7 +65,7 @@ public static partial class sklearn
                 pyDict["eps"] = Helpers.ToPython(eps);
             if (return_n_iter != false)
                 pyDict["return_n_iter"] = Helpers.ToPython(return_n_iter);
-            throw new NotImplementedException();
+            return new NotImplementedException();
         }
 
         public static (NDarray? , float? ) ledoit_wolf(NDarray X, bool assume_centered = false, int block_size = 1000)
@@ -76,7 +77,7 @@ public static partial class sklearn
                 pyDict["assume_centered"] = Helpers.ToPython(assume_centered);
             if (block_size != 1000)
                 pyDict["block_size"] = Helpers.ToPython(block_size);
-            throw new NotImplementedException();
+            return new NotImplementedException();
         }
 
         public static float ledoit_wolf_shrinkage(NDarray X, bool assume_centered = false, int block_size = 1000)
@@ -88,8 +89,7 @@ public static partial class sklearn
                 pyDict["assume_centered"] = Helpers.ToPython(assume_centered);
             if (block_size != 1000)
                 pyDict["block_size"] = Helpers.ToPython(block_size);
-            return self.InvokeMethod("ledoit_wolf_shrinkage", args, pyDict).As<float>();
-        }
+            return self.InvokeMethod("ledoit_wolf_shrinkage", args, pyDict).As<float>()}
 
         public static (NDarray? , float? ) oas(NDarray X, bool assume_centered = false)
         {
@@ -98,7 +98,7 @@ public static partial class sklearn
             PyDict pyDict = new PyDict();
             if (assume_centered != false)
                 pyDict["assume_centered"] = Helpers.ToPython(assume_centered);
-            throw new NotImplementedException();
+            return new NotImplementedException();
         }
 
         public static NDarray shrunk_covariance(NDarray emp_cov, float shrinkage = 0.1f)
@@ -108,7 +108,7 @@ public static partial class sklearn
             PyDict pyDict = new PyDict();
             if (shrinkage != 0.1f)
                 pyDict["shrinkage"] = Helpers.ToPython(shrinkage);
-            throw new NotImplementedException();
+            return new NotImplementedException();
         }
 
         public class EllipticEnvelope : PythonObject
@@ -137,107 +137,31 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static EllipticEnvelope Encapsule(PyObject pyObject) => new EllipticEnvelope(pyObject);
-            public NDarray location_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray covariance_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray precision_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray support_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public float offset_
-            {
-                get
-                {
-                    return self.GetAttr("offset_").As<float>();
-                }
-            }
-
-            public NDarray raw_location_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray raw_covariance_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray raw_support_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray dist_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
+            public static EllipticEnvelope Wrap(PyObject pyObject) => new EllipticEnvelope(pyObject);
+            public NDarray location_ => new NotImplementedException();
+            public NDarray covariance_ => new NotImplementedException();
+            public NDarray precision_ => new NotImplementedException();
+            public NDarray support_ => new NotImplementedException();
+            public float offset_ => self.GetAttr("offset_").As<float>()public NDarray raw_location_ => new NotImplementedException();
+            public NDarray raw_covariance_ => new NotImplementedException();
+            public NDarray raw_support_ => new NotImplementedException();
+            public NDarray dist_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
 
             public NDarray correct_covariance(NDarray data)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(data) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray decision_function(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float error_norm(NDarray comp_cov, string norm = "frobenius", bool scaling = true, bool squared = true)
@@ -250,14 +174,14 @@ public static partial class sklearn
                     pyDict["scaling"] = Helpers.ToPython(scaling);
                 if (squared != true)
                     pyDict["squared"] = Helpers.ToPython(squared);
-                return self.InvokeMethod("error_norm", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("error_norm", args, pyDict).As<float>()}
 
             public EllipticEnvelope fit(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public NDarray fit_predict(NDarray X, Dictionary<string, PyObject>? @params = null)
@@ -266,14 +190,14 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -282,35 +206,35 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray get_precision()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray mahalanobis(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public (NDarray? , NDarray? , NDarray? ) reweight_covariance(NDarray data)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(data) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -319,14 +243,13 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("score", args, pyDict).As<float>()}
 
             public NDarray score_samples(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public EllipticEnvelope set_params(Dictionary<string, PyObject>? @params = null)
@@ -335,7 +258,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public EllipticEnvelope set_score_request(string? sample_weight = "$UNCHANGED$")
@@ -344,7 +268,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != "$UNCHANGED$")
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_score_request", args, pyDict);
+                return this;
             }
         }
 
@@ -368,46 +293,13 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static EmpiricalCovariance Encapsule(PyObject pyObject) => new EmpiricalCovariance(pyObject);
-            public NDarray location_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray covariance_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray precision_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
+            public static EmpiricalCovariance Wrap(PyObject pyObject) => new EmpiricalCovariance(pyObject);
+            public NDarray location_ => new NotImplementedException();
+            public NDarray covariance_ => new NotImplementedException();
+            public NDarray precision_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
 
             public float error_norm(NDarray comp_cov, string norm = "frobenius", bool scaling = true, bool squared = true)
             {
@@ -419,21 +311,21 @@ public static partial class sklearn
                     pyDict["scaling"] = Helpers.ToPython(scaling);
                 if (squared != true)
                     pyDict["squared"] = Helpers.ToPython(squared);
-                return self.InvokeMethod("error_norm", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("error_norm", args, pyDict).As<float>()}
 
             public EmpiricalCovariance fit(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -442,29 +334,28 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray get_precision()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray mahalanobis(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float score(NDarray X_test)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X_test) });
                 PyDict pyDict = new PyDict();
-                return self.InvokeMethod("score", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("score", args, pyDict).As<float>()}
 
             public EmpiricalCovariance set_params(Dictionary<string, PyObject>? @params = null)
             {
@@ -472,7 +363,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public EmpiricalCovariance set_score_request(string? X_test = "$UNCHANGED$")
@@ -481,7 +373,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (X_test != "$UNCHANGED$")
                     pyDict["X_test"] = Helpers.ToPython(X_test);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_score_request", args, pyDict);
+                return this;
             }
         }
 
@@ -519,62 +412,14 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static GraphicalLasso Encapsule(PyObject pyObject) => new GraphicalLasso(pyObject);
-            public NDarray location_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray covariance_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray precision_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_iter_
-            {
-                get
-                {
-                    return self.GetAttr("n_iter_").As<int>();
-                }
-            }
-
-            public PyObject costs_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
+            public static GraphicalLasso Wrap(PyObject pyObject) => new GraphicalLasso(pyObject);
+            public NDarray location_ => new NotImplementedException();
+            public NDarray covariance_ => new NotImplementedException();
+            public NDarray precision_ => new NotImplementedException();
+            public int n_iter_ => self.GetAttr("n_iter_").As<int>()public PyObject costs_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
 
             public float error_norm(NDarray comp_cov, string norm = "frobenius", bool scaling = true, bool squared = true)
             {
@@ -586,21 +431,21 @@ public static partial class sklearn
                     pyDict["scaling"] = Helpers.ToPython(scaling);
                 if (squared != true)
                     pyDict["squared"] = Helpers.ToPython(squared);
-                return self.InvokeMethod("error_norm", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("error_norm", args, pyDict).As<float>()}
 
             public GraphicalLasso fit(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -609,29 +454,28 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray get_precision()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray mahalanobis(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float score(NDarray X_test)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X_test) });
                 PyDict pyDict = new PyDict();
-                return self.InvokeMethod("score", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("score", args, pyDict).As<float>()}
 
             public GraphicalLasso set_params(Dictionary<string, PyObject>? @params = null)
             {
@@ -639,7 +483,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public GraphicalLasso set_score_request(string? X_test = "$UNCHANGED$")
@@ -648,7 +493,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (X_test != "$UNCHANGED$")
                     pyDict["X_test"] = Helpers.ToPython(X_test);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_score_request", args, pyDict);
+                return this;
             }
         }
 
@@ -690,78 +536,15 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static GraphicalLassoCV Encapsule(PyObject pyObject) => new GraphicalLassoCV(pyObject);
-            public NDarray location_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray covariance_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray precision_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public PyObject costs_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public float alpha_
-            {
-                get
-                {
-                    return self.GetAttr("alpha_").As<float>();
-                }
-            }
-
-            public PyDict cv_results_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_iter_
-            {
-                get
-                {
-                    return self.GetAttr("n_iter_").As<int>();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
+            public static GraphicalLassoCV Wrap(PyObject pyObject) => new GraphicalLassoCV(pyObject);
+            public NDarray location_ => new NotImplementedException();
+            public NDarray covariance_ => new NotImplementedException();
+            public NDarray precision_ => new NotImplementedException();
+            public PyObject costs_ => new NotImplementedException();
+            public float alpha_ => self.GetAttr("alpha_").As<float>()public PyDict cv_results_ => new NotImplementedException();
+            public int n_iter_ => self.GetAttr("n_iter_").As<int>()public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
 
             public float error_norm(NDarray comp_cov, string norm = "frobenius", bool scaling = true, bool squared = true)
             {
@@ -773,8 +556,7 @@ public static partial class sklearn
                     pyDict["scaling"] = Helpers.ToPython(scaling);
                 if (squared != true)
                     pyDict["squared"] = Helpers.ToPython(squared);
-                return self.InvokeMethod("error_norm", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("error_norm", args, pyDict).As<float>()}
 
             public GraphicalLassoCV fit(NDarray X, Dictionary<string, PyObject>? @params = null)
             {
@@ -782,14 +564,15 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -798,29 +581,28 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray get_precision()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray mahalanobis(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float score(NDarray X_test)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X_test) });
                 PyDict pyDict = new PyDict();
-                return self.InvokeMethod("score", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("score", args, pyDict).As<float>()}
 
             public GraphicalLassoCV set_params(Dictionary<string, PyObject>? @params = null)
             {
@@ -828,7 +610,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public GraphicalLassoCV set_score_request(string? X_test = "$UNCHANGED$")
@@ -837,7 +620,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (X_test != "$UNCHANGED$")
                     pyDict["X_test"] = Helpers.ToPython(X_test);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_score_request", args, pyDict);
+                return this;
             }
         }
 
@@ -863,54 +647,13 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static LedoitWolf Encapsule(PyObject pyObject) => new LedoitWolf(pyObject);
-            public NDarray covariance_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray location_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray precision_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public float shrinkage_
-            {
-                get
-                {
-                    return self.GetAttr("shrinkage_").As<float>();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
+            public static LedoitWolf Wrap(PyObject pyObject) => new LedoitWolf(pyObject);
+            public NDarray covariance_ => new NotImplementedException();
+            public NDarray location_ => new NotImplementedException();
+            public NDarray precision_ => new NotImplementedException();
+            public float shrinkage_ => self.GetAttr("shrinkage_").As<float>()public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
 
             public float error_norm(NDarray comp_cov, string norm = "frobenius", bool scaling = true, bool squared = true)
             {
@@ -922,21 +665,21 @@ public static partial class sklearn
                     pyDict["scaling"] = Helpers.ToPython(scaling);
                 if (squared != true)
                     pyDict["squared"] = Helpers.ToPython(squared);
-                return self.InvokeMethod("error_norm", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("error_norm", args, pyDict).As<float>()}
 
             public LedoitWolf fit(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -945,29 +688,28 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray get_precision()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray mahalanobis(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float score(NDarray X_test)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X_test) });
                 PyDict pyDict = new PyDict();
-                return self.InvokeMethod("score", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("score", args, pyDict).As<float>()}
 
             public LedoitWolf set_params(Dictionary<string, PyObject>? @params = null)
             {
@@ -975,7 +717,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public LedoitWolf set_score_request(string? X_test = "$UNCHANGED$")
@@ -984,7 +727,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (X_test != "$UNCHANGED$")
                     pyDict["X_test"] = Helpers.ToPython(X_test);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_score_request", args, pyDict);
+                return this;
             }
         }
 
@@ -1012,92 +756,24 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static MinCovDet Encapsule(PyObject pyObject) => new MinCovDet(pyObject);
-            public NDarray raw_location_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray raw_covariance_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray raw_support_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray location_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray covariance_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray precision_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray support_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray dist_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
+            public static MinCovDet Wrap(PyObject pyObject) => new MinCovDet(pyObject);
+            public NDarray raw_location_ => new NotImplementedException();
+            public NDarray raw_covariance_ => new NotImplementedException();
+            public NDarray raw_support_ => new NotImplementedException();
+            public NDarray location_ => new NotImplementedException();
+            public NDarray covariance_ => new NotImplementedException();
+            public NDarray precision_ => new NotImplementedException();
+            public NDarray support_ => new NotImplementedException();
+            public NDarray dist_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
 
             public NDarray correct_covariance(NDarray data)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(data) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float error_norm(NDarray comp_cov, string norm = "frobenius", bool scaling = true, bool squared = true)
@@ -1110,21 +786,21 @@ public static partial class sklearn
                     pyDict["scaling"] = Helpers.ToPython(scaling);
                 if (squared != true)
                     pyDict["squared"] = Helpers.ToPython(squared);
-                return self.InvokeMethod("error_norm", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("error_norm", args, pyDict).As<float>()}
 
             public MinCovDet fit(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -1133,36 +809,35 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray get_precision()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray mahalanobis(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public (NDarray? , NDarray? , NDarray? ) reweight_covariance(NDarray data)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(data) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float score(NDarray X_test)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X_test) });
                 PyDict pyDict = new PyDict();
-                return self.InvokeMethod("score", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("score", args, pyDict).As<float>()}
 
             public MinCovDet set_params(Dictionary<string, PyObject>? @params = null)
             {
@@ -1170,7 +845,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public MinCovDet set_score_request(string? X_test = "$UNCHANGED$")
@@ -1179,7 +855,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (X_test != "$UNCHANGED$")
                     pyDict["X_test"] = Helpers.ToPython(X_test);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_score_request", args, pyDict);
+                return this;
             }
         }
 
@@ -1203,54 +880,13 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static OAS Encapsule(PyObject pyObject) => new OAS(pyObject);
-            public NDarray covariance_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray location_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray precision_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public float shrinkage_
-            {
-                get
-                {
-                    return self.GetAttr("shrinkage_").As<float>();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
+            public static OAS Wrap(PyObject pyObject) => new OAS(pyObject);
+            public NDarray covariance_ => new NotImplementedException();
+            public NDarray location_ => new NotImplementedException();
+            public NDarray precision_ => new NotImplementedException();
+            public float shrinkage_ => self.GetAttr("shrinkage_").As<float>()public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
 
             public float error_norm(NDarray comp_cov, string norm = "frobenius", bool scaling = true, bool squared = true)
             {
@@ -1262,21 +898,21 @@ public static partial class sklearn
                     pyDict["scaling"] = Helpers.ToPython(scaling);
                 if (squared != true)
                     pyDict["squared"] = Helpers.ToPython(squared);
-                return self.InvokeMethod("error_norm", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("error_norm", args, pyDict).As<float>()}
 
             public OAS fit(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -1285,29 +921,28 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray get_precision()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray mahalanobis(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float score(NDarray X_test)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X_test) });
                 PyDict pyDict = new PyDict();
-                return self.InvokeMethod("score", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("score", args, pyDict).As<float>()}
 
             public OAS set_params(Dictionary<string, PyObject>? @params = null)
             {
@@ -1315,7 +950,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public OAS set_score_request(string? X_test = "$UNCHANGED$")
@@ -1324,7 +960,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (X_test != "$UNCHANGED$")
                     pyDict["X_test"] = Helpers.ToPython(X_test);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_score_request", args, pyDict);
+                return this;
             }
         }
 
@@ -1350,46 +987,13 @@ public static partial class sklearn
                 self = pyObject;
             }
 
+            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
             public static ShrunkCovariance Encapsule(PyObject pyObject) => new ShrunkCovariance(pyObject);
-            public NDarray covariance_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray location_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public NDarray precision_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
-
-            public int n_features_in_
-            {
-                get
-                {
-                    return self.GetAttr("n_features_in_").As<int>();
-                }
-            }
-
-            public NDarray feature_names_in_
-            {
-                get
-                {
-                    throw new NotImplementedException();
-                }
-            }
+            public static ShrunkCovariance Wrap(PyObject pyObject) => new ShrunkCovariance(pyObject);
+            public NDarray covariance_ => new NotImplementedException();
+            public NDarray location_ => new NotImplementedException();
+            public NDarray precision_ => new NotImplementedException();
+            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
 
             public float error_norm(NDarray comp_cov, string norm = "frobenius", bool scaling = true, bool squared = true)
             {
@@ -1401,21 +1005,21 @@ public static partial class sklearn
                     pyDict["scaling"] = Helpers.ToPython(scaling);
                 if (squared != true)
                     pyDict["squared"] = Helpers.ToPython(squared);
-                return self.InvokeMethod("error_norm", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("error_norm", args, pyDict).As<float>()}
 
             public ShrunkCovariance fit(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                self.InvokeMethod("fit", args, pyDict);
+                return this;
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public PyDict get_params(bool deep = true)
@@ -1424,29 +1028,28 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray get_precision()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public NDarray mahalanobis(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                throw new NotImplementedException();
+                return new NotImplementedException();
             }
 
             public float score(NDarray X_test)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X_test) });
                 PyDict pyDict = new PyDict();
-                return self.InvokeMethod("score", args, pyDict).As<float>();
-            }
+                return self.InvokeMethod("score", args, pyDict).As<float>()}
 
             public ShrunkCovariance set_params(Dictionary<string, PyObject>? @params = null)
             {
@@ -1454,7 +1057,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_params", args, pyDict);
+                return this;
             }
 
             public ShrunkCovariance set_score_request(string? X_test = "$UNCHANGED$")
@@ -1463,7 +1067,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (X_test != "$UNCHANGED$")
                     pyDict["X_test"] = Helpers.ToPython(X_test);
-                throw new NotImplementedException();
+                self.InvokeMethod("set_score_request", args, pyDict);
+                return this;
             }
         }
     }

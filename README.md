@@ -20,7 +20,7 @@ Replace `"your_path_to_python311.dll"` with the actual path to `python311.dll` o
 
 ### Installing Python Locally
 
-If you prefer a local Python installation, install [Python.Included](https://github.com/henon/Python.Included) [NuGet package](https://www.nuget.org/packages/Python.Included/3.11.6) (version 3.11.6). Then add the following code to initialize the environment:
+If you prefer a local Python installation, **Install [Python.Included](https://github.com/henon/Python.Included) [NuGet package](https://www.nuget.org/packages/Python.Included/3.11.6) (version 3.11.6)** Then add the following code to initialize the environment:
 
 ```csharp
 using Python.Included;

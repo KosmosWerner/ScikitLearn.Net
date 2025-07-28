@@ -48,7 +48,7 @@ await Parallel.ForEachAsync(
     var class_nodes = namespace_node.Members.OfType<ClassDeclarationSyntax>();
 
     foreach (var class_node in class_nodes)
-        BuildClass(class_node, semantic_model, sb, [class_node.Identifier.Text], null);
+        WriteClass(class_node, semantic_model, sb, [class_node.Identifier.Text], null);
 
     // Output Path
     string solution_folder = Helpers.TryGetSolutionPath() ?? string.Empty;
@@ -65,93 +65,18 @@ await Parallel.ForEachAsync(
 });
 
 
-static bool IsModule(ClassDeclarationSyntax class_node)
+static bool IsValidModule(ClassDeclarationSyntax classNode)
 {
-    return class_node.AttributeLists
-        .SelectMany(a => a.Attributes)
-        .Any(a => a.Name.ToString().Contains("Module"));
+    bool hasModuleAttribute = classNode.AttributeLists
+        .SelectMany(list => list.Attributes)
+        .Any(attr => attr.Name.ToString().Contains("Module", StringComparison.OrdinalIgnoreCase));
+
+    bool isStatic = classNode.Modifiers.Any(mod => mod.IsKind(SyntaxKind.StaticKeyword));
+
+    return hasModuleAttribute && isStatic;
 }
 
-
-static void BuildClass(
-        ClassDeclarationSyntax class_declaration,
-        SemanticModel semantic_model,
-        StringBuilder sb,
-        string[] class_path,
-        string[]? last_module)
-{
-    using (CodeBlock.Class(class_declaration, sb))
-    {
-        if (IsModule(class_declaration))
-        {
-            last_module = class_path;
-
-            var py_last_module_path = string.Join('.', last_module.Select(p => p.TrimStart('@')));
-            sb.AppendLine("private static Lazy<PyObject> _lazy_self;");
-            sb.AppendLine("public static PyObject self { get => _lazy_self.Value; }");
-
-            sb.AppendLine("""
-            private static void ReInitializeLazySelf()
-            {
-                _lazy_self = new Lazy<PyObject>(() =>
-                {
-                    try { return InstallAndImport(); }
-                    catch (Exception) { return InstallAndImport(true); }
-                });
-            }
-            """);
-
-            sb.AppendLine("private static PyObject InstallAndImport(bool force = false){");
-            sb.AppendLine("PythonEngine.AddShutdownHandler(ReInitializeLazySelf);");
-            sb.AppendLine("PythonEngine.Initialize();");
-            sb.AppendLine($"return Py.Import(\"{py_last_module_path}\");}}");
-
-            sb.AppendLine($"static {class_declaration.Identifier.Text}() {{ ReInitializeLazySelf(); }}");
-        }
-
-        // Constructor
-        var constructor_nodes = class_declaration
-            .Members
-            .OfType<ConstructorDeclarationSyntax>();
-
-        foreach (var constructor_node in constructor_nodes)
-            BuildConstructor(constructor_node, semantic_model, sb, last_module);
-
-        // Properties
-        var property_nodes = class_declaration
-            .Members
-            .OfType<PropertyDeclarationSyntax>();
-
-        foreach (var property_node in property_nodes)
-            BuildProperty(property_node, semantic_model, sb);
-
-        // Methods
-        var method_nodes = class_declaration
-            .Members
-            .OfType<MethodDeclarationSyntax>();
-
-        foreach (var method_node in method_nodes.Where(m => m.Modifiers.Any(m => m.Text.Contains("static"))))
-        {
-            if (last_module != null)
-                AnalizeStaticMethodNode(method_node, semantic_model, sb, last_module);
-            else
-                Console.WriteLine($"Error {method_node.Identifier.Text} static methods");
-        }
-
-        foreach (var method_node in method_nodes.Where(m => !m.Modifiers.Any(m => m.Text.Contains("static"))))
-            AnalizeMethodNode(method_node, semantic_model, sb);
-
-        var class_nodes = class_declaration
-            .Members
-            .OfType<ClassDeclarationSyntax>();
-
-        foreach (var item in class_nodes)
-            BuildClass(item, semantic_model, sb, [.. class_path, item.Identifier.Text], last_module);
-    }
-}
-
-
-static void BuildArgsTuple(BaseMethodDeclarationSyntax method_node, StringBuilder sb)
+static void BuildArgs(BaseMethodDeclarationSyntax method_node, StringBuilder sb)
 {
     var params_without_default = method_node.ParameterList.Parameters
         .Where(p => p.Default == null)
@@ -179,80 +104,245 @@ static void BuildPyDict(BaseMethodDeclarationSyntax method_node, StringBuilder s
     }
 }
 
-static string PyObjectToCSharp(ITypeSymbol type, string py_object)
+static bool InheritsFrom(INamedTypeSymbol type, string baseTypeFullName)
 {
-    if (type.SpecialType == SpecialType.System_Boolean)
-        return $"{py_object}.As<bool>()";
-    else if (type.SpecialType == SpecialType.System_Int32)
-        return $"{py_object}.As<int>()";
-    else if (type.SpecialType == SpecialType.System_Single)
-        return $"{py_object}.As<float>()";
-    else if (type.SpecialType == SpecialType.System_Double)
-        return $"{py_object}.As<double>()";
-    else if (type.SpecialType == SpecialType.System_String)
-        return $"{py_object}.As<string>()";
-    else
+    var current = type.BaseType;
+    while (current != null)
     {
-        return "new NotImplementedException();";
+        if (current.ToDisplayString() == baseTypeFullName)
+            return true;
+        current = current.BaseType;
+    }
+    return false;
+}
+
+static string? WriteReturn(ITypeSymbol type, string pyObject, StringBuilder sb)
+{
+    switch (type.SpecialType)
+    {
+        case SpecialType.System_Boolean:
+            return $"{pyObject}.As<bool>()";
+
+        case SpecialType.System_Int32:
+            return $"{pyObject}.As<int>()";
+
+        case SpecialType.System_Single:
+            return $"{pyObject}.As<float>()";
+
+        case SpecialType.System_Double:
+            return $"{pyObject}.As<double>()";
+
+        case SpecialType.System_String:
+            return $"{pyObject}.As<string>()";
+    }
+
+    if (type.TypeKind == TypeKind.Class && type is INamedTypeSymbol namedType)
+    {
+        string fullName = namedType.ToDisplayString();
+
+        switch (fullName)
+        {
+            case "Python.Runtime.PyObject":
+                return pyObject;
+
+            case "Python.Runtime.PyDict":
+                return ($"new PyDict({pyObject})");
+
+            case "Python.Runtime.PyTuple":
+                return ($"new PyTuple({pyObject})");
+
+            case "Numpy.NDarray":
+                return ($"new NDarray({pyObject})");
+        }
+
+        if (namedType.Name == "NDarray" && namedType.TypeArguments.Length == 1)
+        {
+            string genericArg = namedType.TypeArguments[0].ToDisplayString();
+            return $"new NDarray<{genericArg}>({pyObject})";
+        }
+
+        if (InheritsFrom(namedType, "Numpy.PythonObject"))
+        {
+            return $"{fullName}.Wrap({pyObject});";
+        }
+    }
+
+    Console.WriteLine($"Failed to convert {type.ToDisplayString()}");
+    return null;
+}
+
+static void WriteClass(
+        ClassDeclarationSyntax classNode,
+        SemanticModel semanticModel,
+        StringBuilder sb,
+        string[] classPath,
+        string[]? lastModule)
+{
+    using (CodeBlock.BeginClass(classNode, sb))
+    {
+        // ----------------------------
+        // CONSTRUCTORS
+        // ----------------------------
+
+        if (IsValidModule(classNode))
+        {
+            lastModule = classPath;
+            WriteModuleConstructor(classNode, sb, lastModule);
+        }
+        else
+        {
+            var constructors = classNode.Members.OfType<ConstructorDeclarationSyntax>();
+
+            foreach (var constructor in constructors)
+            {
+                if (lastModule is not null)
+                    WriteConstructor(constructor, sb, lastModule);
+                else
+                    Console.WriteLine($"Error: Constructor '{constructor.Identifier.Text}' has no associated module.");
+            }
+        }
+
+        // ----------------------------
+        // PROPERTIES
+        // ----------------------------
+
+        var properties = classNode.Members.OfType<PropertyDeclarationSyntax>();
+
+        foreach (var property in properties)
+            WriteProperty(property, semanticModel, sb);
+
+        // ----------------------------
+        // METHODS
+        // ----------------------------
+
+        var methods = classNode.Members.OfType<MethodDeclarationSyntax>();
+
+        // Static methods
+        var staticMethods = methods.Where(m => m.Modifiers.Any(mod => mod.IsKind(SyntaxKind.StaticKeyword)));
+        foreach (var staticMethod in staticMethods)
+        {
+            if (lastModule is not null)
+                WriteStaticMethod(staticMethod, semanticModel, sb, lastModule);
+            else
+                Console.WriteLine($"Error: Static method '{staticMethod.Identifier.Text}' has no associated module.");
+        }
+
+        // Instance methods
+        var instanceMethods = methods.Where(m => !m.Modifiers.Any(mod => mod.IsKind(SyntaxKind.StaticKeyword)));
+        foreach (var instanceMethod in instanceMethods)
+            WriteInstanceMethod(instanceMethod, semanticModel, sb);
+
+        // ----------------------------
+        // INNER CLASSES
+        // ----------------------------
+
+        foreach (var innerClass in classNode.Members.OfType<ClassDeclarationSyntax>())
+            WriteClass(innerClass, semanticModel, sb, [.. classPath, innerClass.Identifier.Text], lastModule);
     }
 }
 
-static void BuildConstructor(
-    ConstructorDeclarationSyntax constructor_node,
-    SemanticModel semantic_model,
+static void WriteModuleConstructor(
+    ClassDeclarationSyntax classNode,
     StringBuilder sb,
-    string[]? last_module_path)
+    string[] lastModulePath)
 {
-    string method_name = constructor_node.Identifier.Text;
-    string py_method_name = constructor_node.Identifier.Text.TrimStart('@');
+    // Prepare names
+    var pyModule = string.Join('.', lastModulePath.Select(p => p.TrimStart('@')));
 
-    if (last_module_path == null)
+    // Generate fields and properties
+    sb.AppendLine("private static Lazy<PyObject> _lazy_self;");
+    sb.AppendLine("public static PyObject self { get => _lazy_self.Value; }");
+
+    // Generate ReInitializeLazySelf method
+    sb.AppendLine(@"
+    private static void ReInitializeLazySelf()
     {
-        Console.WriteLine($"[Error] Constructor : {method_name}");
-        return;
+        _lazy_self = new Lazy<PyObject>(() =>
+        {
+            try
+            {
+                return InstallAndImport();
+            }
+            catch (Exception)
+            {
+                return InstallAndImport(true);
+            }
+        });
+    }");
+
+    // Generate InstallAndImport method
+    sb.AppendLine($@"
+    private static PyObject InstallAndImport(bool force = false)
+    {{
+        PythonEngine.AddShutdownHandler(ReInitializeLazySelf);
+        PythonEngine.Initialize();
+        return Py.Import(""{pyModule}"");
+    }}");
+
+    // Generate static constructor
+    sb.AppendLine($"static {classNode.Identifier.Text}() => ReInitializeLazySelf();");
+}
+
+static void WriteConstructor(
+    ConstructorDeclarationSyntax constructorNode,
+    StringBuilder sb,
+    string[] lastModulePath)
+{
+    // Prepare names
+    string csConstructorName = constructorNode.Identifier.Text;
+    string pyConstructorName = constructorNode.Identifier.Text.TrimStart('@');
+    string csModule = string.Join('.', lastModulePath);
+
+    // Generate public constructor
+    using (CodeBlock.BeginConstructor(constructorNode, sb))
+    {
+        sb.AppendLine($"_ = {csModule}.self;");
+        BuildArgs(constructorNode, sb);
+        BuildPyDict(constructorNode, sb);
+        sb.AppendLine($"self = {csModule}.self.InvokeMethod(\"{pyConstructorName}\", args, pyDict);");
     }
 
-    string module_class = string.Join('.', last_module_path);
-
-    using (CodeBlock.Constructor(constructor_node, sb))
+    // Generate internal constructor (from pyObject)
+    using (CodeBlock.BeginInternalConstructor(constructorNode, sb))
     {
-        sb.AppendLine($"_ = {module_class}.self;");
-        BuildArgsTuple(constructor_node, sb);
-        BuildPyDict(constructor_node, sb);
-        sb.AppendLine($"self = {module_class}.self.InvokeMethod(\"{py_method_name}\", args, pyDict);");
-    }
-
-    using (CodeBlock.InternalConstructor(constructor_node, sb))
-    {
-        sb.AppendLine($"_ = {module_class}.self;");
+        sb.AppendLine($"_ = {csModule}.self;");
         sb.AppendLine("self = pyObject;");
     }
 
-    sb.AppendLine("[Obsolete(\"Encapsule is deprecated. Please use Wrap for future implementations.\")]");
-    sb.AppendLine($"public static {method_name} Encapsule(PyObject pyObject) => new {method_name}(pyObject);");
-    sb.AppendLine($"public static {method_name} Wrap(PyObject pyObject) => new {method_name}(pyObject);");
+    // Generate factory methods
+    sb.AppendLine(@"[Obsolete(""Encapsule is deprecated. Use Wrap instead."")]");
+    sb.AppendLine($"public static {csConstructorName} Encapsule(PyObject pyObject) => new {csConstructorName}(pyObject);");
+    sb.AppendLine($"public static {csConstructorName} Wrap(PyObject pyObject) => new {csConstructorName}(pyObject);");
 }
 
-static void BuildProperty(
-    PropertyDeclarationSyntax prop_node,
-    SemanticModel semantic_model,
+static void WriteProperty(
+    PropertyDeclarationSyntax propertyNode,
+    SemanticModel semanticModel,
     StringBuilder sb)
 {
-    string py_property_name = prop_node.Identifier.Text.TrimStart('@');
-    string py_object = $"self.GetAttr(\"{py_property_name}\")";
-    var type = semantic_model.GetDeclaredSymbol(prop_node)?.Type;
+    // Prepare names
+    string pyPropertyName = propertyNode.Identifier.Text.TrimStart('@');
+    string pyObject = $"self.GetAttr(\"{pyPropertyName}\")";
+    var type = semanticModel.GetDeclaredSymbol(propertyNode)?.Type;
 
-    if (type == null)
+    if (type == null || type.SpecialType == SpecialType.System_Void)
     {
-        Console.WriteLine($"[ERROR] Failed to create property {py_property_name}");
+        Console.WriteLine($"[ERROR] Failed to create property {pyPropertyName}");
         return;
     }
-
-    sb.Append($"{prop_node.Modifiers} {prop_node.Type} {prop_node.Identifier} => ");
-    sb.AppendLine(PyObjectToCSharp(type, py_object));
+    using (CodeBlock.BeginProperty(propertyNode, sb))
+    {
+        using (CodeBlock.BeginGet(sb))
+        {
+            string? return_value = WriteReturn(type, pyObject, sb);
+            if (return_value is not null)
+                sb.AppendLine($"return {return_value};");
+            else sb.AppendLine("throw new NotImplementedException();");
+        }
+    }
 }
 
-static void AnalizeMethodNode(
+static void WriteInstanceMethod(
     MethodDeclarationSyntax method_node,
     SemanticModel semantic_model,
     StringBuilder sb)
@@ -261,57 +351,68 @@ static void AnalizeMethodNode(
         .SelectMany(a => a.Attributes)
         .Any(a => a.Name.ToString().Contains("ReturnThis"));
 
-    string py_method_name = method_node.Identifier.Text.TrimStart('@');
-    string invoke_method = $"self.InvokeMethod(\"{py_method_name}\", args, pyDict)";
-    var type = semantic_model.GetDeclaredSymbol(method_node)?.ReturnType;
+    bool is_variant = method_node.AttributeLists
+        .SelectMany(a => a.Attributes)
+        .Any(a => a.Name.ToString().Contains("TupleVariantSelector"));
 
-    using (CodeBlock.Method(method_node, sb))
+    using (CodeBlock.BeginMethod(method_node, sb))
     {
-        BuildArgsTuple(method_node, sb);
+        BuildArgs(method_node, sb);
         BuildPyDict(method_node, sb);
+        string py_method_name = method_node.Identifier.Text.TrimStart('@');
+        string invoke_method = $"self.InvokeMethod(\"{py_method_name}\", args, pyDict)";
 
         if (return_this)
         {
             sb.AppendLine($"{invoke_method};");
             sb.AppendLine("return this;");
+            return;
         }
-        else if (type == null || type.SpecialType == SpecialType.System_Boolean)
+
+        var type = semantic_model.GetDeclaredSymbol(method_node)?.ReturnType;
+        if (type == null || type.SpecialType == SpecialType.System_Void)
         {
             sb.AppendLine($"{invoke_method};");
+            return;
+        }
+
+        if (is_variant)
+        {
+            // TODO obtener los elementos de la tupla y luego analizar cada uno
+            WriteReturn(type, invoke_method, sb);
+            return;
         }
         else
         {
-            sb.AppendLine($"return {PyObjectToCSharp(type, invoke_method)}");
+            WriteReturn(type, invoke_method, sb);
         }
     }
 }
 
-static void AnalizeStaticMethodNode(
+static void WriteStaticMethod(
     MethodDeclarationSyntax method_node,
     SemanticModel semantic_model,
     StringBuilder sb,
     string[] last_module_path)
 {
-    string py_method_name = method_node.Identifier.Text.TrimStart('@');
-    string invoke_method = $"self.InvokeMethod(\"{py_method_name}\", args, pyDict)";
-    var type = semantic_model.GetDeclaredSymbol(method_node)?.ReturnType;
-
-    using (CodeBlock.Method(method_node, sb))
+    using (CodeBlock.BeginMethod(method_node, sb))
     {
-        // Initialize
         string module = string.Join('.', last_module_path);
         sb.AppendLine($"_ = {module}.self;");
 
-        BuildArgsTuple(method_node, sb);
+        BuildArgs(method_node, sb);
         BuildPyDict(method_node, sb);
+        string py_method_name = method_node.Identifier.Text.TrimStart('@');
+        string invoke_method = $"self.InvokeMethod(\"{py_method_name}\", args, pyDict)";
 
-        if (type == null || type.SpecialType == SpecialType.System_Boolean)
+        var type = semantic_model.GetDeclaredSymbol(method_node)?.ReturnType;
+        if (type == null || type.SpecialType == SpecialType.System_Void)
         {
             sb.AppendLine($"{invoke_method};");
         }
         else
         {
-            sb.AppendLine($"return {PyObjectToCSharp(type, invoke_method)}");
+            WriteReturn(type, invoke_method, sb);
         }
     }
 }
@@ -326,7 +427,7 @@ class CodeBlock : IDisposable
         stringBuilder.AppendLine("{");
     }
 
-    public static CodeBlock Method(MethodDeclarationSyntax method_node, StringBuilder sb)
+    public static CodeBlock BeginMethod(MethodDeclarationSyntax method_node, StringBuilder sb)
     {
         sb.Append($"{method_node.Modifiers} {method_node.ReturnType} {method_node.Identifier}(");
         sb.AppendJoin(',', method_node.ParameterList.Parameters);
@@ -334,7 +435,7 @@ class CodeBlock : IDisposable
         return new CodeBlock(sb);
     }
 
-    public static CodeBlock Constructor(ConstructorDeclarationSyntax constructor_node, StringBuilder sb)
+    public static CodeBlock BeginConstructor(ConstructorDeclarationSyntax constructor_node, StringBuilder sb)
     {
         sb.Append($"{constructor_node.Modifiers} {constructor_node.Identifier}(");
         sb.AppendJoin(',', constructor_node.ParameterList.Parameters);
@@ -342,13 +443,13 @@ class CodeBlock : IDisposable
         return new CodeBlock(sb);
     }
 
-    public static CodeBlock InternalConstructor(ConstructorDeclarationSyntax constructor_node, StringBuilder sb)
+    public static CodeBlock BeginInternalConstructor(ConstructorDeclarationSyntax constructor_node, StringBuilder sb)
     {
         sb.Append($"internal {constructor_node.Identifier}(PyObject pyObject)");
         return new CodeBlock(sb);
     }
 
-    public static CodeBlock Class(ClassDeclarationSyntax class_node, StringBuilder sb)
+    public static CodeBlock BeginClass(ClassDeclarationSyntax class_node, StringBuilder sb)
     {
         sb.Append($"{class_node.Modifiers} class {class_node.Identifier}");
         if (class_node.BaseList != null && class_node.BaseList.Types.Count > 0)
@@ -356,6 +457,18 @@ class CodeBlock : IDisposable
             sb.Append(':');
             sb.AppendJoin(',', class_node.BaseList.Types);
         }
+        return new CodeBlock(sb);
+    }
+
+    public static CodeBlock BeginProperty(PropertyDeclarationSyntax propertyNode, StringBuilder sb)
+    {
+        sb.Append($"{propertyNode.Modifiers} {propertyNode.Type} {propertyNode.Identifier}");
+        return new CodeBlock(sb);
+    }
+
+    public static CodeBlock BeginGet(StringBuilder sb)
+    {
+        sb.Append("get");
         return new CodeBlock(sb);
     }
 

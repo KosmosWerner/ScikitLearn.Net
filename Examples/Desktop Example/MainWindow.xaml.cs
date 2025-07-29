@@ -26,7 +26,7 @@ public partial class MainWindow : Window
         Closed += MainWindow_Closed;
 
         // Install Python + dependencies
-        Task.Run(InitializeInstallerAsync).Wait();
+        Task.Run(InstallAsync).Wait();
 
         // Generate initial datasets
         pointsA = np.random.rand(300, 2) * 20 - 10;
@@ -44,9 +44,10 @@ public partial class MainWindow : Window
     // Setup
     // -------------------------
 
-    private static async Task InitializeInstallerAsync()
+    private static async Task InstallAsync()
     {
-        Installer.InstallPath = Path.GetFullPath(".");
+        Installer.InstallPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+
         await Installer.SetupPython();
         await Installer.TryInstallPip();
         await Installer.PipInstallModule("numpy");
@@ -123,8 +124,8 @@ public partial class MainWindow : Window
         for (var i = min; i <= max; i++)
         {
             var indices = labels.equals(i);
-            var xs = points[":,0"][indices].GetData<float>();
-            var ys = points[":,1"][indices].GetData<float>();
+            var xs = points[":,0"][indices].GetData<double>();
+            var ys = points[":,1"][indices].GetData<double>();
             ScottPlot.Color color = (i == -1) ? ScottPlot.Colors.Gray : ScottPlot.Color.RandomHue();
 
             outputPlot.Plot.Add.ScatterPoints(xs, ys, color);
@@ -175,8 +176,8 @@ public partial class MainWindow : Window
             plot3.Plot.Clear();
         }
 
-        var xs = points[":,0"].GetData<float>();
-        var ys = points[":,1"].GetData<float>();
+        var xs = points[":,0"].GetData<double>();
+        var ys = points[":,1"].GetData<double>();
 
         plot1.Plot.Add.ScatterPoints(xs, ys);
         plot2.Plot.Add.ScatterPoints(xs, ys);

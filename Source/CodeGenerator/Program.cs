@@ -1,9 +1,9 @@
-﻿using System.Text;
-using CodeGenerator;
+﻿using CodeGenerator;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.CodeAnalysis.MSBuild;
+using System.Text;
 
 string solution_folder = Helpers.TryGetSolutionPath() ?? string.Empty;
 
@@ -76,7 +76,7 @@ static bool IsValidModule(ClassDeclarationSyntax classNode)
     return hasModuleAttribute && isStatic;
 }
 
-static void BuildArgs(BaseMethodDeclarationSyntax method_node, StringBuilder sb)
+static void WriteArgs(BaseMethodDeclarationSyntax method_node, StringBuilder sb)
 {
     var params_without_default = method_node.ParameterList.Parameters
         .Where(p => p.Default == null)
@@ -87,7 +87,7 @@ static void BuildArgs(BaseMethodDeclarationSyntax method_node, StringBuilder sb)
     sb.AppendLine("});");
 }
 
-static void BuildPyDict(BaseMethodDeclarationSyntax method_node, StringBuilder sb)
+static void WritePyDict(BaseMethodDeclarationSyntax method_node, StringBuilder sb)
 {
     var params_with_default = method_node.ParameterList.Parameters
         .Where(p => p.Default != null)
@@ -102,73 +102,6 @@ static void BuildPyDict(BaseMethodDeclarationSyntax method_node, StringBuilder s
         sb.AppendLine($"if ({param_name} != {p.Default?.Value})");
         sb.AppendLine($"pyDict[\"{py_param_name}\"] = Helpers.ToPython({param_name});");
     }
-}
-
-static bool InheritsFrom(INamedTypeSymbol type, string baseTypeFullName)
-{
-    var current = type.BaseType;
-    while (current != null)
-    {
-        if (current.ToDisplayString() == baseTypeFullName)
-            return true;
-        current = current.BaseType;
-    }
-    return false;
-}
-
-static string? WriteReturn(ITypeSymbol type, string pyObject, StringBuilder sb)
-{
-    switch (type.SpecialType)
-    {
-        case SpecialType.System_Boolean:
-            return $"{pyObject}.As<bool>()";
-
-        case SpecialType.System_Int32:
-            return $"{pyObject}.As<int>()";
-
-        case SpecialType.System_Single:
-            return $"{pyObject}.As<float>()";
-
-        case SpecialType.System_Double:
-            return $"{pyObject}.As<double>()";
-
-        case SpecialType.System_String:
-            return $"{pyObject}.As<string>()";
-    }
-
-    if (type.TypeKind == TypeKind.Class && type is INamedTypeSymbol namedType)
-    {
-        string fullName = namedType.ToDisplayString();
-
-        switch (fullName)
-        {
-            case "Python.Runtime.PyObject":
-                return pyObject;
-
-            case "Python.Runtime.PyDict":
-                return ($"new PyDict({pyObject})");
-
-            case "Python.Runtime.PyTuple":
-                return ($"new PyTuple({pyObject})");
-
-            case "Numpy.NDarray":
-                return ($"new NDarray({pyObject})");
-        }
-
-        if (namedType.Name == "NDarray" && namedType.TypeArguments.Length == 1)
-        {
-            string genericArg = namedType.TypeArguments[0].ToDisplayString();
-            return $"new NDarray<{genericArg}>({pyObject})";
-        }
-
-        if (InheritsFrom(namedType, "Numpy.PythonObject"))
-        {
-            return $"{fullName}.Wrap({pyObject});";
-        }
-    }
-
-    Console.WriteLine($"Failed to convert {type.ToDisplayString()}");
-    return null;
 }
 
 static void WriteClass(
@@ -297,8 +230,8 @@ static void WriteConstructor(
     using (CodeBlock.BeginConstructor(constructorNode, sb))
     {
         sb.AppendLine($"_ = {csModule}.self;");
-        BuildArgs(constructorNode, sb);
-        BuildPyDict(constructorNode, sb);
+        WriteArgs(constructorNode, sb);
+        WritePyDict(constructorNode, sb);
         sb.AppendLine($"self = {csModule}.self.InvokeMethod(\"{pyConstructorName}\", args, pyDict);");
     }
 
@@ -322,158 +255,315 @@ static void WriteProperty(
 {
     // Prepare names
     string pyPropertyName = propertyNode.Identifier.Text.TrimStart('@');
-    string pyObject = $"self.GetAttr(\"{pyPropertyName}\")";
     var type = semanticModel.GetDeclaredSymbol(propertyNode)?.Type;
 
     if (type == null || type.SpecialType == SpecialType.System_Void)
     {
-        Console.WriteLine($"[ERROR] Failed to create property {pyPropertyName}");
+        Console.WriteLine($"Error: Failed to generate property '{pyPropertyName}': no associated return type.");
         return;
     }
+
     using (CodeBlock.BeginProperty(propertyNode, sb))
     {
         using (CodeBlock.BeginGet(sb))
         {
-            string? return_value = WriteReturn(type, pyObject, sb);
-            if (return_value is not null)
-                sb.AppendLine($"return {return_value};");
-            else sb.AppendLine("throw new NotImplementedException();");
+            string pyObject = "__pyObject";
+            sb.AppendLine($"var {pyObject} = self.GetAttr(\"{pyPropertyName}\");");
+            WriteNormalReturn(pyObject, type, sb);
         }
     }
 }
 
 static void WriteInstanceMethod(
-    MethodDeclarationSyntax method_node,
-    SemanticModel semantic_model,
+    MethodDeclarationSyntax methodNode,
+    SemanticModel semanticModel,
     StringBuilder sb)
 {
-    bool return_this = method_node.AttributeLists
+    bool returnThis = methodNode.AttributeLists
         .SelectMany(a => a.Attributes)
         .Any(a => a.Name.ToString().Contains("ReturnThis"));
 
-    bool is_variant = method_node.AttributeLists
+    bool isVariant = methodNode.AttributeLists
         .SelectMany(a => a.Attributes)
         .Any(a => a.Name.ToString().Contains("TupleVariantSelector"));
 
-    using (CodeBlock.BeginMethod(method_node, sb))
+    string? conditional = null;
+    if (isVariant)
     {
-        BuildArgs(method_node, sb);
-        BuildPyDict(method_node, sb);
-        string py_method_name = method_node.Identifier.Text.TrimStart('@');
-        string invoke_method = $"self.InvokeMethod(\"{py_method_name}\", args, pyDict)";
-
-        if (return_this)
+        var attribute = methodNode.AttributeLists
+        .SelectMany(list => list.Attributes)
+        .FirstOrDefault(attr => attr.Name.ToString().Contains("TupleVariantSelector"));
+        if (attribute?.ArgumentList is not null)
         {
-            sb.AppendLine($"{invoke_method};");
+            var conditionArg = attribute.ArgumentList.Arguments
+        .FirstOrDefault(arg => arg.NameEquals?.Name.Identifier.Text == "Condition");
+
+            if (conditionArg?.Expression is LiteralExpressionSyntax literal)
+            {
+                conditional = literal.Token.ValueText;
+            }
+        }
+    }
+
+    using (CodeBlock.BeginMethod(methodNode, sb))
+    {
+        WriteArgs(methodNode, sb);
+        WritePyDict(methodNode, sb);
+        string pyMethod = methodNode.Identifier.Text.TrimStart('@');
+
+        if (returnThis)
+        {
+            sb.AppendLine($"self.InvokeMethod(\"{pyMethod}\", args, pyDict);");
             sb.AppendLine("return this;");
-            return;
-        }
-
-        var type = semantic_model.GetDeclaredSymbol(method_node)?.ReturnType;
-        if (type == null || type.SpecialType == SpecialType.System_Void)
-        {
-            sb.AppendLine($"{invoke_method};");
-            return;
-        }
-
-        if (is_variant)
-        {
-            // TODO obtener los elementos de la tupla y luego analizar cada uno
-            WriteReturn(type, invoke_method, sb);
-            return;
         }
         else
         {
-            WriteReturn(type, invoke_method, sb);
+            WriteMethodReturn(methodNode, semanticModel, sb, conditional, pyMethod);
         }
     }
 }
 
 static void WriteStaticMethod(
-    MethodDeclarationSyntax method_node,
-    SemanticModel semantic_model,
+    MethodDeclarationSyntax methodNode,
+    SemanticModel semanticModel,
     StringBuilder sb,
-    string[] last_module_path)
+    string[] lastModulePath)
 {
-    using (CodeBlock.BeginMethod(method_node, sb))
+    bool isVariant = methodNode.AttributeLists
+        .SelectMany(a => a.Attributes)
+        .Any(a => a.Name.ToString().Contains("TupleVariantSelector"));
+
+    string? conditional = null;
+
+    if (isVariant)
     {
-        string module = string.Join('.', last_module_path);
+        var attribute = methodNode.AttributeLists
+        .SelectMany(list => list.Attributes)
+        .FirstOrDefault(attr => attr.Name.ToString().Contains("TupleVariantSelector"));
+        if (attribute?.ArgumentList is not null)
+        {
+            var conditionArg = attribute.ArgumentList.Arguments
+        .FirstOrDefault(arg => arg.NameEquals?.Name.Identifier.Text == "Condition");
+
+            if (conditionArg?.Expression is LiteralExpressionSyntax literal)
+            {
+                conditional = literal.Token.ValueText;
+            }
+        }
+    }
+    using (CodeBlock.BeginMethod(methodNode, sb))
+    {
+        string module = string.Join('.', lastModulePath);
         sb.AppendLine($"_ = {module}.self;");
 
-        BuildArgs(method_node, sb);
-        BuildPyDict(method_node, sb);
-        string py_method_name = method_node.Identifier.Text.TrimStart('@');
-        string invoke_method = $"self.InvokeMethod(\"{py_method_name}\", args, pyDict)";
+        WriteArgs(methodNode, sb);
+        WritePyDict(methodNode, sb);
+        string pyMethod = methodNode.Identifier.Text.TrimStart('@');
 
-        var type = semantic_model.GetDeclaredSymbol(method_node)?.ReturnType;
-        if (type == null || type.SpecialType == SpecialType.System_Void)
-        {
-            sb.AppendLine($"{invoke_method};");
-        }
-        else
-        {
-            WriteReturn(type, invoke_method, sb);
-        }
+        WriteMethodReturn(methodNode, semanticModel, sb, conditional, pyMethod);
     }
 }
 
-class CodeBlock : IDisposable
+
+static bool IsNullable(ITypeSymbol type)
 {
-    private readonly StringBuilder stringBuilder;
+    if (type is INamedTypeSymbol named && named.OriginalDefinition.SpecialType == SpecialType.System_Nullable_T)
+        return true;
 
-    private CodeBlock(StringBuilder sb)
+    if (type.NullableAnnotation == NullableAnnotation.Annotated)
+        return true;
+
+    return false;
+}
+
+static ITypeSymbol UnwrapNullable(ITypeSymbol type)
+{
+    if (type is INamedTypeSymbol named && named.OriginalDefinition.SpecialType == SpecialType.System_Nullable_T)
+        return named.TypeArguments[0];
+
+    if (type.NullableAnnotation == NullableAnnotation.Annotated)
+        return type.WithNullableAnnotation(NullableAnnotation.None);
+
+    return type;
+}
+
+static bool InheritsFrom(INamedTypeSymbol type, string baseTypeFullName)
+{
+    var current = type.BaseType;
+    while (current != null)
     {
-        stringBuilder = sb;
-        stringBuilder.AppendLine("{");
+        if (current.ToDisplayString() == baseTypeFullName) return true;
+        current = current.BaseType;
+    }
+    return false;
+}
+
+static string? PyObjectToCsharp(ITypeSymbol type, string pyObject, StringBuilder sb, int level = 0)
+{
+    switch (type.SpecialType)
+    {
+        case SpecialType.System_Boolean: return $"{pyObject}.As<bool>()";
+        case SpecialType.System_Int32: return $"{pyObject}.As<int>()";
+        case SpecialType.System_Single: return $"{pyObject}.As<float>()";
+        case SpecialType.System_Double: return $"{pyObject}.As<double>()";
+        case SpecialType.System_String: return $"{pyObject}.As<string>()";
     }
 
-    public static CodeBlock BeginMethod(MethodDeclarationSyntax method_node, StringBuilder sb)
+    if (type.TypeKind == TypeKind.Class && type is INamedTypeSymbol namedType)
     {
-        sb.Append($"{method_node.Modifiers} {method_node.ReturnType} {method_node.Identifier}(");
-        sb.AppendJoin(',', method_node.ParameterList.Parameters);
-        sb.AppendLine(")");
-        return new CodeBlock(sb);
-    }
+        string fullName = namedType.ToDisplayString();
 
-    public static CodeBlock BeginConstructor(ConstructorDeclarationSyntax constructor_node, StringBuilder sb)
-    {
-        sb.Append($"{constructor_node.Modifiers} {constructor_node.Identifier}(");
-        sb.AppendJoin(',', constructor_node.ParameterList.Parameters);
-        sb.AppendLine(")");
-        return new CodeBlock(sb);
-    }
-
-    public static CodeBlock BeginInternalConstructor(ConstructorDeclarationSyntax constructor_node, StringBuilder sb)
-    {
-        sb.Append($"internal {constructor_node.Identifier}(PyObject pyObject)");
-        return new CodeBlock(sb);
-    }
-
-    public static CodeBlock BeginClass(ClassDeclarationSyntax class_node, StringBuilder sb)
-    {
-        sb.Append($"{class_node.Modifiers} class {class_node.Identifier}");
-        if (class_node.BaseList != null && class_node.BaseList.Types.Count > 0)
+        switch (fullName)
         {
-            sb.Append(':');
-            sb.AppendJoin(',', class_node.BaseList.Types);
+            case "Python.Runtime.PyObject": return pyObject;
+            case "Python.Runtime.PyDict": return ($"new PyDict({pyObject})");
+            case "Python.Runtime.PyTuple": return ($"new PyTuple({pyObject})");
+            case "Numpy.NDarray": return ($"new NDarray({pyObject})");
         }
-        return new CodeBlock(sb);
+
+        if (namedType.Name == "NDarray" && namedType.TypeArguments.Length == 1)
+        {
+            string genericArg = namedType.TypeArguments[0].ToDisplayString();
+            return $"new NDarray<{genericArg}>({pyObject})";
+        }
+
+        if (InheritsFrom(namedType, "Numpy.PythonObject") &&
+            namedType.ContainingNamespace.ToDisplayString().StartsWith("ScikitLearn"))
+        {
+            return $"{fullName}.Wrap({pyObject})";
+        }
     }
 
-    public static CodeBlock BeginProperty(PropertyDeclarationSyntax propertyNode, StringBuilder sb)
+    if (type is INamedTypeSymbol tupleType && tupleType.IsTupleType)
     {
-        sb.Append($"{propertyNode.Modifiers} {propertyNode.Type} {propertyNode.Identifier}");
-        return new CodeBlock(sb);
+        var subTuple = $"{pyObject}Tuple";
+        var subTupleLength = $"{pyObject}Length";
+        bool nullable = false;
+        sb.AppendLine($"var {subTuple} = new PyTuple({pyObject});");
+        sb.AppendLine($"var {subTupleLength} = {subTuple}.Length();");
+
+        StringBuilder sb2 = new("(");
+        for (int i = 0; i < tupleType.TupleElements.Length; i++)
+        {
+            if (IsNullable(tupleType.TupleElements[i].Type)) nullable = true;
+            var subType = UnwrapNullable(tupleType.TupleElements[i].Type);
+
+            string? result = PyObjectToCsharp(subType, $"{subTuple}[{i}]", sb, level + 1);
+
+            if (i > 0) sb2.Append(",");
+            if (nullable)
+            {
+
+                sb2.Append($"{subTupleLength} > {i} ? {result}:null");
+            }
+            else
+            {
+                sb2.Append($"{result}");
+            }
+        }
+        sb2.Append(")");
+        return sb2.ToString();
     }
 
-    public static CodeBlock BeginGet(StringBuilder sb)
+    return null;
+}
+
+
+
+static void WriteVariantReturn(string pyObject, string condition, ITypeSymbol typeA, ITypeSymbol typeB, StringBuilder sb)
+{
+    sb.AppendLine($"if({condition}){{");
+
+    string? returnValueA = PyObjectToCsharp(typeA, pyObject, sb);
+    if (returnValueA is not null)
     {
-        sb.Append("get");
-        return new CodeBlock(sb);
+        sb.AppendLine($"return ({returnValueA}, null);");
+    }
+    else
+    {
+        sb.AppendLine("throw new NotImplementedException();");
+        Console.WriteLine($"Failed to convert {typeA.ToDisplayString()}");
     }
 
-    public void Dispose()
+    sb.AppendLine("}else{");
+
+    string? returnValueB = PyObjectToCsharp(typeB, pyObject, sb);
+    if (returnValueB is not null)
     {
-        stringBuilder.AppendLine("}");
+        sb.AppendLine($"return (null, {returnValueB});");
+    }
+    else
+    {
+        sb.AppendLine("throw new NotImplementedException();");
+        Console.WriteLine($"Failed to convert {typeB.ToDisplayString()}");
+    }
+
+    sb.AppendLine("}");
+}
+
+static void WriteNormalReturn(string pyObject, ITypeSymbol type, StringBuilder sb)
+{
+    if (!IsNullable(type))
+    {
+        string? return_value = PyObjectToCsharp(type, pyObject, sb);
+
+        if (return_value is not null)
+        {
+            sb.AppendLine($"return {return_value};");
+            return;
+        }
+        sb.AppendLine("throw new NotImplementedException();");
+        Console.WriteLine($"Failed to convert {type.ToDisplayString()}");
+    }
+    else
+    {
+        var _type = UnwrapNullable(type);
+        string? return_value = PyObjectToCsharp(_type, pyObject, sb);
+
+        if (return_value is not null)
+        {
+            sb.AppendLine($"return {pyObject} == Runtime.None ? null : {return_value};");
+            return;
+        }
+        sb.AppendLine("throw new NotImplementedException();");
+        Console.WriteLine($"Failed to convert {type.ToDisplayString()}");
+    }
+
+}
+
+
+static void WriteMethodReturn(MethodDeclarationSyntax methodNode, SemanticModel semanticModel, StringBuilder sb, string? variantCondition, string pyMethod)
+{
+    var type = semanticModel.GetDeclaredSymbol(methodNode)?.ReturnType;
+
+    if (type == null || type.SpecialType == SpecialType.System_Void)
+    {
+        sb.AppendLine($"self.InvokeMethod(\"{pyMethod}\", args, pyDict);");
+        return;
+    }
+
+    if (variantCondition is not null)
+    {
+        if (type is INamedTypeSymbol tupleType && tupleType.IsTupleType && tupleType.TupleElements.Length == 2)
+        {
+            string pyObject = "__pyVariant";
+            sb.AppendLine($"var {pyObject} = self.InvokeMethod(\"{pyMethod}\", args, pyDict);");
+
+            var typeA = UnwrapNullable(tupleType.TupleElements[0].Type);
+            var typeB = UnwrapNullable(tupleType.TupleElements[1].Type);
+
+            WriteVariantReturn(pyObject, variantCondition, typeA, typeB, sb);
+        }
+        else
+        {
+            Console.WriteLine("Error al crear el metodo ya que el atributo no fue aplicado a una tupla");
+        }
+    }
+    else
+    {
+        string pyObject = "__pyObject";
+        sb.AppendLine($"var {pyObject} = self.InvokeMethod(\"{pyMethod}\", args, pyDict);");
+
+        WriteNormalReturn(pyObject, type, sb);
     }
 }

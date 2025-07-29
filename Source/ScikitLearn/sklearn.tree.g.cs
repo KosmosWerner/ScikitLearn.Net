@@ -29,11 +29,7 @@ public static partial class sklearn
             return Py.Import("sklearn.tree");
         }
 
-        static tree()
-        {
-            ReInitializeLazySelf();
-        }
-
+        static tree() => ReInitializeLazySelf();
         public static string export_graphviz(PyObject decision_tree, string? out_file = null, int? max_depth = null, NDarray? feature_names = null, NDarray? class_names = null, string label = "all", bool filled = false, bool leaves_parallel = false, bool impurity = true, bool node_ids = false, bool proportion = false, bool rotate = false, bool rounded = false, bool special_characters = false, int precision = 3, string fontname = "helvetica")
         {
             _ = sklearn.tree.self;
@@ -69,7 +65,9 @@ public static partial class sklearn
                 pyDict["precision"] = Helpers.ToPython(precision);
             if (fontname != "helvetica")
                 pyDict["fontname"] = Helpers.ToPython(fontname);
-            return self.InvokeMethod("export_graphviz", args, pyDict).As<string>()}
+            var __pyObject = self.InvokeMethod("export_graphviz", args, pyDict);
+            return __pyObject.As<string>();
+        }
 
         public static string export_text(PyObject decision_tree, NDarray? feature_names = null, NDarray? class_names = null, int max_depth = 10, int spacing = 3, int decimals = 2, bool show_weights = false)
         {
@@ -88,7 +86,9 @@ public static partial class sklearn
                 pyDict["decimals"] = Helpers.ToPython(decimals);
             if (show_weights != false)
                 pyDict["show_weights"] = Helpers.ToPython(show_weights);
-            return self.InvokeMethod("export_text", args, pyDict).As<string>()}
+            var __pyObject = self.InvokeMethod("export_text", args, pyDict);
+            return __pyObject.As<string>();
+        }
 
         public static PyTuple plot_tree(DecisionTreeClassifier decision_tree, int? max_depth = null, NDarray? feature_names = null, NDarray? class_names = null, string label = "all", bool filled = false, bool impurity = true, bool node_ids = false, bool proportion = false, bool rounded = false, int precision = 3, PyObject? ax = null, int? fontsize = null)
         {
@@ -119,7 +119,8 @@ public static partial class sklearn
                 pyDict["ax"] = Helpers.ToPython(ax);
             if (fontsize != null)
                 pyDict["fontsize"] = Helpers.ToPython(fontsize);
-            return new NotImplementedException();
+            var __pyObject = self.InvokeMethod("plot_tree", args, pyDict);
+            return new PyTuple(__pyObject);
         }
 
         public static PyTuple plot_tree(DecisionTreeRegressor decision_tree, int? max_depth = null, NDarray? feature_names = null, NDarray? class_names = null, string label = "all", bool filled = false, bool impurity = true, bool node_ids = false, bool proportion = false, bool rounded = false, int precision = 3, PyObject? ax = null, int? fontsize = null)
@@ -151,7 +152,8 @@ public static partial class sklearn
                 pyDict["ax"] = Helpers.ToPython(ax);
             if (fontsize != null)
                 pyDict["fontsize"] = Helpers.ToPython(fontsize);
-            return new NotImplementedException();
+            var __pyObject = self.InvokeMethod("plot_tree", args, pyDict);
+            return new PyTuple(__pyObject);
         }
 
         public class DecisionTreeClassifier : PythonObject
@@ -196,14 +198,80 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static DecisionTreeClassifier Encapsule(PyObject pyObject) => new DecisionTreeClassifier(pyObject);
             public static DecisionTreeClassifier Wrap(PyObject pyObject) => new DecisionTreeClassifier(pyObject);
-            public NDarray classes_ => new NotImplementedException();
-            public NDarray feature_importances_ => new NotImplementedException();
-            public int max_features_ => self.GetAttr("max_features_").As<int>()public PyTuple n_classes_ => new NotImplementedException();
-            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
-            public int n_outputs_ => self.GetAttr("n_outputs_").As<int>()public PyObject tree_ => new NotImplementedException();
+            public NDarray classes_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("classes_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray feature_importances_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_importances_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int max_features_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("max_features_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public PyTuple n_classes_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_classes_");
+                    return new PyTuple(__pyObject);
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_outputs_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_outputs_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public PyObject tree_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("tree_");
+                    return __pyObject;
+                }
+            }
 
             public NDarray apply(NDarray X, bool check_input = true)
             {
@@ -211,7 +279,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (check_input != true)
                     pyDict["check_input"] = Helpers.ToPython(check_input);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("apply", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public PyDict cost_complexity_pruning_path(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -220,7 +289,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("cost_complexity_pruning_path", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray decision_path(NDarray X, bool check_input = true)
@@ -229,7 +299,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (check_input != true)
                     pyDict["check_input"] = Helpers.ToPython(check_input);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("decision_path", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public DecisionTreeClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null, bool check_input = true)
@@ -256,7 +327,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public DecisionTreeClassifier get_n_leaves()
@@ -273,7 +345,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X, bool check_input = true)
@@ -282,14 +355,16 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (check_input != true)
                     pyDict["check_input"] = Helpers.ToPython(check_input);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray predict_log_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict_log_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray predict_proba(NDarray X, bool check_input = true)
@@ -298,7 +373,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (check_input != true)
                     pyDict["check_input"] = Helpers.ToPython(check_input);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -307,7 +383,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public DecisionTreeClassifier set_fit_request(string? check_input = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$")
             {
@@ -402,12 +480,62 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static DecisionTreeRegressor Encapsule(PyObject pyObject) => new DecisionTreeRegressor(pyObject);
             public static DecisionTreeRegressor Wrap(PyObject pyObject) => new DecisionTreeRegressor(pyObject);
-            public NDarray feature_importances_ => new NotImplementedException();
-            public int max_features_ => self.GetAttr("max_features_").As<int>()public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
-            public int n_outputs_ => self.GetAttr("n_outputs_").As<int>()public PyObject tree_ => new NotImplementedException();
+            public NDarray feature_importances_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_importances_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int max_features_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("max_features_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_outputs_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_outputs_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public PyObject tree_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("tree_");
+                    return __pyObject;
+                }
+            }
 
             public NDarray apply(NDarray X, bool check_input = true)
             {
@@ -415,7 +543,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (check_input != true)
                     pyDict["check_input"] = Helpers.ToPython(check_input);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("apply", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public PyDict cost_complexity_pruning_path(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -424,7 +553,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("cost_complexity_pruning_path", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray decision_path(NDarray X, bool check_input = true)
@@ -433,7 +563,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (check_input != true)
                     pyDict["check_input"] = Helpers.ToPython(check_input);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("decision_path", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public DecisionTreeRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null, bool check_input = true)
@@ -460,7 +591,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public DecisionTreeRegressor get_n_leaves()
@@ -477,7 +609,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X, bool check_input = true)
@@ -486,7 +619,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (check_input != true)
                     pyDict["check_input"] = Helpers.ToPython(check_input);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -495,7 +629,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public DecisionTreeRegressor set_fit_request(string? check_input = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$")
             {
@@ -582,14 +718,80 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static ExtraTreeClassifier Encapsule(PyObject pyObject) => new ExtraTreeClassifier(pyObject);
             public static ExtraTreeClassifier Wrap(PyObject pyObject) => new ExtraTreeClassifier(pyObject);
-            public NDarray classes_ => new NotImplementedException();
-            public int max_features_ => self.GetAttr("max_features_").As<int>()public PyTuple n_classes_ => new NotImplementedException();
-            public NDarray feature_importances_ => new NotImplementedException();
-            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
-            public int n_outputs_ => self.GetAttr("n_outputs_").As<int>()public PyObject tree_ => new NotImplementedException();
+            public NDarray classes_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("classes_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int max_features_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("max_features_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public PyTuple n_classes_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_classes_");
+                    return new PyTuple(__pyObject);
+                }
+            }
+
+            public NDarray feature_importances_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_importances_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_outputs_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_outputs_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public PyObject tree_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("tree_");
+                    return __pyObject;
+                }
+            }
 
             public NDarray apply(NDarray X, bool check_input = true)
             {
@@ -597,7 +799,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (check_input != true)
                     pyDict["check_input"] = Helpers.ToPython(check_input);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("apply", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public PyDict cost_complexity_pruning_path(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -606,7 +809,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("cost_complexity_pruning_path", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray decision_path(NDarray X, bool check_input = true)
@@ -615,7 +819,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (check_input != true)
                     pyDict["check_input"] = Helpers.ToPython(check_input);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("decision_path", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public ExtraTreeClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null, bool check_input = true)
@@ -642,7 +847,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public ExtraTreeClassifier get_n_leaves()
@@ -659,7 +865,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X, bool check_input = true)
@@ -668,14 +875,16 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (check_input != true)
                     pyDict["check_input"] = Helpers.ToPython(check_input);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray predict_log_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict_log_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray predict_proba(NDarray X, bool check_input = true)
@@ -684,7 +893,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (check_input != true)
                     pyDict["check_input"] = Helpers.ToPython(check_input);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -693,7 +903,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public ExtraTreeClassifier set_fit_request(string? check_input = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$")
             {
@@ -788,12 +1000,62 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static ExtraTreeRegressor Encapsule(PyObject pyObject) => new ExtraTreeRegressor(pyObject);
             public static ExtraTreeRegressor Wrap(PyObject pyObject) => new ExtraTreeRegressor(pyObject);
-            public int max_features_ => self.GetAttr("max_features_").As<int>()public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
-            public NDarray feature_importances_ => new NotImplementedException();
-            public int n_outputs_ => self.GetAttr("n_outputs_").As<int>()public PyObject tree_ => new NotImplementedException();
+            public int max_features_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("max_features_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray feature_importances_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_importances_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_outputs_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_outputs_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public PyObject tree_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("tree_");
+                    return __pyObject;
+                }
+            }
 
             public NDarray apply(NDarray X, bool check_input = true)
             {
@@ -801,7 +1063,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (check_input != true)
                     pyDict["check_input"] = Helpers.ToPython(check_input);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("apply", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public PyDict cost_complexity_pruning_path(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -810,7 +1073,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("cost_complexity_pruning_path", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray decision_path(NDarray X, bool check_input = true)
@@ -819,7 +1083,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (check_input != true)
                     pyDict["check_input"] = Helpers.ToPython(check_input);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("decision_path", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public ExtraTreeRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null, bool check_input = true)
@@ -846,7 +1111,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public ExtraTreeRegressor get_n_leaves()
@@ -863,7 +1129,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X, bool check_input = true)
@@ -872,7 +1139,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (check_input != true)
                     pyDict["check_input"] = Helpers.ToPython(check_input);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -881,7 +1149,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public ExtraTreeRegressor set_fit_request(string? check_input = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$")
             {

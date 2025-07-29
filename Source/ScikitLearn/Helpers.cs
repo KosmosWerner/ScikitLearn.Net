@@ -1,9 +1,4 @@
-﻿using Numpy;
-using Numpy.Models;
-using Python.Runtime;
-using System.Collections.Generic;
-
-namespace ScikitLearn;
+﻿namespace ScikitLearn;
 
 public static class Helpers
 {

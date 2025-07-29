@@ -29,11 +29,7 @@ public static partial class sklearn
             return Py.Import("sklearn.feature_extraction");
         }
 
-        static feature_extraction()
-        {
-            ReInitializeLazySelf();
-        }
-
+        static feature_extraction() => ReInitializeLazySelf();
         public class DictVectorizer : PythonObject
         {
             public DictVectorizer(float? dtype = null, string separator = "=", bool sparse = true, bool sort = true)
@@ -58,11 +54,26 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static DictVectorizer Encapsule(PyObject pyObject) => new DictVectorizer(pyObject);
             public static DictVectorizer Wrap(PyObject pyObject) => new DictVectorizer(pyObject);
-            public PyDict vocabulary_ => new NotImplementedException();
-            public PyObject feature_names_ => new NotImplementedException();
+            public PyDict vocabulary_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("vocabulary_");
+                    return new PyDict(__pyObject);
+                }
+            }
+
+            public PyObject feature_names_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_");
+                    return __pyObject;
+                }
+            }
 
             public DictVectorizer fit(PyObject X, PyObject? y = null)
             {
@@ -80,7 +91,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (y != null)
                     pyDict["y"] = Helpers.ToPython(y);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("fit_transform", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -89,14 +101,16 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (input_features != null)
                     pyDict["input_features"] = Helpers.ToPython(input_features);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_feature_names_out", args, pyDict);
+                return __pyObject;
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public PyDict get_params(bool deep = true)
@@ -105,7 +119,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public PyObject inverse_transform(NDarray X, PyDict? dict_type = null)
@@ -114,7 +129,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (dict_type != null)
                     pyDict["dict_type"] = Helpers.ToPython(dict_type);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("inverse_transform", args, pyDict);
+                return __pyObject;
             }
 
             public DictVectorizer restrict(NDarray support, bool indices = false)
@@ -161,7 +177,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("transform", args, pyDict);
+                return new NDarray(__pyObject);
             }
         }
 
@@ -189,7 +206,7 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static FeatureHasher Encapsule(PyObject pyObject) => new FeatureHasher(pyObject);
             public static FeatureHasher Wrap(PyObject pyObject) => new FeatureHasher(pyObject);
             public FeatureHasher fit()
@@ -208,14 +225,16 @@ public static partial class sklearn
                     pyDict["y"] = Helpers.ToPython(y);
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("fit_transform", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public PyDict get_params(bool deep = true)
@@ -224,7 +243,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public FeatureHasher set_output(PyObject? transform = null)
@@ -261,7 +281,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(raw_X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("transform", args, pyDict);
+                return new NDarray(__pyObject);
             }
         }
 
@@ -292,11 +313,7 @@ public static partial class sklearn
                 return Py.Import("sklearn.feature_extraction.image");
             }
 
-            static image()
-            {
-                ReInitializeLazySelf();
-            }
-
+            static image() => ReInitializeLazySelf();
             public static NDarray extract_patches_2d(NDarray image, int patch_size, float? max_patches = null, int? random_state = null)
             {
                 _ = sklearn.feature_extraction.image.self;
@@ -306,7 +323,8 @@ public static partial class sklearn
                     pyDict["max_patches"] = Helpers.ToPython(max_patches);
                 if (random_state != null)
                     pyDict["random_state"] = Helpers.ToPython(random_state);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("extract_patches_2d", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public static NDarray grid_to_graph(int n_x, int n_y, int n_z = 1, NDarray? mask = null, NDarray? return_as = null, int? dtype = null)
@@ -322,7 +340,8 @@ public static partial class sklearn
                     pyDict["return_as"] = Helpers.ToPython(return_as);
                 if (dtype != null)
                     pyDict["dtype"] = Helpers.ToPython(dtype);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("grid_to_graph", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public static NDarray img_to_graph(NDarray img, NDarray? mask = null, NDarray? return_as = null, PyObject? dtype = null)
@@ -336,7 +355,8 @@ public static partial class sklearn
                     pyDict["return_as"] = Helpers.ToPython(return_as);
                 if (dtype != null)
                     pyDict["dtype"] = Helpers.ToPython(dtype);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("img_to_graph", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public static NDarray reconstruct_from_patches_2d(NDarray patches, int image_size)
@@ -344,7 +364,8 @@ public static partial class sklearn
                 _ = sklearn.feature_extraction.image.self;
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(patches), Helpers.ToPython(image_size) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("reconstruct_from_patches_2d", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public class PatchExtractor : PythonObject
@@ -369,7 +390,7 @@ public static partial class sklearn
                     self = pyObject;
                 }
 
-                [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+                [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
                 public static PatchExtractor Encapsule(PyObject pyObject) => new PatchExtractor(pyObject);
                 public static PatchExtractor Wrap(PyObject pyObject) => new PatchExtractor(pyObject);
                 public PatchExtractor fit(NDarray X)
@@ -388,14 +409,16 @@ public static partial class sklearn
                         pyDict["y"] = Helpers.ToPython(y);
                     if (@params != null)
                         pyDict["params"] = Helpers.ToPython(@params);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("fit_transform", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
 
                 public PyObject get_metadata_routing()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                    return __pyObject;
                 }
 
                 public PyDict get_params(bool deep = true)
@@ -404,7 +427,8 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (deep != true)
                         pyDict["deep"] = Helpers.ToPython(deep);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                    return new PyDict(__pyObject);
                 }
 
                 public PatchExtractor set_output(PyObject? transform = null)
@@ -431,7 +455,8 @@ public static partial class sklearn
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("transform", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
             }
         }
@@ -463,11 +488,7 @@ public static partial class sklearn
                 return Py.Import("sklearn.feature_extraction.text");
             }
 
-            static text()
-            {
-                ReInitializeLazySelf();
-            }
-
+            static text() => ReInitializeLazySelf();
             public class CountVectorizer : PythonObject
             {
                 public CountVectorizer(string input = "content", string encoding = "utf-8", string decode_error = "strict", PyObject? strip_accents = null, bool lowercase = true, PyObject? preprocessor = null, PyObject? tokenizer = null, PyObject? stop_words = null, string? token_pattern = "(?u)\\b\\w\\w+\\b", PyTuple? ngram_range = null, string analyzer = "word", float max_df = 1.0f, int min_df = 1, int? max_features = null, PyObject? vocabulary = null, bool binary = false, int? dtype = null)
@@ -518,36 +539,58 @@ public static partial class sklearn
                     self = pyObject;
                 }
 
-                [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+                [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
                 public static CountVectorizer Encapsule(PyObject pyObject) => new CountVectorizer(pyObject);
                 public static CountVectorizer Wrap(PyObject pyObject) => new CountVectorizer(pyObject);
-                public PyDict vocabulary_ => new NotImplementedException();
-                public bool fixed_vocabulary_ => self.GetAttr("fixed_vocabulary_").As<bool>()public PyObject build_analyzer()
+                public PyDict vocabulary_
+                {
+                    get
+                    {
+                        var __pyObject = self.GetAttr("vocabulary_");
+                        return new PyDict(__pyObject);
+                    }
+                }
+
+                public bool fixed_vocabulary_
+                {
+                    get
+                    {
+                        var __pyObject = self.GetAttr("fixed_vocabulary_");
+                        return __pyObject.As<bool>();
+                    }
+                }
+
+                public PyObject build_analyzer()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("build_analyzer", args, pyDict);
+                    return __pyObject;
                 }
 
                 public PyObject build_preprocessor()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("build_preprocessor", args, pyDict);
+                    return __pyObject;
                 }
 
                 public PyObject build_tokenizer()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("build_tokenizer", args, pyDict);
+                    return __pyObject;
                 }
 
                 public string decode(string doc)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(doc) });
                     PyDict pyDict = new PyDict();
-                    return self.InvokeMethod("decode", args, pyDict).As<string>()}
+                    var __pyObject = self.InvokeMethod("decode", args, pyDict);
+                    return __pyObject.As<string>();
+                }
 
                 public CountVectorizer fit(PyObject raw_documents, PyObject? y = null)
                 {
@@ -565,7 +608,8 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (y != null)
                         pyDict["y"] = Helpers.ToPython(y);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("fit_transform", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
 
                 public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -574,14 +618,16 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (input_features != null)
                         pyDict["input_features"] = Helpers.ToPython(input_features);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_feature_names_out", args, pyDict);
+                    return __pyObject;
                 }
 
                 public PyObject get_metadata_routing()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                    return __pyObject;
                 }
 
                 public PyDict get_params(bool deep = true)
@@ -590,21 +636,23 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (deep != true)
                         pyDict["deep"] = Helpers.ToPython(deep);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                    return new PyDict(__pyObject);
                 }
 
                 public void get_stop_words()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("get_stop_words", args, pyDict);
                 }
 
                 public NDarray inverse_transform(NDarray X)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("inverse_transform", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
 
                 public CountVectorizer set_fit_request(string? raw_documents = "$UNCHANGED$")
@@ -641,7 +689,8 @@ public static partial class sklearn
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(raw_documents) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("transform", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
             }
 
@@ -693,35 +742,40 @@ public static partial class sklearn
                     self = pyObject;
                 }
 
-                [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+                [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
                 public static HashingVectorizer Encapsule(PyObject pyObject) => new HashingVectorizer(pyObject);
                 public static HashingVectorizer Wrap(PyObject pyObject) => new HashingVectorizer(pyObject);
                 public PyObject build_analyzer()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("build_analyzer", args, pyDict);
+                    return __pyObject;
                 }
 
                 public PyObject build_preprocessor()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("build_preprocessor", args, pyDict);
+                    return __pyObject;
                 }
 
                 public PyObject build_tokenizer()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("build_tokenizer", args, pyDict);
+                    return __pyObject;
                 }
 
                 public string decode(string doc)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(doc) });
                     PyDict pyDict = new PyDict();
-                    return self.InvokeMethod("decode", args, pyDict).As<string>()}
+                    var __pyObject = self.InvokeMethod("decode", args, pyDict);
+                    return __pyObject.As<string>();
+                }
 
                 public HashingVectorizer fit(NDarray X)
                 {
@@ -737,14 +791,16 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (y != null)
                         pyDict["y"] = Helpers.ToPython(y);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("fit_transform", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
 
                 public PyObject get_metadata_routing()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                    return __pyObject;
                 }
 
                 public PyDict get_params(bool deep = true)
@@ -753,14 +809,15 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (deep != true)
                         pyDict["deep"] = Helpers.ToPython(deep);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                    return new PyDict(__pyObject);
                 }
 
                 public void get_stop_words()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("get_stop_words", args, pyDict);
                 }
 
                 public HashingVectorizer partial_fit(NDarray X)
@@ -795,7 +852,8 @@ public static partial class sklearn
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("transform", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
             }
 
@@ -823,11 +881,35 @@ public static partial class sklearn
                     self = pyObject;
                 }
 
-                [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+                [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
                 public static TfidfTransformer Encapsule(PyObject pyObject) => new TfidfTransformer(pyObject);
                 public static TfidfTransformer Wrap(PyObject pyObject) => new TfidfTransformer(pyObject);
-                public NDarray idf_ => new NotImplementedException();
-                public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+                public NDarray idf_
+                {
+                    get
+                    {
+                        var __pyObject = self.GetAttr("idf_");
+                        return new NDarray(__pyObject);
+                    }
+                }
+
+                public int n_features_in_
+                {
+                    get
+                    {
+                        var __pyObject = self.GetAttr("n_features_in_");
+                        return __pyObject.As<int>();
+                    }
+                }
+
+                public NDarray feature_names_in_
+                {
+                    get
+                    {
+                        var __pyObject = self.GetAttr("feature_names_in_");
+                        return new NDarray(__pyObject);
+                    }
+                }
 
                 public TfidfTransformer fit(NDarray X, PyObject? y = null)
                 {
@@ -847,7 +929,8 @@ public static partial class sklearn
                         pyDict["y"] = Helpers.ToPython(y);
                     if (@params != null)
                         pyDict["params"] = Helpers.ToPython(@params);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("fit_transform", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
 
                 public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -856,14 +939,16 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (input_features != null)
                         pyDict["input_features"] = Helpers.ToPython(input_features);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_feature_names_out", args, pyDict);
+                    return __pyObject;
                 }
 
                 public PyObject get_metadata_routing()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                    return __pyObject;
                 }
 
                 public PyDict get_params(bool deep = true)
@@ -872,7 +957,8 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (deep != true)
                         pyDict["deep"] = Helpers.ToPython(deep);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                    return new PyDict(__pyObject);
                 }
 
                 public TfidfTransformer set_output(PyObject? transform = null)
@@ -911,7 +997,8 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (copy != true)
                         pyDict["copy"] = Helpers.ToPython(copy);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("transform", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
             }
 
@@ -973,38 +1060,67 @@ public static partial class sklearn
                     self = pyObject;
                 }
 
-                [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+                [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
                 public static TfidfVectorizer Encapsule(PyObject pyObject) => new TfidfVectorizer(pyObject);
                 public static TfidfVectorizer Wrap(PyObject pyObject) => new TfidfVectorizer(pyObject);
-                public PyDict vocabulary_ => new NotImplementedException();
-                public bool fixed_vocabulary_ => self.GetAttr("fixed_vocabulary_").As<bool>()public NDarray idf_ => new NotImplementedException();
+                public PyDict vocabulary_
+                {
+                    get
+                    {
+                        var __pyObject = self.GetAttr("vocabulary_");
+                        return new PyDict(__pyObject);
+                    }
+                }
+
+                public bool fixed_vocabulary_
+                {
+                    get
+                    {
+                        var __pyObject = self.GetAttr("fixed_vocabulary_");
+                        return __pyObject.As<bool>();
+                    }
+                }
+
+                public NDarray idf_
+                {
+                    get
+                    {
+                        var __pyObject = self.GetAttr("idf_");
+                        return new NDarray(__pyObject);
+                    }
+                }
 
                 public PyObject build_analyzer()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("build_analyzer", args, pyDict);
+                    return __pyObject;
                 }
 
                 public PyObject build_preprocessor()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("build_preprocessor", args, pyDict);
+                    return __pyObject;
                 }
 
                 public PyObject build_tokenizer()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("build_tokenizer", args, pyDict);
+                    return __pyObject;
                 }
 
                 public string decode(string doc)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(doc) });
                     PyDict pyDict = new PyDict();
-                    return self.InvokeMethod("decode", args, pyDict).As<string>()}
+                    var __pyObject = self.InvokeMethod("decode", args, pyDict);
+                    return __pyObject.As<string>();
+                }
 
                 public TfidfVectorizer fit(PyObject raw_documents, PyObject? y = null)
                 {
@@ -1022,7 +1138,8 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (y != null)
                         pyDict["y"] = Helpers.ToPython(y);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("fit_transform", args, pyDict);
+                    return __pyObject;
                 }
 
                 public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -1031,14 +1148,16 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (input_features != null)
                         pyDict["input_features"] = Helpers.ToPython(input_features);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_feature_names_out", args, pyDict);
+                    return __pyObject;
                 }
 
                 public PyObject get_metadata_routing()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                    return __pyObject;
                 }
 
                 public PyDict get_params(bool deep = true)
@@ -1047,21 +1166,23 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (deep != true)
                         pyDict["deep"] = Helpers.ToPython(deep);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                    return new PyDict(__pyObject);
                 }
 
                 public void get_stop_words()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("get_stop_words", args, pyDict);
                 }
 
                 public NDarray inverse_transform(NDarray X)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("inverse_transform", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
 
                 public TfidfVectorizer set_fit_request(string? raw_documents = "$UNCHANGED$")
@@ -1098,7 +1219,8 @@ public static partial class sklearn
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(raw_documents) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("transform", args, pyDict);
+                    return __pyObject;
                 }
             }
         }

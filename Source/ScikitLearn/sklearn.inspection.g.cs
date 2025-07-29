@@ -29,11 +29,7 @@ public static partial class sklearn
             return Py.Import("sklearn.inspection");
         }
 
-        static inspection()
-        {
-            ReInitializeLazySelf();
-        }
-
+        static inspection() => ReInitializeLazySelf();
         public static PyDict partial_dependence(PyObject estimator, NDarray X, NDarray features, NDarray? sample_weight = null, NDarray? categorical_features = null, NDarray? feature_names = null, string response_method = "auto", PyTuple? percentiles = null, int grid_resolution = 100, string method = "auto", string kind = "average")
         {
             _ = sklearn.inspection.self;
@@ -55,7 +51,8 @@ public static partial class sklearn
                 pyDict["method"] = Helpers.ToPython(method);
             if (kind != "average")
                 pyDict["kind"] = Helpers.ToPython(kind);
-            return new NotImplementedException();
+            var __pyObject = self.InvokeMethod("partial_dependence", args, pyDict);
+            return new PyDict(__pyObject);
         }
 
         public static PyDict permutation_importance(PyObject estimator, NDarray X, NDarray y, PyDict? scoring = null, int n_repeats = 5, int? n_jobs = null, int? random_state = null, NDarray? sample_weight = null, float max_samples = 1.0f)
@@ -75,7 +72,8 @@ public static partial class sklearn
                 pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
             if (max_samples != 1.0f)
                 pyDict["max_samples"] = Helpers.ToPython(max_samples);
-            return new NotImplementedException();
+            var __pyObject = self.InvokeMethod("permutation_importance", args, pyDict);
+            return new PyDict(__pyObject);
         }
 
         public class DecisionBoundaryDisplay : PythonObject
@@ -98,12 +96,35 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static DecisionBoundaryDisplay Encapsule(PyObject pyObject) => new DecisionBoundaryDisplay(pyObject);
             public static DecisionBoundaryDisplay Wrap(PyObject pyObject) => new DecisionBoundaryDisplay(pyObject);
-            public PyObject surface_ => new NotImplementedException();
-            public PyObject ax_ => new NotImplementedException();
-            public PyObject figure_ => new NotImplementedException();
+            public PyObject surface_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("surface_");
+                    return __pyObject;
+                }
+            }
+
+            public PyObject ax_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("ax_");
+                    return __pyObject;
+                }
+            }
+
+            public PyObject figure_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("figure_");
+                    return __pyObject;
+                }
+            }
 
             public PyObject from_estimator(PyObject estimator, NDarray X, int grid_resolution = 100, float eps = 1.0f, string plot_method = "contourf", string response_method = "auto", string? class_of_interest = null, string? xlabel = null, string? ylabel = null, PyObject? ax = null, Dictionary<string, PyObject>? @params = null)
             {
@@ -127,7 +148,8 @@ public static partial class sklearn
                     pyDict["ax"] = Helpers.ToPython(ax);
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("from_estimator", args, pyDict);
+                return __pyObject;
             }
 
             public PyObject plot(string plot_method = "contourf", PyObject? ax = null, string? xlabel = null, string? ylabel = null, Dictionary<string, PyObject>? @params = null)
@@ -144,7 +166,8 @@ public static partial class sklearn
                     pyDict["ylabel"] = Helpers.ToPython(ylabel);
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("plot", args, pyDict);
+                return __pyObject;
             }
         }
 
@@ -172,18 +195,89 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static PartialDependenceDisplay Encapsule(PyObject pyObject) => new PartialDependenceDisplay(pyObject);
             public static PartialDependenceDisplay Wrap(PyObject pyObject) => new PartialDependenceDisplay(pyObject);
-            public PyObject bounding_ax_ => new NotImplementedException();
-            public NDarray axes_ => new NotImplementedException();
-            public NDarray lines_ => new NotImplementedException();
-            public NDarray deciles_vlines_ => new NotImplementedException();
-            public NDarray deciles_hlines_ => new NotImplementedException();
-            public NDarray contours_ => new NotImplementedException();
-            public NDarray bars_ => new NotImplementedException();
-            public NDarray heatmaps_ => new NotImplementedException();
-            public PyObject figure_ => new NotImplementedException();
+            public PyObject bounding_ax_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("bounding_ax_");
+                    return __pyObject;
+                }
+            }
+
+            public NDarray axes_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("axes_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray lines_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("lines_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray deciles_vlines_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("deciles_vlines_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray deciles_hlines_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("deciles_hlines_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray contours_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("contours_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray bars_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("bars_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray heatmaps_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("heatmaps_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public PyObject figure_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("figure_");
+                    return __pyObject;
+                }
+            }
 
             public PyObject from_estimator(PyObject estimator, NDarray X, PyTuple features, NDarray? sample_weight = null, NDarray? categorical_features = null, NDarray? feature_names = null, int? target = null, string response_method = "auto", int n_cols = 3, int grid_resolution = 100, PyTuple? percentiles = null, string method = "auto", int? n_jobs = null, int verbose = 0, PyDict? line_kw = null, PyDict? ice_lines_kw = null, PyDict? pd_line_kw = null, PyDict? contour_kw = null, NDarray? ax = null, string kind = "average", bool centered = false, int? subsample = 1000, int? random_state = null)
             {
@@ -229,7 +323,8 @@ public static partial class sklearn
                     pyDict["subsample"] = Helpers.ToPython(subsample);
                 if (random_state != null)
                     pyDict["random_state"] = Helpers.ToPython(random_state);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("from_estimator", args, pyDict);
+                return __pyObject;
             }
 
             public PyObject plot(NDarray? ax = null, int n_cols = 3, PyDict? line_kw = null, PyDict? ice_lines_kw = null, PyDict? pd_line_kw = null, PyDict? contour_kw = null, PyDict? bar_kw = null, PyDict? heatmap_kw = null, PyDict? pdp_lim = null, bool centered = false)
@@ -256,7 +351,8 @@ public static partial class sklearn
                     pyDict["pdp_lim"] = Helpers.ToPython(pdp_lim);
                 if (centered != false)
                     pyDict["centered"] = Helpers.ToPython(centered);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("plot", args, pyDict);
+                return __pyObject;
             }
         }
     }

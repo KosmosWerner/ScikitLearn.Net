@@ -29,11 +29,7 @@ public static partial class sklearn
             return Py.Import("sklearn.gaussian_process");
         }
 
-        static gaussian_process()
-        {
-            ReInitializeLazySelf();
-        }
-
+        static gaussian_process() => ReInitializeLazySelf();
         public class GaussianProcessClassifier : PythonObject
         {
             public GaussianProcessClassifier(PyObject? kernel = null, string? optimizer = "fmin_l_bfgs_b", int n_restarts_optimizer = 0, int max_iter_predict = 100, bool warm_start = false, bool copy_X_train = true, int? random_state = null, string multi_class = "one_vs_rest", int? n_jobs = null)
@@ -68,13 +64,71 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static GaussianProcessClassifier Encapsule(PyObject pyObject) => new GaussianProcessClassifier(pyObject);
             public static GaussianProcessClassifier Wrap(PyObject pyObject) => new GaussianProcessClassifier(pyObject);
-            public PyObject base_estimator_ => new NotImplementedException();
-            public PyObject kernel_ => new NotImplementedException();
-            public float log_marginal_likelihood_value_ => self.GetAttr("log_marginal_likelihood_value_").As<float>()public NDarray classes_ => new NotImplementedException();
-            public int n_classes_ => self.GetAttr("n_classes_").As<int>()public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+            public PyObject base_estimator_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("base_estimator_");
+                    return __pyObject;
+                }
+            }
+
+            public PyObject kernel_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("kernel_");
+                    return __pyObject;
+                }
+            }
+
+            public float log_marginal_likelihood_value_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("log_marginal_likelihood_value_");
+                    return __pyObject.As<float>();
+                }
+            }
+
+            public NDarray classes_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("classes_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_classes_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_classes_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
 
             public GaussianProcessClassifier fit(PyObject X, NDarray y)
             {
@@ -88,7 +142,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public PyDict get_params(bool deep = true)
@@ -97,7 +152,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public (float? , NDarray? ) log_marginal_likelihood(NDarray? theta = null, bool eval_gradient = false, bool clone_kernel = true)
@@ -110,21 +166,26 @@ public static partial class sklearn
                     pyDict["eval_gradient"] = Helpers.ToPython(eval_gradient);
                 if (clone_kernel != true)
                     pyDict["clone_kernel"] = Helpers.ToPython(clone_kernel);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("log_marginal_likelihood", args, pyDict);
+                var __pyObjectTuple = new PyTuple(__pyObject);
+                var __pyObjectLength = __pyObjectTuple.Length();
+                return (__pyObjectLength > 0 ? __pyObjectTuple[0].As<float>() : null, __pyObjectLength > 1 ? new NDarray(__pyObjectTuple[1]) : null);
             }
 
             public NDarray predict(PyObject X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray predict_proba(PyObject X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -133,7 +194,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public GaussianProcessClassifier set_params(Dictionary<string, PyObject>? @params = null)
             {
@@ -188,15 +251,80 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static GaussianProcessRegressor Encapsule(PyObject pyObject) => new GaussianProcessRegressor(pyObject);
             public static GaussianProcessRegressor Wrap(PyObject pyObject) => new GaussianProcessRegressor(pyObject);
-            public PyObject X_train_ => new NotImplementedException();
-            public NDarray y_train_ => new NotImplementedException();
-            public PyObject kernel_ => new NotImplementedException();
-            public NDarray L_ => new NotImplementedException();
-            public NDarray alpha_ => new NotImplementedException();
-            public float log_marginal_likelihood_value_ => self.GetAttr("log_marginal_likelihood_value_").As<float>()public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+            public PyObject X_train_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("X_train_");
+                    return __pyObject;
+                }
+            }
+
+            public NDarray y_train_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("y_train_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public PyObject kernel_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("kernel_");
+                    return __pyObject;
+                }
+            }
+
+            public NDarray L_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("L_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray alpha_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("alpha_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public float log_marginal_likelihood_value_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("log_marginal_likelihood_value_");
+                    return __pyObject.As<float>();
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
 
             public GaussianProcessRegressor fit(PyObject X, NDarray y)
             {
@@ -210,7 +338,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public PyDict get_params(bool deep = true)
@@ -219,7 +348,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public (float? , NDarray? ) log_marginal_likelihood(NDarray? theta = null, bool eval_gradient = false, bool clone_kernel = true)
@@ -232,7 +362,10 @@ public static partial class sklearn
                     pyDict["eval_gradient"] = Helpers.ToPython(eval_gradient);
                 if (clone_kernel != true)
                     pyDict["clone_kernel"] = Helpers.ToPython(clone_kernel);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("log_marginal_likelihood", args, pyDict);
+                var __pyObjectTuple = new PyTuple(__pyObject);
+                var __pyObjectLength = __pyObjectTuple.Length();
+                return (__pyObjectLength > 0 ? __pyObjectTuple[0].As<float>() : null, __pyObjectLength > 1 ? new NDarray(__pyObjectTuple[1]) : null);
             }
 
             public (NDarray? , NDarray? , NDarray? ) predict(PyObject X, bool return_std = false, bool return_cov = false)
@@ -243,7 +376,10 @@ public static partial class sklearn
                     pyDict["return_std"] = Helpers.ToPython(return_std);
                 if (return_cov != false)
                     pyDict["return_cov"] = Helpers.ToPython(return_cov);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                var __pyObjectTuple = new PyTuple(__pyObject);
+                var __pyObjectLength = __pyObjectTuple.Length();
+                return (__pyObjectLength > 0 ? new NDarray(__pyObjectTuple[0]) : null, __pyObjectLength > 1 ? new NDarray(__pyObjectTuple[1]) : null, __pyObjectLength > 2 ? new NDarray(__pyObjectTuple[2]) : null);
             }
 
             public NDarray sample_y(PyObject X, int n_samples = 1, int? random_state = 0)
@@ -254,7 +390,8 @@ public static partial class sklearn
                     pyDict["n_samples"] = Helpers.ToPython(n_samples);
                 if (random_state != 0)
                     pyDict["random_state"] = Helpers.ToPython(random_state);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("sample_y", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -263,7 +400,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public GaussianProcessRegressor set_params(Dictionary<string, PyObject>? @params = null)
             {
@@ -325,11 +464,7 @@ public static partial class sklearn
                 return Py.Import("sklearn.gaussian_process.kernels");
             }
 
-            static kernels()
-            {
-                ReInitializeLazySelf();
-            }
-
+            static kernels() => ReInitializeLazySelf();
             public class CompoundKernel : PythonObject
             {
                 public CompoundKernel(PyTuple kernels)
@@ -346,21 +481,22 @@ public static partial class sklearn
                     self = pyObject;
                 }
 
-                [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+                [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
                 public static CompoundKernel Encapsule(PyObject pyObject) => new CompoundKernel(pyObject);
                 public static CompoundKernel Wrap(PyObject pyObject) => new CompoundKernel(pyObject);
                 public void clone_with_theta(NDarray theta)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(theta) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("clone_with_theta", args, pyDict);
                 }
 
                 public NDarray diag(PyObject X)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("diag", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
 
                 public PyDict get_params(bool deep = true)
@@ -369,14 +505,15 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (deep != true)
                         pyDict["deep"] = Helpers.ToPython(deep);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                    return new PyDict(__pyObject);
                 }
 
                 public void is_stationary()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("is_stationary", args, pyDict);
                 }
 
                 public CompoundKernel set_params()
@@ -408,21 +545,22 @@ public static partial class sklearn
                     self = pyObject;
                 }
 
-                [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+                [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
                 public static ConstantKernel Encapsule(PyObject pyObject) => new ConstantKernel(pyObject);
                 public static ConstantKernel Wrap(PyObject pyObject) => new ConstantKernel(pyObject);
                 public void clone_with_theta(NDarray theta)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(theta) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("clone_with_theta", args, pyDict);
                 }
 
                 public NDarray diag(PyObject X)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("diag", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
 
                 public PyDict get_params(bool deep = true)
@@ -431,14 +569,15 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (deep != true)
                         pyDict["deep"] = Helpers.ToPython(deep);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                    return new PyDict(__pyObject);
                 }
 
                 public void is_stationary()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("is_stationary", args, pyDict);
                 }
 
                 public ConstantKernel set_params()
@@ -470,21 +609,22 @@ public static partial class sklearn
                     self = pyObject;
                 }
 
-                [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+                [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
                 public static DotProduct Encapsule(PyObject pyObject) => new DotProduct(pyObject);
                 public static DotProduct Wrap(PyObject pyObject) => new DotProduct(pyObject);
                 public void clone_with_theta(NDarray theta)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(theta) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("clone_with_theta", args, pyDict);
                 }
 
                 public NDarray diag(NDarray X)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("diag", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
 
                 public PyDict get_params(bool deep = true)
@@ -493,14 +633,15 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (deep != true)
                         pyDict["deep"] = Helpers.ToPython(deep);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                    return new PyDict(__pyObject);
                 }
 
                 public void is_stationary()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("is_stationary", args, pyDict);
                 }
 
                 public DotProduct set_params()
@@ -536,21 +677,22 @@ public static partial class sklearn
                     self = pyObject;
                 }
 
-                [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+                [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
                 public static ExpSineSquared Encapsule(PyObject pyObject) => new ExpSineSquared(pyObject);
                 public static ExpSineSquared Wrap(PyObject pyObject) => new ExpSineSquared(pyObject);
                 public void clone_with_theta(NDarray theta)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(theta) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("clone_with_theta", args, pyDict);
                 }
 
                 public NDarray diag(NDarray X)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("diag", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
 
                 public PyDict get_params(bool deep = true)
@@ -559,14 +701,15 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (deep != true)
                         pyDict["deep"] = Helpers.ToPython(deep);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                    return new PyDict(__pyObject);
                 }
 
                 public void is_stationary()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("is_stationary", args, pyDict);
                 }
 
                 public ExpSineSquared set_params()
@@ -594,21 +737,22 @@ public static partial class sklearn
                     self = pyObject;
                 }
 
-                [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+                [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
                 public static Exponentiation Encapsule(PyObject pyObject) => new Exponentiation(pyObject);
                 public static Exponentiation Wrap(PyObject pyObject) => new Exponentiation(pyObject);
                 public void clone_with_theta(NDarray theta)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(theta) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("clone_with_theta", args, pyDict);
                 }
 
                 public NDarray diag(PyObject X)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("diag", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
 
                 public PyDict get_params(bool deep = true)
@@ -617,14 +761,15 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (deep != true)
                         pyDict["deep"] = Helpers.ToPython(deep);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                    return new PyDict(__pyObject);
                 }
 
                 public void is_stationary()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("is_stationary", args, pyDict);
                 }
 
                 public Exponentiation set_params()
@@ -654,14 +799,59 @@ public static partial class sklearn
                     self = pyObject;
                 }
 
-                [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+                [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
                 public static Hyperparameter Encapsule(PyObject pyObject) => new Hyperparameter(pyObject);
                 public static Hyperparameter Wrap(PyObject pyObject) => new Hyperparameter(pyObject);
-                public string name => self.GetAttr("name").As<string>()public string value_type => self.GetAttr("value_type").As<string>()public float bounds => self.GetAttr("bounds").As<float>()public int n_elements => self.GetAttr("n_elements").As<int>()public bool @fixed => self.GetAttr("fixed").As<bool>()public void count()
+                public string name
+                {
+                    get
+                    {
+                        var __pyObject = self.GetAttr("name");
+                        return __pyObject.As<string>();
+                    }
+                }
+
+                public string value_type
+                {
+                    get
+                    {
+                        var __pyObject = self.GetAttr("value_type");
+                        return __pyObject.As<string>();
+                    }
+                }
+
+                public float bounds
+                {
+                    get
+                    {
+                        var __pyObject = self.GetAttr("bounds");
+                        return __pyObject.As<float>();
+                    }
+                }
+
+                public int n_elements
+                {
+                    get
+                    {
+                        var __pyObject = self.GetAttr("n_elements");
+                        return __pyObject.As<int>();
+                    }
+                }
+
+                public bool @fixed
+                {
+                    get
+                    {
+                        var __pyObject = self.GetAttr("fixed");
+                        return __pyObject.As<bool>();
+                    }
+                }
+
+                public void count()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("count", args, pyDict);
                 }
 
                 public void index(int start = 0)
@@ -670,7 +860,7 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (start != 0)
                         pyDict["start"] = Helpers.ToPython(start);
-                    return new NotImplementedException();
+                    self.InvokeMethod("index", args, pyDict);
                 }
             }
 
@@ -690,21 +880,22 @@ public static partial class sklearn
                     self = pyObject;
                 }
 
-                [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+                [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
                 public static Kernel Encapsule(PyObject pyObject) => new Kernel(pyObject);
                 public static Kernel Wrap(PyObject pyObject) => new Kernel(pyObject);
                 public void clone_with_theta(NDarray theta)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(theta) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("clone_with_theta", args, pyDict);
                 }
 
                 public NDarray diag(NDarray X)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("diag", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
 
                 public PyDict get_params(bool deep = true)
@@ -713,14 +904,15 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (deep != true)
                         pyDict["deep"] = Helpers.ToPython(deep);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                    return new PyDict(__pyObject);
                 }
 
                 public void is_stationary()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("is_stationary", args, pyDict);
                 }
 
                 public Kernel set_params()
@@ -754,21 +946,22 @@ public static partial class sklearn
                     self = pyObject;
                 }
 
-                [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+                [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
                 public static Matern Encapsule(PyObject pyObject) => new Matern(pyObject);
                 public static Matern Wrap(PyObject pyObject) => new Matern(pyObject);
                 public void clone_with_theta(NDarray theta)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(theta) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("clone_with_theta", args, pyDict);
                 }
 
                 public NDarray diag(NDarray X)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("diag", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
 
                 public PyDict get_params(bool deep = true)
@@ -777,14 +970,15 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (deep != true)
                         pyDict["deep"] = Helpers.ToPython(deep);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                    return new PyDict(__pyObject);
                 }
 
                 public void is_stationary()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("is_stationary", args, pyDict);
                 }
 
                 public Matern set_params()
@@ -820,21 +1014,22 @@ public static partial class sklearn
                     self = pyObject;
                 }
 
-                [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+                [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
                 public static PairwiseKernel Encapsule(PyObject pyObject) => new PairwiseKernel(pyObject);
                 public static PairwiseKernel Wrap(PyObject pyObject) => new PairwiseKernel(pyObject);
                 public void clone_with_theta(NDarray theta)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(theta) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("clone_with_theta", args, pyDict);
                 }
 
                 public NDarray diag(NDarray X)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("diag", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
 
                 public PyDict get_params(bool deep = true)
@@ -843,14 +1038,15 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (deep != true)
                         pyDict["deep"] = Helpers.ToPython(deep);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                    return new PyDict(__pyObject);
                 }
 
                 public void is_stationary()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("is_stationary", args, pyDict);
                 }
 
                 public PairwiseKernel set_params()
@@ -878,21 +1074,22 @@ public static partial class sklearn
                     self = pyObject;
                 }
 
-                [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+                [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
                 public static Product Encapsule(PyObject pyObject) => new Product(pyObject);
                 public static Product Wrap(PyObject pyObject) => new Product(pyObject);
                 public void clone_with_theta(NDarray theta)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(theta) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("clone_with_theta", args, pyDict);
                 }
 
                 public NDarray diag(PyObject X)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("diag", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
 
                 public PyDict get_params(bool deep = true)
@@ -901,14 +1098,15 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (deep != true)
                         pyDict["deep"] = Helpers.ToPython(deep);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                    return new PyDict(__pyObject);
                 }
 
                 public void is_stationary()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("is_stationary", args, pyDict);
                 }
 
                 public Product set_params()
@@ -940,21 +1138,22 @@ public static partial class sklearn
                     self = pyObject;
                 }
 
-                [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+                [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
                 public static RBF Encapsule(PyObject pyObject) => new RBF(pyObject);
                 public static RBF Wrap(PyObject pyObject) => new RBF(pyObject);
                 public void clone_with_theta(NDarray theta)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(theta) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("clone_with_theta", args, pyDict);
                 }
 
                 public NDarray diag(NDarray X)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("diag", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
 
                 public PyDict get_params(bool deep = true)
@@ -963,14 +1162,15 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (deep != true)
                         pyDict["deep"] = Helpers.ToPython(deep);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                    return new PyDict(__pyObject);
                 }
 
                 public void is_stationary()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("is_stationary", args, pyDict);
                 }
 
                 public RBF set_params()
@@ -1006,21 +1206,22 @@ public static partial class sklearn
                     self = pyObject;
                 }
 
-                [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+                [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
                 public static RationalQuadratic Encapsule(PyObject pyObject) => new RationalQuadratic(pyObject);
                 public static RationalQuadratic Wrap(PyObject pyObject) => new RationalQuadratic(pyObject);
                 public void clone_with_theta(NDarray theta)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(theta) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("clone_with_theta", args, pyDict);
                 }
 
                 public NDarray diag(NDarray X)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("diag", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
 
                 public PyDict get_params(bool deep = true)
@@ -1029,14 +1230,15 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (deep != true)
                         pyDict["deep"] = Helpers.ToPython(deep);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                    return new PyDict(__pyObject);
                 }
 
                 public void is_stationary()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("is_stationary", args, pyDict);
                 }
 
                 public RationalQuadratic set_params()
@@ -1064,21 +1266,22 @@ public static partial class sklearn
                     self = pyObject;
                 }
 
-                [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+                [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
                 public static Sum Encapsule(PyObject pyObject) => new Sum(pyObject);
                 public static Sum Wrap(PyObject pyObject) => new Sum(pyObject);
                 public void clone_with_theta(NDarray theta)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(theta) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("clone_with_theta", args, pyDict);
                 }
 
                 public NDarray diag(PyObject X)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("diag", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
 
                 public PyDict get_params(bool deep = true)
@@ -1087,14 +1290,15 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (deep != true)
                         pyDict["deep"] = Helpers.ToPython(deep);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                    return new PyDict(__pyObject);
                 }
 
                 public void is_stationary()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("is_stationary", args, pyDict);
                 }
 
                 public Sum set_params()
@@ -1126,21 +1330,22 @@ public static partial class sklearn
                     self = pyObject;
                 }
 
-                [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+                [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
                 public static WhiteKernel Encapsule(PyObject pyObject) => new WhiteKernel(pyObject);
                 public static WhiteKernel Wrap(PyObject pyObject) => new WhiteKernel(pyObject);
                 public void clone_with_theta(NDarray theta)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(theta) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("clone_with_theta", args, pyDict);
                 }
 
                 public NDarray diag(PyObject X)
                 {
                     PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("diag", args, pyDict);
+                    return new NDarray(__pyObject);
                 }
 
                 public PyDict get_params(bool deep = true)
@@ -1149,14 +1354,15 @@ public static partial class sklearn
                     PyDict pyDict = new PyDict();
                     if (deep != true)
                         pyDict["deep"] = Helpers.ToPython(deep);
-                    return new NotImplementedException();
+                    var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                    return new PyDict(__pyObject);
                 }
 
                 public void is_stationary()
                 {
                     PyTuple args = new PyTuple(new PyObject[] { });
                     PyDict pyDict = new PyDict();
-                    return new NotImplementedException();
+                    self.InvokeMethod("is_stationary", args, pyDict);
                 }
 
                 public WhiteKernel set_params()

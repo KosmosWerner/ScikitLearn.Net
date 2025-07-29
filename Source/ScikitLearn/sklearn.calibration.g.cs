@@ -29,11 +29,7 @@ public static partial class sklearn
             return Py.Import("sklearn.calibration");
         }
 
-        static calibration()
-        {
-            ReInitializeLazySelf();
-        }
-
+        static calibration() => ReInitializeLazySelf();
         public static (NDarray? , NDarray? ) calibration_curve(NDarray y_true, NDarray y_prob, string? pos_label = null, int n_bins = 5, string strategy = "uniform")
         {
             _ = sklearn.calibration.self;
@@ -45,7 +41,10 @@ public static partial class sklearn
                 pyDict["n_bins"] = Helpers.ToPython(n_bins);
             if (strategy != "uniform")
                 pyDict["strategy"] = Helpers.ToPython(strategy);
-            return new NotImplementedException();
+            var __pyObject = self.InvokeMethod("calibration_curve", args, pyDict);
+            var __pyObjectTuple = new PyTuple(__pyObject);
+            var __pyObjectLength = __pyObjectTuple.Length();
+            return (__pyObjectLength > 0 ? new NDarray(__pyObjectTuple[0]) : null, __pyObjectLength > 1 ? new NDarray(__pyObjectTuple[1]) : null);
         }
 
         public class CalibratedClassifierCV : PythonObject
@@ -74,12 +73,46 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static CalibratedClassifierCV Encapsule(PyObject pyObject) => new CalibratedClassifierCV(pyObject);
             public static CalibratedClassifierCV Wrap(PyObject pyObject) => new CalibratedClassifierCV(pyObject);
-            public NDarray classes_ => new NotImplementedException();
-            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
-            public bool calibrated_classifiers_ => self.GetAttr("calibrated_classifiers_").As<bool>()public CalibratedClassifierCV fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null)
+            public NDarray classes_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("classes_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public bool calibrated_classifiers_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("calibrated_classifiers_");
+                    return __pyObject.As<bool>();
+                }
+            }
+
+            public CalibratedClassifierCV fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X), Helpers.ToPython(y) });
                 PyDict pyDict = new PyDict();
@@ -95,7 +128,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public PyDict get_params(bool deep = true)
@@ -104,21 +138,24 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray predict_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -127,7 +164,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public CalibratedClassifierCV set_fit_request(string? sample_weight = "$UNCHANGED$")
             {
@@ -180,12 +219,35 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static CalibrationDisplay Encapsule(PyObject pyObject) => new CalibrationDisplay(pyObject);
             public static CalibrationDisplay Wrap(PyObject pyObject) => new CalibrationDisplay(pyObject);
-            public PyObject line_ => new NotImplementedException();
-            public PyObject ax_ => new NotImplementedException();
-            public PyObject figure_ => new NotImplementedException();
+            public PyObject line_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("line_");
+                    return __pyObject;
+                }
+            }
+
+            public PyObject ax_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("ax_");
+                    return __pyObject;
+                }
+            }
+
+            public PyObject figure_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("figure_");
+                    return __pyObject;
+                }
+            }
 
             public PyObject from_estimator(PyObject estimator, NDarray X, NDarray y, int n_bins = 5, string strategy = "uniform", string? pos_label = null, string? name = null, bool ref_line = true, PyObject? ax = null, Dictionary<string, PyObject>? @params = null)
             {
@@ -205,7 +267,8 @@ public static partial class sklearn
                     pyDict["ax"] = Helpers.ToPython(ax);
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("from_estimator", args, pyDict);
+                return __pyObject;
             }
 
             public PyObject from_predictions(NDarray y_true, NDarray y_prob, int n_bins = 5, string strategy = "uniform", string? pos_label = null, string? name = null, bool ref_line = true, PyObject? ax = null, Dictionary<string, PyObject>? @params = null)
@@ -226,7 +289,8 @@ public static partial class sklearn
                     pyDict["ax"] = Helpers.ToPython(ax);
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("from_predictions", args, pyDict);
+                return __pyObject;
             }
 
             public PyObject plot(PyObject? ax = null, string? name = null, bool ref_line = true, Dictionary<string, PyObject>? @params = null)
@@ -241,7 +305,8 @@ public static partial class sklearn
                     pyDict["ref_line"] = Helpers.ToPython(ref_line);
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("plot", args, pyDict);
+                return __pyObject;
             }
         }
     }

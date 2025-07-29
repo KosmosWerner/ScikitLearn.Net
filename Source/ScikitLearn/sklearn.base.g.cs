@@ -29,11 +29,7 @@ public static partial class sklearn
             return Py.Import("sklearn.base");
         }
 
-        static @base()
-        {
-            ReInitializeLazySelf();
-        }
-
+        static @base() => ReInitializeLazySelf();
         public static PyObject clone(PyTuple estimator, bool safe = true)
         {
             _ = sklearn.@base.self;
@@ -41,7 +37,8 @@ public static partial class sklearn
             PyDict pyDict = new PyDict();
             if (safe != true)
                 pyDict["safe"] = Helpers.ToPython(safe);
-            return new NotImplementedException();
+            var __pyObject = self.InvokeMethod("clone", args, pyDict);
+            return __pyObject;
         }
 
         public static bool is_classifier(PyObject estimator)
@@ -49,7 +46,8 @@ public static partial class sklearn
             _ = sklearn.@base.self;
             PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(estimator) });
             PyDict pyDict = new PyDict();
-            self.InvokeMethod("is_classifier", args, pyDict);
+            var __pyObject = self.InvokeMethod("is_classifier", args, pyDict);
+            return __pyObject.As<bool>();
         }
 
         public static bool is_regressor(PyObject estimator)
@@ -57,7 +55,8 @@ public static partial class sklearn
             _ = sklearn.@base.self;
             PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(estimator) });
             PyDict pyDict = new PyDict();
-            self.InvokeMethod("is_regressor", args, pyDict);
+            var __pyObject = self.InvokeMethod("is_regressor", args, pyDict);
+            return __pyObject.As<bool>();
         }
 
         public class BaseEstimator : PythonObject
@@ -76,14 +75,15 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static BaseEstimator Encapsule(PyObject pyObject) => new BaseEstimator(pyObject);
             public static BaseEstimator Wrap(PyObject pyObject) => new BaseEstimator(pyObject);
             public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return ScikitLearn.sklearn.utils.metadata_routing.MetadataRequest.Wrap(__pyObject);
             }
 
             public PyDict get_params(bool deep = true)
@@ -92,7 +92,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public BaseEstimator set_params(Dictionary<string, PyObject>? @params = null)
@@ -122,28 +123,35 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static BiclusterMixin Encapsule(PyObject pyObject) => new BiclusterMixin(pyObject);
             public static BiclusterMixin Wrap(PyObject pyObject) => new BiclusterMixin(pyObject);
             public (NDarray<long>? , NDarray<long>? ) get_indices(int i)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(i) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_indices", args, pyDict);
+                var __pyObjectTuple = new PyTuple(__pyObject);
+                var __pyObjectLength = __pyObjectTuple.Length();
+                return (__pyObjectLength > 0 ? new NDarray<long>(__pyObjectTuple[0]) : null, __pyObjectLength > 1 ? new NDarray<long>(__pyObjectTuple[1]) : null);
             }
 
             public (int? , int? ) get_shape(int i)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(i) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_shape", args, pyDict);
+                var __pyObjectTuple = new PyTuple(__pyObject);
+                var __pyObjectLength = __pyObjectTuple.Length();
+                return (__pyObjectLength > 0 ? __pyObjectTuple[0].As<int>() : null, __pyObjectLength > 1 ? __pyObjectTuple[1].As<int>() : null);
             }
 
             public NDarray get_submatrix(int i, NDarray data)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(i), Helpers.ToPython(data) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_submatrix", args, pyDict);
+                return new NDarray(__pyObject);
             }
         }
 
@@ -163,7 +171,7 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static ClassNamePrefixFeaturesOutMixin Encapsule(PyObject pyObject) => new ClassNamePrefixFeaturesOutMixin(pyObject);
             public static ClassNamePrefixFeaturesOutMixin Wrap(PyObject pyObject) => new ClassNamePrefixFeaturesOutMixin(pyObject);
             public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -172,7 +180,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (input_features != null)
                     pyDict["input_features"] = Helpers.ToPython(input_features);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_feature_names_out", args, pyDict);
+                return __pyObject;
             }
         }
 
@@ -192,7 +201,7 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static ClassifierMixin Encapsule(PyObject pyObject) => new ClassifierMixin(pyObject);
             public static ClassifierMixin Wrap(PyObject pyObject) => new ClassifierMixin(pyObject);
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -201,7 +210,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
         }
 
         public class ClusterMixin : PythonObject
@@ -220,7 +231,7 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static ClusterMixin Encapsule(PyObject pyObject) => new ClusterMixin(pyObject);
             public static ClusterMixin Wrap(PyObject pyObject) => new ClusterMixin(pyObject);
             public NDarray<long> fit_predict(NDarray X, Dictionary<string, PyObject>? @params = null)
@@ -229,7 +240,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("fit_predict", args, pyDict);
+                return new NDarray<long>(__pyObject);
             }
         }
 
@@ -249,14 +261,16 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static DensityMixin Encapsule(PyObject pyObject) => new DensityMixin(pyObject);
             public static DensityMixin Wrap(PyObject pyObject) => new DensityMixin(pyObject);
             public float score(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
         }
 
         public class MetaEstimatorMixin : PythonObject
@@ -275,7 +289,7 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static MetaEstimatorMixin Encapsule(PyObject pyObject) => new MetaEstimatorMixin(pyObject);
             public static MetaEstimatorMixin Wrap(PyObject pyObject) => new MetaEstimatorMixin(pyObject);
         }
@@ -296,7 +310,7 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static OneToOneFeatureMixin Encapsule(PyObject pyObject) => new OneToOneFeatureMixin(pyObject);
             public static OneToOneFeatureMixin Wrap(PyObject pyObject) => new OneToOneFeatureMixin(pyObject);
             public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -305,7 +319,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (input_features != null)
                     pyDict["input_features"] = Helpers.ToPython(input_features);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_feature_names_out", args, pyDict);
+                return __pyObject;
             }
         }
 
@@ -325,7 +340,7 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static OutlierMixin Encapsule(PyObject pyObject) => new OutlierMixin(pyObject);
             public static OutlierMixin Wrap(PyObject pyObject) => new OutlierMixin(pyObject);
             public NDarray fit_predict(NDarray X, Dictionary<string, PyObject>? @params = null)
@@ -334,7 +349,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("fit_predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
         }
 
@@ -354,7 +370,7 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static RegressorMixin Encapsule(PyObject pyObject) => new RegressorMixin(pyObject);
             public static RegressorMixin Wrap(PyObject pyObject) => new RegressorMixin(pyObject);
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -363,7 +379,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
         }
 
         public class TransformerMixin : PythonObject
@@ -382,7 +400,7 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static TransformerMixin Encapsule(PyObject pyObject) => new TransformerMixin(pyObject);
             public static TransformerMixin Wrap(PyObject pyObject) => new TransformerMixin(pyObject);
             public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null)
@@ -393,7 +411,8 @@ public static partial class sklearn
                     pyDict["y"] = Helpers.ToPython(y);
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("fit_transform", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public TransformerMixin set_output(PyObject? transform = null)

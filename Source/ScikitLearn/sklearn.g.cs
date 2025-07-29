@@ -27,11 +27,7 @@ public static partial class sklearn
         return Py.Import("sklearn");
     }
 
-    static sklearn()
-    {
-        ReInitializeLazySelf();
-    }
-
+    static sklearn() => ReInitializeLazySelf();
     public static void config_context(bool? assume_finite = null, int? working_memory = null, bool? print_changed_only = null, string? display = null, int? pairwise_dist_chunk_size = null, bool? enable_cython_pairwise_dist = null, bool? array_api_dispatch = null, string? transform_output = null, bool? enable_metadata_routing = null, bool? skip_parameter_validation = null)
     {
         _ = sklearn.self;
@@ -57,7 +53,7 @@ public static partial class sklearn
             pyDict["enable_metadata_routing"] = Helpers.ToPython(enable_metadata_routing);
         if (skip_parameter_validation != null)
             pyDict["skip_parameter_validation"] = Helpers.ToPython(skip_parameter_validation);
-        return new NotImplementedException();
+        self.InvokeMethod("config_context", args, pyDict);
     }
 
     public static PyDict get_config()
@@ -65,7 +61,8 @@ public static partial class sklearn
         _ = sklearn.self;
         PyTuple args = new PyTuple(new PyObject[] { });
         PyDict pyDict = new PyDict();
-        return new NotImplementedException();
+        var __pyObject = self.InvokeMethod("get_config", args, pyDict);
+        return new PyDict(__pyObject);
     }
 
     public static void set_config(bool? assume_finite = null, int? working_memory = null, bool? print_changed_only = null, string? display = null, int? pairwise_dist_chunk_size = null, bool? enable_cython_pairwise_dist = null, bool? array_api_dispatch = null, string? transform_output = null, bool? enable_metadata_routing = null, bool? skip_parameter_validation = null)
@@ -93,7 +90,7 @@ public static partial class sklearn
             pyDict["enable_metadata_routing"] = Helpers.ToPython(enable_metadata_routing);
         if (skip_parameter_validation != null)
             pyDict["skip_parameter_validation"] = Helpers.ToPython(skip_parameter_validation);
-        return new NotImplementedException();
+        self.InvokeMethod("set_config", args, pyDict);
     }
 
     public static void show_versions()
@@ -101,6 +98,6 @@ public static partial class sklearn
         _ = sklearn.self;
         PyTuple args = new PyTuple(new PyObject[] { });
         PyDict pyDict = new PyDict();
-        return new NotImplementedException();
+        self.InvokeMethod("show_versions", args, pyDict);
     }
 }

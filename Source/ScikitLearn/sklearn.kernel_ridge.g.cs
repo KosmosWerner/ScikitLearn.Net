@@ -29,11 +29,7 @@ public static partial class sklearn
             return Py.Import("sklearn.kernel_ridge");
         }
 
-        static kernel_ridge()
-        {
-            ReInitializeLazySelf();
-        }
-
+        static kernel_ridge() => ReInitializeLazySelf();
         public class KernelRidge : PythonObject
         {
             public KernelRidge(int alpha = 1, string kernel = "linear", float? gamma = null, int degree = 3, int coef0 = 1, PyDict? kernel_params = null)
@@ -62,12 +58,44 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static KernelRidge Encapsule(PyObject pyObject) => new KernelRidge(pyObject);
             public static KernelRidge Wrap(PyObject pyObject) => new KernelRidge(pyObject);
-            public NDarray dual_coef_ => new NotImplementedException();
-            public NDarray X_fit_ => new NotImplementedException();
-            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+            public NDarray dual_coef_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("dual_coef_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray X_fit_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("X_fit_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
 
             public KernelRidge fit(NDarray X, NDarray y, NDarray? sample_weight = null)
             {
@@ -83,7 +111,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public PyDict get_params(bool deep = true)
@@ -92,14 +121,16 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -108,7 +139,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public KernelRidge set_fit_request(string? sample_weight = "$UNCHANGED$")
             {

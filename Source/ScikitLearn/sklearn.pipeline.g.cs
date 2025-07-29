@@ -29,11 +29,7 @@ public static partial class sklearn
             return Py.Import("sklearn.pipeline");
         }
 
-        static pipeline()
-        {
-            ReInitializeLazySelf();
-        }
-
+        static pipeline() => ReInitializeLazySelf();
         public static PyObject make_pipeline(PyObject[] steps, PyObject? memory = null, bool verbose = false)
         {
             _ = sklearn.pipeline.self;
@@ -43,7 +39,8 @@ public static partial class sklearn
                 pyDict["memory"] = Helpers.ToPython(memory);
             if (verbose != false)
                 pyDict["verbose"] = Helpers.ToPython(verbose);
-            return new NotImplementedException();
+            var __pyObject = self.InvokeMethod("make_pipeline", args, pyDict);
+            return __pyObject;
         }
 
         public static PyObject make_union(PyObject[] transformers, int? n_jobs = null, bool verbose = false)
@@ -55,7 +52,8 @@ public static partial class sklearn
                 pyDict["n_jobs"] = Helpers.ToPython(n_jobs);
             if (verbose != false)
                 pyDict["verbose"] = Helpers.ToPython(verbose);
-            return new NotImplementedException();
+            var __pyObject = self.InvokeMethod("make_union", args, pyDict);
+            return __pyObject;
         }
 
         public class FeatureUnion : PythonObject
@@ -82,11 +80,35 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static FeatureUnion Encapsule(PyObject pyObject) => new FeatureUnion(pyObject);
             public static FeatureUnion Wrap(PyObject pyObject) => new FeatureUnion(pyObject);
-            public PyDict named_transformers => new NotImplementedException();
-            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+            public PyDict named_transformers
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("named_transformers");
+                    return new PyDict(__pyObject);
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
 
             public FeatureUnion fit(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null)
             {
@@ -108,7 +130,8 @@ public static partial class sklearn
                     pyDict["y"] = Helpers.ToPython(y);
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("fit_transform", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -117,14 +140,16 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (input_features != null)
                     pyDict["input_features"] = Helpers.ToPython(input_features);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_feature_names_out", args, pyDict);
+                return __pyObject;
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public string get_params(bool deep = true)
@@ -133,7 +158,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return self.InvokeMethod("get_params", args, pyDict).As<string>()}
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return __pyObject.As<string>();
+            }
 
             public FeatureUnion set_output(PyObject? transform = null)
             {
@@ -161,7 +188,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("transform", args, pyDict);
+                return new NDarray(__pyObject);
             }
         }
 
@@ -185,12 +213,44 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static Pipeline Encapsule(PyObject pyObject) => new Pipeline(pyObject);
             public static Pipeline Wrap(PyObject pyObject) => new Pipeline(pyObject);
-            public PyDict named_steps => new NotImplementedException();
-            public NDarray classes_ => new NotImplementedException();
-            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+            public PyDict named_steps
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("named_steps");
+                    return new PyDict(__pyObject);
+                }
+            }
+
+            public NDarray classes_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("classes_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
 
             public NDarray decision_function(PyObject X, Dictionary<string, PyObject>? @params = null)
             {
@@ -198,7 +258,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("decision_function", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public Pipeline fit(PyObject X, PyObject? y = null, Dictionary<string, PyObject>? @params = null)
@@ -221,7 +282,8 @@ public static partial class sklearn
                     pyDict["y"] = Helpers.ToPython(y);
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("fit_predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray fit_transform(PyObject X, PyObject? y = null, Dictionary<string, PyObject>? @params = null)
@@ -232,7 +294,8 @@ public static partial class sklearn
                     pyDict["y"] = Helpers.ToPython(y);
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("fit_transform", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -241,14 +304,16 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (input_features != null)
                     pyDict["input_features"] = Helpers.ToPython(input_features);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_feature_names_out", args, pyDict);
+                return __pyObject;
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public string get_params(bool deep = true)
@@ -257,7 +322,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return self.InvokeMethod("get_params", args, pyDict).As<string>()}
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return __pyObject.As<string>();
+            }
 
             public NDarray inverse_transform(NDarray? X = null, NDarray? Xt = null, Dictionary<string, PyObject>? @params = null)
             {
@@ -269,7 +336,8 @@ public static partial class sklearn
                     pyDict["Xt"] = Helpers.ToPython(Xt);
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("inverse_transform", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray predict(PyObject X, Dictionary<string, PyObject>? @params = null)
@@ -278,7 +346,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray predict_log_proba(PyObject X, Dictionary<string, PyObject>? @params = null)
@@ -287,7 +356,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict_log_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray predict_proba(PyObject X, Dictionary<string, PyObject>? @params = null)
@@ -296,7 +366,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(PyObject X, PyObject? y = null, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null)
@@ -309,13 +380,16 @@ public static partial class sklearn
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public NDarray score_samples(PyObject X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("score_samples", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public Pipeline set_output(PyObject? transform = null)
@@ -354,7 +428,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("transform", args, pyDict);
+                return new NDarray(__pyObject);
             }
         }
     }

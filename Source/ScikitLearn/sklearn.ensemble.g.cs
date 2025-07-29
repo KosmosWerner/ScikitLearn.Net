@@ -29,11 +29,7 @@ public static partial class sklearn
             return Py.Import("sklearn.ensemble");
         }
 
-        static ensemble()
-        {
-            ReInitializeLazySelf();
-        }
-
+        static ensemble() => ReInitializeLazySelf();
         public class AdaBoostClassifier : PythonObject
         {
             public AdaBoostClassifier(PyObject? estimator = null, int n_estimators = 50, float learning_rate = 1.0f, string algorithm = "SAMME.R", int? random_state = null)
@@ -60,22 +56,96 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static AdaBoostClassifier Encapsule(PyObject pyObject) => new AdaBoostClassifier(pyObject);
             public static AdaBoostClassifier Wrap(PyObject pyObject) => new AdaBoostClassifier(pyObject);
-            public PyObject estimator_ => new NotImplementedException();
-            public PyTuple estimators_ => new NotImplementedException();
-            public NDarray classes_ => new NotImplementedException();
-            public int n_classes_ => self.GetAttr("n_classes_").As<int>()public NDarray estimator_weights_ => new NotImplementedException();
-            public NDarray estimator_errors_ => new NotImplementedException();
-            public NDarray feature_importances_ => new NotImplementedException();
-            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+            public PyObject estimator_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimator_");
+                    return __pyObject;
+                }
+            }
+
+            public PyTuple estimators_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_");
+                    return new PyTuple(__pyObject);
+                }
+            }
+
+            public NDarray classes_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("classes_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_classes_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_classes_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray estimator_weights_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimator_weights_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray estimator_errors_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimator_errors_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray feature_importances_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_importances_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
 
             public NDarray decision_function(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("decision_function", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public AdaBoostClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -92,7 +162,7 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                self.InvokeMethod("get_metadata_routing", args, pyDict);
             }
 
             public PyDict get_params(bool deep = true)
@@ -101,28 +171,32 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray predict_log_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict_log_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray predict_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -131,7 +205,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public AdaBoostClassifier set_fit_request(string? sample_weight = "$UNCHANGED$")
             {
@@ -167,21 +243,24 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("staged_decision_function", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray staged_predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("staged_predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray staged_predict_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("staged_predict_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float staged_score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -190,7 +269,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("staged_score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("staged_score", args, pyDict);
+                return __pyObject.As<float>();
+            }
         }
 
         public class AdaBoostRegressor : PythonObject
@@ -219,15 +300,71 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static AdaBoostRegressor Encapsule(PyObject pyObject) => new AdaBoostRegressor(pyObject);
             public static AdaBoostRegressor Wrap(PyObject pyObject) => new AdaBoostRegressor(pyObject);
-            public PyObject estimator_ => new NotImplementedException();
-            public PyTuple estimators_ => new NotImplementedException();
-            public NDarray estimator_weights_ => new NotImplementedException();
-            public NDarray estimator_errors_ => new NotImplementedException();
-            public NDarray feature_importances_ => new NotImplementedException();
-            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+            public PyObject estimator_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimator_");
+                    return __pyObject;
+                }
+            }
+
+            public PyTuple estimators_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_");
+                    return new PyTuple(__pyObject);
+                }
+            }
+
+            public NDarray estimator_weights_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimator_weights_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray estimator_errors_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimator_errors_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray feature_importances_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_importances_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
 
             public AdaBoostRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null)
             {
@@ -243,7 +380,7 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                self.InvokeMethod("get_metadata_routing", args, pyDict);
             }
 
             public PyDict get_params(bool deep = true)
@@ -252,14 +389,16 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -268,7 +407,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public AdaBoostRegressor set_fit_request(string? sample_weight = "$UNCHANGED$")
             {
@@ -304,7 +445,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("staged_predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float staged_score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -313,7 +455,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("staged_score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("staged_score", args, pyDict);
+                return __pyObject.As<float>();
+            }
         }
 
         public class BaggingClassifier : PythonObject
@@ -354,22 +498,105 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static BaggingClassifier Encapsule(PyObject pyObject) => new BaggingClassifier(pyObject);
             public static BaggingClassifier Wrap(PyObject pyObject) => new BaggingClassifier(pyObject);
-            public PyObject estimator_ => new NotImplementedException();
-            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
-            public PyTuple estimators_ => new NotImplementedException();
-            public NDarray estimators_samples_ => new NotImplementedException();
-            public NDarray estimators_features_ => new NotImplementedException();
-            public NDarray classes_ => new NotImplementedException();
-            public int n_classes_ => self.GetAttr("n_classes_").As<int>()public float oob_score_ => self.GetAttr("oob_score_").As<float>()public NDarray oob_decision_function_ => new NotImplementedException();
+            public PyObject estimator_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimator_");
+                    return __pyObject;
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public PyTuple estimators_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_");
+                    return new PyTuple(__pyObject);
+                }
+            }
+
+            public NDarray estimators_samples_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_samples_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray estimators_features_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_features_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray classes_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("classes_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_classes_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_classes_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public float oob_score_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("oob_score_");
+                    return __pyObject.As<float>();
+                }
+            }
+
+            public NDarray oob_decision_function_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("oob_decision_function_");
+                    return new NDarray(__pyObject);
+                }
+            }
 
             public NDarray decision_function(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("decision_function", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public BaggingClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null)
@@ -388,7 +615,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public PyDict get_params(bool deep = true)
@@ -397,28 +625,32 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray predict_log_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict_log_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray predict_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -427,7 +659,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public BaggingClassifier set_fit_request(string? sample_weight = "$UNCHANGED$")
             {
@@ -498,15 +732,80 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static BaggingRegressor Encapsule(PyObject pyObject) => new BaggingRegressor(pyObject);
             public static BaggingRegressor Wrap(PyObject pyObject) => new BaggingRegressor(pyObject);
-            public PyObject estimator_ => new NotImplementedException();
-            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
-            public PyTuple estimators_ => new NotImplementedException();
-            public NDarray estimators_samples_ => new NotImplementedException();
-            public NDarray estimators_features_ => new NotImplementedException();
-            public float oob_score_ => self.GetAttr("oob_score_").As<float>()public NDarray oob_prediction_ => new NotImplementedException();
+            public PyObject estimator_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimator_");
+                    return __pyObject;
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public PyTuple estimators_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_");
+                    return new PyTuple(__pyObject);
+                }
+            }
+
+            public NDarray estimators_samples_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_samples_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray estimators_features_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_features_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public float oob_score_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("oob_score_");
+                    return __pyObject.As<float>();
+                }
+            }
+
+            public NDarray oob_prediction_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("oob_prediction_");
+                    return new NDarray(__pyObject);
+                }
+            }
 
             public BaggingRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null)
             {
@@ -524,7 +823,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public PyDict get_params(bool deep = true)
@@ -533,14 +833,16 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -549,7 +851,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public BaggingRegressor set_fit_request(string? sample_weight = "$UNCHANGED$")
             {
@@ -636,29 +940,124 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static ExtraTreesClassifier Encapsule(PyObject pyObject) => new ExtraTreesClassifier(pyObject);
             public static ExtraTreesClassifier Wrap(PyObject pyObject) => new ExtraTreesClassifier(pyObject);
-            public PyObject estimator_ => new NotImplementedException();
-            public PyTuple estimators_ => new NotImplementedException();
-            public NDarray classes_ => new NotImplementedException();
-            public int n_classes_ => self.GetAttr("n_classes_").As<int>()public NDarray feature_importances_ => new NotImplementedException();
-            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
-            public int n_outputs_ => self.GetAttr("n_outputs_").As<int>()public float oob_score_ => self.GetAttr("oob_score_").As<float>()public NDarray oob_decision_function_ => new NotImplementedException();
-            public NDarray estimators_samples_ => new NotImplementedException();
+            public PyObject estimator_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimator_");
+                    return __pyObject;
+                }
+            }
+
+            public PyTuple estimators_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_");
+                    return new PyTuple(__pyObject);
+                }
+            }
+
+            public NDarray classes_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("classes_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_classes_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_classes_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_importances_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_importances_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_outputs_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_outputs_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public float oob_score_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("oob_score_");
+                    return __pyObject.As<float>();
+                }
+            }
+
+            public NDarray oob_decision_function_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("oob_decision_function_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray estimators_samples_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_samples_");
+                    return new NDarray(__pyObject);
+                }
+            }
 
             public NDarray apply(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("apply", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public (NDarray? , NDarray? ) decision_path(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("decision_path", args, pyDict);
+                var __pyObjectTuple = new PyTuple(__pyObject);
+                var __pyObjectLength = __pyObjectTuple.Length();
+                return (__pyObjectLength > 0 ? new NDarray(__pyObjectTuple[0]) : null, __pyObjectLength > 1 ? new NDarray(__pyObjectTuple[1]) : null);
             }
 
             public ExtraTreesClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -675,7 +1074,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public PyDict get_params(bool deep = true)
@@ -684,28 +1084,32 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray predict_log_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict_log_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray predict_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -714,7 +1118,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public ExtraTreesClassifier set_fit_request(string? sample_weight = "$UNCHANGED$")
             {
@@ -799,28 +1205,106 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static ExtraTreesRegressor Encapsule(PyObject pyObject) => new ExtraTreesRegressor(pyObject);
             public static ExtraTreesRegressor Wrap(PyObject pyObject) => new ExtraTreesRegressor(pyObject);
-            public PyObject estimator_ => new NotImplementedException();
-            public PyTuple estimators_ => new NotImplementedException();
-            public NDarray feature_importances_ => new NotImplementedException();
-            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
-            public int n_outputs_ => self.GetAttr("n_outputs_").As<int>()public float oob_score_ => self.GetAttr("oob_score_").As<float>()public NDarray oob_prediction_ => new NotImplementedException();
-            public NDarray estimators_samples_ => new NotImplementedException();
+            public PyObject estimator_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimator_");
+                    return __pyObject;
+                }
+            }
+
+            public PyTuple estimators_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_");
+                    return new PyTuple(__pyObject);
+                }
+            }
+
+            public NDarray feature_importances_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_importances_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_outputs_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_outputs_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public float oob_score_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("oob_score_");
+                    return __pyObject.As<float>();
+                }
+            }
+
+            public NDarray oob_prediction_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("oob_prediction_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray estimators_samples_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_samples_");
+                    return new NDarray(__pyObject);
+                }
+            }
 
             public NDarray apply(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("apply", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public (NDarray? , NDarray? ) decision_path(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("decision_path", args, pyDict);
+                var __pyObjectTuple = new PyTuple(__pyObject);
+                var __pyObjectLength = __pyObjectTuple.Length();
+                return (__pyObjectLength > 0 ? new NDarray(__pyObjectTuple[0]) : null, __pyObjectLength > 1 ? new NDarray(__pyObjectTuple[1]) : null);
             }
 
             public ExtraTreesRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -837,7 +1321,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public PyDict get_params(bool deep = true)
@@ -846,14 +1331,16 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -862,7 +1349,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public ExtraTreesRegressor set_fit_request(string? sample_weight = "$UNCHANGED$")
             {
@@ -951,29 +1440,149 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static GradientBoostingClassifier Encapsule(PyObject pyObject) => new GradientBoostingClassifier(pyObject);
             public static GradientBoostingClassifier Wrap(PyObject pyObject) => new GradientBoostingClassifier(pyObject);
-            public int n_estimators_ => self.GetAttr("n_estimators_").As<int>()public int n_trees_per_iteration_ => self.GetAttr("n_trees_per_iteration_").As<int>()public NDarray feature_importances_ => new NotImplementedException();
-            public NDarray oob_improvement_ => new NotImplementedException();
-            public NDarray oob_scores_ => new NotImplementedException();
-            public float oob_score_ => self.GetAttr("oob_score_").As<float>()public NDarray train_score_ => new NotImplementedException();
-            public PyObject init_ => new NotImplementedException();
-            public NDarray estimators_ => new NotImplementedException();
-            public NDarray classes_ => new NotImplementedException();
-            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
-            public int n_classes_ => self.GetAttr("n_classes_").As<int>()public int max_features_ => self.GetAttr("max_features_").As<int>()public NDarray apply(NDarray X)
+            public int n_estimators_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_estimators_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public int n_trees_per_iteration_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_trees_per_iteration_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_importances_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_importances_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray oob_improvement_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("oob_improvement_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray oob_scores_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("oob_scores_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public float oob_score_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("oob_score_");
+                    return __pyObject.As<float>();
+                }
+            }
+
+            public NDarray train_score_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("train_score_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public PyObject init_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("init_");
+                    return __pyObject;
+                }
+            }
+
+            public NDarray estimators_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray classes_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("classes_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_classes_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_classes_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public int max_features_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("max_features_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray apply(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("apply", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray decision_function(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("decision_function", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public GradientBoostingClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null, PyObject? monitor = null)
@@ -992,7 +1601,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public PyDict get_params(bool deep = true)
@@ -1001,28 +1611,32 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray predict_log_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict_log_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray predict_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -1031,7 +1645,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public GradientBoostingClassifier set_fit_request(string? monitor = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$")
             {
@@ -1069,21 +1685,24 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("staged_decision_function", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray staged_predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("staged_predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray staged_predict_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("staged_predict_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
         }
 
@@ -1145,21 +1764,123 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static GradientBoostingRegressor Encapsule(PyObject pyObject) => new GradientBoostingRegressor(pyObject);
             public static GradientBoostingRegressor Wrap(PyObject pyObject) => new GradientBoostingRegressor(pyObject);
-            public int n_estimators_ => self.GetAttr("n_estimators_").As<int>()public int n_trees_per_iteration_ => self.GetAttr("n_trees_per_iteration_").As<int>()public NDarray feature_importances_ => new NotImplementedException();
-            public NDarray oob_improvement_ => new NotImplementedException();
-            public NDarray oob_scores_ => new NotImplementedException();
-            public float oob_score_ => self.GetAttr("oob_score_").As<float>()public NDarray train_score_ => new NotImplementedException();
-            public PyObject init_ => new NotImplementedException();
-            public NDarray estimators_ => new NotImplementedException();
-            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
-            public int max_features_ => self.GetAttr("max_features_").As<int>()public NDarray apply(NDarray X)
+            public int n_estimators_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_estimators_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public int n_trees_per_iteration_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_trees_per_iteration_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_importances_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_importances_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray oob_improvement_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("oob_improvement_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray oob_scores_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("oob_scores_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public float oob_score_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("oob_score_");
+                    return __pyObject.As<float>();
+                }
+            }
+
+            public NDarray train_score_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("train_score_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public PyObject init_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("init_");
+                    return __pyObject;
+                }
+            }
+
+            public NDarray estimators_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int max_features_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("max_features_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray apply(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("apply", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public GradientBoostingRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null, PyObject? monitor = null)
@@ -1178,7 +1899,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public PyDict get_params(bool deep = true)
@@ -1187,14 +1909,16 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -1203,7 +1927,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public GradientBoostingRegressor set_fit_request(string? monitor = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$")
             {
@@ -1241,7 +1967,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("staged_predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
         }
 
@@ -1303,20 +2030,96 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static HistGradientBoostingClassifier Encapsule(PyObject pyObject) => new HistGradientBoostingClassifier(pyObject);
             public static HistGradientBoostingClassifier Wrap(PyObject pyObject) => new HistGradientBoostingClassifier(pyObject);
-            public NDarray classes_ => new NotImplementedException();
-            public bool do_early_stopping_ => self.GetAttr("do_early_stopping_").As<bool>()public int n_iter_ => self.GetAttr("n_iter_").As<int>()public int n_trees_per_iteration_ => self.GetAttr("n_trees_per_iteration_").As<int>()public NDarray train_score_ => new NotImplementedException();
-            public NDarray validation_score_ => new NotImplementedException();
-            public NDarray is_categorical_ => new NotImplementedException();
-            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+            public NDarray classes_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("classes_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public bool do_early_stopping_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("do_early_stopping_");
+                    return __pyObject.As<bool>();
+                }
+            }
+
+            public int n_iter_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_iter_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public int n_trees_per_iteration_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_trees_per_iteration_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray train_score_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("train_score_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray validation_score_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("validation_score_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray is_categorical_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("is_categorical_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
 
             public NDarray decision_function(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("decision_function", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public HistGradientBoostingClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -1333,7 +2136,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public PyDict get_params(bool deep = true)
@@ -1342,21 +2146,24 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray predict_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -1365,7 +2172,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public HistGradientBoostingClassifier set_fit_request(string? sample_weight = "$UNCHANGED$")
             {
@@ -1401,21 +2210,24 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("staged_decision_function", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray staged_predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("staged_predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray staged_predict_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("staged_predict_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
         }
 
@@ -1477,13 +2289,80 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static HistGradientBoostingRegressor Encapsule(PyObject pyObject) => new HistGradientBoostingRegressor(pyObject);
             public static HistGradientBoostingRegressor Wrap(PyObject pyObject) => new HistGradientBoostingRegressor(pyObject);
-            public bool do_early_stopping_ => self.GetAttr("do_early_stopping_").As<bool>()public int n_iter_ => self.GetAttr("n_iter_").As<int>()public int n_trees_per_iteration_ => self.GetAttr("n_trees_per_iteration_").As<int>()public NDarray train_score_ => new NotImplementedException();
-            public NDarray validation_score_ => new NotImplementedException();
-            public NDarray is_categorical_ => new NotImplementedException();
-            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+            public bool do_early_stopping_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("do_early_stopping_");
+                    return __pyObject.As<bool>();
+                }
+            }
+
+            public int n_iter_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_iter_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public int n_trees_per_iteration_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_trees_per_iteration_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray train_score_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("train_score_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray validation_score_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("validation_score_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray is_categorical_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("is_categorical_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
 
             public HistGradientBoostingRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null)
             {
@@ -1499,7 +2378,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public PyDict get_params(bool deep = true)
@@ -1508,14 +2388,16 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -1524,7 +2406,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public HistGradientBoostingRegressor set_fit_request(string? sample_weight = "$UNCHANGED$")
             {
@@ -1560,7 +2444,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("staged_predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
         }
 
@@ -1598,20 +2483,87 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static IsolationForest Encapsule(PyObject pyObject) => new IsolationForest(pyObject);
             public static IsolationForest Wrap(PyObject pyObject) => new IsolationForest(pyObject);
-            public PyObject estimator_ => new NotImplementedException();
-            public PyTuple estimators_ => new NotImplementedException();
-            public NDarray estimators_features_ => new NotImplementedException();
-            public NDarray estimators_samples_ => new NotImplementedException();
-            public int max_samples_ => self.GetAttr("max_samples_").As<int>()public float offset_ => self.GetAttr("offset_").As<float>()public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+            public PyObject estimator_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimator_");
+                    return __pyObject;
+                }
+            }
+
+            public PyTuple estimators_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_");
+                    return new PyTuple(__pyObject);
+                }
+            }
+
+            public NDarray estimators_features_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_features_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray estimators_samples_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_samples_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int max_samples_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("max_samples_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public float offset_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("offset_");
+                    return __pyObject.As<float>();
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
 
             public NDarray decision_function(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("decision_function", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public IsolationForest fit(NDarray X, NDarray? sample_weight = null)
@@ -1630,14 +2582,16 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("fit_predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public PyDict get_params(bool deep = true)
@@ -1646,21 +2600,24 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray score_samples(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("score_samples", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public IsolationForest set_fit_request(string? sample_weight = "$UNCHANGED$")
@@ -1738,29 +2695,124 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static RandomForestClassifier Encapsule(PyObject pyObject) => new RandomForestClassifier(pyObject);
             public static RandomForestClassifier Wrap(PyObject pyObject) => new RandomForestClassifier(pyObject);
-            public PyObject estimator_ => new NotImplementedException();
-            public PyTuple estimators_ => new NotImplementedException();
-            public NDarray classes_ => new NotImplementedException();
-            public int n_classes_ => self.GetAttr("n_classes_").As<int>()public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
-            public int n_outputs_ => self.GetAttr("n_outputs_").As<int>()public NDarray feature_importances_ => new NotImplementedException();
-            public float oob_score_ => self.GetAttr("oob_score_").As<float>()public NDarray oob_decision_function_ => new NotImplementedException();
-            public NDarray estimators_samples_ => new NotImplementedException();
+            public PyObject estimator_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimator_");
+                    return __pyObject;
+                }
+            }
+
+            public PyTuple estimators_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_");
+                    return new PyTuple(__pyObject);
+                }
+            }
+
+            public NDarray classes_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("classes_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_classes_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_classes_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_outputs_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_outputs_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_importances_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_importances_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public float oob_score_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("oob_score_");
+                    return __pyObject.As<float>();
+                }
+            }
+
+            public NDarray oob_decision_function_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("oob_decision_function_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray estimators_samples_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_samples_");
+                    return new NDarray(__pyObject);
+                }
+            }
 
             public NDarray apply(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("apply", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public (NDarray? , NDarray? ) decision_path(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("decision_path", args, pyDict);
+                var __pyObjectTuple = new PyTuple(__pyObject);
+                var __pyObjectLength = __pyObjectTuple.Length();
+                return (__pyObjectLength > 0 ? new NDarray(__pyObjectTuple[0]) : null, __pyObjectLength > 1 ? new NDarray(__pyObjectTuple[1]) : null);
             }
 
             public RandomForestClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -1777,7 +2829,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public PyDict get_params(bool deep = true)
@@ -1786,28 +2839,32 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray predict_log_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict_log_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray predict_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -1816,7 +2873,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public RandomForestClassifier set_fit_request(string? sample_weight = "$UNCHANGED$")
             {
@@ -1901,28 +2960,106 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static RandomForestRegressor Encapsule(PyObject pyObject) => new RandomForestRegressor(pyObject);
             public static RandomForestRegressor Wrap(PyObject pyObject) => new RandomForestRegressor(pyObject);
-            public PyObject estimator_ => new NotImplementedException();
-            public PyTuple estimators_ => new NotImplementedException();
-            public NDarray feature_importances_ => new NotImplementedException();
-            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
-            public int n_outputs_ => self.GetAttr("n_outputs_").As<int>()public float oob_score_ => self.GetAttr("oob_score_").As<float>()public NDarray oob_prediction_ => new NotImplementedException();
-            public NDarray estimators_samples_ => new NotImplementedException();
+            public PyObject estimator_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimator_");
+                    return __pyObject;
+                }
+            }
+
+            public PyTuple estimators_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_");
+                    return new PyTuple(__pyObject);
+                }
+            }
+
+            public NDarray feature_importances_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_importances_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_outputs_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_outputs_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public float oob_score_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("oob_score_");
+                    return __pyObject.As<float>();
+                }
+            }
+
+            public NDarray oob_prediction_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("oob_prediction_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public NDarray estimators_samples_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_samples_");
+                    return new NDarray(__pyObject);
+                }
+            }
 
             public NDarray apply(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("apply", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public (NDarray? , NDarray? ) decision_path(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("decision_path", args, pyDict);
+                var __pyObjectTuple = new PyTuple(__pyObject);
+                var __pyObjectLength = __pyObjectTuple.Length();
+                return (__pyObjectLength > 0 ? new NDarray(__pyObjectTuple[0]) : null, __pyObjectLength > 1 ? new NDarray(__pyObjectTuple[1]) : null);
             }
 
             public RandomForestRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -1939,7 +3076,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public PyDict get_params(bool deep = true)
@@ -1948,14 +3086,16 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -1964,7 +3104,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public RandomForestRegressor set_fit_request(string? sample_weight = "$UNCHANGED$")
             {
@@ -2037,28 +3179,97 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static RandomTreesEmbedding Encapsule(PyObject pyObject) => new RandomTreesEmbedding(pyObject);
             public static RandomTreesEmbedding Wrap(PyObject pyObject) => new RandomTreesEmbedding(pyObject);
-            public PyObject estimator_ => new NotImplementedException();
-            public PyTuple estimators_ => new NotImplementedException();
-            public NDarray feature_importances_ => new NotImplementedException();
-            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
-            public int n_outputs_ => self.GetAttr("n_outputs_").As<int>()public PyObject one_hot_encoder_ => new NotImplementedException();
-            public NDarray estimators_samples_ => new NotImplementedException();
+            public PyObject estimator_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimator_");
+                    return __pyObject;
+                }
+            }
+
+            public PyTuple estimators_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_");
+                    return new PyTuple(__pyObject);
+                }
+            }
+
+            public NDarray feature_importances_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_importances_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_outputs_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_outputs_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public PyObject one_hot_encoder_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("one_hot_encoder_");
+                    return __pyObject;
+                }
+            }
+
+            public NDarray estimators_samples_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_samples_");
+                    return new NDarray(__pyObject);
+                }
+            }
 
             public NDarray apply(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("apply", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public (NDarray? , NDarray? ) decision_path(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("decision_path", args, pyDict);
+                var __pyObjectTuple = new PyTuple(__pyObject);
+                var __pyObjectLength = __pyObjectTuple.Length();
+                return (__pyObjectLength > 0 ? new NDarray(__pyObjectTuple[0]) : null, __pyObjectLength > 1 ? new NDarray(__pyObjectTuple[1]) : null);
             }
 
             public RandomTreesEmbedding fit(NDarray X, NDarray? sample_weight = null)
@@ -2077,7 +3288,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("fit_transform", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -2086,14 +3298,16 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (input_features != null)
                     pyDict["input_features"] = Helpers.ToPython(input_features);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_feature_names_out", args, pyDict);
+                return __pyObject;
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public PyDict get_params(bool deep = true)
@@ -2102,7 +3316,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public RandomTreesEmbedding set_fit_request(string? sample_weight = "$UNCHANGED$")
@@ -2139,7 +3354,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("transform", args, pyDict);
+                return new NDarray(__pyObject);
             }
         }
 
@@ -2171,21 +3387,78 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static StackingClassifier Encapsule(PyObject pyObject) => new StackingClassifier(pyObject);
             public static StackingClassifier Wrap(PyObject pyObject) => new StackingClassifier(pyObject);
-            public NDarray classes_ => new NotImplementedException();
-            public PyTuple estimators_ => new NotImplementedException();
-            public PyDict named_estimators_ => new NotImplementedException();
-            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
-            public PyObject final_estimator_ => new NotImplementedException();
-            public PyTuple stack_method_ => new NotImplementedException();
+            public NDarray classes_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("classes_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public PyTuple estimators_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_");
+                    return new PyTuple(__pyObject);
+                }
+            }
+
+            public PyDict named_estimators_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("named_estimators_");
+                    return new PyDict(__pyObject);
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public PyObject final_estimator_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("final_estimator_");
+                    return __pyObject;
+                }
+            }
+
+            public PyTuple stack_method_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("stack_method_");
+                    return new PyTuple(__pyObject);
+                }
+            }
 
             public NDarray decision_function(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("decision_function", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public StackingClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -2206,7 +3479,8 @@ public static partial class sklearn
                     pyDict["y"] = Helpers.ToPython(y);
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("fit_transform", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -2215,14 +3489,15 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (input_features != null)
                     pyDict["input_features"] = Helpers.ToPython(input_features);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_feature_names_out", args, pyDict);
+                return __pyObject;
             }
 
             public void get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                self.InvokeMethod("get_metadata_routing", args, pyDict);
             }
 
             public PyDict get_params(bool deep = true)
@@ -2231,7 +3506,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X, Dictionary<string, PyObject>? @params = null)
@@ -2240,14 +3516,16 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray predict_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -2256,7 +3534,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public StackingClassifier set_fit_request(string? sample_weight = "$UNCHANGED$")
             {
@@ -2302,7 +3582,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("transform", args, pyDict);
+                return new NDarray(__pyObject);
             }
         }
 
@@ -2332,14 +3613,62 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static StackingRegressor Encapsule(PyObject pyObject) => new StackingRegressor(pyObject);
             public static StackingRegressor Wrap(PyObject pyObject) => new StackingRegressor(pyObject);
-            public PyTuple estimators_ => new NotImplementedException();
-            public PyDict named_estimators_ => new NotImplementedException();
-            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
-            public PyObject final_estimator_ => new NotImplementedException();
-            public PyTuple stack_method_ => new NotImplementedException();
+            public PyTuple estimators_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_");
+                    return new PyTuple(__pyObject);
+                }
+            }
+
+            public PyDict named_estimators_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("named_estimators_");
+                    return new PyDict(__pyObject);
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public PyObject final_estimator_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("final_estimator_");
+                    return __pyObject;
+                }
+            }
+
+            public PyTuple stack_method_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("stack_method_");
+                    return new PyTuple(__pyObject);
+                }
+            }
 
             public StackingRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null)
             {
@@ -2357,7 +3686,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("fit_transform", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -2366,14 +3696,15 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (input_features != null)
                     pyDict["input_features"] = Helpers.ToPython(input_features);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_feature_names_out", args, pyDict);
+                return __pyObject;
             }
 
             public void get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                self.InvokeMethod("get_metadata_routing", args, pyDict);
             }
 
             public PyDict get_params(bool deep = true)
@@ -2382,7 +3713,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X, Dictionary<string, PyObject>? @params = null)
@@ -2391,7 +3723,8 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -2400,7 +3733,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public StackingRegressor set_fit_request(string? sample_weight = "$UNCHANGED$")
             {
@@ -2446,7 +3781,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("transform", args, pyDict);
+                return new NDarray(__pyObject);
             }
         }
 
@@ -2476,14 +3812,62 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static VotingClassifier Encapsule(PyObject pyObject) => new VotingClassifier(pyObject);
             public static VotingClassifier Wrap(PyObject pyObject) => new VotingClassifier(pyObject);
-            public PyTuple estimators_ => new NotImplementedException();
-            public PyDict named_estimators_ => new NotImplementedException();
-            public PyObject le_ => new NotImplementedException();
-            public NDarray classes_ => new NotImplementedException();
-            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+            public PyTuple estimators_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_");
+                    return new PyTuple(__pyObject);
+                }
+            }
+
+            public PyDict named_estimators_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("named_estimators_");
+                    return new PyDict(__pyObject);
+                }
+            }
+
+            public PyObject le_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("le_");
+                    return __pyObject;
+                }
+            }
+
+            public NDarray classes_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("classes_");
+                    return new NDarray(__pyObject);
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
 
             public VotingClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null)
             {
@@ -2505,7 +3889,8 @@ public static partial class sklearn
                     pyDict["y"] = Helpers.ToPython(y);
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("fit_transform", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -2514,14 +3899,16 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (input_features != null)
                     pyDict["input_features"] = Helpers.ToPython(input_features);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_feature_names_out", args, pyDict);
+                return __pyObject;
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public PyDict get_params(bool deep = true)
@@ -2530,21 +3917,24 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public NDarray predict_proba(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict_proba", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -2553,7 +3943,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public VotingClassifier set_fit_request(string? sample_weight = "$UNCHANGED$")
             {
@@ -2599,7 +3991,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("transform", args, pyDict);
+                return __pyObject;
             }
         }
 
@@ -2625,12 +4018,44 @@ public static partial class sklearn
                 self = pyObject;
             }
 
-            [Obsolete("Encapsule is deprecated. Please use Wrap for future implementations.")]
+            [Obsolete("Encapsule is deprecated. Use Wrap instead.")]
             public static VotingRegressor Encapsule(PyObject pyObject) => new VotingRegressor(pyObject);
             public static VotingRegressor Wrap(PyObject pyObject) => new VotingRegressor(pyObject);
-            public PyTuple estimators_ => new NotImplementedException();
-            public PyDict named_estimators_ => new NotImplementedException();
-            public int n_features_in_ => self.GetAttr("n_features_in_").As<int>()public NDarray feature_names_in_ => new NotImplementedException();
+            public PyTuple estimators_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("estimators_");
+                    return new PyTuple(__pyObject);
+                }
+            }
+
+            public PyDict named_estimators_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("named_estimators_");
+                    return new PyDict(__pyObject);
+                }
+            }
+
+            public int n_features_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("n_features_in_");
+                    return __pyObject.As<int>();
+                }
+            }
+
+            public NDarray feature_names_in_
+            {
+                get
+                {
+                    var __pyObject = self.GetAttr("feature_names_in_");
+                    return new NDarray(__pyObject);
+                }
+            }
 
             public VotingRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null)
             {
@@ -2652,7 +4077,8 @@ public static partial class sklearn
                     pyDict["y"] = Helpers.ToPython(y);
                 if (@params != null)
                     pyDict["params"] = Helpers.ToPython(@params);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("fit_transform", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public PyObject get_feature_names_out(NDarray? input_features = null)
@@ -2661,14 +4087,16 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (input_features != null)
                     pyDict["input_features"] = Helpers.ToPython(input_features);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_feature_names_out", args, pyDict);
+                return __pyObject;
             }
 
             public PyObject get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
+                return __pyObject;
             }
 
             public PyDict get_params(bool deep = true)
@@ -2677,14 +4105,16 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("get_params", args, pyDict);
+                return new PyDict(__pyObject);
             }
 
             public NDarray predict(NDarray X)
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("predict", args, pyDict);
+                return new NDarray(__pyObject);
             }
 
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null)
@@ -2693,7 +4123,9 @@ public static partial class sklearn
                 PyDict pyDict = new PyDict();
                 if (sample_weight != null)
                     pyDict["sample_weight"] = Helpers.ToPython(sample_weight);
-                return self.InvokeMethod("score", args, pyDict).As<float>()}
+                var __pyObject = self.InvokeMethod("score", args, pyDict);
+                return __pyObject.As<float>();
+            }
 
             public VotingRegressor set_fit_request(string? sample_weight = "$UNCHANGED$")
             {
@@ -2739,7 +4171,8 @@ public static partial class sklearn
             {
                 PyTuple args = new PyTuple(new PyObject[] { Helpers.ToPython(X) });
                 PyDict pyDict = new PyDict();
-                return new NotImplementedException();
+                var __pyObject = self.InvokeMethod("transform", args, pyDict);
+                return new PyDict(__pyObject);
             }
         }
     }

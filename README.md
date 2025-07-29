@@ -1,10 +1,15 @@
 ﻿# Sklearn.Net
+
 [![](https://img.shields.io/nuget/dt/ScikitLearn?color=4cbb3b\&label=Downloads\&logo=NuGet\&style=flat-square)](https://www.nuget.org/packages/ScikitLearn)
 [![](https://img.shields.io/nuget/v/ScikitLearn?color=0078D4\&logo=NuGet\&style=flat-square)](https://www.nuget.org/packages/ScikitLearn)
 
 **C# bindings for Scikit-Learn**, focused on bringing Machine Learning into the C# environment. This library provides easy access to machine learning models, results, parameters, and datasets.
 
 Built on top of [Numpy.Bare](https://github.com/SciSharp/Numpy.NET) and made from [Scikit-Learn’s documentation](https://scikit-learn.org/stable/index.html), supporting most classes and methods.
+
+[![📘 Leer en Español](https://img.shields.io/badge/📘%20Leer%20en-Español-blue?style=flat-square)](https://github.com/KosmosWerner/ScikitLearn.Net/blob/master/README-ES.md)
+[![📗 Read in English](https://img.shields.io/badge/📗%20Read%20in-English-green?style=flat-square)](https://github.com/KosmosWerner/ScikitLearn.Net/blob/master/README.md)
+[![📙 Ler em Português BR](https://img.shields.io/badge/📙%20Ler%20em-Português%20BR-orange?style=flat-square)](https://github.com/KosmosWerner/ScikitLearn.Net/blob/master/README-PT-BR.md)
 
 ## 🔧 Installation
 
@@ -20,7 +25,7 @@ Replace `"your_path_to_python311.dll"` with the actual path to `python311.dll` o
 
 ### Installing Python Locally
 
-If you prefer a local Python installation, **Install [Python.Included](https://github.com/henon/Python.Included) [NuGet package](https://www.nuget.org/packages/Python.Included/3.11.6) (version 3.11.6)** Then add the following code to initialize the environment:
+If you prefer a local Python installation, **install [Python.Included](https://github.com/henon/Python.Included) [NuGet package](https://www.nuget.org/packages/Python.Included/3.11.6) (version 3.11.6)** and then add the following code to initialize the environment:
 
 ```csharp
 using Python.Included;
@@ -32,12 +37,16 @@ using ScikitLearn;
 ```csharp
 internal class Program
 {
+    // 🚨 WARNING: This method REQUIRES an internet connection and may take several minutes 
+    // on the first attempt. It can also FAIL on the first tries.
+    // ✅ RECOMMENDATION: Once the Python folder is created, reuse it across multiple projects 
+    // to avoid this delay in the future.
+
     // This asynchronous method installs NumPy and Scikit-learn.
-    // The first run may take a few minutes. After that, startup is nearly instant.
-    // You can also copy the installation to a shared location for use across projects.
     private static async Task InitializeInstallerAsync()
     {
-        Installer.InstallPath = Path.GetFullPath("."); // Set the desired installation path
+        // Set the desired installation path
+        Installer.InstallPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
     
         await Installer.SetupPython();
         await Installer.TryInstallPip();
@@ -54,9 +63,13 @@ internal class Program
 }
 ```
 
-🖥️ [Console Example](https://github.com/KosmosWerner/ScikitLearn.Net/blob/master/Examples/Console%20Example/Program.cs#L36)
+⚠️ Note: The installation process requires an active internet connection and may take several minutes on the first run. It might also fail on initial attempts.
 
-💻 [Desktop Example](https://github.com/KosmosWerner/ScikitLearn.Net/blob/master/Examples/Desktop%20Example/MainWindow.xaml.cs#L47)
+✅ Recommendation: Once the Python folder is created, reuse it across multiple projects to avoid this delay.
+
+🖥️ [[Console Example]](https://github.com/KosmosWerner/ScikitLearn.Net/blob/master/Examples/Console%20Example/Program.cs#L10)
+
+💻 [[Desktop Example]](https://github.com/KosmosWerner/ScikitLearn.Net/blob/master/Examples/Desktop%20Example/MainWindow.xaml.cs#L47)
 
 ## ⚙ Usage
 
@@ -77,11 +90,11 @@ Output:
 [ 0  0  0  1  1 -1]
 ```
 
-💻 [See full code](https://github.com/KosmosWerner/ScikitLearn.Net/blob/master/Examples/Console%20Example/Program.cs)
+💻 [[See full code]](https://github.com/KosmosWerner/ScikitLearn.Net/blob/master/Examples/Console%20Example/Program.cs)
 
 ## ⚠ Notes
 
-### 1. Accessing the `labels_` Array
+### 1. 🚨 **Accessing the `labels_` Array or Floating-Point Arrays** 🚨
 
 Scikit-Learn typically uses `ndarray(int64)`, which corresponds to `long[]` in C#. Use the following to extract data:
 
@@ -89,11 +102,27 @@ Scikit-Learn typically uses `ndarray(int64)`, which corresponds to `long[]` in C
 long[] labels = my_model.labels_.GetData<long>();
 ```
 
+⚠ **If you need to convert floating-point arrays to a C# format, be extremely careful with type conversion!**
+
+```csharp
+var x = sklearn.datasets.make_circles(n_samples: 1).X;
+Console.WriteLine(x.GetData<float>()[0]);
+Console.WriteLine(x.GetData<double>()[0]);
+```
+
+```
+-1.5881868E-23 // using float  [ERROR]
+0.8            // using double [OK]
+```
+
+In the future, expressions of the form `NDarray<double>` are planned to be returned where appropriate instead of `NDarray`.
+**In the meantime, make sure to unit test and verify that the results match expectations.**
+
 ### 2. PythonEngine.Shutdown()
 
 For desktop apps, always call `PythonEngine.Shutdown()` when the app closes to avoid Python processes running in the background.
 
-💻 [Desktop Example](https://github.com/KosmosWerner/ScikitLearn.Net/blob/master/Examples/Desktop%20Example/MainWindow.xaml.cs#L68)
+💻 [[Desktop Example]](https://github.com/KosmosWerner/ScikitLearn.Net/blob/master/Examples/Desktop%20Example/MainWindow.xaml.cs#L68)
 
 ### 3. Missing Methods or Constructors?
 
@@ -114,7 +143,7 @@ Here’s a simple app that interactively compares clustering methods like DBSCAN
 
 [![](https://raw.githubusercontent.com/KosmosWerner/ScikitLearn.Net/refs/heads/master/Dev/cluster_dbscan.gif)](https://github.com/KosmosWerner/ScikitLearn.Net)
 
-💻 [Full code here](https://github.com/KosmosWerner/ScikitLearn.Net/tree/master/Examples/Desktop%20Example)
+💻 [[Full code here]](https://github.com/KosmosWerner/ScikitLearn.Net/tree/master/Examples/Desktop%20Example)
 
 ## 🤝 How to Contribute
 

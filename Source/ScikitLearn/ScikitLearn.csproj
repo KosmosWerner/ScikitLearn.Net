@@ -14,7 +14,7 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<PackageTags>MachineLearning, Sklearn, ScikitLearn, AI, Clustering, Scikit</PackageTags>
-		<Version>1.7.1.0</Version>
+		<Version>1.7.1-rc1</Version>
 		<AssemblyVersion>1.7.1.0</AssemblyVersion>
 
 		<!-- Language -->

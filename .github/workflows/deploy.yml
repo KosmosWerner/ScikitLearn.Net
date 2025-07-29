@@ -26,20 +26,65 @@ jobs:
           if (Test-Path "${{ env.ARTIFACT_FOLDER }}") {
             Remove-Item -Recurse -Force "${{ env.ARTIFACT_FOLDER }}"
           }
+          New-Item -ItemType Directory -Force -Path "${{ env.ARTIFACT_FOLDER }}"
+        shell: powershell
+        
+      - name: Verify Project Structure
+        run: |
+          Write-Host "Current directory contents:"
+          Get-ChildItem -Recurse -Name
+          Write-Host "`nLooking for project files:"
+          Get-ChildItem -Recurse -Filter "*.csproj" | Select-Object FullName
         shell: powershell
         
       - name: Package ScikitLearn.Net
         env:
           PROJECT_FOLDER: "Source/ScikitLearn"
         run: |
-          dotnet restore "${{ env.PROJECT_FOLDER }}"
-          dotnet build "${{ env.PROJECT_FOLDER }}" --configuration Release --no-restore
-          dotnet pack "${{ env.PROJECT_FOLDER }}" --configuration Release --no-build -o "${{ env.ARTIFACT_FOLDER }}"
+          Write-Host "Checking if project folder exists..."
+          if (-not (Test-Path "${{ env.PROJECT_FOLDER }}")) {
+            Write-Host "ERROR: Project folder '${{ env.PROJECT_FOLDER }}' does not exist"
+            Write-Host "Available folders:"
+            Get-ChildItem -Directory | Select-Object Name
+            exit 1
+          }
+          
+          Write-Host "Restoring packages..."
+          dotnet restore "${{ env.PROJECT_FOLDER }}" --verbosity normal
+          
+          Write-Host "Building project..."
+          dotnet build "${{ env.PROJECT_FOLDER }}" --configuration Release --no-restore --verbosity normal
+          
+          Write-Host "Creating package..."
+          dotnet pack "${{ env.PROJECT_FOLDER }}" --configuration Release --no-build -o "${{ env.ARTIFACT_FOLDER }}" --verbosity normal
+          
+          Write-Host "Checking generated packages:"
+          Get-ChildItem "${{ env.ARTIFACT_FOLDER }}" -Filter "*.nupkg" | Select-Object Name, Length
+        shell: powershell
+        
+      - name: Verify Packages Generated
+        run: |
+          $packages = Get-ChildItem "${{ env.ARTIFACT_FOLDER }}" -Filter "*.nupkg"
+          if ($packages.Count -eq 0) {
+            Write-Host "ERROR: No .nupkg files were generated!"
+            Write-Host "Artifact folder contents:"
+            Get-ChildItem "${{ env.ARTIFACT_FOLDER }}" | Select-Object Name
+            exit 1
+          } else {
+            Write-Host "Found $($packages.Count) package(s):"
+            $packages | ForEach-Object { Write-Host "  - $($_.Name)" }
+          }
+        shell: powershell
         
       - name: Deploy Packages to NuGet
         run: |
-          dotnet nuget push "${{ env.ARTIFACT_FOLDER }}/*.nupkg" `
-            --api-key ${{ secrets.NUGET_API_KEY }} `
-            --source https://api.nuget.org/v3/index.json `
-            --skip-duplicate
+          $packages = Get-ChildItem "${{ env.ARTIFACT_FOLDER }}" -Filter "*.nupkg"
+          foreach ($package in $packages) {
+            Write-Host "Pushing package: $($package.Name)"
+            dotnet nuget push $package.FullName `
+              --api-key ${{ secrets.NUGET_API_KEY }} `
+              --source https://api.nuget.org/v3/index.json `
+              --skip-duplicate `
+              --verbosity normal
+          }
         shell: powershell

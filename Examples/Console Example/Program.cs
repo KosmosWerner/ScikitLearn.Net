@@ -1,45 +1,32 @@
-﻿using Numpy;
+﻿using Python.Runtime;
 using Python.Included;
+using Numpy;
 using ScikitLearn;
 
-namespace Console_Example;
-
-internal class Program
+namespace Console_Example
 {
-    static void Main(string[] args)
+    internal class Program
     {
-        // Install Python + dependencies
-        Task.Run(SetupPythonEnvironment).Wait();
-
-        // Create sample data
-        var X = np.array(new int[,]
+        private static async Task InstallAsync()
         {
-            { 1,  2 },
-            { 2,  2 },
-            { 2,  3 },
-            { 8,  7 },
-            { 8,  8 },
-            { 25, 25 }
-        });
+            Installer.InstallPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-        // Apply DBSCAN clustering
-        var clustering = new sklearn.cluster.DBSCAN(eps: 3, min_samples: 2).fit(X);
+            await Installer.SetupPython();
+            await Installer.TryInstallPip();
+            await Installer.PipInstallModule("numpy");
+            await Installer.PipInstallModule("scikit-learn");
+        }
 
-        // Output the cluster labels
-        Console.WriteLine(clustering.labels_);
-    }
+        static void Main(string[] args)
+        {
+            Task.Run(InstallAsync).Wait();
 
-    // -------------------------
-    // Setup
-    // -------------------------
+            var X = np.array(new int[,] {
+                { 1, 2 }, { 2, 2 }, { 2, 3 },
+                { 8, 7 }, { 8,8 }, { 25, 25 } });
 
-    private static async Task SetupPythonEnvironment()
-    {
-        Installer.InstallPath = Path.GetFullPath(".");
-
-        await Installer.SetupPython();
-        await Installer.TryInstallPip();
-        await Installer.PipInstallModule("numpy");
-        await Installer.PipInstallModule("scikit-learn");
+            var clustering = new sklearn.cluster.DBSCAN(eps: 3, min_samples: 2).fit(X);
+            Console.WriteLine(clustering.labels_);
+        }
     }
 }

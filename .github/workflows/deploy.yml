@@ -33,10 +33,8 @@ jobs:
           dotnet build "${{ env.PROJECT_FOLDER }}" --configuration Release
           dotnet pack "${{ env.PROJECT_FOLDER }}" --configuration Release -o "${{ env.ARTIFACT_FOLDER }}"
 
-      - name: Setup NuGet
-        uses: nuget/setup-nuget@v3
-        with:
-          nuget-api-key: ${{ secrets.NUGET_API_KEY }}
-
-      - name: Deploy Packages
-        run: nuget push "${{ env.ARTIFACT_FOLDER }}/*.nupkg" -SkipDuplicate -Source https://api.nuget.org/v3/index.json
+      - name: Deploy Packages to NuGet
+        run: dotnet nuget push "${{ env.ARTIFACT_FOLDER }}/*.nupkg" \
+               --api-key ${{ secrets.NUGET_API_KEY }} \
+               --source https://api.nuget.org/v3/index.json \
+               --skip-duplicate

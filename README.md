@@ -4,7 +4,7 @@
 
 **C# bindings for Scikit-Learn**, focused on bringing Machine Learning into the C# environment. This library provides easy access to machine learning models, results, parameters, and datasets.
 
-Built on top of [Numpy.Bare](https://github.com/SciSharp/Numpy.NET) and automatically generated from [Scikit-Learn’s documentation](https://scikit-learn.org/stable/index.html), supporting most classes and methods.
+Built on top of [Numpy.Bare](https://github.com/SciSharp/Numpy.NET) and made from [Scikit-Learn’s documentation](https://scikit-learn.org/stable/index.html), supporting most classes and methods.
 
 ## 🔧 Installation
 
@@ -55,6 +55,7 @@ internal class Program
 ```
 
 🖥️ [Console Example](https://github.com/KosmosWerner/ScikitLearn.Net/blob/master/Examples/Console%20Example/Program.cs#L36)
+
 💻 [Desktop Example](https://github.com/KosmosWerner/ScikitLearn.Net/blob/master/Examples/Desktop%20Example/MainWindow.xaml.cs#L47)
 
 ## ⚙ Usage

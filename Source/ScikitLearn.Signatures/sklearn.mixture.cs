@@ -63,7 +63,7 @@ public static partial class sklearn
             public BayesianGaussianMixture fit(NDarray X) => default!;
             public NDarray fit_predict(NDarray X) => default!;
             public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
-            public IReadOnlyDictionary<string, PyObject> get_params(bool deep = true) => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X) => default!;
             public NDarray predict_proba(NDarray X) => default!;
             public (NDarray X, NDarray y) sample(int n_samples = 1) => default!;
@@ -113,7 +113,7 @@ public static partial class sklearn
             public GaussianMixture fit(NDarray X) => default!;
             public NDarray fit_predict(NDarray X) => default!;
             public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
-            public IReadOnlyDictionary<string, PyObject> get_params(bool deep = true) => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X) => default!;
             public NDarray predict_proba(NDarray X) => default!;
             public (NDarray X, NDarray y) sample(int n_samples = 1) => default!;

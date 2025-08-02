@@ -37,7 +37,7 @@ public static partial class sklearn
             [ReturnThis]
             public LabelPropagation fit(NDarray X, NDarray y) => default!;
             public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
-            public IReadOnlyDictionary<string, PyObject> get_params(bool deep = true) => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X) => default!;
             public NDarray predict_proba(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
@@ -74,7 +74,7 @@ public static partial class sklearn
             [ReturnThis]
             public LabelSpreading fit(NDarray X, NDarray y) => default!;
             public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
-            public IReadOnlyDictionary<string, PyObject> get_params(bool deep = true) => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X) => default!;
             public NDarray predict_proba(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
@@ -116,7 +116,7 @@ public static partial class sklearn
             [ReturnThis]
             public SelfTrainingClassifier fit(NDarray X, NDarray y, Dictionary<string, PyObject>? @params = null) => default!;
             public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
-            public IReadOnlyDictionary<string, PyObject> get_params(bool deep = true) => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
             public NDarray predict_log_proba(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
             public NDarray predict_proba(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;

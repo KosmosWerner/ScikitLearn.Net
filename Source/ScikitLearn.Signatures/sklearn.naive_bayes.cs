@@ -11,12 +11,17 @@ public static partial class sklearn
     public static class naive_bayes
     {
         // Classes
-        public class BernoulliNB : PythonObject
+        public class BernoulliNB : PythonObject,
+            @base._BaseDiscreteNB<BernoulliNB>
         {
             // Constructor
-            public BernoulliNB(float alpha = 1.0f, bool force_alpha = true, float? binarize = 0.0f, bool fit_prior = true, NDarray? class_prior = null)
-            {
-            }
+            public BernoulliNB(
+                float alpha = 1.0f,
+                bool force_alpha = true,
+                float? binarize = 0.0f,
+                bool fit_prior = true,
+                NDarray? class_prior = null)
+            { }
 
             // Properties
             public NDarray class_count_ => default!;
@@ -30,8 +35,8 @@ public static partial class sklearn
             // Methods
             [ReturnThis]
             public BernoulliNB fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public IReadOnlyDictionary<string, PyObject> get_params(bool deep = true) => default!;
             [ReturnThis]
             public BernoulliNB partial_fit(NDarray X, NDarray y, NDarray? classes = null, NDarray? sample_weight = null) => default!;
             public NDarray predict(NDarray X) => default!;
@@ -40,21 +45,26 @@ public static partial class sklearn
             public NDarray predict_proba(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public BernoulliNB set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
-            [ReturnThis]
             public BernoulliNB set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [ReturnThis]
+            public BernoulliNB set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
             public BernoulliNB set_partial_fit_request(string? classes = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
             public BernoulliNB set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class CategoricalNB : PythonObject
+        public class CategoricalNB : PythonObject,
+            @base._BaseDiscreteNB<CategoricalNB>
         {
             // Constructor
-            public CategoricalNB(float alpha = 1.0f, bool force_alpha = true, bool fit_prior = true, NDarray? class_prior = null, NDarray? min_categories = null)
-            {
-            }
+            public CategoricalNB(
+                float alpha = 1.0f,
+                bool force_alpha = true,
+                bool fit_prior = true,
+                NDarray? class_prior = null,
+                NDarray? min_categories = null)
+            { }
 
             // Properties
             public NDarray category_count_ => default!;
@@ -69,8 +79,8 @@ public static partial class sklearn
             // Methods
             [ReturnThis]
             public CategoricalNB fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public IReadOnlyDictionary<string, PyObject> get_params(bool deep = true) => default!;
             [ReturnThis]
             public CategoricalNB partial_fit(NDarray X, NDarray y, NDarray? classes = null, NDarray? sample_weight = null) => default!;
             public NDarray predict(NDarray X) => default!;
@@ -79,21 +89,27 @@ public static partial class sklearn
             public NDarray predict_proba(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public CategoricalNB set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
-            [ReturnThis]
             public CategoricalNB set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [ReturnThis]
+            public CategoricalNB set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
             public CategoricalNB set_partial_fit_request(string? classes = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
             public CategoricalNB set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class ComplementNB : PythonObject
+        public class ComplementNB : PythonObject,
+            @base._BaseDiscreteNB<ComplementNB>
+
         {
             // Constructor
-            public ComplementNB(float alpha = 1.0f, bool force_alpha = true, bool fit_prior = true, NDarray? class_prior = null, bool norm = false)
-            {
-            }
+            public ComplementNB(
+                float alpha = 1.0f,
+                bool force_alpha = true,
+                bool fit_prior = true,
+                NDarray? class_prior = null,
+                bool norm = false)
+            { }
 
             // Properties
             public NDarray class_count_ => default!;
@@ -108,8 +124,8 @@ public static partial class sklearn
             // Methods
             [ReturnThis]
             public ComplementNB fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public IReadOnlyDictionary<string, PyObject> get_params(bool deep = true) => default!;
             [ReturnThis]
             public ComplementNB partial_fit(NDarray X, NDarray y, NDarray? classes = null, NDarray? sample_weight = null) => default!;
             public NDarray predict(NDarray X) => default!;
@@ -118,21 +134,23 @@ public static partial class sklearn
             public NDarray predict_proba(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public ComplementNB set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
-            [ReturnThis]
             public ComplementNB set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [ReturnThis]
+            public ComplementNB set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
             public ComplementNB set_partial_fit_request(string? classes = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
             public ComplementNB set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class GaussianNB : PythonObject
+        public class GaussianNB : PythonObject,
+            @base._BaseDiscreteNB<GaussianNB>  // _BaseNB
         {
             // Constructor
-            public GaussianNB(NDarray? priors = null, float var_smoothing = 1e-09f)
-            {
-            }
+            public GaussianNB(
+                NDarray? priors = null,
+                float var_smoothing = 1e-09f)
+            { }
 
             // Properties
             public NDarray class_count_ => default!;
@@ -147,8 +165,8 @@ public static partial class sklearn
             // Methods
             [ReturnThis]
             public GaussianNB fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public IReadOnlyDictionary<string, PyObject> get_params(bool deep = true) => default!;
             [ReturnThis]
             public GaussianNB partial_fit(NDarray X, NDarray y, NDarray? classes = null, NDarray? sample_weight = null) => default!;
             public NDarray predict(NDarray X) => default!;
@@ -157,21 +175,25 @@ public static partial class sklearn
             public NDarray predict_proba(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public GaussianNB set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
-            [ReturnThis]
             public GaussianNB set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [ReturnThis]
+            public GaussianNB set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
             public GaussianNB set_partial_fit_request(string? classes = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
             public GaussianNB set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class MultinomialNB : PythonObject
+        public class MultinomialNB : PythonObject,
+            @base._BaseDiscreteNB<MultinomialNB>
         {
             // Constructor
-            public MultinomialNB(float alpha = 1.0f, bool force_alpha = true, bool fit_prior = true, NDarray? class_prior = null)
-            {
-            }
+            public MultinomialNB(
+                float alpha = 1.0f,
+                bool force_alpha = true,
+                bool fit_prior = true,
+                NDarray? class_prior = null)
+            { }
 
             // Properties
             public NDarray class_count_ => default!;
@@ -185,8 +207,8 @@ public static partial class sklearn
             // Methods
             [ReturnThis]
             public MultinomialNB fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public IReadOnlyDictionary<string, PyObject> get_params(bool deep = true) => default!;
             [ReturnThis]
             public MultinomialNB partial_fit(NDarray X, NDarray y, NDarray? classes = null, NDarray? sample_weight = null) => default!;
             public NDarray predict(NDarray X) => default!;
@@ -195,9 +217,9 @@ public static partial class sklearn
             public NDarray predict_proba(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [ReturnThis]
-            public MultinomialNB set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
-            [ReturnThis]
             public MultinomialNB set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [ReturnThis]
+            public MultinomialNB set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]
             public MultinomialNB set_partial_fit_request(string? classes = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$") => default!;
             [ReturnThis]

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ScikitLearn;
+﻿namespace ScikitLearn;
 
 public static partial class joblib
 {
@@ -20,7 +14,7 @@ public static partial class joblib
                 bool compress = false,
                 int verbose = 1,
                 int? bytes_limit = null,
-                Dictionary<string, PyObject>? backend_options = null)
+                Dictionary<string, object>? backend_options = null)
             { }
 
             public void clear(bool warn = true) { }

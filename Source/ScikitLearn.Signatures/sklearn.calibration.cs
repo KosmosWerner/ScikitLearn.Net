@@ -10,7 +10,7 @@ public static partial class sklearn
         public static (NDarray prob_true, NDarray prob_pred) calibration_curve(
             NDarray y_true,
             NDarray y_prob,
-            [AllowedTypes<int, float, bool, string>] object? pos_label = null,
+            [OneOf<int, float, bool, string>] object? pos_label = null,
             int n_bins = 5,
             string strategy = "uniform") => default!;
 
@@ -25,10 +25,10 @@ public static partial class sklearn
                 @base.BaseEstimator? estimator = null,
                 string method = "sigmoid",
                 [NeedsRevision]
-                [AllowedTypes<int, IPythonWrapper, PyObject>] object? cv = null,
+                [OneOf<int, IPythonWrapper, PyObject>] object? cv = null,
                 int? n_jobs = null,
                 [NeedsRevision]
-                [AllowedTypes<int, string>("auto")] object ensemble = default!)
+                [OneOf<int, string>(Default:"auto")] object ensemble = default!)
             { }
 
             // Properties
@@ -58,7 +58,7 @@ public static partial class sklearn
                 NDarray prob_pred,
                 NDarray y_prob,
                 string? estimator_name = null,
-                [AllowedTypes<int, float, bool, string>] object? pos_label = null)
+                [OneOf<int, float, bool, string>] object? pos_label = null)
             { }
 
             // Properties
@@ -74,7 +74,7 @@ public static partial class sklearn
                 NDarray y,
                 int n_bins = 5,
                 string strategy = "uniform",
-                [AllowedTypes<int, float, bool, string>] object? pos_label = null,
+                [OneOf<int, float, bool, string>] object? pos_label = null,
                 string? name = null,
                 PyObject? ax = null,
                 bool ref_line = true,
@@ -85,7 +85,7 @@ public static partial class sklearn
                 NDarray y_prob,
                 int n_bins = 5,
                 string strategy = "uniform",
-                [AllowedTypes<int, float, bool, string>] object? pos_label = null,
+                [OneOf<int, float, bool, string>] object? pos_label = null,
                 string? name = null,
                 bool ref_line = true,
                 PyObject? ax = null,

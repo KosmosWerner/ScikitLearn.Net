@@ -13,14 +13,14 @@ namespace ScikitLearn.Signatures.Analyzers
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
     public class SignaturesAnalyzer : DiagnosticAnalyzer
     {
-        public const string DiagnosticIdInvalidTarget = "AllowedTypesInvalidTarget";
-        public const string DiagnosticIdMissing = "AllowedTypesMissing";
+        public const string DiagnosticIdInvalidTarget = "OneOfAttributeInvalidTarget";
+        public const string DiagnosticIdMissing = "OneOfAttributeMissing";
 
-        private static readonly LocalizableString TitleInvalidTarget = "Invalid AllowedTypes usage";
-        private static readonly LocalizableString MessageInvalidTarget = "[AllowedTypes] can only be applied to parameters of type 'object' or 'object?'";
+        private static readonly LocalizableString TitleInvalidTarget = "Invalid OneOf usage";
+        private static readonly LocalizableString MessageInvalidTarget = "[OneOf<>] can only be applied to parameters of type 'object' or 'object?'";
 
-        private static readonly LocalizableString TitleMissing = "Missing AllowedTypes attribute";
-        private static readonly LocalizableString MessageMissing = "Parameters of type 'object' or 'object?' must have the [AllowedTypes] attribute.";
+        private static readonly LocalizableString TitleMissing = "Missing OneOf attribute";
+        private static readonly LocalizableString MessageMissing = "Parameters of type 'object' or 'object?' must have the [OneOf<>] attribute";
 
         private const string Category = "Design";
 
@@ -65,7 +65,7 @@ namespace ScikitLearn.Signatures.Analyzers
             var attributeNode = (AttributeSyntax)context.Node;
 
             var attributeSymbol = context.SemanticModel.GetSymbolInfo(attributeNode).Symbol;
-            if (attributeSymbol?.ContainingType?.Name != "AllowedTypesAttribute") return;
+            if (attributeSymbol?.ContainingType?.Name != "OneOfAttribute") return;
 
             if (!(attributeNode.Parent?.Parent is ParameterSyntax parameter))
                 return;
@@ -97,7 +97,7 @@ namespace ScikitLearn.Signatures.Analyzers
                 .Any(attr =>
                 {
                     var symbol = context.SemanticModel.GetSymbolInfo(attr).Symbol;
-                    return symbol?.ContainingType?.Name == "AllowedTypesAttribute";
+                    return symbol?.ContainingType?.Name == "OneOfAttribute";
                 });
 
             if (!hasAllowedTypes)

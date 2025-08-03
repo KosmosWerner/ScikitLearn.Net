@@ -25,7 +25,7 @@ public static partial class sklearn
                 @base.BaseEstimator? estimator = null,
                 string method = "sigmoid",
                 [NeedsRevision]
-                [AllowedTypes<int, IPythonWrapper>] object? cv = null,
+                [AllowedTypes<int, IPythonWrapper, PyObject>] object? cv = null,
                 int? n_jobs = null,
                 [NeedsRevision]
                 [AllowedTypes<int, string>("auto")] object ensemble = default!)
@@ -49,7 +49,7 @@ public static partial class sklearn
             [Self] public CalibratedClassifierCV set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class CalibrationDisplay : 
+        public class CalibrationDisplay :
             @base._BinaryClassifierCurveDisplayMixin
         {
             // Constructor

@@ -11,7 +11,7 @@ public static partial class joblib
     [Module]
     public static class memory
     {
-        public class Memory : PythonObject
+        public class Memory : IPythonWrapper
         {
             public Memory(
                 string? location = null,

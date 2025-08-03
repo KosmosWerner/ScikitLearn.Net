@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using Numpy;
-using Python.Runtime;
-
 namespace ScikitLearn;
+
 public static partial class sklearn
 {
     // Classes
@@ -15,7 +10,7 @@ public static partial class sklearn
         public static (NDarray prob_true, NDarray prob_pred) calibration_curve(
             NDarray y_true,
             NDarray y_prob,
-            string? pos_label = null,
+            [AllowedTypes<int, float, bool, string>] object? pos_label = null,
             int n_bins = 5,
             string strategy = "uniform") => default!;
 
@@ -29,6 +24,7 @@ public static partial class sklearn
             public CalibratedClassifierCV(
                 @base.BaseEstimator? estimator = null,
                 string method = "sigmoid",
+                [NeedsRevision]
                 [AllowedTypes<int, IPythonWrapper>] object? cv = null,
                 int? n_jobs = null,
                 [NeedsRevision]
@@ -53,7 +49,8 @@ public static partial class sklearn
             [Self] public CalibratedClassifierCV set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class CalibrationDisplay : PythonObject
+        public class CalibrationDisplay : 
+            @base._BinaryClassifierCurveDisplayMixin
         {
             // Constructor
             public CalibrationDisplay(
@@ -94,11 +91,12 @@ public static partial class sklearn
                 PyObject? ax = null,
                 params (string key, object value)[] @params) => default!;
 
-            public PyObject plot(
-                PyObject? ax = null,
-                string? name = null,
-                bool ref_line = true,
-                params (string key, object value)[] @params) => default!;
+            [Self]
+            public CalibrationDisplay plot(
+                 PyObject? ax = null,
+                 string? name = null,
+                 bool ref_line = true,
+                 params (string key, object value)[] @params) => default!;
         }
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using Numpy;
 using Python.Runtime;
 
@@ -11,43 +12,57 @@ public static partial class sklearn
     public static class calibration
     {
         // Methods
-        public static (NDarray?, NDarray?) calibration_curve(NDarray y_true, NDarray y_prob, string? pos_label = null, int n_bins = 5, string strategy = "uniform") => default!;
+        public static (NDarray prob_true, NDarray prob_pred) calibration_curve(
+            NDarray y_true,
+            NDarray y_prob,
+            string? pos_label = null,
+            int n_bins = 5,
+            string strategy = "uniform") => default!;
+
         // Classes
-        public class CalibratedClassifierCV : PythonObject
+        public class CalibratedClassifierCV :
+            @base.ClassifierMixin,
+            @base.MetaEstimatorMixin,
+            @base.BaseEstimator<CalibratedClassifierCV>
         {
             // Constructor
-            public CalibratedClassifierCV(PyObject? estimator = null, string method = "sigmoid", int? cv = null, int? n_jobs = null, bool ensemble = true)
-            {
-            }
+            public CalibratedClassifierCV(
+                @base.BaseEstimator? estimator = null,
+                string method = "sigmoid",
+                [AllowedTypes<int, IPythonWrapper>] object? cv = null,
+                int? n_jobs = null,
+                [NeedsRevision]
+                [AllowedTypes<int, string>("auto")] object ensemble = default!)
+            { }
 
             // Properties
             public NDarray classes_ => default!;
             public int n_features_in_ => default!;
             public NDarray feature_names_in_ => default!;
-            public bool calibrated_classifiers_ => default!;
+            public NDarray calibrated_classifiers_ => default!;
 
             // Methods
-            [ReturnThis]
-            public CalibratedClassifierCV fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            [Self] public CalibratedClassifierCV fit(NDarray X, NDarray y, NDarray? sample_weight = null, params (string key, object value)[] @params) => default!;
             public NDarray predict(NDarray X) => default!;
             public NDarray predict_proba(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
-            public CalibratedClassifierCV set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
-            [ReturnThis]
-            public CalibratedClassifierCV set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
-            public CalibratedClassifierCV set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
+            public utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self] public CalibratedClassifierCV set_params(params (string key, object value)[] @params) => default!;
+            [Self] public CalibratedClassifierCV set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
+            [Self] public CalibratedClassifierCV set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
         public class CalibrationDisplay : PythonObject
         {
             // Constructor
-            public CalibrationDisplay(NDarray prob_true, NDarray prob_pred, NDarray y_prob, string? estimator_name = null, string? pos_label = null)
-            {
-            }
+            public CalibrationDisplay(
+                NDarray prob_true,
+                NDarray prob_pred,
+                NDarray y_prob,
+                string? estimator_name = null,
+                [AllowedTypes<int, float, bool, string>] object? pos_label = null)
+            { }
 
             // Properties
             public PyObject line_ => default!;
@@ -55,9 +70,35 @@ public static partial class sklearn
             public PyObject figure_ => default!;
 
             // Methods
-            public PyObject from_estimator(PyObject estimator, NDarray X, NDarray y, int n_bins = 5, string strategy = "uniform", string? pos_label = null, string? name = null, bool ref_line = true, PyObject? ax = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject from_predictions(NDarray y_true, NDarray y_prob, int n_bins = 5, string strategy = "uniform", string? pos_label = null, string? name = null, bool ref_line = true, PyObject? ax = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject plot(PyObject? ax = null, string? name = null, bool ref_line = true, Dictionary<string, PyObject>? @params = null) => default!;
+
+            public static CalibrationDisplay from_estimator(
+                @base.BaseEstimator estimator,
+                NDarray X,
+                NDarray y,
+                int n_bins = 5,
+                string strategy = "uniform",
+                [AllowedTypes<int, float, bool, string>] object? pos_label = null,
+                string? name = null,
+                PyObject? ax = null,
+                bool ref_line = true,
+                params (string key, object value)[] @params) => default!;
+
+            public static CalibrationDisplay from_predictions(
+                NDarray y_true,
+                NDarray y_prob,
+                int n_bins = 5,
+                string strategy = "uniform",
+                [AllowedTypes<int, float, bool, string>] object? pos_label = null,
+                string? name = null,
+                bool ref_line = true,
+                PyObject? ax = null,
+                params (string key, object value)[] @params) => default!;
+
+            public PyObject plot(
+                PyObject? ax = null,
+                string? name = null,
+                bool ref_line = true,
+                params (string key, object value)[] @params) => default!;
         }
     }
 }

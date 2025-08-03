@@ -1,6 +1,12 @@
 ﻿namespace ScikitLearn.Signatures.Attributes;
 
-[AttributeUsage(AttributeTargets.Method | AttributeTargets.Property, Inherited = false, AllowMultiple = true)]
-public class NeedsRevisionAttribute : Attribute
-{
-}
+/// <summary>
+/// Indicates that this element has not been fully reviewed and may exhibit unexpected behavior.
+/// </summary>
+[AttributeUsage(
+    AttributeTargets.Method |
+    AttributeTargets.Property |
+    AttributeTargets.Parameter |
+    AttributeTargets.Class,
+    Inherited = false, AllowMultiple = true)]
+public class NeedsRevisionAttribute : Attribute { }

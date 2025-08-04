@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Numpy;
 using Python.Runtime;
-using ScikitLearn.Signatures.Annotations;
 
 namespace ScikitLearn;
 public static partial class sklearn
@@ -12,7 +11,6 @@ public static partial class sklearn
     public static class tree
     {
         // Methods
-        [Generate]
         public static string export_graphviz(
             PyObject decision_tree,
             string? out_file = null,
@@ -30,7 +28,7 @@ public static partial class sklearn
             bool special_characters = false,
             int precision = 3,
             string fontname = "helvetica") => default!;
-        [Generate]
+       
         public static string export_text(
             PyObject decision_tree,
             NDarray? feature_names = null,
@@ -39,7 +37,7 @@ public static partial class sklearn
             int spacing = 3,
             int decimals = 2,
             bool show_weights = false) => default!;
-        [Generate]
+       
         public static PyTuple plot_tree(
             DecisionTreeClassifier decision_tree,
             int? max_depth = null,
@@ -54,7 +52,7 @@ public static partial class sklearn
             int precision = 3,
             PyObject? ax = null,
             int? fontsize = null) => default!;
-        [Generate]
+       
         public static PyTuple plot_tree(
             DecisionTreeRegressor decision_tree,
             int? max_depth = null,
@@ -104,27 +102,27 @@ public static partial class sklearn
             public NDarray apply(NDarray X, bool check_input = true) => default!;
             public PyDict cost_complexity_pruning_path(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             public NDarray decision_path(NDarray X, bool check_input = true) => default!;
-            [ReturnThis]
+            [Self]
             public DecisionTreeClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null, bool check_input = true) => default!;
-            [ReturnThis]
+            [Self]
             public DecisionTreeClassifier get_depth() => default!;
-            public PyObject get_metadata_routing() => default!;
-            [ReturnThis]
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            [Self]
             public DecisionTreeClassifier get_n_leaves() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X, bool check_input = true) => default!;
             public NDarray predict_log_proba(NDarray X) => default!;
             public NDarray predict_proba(NDarray X, bool check_input = true) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
+            [Self]
             public DecisionTreeClassifier set_fit_request(string? check_input = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$") => default!;
-            [ReturnThis]
-            public DecisionTreeClassifier set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public DecisionTreeClassifier set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public DecisionTreeClassifier set_predict_proba_request(string? check_input = "$UNCHANGED$") => default!;
-            [ReturnThis]
+            [Self]
             public DecisionTreeClassifier set_predict_request(string? check_input = "$UNCHANGED$") => default!;
-            [ReturnThis]
+            [Self]
             public DecisionTreeClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
@@ -147,23 +145,23 @@ public static partial class sklearn
             public NDarray apply(NDarray X, bool check_input = true) => default!;
             public PyDict cost_complexity_pruning_path(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             public NDarray decision_path(NDarray X, bool check_input = true) => default!;
-            [ReturnThis]
+            [Self]
             public DecisionTreeRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null, bool check_input = true) => default!;
-            [ReturnThis]
+            [Self]
             public DecisionTreeRegressor get_depth() => default!;
-            public PyObject get_metadata_routing() => default!;
-            [ReturnThis]
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            [Self]
             public DecisionTreeRegressor get_n_leaves() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X, bool check_input = true) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
+            [Self]
             public DecisionTreeRegressor set_fit_request(string? check_input = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$") => default!;
-            [ReturnThis]
-            public DecisionTreeRegressor set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public DecisionTreeRegressor set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public DecisionTreeRegressor set_predict_request(string? check_input = "$UNCHANGED$") => default!;
-            [ReturnThis]
+            [Self]
             public DecisionTreeRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
@@ -188,27 +186,27 @@ public static partial class sklearn
             public NDarray apply(NDarray X, bool check_input = true) => default!;
             public PyDict cost_complexity_pruning_path(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             public NDarray decision_path(NDarray X, bool check_input = true) => default!;
-            [ReturnThis]
+            [Self]
             public ExtraTreeClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null, bool check_input = true) => default!;
-            [ReturnThis]
+            [Self]
             public ExtraTreeClassifier get_depth() => default!;
-            public PyObject get_metadata_routing() => default!;
-            [ReturnThis]
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            [Self]
             public ExtraTreeClassifier get_n_leaves() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X, bool check_input = true) => default!;
             public NDarray predict_log_proba(NDarray X) => default!;
             public NDarray predict_proba(NDarray X, bool check_input = true) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
+            [Self]
             public ExtraTreeClassifier set_fit_request(string? check_input = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$") => default!;
-            [ReturnThis]
-            public ExtraTreeClassifier set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public ExtraTreeClassifier set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public ExtraTreeClassifier set_predict_proba_request(string? check_input = "$UNCHANGED$") => default!;
-            [ReturnThis]
+            [Self]
             public ExtraTreeClassifier set_predict_request(string? check_input = "$UNCHANGED$") => default!;
-            [ReturnThis]
+            [Self]
             public ExtraTreeClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
@@ -231,23 +229,23 @@ public static partial class sklearn
             public NDarray apply(NDarray X, bool check_input = true) => default!;
             public PyDict cost_complexity_pruning_path(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             public NDarray decision_path(NDarray X, bool check_input = true) => default!;
-            [ReturnThis]
+            [Self]
             public ExtraTreeRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null, bool check_input = true) => default!;
-            [ReturnThis]
+            [Self]
             public ExtraTreeRegressor get_depth() => default!;
-            public PyObject get_metadata_routing() => default!;
-            [ReturnThis]
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            [Self]
             public ExtraTreeRegressor get_n_leaves() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X, bool check_input = true) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
+            [Self]
             public ExtraTreeRegressor set_fit_request(string? check_input = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$") => default!;
-            [ReturnThis]
-            public ExtraTreeRegressor set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public ExtraTreeRegressor set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public ExtraTreeRegressor set_predict_request(string? check_input = "$UNCHANGED$") => default!;
-            [ReturnThis]
+            [Self]
             public ExtraTreeRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
     }

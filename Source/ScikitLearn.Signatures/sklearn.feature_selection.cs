@@ -32,18 +32,18 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public GenericUnivariateSelect fit(NDarray X, NDarray? y = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray get_support(bool indices = false) => default!;
             public NDarray inverse_transform(NDarray X) => default!;
-            [ReturnThis]
-            public GenericUnivariateSelect set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public GenericUnivariateSelect set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public GenericUnivariateSelect set_output(string? transform = null) => default!;
+            [Self]
+            public GenericUnivariateSelect set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
@@ -65,25 +65,25 @@ public static partial class sklearn
 
             // Methods
             public NDarray decision_function(NDarray X) => default!;
-            [ReturnThis]
-            public RFE fit(NDarray X, NDarray y, Dictionary<string, PyObject>? @params = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
+            [Self]
+            public RFE fit(NDarray X, NDarray y, params (string key, object value)[] @params) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
             public void get_metadata_routing()
             {
             }
 
-            public PyDict get_params(bool deep = true) => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray get_support(bool indices = false) => default!;
             public NDarray inverse_transform(NDarray X) => default!;
             public NDarray predict(NDarray X) => default!;
             public NDarray predict_log_proba(NDarray X) => default!;
             public NDarray predict_proba(NDarray X) => default!;
-            public float score(NDarray X, NDarray y, Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
-            public RFE set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public RFE set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            public float score(NDarray X, NDarray y, params (string key, object value)[] @params) => default!;
+            [Self]
+            public RFE set_output(string? transform = null) => default!;
+            [Self]
+            public RFE set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
@@ -106,27 +106,27 @@ public static partial class sklearn
 
             // Methods
             public NDarray decision_function(NDarray X) => default!;
-            [ReturnThis]
+            [Self]
             public RFECV fit(NDarray X, NDarray y, NDarray? groups = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
             public void get_metadata_routing()
             {
             }
 
-            public PyDict get_params(bool deep = true) => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray get_support(bool indices = false) => default!;
             public NDarray inverse_transform(NDarray X) => default!;
             public NDarray predict(NDarray X) => default!;
             public NDarray predict_log_proba(NDarray X) => default!;
             public NDarray predict_proba(NDarray X) => default!;
-            public float score(NDarray X, NDarray y, Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            public float score(NDarray X, NDarray y, params (string key, object value)[] @params) => default!;
+            [Self]
             public RFECV set_fit_request(string? groups = "$UNCHANGED$") => default!;
-            [ReturnThis]
-            public RFECV set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public RFECV set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public RFECV set_output(string? transform = null) => default!;
+            [Self]
+            public RFECV set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
@@ -144,18 +144,18 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public SelectFdr fit(NDarray X, NDarray? y = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray get_support(bool indices = false) => default!;
             public NDarray inverse_transform(NDarray X) => default!;
-            [ReturnThis]
-            public SelectFdr set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public SelectFdr set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public SelectFdr set_output(string? transform = null) => default!;
+            [Self]
+            public SelectFdr set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
@@ -173,18 +173,18 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public SelectFpr fit(NDarray X, NDarray? y = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray get_support(bool indices = false) => default!;
             public NDarray inverse_transform(NDarray X) => default!;
-            [ReturnThis]
-            public SelectFpr set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public SelectFpr set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public SelectFpr set_output(string? transform = null) => default!;
+            [Self]
+            public SelectFpr set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
@@ -203,20 +203,20 @@ public static partial class sklearn
             public float threshold_ => default!;
 
             // Methods
-            [ReturnThis]
-            public SelectFromModel fit(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            [Self]
+            public SelectFromModel fit(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray get_support(bool indices = false) => default!;
             public NDarray inverse_transform(NDarray X) => default!;
-            [ReturnThis]
-            public SelectFromModel partial_fit(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
-            public SelectFromModel set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public SelectFromModel set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public SelectFromModel partial_fit(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            [Self]
+            public SelectFromModel set_output(string? transform = null) => default!;
+            [Self]
+            public SelectFromModel set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
@@ -234,18 +234,18 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public SelectFwe fit(NDarray X, NDarray? y = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray get_support(bool indices = false) => default!;
             public NDarray inverse_transform(NDarray X) => default!;
-            [ReturnThis]
-            public SelectFwe set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public SelectFwe set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public SelectFwe set_output(string? transform = null) => default!;
+            [Self]
+            public SelectFwe set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
@@ -263,18 +263,18 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public SelectKBest fit(NDarray X, NDarray? y = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray get_support(bool indices = false) => default!;
             public NDarray inverse_transform(NDarray X) => default!;
-            [ReturnThis]
-            public SelectKBest set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public SelectKBest set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public SelectKBest set_output(string? transform = null) => default!;
+            [Self]
+            public SelectKBest set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
@@ -292,18 +292,18 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public SelectPercentile fit(NDarray X, NDarray? y = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray get_support(bool indices = false) => default!;
             public NDarray inverse_transform(NDarray X) => default!;
-            [ReturnThis]
-            public SelectPercentile set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public SelectPercentile set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public SelectPercentile set_output(string? transform = null) => default!;
+            [Self]
+            public SelectPercentile set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
@@ -315,12 +315,12 @@ public static partial class sklearn
             }
 
             // Methods
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
             public NDarray get_support(bool indices = false) => default!;
             public NDarray inverse_transform(NDarray X) => default!;
-            [ReturnThis]
-            public SelectorMixin set_output(PyObject? transform = null) => default!;
+            [Self]
+            public SelectorMixin set_output(string? transform = null) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
@@ -338,21 +338,21 @@ public static partial class sklearn
             public NDarray support_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public SequentialFeatureSelector fit(NDarray X, NDarray? y = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
             public void get_metadata_routing()
             {
             }
 
-            public PyDict get_params(bool deep = true) => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray get_support(bool indices = false) => default!;
             public NDarray inverse_transform(NDarray X) => default!;
-            [ReturnThis]
-            public SequentialFeatureSelector set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public SequentialFeatureSelector set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public SequentialFeatureSelector set_output(string? transform = null) => default!;
+            [Self]
+            public SequentialFeatureSelector set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
@@ -369,18 +369,18 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public VarianceThreshold fit(NDarray X, PyObject? y = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray get_support(bool indices = false) => default!;
             public NDarray inverse_transform(NDarray X) => default!;
-            [ReturnThis]
-            public VarianceThreshold set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public VarianceThreshold set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public VarianceThreshold set_output(string? transform = null) => default!;
+            [Self]
+            public VarianceThreshold set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
     }

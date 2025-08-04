@@ -25,17 +25,17 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public KernelRidge fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
+            [Self]
             public KernelRidge set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
-            [ReturnThis]
-            public KernelRidge set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public KernelRidge set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public KernelRidge set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
     }

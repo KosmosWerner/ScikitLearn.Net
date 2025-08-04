@@ -11,12 +11,22 @@ public static partial class sklearn
     public static class discriminant_analysis
     {
         // Classes
-        public class LinearDiscriminantAnalysis : PythonObject
+        public class LinearDiscriminantAnalysis :
+            @base.ClassNamePrefixFeaturesOutMixin,
+            @base.LinearClassifierMixin,
+            @base.TransformerMixin<LinearDiscriminantAnalysis>,
+            @base.BaseEstimator<LinearDiscriminantAnalysis>
         {
             // Constructor
-            public LinearDiscriminantAnalysis(string solver = "svd", float? shrinkage = null, NDarray? priors = null, int? n_components = null, bool store_covariance = false, float tol = 0.0001f, PyObject? covariance_estimator = null)
-            {
-            }
+            public LinearDiscriminantAnalysis(
+                string solver = "svd",
+                [OneOf<string, float>] object? shrinkage = null,
+                NDarray? priors = null,
+                int? n_components = null,
+                bool store_covariance = false,
+                float tol = 0.0001f,
+                PyObject? covariance_estimator = null)
+            { }
 
             // Properties
             public NDarray coef_ => default!;
@@ -33,26 +43,26 @@ public static partial class sklearn
 
             // Methods
             public NDarray decision_function(NDarray X) => default!;
-            [ReturnThis]
+            [Self]
             public LinearDiscriminantAnalysis fit(NDarray X, NDarray y) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X) => default!;
             public NDarray predict_log_proba(NDarray X) => default!;
             public NDarray predict_proba(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
-            public LinearDiscriminantAnalysis set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public LinearDiscriminantAnalysis set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public LinearDiscriminantAnalysis set_output(string? transform = null) => default!;
+            [Self]
+            public LinearDiscriminantAnalysis set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public LinearDiscriminantAnalysis set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class QuadraticDiscriminantAnalysis : PythonObject
+        public class QuadraticDiscriminantAnalysis :
         {
             // Constructor
             public QuadraticDiscriminantAnalysis(NDarray? priors = null, float reg_param = 0.0f, bool store_covariance = false, float tol = 0.0001f)
@@ -71,17 +81,17 @@ public static partial class sklearn
 
             // Methods
             public NDarray decision_function(NDarray X) => default!;
-            [ReturnThis]
+            [Self]
             public QuadraticDiscriminantAnalysis fit(NDarray X, NDarray y) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X) => default!;
             public NDarray predict_log_proba(NDarray X) => default!;
             public NDarray predict_proba(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
-            public QuadraticDiscriminantAnalysis set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public QuadraticDiscriminantAnalysis set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public QuadraticDiscriminantAnalysis set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
     }

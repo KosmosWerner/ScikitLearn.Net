@@ -23,16 +23,16 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public AdditiveChi2Sampler fit(NDarray X, NDarray? y = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public AdditiveChi2Sampler set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public AdditiveChi2Sampler set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self]
+            public AdditiveChi2Sampler set_output(string? transform = null) => default!;
+            [Self]
+            public AdditiveChi2Sampler set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
@@ -51,16 +51,16 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public Nystroem fit(NDarray X, NDarray? y = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public Nystroem set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public Nystroem set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self]
+            public Nystroem set_output(string? transform = null) => default!;
+            [Self]
+            public Nystroem set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
@@ -78,16 +78,16 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public PolynomialCountSketch fit(NDarray X, NDarray? y = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public PolynomialCountSketch set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public PolynomialCountSketch set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self]
+            public PolynomialCountSketch set_output(string? transform = null) => default!;
+            [Self]
+            public PolynomialCountSketch set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
@@ -105,16 +105,16 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public RBFSampler fit(NDarray X, NDarray? y = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public RBFSampler set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public RBFSampler set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self]
+            public RBFSampler set_output(string? transform = null) => default!;
+            [Self]
+            public RBFSampler set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
@@ -132,16 +132,16 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public SkewedChi2Sampler fit(NDarray X, NDarray? y = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public SkewedChi2Sampler set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public SkewedChi2Sampler set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self]
+            public SkewedChi2Sampler set_output(string? transform = null) => default!;
+            [Self]
+            public SkewedChi2Sampler set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
     }

@@ -42,20 +42,20 @@ public static partial class sklearn
             public NDarray correct_covariance(NDarray data) => default!;
             public NDarray decision_function(NDarray X) => default!;
             public float error_norm(NDarray comp_cov, string norm = "frobenius", bool scaling = true, bool squared = true) => default!;
-            [ReturnThis]
+            [Self]
             public EllipticEnvelope fit(NDarray X) => default!;
-            public NDarray fit_predict(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public NDarray fit_predict(NDarray X, params (string key, object value)[] @params) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray get_precision() => default!;
             public NDarray mahalanobis(NDarray X) => default!;
             public NDarray predict(NDarray X) => default!;
             public (NDarray?, NDarray?, NDarray?) reweight_covariance(NDarray data) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             public NDarray score_samples(NDarray X) => default!;
-            [ReturnThis]
-            public EllipticEnvelope set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public EllipticEnvelope set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public EllipticEnvelope set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
@@ -75,16 +75,16 @@ public static partial class sklearn
 
             // Methods
             public float error_norm(NDarray comp_cov, string norm = "frobenius", bool scaling = true, bool squared = true) => default!;
-            [ReturnThis]
+            [Self]
             public EmpiricalCovariance fit(NDarray X) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray get_precision() => default!;
             public NDarray mahalanobis(NDarray X) => default!;
             public float score(NDarray X_test) => default!;
-            [ReturnThis]
-            public EmpiricalCovariance set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public EmpiricalCovariance set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public EmpiricalCovariance set_score_request(string? X_test = "$UNCHANGED$") => default!;
         }
 
@@ -106,16 +106,16 @@ public static partial class sklearn
 
             // Methods
             public float error_norm(NDarray comp_cov, string norm = "frobenius", bool scaling = true, bool squared = true) => default!;
-            [ReturnThis]
+            [Self]
             public GraphicalLasso fit(NDarray X) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray get_precision() => default!;
             public NDarray mahalanobis(NDarray X) => default!;
             public float score(NDarray X_test) => default!;
-            [ReturnThis]
-            public GraphicalLasso set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public GraphicalLasso set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public GraphicalLasso set_score_request(string? X_test = "$UNCHANGED$") => default!;
         }
 
@@ -139,16 +139,16 @@ public static partial class sklearn
 
             // Methods
             public float error_norm(NDarray comp_cov, string norm = "frobenius", bool scaling = true, bool squared = true) => default!;
-            [ReturnThis]
-            public GraphicalLassoCV fit(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            [Self]
+            public GraphicalLassoCV fit(NDarray X, params (string key, object value)[] @params) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray get_precision() => default!;
             public NDarray mahalanobis(NDarray X) => default!;
             public float score(NDarray X_test) => default!;
-            [ReturnThis]
-            public GraphicalLassoCV set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public GraphicalLassoCV set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public GraphicalLassoCV set_score_request(string? X_test = "$UNCHANGED$") => default!;
         }
 
@@ -169,16 +169,16 @@ public static partial class sklearn
 
             // Methods
             public float error_norm(NDarray comp_cov, string norm = "frobenius", bool scaling = true, bool squared = true) => default!;
-            [ReturnThis]
+            [Self]
             public LedoitWolf fit(NDarray X) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray get_precision() => default!;
             public NDarray mahalanobis(NDarray X) => default!;
             public float score(NDarray X_test) => default!;
-            [ReturnThis]
-            public LedoitWolf set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public LedoitWolf set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public LedoitWolf set_score_request(string? X_test = "$UNCHANGED$") => default!;
         }
 
@@ -204,17 +204,17 @@ public static partial class sklearn
             // Methods
             public NDarray correct_covariance(NDarray data) => default!;
             public float error_norm(NDarray comp_cov, string norm = "frobenius", bool scaling = true, bool squared = true) => default!;
-            [ReturnThis]
+            [Self]
             public MinCovDet fit(NDarray X) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray get_precision() => default!;
             public NDarray mahalanobis(NDarray X) => default!;
             public (NDarray?, NDarray?, NDarray?) reweight_covariance(NDarray data) => default!;
             public float score(NDarray X_test) => default!;
-            [ReturnThis]
-            public MinCovDet set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public MinCovDet set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public MinCovDet set_score_request(string? X_test = "$UNCHANGED$") => default!;
         }
 
@@ -235,16 +235,16 @@ public static partial class sklearn
 
             // Methods
             public float error_norm(NDarray comp_cov, string norm = "frobenius", bool scaling = true, bool squared = true) => default!;
-            [ReturnThis]
+            [Self]
             public OAS fit(NDarray X) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray get_precision() => default!;
             public NDarray mahalanobis(NDarray X) => default!;
             public float score(NDarray X_test) => default!;
-            [ReturnThis]
-            public OAS set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public OAS set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public OAS set_score_request(string? X_test = "$UNCHANGED$") => default!;
         }
 
@@ -264,16 +264,16 @@ public static partial class sklearn
 
             // Methods
             public float error_norm(NDarray comp_cov, string norm = "frobenius", bool scaling = true, bool squared = true) => default!;
-            [ReturnThis]
+            [Self]
             public ShrunkCovariance fit(NDarray X) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray get_precision() => default!;
             public NDarray mahalanobis(NDarray X) => default!;
             public float score(NDarray X_test) => default!;
-            [ReturnThis]
-            public ShrunkCovariance set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public ShrunkCovariance set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public ShrunkCovariance set_score_request(string? X_test = "$UNCHANGED$") => default!;
         }
     }

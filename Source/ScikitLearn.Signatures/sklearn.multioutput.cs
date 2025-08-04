@@ -28,17 +28,17 @@ public static partial class sklearn
 
             // Methods
             public NDarray decision_function(NDarray X) => default!;
-            [ReturnThis]
-            public ClassifierChain fit(NDarray X, NDarray Y, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            [Self]
+            public ClassifierChain fit(NDarray X, NDarray Y, params (string key, object value)[] @params) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X) => default!;
             public NDarray predict_log_proba(NDarray X) => default!;
             public NDarray predict_proba(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
-            public ClassifierChain set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public ClassifierChain set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public ClassifierChain set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
@@ -56,20 +56,20 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
-            public MultiOutputClassifier fit(NDarray X, NDarray Y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public MultiOutputClassifier partial_fit(NDarray X, NDarray y, NDarray? classes = null, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public MultiOutputClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null, params (string key, object value)[] @params) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self]
+            public MultiOutputClassifier partial_fit(NDarray X, NDarray y, NDarray? classes = null, NDarray? sample_weight = null, params (string key, object value)[] @params) => default!;
             public NDarray predict(NDarray X) => default!;
             public NDarray predict_proba(NDarray X) => default!;
             public float score(NDarray X, NDarray y) => default!;
-            [ReturnThis]
+            [Self]
             public MultiOutputClassifier set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
-            [ReturnThis]
-            public MultiOutputClassifier set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public MultiOutputClassifier set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public MultiOutputClassifier set_partial_fit_request(string? classes = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$") => default!;
         }
 
@@ -86,21 +86,21 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
-            public MultiOutputRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public MultiOutputRegressor partial_fit(NDarray X, NDarray y, NDarray? sample_weight = null, Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public MultiOutputRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null, params (string key, object value)[] @params) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self]
+            public MultiOutputRegressor partial_fit(NDarray X, NDarray y, NDarray? sample_weight = null, params (string key, object value)[] @params) => default!;
             public NDarray predict(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
+            [Self]
             public MultiOutputRegressor set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
-            [ReturnThis]
-            public MultiOutputRegressor set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public MultiOutputRegressor set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public MultiOutputRegressor set_partial_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
-            [ReturnThis]
+            [Self]
             public MultiOutputRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
@@ -118,15 +118,15 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
-            public RegressorChain fit(NDarray X, NDarray Y, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            [Self]
+            public RegressorChain fit(NDarray X, NDarray Y, params (string key, object value)[] @params) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
-            public RegressorChain set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public RegressorChain set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public RegressorChain set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
     }

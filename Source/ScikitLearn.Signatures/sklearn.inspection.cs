@@ -11,7 +11,18 @@ public static partial class sklearn
     public static class inspection
     {
         // Methods
-        public static PyDict partial_dependence(PyObject estimator, NDarray X, NDarray features, NDarray? sample_weight = null, NDarray? categorical_features = null, NDarray? feature_names = null, string response_method = "auto", PyTuple? percentiles = null, int grid_resolution = 100, string method = "auto", string kind = "average") => default!;
+        public static PyDict partial_dependence(
+            @base.BaseEstimator estimator,
+            NDarray X,
+            NDarray features,
+            NDarray? sample_weight = null,
+            NDarray? categorical_features = null,
+            NDarray? feature_names = null,
+            string response_method = "auto",
+            PyTuple? percentiles = null,
+            int grid_resolution = 100,
+            string method = "auto",
+            string kind = "average") => default!;
         public static PyDict permutation_importance(PyObject estimator, NDarray X, NDarray y, PyDict? scoring = null, int n_repeats = 5, int? n_jobs = null, int? random_state = null, NDarray? sample_weight = null, float max_samples = 1.0f) => default!;
         // Classes
         public class DecisionBoundaryDisplay : PythonObject
@@ -27,8 +38,9 @@ public static partial class sklearn
             public PyObject figure_ => default!;
 
             // Methods
-            public PyObject from_estimator(PyObject estimator, NDarray X, int grid_resolution = 100, float eps = 1.0f, string plot_method = "contourf", string response_method = "auto", string? class_of_interest = null, string? xlabel = null, string? ylabel = null, PyObject? ax = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject plot(string plot_method = "contourf", PyObject? ax = null, string? xlabel = null, string? ylabel = null, Dictionary<string, PyObject>? @params = null) => default!;
+
+            public PyObject from_estimator(PyObject estimator, NDarray X, int grid_resolution = 100, float eps = 1.0f, string plot_method = "contourf", string response_method = "auto", string? class_of_interest = null, string? xlabel = null, string? ylabel = null, PyObject? ax = null, params (string key, object value)[] @params) => default!;
+            public PyObject plot(string plot_method = "contourf", PyObject? ax = null, string? xlabel = null, string? ylabel = null, params (string key, object value)[] @params) => default!;
         }
 
         public class PartialDependenceDisplay : PythonObject

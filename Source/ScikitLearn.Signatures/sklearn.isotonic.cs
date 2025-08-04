@@ -30,25 +30,25 @@ public static partial class sklearn
             public bool increasing_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public IsotonicRegression fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray T) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
+            [Self]
             public IsotonicRegression set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
-            [ReturnThis]
-            public IsotonicRegression set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public IsotonicRegression set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public IsotonicRegression set_output(string? transform = null) => default!;
+            [Self]
+            public IsotonicRegression set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public IsotonicRegression set_predict_request(string? T = "$UNCHANGED$") => default!;
-            [ReturnThis]
+            [Self]
             public IsotonicRegression set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
-            [ReturnThis]
+            [Self]
             public IsotonicRegression set_transform_request(string? T = "$UNCHANGED$") => default!;
             public NDarray transform(NDarray T) => default!;
         }

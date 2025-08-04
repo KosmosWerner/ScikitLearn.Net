@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Numerics;
 using Numpy;
 using Python.Runtime;
 
@@ -11,26 +12,97 @@ public static partial class sklearn
     public static class utils
     {
         // Methods
-        public static PyObject _safe_indexing(NDarray X, NDarray indices, int axis = 0) => default!;
-        public static NDarray as_float_array(NDarray X, bool copy = true, bool force_all_finite = true) => default!;
-        public static void assert_all_finite(NDarray X, bool allow_nan = false, string? estimator_name = null, string input_name = "")
-        {
-        }
+        public static NDarray as_float_array(
+            NDarray X,
+            bool copy = true,
+            bool ensure_all_finite = true) => default!;
 
-        public static string estimator_html_repr(PyObject estimator) => default!;
-        public static PyObject gen_batches(int n, int batch_size, int min_batch_size = 0) => default!;
-        public static PyObject gen_even_slices(int n, int n_packs, int? n_samples = null) => default!;
-        public static NDarray? indexable(PyObject[] iterables) => default!;
-        public static void murmurhash3_32(NDarray key, int seed = 0, bool positive = false)
-        {
-        }
+        public static void assert_all_finite(
+            NDarray X,
+            bool allow_nan = false,
+            string? estimator_name = null,
+            string input_name = "")
+        { }
 
-        public static NDarray resample(NDarray[] arrays, bool replace = true, int? n_samples = null, int? random_state = null, NDarray? stratify = null) => default!;
-        public static NDarray safe_mask(NDarray X, NDarray mask) => default!;
-        public static PyObject safe_sqr(NDarray X, bool copy = true) => default!;
-        public static NDarray shuffle(NDarray[] arrays, int? random_state = null, int? n_samples = null) => default!;
-        public static (PyObject?, PyObject?) check_X_y(NDarray X, NDarray y, bool accept_sparse = false, bool accept_large_sparse = true, string? dtype = "numeric", PyObject? order = null, bool copy = false, bool force_writeable = false, bool force_all_finite = true, bool ensure_2d = true, bool allow_nd = false, bool multi_output = false, int ensure_min_samples = 1, int ensure_min_features = 1, bool y_numeric = false, string? estimator = null) => default!;
-        public static PyObject check_array(PyObject array, bool accept_sparse = false, bool accept_large_sparse = true, string? dtype = "numeric", PyObject? order = null, bool copy = false, bool force_writeable = false, bool force_all_finite = true, bool ensure_2d = true, bool allow_nd = false, int ensure_min_samples = 1, int ensure_min_features = 1, string? estimator = null, string input_name = "") => default!;
+        public static string estimator_html_repr(
+            [NeedsSpecification] PythonObject estimator) => default!;
+
+        public static Slice[] gen_batches(
+            int n,
+            int batch_size,
+            int min_batch_size = 0) => default!;
+
+        public static Slice[] gen_even_slices(
+            int n,
+            int n_packs,
+            int? n_samples = null) => default!;
+
+        [NeedsRevision]
+        public static NDarray? indexable(
+            PyObject[] iterables) => default!;
+
+        [NeedsRevision]
+        public static void murmurhash3_32(
+            NDarray key,
+            int seed = 0,
+            bool positive = false)
+        { }
+
+        public static NDarray resample(
+            NDarray[] arrays,
+            bool replace = true,
+            int? n_samples = null,
+            int? random_state = null,
+            NDarray? stratify = null,
+            NDarray? sample_weight = null) => default!;
+
+        public static NDarray safe_mask(
+            NDarray X,
+            NDarray mask) => default!;
+
+        public static NDarray safe_sqr(
+            NDarray X,
+            bool copy = true) => default!;
+
+        public static NDarray shuffle(
+            NDarray[] arrays,
+            int? random_state = null,
+            int? n_samples = null) => default!;
+
+        public static (PyObject?, PyObject?) check_X_y(
+            NDarray X,
+            NDarray y,
+            bool accept_sparse = false,
+            bool accept_large_sparse = true,
+            string? dtype = "numeric",
+            PyObject? order = null,
+            bool copy = false,
+            bool force_writeable = false,
+            bool force_all_finite = true,
+            bool ensure_2d = true,
+            bool allow_nd = false,
+            bool multi_output = false,
+            int ensure_min_samples = 1,
+            int ensure_min_features = 1,
+            bool y_numeric = false,
+            string? estimator = null) => default!;
+
+        public static PyObject check_array(
+            PyObject array,
+            bool accept_sparse = false,
+            bool accept_large_sparse = true,
+            string? dtype = "numeric",
+            PyObject? order = null,
+            bool copy = false,
+            bool force_writeable = false,
+            bool force_all_finite = true,
+            bool ensure_2d = true,
+            bool allow_nd = false,
+            int ensure_min_samples = 1,
+            int ensure_min_features = 1,
+            string? estimator = null,
+            string input_name = "") => default!;
+
         public static void check_consistent_length(NDarray[] arrays)
         {
         }
@@ -46,56 +118,10 @@ public static partial class sklearn
             }
 
             // Methods
-            public void clear()
+            public PyObject this[string index]
             {
-            }
-
-            public void copy()
-            {
-            }
-
-            public void fromkeys()
-            {
-            }
-
-            public void get()
-            {
-            }
-
-            public void items()
-            {
-            }
-
-            public void keys()
-            {
-            }
-
-            public void pop()
-            {
-            }
-
-            public void popitem()
-            {
-            }
-
-            public void setdefault()
-            {
-            }
-
-            public void update()
-            {
-            }
-
-            public void values()
-            {
-            }
-        }
-
-        public class deprecated : PythonObject
-        {
-            // Constructor
-            public deprecated(string extra = "")
-            {
+                get { return self.GetItem(index); }
+                set { self.SetItem(index, value); }
             }
         }
 
@@ -149,7 +175,7 @@ public static partial class sklearn
         {
             // Methods
             public static PyObject get_routing_for_object(PyObject? obj = null) => default!;
-            public static PyDict process_routing(PyObject _obj, string _method, Dictionary<string, PyObject>? @params = null) => default!;
+            public static PyDict process_routing(PyObject _obj, string _method, params (string key, object value)[] @params) => default!;
             // Classes
             public class MetadataRequest : PythonObject
             {
@@ -170,9 +196,9 @@ public static partial class sklearn
                 }
 
                 // Methods
-                [ReturnThis]
-                public MetadataRouter add(PyObject method_mapping, Dictionary<string, PyObject>? @params = null) => default!;
-                [ReturnThis]
+                [Self]
+                public MetadataRouter add(PyObject method_mapping, params (string key, object value)[] @params) => default!;
+                [Self]
                 public MetadataRouter add_self_request(PyObject obj) => default!;
                 public string consumes(string method, string @params) => default!;
                 public PyDict route_params(string caller, PyDict @params) => default!;
@@ -189,7 +215,7 @@ public static partial class sklearn
                 }
 
                 // Methods
-                [ReturnThis]
+                [Self]
                 public MethodMapping add(string caller, string callee) => default!;
             }
         }

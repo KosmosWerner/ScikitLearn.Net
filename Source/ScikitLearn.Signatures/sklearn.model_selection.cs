@@ -21,171 +21,198 @@ public static partial class sklearn
         public static (float?, NDarray?, float?) permutation_test_score(PyObject estimator, NDarray X, NDarray y, NDarray? groups = null, int? cv = null, int n_permutations = 100, int? n_jobs = null, int? random_state = 0, int verbose = 0, string? scoring = null, PyDict? fit_params = null) => default!;
         public static (NDarray?, NDarray?) validation_curve(PyObject estimator, NDarray X, NDarray y, string param_name, NDarray param_range, NDarray? groups = null, int? cv = null, string? scoring = null, int? n_jobs = null, string pre_dispatch = "all", int verbose = 0, PyObject? error_score = null, PyDict? fit_params = null) => default!;
         // Classes
-        public class GroupKFold : PythonObject
+        public class GroupKFold :
+            @base.GroupsConsumerMixin,
+            @base._BaseKFold
         {
             // Constructor
-            public GroupKFold(int n_splits = 5)
-            {
-            }
+            public GroupKFold(
+                int n_splits = 5,
+                bool shuffle = false,
+                int? random_state = null)
+            { }
 
             // Methods
-            public PyObject get_metadata_routing() => default!;
-            public int get_n_splits(PyObject? X = null, PyObject? y = null, PyObject? groups = null) => default!;
-            [ReturnThis]
-            public GroupKFold set_split_request(string? groups = "$UNCHANGED$") => default!;
-            public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, NDarray? groups = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public int get_n_splits([Ignored] NDarray? X = null, [Ignored] NDarray? y = null, [Ignored] NDarray? groups = null) => default!;
+            public (NDarray train, NDarray test) split(NDarray X, NDarray? y = null, NDarray? groups = null) => default!;
+            [Self] public GroupKFold set_split_request(string? groups = "$UNCHANGED$") => default!;
         }
 
-        public class GroupShuffleSplit : PythonObject
+        public class GroupShuffleSplit :
+            @base.GroupsConsumerMixin,
+            @base.BaseShuffleSplit
         {
             // Constructor
-            public GroupShuffleSplit(int n_splits = 5, float? test_size = null, float? train_size = null, int? random_state = null)
-            {
-            }
+            public GroupShuffleSplit(
+                int n_splits = 5,
+                [OneOf<int, float>] object? test_size = null,
+                [OneOf<int, float>] object? train_size = null,
+                int? random_state = null)
+            { }
 
             // Methods
-            public PyObject get_metadata_routing() => default!;
-            public int get_n_splits(PyObject? X = null, PyObject? y = null, PyObject? groups = null) => default!;
-            [ReturnThis]
-            public GroupShuffleSplit set_split_request(string? groups = "$UNCHANGED$") => default!;
-            public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, NDarray? groups = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public int get_n_splits([Ignored] NDarray? X = null, [Ignored] NDarray? y = null, [Ignored] NDarray? groups = null) => default!;
+            public (NDarray train, NDarray test) split(NDarray X, NDarray? y = null, NDarray? groups = null) => default!;
+            [Self] public GroupShuffleSplit set_split_request(string? groups = "$UNCHANGED$") => default!;
         }
 
-        public class KFold : PythonObject
+        public class KFold :
+            @base._UnsupportedGroupCVMixin,
+            @base._BaseKFold
         {
             // Constructor
-            public KFold(int n_splits = 5, bool shuffle = false, int? random_state = null)
-            {
-            }
+            public KFold(
+                int n_splits = 5,
+                bool shuffle = false,
+                int? random_state = null)
+            { }
 
             // Methods
-            public PyObject get_metadata_routing() => default!;
-            public int get_n_splits(PyObject? X = null, PyObject? y = null, PyObject? groups = null) => default!;
-            public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, PyObject? groups = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public int get_n_splits([Ignored] NDarray? X = null, [Ignored] NDarray? y = null, [Ignored] NDarray? groups = null) => default!;
+            public (NDarray train, NDarray test) split(NDarray X, NDarray? y = null, [Ignored] NDarray? groups = null) => default!;
         }
 
-        public class LeaveOneGroupOut : PythonObject
+        public class LeaveOneGroupOut :
+            @base.GroupsConsumerMixin,
+            @base.BaseCrossValidator
         {
             // Constructor
             public LeaveOneGroupOut()
-            {
-            }
+            { }
 
             // Methods
-            public PyObject get_metadata_routing() => default!;
-            public int get_n_splits(PyObject? X = null, PyObject? y = null, NDarray? groups = null) => default!;
-            [ReturnThis]
-            public LeaveOneGroupOut set_split_request(string? groups = "$UNCHANGED$") => default!;
-            public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, NDarray? groups = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public int get_n_splits([Ignored] NDarray? X = null, [Ignored] NDarray? y = null, NDarray? groups = null) => default!;
+            public (NDarray train, NDarray test) split(NDarray X, NDarray? y = null, NDarray? groups = null) => default!;
+            [Self] public LeaveOneGroupOut set_split_request(string? groups = "$UNCHANGED$") => default!;
         }
 
-        public class LeaveOneOut : PythonObject
+        public class LeaveOneOut :
+            @base._UnsupportedGroupCVMixin,
+            @base.BaseCrossValidator
         {
             // Constructor
             public LeaveOneOut()
-            {
-            }
+            { }
 
             // Methods
-            public PyObject get_metadata_routing() => default!;
-            public int get_n_splits(NDarray X, PyObject? y = null, PyObject? groups = null) => default!;
-            public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, PyObject? groups = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public int get_n_splits(NDarray X, [Ignored] NDarray? y = null, [Ignored] NDarray? groups = null) => default!;
+            public (NDarray train, NDarray test) split(NDarray X, NDarray? y = null, [Ignored] NDarray? groups = null) => default!;
         }
 
-        public class LeavePGroupsOut : PythonObject
+        public class LeavePGroupsOut :
+            @base.GroupsConsumerMixin,
+            @base.BaseCrossValidator
         {
             // Constructor
             public LeavePGroupsOut(int n_groups)
-            {
-            }
+            { }
 
             // Methods
-            public PyObject get_metadata_routing() => default!;
-            public int get_n_splits(PyObject? X = null, PyObject? y = null, NDarray? groups = null) => default!;
-            [ReturnThis]
-            public LeavePGroupsOut set_split_request(string? groups = "$UNCHANGED$") => default!;
-            public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, NDarray? groups = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public int get_n_splits([Ignored] NDarray? X = null, [Ignored] NDarray? y = null, NDarray? groups = null) => default!;
+            public (NDarray train, NDarray test) split(NDarray X, NDarray? y = null, NDarray? groups = null) => default!;
+            [Self] public LeavePGroupsOut set_split_request(string? groups = "$UNCHANGED$") => default!;
         }
 
-        public class LeavePOut : PythonObject
+        public class LeavePOut :
+            @base._UnsupportedGroupCVMixin,
+            @base.BaseCrossValidator
         {
             // Constructor
             public LeavePOut(int p)
-            {
-            }
+            { }
 
             // Methods
-            public PyObject get_metadata_routing() => default!;
-            public void get_n_splits(NDarray X, PyObject? y = null, PyObject? groups = null)
-            {
-            }
-
-            public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, PyObject? groups = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public int get_n_splits(NDarray X, [Ignored] NDarray? y = null, [Ignored] NDarray? groups = null) => default!;
+            public (NDarray train, NDarray test) split(NDarray X, NDarray? y = null, [Ignored] NDarray? groups = null) => default!;
         }
 
-        public class PredefinedSplit : PythonObject
+        public class PredefinedSplit :
+            @base.BaseCrossValidator
         {
             // Constructor
             public PredefinedSplit(NDarray test_fold)
-            {
-            }
+            { }
 
             // Methods
-            public PyObject get_metadata_routing() => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public int get_n_splits([Ignored] NDarray? X = null, [Ignored] NDarray? y = null, [Ignored] NDarray? groups = null) => default!;
+            public (NDarray train, NDarray test) split([Ignored] NDarray? X = null, [Ignored] NDarray? y = null, [Ignored] NDarray? groups = null) => default!;
+        }
+
+        public class RepeatedKFold :
+            @base._UnsupportedGroupCVMixin,
+            @base._RepeatedSplits
+        {
+            // Constructor
+            public RepeatedKFold(
+                int n_splits = 5,
+                int n_repeats = 10,
+                int? random_state = null)
+            { }
+
+            // Methods
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public int get_n_splits([Ignored] NDarray? X = null, [Ignored] NDarray? y = null, NDarray? groups = null) => default!;
+            public (NDarray train, NDarray test) split(NDarray X, NDarray? y = null, [Ignored] NDarray? groups = null) => default!;
+        }
+
+        public class RepeatedStratifiedKFold :
+            @base._UnsupportedGroupCVMixin,
+            @base._RepeatedSplits
+        {
+            // Constructor
+            public RepeatedStratifiedKFold(
+                int n_splits = 5,
+                int n_repeats = 10,
+                int? random_state = null)
+            { }
+
+            // Methods
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public int get_n_splits([Ignored] NDarray? X = null, [Ignored] NDarray? y = null, NDarray? groups = null) => default!;
+            public (NDarray train, NDarray test) split(NDarray X, NDarray? y = null, [Ignored] NDarray? groups = null) => default!;
+        }
+
+        public class ShuffleSplit :
+            @base._UnsupportedGroupCVMixin,
+            @base.BaseShuffleSplit
+        {
+            // Constructor
+            public ShuffleSplit(
+                int n_splits = 10,
+                [OneOf<int, float>] object? test_size = null,
+                [OneOf<int, float>] object? train_size = null,
+                int? random_state = null)
+            { }
+
+            // Methods
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public int get_n_splits([Ignored] NDarray? X = null, [Ignored] NDarray? y = null, [Ignored] NDarray? groups = null) => default!;
+            public (NDarray train, NDarray test) split(NDarray X, NDarray? y = null, [Ignored] NDarray? groups = null) => default!;
+        }
+
+        public class StratifiedGroupKFold :
+            @base.GroupsConsumerMixin,
+            @base._BaseKFold
+        {
+            // Constructor
+            public StratifiedGroupKFold(
+                int n_splits = 5,
+                bool shuffle = false,
+                int? random_state = null)
+            { }
+
+            // Methods
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
             public int get_n_splits(PyObject? X = null, PyObject? y = null, PyObject? groups = null) => default!;
-            public (NDarray?, NDarray?) split(PyObject? X = null, PyObject? y = null, PyObject? groups = null) => default!;
-        }
-
-        public class RepeatedKFold : PythonObject
-        {
-            // Constructor
-            public RepeatedKFold(int n_splits = 5, int n_repeats = 10, int? random_state = null)
-            {
-            }
-
-            // Methods
-            public PyObject get_metadata_routing() => default!;
-            public int get_n_splits(PyObject? X = null, PyObject? y = null, NDarray? groups = null) => default!;
-            public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, PyObject? groups = null) => default!;
-        }
-
-        public class RepeatedStratifiedKFold : PythonObject
-        {
-            // Constructor
-            public RepeatedStratifiedKFold(int n_splits = 5, int n_repeats = 10, int? random_state = null)
-            {
-            }
-
-            // Methods
-            public PyObject get_metadata_routing() => default!;
-            public int get_n_splits(PyObject? X = null, PyObject? y = null, NDarray? groups = null) => default!;
-            public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, PyObject? groups = null) => default!;
-        }
-
-        public class ShuffleSplit : PythonObject
-        {
-            // Constructor
-            public ShuffleSplit(int n_splits = 10, float? test_size = null, float? train_size = null, int? random_state = null)
-            {
-            }
-
-            // Methods
-            public PyObject get_metadata_routing() => default!;
-            public int get_n_splits(PyObject? X = null, PyObject? y = null, PyObject? groups = null) => default!;
-            public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, PyObject? groups = null) => default!;
-        }
-
-        public class StratifiedGroupKFold : PythonObject
-        {
-            // Constructor
-            public StratifiedGroupKFold(int n_splits = 5, bool shuffle = false, int? random_state = null)
-            {
-            }
-
-            // Methods
-            public PyObject get_metadata_routing() => default!;
-            public int get_n_splits(PyObject? X = null, PyObject? y = null, PyObject? groups = null) => default!;
-            [ReturnThis]
+            [Self]
             public StratifiedGroupKFold set_split_request(string? groups = "$UNCHANGED$") => default!;
             public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, NDarray? groups = null) => default!;
         }
@@ -198,7 +225,7 @@ public static partial class sklearn
             }
 
             // Methods
-            public PyObject get_metadata_routing() => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
             public int get_n_splits(PyObject? X = null, PyObject? y = null, PyObject? groups = null) => default!;
             public (NDarray?, NDarray?) split(NDarray X, NDarray y, PyObject? groups = null) => default!;
         }
@@ -211,7 +238,7 @@ public static partial class sklearn
             }
 
             // Methods
-            public PyObject get_metadata_routing() => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
             public int get_n_splits(PyObject? X = null, PyObject? y = null, PyObject? groups = null) => default!;
             public (NDarray?, NDarray?) split(NDarray X, NDarray y, PyObject? groups = null) => default!;
         }
@@ -224,7 +251,7 @@ public static partial class sklearn
             }
 
             // Methods
-            public PyObject get_metadata_routing() => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
             public int get_n_splits(PyObject? X = null, PyObject? y = null, PyObject? groups = null) => default!;
             public (NDarray?, NDarray?) split(NDarray X, NDarray? y = null, NDarray? groups = null) => default!;
         }
@@ -252,18 +279,18 @@ public static partial class sklearn
 
             // Methods
             public NDarray decision_function(PyObject X) => default!;
-            [ReturnThis]
-            public GridSearchCV fit(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            [Self]
+            public GridSearchCV fit(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray inverse_transform(PyObject? X = null, PyObject? Xt = null) => default!;
             public NDarray predict(PyObject X) => default!;
             public NDarray predict_log_proba(PyObject X) => default!;
             public NDarray predict_proba(PyObject X) => default!;
-            public float score(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
+            public float score(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
             public NDarray score_samples(PyObject X) => default!;
-            [ReturnThis]
-            public GridSearchCV set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public GridSearchCV set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(PyObject X) => default!;
         }
 
@@ -298,18 +325,18 @@ public static partial class sklearn
 
             // Methods
             public NDarray decision_function(PyObject X) => default!;
-            [ReturnThis]
-            public HalvingGridSearchCV fit(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            [Self]
+            public HalvingGridSearchCV fit(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray inverse_transform(PyObject? X = null, PyObject? Xt = null) => default!;
             public NDarray predict(PyObject X) => default!;
             public NDarray predict_log_proba(PyObject X) => default!;
             public NDarray predict_proba(PyObject X) => default!;
-            public float score(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
+            public float score(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
             public NDarray score_samples(PyObject X) => default!;
-            [ReturnThis]
-            public HalvingGridSearchCV set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public HalvingGridSearchCV set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(PyObject X) => default!;
         }
 
@@ -344,18 +371,18 @@ public static partial class sklearn
 
             // Methods
             public NDarray decision_function(PyObject X) => default!;
-            [ReturnThis]
-            public HalvingRandomSearchCV fit(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            [Self]
+            public HalvingRandomSearchCV fit(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray inverse_transform(PyObject? X = null, PyObject? Xt = null) => default!;
             public NDarray predict(PyObject X) => default!;
             public NDarray predict_log_proba(PyObject X) => default!;
             public NDarray predict_proba(PyObject X) => default!;
-            public float score(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
+            public float score(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
             public NDarray score_samples(PyObject X) => default!;
-            [ReturnThis]
-            public HalvingRandomSearchCV set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public HalvingRandomSearchCV set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(PyObject X) => default!;
         }
 
@@ -390,18 +417,18 @@ public static partial class sklearn
 
             // Methods
             public NDarray decision_function(PyObject X) => default!;
-            [ReturnThis]
-            public RandomizedSearchCV fit(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            [Self]
+            public RandomizedSearchCV fit(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray inverse_transform(PyObject? X = null, PyObject? Xt = null) => default!;
             public NDarray predict(PyObject X) => default!;
             public NDarray predict_log_proba(PyObject X) => default!;
             public NDarray predict_proba(PyObject X) => default!;
-            public float score(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
+            public float score(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
             public NDarray score_samples(PyObject X) => default!;
-            [ReturnThis]
-            public RandomizedSearchCV set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public RandomizedSearchCV set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(PyObject X) => default!;
         }
 
@@ -420,17 +447,17 @@ public static partial class sklearn
 
             // Methods
             public NDarray decision_function(NDarray X) => default!;
-            [ReturnThis]
-            public FixedThresholdClassifier fit(NDarray X, NDarray y, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            [Self]
+            public FixedThresholdClassifier fit(NDarray X, NDarray y, params (string key, object value)[] @params) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X) => default!;
             public NDarray predict_log_proba(NDarray X) => default!;
             public NDarray predict_proba(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
-            public FixedThresholdClassifier set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public FixedThresholdClassifier set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public FixedThresholdClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
@@ -452,17 +479,17 @@ public static partial class sklearn
 
             // Methods
             public NDarray decision_function(NDarray X) => default!;
-            [ReturnThis]
-            public TunedThresholdClassifierCV fit(NDarray X, NDarray y, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            [Self]
+            public TunedThresholdClassifierCV fit(NDarray X, NDarray y, params (string key, object value)[] @params) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X) => default!;
             public NDarray predict_log_proba(NDarray X) => default!;
             public NDarray predict_proba(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
-            public TunedThresholdClassifierCV set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public TunedThresholdClassifierCV set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public TunedThresholdClassifierCV set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 

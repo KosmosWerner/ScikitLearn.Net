@@ -32,17 +32,17 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public Isomap fit(NDarray X) => default!;
             public NDarray fit_transform(NDarray X) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public string reconstruction_error() => default!;
-            [ReturnThis]
-            public Isomap set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public Isomap set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public Isomap set_output(string? transform = null) => default!;
+            [Self]
+            public Isomap set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
@@ -61,16 +61,16 @@ public static partial class sklearn
             public PyObject nbrs_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public LocallyLinearEmbedding fit(NDarray X) => default!;
             public NDarray fit_transform(NDarray X) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public LocallyLinearEmbedding set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public LocallyLinearEmbedding set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self]
+            public LocallyLinearEmbedding set_output(string? transform = null) => default!;
+            [Self]
+            public LocallyLinearEmbedding set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
@@ -90,15 +90,15 @@ public static partial class sklearn
             public int n_iter_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public MDS fit(NDarray X, NDarray? init = null) => default!;
             public NDarray fit_transform(NDarray X, NDarray? init = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self]
             public MDS set_fit_request(string? init = "$UNCHANGED$") => default!;
-            [ReturnThis]
-            public MDS set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public MDS set_params(params (string key, object value)[] @params) => default!;
         }
 
         public class SpectralEmbedding : PythonObject
@@ -116,13 +116,13 @@ public static partial class sklearn
             public int n_neighbors_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public SpectralEmbedding fit(NDarray X) => default!;
             public NDarray fit_transform(NDarray X) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public SpectralEmbedding set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self]
+            public SpectralEmbedding set_params(params (string key, object value)[] @params) => default!;
         }
 
         public class TSNE : PythonObject
@@ -141,16 +141,16 @@ public static partial class sklearn
             public int n_iter_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public TSNE fit(NDarray X, PyObject? y = null) => default!;
             public NDarray fit_transform(NDarray X, PyObject? y = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public TSNE set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public TSNE set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self]
+            public TSNE set_output(string? transform = null) => default!;
+            [Self]
+            public TSNE set_params(params (string key, object value)[] @params) => default!;
         }
     }
 }

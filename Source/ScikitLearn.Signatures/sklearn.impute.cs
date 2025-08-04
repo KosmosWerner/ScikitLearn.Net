@@ -29,16 +29,16 @@ public static partial class sklearn
             public PyObject random_state_ => default!;
 
             // Methods
-            [ReturnThis]
-            public IterativeImputer fit(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
-            public NDarray fit_transform(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public IterativeImputer set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public IterativeImputer set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public IterativeImputer fit(NDarray X, params (string key, object value)[] @params) => default!;
+            public NDarray fit_transform(NDarray X, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self]
+            public IterativeImputer set_output(string? transform = null) => default!;
+            [Self]
+            public IterativeImputer set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
@@ -55,16 +55,16 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public KNNImputer fit(NDarray X) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public KNNImputer set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public KNNImputer set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self]
+            public KNNImputer set_output(string? transform = null) => default!;
+            [Self]
+            public KNNImputer set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
@@ -81,16 +81,16 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public MissingIndicator fit(NDarray X) => default!;
             public NDarray fit_transform(NDarray X) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public MissingIndicator set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public MissingIndicator set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self]
+            public MissingIndicator set_output(string? transform = null) => default!;
+            [Self]
+            public MissingIndicator set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
@@ -108,17 +108,17 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public SimpleImputer fit(NDarray X) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray inverse_transform(NDarray X) => default!;
-            [ReturnThis]
-            public SimpleImputer set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public SimpleImputer set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public SimpleImputer set_output(string? transform = null) => default!;
+            [Self]
+            public SimpleImputer set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
     }

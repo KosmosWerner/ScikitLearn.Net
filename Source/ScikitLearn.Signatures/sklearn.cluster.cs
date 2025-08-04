@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using Numpy;
 using Python.Runtime;
-using ScikitLearn.Signatures.Annotations;
 
 namespace ScikitLearn;
 public static partial class sklearn
@@ -12,10 +11,10 @@ public static partial class sklearn
     public static class cluster
     {
         // Methods
-        [Checked]
+        [EnableItem(Item: "n_iter", If: "return_n_iter")]
         public static (NDarray cluster_centers_indices, NDarray labels, int? n_iter) affinity_propagation(
             NDarray S,
-            NDarray? preference = null,
+            [OneOf<float, NDarray>] object? preference = null,
             int convergence_iter = 15,
             int max_iter = 200,
             float damping = 0.5f,
@@ -23,52 +22,53 @@ public static partial class sklearn
             bool verbose = false,
             bool return_n_iter = false,
             int? random_state = null) => default!;
-        [Checked]
+
         public static NDarray cluster_optics_dbscan(
             NDarray reachability,
             NDarray core_distances,
             NDarray ordering,
             float eps) => default!;
-        [Checked]
+
         public static (NDarray labels, NDarray clusters) cluster_optics_xi(
             NDarray reachability,
             NDarray predecessor,
             NDarray ordering,
-            float min_samples,
-            float? min_cluster_size = null,
+            [OneOf<int, float>] object min_samples,
+            [OneOf<int, float>] object? min_cluster_size = null,
             float xi = 0.05f,
             bool predecessor_correction = true) => default!;
-        [Checked]
+
         public static (NDarray ordering_, NDarray core_distances_, NDarray reachability_, NDarray predecessor_) compute_optics_graph(
             NDarray X,
-            float min_samples,
+            [OneOf<int, float>] object min_samples,
             float max_eps = float.PositiveInfinity,
             string metric = "minkowski",
             float p = 2,
-            PyDict? metric_params = null,
+            Dictionary<string, object>? metric_params = null,
             string algorithm = "auto",
             int leaf_size = 30,
             int? n_jobs = null) => default!;
-        [Checked]
+
         public static (NDarray core_samples, NDarray labels) dbscan(
             NDarray X,
             float eps = 0.5f,
             int min_samples = 5,
             string metric = "minkowski",
-            PyDict? metric_params = null,
+            Dictionary<string, object>? metric_params = null,
             string algorithm = "auto",
             int leaf_size = 30,
             int p = 2,
             NDarray? sample_weight = null,
             int? n_jobs = null) => default!;
-        [Checked]
+
         public static float estimate_bandwidth(
             NDarray X,
             float quantile = 0.3f,
             int? n_samples = null,
             int? random_state = 0,
             int? n_jobs = null) => default!;
-        [Checked]
+
+        [EnableItem(Item: "best_n_iter", If: "return_n_iter")]
         public static (NDarray centroid, NDarray label, float inertia, int? best_n_iter) k_means(
             NDarray X,
             int n_clusters,
@@ -82,7 +82,7 @@ public static partial class sklearn
             bool copy_x = true,
             string algorithm = "lloyd",
             bool return_n_iter = false) => default!;
-        [Checked]
+
         public static (NDarray centers, NDarray indices) kmeans_plusplus(
             NDarray X,
             int n_clusters,
@@ -90,7 +90,7 @@ public static partial class sklearn
             NDarray? x_squared_norms = null,
             int? random_state = null,
             int? n_local_trials = null) => default!;
-        [Checked]
+
         public static (NDarray cluster_centers, NDarray labels) mean_shift(
             NDarray X,
             float? bandwidth = null,
@@ -100,7 +100,7 @@ public static partial class sklearn
             bool cluster_all = true,
             int max_iter = 300,
             int? n_jobs = null) => default!;
-        [Checked]
+
         public static NDarray spectral_clustering(
             NDarray affinity,
             int? n_clusters = null,
@@ -111,14 +111,19 @@ public static partial class sklearn
             string eigen_tol = "auto",
             string assign_labels = "kmeans",
             bool verbose = false) => default!;
-        [Checked]
+
+        [EnableItem(Item: "parents", If: "connectivity != null")]
+        [EnableItem(Item: "distances", If: "return_distance")]
         public static (NDarray children, int n_connected_components, int n_leaves, NDarray? parents, NDarray? distances) ward_tree(
             NDarray X,
             NDarray? connectivity = null,
             int? n_clusters = null,
             bool return_distance = false) => default!;
+
         // Classes
-        public class AffinityPropagation : PythonObject
+        public class AffinityPropagation :
+            @base.BaseEstimator<AffinityPropagation>,
+            @base.ClusterMixin
         {
             // Constructor
             public AffinityPropagation(
@@ -126,7 +131,7 @@ public static partial class sklearn
                 int max_iter = 200,
                 int convergence_iter = 15,
                 bool copy = true,
-                NDarray? preference = null,
+                [OneOf<float, NDarray>] object? preference = null,
                 string affinity = "euclidean",
                 bool verbose = false,
                 int? random_state = null)
@@ -142,22 +147,29 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
-            public AffinityPropagation fit(NDarray X) => default!;
-            public NDarray fit_predict(NDarray X) => default!;
+            [Self] public AffinityPropagation fit(NDarray X, [Ignored] NDarray? y = null) => default!;
+            public NDarray<long> fit_predict(NDarray X, [Ignored] NDarray? y = null, params (string key, object value)[] @params) => default!;
             public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X) => default!;
-            [ReturnThis]
-            public AffinityPropagation set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self] public AffinityPropagation set_params(params (string key, object value)[] @params) => default!;
         }
 
-        public class AgglomerativeClustering : PythonObject
+        public class AgglomerativeClustering :
+            @base.BaseEstimator<AgglomerativeClustering>,
+            @base.ClusterMixin
         {
             // Constructor
-            public AgglomerativeClustering(int? n_clusters = 2, string metric = "euclidean", PyObject? memory = null, NDarray? connectivity = null, string compute_full_tree = "auto", string linkage = "ward", float? distance_threshold = null, bool compute_distances = false)
-            {
-            }
+            public AgglomerativeClustering(
+                int? n_clusters = 2,
+                string metric = "euclidean",
+                [OneOf<string, joblib.memory.Memory>] object? memory = null,
+                NDarray? connectivity = null,
+                [OneOf<bool, string>(Default: "auto")] object compute_full_tree = default!,
+                string linkage = "ward",
+                float? distance_threshold = null,
+                bool compute_distances = false)
+            { }
 
             // Properties
             public int n_clusters_ => default!;
@@ -170,21 +182,26 @@ public static partial class sklearn
             public NDarray distances_ => default!;
 
             // Methods
-            [ReturnThis]
-            public AgglomerativeClustering fit(NDarray X) => default!;
-            public NDarray fit_predict(NDarray X) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public AgglomerativeClustering set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self] public AgglomerativeClustering fit(NDarray X, [Ignored] NDarray? y = null) => default!;
+            public NDarray<long> fit_predict(NDarray X, [Ignored] NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self] public AgglomerativeClustering set_params(params (string key, object value)[] @params) => default!;
         }
 
-        public class Birch : PythonObject
+        public class Birch :
+            @base.ClassNamePrefixFeaturesOutMixin,
+            @base.ClusterMixin,
+            @base.TransformerMixin<Birch>,
+            @base.BaseEstimator<Birch>
         {
             // Constructor
-            public Birch(float threshold = 0.5f, int branching_factor = 50, int? n_clusters = 3, bool compute_labels = true, bool copy = true)
-            {
-            }
+            public Birch(
+                float threshold = 0.5f,
+                int branching_factor = 50,
+                [OneOf<int, @base.ClusterMixin>(Default: 3)] object? n_clusters = default!,
+                bool compute_labels = true)
+            { }
 
             // Properties
             public PyObject root_ => default!;
@@ -196,29 +213,36 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
-            public Birch fit(NDarray X) => default!;
-            public NDarray<long> fit_predict(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public Birch partial_fit(NDarray? X = null) => default!;
+            [Self] public Birch fit(NDarray X) => default!;
+            public NDarray<long> fit_predict(NDarray X, [Ignored] NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self] public Birch partial_fit(NDarray? X = null) => default!;
             public NDarray predict(NDarray X) => default!;
-            [ReturnThis]
-            public Birch set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public Birch set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self] public Birch set_output(string? transform = null) => default!;
+            [Self] public Birch set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class BisectingKMeans : PythonObject
+        // Revision
+        public class BisectingKMeans :
+            @base.BaseKMeans<BisectingKMeans>
         {
             // Constructor
-            public BisectingKMeans(int n_clusters = 8, string init = "random", int n_init = 1, int? random_state = null, int max_iter = 300, int verbose = 0, float tol = 0.0001f, bool copy_x = true, string algorithm = "lloyd", string bisecting_strategy = "biggest_inertia")
-            {
-            }
+            public BisectingKMeans(
+                int n_clusters = 8,
+                string init = "random",
+                int n_init = 1,
+                int? random_state = null,
+                int max_iter = 300,
+                int verbose = 0,
+                float tol = 0.0001f,
+                bool copy_x = true,
+                string algorithm = "lloyd",
+                string bisecting_strategy = "biggest_inertia")
+            { }
 
             // Properties
             public NDarray cluster_centers_ => default!;
@@ -228,27 +252,27 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
-            public BisectingKMeans fit(NDarray X, NDarray? sample_weight = null) => default!;
-            public NDarray fit_predict(NDarray X, NDarray? sample_weight = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? sample_weight = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            [Self] public BisectingKMeans fit(NDarray X, [Ignored] NDarray? y = null, NDarray? sample_weight = null) => default!;
+            public NDarray fit_predict(NDarray X, [Ignored] NDarray? y = null, NDarray? sample_weight = null) => default!;
+            //public NDarray<long> fit_predict(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, NDarray? sample_weight = null) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X) => default!;
             public float score(NDarray X, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
-            public BisectingKMeans set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
-            [ReturnThis]
-            public BisectingKMeans set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public BisectingKMeans set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
-            public BisectingKMeans set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
+            [Self] public BisectingKMeans set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
+            [Self] public BisectingKMeans set_output(string? transform = null) => default!;
+            [Self] public BisectingKMeans set_params(params (string key, object value)[] @params) => default!;
+            [Self] public BisectingKMeans set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class DBSCAN : PythonObject
+        public class DBSCAN : PythonObject,
+            @base.ClusterMixin<DBSCAN>,
+            @base.BaseEstimator<DBSCAN>
+
         {
             // Constructor
             public DBSCAN(float eps = 0.5f, int min_samples = 5, string metric = "euclidean", PyDict? metric_params = null, string algorithm = "auto", int leaf_size = 30, float? p = null, int? n_jobs = null)
@@ -263,18 +287,21 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public DBSCAN fit(NDarray X, NDarray? sample_weight = null) => default!;
-            public NDarray fit_predict(NDarray X, NDarray? sample_weight = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
+            public NDarray<long> fit_predict(NDarray X, NDarray? sample_weight = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self]
             public DBSCAN set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
-            [ReturnThis]
-            public DBSCAN set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public DBSCAN set_params(params (string key, object value)[] @params) => default!;
         }
 
-        public class FeatureAgglomeration : PythonObject
+        public class FeatureAgglomeration : PythonObject,
+            @base.ClassNamePrefixFeaturesOutMixin,
+            @base.AgglomerationTransform<FeatureAgglomeration>,
+            @base.AgglomerativeClustering<FeatureAgglomeration>
         {
             // Constructor
             public FeatureAgglomeration(int? n_clusters = 2, string metric = "euclidean", PyObject? memory = null, NDarray? connectivity = null, string compute_full_tree = "auto", string linkage = "ward", PyObject? pooling_func = null, float? distance_threshold = null, bool compute_distances = false)
@@ -292,21 +319,26 @@ public static partial class sklearn
             public NDarray distances_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public FeatureAgglomeration fit(NDarray X) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+
+            public NDarray<long> fit_predict(NDarray X, params (string key, object value)[] @params) => default!;
+
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray inverse_transform(NDarray? X = null, NDarray? Xt = null) => default!;
-            [ReturnThis]
-            public FeatureAgglomeration set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public FeatureAgglomeration set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public FeatureAgglomeration set_output(string? transform = null) => default!;
+            [Self]
+            public FeatureAgglomeration set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class HDBSCAN : PythonObject
+        public class HDBSCAN : PythonObject,
+            @base.ClusterMixin<HDBSCAN>,
+            @base.BaseEstimator<HDBSCAN>
         {
             // Constructor
             public HDBSCAN(int min_cluster_size = 5, int? min_samples = null, float cluster_selection_epsilon = 0.0f, int? max_cluster_size = null, string metric = "euclidean", PyDict? metric_params = null, float alpha = 1.0f, string algorithm = "auto", int leaf_size = 40, int? n_jobs = null, string cluster_selection_method = "eom", bool allow_single_cluster = false, string? store_centers = null, bool copy = false)
@@ -323,13 +355,13 @@ public static partial class sklearn
 
             // Methods
             public NDarray dbscan_clustering(float cut_distance, int min_cluster_size = 5) => default!;
-            [ReturnThis]
-            public HDBSCAN fit(NDarray X, PyObject? y = null) => default!;
-            public NDarray fit_predict(NDarray X, PyObject? y = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public HDBSCAN set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public HDBSCAN fit(NDarray X) => default!;
+            public NDarray<long> fit_predict(NDarray X, params (string key, object value)[] @params) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self]
+            public HDBSCAN set_params(params (string key, object value)[] @params) => default!;
         }
 
         public class KMeans : PythonObject
@@ -348,22 +380,22 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public KMeans fit(NDarray X, NDarray? sample_weight = null) => default!;
             public NDarray fit_predict(NDarray X, NDarray? sample_weight = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? sample_weight = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X) => default!;
             public float score(NDarray X, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
+            [Self]
             public KMeans set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
-            [ReturnThis]
-            public KMeans set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public KMeans set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public KMeans set_output(string? transform = null) => default!;
+            [Self]
+            public KMeans set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public KMeans set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
             public NDarray transform(NDarray X) => default!;
         }
@@ -383,14 +415,14 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public MeanShift fit(NDarray X) => default!;
-            public NDarray<long> fit_predict(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public NDarray<long> fit_predict(NDarray X, params (string key, object value)[] @params) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X) => default!;
-            [ReturnThis]
-            public MeanShift set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public MeanShift set_params(params (string key, object value)[] @params) => default!;
         }
 
         public class MiniBatchKMeans : PythonObject
@@ -410,26 +442,26 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public MiniBatchKMeans fit(NDarray X, NDarray? sample_weight = null) => default!;
             public NDarray fit_predict(NDarray X, NDarray? sample_weight = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? sample_weight = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self]
             public MiniBatchKMeans partial_fit(NDarray X, NDarray? sample_weight = null) => default!;
             public NDarray predict(NDarray X) => default!;
             public float score(NDarray X, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
+            [Self]
             public MiniBatchKMeans set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
-            [ReturnThis]
-            public MiniBatchKMeans set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public MiniBatchKMeans set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public MiniBatchKMeans set_output(string? transform = null) => default!;
+            [Self]
+            public MiniBatchKMeans set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public MiniBatchKMeans set_partial_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
-            [ReturnThis]
+            [Self]
             public MiniBatchKMeans set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
             public NDarray transform(NDarray X) => default!;
         }
@@ -437,9 +469,22 @@ public static partial class sklearn
         public class OPTICS : PythonObject
         {
             // Constructor
-            public OPTICS(int min_samples = 5, float max_eps = float.PositiveInfinity, string metric = "minkowski", int p = 2, PyDict? metric_params = null, string cluster_method = "xi", float? eps = null, float xi = 0.05f, bool predecessor_correction = true, float? min_cluster_size = null, string algorithm = "auto", int leaf_size = 30, PyObject? memory = null, int? n_jobs = null)
-            {
-            }
+            public OPTICS(
+                int min_samples = 5,
+                float max_eps = float.PositiveInfinity,
+                string metric = "minkowski",
+                int p = 2,
+                PyDict? metric_params = null,
+                string cluster_method = "xi",
+                float? eps = null,
+                float xi = 0.05f,
+                bool predecessor_correction = true,
+                float? min_cluster_size = null,
+                string algorithm = "auto",
+                int leaf_size = 30,
+                PyObject? memory = null,
+                int? n_jobs = null)
+            { }
 
             // Properties
             public NDarray labels_ => default!;
@@ -452,13 +497,13 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public OPTICS fit(NDarray X) => default!;
-            public NDarray<long> fit_predict(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public OPTICS set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            public NDarray<long> fit_predict(NDarray X, params (string key, object value)[] @params) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self]
+            public OPTICS set_params(params (string key, object value)[] @params) => default!;
         }
 
         public class SpectralBiclustering : PythonObject
@@ -478,15 +523,15 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public SpectralBiclustering fit(NDarray X) => default!;
             public (NDarray<long>?, NDarray<long>?) get_indices(int i) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public (int?, int?) get_shape(int i) => default!;
             public NDarray get_submatrix(int i, NDarray data) => default!;
-            [ReturnThis]
-            public SpectralBiclustering set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public SpectralBiclustering set_params(params (string key, object value)[] @params) => default!;
         }
 
         public class SpectralClustering : PythonObject
@@ -503,13 +548,13 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public SpectralClustering fit(NDarray X) => default!;
             public NDarray fit_predict(NDarray X) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public SpectralClustering set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self]
+            public SpectralClustering set_params(params (string key, object value)[] @params) => default!;
         }
 
         public class SpectralCoclustering : PythonObject
@@ -529,15 +574,15 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public SpectralCoclustering fit(NDarray X) => default!;
             public (NDarray<long>?, NDarray<long>?) get_indices(int i) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public (int?, int?) get_shape(int i) => default!;
             public NDarray get_submatrix(int i, NDarray data) => default!;
-            [ReturnThis]
-            public SpectralCoclustering set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public SpectralCoclustering set_params(params (string key, object value)[] @params) => default!;
         }
     }
 }

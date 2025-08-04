@@ -28,17 +28,17 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public GaussianProcessClassifier fit(PyObject X, NDarray y) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public (float?, NDarray?) log_marginal_likelihood(NDarray? theta = null, bool eval_gradient = false, bool clone_kernel = true) => default!;
             public NDarray predict(PyObject X) => default!;
             public NDarray predict_proba(PyObject X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
-            public GaussianProcessClassifier set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public GaussianProcessClassifier set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public GaussianProcessClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
@@ -60,19 +60,19 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public GaussianProcessRegressor fit(PyObject X, NDarray y) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public (float?, NDarray?) log_marginal_likelihood(NDarray? theta = null, bool eval_gradient = false, bool clone_kernel = true) => default!;
             public (NDarray?, NDarray?, NDarray?) predict(PyObject X, bool return_std = false, bool return_cov = false) => default!;
             public NDarray sample_y(PyObject X, int n_samples = 1, int? random_state = 0) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
-            public GaussianProcessRegressor set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public GaussianProcessRegressor set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public GaussianProcessRegressor set_predict_request(string? return_cov = "$UNCHANGED$", string? return_std = "$UNCHANGED$") => default!;
-            [ReturnThis]
+            [Self]
             public GaussianProcessRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
@@ -93,12 +93,12 @@ public static partial class sklearn
                 }
 
                 public NDarray diag(PyObject X) => default!;
-                public PyDict get_params(bool deep = true) => default!;
+                public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
                 public void is_stationary()
                 {
                 }
 
-                [ReturnThis]
+                [Self]
                 public CompoundKernel set_params() => default!;
             }
 
@@ -115,12 +115,12 @@ public static partial class sklearn
                 }
 
                 public NDarray diag(PyObject X) => default!;
-                public PyDict get_params(bool deep = true) => default!;
+                public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
                 public void is_stationary()
                 {
                 }
 
-                [ReturnThis]
+                [Self]
                 public ConstantKernel set_params() => default!;
             }
 
@@ -137,12 +137,12 @@ public static partial class sklearn
                 }
 
                 public NDarray diag(NDarray X) => default!;
-                public PyDict get_params(bool deep = true) => default!;
+                public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
                 public void is_stationary()
                 {
                 }
 
-                [ReturnThis]
+                [Self]
                 public DotProduct set_params() => default!;
             }
 
@@ -159,12 +159,12 @@ public static partial class sklearn
                 }
 
                 public NDarray diag(NDarray X) => default!;
-                public PyDict get_params(bool deep = true) => default!;
+                public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
                 public void is_stationary()
                 {
                 }
 
-                [ReturnThis]
+                [Self]
                 public ExpSineSquared set_params() => default!;
             }
 
@@ -181,12 +181,12 @@ public static partial class sklearn
                 }
 
                 public NDarray diag(PyObject X) => default!;
-                public PyDict get_params(bool deep = true) => default!;
+                public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
                 public void is_stationary()
                 {
                 }
 
-                [ReturnThis]
+                [Self]
                 public Exponentiation set_params() => default!;
             }
 
@@ -227,12 +227,12 @@ public static partial class sklearn
                 }
 
                 public NDarray diag(NDarray X) => default!;
-                public PyDict get_params(bool deep = true) => default!;
+                public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
                 public void is_stationary()
                 {
                 }
 
-                [ReturnThis]
+                [Self]
                 public Kernel set_params() => default!;
             }
 
@@ -249,12 +249,12 @@ public static partial class sklearn
                 }
 
                 public NDarray diag(NDarray X) => default!;
-                public PyDict get_params(bool deep = true) => default!;
+                public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
                 public void is_stationary()
                 {
                 }
 
-                [ReturnThis]
+                [Self]
                 public Matern set_params() => default!;
             }
 
@@ -271,12 +271,12 @@ public static partial class sklearn
                 }
 
                 public NDarray diag(NDarray X) => default!;
-                public PyDict get_params(bool deep = true) => default!;
+                public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
                 public void is_stationary()
                 {
                 }
 
-                [ReturnThis]
+                [Self]
                 public PairwiseKernel set_params() => default!;
             }
 
@@ -293,12 +293,12 @@ public static partial class sklearn
                 }
 
                 public NDarray diag(PyObject X) => default!;
-                public PyDict get_params(bool deep = true) => default!;
+                public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
                 public void is_stationary()
                 {
                 }
 
-                [ReturnThis]
+                [Self]
                 public Product set_params() => default!;
             }
 
@@ -315,12 +315,12 @@ public static partial class sklearn
                 }
 
                 public NDarray diag(NDarray X) => default!;
-                public PyDict get_params(bool deep = true) => default!;
+                public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
                 public void is_stationary()
                 {
                 }
 
-                [ReturnThis]
+                [Self]
                 public RBF set_params() => default!;
             }
 
@@ -337,12 +337,12 @@ public static partial class sklearn
                 }
 
                 public NDarray diag(NDarray X) => default!;
-                public PyDict get_params(bool deep = true) => default!;
+                public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
                 public void is_stationary()
                 {
                 }
 
-                [ReturnThis]
+                [Self]
                 public RationalQuadratic set_params() => default!;
             }
 
@@ -359,12 +359,12 @@ public static partial class sklearn
                 }
 
                 public NDarray diag(PyObject X) => default!;
-                public PyDict get_params(bool deep = true) => default!;
+                public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
                 public void is_stationary()
                 {
                 }
 
-                [ReturnThis]
+                [Self]
                 public Sum set_params() => default!;
             }
 
@@ -381,12 +381,12 @@ public static partial class sklearn
                 }
 
                 public NDarray diag(PyObject X) => default!;
-                public PyDict get_params(bool deep = true) => default!;
+                public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
                 public void is_stationary()
                 {
                 }
 
-                [ReturnThis]
+                [Self]
                 public WhiteKernel set_params() => default!;
             }
         }

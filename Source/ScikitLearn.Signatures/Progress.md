@@ -1,0 +1,39 @@
+## Progress
+
+- [ ] sklearn.base
+- [x] sklearn.calibration
+- [ ] sklearn.cluster
+- [ ] sklearn.compose
+- [ ] sklearn.covariance
+- [ ] sklearn.cross_decomposition
+- [x] sklearn
+- [ ] sklearn.datasets
+- [ ] sklearn.decomposition
+- [ ] sklearn.discriminant_analysis
+- [x] sklearn.dummy
+- [ ] sklearn.ensemble
+- [ ] sklearn.feature_extraction
+- [ ] sklearn.feature_selection
+- [ ] sklearn.gaussian_process
+- [ ] sklearn.impute
+- [ ] sklearn.inspection
+- [ ] sklearn.isotonic
+- [ ] sklearn.kernel_approximation
+- [ ] sklearn.kernel_ridge
+- [ ] sklearn.linear_model
+- [ ] sklearn.manifold
+- [ ] sklearn.metrics
+- [x] sklearn.mixture
+- [ ] sklearn.model_selection
+- [ ] sklearn.multiclass
+- [ ] sklearn.multioutput
+- [x] sklearn.naive_bayes
+- [ ] sklearn.neighbors
+- [x] sklearn.neural_network
+- [ ] sklearn.pipeline
+- [ ] sklearn.preprocessing
+- [ ] sklearn.random_projection
+- [x] sklearn.semi_supervised
+- [ ] sklearn.svm
+- [ ] sklearn.tree
+- [ ] sklearn.utils

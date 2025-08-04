@@ -28,19 +28,19 @@ public static partial class sklearn
 
             // Methods
             public NDarray decision_function(NDarray X) => default!;
-            [ReturnThis]
-            public OneVsOneClassifier fit(NDarray X, NDarray y, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public OneVsOneClassifier partial_fit(NDarray X, NDarray y, NDarray? classes = null, Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public OneVsOneClassifier fit(NDarray X, NDarray y, params (string key, object value)[] @params) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self]
+            public OneVsOneClassifier partial_fit(NDarray X, NDarray y, NDarray? classes = null, params (string key, object value)[] @params) => default!;
             public NDarray predict(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
-            public OneVsOneClassifier set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public OneVsOneClassifier set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public OneVsOneClassifier set_partial_fit_request(string? classes = "$UNCHANGED$") => default!;
-            [ReturnThis]
+            [Self]
             public OneVsOneClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
@@ -62,20 +62,20 @@ public static partial class sklearn
 
             // Methods
             public NDarray decision_function(NDarray X) => default!;
-            [ReturnThis]
-            public OneVsRestClassifier fit(NDarray X, NDarray y, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public OneVsRestClassifier partial_fit(NDarray X, NDarray y, NDarray? classes = null, Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public OneVsRestClassifier fit(NDarray X, NDarray y, params (string key, object value)[] @params) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self]
+            public OneVsRestClassifier partial_fit(NDarray X, NDarray y, NDarray? classes = null, params (string key, object value)[] @params) => default!;
             public NDarray predict(NDarray X) => default!;
             public NDarray predict_proba(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
-            public OneVsRestClassifier set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public OneVsRestClassifier set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public OneVsRestClassifier set_partial_fit_request(string? classes = "$UNCHANGED$") => default!;
-            [ReturnThis]
+            [Self]
             public OneVsRestClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
@@ -94,15 +94,15 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
-            public OutputCodeClassifier fit(NDarray X, NDarray y, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            [Self]
+            public OutputCodeClassifier fit(NDarray X, NDarray y, params (string key, object value)[] @params) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
-            public OutputCodeClassifier set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public OutputCodeClassifier set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public OutputCodeClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
     }

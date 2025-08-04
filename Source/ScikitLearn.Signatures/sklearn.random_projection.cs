@@ -11,12 +11,19 @@ public static partial class sklearn
     public static class random_projection
     {
         // Methods
-        public static NDarray johnson_lindenstrauss_min_dim(NDarray n_samples, float eps = 0.1f) => default!;
+        public static NDarray<int> johnson_lindenstrauss_min_dim(
+            NDarray<int> n_samples, 
+            float eps = 0.1f) => default!;
+
         // Classes
         public class GaussianRandomProjection : PythonObject
         {
             // Constructor
-            public GaussianRandomProjection(string n_components = "auto", float eps = 0.1f, bool compute_inverse_components = false, int? random_state = null)
+            public GaussianRandomProjection(
+                string n_components = "auto", 
+                float eps = 0.1f, 
+                bool compute_inverse_components = false, 
+                int? random_state = null)
             {
             }
 
@@ -28,17 +35,17 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public GaussianRandomProjection fit(NDarray X) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray inverse_transform(NDarray X) => default!;
-            [ReturnThis]
-            public GaussianRandomProjection set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public GaussianRandomProjection set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public GaussianRandomProjection set_output(string? transform = null) => default!;
+            [Self]
+            public GaussianRandomProjection set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
@@ -58,17 +65,17 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public SparseRandomProjection fit(NDarray X) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray inverse_transform(NDarray X) => default!;
-            [ReturnThis]
-            public SparseRandomProjection set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public SparseRandomProjection set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public SparseRandomProjection set_output(string? transform = null) => default!;
+            [Self]
+            public SparseRandomProjection set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
     }

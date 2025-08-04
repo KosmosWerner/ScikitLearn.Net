@@ -11,10 +11,22 @@ public static partial class sklearn
     public static class metrics
     {
         // Methods
-        public static PyObject check_scoring(PyObject? estimator = null, PyDict? scoring = null, bool allow_none = false) => default!;
-        public static PyObject get_scorer(string scoring) => default!;
-        public static PyTuple get_scorer_names() => default!;
-        public static PyObject make_scorer(PyObject score_func, PyDict? response_method = null, bool greater_is_better = true, string needs_proba = "deprecated", string needs_threshold = "deprecated", Dictionary<string, PyObject>? @params = null) => default!;
+        [NeedsRevision]
+        public static PyObject check_scoring(
+            @base.BaseEstimator? estimator = null,
+            [OneOf<string, PyObject>] object? scoring = null,
+            bool allow_none = false,
+            bool raise_exc = true) => default!;
+        [NeedsRevision]
+        public static PyObject get_scorer(
+            [OneOf<string, PyObject>] object? scoring) => default!;
+
+        public static string[] get_scorer_names() => default!;
+        [NeedsRevision]
+        public static PyObject make_scorer(PyObject score_func, PyDict? response_method = null, bool greater_is_better = true, string needs_proba = "deprecated", string needs_threshold = "deprecated", params (string key, object value)[] @params) => default!;
+
+
+
         public static float accuracy_score(NDarray y_true, NDarray y_pred, bool normalize = true, NDarray? sample_weight = null) => default!;
         public static float auc(NDarray x, NDarray y) => default!;
         public static float average_precision_score(NDarray y_true, NDarray y_score, string? average = "macro", int pos_label = 1, NDarray? sample_weight = null) => default!;
@@ -75,32 +87,33 @@ public static partial class sklearn
         public static float mutual_info_score(NDarray labels_true, NDarray labels_pred, NDarray? contingency = null) => default!;
         public static float normalized_mutual_info_score(NDarray labels_true, NDarray labels_pred, string average_method = "arithmetic") => default!;
         public static float rand_score(NDarray labels_true, NDarray labels_pred) => default!;
-        public static NDarray silhouette_samples(NDarray X, NDarray labels, string metric = "euclidean", Dictionary<string, PyObject>? @params = null) => default!;
-        public static float silhouette_score(NDarray X, NDarray labels, string metric = "euclidean", int? sample_size = null, int? random_state = null, Dictionary<string, PyObject>? @params = null) => default!;
+        public static NDarray silhouette_samples(NDarray X, NDarray labels, string metric = "euclidean", params (string key, object value)[] @params) => default!;
+        public static float silhouette_score(NDarray X, NDarray labels, string metric = "euclidean", int? sample_size = null, int? random_state = null, params (string key, object value)[] @params) => default!;
         public static float v_measure_score(NDarray labels_true, NDarray labels_pred, float beta = 1.0f) => default!;
         public static float consensus_score(PyTuple a, PyTuple b, string similarity = "jaccard") => default!;
-        public static NDarray pairwise_distances(NDarray X, NDarray? Y = null, string metric = "euclidean", int? n_jobs = null, bool force_all_finite = true, Dictionary<string, PyObject>? @params = null) => default!;
+        public static NDarray pairwise_distances(NDarray X, NDarray? Y = null, string metric = "euclidean", int? n_jobs = null, bool force_all_finite = true, params (string key, object value)[] @params) => default!;
         public static NDarray pairwise_distances_argmin(NDarray X, NDarray Y, int axis = 1, string metric = "euclidean", PyDict? metric_kwargs = null) => default!;
         public static (NDarray?, NDarray?) pairwise_distances_argmin_min(NDarray X, NDarray Y, int axis = 1, string metric = "euclidean", PyDict? metric_kwargs = null) => default!;
-        public static NDarray pairwise_distances_chunked(NDarray X, NDarray? Y = null, PyObject? reduce_func = null, string metric = "euclidean", int? n_jobs = null, float? working_memory = null, Dictionary<string, PyObject>? @params = null) => default!;
+        public static NDarray pairwise_distances_chunked(NDarray X, NDarray? Y = null, PyObject? reduce_func = null, string metric = "euclidean", int? n_jobs = null, float? working_memory = null, params (string key, object value)[] @params) => default!;
         // Classes
-        public class DistanceMetric : PythonObject
-        {
-            // Constructor
-            public DistanceMetric()
-            {
-            }
+        //public class DistanceMetric : PythonObject
+        //{
+        //    // Constructor
+        //    public DistanceMetric()
+        //    {
+        //    }
 
-            // Methods
-            public PyObject get_metric(string metric, float? dtype = null, Dictionary<string, PyObject>? @params = null) => default!;
-        }
+        //    // Methods
+        //    static public PyObject get_metric(string metric, float? dtype = null, params (string key, object value)[] @params) => default!;
+        //}
 
         public class ConfusionMatrixDisplay : PythonObject
         {
             // Constructor
-            public ConfusionMatrixDisplay(NDarray confusion_matrix, NDarray? display_labels = null)
-            {
-            }
+            public ConfusionMatrixDisplay(
+                NDarray confusion_matrix,
+                NDarray? display_labels = null)
+            { }
 
             // Properties
             public PyObject im_ => default!;
@@ -109,9 +122,42 @@ public static partial class sklearn
             public PyObject figure_ => default!;
 
             // Methods
-            public PyObject from_estimator(PyObject estimator, NDarray X, NDarray y, NDarray? labels = null, NDarray? sample_weight = null, PyObject? normalize = null, NDarray? display_labels = null, bool include_values = true, string xticks_rotation = "horizontal", string? values_format = null, string cmap = "viridis", PyObject? ax = null, bool colorbar = true, PyDict? im_kw = null, PyDict? text_kw = null) => default!;
-            public PyObject from_predictions(NDarray y_true, NDarray y_pred, NDarray? labels = null, NDarray? sample_weight = null, PyObject? normalize = null, NDarray? display_labels = null, bool include_values = true, string xticks_rotation = "horizontal", string? values_format = null, string cmap = "viridis", PyObject? ax = null, bool colorbar = true, PyDict? im_kw = null, PyDict? text_kw = null) => default!;
-            public PyObject plot(bool include_values = true, string cmap = "viridis", string xticks_rotation = "horizontal", string? values_format = null, PyObject? ax = null, bool colorbar = true, PyDict? im_kw = null, PyDict? text_kw = null) => default!;
+            public static ConfusionMatrixDisplay from_estimator(
+                @base.BaseEstimator estimator,
+                NDarray X,
+                NDarray y,
+                NDarray? labels = null,
+                NDarray? sample_weight = null,
+                string? normalize = null,
+                NDarray? display_labels = null,
+                bool include_values = true,
+                string xticks_rotation = "horizontal",
+                string? values_format = null,
+                string cmap = "viridis",
+                PyObject? ax = null,
+                bool colorbar = true,
+                PyDict? im_kw = null,
+                PyDict? text_kw = null) => default!;
+            public static ConfusionMatrixDisplay from_predictions(
+                NDarray y_true,
+                NDarray y_pred,
+                NDarray? labels = null,
+                NDarray? sample_weight = null,
+                PyObject? normalize = null,
+                NDarray? display_labels = null,
+                bool include_values = true,
+                string xticks_rotation = "horizontal",
+                string? values_format = null,
+                string cmap = "viridis",
+                PyObject? ax = null,
+                bool colorbar = true,
+                PyDict? im_kw = null,
+                PyDict? text_kw = null) => default!;
+            public static ConfusionMatrixDisplay plot(
+                bool include_values = true,
+                string cmap = "viridis",
+                string xticks_rotation = "horizontal",
+                string? values_format = null, PyObject? ax = null, bool colorbar = true, PyDict? im_kw = null, PyDict? text_kw = null) => default!;
         }
 
         public class DetCurveDisplay : PythonObject
@@ -127,9 +173,9 @@ public static partial class sklearn
             public PyObject figure_ => default!;
 
             // Methods
-            public PyObject from_estimator(PyObject estimator, NDarray X, NDarray y, NDarray? sample_weight = null, string response_method = "auto", string? pos_label = null, string? name = null, PyObject? ax = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject from_predictions(NDarray y_true, NDarray y_pred, NDarray? sample_weight = null, string? pos_label = null, string? name = null, PyObject? ax = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject plot(PyObject? ax = null, string? name = null, Dictionary<string, PyObject>? @params = null) => default!;
+            public PyObject from_estimator(PyObject estimator, NDarray X, NDarray y, NDarray? sample_weight = null, string response_method = "auto", string? pos_label = null, string? name = null, PyObject? ax = null, params (string key, object value)[] @params) => default!;
+            public PyObject from_predictions(NDarray y_true, NDarray y_pred, NDarray? sample_weight = null, string? pos_label = null, string? name = null, PyObject? ax = null, params (string key, object value)[] @params) => default!;
+            public PyObject plot(PyObject? ax = null, string? name = null, params (string key, object value)[] @params) => default!;
         }
 
         public class PrecisionRecallDisplay : PythonObject
@@ -146,9 +192,9 @@ public static partial class sklearn
             public PyObject figure_ => default!;
 
             // Methods
-            public PyObject from_estimator(PyObject estimator, NDarray X, NDarray y, NDarray? sample_weight = null, string? pos_label = null, bool drop_intermediate = false, string response_method = "auto", string? name = null, PyObject? ax = null, bool plot_chance_level = false, PyDict? chance_level_kw = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject from_predictions(NDarray y_true, NDarray y_pred, NDarray? sample_weight = null, string? pos_label = null, bool drop_intermediate = false, string? name = null, PyObject? ax = null, bool plot_chance_level = false, PyDict? chance_level_kw = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject plot(PyObject? ax = null, string? name = null, bool plot_chance_level = false, PyDict? chance_level_kw = null, Dictionary<string, PyObject>? @params = null) => default!;
+            public PyObject from_estimator(PyObject estimator, NDarray X, NDarray y, NDarray? sample_weight = null, string? pos_label = null, bool drop_intermediate = false, string response_method = "auto", string? name = null, PyObject? ax = null, bool plot_chance_level = false, PyDict? chance_level_kw = null, params (string key, object value)[] @params) => default!;
+            public PyObject from_predictions(NDarray y_true, NDarray y_pred, NDarray? sample_weight = null, string? pos_label = null, bool drop_intermediate = false, string? name = null, PyObject? ax = null, bool plot_chance_level = false, PyDict? chance_level_kw = null, params (string key, object value)[] @params) => default!;
+            public PyObject plot(PyObject? ax = null, string? name = null, bool plot_chance_level = false, PyDict? chance_level_kw = null, params (string key, object value)[] @params) => default!;
         }
 
         public class PredictionErrorDisplay : PythonObject
@@ -185,16 +231,18 @@ public static partial class sklearn
             public PyObject figure_ => default!;
 
             // Methods
-            public PyObject from_estimator(PyObject estimator, NDarray X, NDarray y, NDarray? sample_weight = null, bool drop_intermediate = true, string response_method = "auto", string? pos_label = null, string? name = null, PyObject? ax = null, bool plot_chance_level = false, PyDict? chance_level_kw = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject from_predictions(NDarray y_true, NDarray y_pred, NDarray? sample_weight = null, bool drop_intermediate = true, string? pos_label = null, string? name = null, PyObject? ax = null, bool plot_chance_level = false, PyDict? chance_level_kw = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject plot(PyObject? ax = null, string? name = null, bool plot_chance_level = false, PyDict? chance_level_kw = null, Dictionary<string, PyObject>? @params = null) => default!;
+            public PyObject from_estimator(PyObject estimator, NDarray X, NDarray y, NDarray? sample_weight = null, bool drop_intermediate = true, string response_method = "auto", string? pos_label = null, string? name = null, PyObject? ax = null, bool plot_chance_level = false, PyDict? chance_level_kw = null, params (string key, object value)[] @params) => default!;
+            public PyObject from_predictions(NDarray y_true, NDarray y_pred, NDarray? sample_weight = null, bool drop_intermediate = true, string? pos_label = null, string? name = null, PyObject? ax = null, bool plot_chance_level = false, PyDict? chance_level_kw = null, params (string key, object value)[] @params) => default!;
+            public PyObject plot(PyObject? ax = null, string? name = null, bool plot_chance_level = false, PyDict? chance_level_kw = null, params (string key, object value)[] @params) => default!;
         }
+
+        // Revised!! v v v v
 
         [Module]
         public static class cluster
         {
             // Methods
-            public static NDarray contingency_matrix(NDarray labels_true, NDarray labels_pred, float? eps = null, bool sparse = false, int? dtype = null) => default!;
+            public static NDarray contingency_matrix(NDarray labels_true, NDarray labels_pred, float? eps = null, bool sparse = false, Dtype? dtype = null) => default!;
             public static NDarray<long> pair_confusion_matrix(NDarray labels_true, NDarray labels_pred) => default!;
         }
 
@@ -206,19 +254,21 @@ public static partial class sklearn
             public static NDarray chi2_kernel(NDarray X, NDarray? Y = null, float gamma = 1.0f) => default!;
             public static NDarray cosine_distances(NDarray X, NDarray? Y = null) => default!;
             public static NDarray cosine_similarity(NDarray X, NDarray? Y = null, bool dense_output = true) => default!;
+            [NeedsRevision]
             public static PyDict distance_metrics() => default!;
             public static NDarray euclidean_distances(NDarray X, NDarray? Y = null, NDarray? Y_norm_squared = null, bool squared = false, NDarray? X_norm_squared = null) => default!;
             public static NDarray haversine_distances(NDarray X, NDarray? Y = null) => default!;
+            [NeedsRevision]
             public static PyDict kernel_metrics() => default!;
             public static NDarray laplacian_kernel(NDarray X, NDarray? Y = null, float? gamma = null) => default!;
             public static NDarray linear_kernel(NDarray X, NDarray? Y = null, bool dense_output = true) => default!;
             public static NDarray manhattan_distances(NDarray X, NDarray? Y = null) => default!;
             public static NDarray nan_euclidean_distances(NDarray X, NDarray? Y = null, bool squared = false, float? missing_values = null, bool copy = true) => default!;
             public static NDarray paired_cosine_distances(NDarray X, NDarray Y) => default!;
-            public static NDarray paired_distances(NDarray X, NDarray Y, string metric = "euclidean", Dictionary<string, PyObject>? @params = null) => default!;
+            public static NDarray paired_distances(NDarray X, NDarray Y, string metric = "euclidean", params (string key, object value)[] @params) => default!;
             public static NDarray paired_euclidean_distances(NDarray X, NDarray Y) => default!;
             public static NDarray paired_manhattan_distances(NDarray X, NDarray Y) => default!;
-            public static NDarray pairwise_kernels(NDarray X, NDarray? Y = null, string metric = "linear", bool filter_params = false, int? n_jobs = null, Dictionary<string, PyObject>? @params = null) => default!;
+            public static NDarray pairwise_kernels(NDarray X, NDarray? Y = null, string metric = "linear", bool filter_params = false, int? n_jobs = null, params (string key, object value)[] @params) => default!;
             public static NDarray polynomial_kernel(NDarray X, NDarray? Y = null, int degree = 3, float? gamma = null, int coef0 = 1) => default!;
             public static NDarray rbf_kernel(NDarray X, NDarray? Y = null, float? gamma = null) => default!;
             public static NDarray sigmoid_kernel(NDarray X, NDarray? Y = null, float? gamma = null, int coef0 = 1) => default!;

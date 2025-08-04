@@ -11,8 +11,18 @@ public static partial class sklearn
     public static class compose
     {
         // Methods
-        public static PyObject make_column_selector(string? pattern = null, PyTuple? dtype_include = null, PyTuple? dtype_exclude = null) => default!;
-        public static PyObject make_column_transformer(PyObject[] transformers, string remainder = "drop", float sparse_threshold = 0.3f, int? n_jobs = null, bool verbose = false, bool verbose_feature_names_out = true, bool force_int_remainder_cols = true) => default!;
+        public static PyObject make_column_selector(
+            string? pattern = null, 
+            PyObject? dtype_include = null,
+            PyObject? dtype_exclude = null) => default!;
+        public static PyObject make_column_transformer(
+            PyObject[] transformers,
+            string remainder = "drop", 
+            float sparse_threshold = 0.3f, 
+            int? n_jobs = null, 
+            bool verbose = false, 
+            bool verbose_feature_names_out = true, 
+            bool force_int_remainder_cols = true) => default!;
         // Classes
         public class ColumnTransformer : PythonObject
         {
@@ -30,17 +40,17 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
-            public ColumnTransformer fit(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public PyObject get_feature_names_out(NDarray? input_features = null) => default!;
-            public PyObject get_metadata_routing() => default!;
-            public PyDict get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public ColumnTransformer set_output(PyObject? transform = null) => default!;
-            [ReturnThis]
-            public ColumnTransformer set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            public NDarray transform(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public ColumnTransformer fit(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            [Self]
+            public ColumnTransformer set_output(string? transform = null) => default!;
+            [Self]
+            public ColumnTransformer set_params(params (string key, object value)[] @params) => default!;
+            public NDarray transform(NDarray X, params (string key, object value)[] @params) => default!;
         }
 
         public class TransformedTargetRegressor : PythonObject
@@ -57,18 +67,18 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
-            public TransformedTargetRegressor fit(NDarray X, NDarray y, Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public TransformedTargetRegressor fit(NDarray X, NDarray y, params (string key, object value)[] @params) => default!;
             public void get_metadata_routing()
             {
             }
 
-            public PyDict get_params(bool deep = true) => default!;
-            public NDarray predict(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
+            public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
+            public NDarray predict(NDarray X, params (string key, object value)[] @params) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
-            public TransformedTargetRegressor set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
+            [Self]
+            public TransformedTargetRegressor set_params(params (string key, object value)[] @params) => default!;
+            [Self]
             public TransformedTargetRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
     }

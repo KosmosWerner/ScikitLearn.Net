@@ -17,8 +17,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\ScikitLearn.Signatures.Analyzers\ScikitLearn.Signatures.Analyzers.csproj"
+						  OutputItemType="Analyzer"
+						  ReferenceOutputAssembly="false" />
+		<ProjectReference Include="..\ScikitLearn.Signatures.Attributes\ScikitLearn.Signatures.Attributes.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Using Include="Numpy" />
 		<Using Include="Numpy.Models" />
 		<Using Include="Python.Runtime" />
+		<Using Include="ScikitLearn.Signatures.Attributes" />
 	</ItemGroup>
 </Project>

@@ -10,7 +10,7 @@ public static partial class sklearn
     public static class dummy
     {
         // Classes
-        public class DummyClassifier : PythonObject,
+        public class DummyClassifier : 
             MultiOutputMixin,
             @base.ClassifierMixin,
             @base.BaseEstimator<DummyClassifier>
@@ -44,7 +44,7 @@ public static partial class sklearn
             [Self] public DummyClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class DummyRegressor : PythonObject,
+        public class DummyRegressor : 
             MultiOutputMixin,
             @base.RegressorMixin,
             @base.BaseEstimator<DummyRegressor>

@@ -1,5 +1,8 @@
 namespace ScikitLearn;
 
+public interface _BinaryClassifierCurveDisplayMixin : IPythonWrapper
+{ }
+
 public static partial class sklearn
 {
     // Classes
@@ -50,7 +53,7 @@ public static partial class sklearn
         }
 
         public class CalibrationDisplay :
-            @base._BinaryClassifierCurveDisplayMixin
+            _BinaryClassifierCurveDisplayMixin
         {
             // Constructor
             public CalibrationDisplay(

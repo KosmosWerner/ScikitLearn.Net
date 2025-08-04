@@ -1,10 +1,18 @@
-using System;
-using System.Collections.Generic;
-using System.Runtime.Serialization;
-using Numpy;
-using Python.Runtime;
-
 namespace ScikitLearn;
+
+public interface BaseMixture<Self> :
+    sklearn.@base.DensityMixin,
+    sklearn.@base.BaseEstimator<Self>
+{
+    [Self] Self fit(NDarray X);
+    NDarray fit_predict(NDarray X);
+    NDarray predict(NDarray X);
+    NDarray predict_proba(NDarray X);
+    (NDarray X, NDarray y) sample(int n_samples = 1);
+    NDarray score_samples(NDarray X);
+
+}
+
 public static partial class sklearn
 {
     // Classes
@@ -13,7 +21,7 @@ public static partial class sklearn
     {
         // Classes
         public class BayesianGaussianMixture : PythonObject,
-            @base.BaseMixture<BayesianGaussianMixture>
+            BaseMixture<BayesianGaussianMixture>
         {
             // Constructor
             public BayesianGaussianMixture(
@@ -29,7 +37,7 @@ public static partial class sklearn
                 float? mean_precision_prior = null,
                 NDarray? mean_prior = null,
                 float? degrees_of_freedom_prior = null,
-                OneOf<float, NDarray>? covariance_prior = null,
+                [OneOf<float, NDarray>] object? covariance_prior = null,
                 int? random_state = null,
                 bool warm_start = false,
                 int verbose = 0,
@@ -59,7 +67,7 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
+            [Self]
             public BayesianGaussianMixture fit(NDarray X) => default!;
             public NDarray fit_predict(NDarray X) => default!;
             public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
@@ -69,12 +77,12 @@ public static partial class sklearn
             public (NDarray X, NDarray y) sample(int n_samples = 1) => default!;
             public float score(NDarray X, NDarray? y) => default!;
             public NDarray score_samples(NDarray X) => default!;
-            [ReturnThis]
-            public BayesianGaussianMixture set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public BayesianGaussianMixture set_params(params (string key, object value)[] @params) => default!;
         }
 
         public class GaussianMixture : PythonObject,
-            @base.BaseMixture<GaussianMixture>
+            BaseMixture<GaussianMixture>
         {
             // Constructor
             public GaussianMixture(
@@ -109,7 +117,7 @@ public static partial class sklearn
             // Methods
             public float aic(NDarray X) => default!;
             public float bic(NDarray X) => default!;
-            [ReturnThis]
+            [Self]
             public GaussianMixture fit(NDarray X) => default!;
             public NDarray fit_predict(NDarray X) => default!;
             public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
@@ -119,8 +127,8 @@ public static partial class sklearn
             public (NDarray X, NDarray y) sample(int n_samples = 1) => default!;
             public float score(NDarray X, NDarray? y) => default!;
             public NDarray score_samples(NDarray X) => default!;
-            [ReturnThis]
-            public GaussianMixture set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self]
+            public GaussianMixture set_params(params (string key, object value)[] @params) => default!;
         }
     }
 }

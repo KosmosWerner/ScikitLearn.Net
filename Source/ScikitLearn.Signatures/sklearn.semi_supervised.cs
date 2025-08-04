@@ -1,9 +1,14 @@
-using System;
-using System.Collections.Generic;
-using Numpy;
-using Python.Runtime;
-
 namespace ScikitLearn;
+
+public interface BaseLabelPropagation<Self> :
+    sklearn.@base.ClassifierMixin,
+    sklearn.@base.BaseEstimator<Self>
+{
+    [Self] Self fit(NDarray X, NDarray y);
+    NDarray predict(NDarray X);
+    NDarray predict_proba(NDarray X);
+}
+
 public static partial class sklearn
 {
     // Classes
@@ -11,8 +16,8 @@ public static partial class sklearn
     public static class semi_supervised
     {
         // Classes
-        public class LabelPropagation : PythonObject,
-            @base.BaseLabelPropagation<LabelPropagation>
+        public class LabelPropagation :
+            BaseLabelPropagation<LabelPropagation>
         {
             // Constructor
             public LabelPropagation(
@@ -34,21 +39,18 @@ public static partial class sklearn
             public int n_iter_ => default!;
 
             // Methods
-            [ReturnThis]
-            public LabelPropagation fit(NDarray X, NDarray y) => default!;
+            [Self] public LabelPropagation fit(NDarray X, NDarray y) => default!;
             public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
             public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X) => default!;
             public NDarray predict_proba(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
-            public LabelPropagation set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
-            public LabelPropagation set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
+            [Self] public LabelPropagation set_params(params (string key, object value)[] @params) => default!;
+            [Self] public LabelPropagation set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class LabelSpreading : PythonObject,
-            @base.BaseLabelPropagation<LabelSpreading>
+        public class LabelSpreading :
+            BaseLabelPropagation<LabelSpreading>
         {
             // Constructor
             public LabelSpreading(
@@ -71,22 +73,19 @@ public static partial class sklearn
             public int n_iter_ => default!;
 
             // Methods
-            [ReturnThis]
-            public LabelSpreading fit(NDarray X, NDarray y) => default!;
+            [Self] public LabelSpreading fit(NDarray X, NDarray y) => default!;
             public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
             public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X) => default!;
             public NDarray predict_proba(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
-            public LabelSpreading set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
-            public LabelSpreading set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
+            [Self] public LabelSpreading set_params(params (string key, object value)[] @params) => default!;
+            [Self] public LabelSpreading set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
         [NeedsRevision]
-        public class SelfTrainingClassifier : PythonObject,
-            //@base.ClassifierMixin,
+        public class SelfTrainingClassifier :
+            @base.ClassifierMixin,
             @base.MetaEstimatorMixin,
             @base.BaseEstimator<SelfTrainingClassifier>
         {
@@ -112,19 +111,18 @@ public static partial class sklearn
             public string termination_condition_ => default!;
 
             // Methods
-            public NDarray decision_function(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
-            public SelfTrainingClassifier fit(NDarray X, NDarray y, Dictionary<string, PyObject>? @params = null) => default!;
+            public NDarray decision_function(NDarray X, params (string key, object value)[] @params) => default!;
+            [Self] public SelfTrainingClassifier fit(NDarray X, NDarray y, params (string key, object value)[] @params) => default!;
             public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
             public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
-            public NDarray predict(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
-            public NDarray predict_log_proba(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
-            public NDarray predict_proba(NDarray X, Dictionary<string, PyObject>? @params = null) => default!;
-            [NeedsRevision]
-            public float score(NDarray X, NDarray y, Dictionary<string, PyObject>? @params = null) => default!;
-            // public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
-            public SelfTrainingClassifier set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            public NDarray predict(NDarray X, params (string key, object value)[] @params) => default!;
+            public NDarray predict_log_proba(NDarray X, params (string key, object value)[] @params) => default!;
+            public NDarray predict_proba(NDarray X, params (string key, object value)[] @params) => default!;
+            public float score(NDarray X, NDarray y, params (string key, object value)[] @params) => default!;
+            [Manual]
+            public float score(NDarray X, NDarray y, NDarray? sample_weight = null) =>
+                sample_weight != null ? score(X, y, (nameof(sample_weight), sample_weight)) : score(X, y, Array.Empty<(string key, object value)>());
+            [Self] public SelfTrainingClassifier set_params(params (string key, object value)[] @params) => default!;
         }
     }
 }

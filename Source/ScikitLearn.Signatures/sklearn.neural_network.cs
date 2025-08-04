@@ -13,7 +13,7 @@ public static partial class sklearn
     public static class neural_network
     {
         // Classes
-        public class BernoulliRBM : PythonObject,
+        public class BernoulliRBM :
             @base.ClassNamePrefixFeaturesOutMixin,
             @base.TransformerMixin<BernoulliRBM>,
             @base.BaseEstimator<BernoulliRBM>
@@ -50,7 +50,7 @@ public static partial class sklearn
             public NDarray transform(NDarray X) => default!;
         }
 
-        public class MLPClassifier : PythonObject,
+        public class MLPClassifier :
             @base.ClassifierMixin,
             BaseMultilayerPerceptron<MLPClassifier>
         {
@@ -112,7 +112,7 @@ public static partial class sklearn
             [Self] public MLPClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class MLPRegressor : PythonObject,
+        public class MLPRegressor :
             @base.RegressorMixin,
             BaseMultilayerPerceptron<MLPRegressor>
         {

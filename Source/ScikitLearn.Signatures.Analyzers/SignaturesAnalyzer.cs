@@ -58,7 +58,7 @@ namespace ScikitLearn.Signatures.Analyzers
         }
 
         /// <summary>
-        /// Ensures that [AllowedTypes] is only applied to parameters of type object/object?.
+        /// Ensures that [OneOf<>] is only applied to parameters of type object/object?.
         /// </summary>
         private static void AnalyzeAttribute(SyntaxNodeAnalysisContext context)
         {
@@ -82,7 +82,7 @@ namespace ScikitLearn.Signatures.Analyzers
         }
 
         /// <summary>
-        /// Ensures that parameters of type object/object? have the [AllowedTypes] attribute.
+        /// Ensures that parameters of type object/object? have the [OneOf<>] attribute.
         /// </summary>
         private static void AnalyzeParameter(SyntaxNodeAnalysisContext context)
         {

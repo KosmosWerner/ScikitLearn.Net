@@ -18,14 +18,14 @@
 - [ ] sklearn.impute
 - [ ] sklearn.inspection
 - [ ] sklearn.isotonic
-- [ ] sklearn.kernel_approximation
-- [ ] sklearn.kernel_ridge
+- [x] sklearn.kernel_approximation
+- [x] sklearn.kernel_ridge
 - [ ] sklearn.linear_model
 - [ ] sklearn.manifold
 - [ ] sklearn.metrics
 - [x] sklearn.mixture
 - [ ] sklearn.model_selection
-- [ ] sklearn.multiclass
+- [x] sklearn.multiclass [Needs Revision]
 - [ ] sklearn.multioutput
 - [x] sklearn.naive_bayes
 - [ ] sklearn.neighbors

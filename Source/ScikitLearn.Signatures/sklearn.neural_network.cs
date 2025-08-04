@@ -1,9 +1,11 @@
-using System;
-using System.Collections.Generic;
-using Numpy;
-using Python.Runtime;
-
 namespace ScikitLearn;
+
+public interface BaseMultilayerPerceptron<Self> :
+    sklearn.@base.BaseEstimator<Self>
+{
+    Self fit(NDarray X, NDarray y, NDarray? sample_weight = null);
+}
+
 public static partial class sklearn
 {
     // Classes
@@ -35,35 +37,30 @@ public static partial class sklearn
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [ReturnThis]
-            public BernoulliRBM fit(NDarray X, NDarray? y = null) => default!;
-            public NDarray fit_transform(NDarray X, NDarray? y = null, Dictionary<string, PyObject>? @params = null) => default!;
-            public NDarray get_feature_names_out(NDarray<string>? input_features = null) => default!;
+            [Self] public BernoulliRBM fit(NDarray X, NDarray? y = null) => default!;
+            public NDarray fit_transform(NDarray X, NDarray? y = null, params (string key, object value)[] @params) => default!;
+            public NDarray<string> get_feature_names_out(NDarray<string>? input_features = null) => default!;
             public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
             public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray gibbs(NDarray v) => default!;
-            [ReturnThis]
-            public BernoulliRBM partial_fit(NDarray X, NDarray? y = null) => default!;
+            [Self] public BernoulliRBM partial_fit(NDarray X, NDarray? y = null) => default!;
             public NDarray score_samples(NDarray X) => default!;
-            [ReturnThis]
-            public BernoulliRBM set_output(string? transform = null) => default!;
-            [ReturnThis]
-            public BernoulliRBM set_params(Dictionary<string, PyObject>? @params = null) => default!;
+            [Self] public BernoulliRBM set_output(string? transform = null) => default!;
+            [Self] public BernoulliRBM set_params(params (string key, object value)[] @params) => default!;
             public NDarray transform(NDarray X) => default!;
         }
 
         public class MLPClassifier : PythonObject,
             @base.ClassifierMixin,
-            @base.BaseMultilayerPerceptron<MLPClassifier>
+            BaseMultilayerPerceptron<MLPClassifier>
         {
             // Constructor
             public MLPClassifier(
-                [NeedsRevision]
-                NDarray? hidden_layer_sizes = null,
+                [NeedsRevision] NDarray? hidden_layer_sizes = null,
                 string activation = "relu",
                 string solver = "adam",
                 float alpha = 0.0001f,
-                string batch_size = "auto",
+                [OneOf<string, int>(Default: "auto")] object batch_size = default!,
                 string learning_rate = "constant",
                 float learning_rate_init = 0.001f,
                 float power_t = 0.5f,
@@ -102,36 +99,31 @@ public static partial class sklearn
             public string out_activation_ => default!;
 
             // Methods
-            [ReturnThis]
-            public MLPClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            [Self] public MLPClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
+            public utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
             public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public MLPClassifier partial_fit(NDarray X, NDarray y, NDarray? sample_weight = null, NDarray? classes = null) => default!;
+            [Self] public MLPClassifier partial_fit(NDarray X, NDarray y, NDarray? sample_weight = null, NDarray? classes = null) => default!;
             public NDarray predict(NDarray X) => default!;
             public NDarray predict_log_proba(NDarray X) => default!;
             public NDarray predict_proba(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
-            public MLPClassifier set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
-            public MLPClassifier set_partial_fit_request(string? classes = "$UNCHANGED$") => default!;
-            [ReturnThis]
-            public MLPClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
+            [Self] public MLPClassifier set_params(params (string key, object value)[] @params) => default!;
+            [Self] public MLPClassifier set_partial_fit_request(string? classes = "$UNCHANGED$") => default!;
+            [Self] public MLPClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
         public class MLPRegressor : PythonObject,
             @base.RegressorMixin,
-            @base.BaseMultilayerPerceptron<MLPRegressor>
+            BaseMultilayerPerceptron<MLPRegressor>
         {
             // Constructor
             public MLPRegressor(
-                [NeedsRevision]
-                NDarray? hidden_layer_sizes = null,
+                string loss = "squared_errir",
+                [NeedsRevision] NDarray? hidden_layer_sizes = null,
                 string activation = "relu",
                 string solver = "adam",
                 float alpha = 0.0001f,
-                string batch_size = "auto",
+                [OneOf<string, int>(Default: "auto")] object batch_size = default!,
                 string learning_rate = "constant",
                 float learning_rate_init = 0.001f,
                 float power_t = 0.5f,
@@ -170,18 +162,14 @@ public static partial class sklearn
             public string out_activation_ => default!;
 
             // Methods
-            [ReturnThis]
-            public MLPRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
+            [Self] public MLPRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
+            public utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
             public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
-            [ReturnThis]
-            public MLPRegressor partial_fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
+            [Self] public MLPRegressor partial_fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             public NDarray predict(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [ReturnThis]
-            public MLPRegressor set_params(Dictionary<string, PyObject>? @params = null) => default!;
-            [ReturnThis]
-            public MLPRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
+            [Self] public MLPRegressor set_params(params (string key, object value)[] @params) => default!;
+            [Self] public MLPRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
     }
 }

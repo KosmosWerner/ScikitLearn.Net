@@ -24,7 +24,7 @@ public static partial class sklearn
     public static class naive_bayes
     {
         // Classes
-        public class BernoulliNB : PythonObject,
+        public class BernoulliNB :
             _BaseDiscreteNB<BernoulliNB>
         {
             // Constructor
@@ -61,7 +61,7 @@ public static partial class sklearn
             [Self] public BernoulliNB set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class CategoricalNB : PythonObject,
+        public class CategoricalNB :
             _BaseDiscreteNB<CategoricalNB>
         {
             // Constructor
@@ -99,7 +99,7 @@ public static partial class sklearn
             [Self] public CategoricalNB set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class ComplementNB : PythonObject,
+        public class ComplementNB :
             _BaseDiscreteNB<ComplementNB>
 
         {
@@ -138,7 +138,7 @@ public static partial class sklearn
             [Self] public ComplementNB set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class GaussianNB : PythonObject,
+        public class GaussianNB :
             _BaseDiscreteNB<GaussianNB>  // _BaseNB
         {
             // Constructor
@@ -173,7 +173,7 @@ public static partial class sklearn
             [Self] public GaussianNB set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class MultinomialNB : PythonObject,
+        public class MultinomialNB :
             _BaseDiscreteNB<MultinomialNB>
         {
             // Constructor

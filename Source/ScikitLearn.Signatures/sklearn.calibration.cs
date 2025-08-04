@@ -31,7 +31,7 @@ public static partial class sklearn
                 [OneOf<int, IPythonWrapper, PyObject>] object? cv = null,
                 int? n_jobs = null,
                 [NeedsRevision]
-                [OneOf<int, string>(Default:"auto")] object ensemble = default!)
+                [OneOf<string, int>(Default:"auto")] object ensemble = default!)
             { }
 
             // Properties

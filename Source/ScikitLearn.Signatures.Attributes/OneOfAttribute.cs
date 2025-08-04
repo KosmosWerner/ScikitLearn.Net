@@ -7,7 +7,7 @@
 [AttributeUsage(AttributeTargets.Parameter, Inherited = false, AllowMultiple = true)]
 public class OneOfAttribute<T1, T2> : Attribute
 {
-    public OneOfAttribute(object Default = null!) { }
+    public OneOfAttribute(T1 Default = default!) { }
 }
 
 /// <summary>
@@ -17,7 +17,7 @@ public class OneOfAttribute<T1, T2> : Attribute
 [AttributeUsage(AttributeTargets.Parameter, Inherited = false, AllowMultiple = true)]
 public class OneOfAttribute<T1, T2, T3> : Attribute
 {
-    public OneOfAttribute(object defaultValue = null!) { }
+    public OneOfAttribute(T1 defaultValue = default!) { }
 }
 
 /// <summary>
@@ -27,5 +27,5 @@ public class OneOfAttribute<T1, T2, T3> : Attribute
 [AttributeUsage(AttributeTargets.Parameter, Inherited = false, AllowMultiple = true)]
 public class OneOfAttribute<T1, T2, T3, T4> : Attribute
 {
-    public OneOfAttribute(object defaultValue = null!) { }
+    public OneOfAttribute(T1 defaultValue = default!) { }
 }

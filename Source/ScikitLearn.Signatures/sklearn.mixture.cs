@@ -20,7 +20,7 @@ public static partial class sklearn
     public static class mixture
     {
         // Classes
-        public class BayesianGaussianMixture : PythonObject,
+        public class BayesianGaussianMixture : 
             BaseMixture<BayesianGaussianMixture>
         {
             // Constructor
@@ -81,7 +81,7 @@ public static partial class sklearn
             public BayesianGaussianMixture set_params(params (string key, object value)[] @params) => default!;
         }
 
-        public class GaussianMixture : PythonObject,
+        public class GaussianMixture : 
             BaseMixture<GaussianMixture>
         {
             // Constructor

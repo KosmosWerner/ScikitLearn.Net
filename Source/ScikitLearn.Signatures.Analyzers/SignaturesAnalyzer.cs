@@ -65,7 +65,7 @@ namespace ScikitLearn.Signatures.Analyzers
             var attributeNode = (AttributeSyntax)context.Node;
 
             var attributeSymbol = context.SemanticModel.GetSymbolInfo(attributeNode).Symbol;
-            if (attributeSymbol?.ContainingType?.Name != "OneOfAttribute") return;
+            if (attributeSymbol?.ContainingType?.Name != "OneOfAttribute" || attributeSymbol?.ContainingType?.Name != "NullOrOneOfAttribute") return;
 
             if (!(attributeNode.Parent?.Parent is ParameterSyntax parameter))
                 return;
@@ -97,7 +97,7 @@ namespace ScikitLearn.Signatures.Analyzers
                 .Any(attr =>
                 {
                     var symbol = context.SemanticModel.GetSymbolInfo(attr).Symbol;
-                    return symbol?.ContainingType?.Name == "OneOfAttribute";
+                    return symbol?.ContainingType?.Name == "OneOfAttribute" || symbol?.ContainingType?.Name == "NullOrOneOfAttribute";
                 });
 
             if (!hasAllowedTypes)

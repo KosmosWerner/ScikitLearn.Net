@@ -13,25 +13,23 @@ public static partial class sklearn
         public static (NDarray prob_true, NDarray prob_pred) calibration_curve(
             NDarray y_true,
             NDarray y_prob,
-            [OneOf<int, float, bool, string>] object? pos_label = null,
+            [NullOrOneOf<int, float, bool, string>(null)] object pos_label = default!,
             int n_bins = 5,
             string strategy = "uniform") => default!;
 
         // Classes
         public class CalibratedClassifierCV :
-            @base.ClassifierMixin,
-            @base.MetaEstimatorMixin,
-            @base.BaseEstimator<CalibratedClassifierCV>
+            IClassifierMixin,
+            IMetaEstimatorMixin,
+            IBaseEstimator<CalibratedClassifierCV>
         {
             // Constructor
             public CalibratedClassifierCV(
-                @base.BaseEstimator? estimator = null,
+                IBaseEstimator? estimator = null,
                 string method = "sigmoid",
-                [NeedsRevision]
-                [OneOf<int, IPythonWrapper, PyObject>] object? cv = null,
+                [NullOrOneOf<int, IBaseCrossValidator, PyIterable>(null)] object? cv = null,
                 int? n_jobs = null,
-                [NeedsRevision]
-                [OneOf<string, int>(Default:"auto")] object ensemble = default!)
+                [OneOf<string, bool>(Default:"auto")] object ensemble = default!)
             { }
 
             // Properties
@@ -61,7 +59,7 @@ public static partial class sklearn
                 NDarray prob_pred,
                 NDarray y_prob,
                 string? estimator_name = null,
-                [OneOf<int, float, bool, string>] object? pos_label = null)
+                [NullOrOneOf<int, float, bool, string>(null)] object pos_label = default!)
             { }
 
             // Properties
@@ -72,12 +70,12 @@ public static partial class sklearn
             // Methods
 
             public static CalibrationDisplay from_estimator(
-                @base.BaseEstimator estimator,
+                IBaseEstimator estimator,
                 NDarray X,
                 NDarray y,
                 int n_bins = 5,
                 string strategy = "uniform",
-                [OneOf<int, float, bool, string>] object? pos_label = null,
+                [NullOrOneOf<int, float, bool, string>(null)] object? pos_label = null,
                 string? name = null,
                 PyObject? ax = null,
                 bool ref_line = true,
@@ -88,10 +86,10 @@ public static partial class sklearn
                 NDarray y_prob,
                 int n_bins = 5,
                 string strategy = "uniform",
-                [OneOf<int, float, bool, string>] object? pos_label = null,
+                [NullOrOneOf<int, float, bool, string>(null)] object? pos_label = null,
                 string? name = null,
-                bool ref_line = true,
                 PyObject? ax = null,
+                bool ref_line = true,
                 params (string key, object value)[] @params) => default!;
 
             [Self]

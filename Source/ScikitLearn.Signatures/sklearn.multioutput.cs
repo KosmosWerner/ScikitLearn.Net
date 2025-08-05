@@ -1,9 +1,22 @@
-using System;
-using System.Collections.Generic;
-using Numpy;
-using Python.Runtime;
-
 namespace ScikitLearn;
+
+public interface _BaseChain<Self>
+    : IBaseEstimator<Self>
+{
+    Self fit(NDarray X, NDarray Y, params (string key, object value)[] @params);
+    NDarray predict(NDarray X);
+
+}
+
+public interface _MultiOutputEstimator<Self> :
+    IMetaEstimatorMixin,
+    IBaseEstimator<Self>
+{
+    Self partial_fit(NDarray X, NDarray y, NDarray? classes = null, NDarray? sample_weight = null, params (string key, object value)[] @params);
+    Self fit(NDarray X, NDarray y, NDarray? sample_weight = null, params (string key, object value)[] @params);
+    NDarray predict(NDarray X);
+}
+
 public static partial class sklearn
 {
     // Classes
@@ -11,123 +24,127 @@ public static partial class sklearn
     public static class multioutput
     {
         // Classes
-        public class ClassifierChain : PythonObject
+        public class ClassifierChain :
+            IMetaEstimatorMixin,
+            IClassifierMixin,
+            _BaseChain<ClassifierChain>
         {
             // Constructor
-            public ClassifierChain(PyObject base_estimator, NDarray? order = null, int? cv = null, string chain_method = "predict", int? random_state = null, bool verbose = false)
-            {
-            }
+            public ClassifierChain(
+                IBaseEstimator base_estimator,
+                [NullOrOneOf<string, NDarray>(null)] object? order = null,
+                [NullOrOneOf<int, IBaseCrossValidator, PyIterable>(null)] object cv = null,
+                [OneOf<string, string[]>("predict")] object chain_method = default,
+                int? random_state = null,
+                bool verbose = false)
+            { }
 
             // Properties
-            public PyObject classes_ => default!;
-            public PyObject estimators_ => default!;
-            public PyObject order_ => default!;
+            [NeedsRevision] public PyObject classes_ => default!;
+            [NeedsRevision] public PyObject estimators_ => default!;
+            [NeedsRevision] public PyObject order_ => default!;
             public string chain_method_ => default!;
             public int n_features_in_ => default!;
             public NDarray feature_names_in_ => default!;
 
             // Methods
             public NDarray decision_function(NDarray X) => default!;
-            [Self]
-            public ClassifierChain fit(NDarray X, NDarray Y, params (string key, object value)[] @params) => default!;
+            [Self] public ClassifierChain fit(NDarray X, NDarray Y, params (string key, object value)[] @params) => default!;
             public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
             public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X) => default!;
             public NDarray predict_log_proba(NDarray X) => default!;
             public NDarray predict_proba(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [Self]
-            public ClassifierChain set_params(params (string key, object value)[] @params) => default!;
-            [Self]
-            public ClassifierChain set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
+            [Self] public ClassifierChain set_params(params (string key, object value)[] @params) => default!;
+            [Self] public ClassifierChain set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class MultiOutputClassifier : PythonObject
+        public class MultiOutputClassifier :
+            IClassifierMixin,
+            _MultiOutputEstimator<MultiOutputClassifier>
         {
             // Constructor
-            public MultiOutputClassifier(PyObject estimator, int? n_jobs = null)
-            {
-            }
+            public MultiOutputClassifier(
+                IBaseEstimator estimator,
+                int? n_jobs = null)
+            { }
 
             // Properties
             public NDarray classes_ => default!;
-            public PyTuple estimators_ => default!;
+            [NeedsRevision] public PyTuple estimators_ => default!;
             public int n_features_in_ => default!;
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [Self]
-            public MultiOutputClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null, params (string key, object value)[] @params) => default!;
+            [Self] public MultiOutputClassifier fit(NDarray X, NDarray y, NDarray? sample_weight = null, params (string key, object value)[] @params) => default!;
             public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
             public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
-            [Self]
-            public MultiOutputClassifier partial_fit(NDarray X, NDarray y, NDarray? classes = null, NDarray? sample_weight = null, params (string key, object value)[] @params) => default!;
+            [Self] public MultiOutputClassifier partial_fit(NDarray X, NDarray y, NDarray? classes = null, NDarray? sample_weight = null, params (string key, object value)[] @params) => default!;
             public NDarray predict(NDarray X) => default!;
             public NDarray predict_proba(NDarray X) => default!;
-            public float score(NDarray X, NDarray y) => default!;
-            [Self]
-            public MultiOutputClassifier set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
-            [Self]
-            public MultiOutputClassifier set_params(params (string key, object value)[] @params) => default!;
-            [Self]
-            public MultiOutputClassifier set_partial_fit_request(string? classes = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$") => default!;
+            public float score(NDarray X, NDarray y, [Ignored] NDarray? sample_weight = null) => default!;
+            [Self] public MultiOutputClassifier set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
+            [Self] public MultiOutputClassifier set_params(params (string key, object value)[] @params) => default!;
+            [Self] public MultiOutputClassifier set_partial_fit_request(string? classes = "$UNCHANGED$", string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class MultiOutputRegressor : PythonObject
+        public class MultiOutputRegressor :
+            IRegressorMixin,
+            _MultiOutputEstimator<MultiOutputRegressor>
         {
             // Constructor
-            public MultiOutputRegressor(PyObject estimator, int? n_jobs = null)
-            {
-            }
+            public MultiOutputRegressor(
+                IBaseEstimator estimator,
+                int? n_jobs = null)
+            { }
 
             // Properties
-            public PyTuple estimators_ => default!;
+            [NeedsRevision] public PyTuple estimators_ => default!;
             public int n_features_in_ => default!;
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [Self]
-            public MultiOutputRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null, params (string key, object value)[] @params) => default!;
+            [Self] public MultiOutputRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null, params (string key, object value)[] @params) => default!;
             public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
             public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
-            [Self]
-            public MultiOutputRegressor partial_fit(NDarray X, NDarray y, NDarray? sample_weight = null, params (string key, object value)[] @params) => default!;
+            [Self] public MultiOutputRegressor partial_fit(NDarray X, NDarray y, NDarray? classes = null, NDarray? sample_weight = null, params (string key, object value)[] @params) => default!;
             public NDarray predict(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [Self]
-            public MultiOutputRegressor set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
-            [Self]
-            public MultiOutputRegressor set_params(params (string key, object value)[] @params) => default!;
-            [Self]
-            public MultiOutputRegressor set_partial_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
-            [Self]
-            public MultiOutputRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
+            [Self] public MultiOutputRegressor set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
+            [Self] public MultiOutputRegressor set_params(params (string key, object value)[] @params) => default!;
+            [Self] public MultiOutputRegressor set_partial_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
+            [Self] public MultiOutputRegressor set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class RegressorChain : PythonObject
+        public class RegressorChain :
+            IMetaEstimatorMixin,
+            IRegressorMixin,
+            _BaseChain<RegressorChain>
         {
             // Constructor
-            public RegressorChain(PyObject base_estimator, NDarray? order = null, int? cv = null, int? random_state = null, bool verbose = false)
-            {
-            }
+            public RegressorChain(
+                IBaseEstimator base_estimator,
+                [NullOrOneOf<string, NDarray>(null)] object? order = null,
+                [NullOrOneOf<int, IBaseCrossValidator, PyIterable>(null)] object cv = null,
+                int? random_state = null,
+                bool verbose = false)
+            { }
 
             // Properties
-            public PyObject estimators_ => default!;
-            public PyObject order_ => default!;
+            [NeedsRevision] public PyObject estimators_ => default!;
+            [NeedsRevision] public PyObject order_ => default!;
             public int n_features_in_ => default!;
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [Self]
-            public RegressorChain fit(NDarray X, NDarray Y, params (string key, object value)[] @params) => default!;
+            [Self] public RegressorChain fit(NDarray X, NDarray Y, params (string key, object value)[] @params) => default!;
             public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
             public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
-            [Self]
-            public RegressorChain set_params(params (string key, object value)[] @params) => default!;
-            [Self]
-            public RegressorChain set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
+            [Self] public RegressorChain set_params(params (string key, object value)[] @params) => default!;
+            [Self] public RegressorChain set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
     }
 }

@@ -8,8 +8,8 @@ public static partial class sklearn
     {
         // Classes
         public class AdditiveChi2Sampler :
-            @base.TransformerMixin<AdditiveChi2Sampler>,
-            @base.BaseEstimator<AdditiveChi2Sampler>
+            ITransformerMixin<AdditiveChi2Sampler>,
+            IBaseEstimator<AdditiveChi2Sampler>
         {
             // Constructor
             public AdditiveChi2Sampler(
@@ -33,9 +33,9 @@ public static partial class sklearn
         }
 
         public class Nystroem :
-            @base.ClassNamePrefixFeaturesOutMixin,
-            @base.TransformerMixin<Nystroem>,
-            @base.BaseEstimator<Nystroem>
+            IClassNamePrefixFeaturesOutMixin,
+            ITransformerMixin<Nystroem>,
+            IBaseEstimator<Nystroem>
         {
             // Constructor
             public Nystroem(
@@ -68,9 +68,9 @@ public static partial class sklearn
         }
 
         public class PolynomialCountSketch :
-            @base.ClassNamePrefixFeaturesOutMixin,
-            @base.TransformerMixin<PolynomialCountSketch>,
-            @base.BaseEstimator<PolynomialCountSketch>
+            IClassNamePrefixFeaturesOutMixin,
+            ITransformerMixin<PolynomialCountSketch>,
+            IBaseEstimator<PolynomialCountSketch>
         {
             // Constructor
             public PolynomialCountSketch(
@@ -99,13 +99,13 @@ public static partial class sklearn
         }
 
         public class RBFSampler :
-            @base.ClassNamePrefixFeaturesOutMixin,
-            @base.TransformerMixin<RBFSampler>,
-            @base.BaseEstimator<RBFSampler>
+            IClassNamePrefixFeaturesOutMixin,
+            ITransformerMixin<RBFSampler>,
+            IBaseEstimator<RBFSampler>
         {
             // Constructor
             public RBFSampler(
-                [OneOf<float, string>(Default: 1.0f)] object gamma = default!,
+                [OneOf<float, string>(1.0f)] object gamma = default!,
                 int n_components = 100,
                 int? random_state = null)
             { }
@@ -128,9 +128,9 @@ public static partial class sklearn
         }
 
         public class SkewedChi2Sampler :
-            @base.ClassNamePrefixFeaturesOutMixin,
-            @base.TransformerMixin<SkewedChi2Sampler>,
-            @base.BaseEstimator<SkewedChi2Sampler>
+            IClassNamePrefixFeaturesOutMixin,
+            ITransformerMixin<SkewedChi2Sampler>,
+            IBaseEstimator<SkewedChi2Sampler>
         {
             // Constructor
             public SkewedChi2Sampler(

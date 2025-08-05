@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using Numpy;
-using Python.Runtime;
-
 namespace ScikitLearn;
+
 public static partial class sklearn
 {
     // Classes
@@ -12,23 +8,21 @@ public static partial class sklearn
     {
         // Classes
         public class OneVsOneClassifier :
-            @base.MetaEstimatorMixin,
-            @base.ClassifierMixin,
-            @base.BaseEstimator<OneVsOneClassifier>
+            IMetaEstimatorMixin,
+            IClassifierMixin,
+            IBaseEstimator<OneVsOneClassifier>
         {
             // Constructor
             public OneVsOneClassifier(
-                @base.BaseEstimator estimator,
+                IBaseEstimator estimator,
                 int? n_jobs = null)
             { }
 
             // Properties
-            [NeedsRevision]
-            public PyTuple estimators_ => default!;
+            [NeedsRevision] public PyTuple estimators_ => default!;
             public NDarray classes_ => default!;
             public int n_classes_ => default!;
-            [NeedsRevision]
-            public NDarray pairwise_indices_ => default!;
+            [NeedsRevision] public NDarray pairwise_indices_ => default!;
             public int n_features_in_ => default!;
             public NDarray feature_names_in_ => default!;
 
@@ -46,21 +40,20 @@ public static partial class sklearn
         }
 
         public class OneVsRestClassifier :
-            MultiOutputMixin,
-            @base.ClassifierMixin,
-            @base.MetaEstimatorMixin,
-            @base.BaseEstimator<OneVsRestClassifier>
+            IMultiOutputMixin,
+            IClassifierMixin,
+            IMetaEstimatorMixin,
+            IBaseEstimator<OneVsRestClassifier>
         {
             // Constructor
             public OneVsRestClassifier(
-                @base.BaseEstimator estimator,
+                IBaseEstimator estimator,
                 int? n_jobs = null,
                 int verbose = 0)
             { }
 
             // Properties
-            [NeedsRevision]
-            public PyTuple estimators_ => default!;
+            [NeedsRevision] public PyTuple estimators_ => default!;
             public NDarray classes_ => default!;
             public int n_classes_ => default!;
             public preprocessing.LabelBinarizer label_binarizer_ => default!;
@@ -83,21 +76,20 @@ public static partial class sklearn
         }
 
         public class OutputCodeClassifier :
-            @base.MetaEstimatorMixin,
-            @base.ClassifierMixin,
-            @base.BaseEstimator<OutputCodeClassifier>
+            IMetaEstimatorMixin,
+            IClassifierMixin,
+            IBaseEstimator<OutputCodeClassifier>
         {
             // Constructor
             public OutputCodeClassifier(
-                @base.BaseEstimator estimator,
+                IBaseEstimator estimator,
                 float code_size = 1.5f,
                 int? random_state = null,
                 int? n_jobs = null)
             { }
 
             // Properties
-            [NeedsRevision]
-            public PyTuple estimators_ => default!;
+            [NeedsRevision] public PyTuple estimators_ => default!;
             public NDarray classes_ => default!;
             public NDarray code_book_ => default!;
             public int n_features_in_ => default!;

@@ -1,8 +1,8 @@
 namespace ScikitLearn;
 
 public interface _BaseNB<Self> :
-    sklearn.@base.ClassifierMixin,
-    sklearn.@base.BaseEstimator<Self>
+    IClassifierMixin,
+    IBaseEstimator<Self>
 {
     NDarray predict(NDarray X);
     NDarray predict_proba(NDarray X);
@@ -29,7 +29,7 @@ public static partial class sklearn
         {
             // Constructor
             public BernoulliNB(
-                [OneOf<float, NDarray>(Default: 1.0f)] object alpha = default!,
+                [OneOf<float, NDarray>(1.0f)] object alpha = default!,
                 bool force_alpha = true,
                 float? binarize = 0.0f,
                 bool fit_prior = true,
@@ -70,7 +70,7 @@ public static partial class sklearn
                 bool force_alpha = true,
                 bool fit_prior = true,
                 NDarray? class_prior = null,
-                [OneOf<int, NDarray>] object? min_categories = null)
+                [NullOrOneOf<int, NDarray>(null)] object? min_categories = null)
             { }
 
             // Properties
@@ -105,7 +105,7 @@ public static partial class sklearn
         {
             // Constructor
             public ComplementNB(
-                [OneOf<float, NDarray>(Default: 1.0f)] object alpha = default!,
+                [OneOf<float, NDarray>(1.0f)] object alpha = default!,
                 bool force_alpha = true,
                 bool fit_prior = true,
                 NDarray? class_prior = null,
@@ -178,7 +178,7 @@ public static partial class sklearn
         {
             // Constructor
             public MultinomialNB(
-                [OneOf<float, NDarray>(Default: 1.0f)] object alpha = default!,
+                [OneOf<float, NDarray>(1.0f)] object alpha = default!,
                 bool force_alpha = true,
                 bool fit_prior = true,
                 NDarray? class_prior = null)

@@ -1,39 +1,39 @@
 ## Progress
 
 - [ ] sklearn.base
-- [x] sklearn.calibration
+- [x] ~~sklearn.calibration~~
 - [ ] sklearn.cluster
 - [ ] sklearn.compose
-- [ ] sklearn.covariance
+- [x] ~~sklearn.covariance~~
 - [ ] sklearn.cross_decomposition
-- [x] sklearn
+- [x] ~~sklearn~~
 - [ ] sklearn.datasets
 - [ ] sklearn.decomposition
 - [ ] sklearn.discriminant_analysis
-- [x] sklearn.dummy
+- [x] ~~sklearn.dummy~~
 - [ ] sklearn.ensemble
 - [ ] sklearn.feature_extraction
 - [ ] sklearn.feature_selection
 - [ ] sklearn.gaussian_process
 - [ ] sklearn.impute
 - [ ] sklearn.inspection
-- [ ] sklearn.isotonic
-- [x] sklearn.kernel_approximation
-- [x] sklearn.kernel_ridge
+- [x] ~~sklearn.isotonic~~
+- [x] ~~sklearn.kernel_approximation~~
+- [x] ~~sklearn.kernel_ridge~~
 - [ ] sklearn.linear_model
 - [ ] sklearn.manifold
 - [ ] sklearn.metrics
-- [x] sklearn.mixture
+- [x] ~~sklearn.mixture~~
 - [ ] sklearn.model_selection
-- [x] sklearn.multiclass [Needs Revision]
+- [y] sklearn.multiclass [Needs Revision]
 - [ ] sklearn.multioutput
-- [x] sklearn.naive_bayes
+- [x] ~~sklearn.naive_bayes~~
 - [ ] sklearn.neighbors
-- [x] sklearn.neural_network
+- [x] ~~sklearn.neural_network~~
 - [ ] sklearn.pipeline
 - [ ] sklearn.preprocessing
 - [ ] sklearn.random_projection
-- [x] sklearn.semi_supervised
+- [x] ~~sklearn.semi_supervised~~
 - [ ] sklearn.svm
 - [ ] sklearn.tree
 - [ ] sklearn.utils

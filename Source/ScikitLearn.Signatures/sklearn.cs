@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using Numpy;
-using Python.Runtime;
-
 namespace ScikitLearn;
+
 [Module]
 public static partial class sklearn
 {
@@ -21,7 +17,7 @@ public static partial class sklearn
         bool? skip_parameter_validation = null)
     { }
 
-    public static Dictionary<string, PyObject> get_config()
+    public static Dictionary<string, object> get_config()
     { return default!; }
 
     public static void set_config(

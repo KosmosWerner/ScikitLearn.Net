@@ -1,7 +1,7 @@
 namespace ScikitLearn;
 
 public interface BaseMultilayerPerceptron<Self> :
-    sklearn.@base.BaseEstimator<Self>
+    IBaseEstimator<Self>
 {
     Self fit(NDarray X, NDarray y, NDarray? sample_weight = null);
 }
@@ -14,9 +14,9 @@ public static partial class sklearn
     {
         // Classes
         public class BernoulliRBM :
-            @base.ClassNamePrefixFeaturesOutMixin,
-            @base.TransformerMixin<BernoulliRBM>,
-            @base.BaseEstimator<BernoulliRBM>
+            IClassNamePrefixFeaturesOutMixin,
+            ITransformerMixin<BernoulliRBM>,
+            IBaseEstimator<BernoulliRBM>
         {
             // Constructor
             public BernoulliRBM(
@@ -51,7 +51,7 @@ public static partial class sklearn
         }
 
         public class MLPClassifier :
-            @base.ClassifierMixin,
+            IClassifierMixin,
             BaseMultilayerPerceptron<MLPClassifier>
         {
             // Constructor
@@ -60,7 +60,7 @@ public static partial class sklearn
                 string activation = "relu",
                 string solver = "adam",
                 float alpha = 0.0001f,
-                [OneOf<string, int>(Default: "auto")] object batch_size = default!,
+                [OneOf<string, int>("auto")] object batch_size = default!,
                 string learning_rate = "constant",
                 float learning_rate_init = 0.001f,
                 float power_t = 0.5f,
@@ -84,7 +84,7 @@ public static partial class sklearn
             // Properties
             public NDarray classes_ => default!;
             public float loss_ => default!;
-            public float best_loss_ => default!;
+            public float? best_loss_ => default!;
             public NDarray loss_curve_ => default!;
             public NDarray validation_scores_ => default!;
             public float best_validation_score_ => default!;
@@ -113,7 +113,7 @@ public static partial class sklearn
         }
 
         public class MLPRegressor :
-            @base.RegressorMixin,
+            IRegressorMixin,
             BaseMultilayerPerceptron<MLPRegressor>
         {
             // Constructor
@@ -123,7 +123,7 @@ public static partial class sklearn
                 string activation = "relu",
                 string solver = "adam",
                 float alpha = 0.0001f,
-                [OneOf<string, int>(Default: "auto")] object batch_size = default!,
+                [OneOf<string, int>("auto")] object batch_size = default!,
                 string learning_rate = "constant",
                 float learning_rate_init = 0.001f,
                 float power_t = 0.5f,
@@ -142,8 +142,7 @@ public static partial class sklearn
                 float epsilon = 1e-08f,
                 int n_iter_no_change = 10,
                 int max_fun = 15000)
-            {
-            }
+            { }
 
             // Properties
             public float loss_ => default!;

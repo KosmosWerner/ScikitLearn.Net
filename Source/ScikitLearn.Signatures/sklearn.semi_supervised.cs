@@ -1,8 +1,8 @@
 namespace ScikitLearn;
 
 public interface BaseLabelPropagation<Self> :
-    sklearn.@base.ClassifierMixin,
-    sklearn.@base.BaseEstimator<Self>
+    IClassifierMixin,
+    IBaseEstimator<Self>
 {
     [Self] Self fit(NDarray X, NDarray y);
     NDarray predict(NDarray X);
@@ -83,15 +83,14 @@ public static partial class sklearn
             [Self] public LabelSpreading set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        [NeedsRevision]
         public class SelfTrainingClassifier :
-            @base.ClassifierMixin,
-            @base.MetaEstimatorMixin,
-            @base.BaseEstimator<SelfTrainingClassifier>
+            IClassifierMixin,
+            IMetaEstimatorMixin,
+            IBaseEstimator<SelfTrainingClassifier>
         {
             // Constructor
             public SelfTrainingClassifier(
-                @base.BaseEstimator estimator,
+                IBaseEstimator estimator,
                 float threshold = 0.75f,
                 string criterion = "threshold",
                 int k_best = 10,
@@ -100,8 +99,7 @@ public static partial class sklearn
             { }
 
             // Properties
-            [NeedsRevision]
-            public PyObject estimator_ => default!;
+            [FromConstructor("estimator")] public IBaseEstimator estimator_ => default!;
             public NDarray classes_ => default!;
             public NDarray transduction_ => default!;
             public NDarray labeled_iter_ => default!;

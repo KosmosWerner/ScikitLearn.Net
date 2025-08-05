@@ -1,11 +1,11 @@
 namespace ScikitLearn;
 
 public interface BaseMixture<Self> :
-    sklearn.@base.DensityMixin,
-    sklearn.@base.BaseEstimator<Self>
+    IDensityMixin,
+    IBaseEstimator<Self>
 {
-    [Self] Self fit(NDarray X);
-    NDarray fit_predict(NDarray X);
+    [Self] Self fit(NDarray X, NDarray? y = null);
+    NDarray fit_predict(NDarray X, NDarray? y = null);
     NDarray predict(NDarray X);
     NDarray predict_proba(NDarray X);
     (NDarray X, NDarray y) sample(int n_samples = 1);
@@ -20,7 +20,7 @@ public static partial class sklearn
     public static class mixture
     {
         // Classes
-        public class BayesianGaussianMixture : 
+        public class BayesianGaussianMixture :
             BaseMixture<BayesianGaussianMixture>
         {
             // Constructor
@@ -37,7 +37,7 @@ public static partial class sklearn
                 float? mean_precision_prior = null,
                 NDarray? mean_prior = null,
                 float? degrees_of_freedom_prior = null,
-                [OneOf<float, NDarray>] object? covariance_prior = null,
+                [NullOrOneOf<float, NDarray>(null)] object? covariance_prior = null,
                 int? random_state = null,
                 bool warm_start = false,
                 int verbose = 0,
@@ -53,7 +53,7 @@ public static partial class sklearn
             public bool converged_ => default!;
             public int n_iter_ => default!;
             public float lower_bound_ => default!;
-            [NeedsRevision]
+            [NeedsRevision]  // tuple or float
             public NDarray weight_concentration_prior_ => default!;
             public NDarray weight_concentration_ => default!;
             public float mean_precision_prior_ => default!;
@@ -61,27 +61,25 @@ public static partial class sklearn
             public NDarray mean_prior_ => default!;
             public float degrees_of_freedom_prior_ => default!;
             public NDarray degrees_of_freedom_ => default!;
-            [NeedsRevision]
+            [NeedsRevision]// ndarray or float
             public NDarray covariance_prior_ => default!;
             public int n_features_in_ => default!;
             public NDarray feature_names_in_ => default!;
 
             // Methods
-            [Self]
-            public BayesianGaussianMixture fit(NDarray X) => default!;
-            public NDarray fit_predict(NDarray X) => default!;
+            [Self] public BayesianGaussianMixture fit(NDarray X, NDarray? y = null) => default!;
+            public NDarray fit_predict(NDarray X, NDarray? y = null) => default!;
             public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
             public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X) => default!;
             public NDarray predict_proba(NDarray X) => default!;
             public (NDarray X, NDarray y) sample(int n_samples = 1) => default!;
-            public float score(NDarray X, NDarray? y) => default!;
+            public float score(NDarray X, NDarray? y = null) => default!;
             public NDarray score_samples(NDarray X) => default!;
-            [Self]
-            public BayesianGaussianMixture set_params(params (string key, object value)[] @params) => default!;
+            [Self] public BayesianGaussianMixture set_params(params (string key, object value)[] @params) => default!;
         }
 
-        public class GaussianMixture : 
+        public class GaussianMixture :
             BaseMixture<GaussianMixture>
         {
             // Constructor
@@ -117,9 +115,8 @@ public static partial class sklearn
             // Methods
             public float aic(NDarray X) => default!;
             public float bic(NDarray X) => default!;
-            [Self]
-            public GaussianMixture fit(NDarray X) => default!;
-            public NDarray fit_predict(NDarray X) => default!;
+            [Self] public GaussianMixture fit(NDarray X, NDarray? y = null) => default!;
+            public NDarray fit_predict(NDarray X, NDarray? y = null) => default!;
             public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
             public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
             public NDarray predict(NDarray X) => default!;
@@ -127,8 +124,7 @@ public static partial class sklearn
             public (NDarray X, NDarray y) sample(int n_samples = 1) => default!;
             public float score(NDarray X, NDarray? y) => default!;
             public NDarray score_samples(NDarray X) => default!;
-            [Self]
-            public GaussianMixture set_params(params (string key, object value)[] @params) => default!;
+            [Self] public GaussianMixture set_params(params (string key, object value)[] @params) => default!;
         }
     }
 }

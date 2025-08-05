@@ -196,7 +196,7 @@ public static partial class sklearn
             public GraphicalLassoCV(
                 [OneOf<int, NDarray>(Default: 4)] object alphas = default!,
                 int n_refinements = 4,
-                [NullOrOneOf<int, BaseCrossValidator>(Default: null)] object cv = default!,
+                [NullOrOneOf<int, IBaseCrossValidator>(Default: null)] object cv = default!,
                 float tol = 0.0001f,
                 float enet_tol = 0.0001f,
                 int max_iter = 100,

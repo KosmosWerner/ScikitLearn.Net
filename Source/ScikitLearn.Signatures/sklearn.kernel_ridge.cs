@@ -8,13 +8,13 @@ public static partial class sklearn
     {
         // Classes
         public class KernelRidge :
-            MultiOutputMixin,
-            @base.RegressorMixin,
-            @base.BaseEstimator<KernelRidge>
+            IMultiOutputMixin,
+            IRegressorMixin,
+            IBaseEstimator<KernelRidge>
         {
             // Constructor
             public KernelRidge(
-                [OneOf<float, NDarray>(Default: 1.0f)] object alpha = default!,
+                [OneOf<float, NDarray>(1.0f)] object alpha = default!,
                 string kernel = "linear",
                 float? gamma = null,
                 int degree = 3,

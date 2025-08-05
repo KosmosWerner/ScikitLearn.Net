@@ -1,7 +1,6 @@
 namespace ScikitLearn;
 
-public interface MultiOutputMixin : IPythonWrapper
-{ }
+
 
 public static partial class sklearn
 {
@@ -10,16 +9,16 @@ public static partial class sklearn
     public static class dummy
     {
         // Classes
-        public class DummyClassifier : 
-            MultiOutputMixin,
-            @base.ClassifierMixin,
-            @base.BaseEstimator<DummyClassifier>
+        public class DummyClassifier :
+            IMultiOutputMixin,
+            IClassifierMixin,
+            IBaseEstimator<DummyClassifier>
         {
             // Constructor
             public DummyClassifier(
                 string strategy = "prior",
                 int? random_state = null,
-                [OneOf<int, float, NDarray>] object? constant = null)
+                [NullOrOneOf<int, float, NDarray>(null)] object? constant = null)
             { }
 
             // Properties
@@ -44,15 +43,15 @@ public static partial class sklearn
             [Self] public DummyClassifier set_score_request(string? sample_weight = "$UNCHANGED$") => default!;
         }
 
-        public class DummyRegressor : 
-            MultiOutputMixin,
-            @base.RegressorMixin,
-            @base.BaseEstimator<DummyRegressor>
+        public class DummyRegressor :
+            IMultiOutputMixin,
+            IRegressorMixin,
+            IBaseEstimator<DummyRegressor>
         {
             // Constructor
             public DummyRegressor(
                 string strategy = "mean",
-                [OneOf<int, float, NDarray>] object? constant = null,
+                [NullOrOneOf<int, float, NDarray>(null)] object? constant = null,
                 float? quantile = null)
             { }
 
@@ -66,7 +65,7 @@ public static partial class sklearn
             [Self] public DummyRegressor fit(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing() => default!;
             public Dictionary<string, PyObject> get_params(bool deep = true) => default!;
-            public (NDarray?, NDarray?) predict(NDarray X, bool return_std = false) => default!;
+            public (NDarray y, NDarray y_std) predict(NDarray X, bool return_std = false) => default!;
             public float score(NDarray X, NDarray y, NDarray? sample_weight = null) => default!;
             [Self] public DummyRegressor set_fit_request(string? sample_weight = "$UNCHANGED$") => default!;
             [Self] public DummyRegressor set_params(params (string key, object value)[] @params) => default!;

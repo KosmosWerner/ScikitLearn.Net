@@ -11,15 +11,15 @@ public static partial class sklearn
         public static NDarray isotonic_regression(NDarray y, NDarray? sample_weight = null, float? y_min = null, float? y_max = null, bool increasing = true) => default!;
         // Classes
         public class IsotonicRegression :
-            @base.RegressorMixin,
-            @base.TransformerMixin<IsotonicRegression>,
-            @base.BaseEstimator<IsotonicRegression>
+            IRegressorMixin,
+            ITransformerMixin<IsotonicRegression>,
+            IBaseEstimator<IsotonicRegression>
         {
             // Constructor
             public IsotonicRegression(
                 float? y_min = null,
                 float? y_max = null,
-                [OneOf<bool, string>(Default: true)] object increasing = default!,
+                [OneOf<bool, string>(true)] object increasing = default!,
                 string out_of_bounds = "nan")
             { }
 
@@ -28,6 +28,7 @@ public static partial class sklearn
             public float X_max_ => default!;
             public NDarray X_thresholds_ => default!;
             public NDarray y_thresholds_ => default!;
+            [NeedsRevision]
             public PyObject f_ => default!;
             public bool increasing_ => default!;
 

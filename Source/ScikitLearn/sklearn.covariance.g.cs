@@ -296,22 +296,22 @@ public static partial class sklearn
                 return new NDarray(__pyObject);
             }
 
-            public PyObject get_metadata_routing()
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
                 var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
-                return __pyObject;
+                return ScikitLearn.sklearn.utils.metadata_routing.MetadataRequest.Wrap(__pyObject);
             }
 
-            public PyDict get_params(bool deep = true)
+            public IReadOnlyDictionary<string, PyObject> get_params(bool deep = true)
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
                 var __pyObject = self.InvokeMethod("get_params", args, pyDict);
-                return new PyDict(__pyObject);
+                throw new NotImplementedException();
             }
 
             public NDarray get_precision()
@@ -477,22 +477,22 @@ public static partial class sklearn
                 return this;
             }
 
-            public PyObject get_metadata_routing()
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
                 var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
-                return __pyObject;
+                return ScikitLearn.sklearn.utils.metadata_routing.MetadataRequest.Wrap(__pyObject);
             }
 
-            public PyDict get_params(bool deep = true)
+            public IReadOnlyDictionary<string, PyObject> get_params(bool deep = true)
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
                 var __pyObject = self.InvokeMethod("get_params", args, pyDict);
-                return new PyDict(__pyObject);
+                throw new NotImplementedException();
             }
 
             public NDarray get_precision()
@@ -662,22 +662,22 @@ public static partial class sklearn
                 return this;
             }
 
-            public PyObject get_metadata_routing()
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
                 var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
-                return __pyObject;
+                return ScikitLearn.sklearn.utils.metadata_routing.MetadataRequest.Wrap(__pyObject);
             }
 
-            public PyDict get_params(bool deep = true)
+            public IReadOnlyDictionary<string, PyObject> get_params(bool deep = true)
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
                 var __pyObject = self.InvokeMethod("get_params", args, pyDict);
-                return new PyDict(__pyObject);
+                throw new NotImplementedException();
             }
 
             public NDarray get_precision()
@@ -871,22 +871,22 @@ public static partial class sklearn
                 return this;
             }
 
-            public PyObject get_metadata_routing()
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
                 var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
-                return __pyObject;
+                return ScikitLearn.sklearn.utils.metadata_routing.MetadataRequest.Wrap(__pyObject);
             }
 
-            public PyDict get_params(bool deep = true)
+            public IReadOnlyDictionary<string, PyObject> get_params(bool deep = true)
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
                 var __pyObject = self.InvokeMethod("get_params", args, pyDict);
-                return new PyDict(__pyObject);
+                throw new NotImplementedException();
             }
 
             public NDarray get_precision()
@@ -1035,22 +1035,22 @@ public static partial class sklearn
                 return this;
             }
 
-            public PyObject get_metadata_routing()
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
                 var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
-                return __pyObject;
+                return ScikitLearn.sklearn.utils.metadata_routing.MetadataRequest.Wrap(__pyObject);
             }
 
-            public PyDict get_params(bool deep = true)
+            public IReadOnlyDictionary<string, PyObject> get_params(bool deep = true)
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
                 var __pyObject = self.InvokeMethod("get_params", args, pyDict);
-                return new PyDict(__pyObject);
+                throw new NotImplementedException();
             }
 
             public NDarray get_precision()
@@ -1245,22 +1245,22 @@ public static partial class sklearn
                 return this;
             }
 
-            public PyObject get_metadata_routing()
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
                 var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
-                return __pyObject;
+                return ScikitLearn.sklearn.utils.metadata_routing.MetadataRequest.Wrap(__pyObject);
             }
 
-            public PyDict get_params(bool deep = true)
+            public IReadOnlyDictionary<string, PyObject> get_params(bool deep = true)
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
                 var __pyObject = self.InvokeMethod("get_params", args, pyDict);
-                return new PyDict(__pyObject);
+                throw new NotImplementedException();
             }
 
             public NDarray get_precision()
@@ -1417,22 +1417,22 @@ public static partial class sklearn
                 return this;
             }
 
-            public PyObject get_metadata_routing()
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
                 var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
-                return __pyObject;
+                return ScikitLearn.sklearn.utils.metadata_routing.MetadataRequest.Wrap(__pyObject);
             }
 
-            public PyDict get_params(bool deep = true)
+            public IReadOnlyDictionary<string, PyObject> get_params(bool deep = true)
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
                 var __pyObject = self.InvokeMethod("get_params", args, pyDict);
-                return new PyDict(__pyObject);
+                throw new NotImplementedException();
             }
 
             public NDarray get_precision()
@@ -1572,22 +1572,22 @@ public static partial class sklearn
                 return this;
             }
 
-            public PyObject get_metadata_routing()
+            public sklearn.utils.metadata_routing.MetadataRequest get_metadata_routing()
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
                 var __pyObject = self.InvokeMethod("get_metadata_routing", args, pyDict);
-                return __pyObject;
+                return ScikitLearn.sklearn.utils.metadata_routing.MetadataRequest.Wrap(__pyObject);
             }
 
-            public PyDict get_params(bool deep = true)
+            public IReadOnlyDictionary<string, PyObject> get_params(bool deep = true)
             {
                 PyTuple args = new PyTuple(new PyObject[] { });
                 PyDict pyDict = new PyDict();
                 if (deep != true)
                     pyDict["deep"] = Helpers.ToPython(deep);
                 var __pyObject = self.InvokeMethod("get_params", args, pyDict);
-                return new PyDict(__pyObject);
+                throw new NotImplementedException();
             }
 
             public NDarray get_precision()

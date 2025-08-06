@@ -13,7 +13,7 @@ public static partial class sklearn
         public static (NDarray prob_true, NDarray prob_pred) calibration_curve(
             NDarray y_true,
             NDarray y_prob,
-            [Default(null)] NullOrOneOf<int, float, bool, string> pos_label = default!,
+            [Default(null)] NullOrOneOf<int, float, bool, string> pos_label = default,
             int n_bins = 5,
             string strategy = "uniform") => default!;
 

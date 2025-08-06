@@ -19,7 +19,7 @@ public static partial class sklearn
             public IsotonicRegression(
                 float? y_min = null,
                 float? y_max = null,
-                [OneOf<bool, string>(true)] object increasing = default!,
+                [Default(true)]OneOf<bool, string> increasing = default,
                 string out_of_bounds = "nan")
             { }
 

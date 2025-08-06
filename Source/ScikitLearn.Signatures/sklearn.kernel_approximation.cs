@@ -105,7 +105,7 @@ public static partial class sklearn
         {
             // Constructor
             public RBFSampler(
-                [OneOf<float, string>(1.0f)] object gamma = default!,
+                [Default(1.0f)] OneOf<float, string> gamma = default,
                 int n_components = 100,
                 int? random_state = null)
             { }

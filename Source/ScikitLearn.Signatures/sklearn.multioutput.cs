@@ -32,9 +32,9 @@ public static partial class sklearn
             // Constructor
             public ClassifierChain(
                 IBaseEstimator base_estimator,
-                [NullOrOneOf<string, NDarray>(null)] object? order = null,
-                [NullOrOneOf<int, IBaseCrossValidator, PyIterable>(null)] object cv = null,
-                [OneOf<string, string[]>("predict")] object chain_method = default,
+                [Default(null)] NullOrOneOf<string, NDarray> order = default,
+                [Default(null)] NullOrOneOf<int, IBaseCrossValidator, PyIterable> cv = default,
+                [Default("predict")] OneOf<string, string[]> chain_method = default,
                 int? random_state = null,
                 bool verbose = false)
             { }

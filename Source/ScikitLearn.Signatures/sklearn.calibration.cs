@@ -13,7 +13,7 @@ public static partial class sklearn
         public static (NDarray prob_true, NDarray prob_pred) calibration_curve(
             NDarray y_true,
             NDarray y_prob,
-            [NullOrOneOf<int, float, bool, string>(null)] object pos_label = default!,
+            [Default(null)] NullOrOneOf<int, float, bool, string> pos_label = default!,
             int n_bins = 5,
             string strategy = "uniform") => default!;
 
@@ -27,9 +27,9 @@ public static partial class sklearn
             public CalibratedClassifierCV(
                 IBaseEstimator? estimator = null,
                 string method = "sigmoid",
-                [NullOrOneOf<int, IBaseCrossValidator, PyIterable>(null)] object? cv = null,
+                [Default(null)] NullOrOneOf<int, IBaseCrossValidator, PyIterable> cv = default,
                 int? n_jobs = null,
-                [OneOf<string, bool>(Default:"auto")] object ensemble = default!)
+                [Default("auto")] OneOf<string, bool> ensemble = default)
             { }
 
             // Properties
@@ -59,7 +59,7 @@ public static partial class sklearn
                 NDarray prob_pred,
                 NDarray y_prob,
                 string? estimator_name = null,
-                [NullOrOneOf<int, float, bool, string>(null)] object pos_label = default!)
+                [Default(null)] NullOrOneOf<int, float, bool, string> pos_label = default)
             { }
 
             // Properties
@@ -75,7 +75,7 @@ public static partial class sklearn
                 NDarray y,
                 int n_bins = 5,
                 string strategy = "uniform",
-                [NullOrOneOf<int, float, bool, string>(null)] object? pos_label = null,
+                [Default(null)] NullOrOneOf<int, float, bool, string> pos_label = default,
                 string? name = null,
                 PyObject? ax = null,
                 bool ref_line = true,
@@ -86,7 +86,7 @@ public static partial class sklearn
                 NDarray y_prob,
                 int n_bins = 5,
                 string strategy = "uniform",
-                [NullOrOneOf<int, float, bool, string>(null)] object? pos_label = null,
+                [Default(null)] NullOrOneOf<int, float, bool, string> pos_label = default,
                 string? name = null,
                 PyObject? ax = null,
                 bool ref_line = true,

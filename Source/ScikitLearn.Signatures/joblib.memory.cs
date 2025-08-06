@@ -13,7 +13,7 @@ public static partial class joblib
                 string? mmap_mode = null,
                 bool compress = false,
                 int verbose = 1,
-                int? bytes_limit = null,
+                [Default(null)] NullOrOneOf<int, string> bytes_limit = default,
                 Dictionary<string, object>? backend_options = null)
             { }
 

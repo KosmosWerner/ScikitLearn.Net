@@ -14,7 +14,7 @@ public static partial class sklearn
         {
             // Constructor
             public KernelRidge(
-                [OneOf<float, NDarray>(1.0f)] object alpha = default!,
+                [Default(1.0f)] OneOf<float, NDarray> alpha = default,
                 string kernel = "linear",
                 float? gamma = null,
                 int degree = 3,

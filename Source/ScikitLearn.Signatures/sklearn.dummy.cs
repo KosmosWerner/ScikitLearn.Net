@@ -18,7 +18,7 @@ public static partial class sklearn
             public DummyClassifier(
                 string strategy = "prior",
                 int? random_state = null,
-                [NullOrOneOf<int, float, NDarray>(null)] object? constant = null)
+                [Default(null)] NullOrOneOf<int, float, NDarray> constant = default)
             { }
 
             // Properties
@@ -51,7 +51,7 @@ public static partial class sklearn
             // Constructor
             public DummyRegressor(
                 string strategy = "mean",
-                [NullOrOneOf<int, float, NDarray>(null)] object? constant = null,
+                [Default(null)] NullOrOneOf<int, float, NDarray> constant = default,
                 float? quantile = null)
             { }
 

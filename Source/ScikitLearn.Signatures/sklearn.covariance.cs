@@ -3,9 +3,7 @@ namespace ScikitLearn;
 /// <summary>
 /// Maximum likelihood covariance estimator
 /// </summary>
-/// <typeparam name="Self"></typeparam>
-public interface IEmpiricalCovariance<Self> :
-    IBaseEstimator<Self>
+public interface IEmpiricalCovariance : IPythonWrapper
 {
     NDarray location_ { get; }
     NDarray covariance_ { get; }
@@ -14,10 +12,16 @@ public interface IEmpiricalCovariance<Self> :
     NDarray feature_names_in_ { get; }
 
     NDarray get_precision();
-    Self fit(NDarray X, NDarray? y = null);
     float score(NDarray X, NDarray? y = null);
     float error_norm(NDarray comp_cov, string norm = "frobenius", bool scaling = true, bool squared = true);
     NDarray mahalanobis(NDarray X);
+}
+
+public interface IEmpiricalCovariance<Self> :
+    IEmpiricalCovariance,
+    IBaseEstimator<Self>
+{
+    Self fit(NDarray X, NDarray? y = null);
 }
 
 public interface IMinCovDet<Self> :
@@ -49,7 +53,8 @@ public static partial class sklearn
             bool assume_centered = false) => default!;
 
         [EnableItem(Item: "n_iter", If: "return_n_iter")]
-        public static (NDarray covariance, NDarray precision, PyObject costs, int? n_iter) graphical_lasso(
+        [EnableItem(Item: "costs", If: "return_costs")]
+        public static (NDarray covariance, NDarray precision, PyObject? costs, int? n_iter) graphical_lasso(
             NDarray emp_cov,
             float alpha,
             string mode = "cd",

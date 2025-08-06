@@ -29,7 +29,7 @@ public static partial class sklearn
         {
             // Constructor
             public BernoulliNB(
-                [OneOf<float, NDarray>(1.0f)] object alpha = default!,
+                [Default(1.0f)] OneOf<float, NDarray> alpha = default,
                 bool force_alpha = true,
                 float? binarize = 0.0f,
                 bool fit_prior = true,
@@ -70,7 +70,7 @@ public static partial class sklearn
                 bool force_alpha = true,
                 bool fit_prior = true,
                 NDarray? class_prior = null,
-                [NullOrOneOf<int, NDarray>(null)] object? min_categories = null)
+                [Default(null)] NullOrOneOf<int, NDarray> min_categories = default)
             { }
 
             // Properties
@@ -105,7 +105,7 @@ public static partial class sklearn
         {
             // Constructor
             public ComplementNB(
-                [OneOf<float, NDarray>(1.0f)] object alpha = default!,
+                [Default(1.0f)] OneOf<float, NDarray> alpha = default,
                 bool force_alpha = true,
                 bool fit_prior = true,
                 NDarray? class_prior = null,
@@ -178,7 +178,7 @@ public static partial class sklearn
         {
             // Constructor
             public MultinomialNB(
-                [OneOf<float, NDarray>(1.0f)] object alpha = default!,
+                [Default(1.0f)] OneOf<float, NDarray> alpha = default,
                 bool force_alpha = true,
                 bool fit_prior = true,
                 NDarray? class_prior = null)

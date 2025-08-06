@@ -196,7 +196,7 @@ public static partial class sklearn
             public GraphicalLassoCV(
                 [Default(4)] OneOf<int, NDarray> alphas = default,
                 int n_refinements = 4,
-                [Default(null)] NullOrOneOf<int, IBaseCrossValidator> cv = default,
+                [Default(null)] NullOrOneOf<int, IBaseCrossValidator, PyIterable> cv = default,
                 float tol = 0.0001f,
                 float enet_tol = 0.0001f,
                 int max_iter = 100,

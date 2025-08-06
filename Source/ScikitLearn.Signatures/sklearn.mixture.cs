@@ -37,7 +37,7 @@ public static partial class sklearn
                 float? mean_precision_prior = null,
                 NDarray? mean_prior = null,
                 float? degrees_of_freedom_prior = null,
-                [NullOrOneOf<float, NDarray>(null)] object? covariance_prior = null,
+                [Default(null)] NullOrOneOf<float, NDarray> covariance_prior = default,
                 int? random_state = null,
                 bool warm_start = false,
                 int verbose = 0,
